@@ -1,0 +1,16 @@
+{
+  "name": "applification.net",
+  "private": true,
+  "packageManager": "bun@1.4.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --cwd apps/applification dev",
+    "build": "bun --cwd apps/applification build",
+    "start": "bun --cwd apps/applification start",
+    "lint": "bun --cwd apps/applification lint",
+    "typecheck": "bun --cwd apps/applification typecheck"
+  }
+}
