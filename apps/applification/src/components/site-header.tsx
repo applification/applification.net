@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { ThemeSwitcher } from "./theme-switcher";
 
 const navigation = [
   { href: "/products", label: "Products" },
@@ -117,28 +118,33 @@ export function SiteHeader() {
               </Link>
             );
           })}
-          <a
-            className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
-            href={contactHref}
-          >
-            Discuss your project
-            <ArrowUpRightIcon />
-          </a>
+          <div className="flex items-center gap-3">
+            <ThemeSwitcher />
+            <a
+              className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
+              href={contactHref}
+            >
+              Discuss your project
+              <ArrowUpRightIcon />
+            </a>
+          </div>
         </nav>
 
-        <button
-          ref={menuButtonRef}
-          aria-controls="mobile-navigation"
-          aria-expanded={menuOpen}
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-          className={`flex size-11 items-center justify-center rounded-full bg-[var(--app-control)] text-[var(--app-text-primary)] min-[821px]:hidden ${focusClasses}`}
-          onClick={() =>
-            setMenuState({ open: !menuOpen, pathname })
-          }
-          type="button"
-        >
-          <MenuIcon open={menuOpen} />
-        </button>
+        <div className="flex items-center min-[821px]:hidden">
+          <button
+            ref={menuButtonRef}
+            aria-controls="mobile-navigation"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            className={`flex size-11 items-center justify-center rounded-full bg-[var(--app-control)] text-[var(--app-text-primary)] ${focusClasses}`}
+            onClick={() =>
+              setMenuState({ open: !menuOpen, pathname })
+            }
+            type="button"
+          >
+            <MenuIcon open={menuOpen} />
+          </button>
+        </div>
       </div>
 
       {menuOpen ? (
@@ -164,6 +170,9 @@ export function SiteHeader() {
                 </Link>
               );
             })}
+            <div className="my-2 border-t border-[var(--app-border)] pt-2">
+              <ThemeSwitcher labelled />
+            </div>
             <a
               className={`mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-5 text-base font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
               href={contactHref}

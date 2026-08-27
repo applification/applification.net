@@ -4,6 +4,8 @@ import { SiteHeader } from "@/components/site-header";
 import { appFontVariables } from "./fonts";
 import "./globals.css";
 
+const themeBootstrapScript = `(function(){try{var theme=localStorage.getItem("applification-theme");if(theme==="light"||theme==="dark"){document.documentElement.dataset.theme=theme}}catch(error){}})()`;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://applification.net"),
   title: {
@@ -34,7 +36,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${appFontVariables} h-full`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: themeBootstrapScript }}
+        />
+      </head>
       <body className="font-body min-h-full bg-[var(--app-bg)] text-[var(--app-text-primary)] antialiased">
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
