@@ -1,4 +1,14 @@
-export function ContractCta() {
+type ContractCtaProps = {
+  description?: string;
+  eyebrow?: string;
+  title?: string;
+};
+
+export function ContractCta({
+  description = "I can join an existing team or assemble the product, design and engineering team for a complete build. Remote across the UK.",
+  eyebrow = "CONTRACT ENGINEERING · PROJECT TEAMS",
+  title = "Need a senior product engineer, or a small team for the whole build?",
+}: ContractCtaProps = {}) {
   return (
     <section
       aria-labelledby="contract-cta-heading"
@@ -7,18 +17,17 @@ export function ContractCta() {
     >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[18px] min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-[60px]">
         <div className="max-w-[780px]">
-          <p className="font-caption text-[11px] font-bold tracking-[1px] min-[1024px]:text-xs min-[1024px]:font-semibold min-[1024px]:tracking-[0.9px]">
-            CONTRACT ENGINEERING&nbsp; · &nbsp;PROJECT TEAMS
+          <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--cta-eyebrow)] min-[1024px]:text-xs min-[1024px]:font-semibold min-[1024px]:tracking-[0.9px]">
+            {eyebrow}
           </p>
           <h2
             className="font-heading mt-[18px] text-[34px] leading-[1.08] font-medium min-[1024px]:mt-3 min-[1024px]:text-[44px] min-[1024px]:font-semibold"
             id="contract-cta-heading"
           >
-            Need a senior product engineer, or a small team for the whole build?
+            {title}
           </h2>
-          <p className="mt-[18px] max-w-[760px] text-sm leading-[1.5] min-[1024px]:mt-3 min-[1024px]:text-[15px] min-[1024px]:leading-[1.45]">
-            I can join an existing team or assemble the product, design and
-            engineering team for a complete build. Remote across the UK.
+          <p className="mt-[18px] max-w-[760px] text-sm leading-[1.5] text-[var(--cta-description)] min-[1024px]:mt-3 min-[1024px]:text-[15px] min-[1024px]:leading-[1.45]">
+            {description}
           </p>
         </div>
 

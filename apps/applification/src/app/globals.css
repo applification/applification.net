@@ -20,8 +20,8 @@
   --app-action: #0369a1;
   --app-action-hover: #075985;
   --app-text-on-action: #ffffff;
-  --app-text-on-accent: #082f49;
-  --app-accent-band: #0ea5e9;
+  --app-text-on-accent: light-dark(#082f49, #f8fafc);
+  --app-accent-band: light-dark(#0ea5e9, #0c4a6e);
   --app-focus: light-dark(#0369a1, #7dd3fc);
   --loop-bg: #02070c;
   --loop-header: #08131d;
@@ -160,7 +160,9 @@
   --cta-action-hover: #172554;
   --cta-action-active: #020617;
   --cta-action-text: #f8fafc;
-  --cta-focus: #082f49;
+  --cta-eyebrow: light-dark(#082f49, #7dd3fc);
+  --cta-description: light-dark(#082f49, #bae6fd);
+  --cta-focus: light-dark(#082f49, #7dd3fc);
 
   --background: var(--app-bg);
   --background-end: var(--app-bg-end);
@@ -217,6 +219,13 @@
     gap: 0.5rem;
     min-width: 0;
     padding: 0.625rem;
+  }
+
+  .storyloop-card-grid-compact {
+    --storyloop-card-width: min(120px, calc((100% - 0.5rem) / 2));
+
+    grid-template-columns: repeat(2, var(--storyloop-card-width));
+    padding: 0.5rem;
   }
 
   .storyloop-card-grid-scroll {
