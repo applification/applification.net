@@ -1,11 +1,23 @@
-import { PageShell } from "@/components/page-shell";
+import { AiWorkingMethod } from "@/components/home/ai-working-method";
+import { ClientOutcomes } from "@/components/home/client-outcomes";
+import { CommercialProof } from "@/components/home/commercial-proof";
+import { ContractCta } from "@/components/home/contract-cta";
+import { Hero } from "@/components/home/hero";
+import { OpenSourceProducts } from "@/components/home/open-source-products";
+import { PlantryShowcase } from "@/components/home/plantry-showcase";
+import { StoryLoopsShowcase } from "@/components/home/storyloops-showcase";
 
 export default function HomePage() {
   return (
-    <PageShell
-      eyebrow="AI product engineering"
-      title="Products, agent workflows and frontend engineering."
-      description="The new Applification site is being shaped around the products I build, the client work I take on and the practical lessons from both."
-    />
+    <main className="flex-1">
+      <Hero />
+      <CommercialProof />
+      <StoryLoopsShowcase />
+      <PlantryShowcase />
+      <ClientOutcomes />
+      <OpenSourceProducts />
+      <AiWorkingMethod />
+      <ContractCta />
+    </main>
   );
 }

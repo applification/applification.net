@@ -1,0 +1,37 @@
+export function ContractCta() {
+  return (
+    <section
+      aria-labelledby="contract-cta-heading"
+      className="bg-[var(--app-accent-band)] px-6 py-12 text-[var(--app-text-on-accent)] min-[1024px]:px-[120px] min-[1024px]:py-[68px]"
+      id="contact"
+    >
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[18px] min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-[60px]">
+        <div className="max-w-[780px]">
+          <p className="font-caption text-[11px] font-bold tracking-[1px] min-[1024px]:text-xs min-[1024px]:font-semibold min-[1024px]:tracking-[0.9px]">
+            CONTRACT ENGINEERING&nbsp; · &nbsp;PROJECT TEAMS
+          </p>
+          <h2
+            className="font-heading mt-[18px] text-[34px] leading-[1.08] font-medium min-[1024px]:mt-3 min-[1024px]:text-[44px] min-[1024px]:font-semibold"
+            id="contract-cta-heading"
+          >
+            Need a senior product engineer, or a small team for the whole build?
+          </h2>
+          <p className="mt-[18px] max-w-[760px] text-sm leading-[1.5] min-[1024px]:mt-3 min-[1024px]:text-[15px] min-[1024px]:leading-[1.45]">
+            I can join an existing team or assemble the product, design and
+            engineering team for a complete build. Remote across the UK.
+          </p>
+        </div>
+
+        <a
+          className="inline-flex min-h-[50px] w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[var(--cta-action)] px-[22px] text-[15px] font-bold text-[var(--cta-action-text)] transition-[background-color,transform] hover:bg-[var(--cta-action-hover)] active:translate-y-px active:bg-[var(--cta-action-active)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--cta-focus)] min-[1024px]:w-auto min-[1024px]:font-semibold"
+          href="mailto:dave@applification.net?subject=Project%20enquiry"
+        >
+          Start a conversation
+          <span aria-hidden="true" className="text-[var(--contexture-cyan)]">
+            ↗
+          </span>
+        </a>
+      </div>
+    </section>
+  );
+}

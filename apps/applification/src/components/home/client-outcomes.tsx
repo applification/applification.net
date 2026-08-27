@@ -1,0 +1,134 @@
+const outcomeDetails = [
+  {
+    company: "ERUPTIV",
+    proof: "4 months",
+    title: "Greenfield frontend built",
+    detail:
+      "Designed and built the entire TypeScript and Next.js frontend against an existing API in four months. The platform reached production after a fifth month of refinement.",
+    technologies: "REACT  ·  TYPESCRIPT  ·  STORYBOOK",
+  },
+  {
+    company: "PEPPY HEALTH",
+    proof: "£12m ARR",
+    title: "Component architecture rebuilt",
+    detail:
+      "Led a two-person senior frontend team, catalogued hundreds of components in Storybook and added a full Cypress end-to-end suite while the business scaled to £12 million ARR.",
+    technologies: "REACT  ·  STORYBOOK  ·  CYPRESS",
+  },
+];
+
+function LogicallyOutcome() {
+  return (
+    <li className="flex min-h-[360px] flex-col justify-between gap-6 rounded-[20px] bg-[var(--client-feature)] px-[18px] py-5 text-[var(--client-feature-text)] min-[1024px]:rounded-none min-[1024px]:bg-transparent min-[1024px]:px-10 min-[1024px]:py-3 min-[1024px]:text-[var(--app-text-primary)]">
+      <div>
+        <p className="font-caption text-[9px] font-bold tracking-[0.8px] text-[var(--client-feature-accent)] min-[1024px]:text-[11px] min-[1024px]:text-[var(--app-label-text)]">
+          LOGICALLY
+        </p>
+        <p className="font-heading mt-3 text-[34px] leading-none font-medium min-[1024px]:text-[42px]">
+          Days to minutes
+        </p>
+        <h3 className="mt-3 text-lg leading-[1.25] font-semibold min-[1024px]:text-xl">
+          Intelligence v2 rebuilt for production
+        </h3>
+        <p className="mt-3 text-sm leading-[1.5] text-[var(--client-feature-muted)] min-[1024px]:max-w-[520px] min-[1024px]:text-[15px] min-[1024px]:text-[var(--app-text-secondary)]">
+          Architected and built most of Intelligence v2 with one other
+          engineer. Routine UI changes fell from days to minutes, and the team
+          released several times per day.
+        </p>
+
+        <dl className="mt-4 grid gap-2 min-[1024px]:hidden">
+          <div className="flex items-center justify-between rounded-[11px] bg-[var(--client-feature-strong)] p-3">
+            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--client-feature-muted)]">
+              REBUILD TO RELEASE
+            </dt>
+            <dd className="font-data text-[13px] font-bold">6 months</dd>
+          </div>
+          <div className="flex items-center justify-between rounded-[11px] bg-[var(--client-feature-strong)] p-3">
+            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--client-feature-muted)]">
+              UI CHANGE TIME
+            </dt>
+            <dd className="font-data text-[13px] font-bold">Days → minutes</dd>
+          </div>
+          <div className="flex items-center justify-between rounded-[11px] bg-[var(--client-feature-strong)] p-3">
+            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--client-feature-muted)]">
+              PRODUCTION RELEASES
+            </dt>
+            <dd className="font-data text-[13px] font-bold">Several / day</dd>
+          </div>
+        </dl>
+      </div>
+
+      <p className="font-caption hidden text-[10px] font-semibold tracking-[0.65px] text-[var(--app-text-muted)] min-[1024px]:block">
+        NEXT.JS&nbsp; · &nbsp;TYPESCRIPT&nbsp; · &nbsp;AI SDK&nbsp; · &nbsp;MCP
+      </p>
+    </li>
+  );
+}
+
+function CompactOutcome({
+  company,
+  detail,
+  proof,
+  technologies,
+  title,
+}: (typeof outcomeDetails)[number]) {
+  return (
+    <li className="flex flex-col justify-between gap-5 rounded-[14px] bg-[var(--app-card)] p-4 min-[1024px]:min-h-[360px] min-[1024px]:rounded-none min-[1024px]:border-l min-[1024px]:border-[var(--app-border)] min-[1024px]:bg-transparent min-[1024px]:px-6 min-[1024px]:py-3">
+      <div>
+        <div className="font-caption flex items-center justify-between gap-3 text-[9px] font-bold tracking-[0.8px] text-[var(--app-label-text)] min-[1024px]:text-[11px]">
+          <span>{company}</span>
+          <span className="min-[1024px]:hidden">{proof}</span>
+        </div>
+        <p className="font-heading mt-3 hidden text-[38px] leading-none font-medium min-[1024px]:block">
+          {proof}
+        </p>
+        <h3 className="mt-2 text-lg leading-[1.3] font-semibold text-[var(--app-text-primary)] min-[1024px]:mt-3 min-[1024px]:text-xl">
+          {title}
+        </h3>
+        <p className="mt-2 text-sm leading-[1.5] text-[var(--app-text-secondary)] min-[1024px]:mt-3 min-[1024px]:text-[15px]">
+          {detail}
+        </p>
+      </div>
+      <p className="font-caption hidden text-[10px] font-semibold tracking-[0.65px] text-[var(--app-text-muted)] min-[1024px]:block">
+        {technologies}
+      </p>
+    </li>
+  );
+}
+
+export function ClientOutcomes() {
+  return (
+    <section
+      aria-labelledby="client-outcomes-heading"
+      className="bg-[var(--app-muted-section)] px-6 py-14 min-[1024px]:px-12 min-[1024px]:py-[88px] min-[1280px]:px-20 min-[1440px]:px-[120px]"
+      id="client-work"
+    >
+      <div className="mx-auto w-full max-w-[1200px]">
+        <header className="grid gap-4 min-[1024px]:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] min-[1024px]:items-end min-[1024px]:gap-x-12">
+          <div className="min-w-0">
+            <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)]">
+              SELECTED CLIENT OUTCOMES
+            </p>
+            <h2
+              className="font-heading mt-3 max-w-[700px] text-[38px] leading-[1.06] font-medium text-[var(--app-text-primary)] min-[1024px]:mt-2.5 min-[1024px]:text-[44px] min-[1024px]:leading-[1.06] min-[1280px]:text-[48px]"
+              id="client-outcomes-heading"
+            >
+              Commercial work under real constraints.
+            </h2>
+          </div>
+          <p className="min-w-0 text-base leading-[1.55] text-[var(--app-text-secondary)]">
+            Greenfield builds, architectural resets and production systems for
+            startups, government and health technology teams.
+          </p>
+        </header>
+
+        <ul className="mt-6 grid gap-6 min-[1024px]:mt-10 min-[1024px]:grid-cols-[2fr_1fr_1fr] min-[1024px]:gap-0">
+          <LogicallyOutcome />
+          {outcomeDetails.map((outcome) => (
+            <CompactOutcome key={outcome.company} {...outcome} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

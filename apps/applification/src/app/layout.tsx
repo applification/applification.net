@@ -1,46 +1,42 @@
 import type { Metadata } from "next";
-import { Geist, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { appFontVariables } from "./fonts";
 import "./globals.css";
-
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
-});
-
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://applification.net"),
   title: {
-    default: "Applification | Dave Hudson",
+    default: "Dave Hudson | Contract AI Product Engineer",
     template: "%s | Applification",
   },
   description:
-    "Dave Hudson builds user-facing AI products, agent workflows and TypeScript applications through Applification Ltd.",
+    "Dave Hudson helps teams turn early ideas into production software with React and TypeScript, using AI workflows with clear scope, tests and human approval.",
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    url: "/",
+    siteName: "Applification",
+    title: "Dave Hudson | Contract AI Product Engineer",
+    description:
+      "Production software and AI workflows built with React and TypeScript, clear scope, tests and human approval.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Dave Hudson | Contract AI Product Engineer",
+    description:
+      "Production software and AI workflows built with React and TypeScript, clear scope, tests and human approval.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${newsreader.variable} ${ibmPlexMono.variable}`}
+      className={`${appFontVariables} h-full`}
     >
-      <body>
-        <div className="site-frame">
-          <div className="availability-strip">
-            Available for remote UK contract work
-          </div>
+      <body className="font-body min-h-full bg-[var(--app-bg)] text-[var(--app-text-primary)] antialiased">
+        <div className="flex min-h-screen flex-col">
           <SiteHeader />
           {children}
           <SiteFooter />
