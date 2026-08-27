@@ -18,7 +18,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DesktopLight: Story = {};
+export const DesktopLight: Story = {
+  play: async ({ canvasElement }) => {
+    await expect(
+      within(canvasElement).getByRole("button", {
+        name: "Switch to dark theme",
+      }),
+    ).toBeVisible();
+  },
+};
 
 export const DesktopDark: Story = {
   globals: { theme: "dark" },
@@ -26,6 +34,13 @@ export const DesktopDark: Story = {
 
 export const MobileLight: Story = {
   globals: { viewport: { value: "mobile", isRotated: false } },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await expect(
+      canvas.queryByRole("button", { name: "Switch to dark theme" }),
+    ).not.toBeInTheDocument();
+  },
 };
 
 export const MobileDarkMenuOpen: Story = {
@@ -41,8 +56,15 @@ export const MobileDarkMenuOpen: Story = {
 
     await userEvent.click(menuButton);
     await expect(menuButton).toHaveAttribute("aria-expanded", "true");
+    const mobileNavigation = canvas.getByRole("navigation", {
+      name: "Mobile navigation",
+    });
+
+    await expect(mobileNavigation).toBeVisible();
     await expect(
-      canvas.getByRole("navigation", { name: "Mobile navigation" }),
-    ).toBeVisible();
+      within(mobileNavigation).getByRole("button", {
+        name: "Switch to light theme",
+      }),
+    ).toHaveTextContent("ThemeLight");
   },
 };
