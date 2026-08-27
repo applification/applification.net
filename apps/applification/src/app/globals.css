@@ -104,6 +104,13 @@
   --contexture-amber: #fde68a;
   --contexture-green: #86efac;
   --contexture-shadow: #02061733;
+  --contexture-detail-accent: light-dark(#7c3aed, #c4b5fd);
+  --contexture-detail-title: light-dark(#3b0764, #f3e8ff);
+  --contexture-detail-description: light-dark(#6b21a8, #d8b4fe);
+  --contexture-detail-soft: light-dark(#f3e8ff, #2e1065);
+  --contexture-detail-border: light-dark(#d8b4fe, #7e22ce);
+  --contexture-action-text: light-dark(#ffffff, #1e1e2e);
+  --contexture-action-hover: light-dark(#6d28d9, #d8b4fe);
   --voiced-card: #f7faf8;
   --voiced-preview: #f7faf8;
   --voiced-ink: #101818;

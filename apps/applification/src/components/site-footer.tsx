@@ -30,7 +30,7 @@ export function SiteFooter() {
           <span className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-text-primary)] uppercase min-[821px]:text-xs min-[821px]:font-semibold">
             Applification Ltd
           </span>
-          <span className="text-sm leading-[1.4] text-[var(--app-text-secondary)] min-[821px]:text-[13px]">
+          <span className="text-sm leading-[1.4] text-[var(--app-text-secondary)] min-[821px]:text-[13px] min-[821px]:leading-[17px]">
             Dave Hudson&nbsp; · &nbsp;Contract AI Product Engineer
           </span>
         </div>

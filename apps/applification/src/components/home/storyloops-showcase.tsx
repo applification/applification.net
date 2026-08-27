@@ -1,3 +1,5 @@
+import { Bot, CloudUpload, CodeXml } from "lucide-react";
+
 const mapStories = [
   ["S-01", "Availability banner"],
   ["S-02", "Header navigation"],
@@ -41,7 +43,7 @@ function DesktopStoryMap({
 
   return (
     <div
-      className={`${detail ? "h-[412px] p-4" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1024px]:flex`}
+      className={`${detail ? "h-[410px] p-5" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1024px]:flex`}
     >
       <div className="flex h-[30px] shrink-0 items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -202,16 +204,23 @@ function MobileStoryMap({ detail = false }: { detail?: boolean }) {
 }
 
 function OwnershipStrip({ labels }: { labels: string[] }) {
+  const icons = [CodeXml, CloudUpload, Bot];
+
   return (
-    <ul className="grid gap-2 bg-[#111827] px-4 py-3 text-center sm:grid-cols-3 min-[1024px]:h-12 min-[1024px]:items-center min-[1024px]:gap-0 min-[1024px]:p-0">
-      {labels.map((label) => (
+    <ul className="grid gap-2 border-t border-[#334155] bg-[#111827] px-[18px] py-3 sm:grid-cols-3 min-[1024px]:h-12 min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-0 min-[1024px]:py-0">
+      {labels.map((label, index) => {
+        const Icon = icons[index] ?? CodeXml;
+
+        return (
         <li
-          className="font-caption text-[8px] font-semibold tracking-[0.65px] text-[#cbd5e1] min-[1024px]:border-l min-[1024px]:border-[#334155] min-[1024px]:first:border-l-0"
+          className="font-caption flex items-center justify-center gap-2 text-[9px] font-bold tracking-[0.5px] text-[#cbd5e1] min-[1024px]:justify-start"
           key={label}
         >
+          <Icon aria-hidden="true" className="text-[#7dd3fc]" size={14} strokeWidth={1.8} />
           {label}
         </li>
-      ))}
+        );
+      })}
     </ul>
   );
 }
@@ -230,7 +239,7 @@ export function StoryLoopsProductMap({
       <div aria-hidden="true">
         {detail && ownershipLabels ? (
           <>
-            <div className="hidden overflow-hidden rounded-[20px] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1024px]:block">
+            <div className="hidden overflow-hidden rounded-[18px] border border-[#334155] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1024px]:block">
               <DesktopStoryMap compact={compact} detail />
               <OwnershipStrip labels={ownershipLabels} />
             </div>

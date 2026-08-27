@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ContractCta } from "@/components/home/contract-cta";
 import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
+import { ContextureSchemaPreview } from "@/components/products/contexture-schema-preview";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -10,12 +11,6 @@ const portfolioStatuses = [
   "01 SHIPPED",
   "01 OPEN SOURCE",
   "02 IN DEVELOPMENT",
-];
-
-const schemaTables = [
-  { name: "users", fields: ["name string", "email string", "householdId id"] },
-  { name: "households", fields: ["name string", "members id[]", "createdAt number"] },
-  { name: "recipes", fields: ["title string", "source enum", "ownerId id"] },
 ];
 
 const principles = [
@@ -52,29 +47,6 @@ function ArrowUpRightIcon() {
         strokeWidth="1.8"
       />
     </svg>
-  );
-}
-
-function ExternalProductLink({
-  href,
-  label,
-  className,
-}: {
-  href: string;
-  label: string;
-  className: string;
-}) {
-  return (
-    <a
-      className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold transition-[background-color,color,transform] active:translate-y-px ${className} ${focusClasses}`}
-      href={href}
-      rel="noreferrer"
-      target="_blank"
-    >
-      {label}
-      <ArrowUpRightIcon />
-      <span className="sr-only">, opens in a new tab</span>
-    </a>
   );
 }
 
@@ -175,34 +147,6 @@ function FeaturedStoryLoops() {
   );
 }
 
-function ContexturePreview() {
-  return (
-    <div
-      aria-label="Contexture schema preview with users, households and recipes tables."
-      className="grid h-full grid-cols-3 gap-2 bg-[var(--contexture-surface)] p-3.5 min-[1024px]:gap-3 min-[1024px]:p-5"
-      role="img"
-    >
-      <div aria-hidden="true" className="contents">
-        {schemaTables.map((table) => (
-          <div
-            className="min-w-0 rounded-lg border border-[var(--contexture-border)] bg-[var(--contexture-surface-raised)] p-2.5 min-[1024px]:p-3"
-            key={table.name}
-          >
-            <div className="font-data truncate text-[10px] font-bold text-[var(--contexture-text)] min-[1024px]:text-xs">
-              {table.name}
-            </div>
-            <ul className="font-data mt-2 grid gap-1.5 text-[7px] leading-[1.25] text-[var(--contexture-muted)] min-[1024px]:text-[9px]">
-              {table.fields.map((field) => (
-                <li className="break-words" key={field}>{field}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function ProductCardCopy({ children }: { children: ReactNode }) {
   return <div className="flex flex-1 flex-col p-5 min-[1024px]:p-6">{children}</div>;
 }
@@ -211,7 +155,7 @@ function ContextureCard() {
   return (
     <article className="flex min-h-[475px] flex-col overflow-hidden rounded-md bg-[var(--contexture-shell)] text-[var(--contexture-text)] min-[1024px]:min-h-[540px]">
       <div className="h-[215px] shrink-0 min-[1024px]:h-[238px]">
-        <ContexturePreview />
+        <ContextureSchemaPreview />
       </div>
       <ProductCardCopy>
         <span className="font-caption w-fit rounded-full bg-[var(--contexture-purple)] px-2.5 py-1 text-[9px] font-bold tracking-[0.6px] text-[var(--contexture-shell)] min-[1024px]:text-[10px]">
@@ -225,11 +169,13 @@ function ContextureCard() {
           A live visual graph for Convex schemas, shared with coding agents through MCP.
         </p>
         <div className="mt-auto pt-5">
-          <ExternalProductLink
-            className="bg-[var(--contexture-purple)] text-[var(--contexture-shell)] hover:bg-[var(--contexture-text)]"
-            href="https://contexture.applification.net/"
-            label="View Contexture"
-          />
+          <Link
+            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--contexture-purple)] px-4 text-sm font-semibold text-[var(--contexture-shell)] transition-[background-color,transform] hover:bg-[var(--contexture-text)] active:translate-y-px ${focusClasses}`}
+            href="/products/contexture"
+          >
+            View Contexture
+            <ArrowUpRightIcon />
+          </Link>
         </div>
       </ProductCardCopy>
     </article>
@@ -282,11 +228,13 @@ function VoicedCard() {
           Hold Right Command, speak, and paste the transcription without changing context.
         </p>
         <div className="mt-auto pt-5">
-          <ExternalProductLink
-            className="bg-[var(--voiced-action)] text-[var(--voiced-action-text)] hover:bg-[var(--voiced-muted)]"
-            href="https://voiced.applification.net/"
-            label="View Voiced"
-          />
+          <Link
+            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--voiced-action)] px-4 text-sm font-semibold text-[var(--voiced-action-text)] transition-[background-color,transform] hover:bg-[var(--voiced-muted)] active:translate-y-px ${focusClasses}`}
+            href="/products/voiced"
+          >
+            View Voiced
+            <ArrowUpRightIcon />
+          </Link>
         </div>
       </ProductCardCopy>
     </article>
@@ -323,7 +271,7 @@ function PlantryCard() {
         <div className="mt-auto pt-5">
           <Link
             className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[#153447] px-4 text-sm font-semibold text-[#FFFBef] transition-[background-color,transform] hover:bg-[#204F67] active:translate-y-px ${focusClasses}`}
-            href="/#plantry"
+            href="/products/plantry"
           >
             View Plantry
             <ArrowUpRightIcon />

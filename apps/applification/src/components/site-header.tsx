@@ -99,14 +99,17 @@ export function SiteHeader() {
     <header className="relative z-40 h-16 w-full shrink-0 bg-[var(--app-bg)] px-5 min-[821px]:mx-auto min-[821px]:w-[calc(100%-48px)] min-[821px]:max-w-[1200px] min-[821px]:px-0">
       <div className="flex h-full items-center justify-between">
         <Link
-          className={`inline-flex min-h-11 items-center text-[var(--app-text-primary)] ${focusClasses}`}
+          className={`inline-flex min-h-11 items-center gap-2.5 text-[var(--app-text-primary)] ${focusClasses}`}
           href="/"
           aria-label="Applification home"
         >
           <span
             aria-hidden="true"
-            className="block h-[25px] w-[54px] bg-current [-webkit-mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat] [mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat]"
+            className="block h-[34px] w-12 bg-current [-webkit-mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat] [mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat]"
           />
+          <span className="font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[821px]:block">
+            APPLIFICATION
+          </span>
         </Link>
 
         <nav
@@ -138,16 +141,13 @@ export function SiteHeader() {
               );
             })}
           </LayoutGroup>
-          <div className="flex items-center gap-3">
-            <ThemeSwitcher />
-            <a
-              className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
-              href={contactHref}
-            >
-              Discuss your project
-              <ArrowUpRightIcon />
-            </a>
-          </div>
+          <a
+            className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm leading-[18px] font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
+            href={contactHref}
+          >
+            Discuss a contract
+            <ArrowUpRightIcon />
+          </a>
         </nav>
 
         <div className="flex items-center min-[821px]:hidden">
