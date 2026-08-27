@@ -189,6 +189,33 @@
   }
 }
 
+@layer utilities {
+  .font-storyloop-title {
+    font-family: "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.16;
+  }
+
+  .storyloop-card-grid {
+    --storyloop-card-width: min(144px, calc((100% - 1rem) / 3));
+
+    display: grid;
+    grid-template-columns: repeat(3, var(--storyloop-card-width));
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.625rem;
+  }
+
+  .storyloop-card-grid-scroll {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-auto-columns: var(--storyloop-card-width);
+    overflow: hidden;
+  }
+}
+
 html {
   min-width: 320px;
   background: var(--background);
