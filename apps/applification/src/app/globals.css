@@ -104,29 +104,58 @@
   --contexture-amber: #fde68a;
   --contexture-green: #86efac;
   --contexture-shadow: #02061733;
-  --voiced-card: #dbeafe;
-  --voiced-preview: #eff6ff;
-  --voiced-ink: #20242c;
-  --voiced-muted: #4b5563;
-  --voiced-action: #111827;
-  --voiced-action-text: #f8fafc;
-  --voiced-accent: #075985;
-  --voiced-status: #be123c;
-  --voiced-mint: #166534;
-  --voiced-mint-soft: #94a3b8;
-  --voiced-border: #00000000;
-  --voiced-control-border: #334155;
-  --voiced-shadow: #0f172a1f;
+  --voiced-card: #f7faf8;
+  --voiced-preview: #f7faf8;
+  --voiced-ink: #101818;
+  --voiced-muted: #385040;
+  --voiced-action: #101818;
+  --voiced-action-text: #f7faf8;
+  --voiced-accent: #385040;
+  --voiced-status: #385040;
+  --voiced-mint: #88d0a0;
+  --voiced-mint-soft: #a6dcb8;
+  --voiced-border: #c5d6ca;
+  --voiced-control-border: #45475a;
+  --voiced-shadow: #00080814;
   --client-feature: #172554;
   --client-feature-strong: #0f172a;
   --client-feature-text: #f8fafc;
   --client-feature-muted: #cbd5e1;
   --client-feature-accent: #7dd3fc;
-  --workflow-human: light-dark(#92400e, #fde68a);
+  --workflow-human: light-dark(#a16207, #fff59a);
+  --workflow-human-border: light-dark(#ca8a04, #fff59a66);
+  --workflow-human-line: light-dark(#ca8a0499, #fff59a66);
+  --workflow-human-soft: light-dark(#fde68a80, #eab30822);
   --workflow-agent: light-dark(#0369a1, #7dd3fc);
-  --workflow-checks: light-dark(#be185d, #f9a8d4);
-  --workflow-step: light-dark(#f3f4f6, #172033);
-  --workflow-loop: light-dark(#ffffff, #1e293b);
+  --workflow-agent-border: light-dark(#0284c7, #7dd3fc66);
+  --workflow-agent-soft: light-dark(#bae6fd99, #0ea5e91f);
+  --workflow-checks: light-dark(#be185d, #f472b6);
+  --workflow-checks-border: light-dark(#db2777, #f472b666);
+  --workflow-checks-line: light-dark(#db277799, #f472b680);
+  --workflow-checks-soft: light-dark(#fbcfe899, #db277726);
+  --workflow-node: light-dark(#f9fafb, #0b1220);
+  --workflow-owner: light-dark(#5f6670, #94a3b8);
+  --workflow-heading: light-dark(#20242c, #cdd6f4);
+  --workflow-live: light-dark(#16a34a, #39ffb6);
+  --workflow-live-glow: light-dark(#16a34a55, #39ffb688);
+  --workflow-badge: light-dark(#e0f2fe, #0c4a6e);
+  --workflow-badge-text: light-dark(#0369a1, #7dd3fc);
+  --workflow-section-label: light-dark(#0369a1, #0ea5e9);
+  --workflow-mobile-heading: light-dark(#0369a1, #7dd3fc);
+  --workflow-tool-bg: #1c1c1c;
+  --workflow-tool-icon: #a9a9a9;
+  --workflow-mobile-human: light-dark(#92400e, #eab308);
+  --workflow-mobile-human-border: #eab30866;
+  --workflow-mobile-human-line: #eab30888;
+  --workflow-mobile-human-soft: #eab30822;
+  --workflow-mobile-agent: light-dark(#0369a1, #7dd3fc);
+  --workflow-mobile-agent-border: #7dd3fc66;
+  --workflow-mobile-agent-soft: #0ea5e91f;
+  --workflow-mobile-checks: light-dark(#be185d, #f472b6);
+  --workflow-mobile-checks-border: #f472b666;
+  --workflow-mobile-checks-line: #f472b680;
+  --workflow-mobile-checks-soft: #db277726;
+  --workflow-mobile-badge: #0ea5e91a;
   --cta-action: #0b1220;
   --cta-action-hover: #172554;
   --cta-action-active: #020617;
@@ -153,24 +182,6 @@
   color-scheme: only dark;
 }
 
-@media (min-width: 1024px) {
-  .voiced-card {
-    --voiced-card: #f7faf8;
-    --voiced-preview: #f7faf8;
-    --voiced-ink: #101818;
-    --voiced-muted: #385040;
-    --voiced-action: #101818;
-    --voiced-action-text: #f7faf8;
-    --voiced-accent: #385040;
-    --voiced-status: #385040;
-    --voiced-mint: #88d0a0;
-    --voiced-mint-soft: #a6dcb8;
-    --voiced-border: #c5d6ca;
-    --voiced-control-border: #45475a;
-    --voiced-shadow: #00080814;
-  }
-}
-
 @layer base {
   .font-body {
     font-family: var(--font-geist), "Geist", sans-serif;
@@ -186,6 +197,39 @@
 
   .font-data {
     font-family: var(--font-geist-mono), "Geist Mono", monospace;
+  }
+}
+
+@layer utilities {
+  .font-storyloop-title {
+    font-family: "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.16;
+  }
+
+  .storyloop-card-grid {
+    --storyloop-card-width: min(144px, calc((100% - 1rem) / 3));
+
+    display: grid;
+    grid-template-columns: repeat(3, var(--storyloop-card-width));
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.625rem;
+  }
+
+  .storyloop-card-grid-scroll {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-auto-columns: var(--storyloop-card-width);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  .storyloop-card-grid-scroll::-webkit-scrollbar {
+    display: none;
   }
 }
 

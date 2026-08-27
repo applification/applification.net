@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { usePathname } from "@storybook/nextjs-vite/navigation.mock";
 import { expect, userEvent, within } from "storybook/test";
 import { SiteHeader } from "./site-header";
 
@@ -8,6 +9,7 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     nextjs: {
+      appDirectory: true,
       navigation: {
         pathname: "/",
       },
@@ -30,6 +32,20 @@ export const DesktopLight: Story = {
 
 export const DesktopDark: Story = {
   globals: { theme: "dark" },
+};
+
+export const DesktopProducts: Story = {
+  render: () => {
+    usePathname.mockReturnValue("/products");
+    return <SiteHeader />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const productsLink = canvas.getByRole("link", { name: "Products" });
+
+    await expect(productsLink).toHaveAttribute("aria-current", "page");
+    await expect(canvas.getByTestId("active-navigation-highlight")).toBeVisible();
+  },
 };
 
 export const MobileLight: Story = {

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 
@@ -63,10 +64,14 @@ function MenuIcon({ open }: { open: boolean }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
   const [menuState, setMenuState] = useState({ open: false, pathname });
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const menuOpen = menuState.pathname === pathname && menuState.open;
+  const activeIndicatorTransition = reduceMotion
+    ? { duration: 0 }
+    : { type: "spring" as const, stiffness: 430, damping: 36, mass: 0.7 };
 
   useEffect(() => {
     if (!menuOpen) {
@@ -104,20 +109,31 @@ export function SiteHeader() {
           aria-label="Primary navigation"
           className="hidden items-center gap-[30px] min-[821px]:flex"
         >
-          {navigation.map((item) => {
-            const current = pathname === item.href;
+          <LayoutGroup id="primary-navigation">
+            {navigation.map((item) => {
+              const current = pathname === item.href;
 
-            return (
-              <Link
-                aria-current={current ? "page" : undefined}
-                className={`text-sm font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--app-text-primary)] aria-[current=page]:text-[var(--app-text-primary)] ${focusClasses}`}
-                href={item.href}
-                key={item.href}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  aria-current={current ? "page" : undefined}
+                  className={`relative isolate inline-flex min-h-10 items-center text-sm font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--app-action)] aria-[current=page]:text-[var(--app-label-text)] ${focusClasses}`}
+                  href={item.href}
+                  key={item.href}
+                >
+                  {current ? (
+                    <motion.span
+                      aria-hidden="true"
+                      className="absolute -inset-x-2 inset-y-1 -z-10 rounded-full bg-[var(--app-selected)]"
+                      data-testid="active-navigation-highlight"
+                      layoutId="active-link"
+                      transition={activeIndicatorTransition}
+                    />
+                  ) : null}
+                  {item.label}
+                </Link>
+              );
+            })}
+          </LayoutGroup>
           <div className="flex items-center gap-3">
             <ThemeSwitcher />
             <a
@@ -161,7 +177,7 @@ export function SiteHeader() {
                 <Link
                   ref={index === 0 ? firstMenuLinkRef : undefined}
                   aria-current={current ? "page" : undefined}
-                  className={`flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)] aria-[current=page]:bg-[var(--app-muted-section)] aria-[current=page]:text-[var(--app-text-primary)] ${focusClasses}`}
+                  className={`flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)] aria-[current=page]:bg-[var(--app-selected)] aria-[current=page]:text-[var(--app-label-text)] ${focusClasses}`}
                   href={item.href}
                   key={item.href}
                   onClick={() => setMenuState({ open: false, pathname })}

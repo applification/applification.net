@@ -92,9 +92,9 @@ function DesktopStoryMap() {
               <div className="font-caption text-[8px] font-semibold tracking-[0.8px] text-[var(--storyloop-canvas-muted)]">BACKBONE</div>
               <div className="mt-1 text-[10px] text-[var(--storyloop-row-text)]">User goals</div>
             </div>
-            <div className="grid min-w-0 flex-1 grid-cols-3 gap-2.5 p-2.5">
+            <div className="storyloop-card-grid flex-1">
               {['Architecture', 'Home', 'Products'].map((label) => (
-                <div className="flex items-center rounded-sm border border-[var(--storyloop-note-blue-border)] bg-[var(--storyloop-note-blue)] px-2.5 text-sm text-[var(--storyloop-note-blue-text)]" key={label}>{label}</div>
+                <div className="font-storyloop-title flex items-center rounded-sm border border-[var(--storyloop-note-blue-border)] bg-[var(--storyloop-note-blue)] px-2.5 text-[var(--storyloop-note-blue-text)]" key={label}>{label}</div>
               ))}
             </div>
           </div>
@@ -103,9 +103,9 @@ function DesktopStoryMap() {
               <div className="font-caption text-[8px] font-semibold tracking-[0.8px] text-[var(--storyloop-canvas-muted)]">NARRATIVE</div>
               <div className="mt-1 text-[10px] text-[var(--storyloop-row-text)]">User steps</div>
             </div>
-            <div className="grid min-w-0 flex-1 grid-cols-4 gap-2 p-2.5">
+            <div className="storyloop-card-grid storyloop-card-grid-scroll flex-1">
               {['Availability', 'Navigation', 'Sections', 'StoryLoops'].map((label) => (
-                <div className="flex items-center rounded-sm border border-[var(--storyloop-note-yellow-border)] bg-[var(--storyloop-note-yellow)] px-2 text-[11px] text-[var(--storyloop-note-yellow-text)]" key={label}>{label}</div>
+                <div className="font-storyloop-title flex items-center rounded-sm border border-[var(--storyloop-note-yellow-border)] bg-[var(--storyloop-note-yellow)] px-2 text-[var(--storyloop-note-yellow-text)]" key={label}>{label}</div>
               ))}
             </div>
           </div>
@@ -114,11 +114,11 @@ function DesktopStoryMap() {
               <div className="text-[10px] font-semibold text-[var(--storyloop-now)]">◆&nbsp; Now</div>
               <div className="mt-2 text-[9px] leading-relaxed text-[var(--storyloop-muted)]">9 stories<br />0% complete</div>
             </div>
-            <div className="grid min-w-0 flex-1 grid-cols-3 gap-2 p-3">
+            <div className="storyloop-card-grid flex-1">
               {mapStories.map(([reference, title]) => (
                 <div className="h-fit rounded border border-[var(--storyloop-card-border)] bg-[var(--storyloop-canvas)] px-2 py-1.5 shadow-[0_3px_6px_var(--storyloop-card-shadow)]" key={reference}>
                   <div className="font-caption text-[7px] font-semibold text-[var(--storyloop-card-id)]">• {reference}</div>
-                  <div className="mt-1 text-[10px] leading-tight text-[var(--storyloop-ink)]">{title}</div>
+                  <div className="font-storyloop-title mt-1 text-[var(--storyloop-ink)]">{title}</div>
                   <div className="mt-1 text-[7px] text-[var(--storyloop-card-status)]">• Approved</div>
                 </div>
               ))}
