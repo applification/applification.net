@@ -24,7 +24,13 @@ function WindowDots({ small = false }: { small?: boolean }) {
   );
 }
 
-function DesktopStoryMap({ compact = false }: { compact?: boolean }) {
+function DesktopStoryMap({
+  compact = false,
+  detail = false,
+}: {
+  compact?: boolean;
+  detail?: boolean;
+}) {
   const backboneNotes = compact
     ? ["Architecture", "Products"]
     : ["Architecture", "Home", "Products"];
@@ -35,7 +41,7 @@ function DesktopStoryMap({ compact = false }: { compact?: boolean }) {
 
   return (
     <div
-      className={`${compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1024px]:flex`}
+      className={`${detail ? "h-[412px] p-4" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1024px]:flex`}
     >
       <div className="flex h-[30px] shrink-0 items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -165,9 +171,9 @@ function DesktopStoryMap({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function MobileStoryMap() {
+function MobileStoryMap({ detail = false }: { detail?: boolean }) {
   return (
-    <div className="overflow-hidden rounded-[20px] bg-[var(--storyloop-shell)] min-[1024px]:hidden">
+    <div className={`${detail ? "" : "rounded-[20px]"} overflow-hidden bg-[var(--storyloop-shell)] min-[1024px]:hidden`}>
       <div className="flex h-[42px] items-center justify-between bg-[var(--storyloop-chrome)] px-4">
         <WindowDots small />
         <span className="font-caption text-[8px] font-semibold text-[var(--storyloop-text-dim)]">storyloops / product map</span>
@@ -195,12 +201,50 @@ function MobileStoryMap() {
   );
 }
 
-export function StoryLoopsProductMap({ compact = false }: { compact?: boolean }) {
+function OwnershipStrip({ labels }: { labels: string[] }) {
+  return (
+    <ul className="grid gap-2 bg-[#111827] px-4 py-3 text-center sm:grid-cols-3 min-[1024px]:h-12 min-[1024px]:items-center min-[1024px]:gap-0 min-[1024px]:p-0">
+      {labels.map((label) => (
+        <li
+          className="font-caption text-[8px] font-semibold tracking-[0.65px] text-[#cbd5e1] min-[1024px]:border-l min-[1024px]:border-[#334155] min-[1024px]:first:border-l-0"
+          key={label}
+        >
+          {label}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function StoryLoopsProductMap({
+  compact = false,
+  ownershipLabels,
+}: {
+  compact?: boolean;
+  ownershipLabels?: string[];
+}) {
+  const detail = Boolean(ownershipLabels?.length);
+
   return (
     <figure className="w-full">
       <div aria-hidden="true">
-        <DesktopStoryMap compact={compact} />
-        <MobileStoryMap />
+        {detail && ownershipLabels ? (
+          <>
+            <div className="hidden overflow-hidden rounded-[20px] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1024px]:block">
+              <DesktopStoryMap compact={compact} detail />
+              <OwnershipStrip labels={ownershipLabels} />
+            </div>
+            <div className="overflow-hidden rounded-[20px] min-[1024px]:hidden">
+              <MobileStoryMap detail />
+              <OwnershipStrip labels={ownershipLabels} />
+            </div>
+          </>
+        ) : (
+          <>
+            <DesktopStoryMap compact={compact} />
+            <MobileStoryMap />
+          </>
+        )}
       </div>
       <figcaption className="sr-only">
         A StoryLoops product map pairs product work with an agent panel that waits

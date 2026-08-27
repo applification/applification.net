@@ -19,6 +19,10 @@ const contactHref =
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
 
+function isCurrentPath(pathname: string | null, href: string) {
+  return pathname === href || pathname?.startsWith(`${href}/`) === true;
+}
+
 function ArrowUpRightIcon() {
   return (
     <svg
@@ -111,7 +115,7 @@ export function SiteHeader() {
         >
           <LayoutGroup id="primary-navigation">
             {navigation.map((item) => {
-              const current = pathname === item.href;
+              const current = isCurrentPath(pathname, item.href);
 
               return (
                 <Link
@@ -171,7 +175,7 @@ export function SiteHeader() {
         >
           <div className="mx-auto flex max-w-md flex-col gap-1">
             {navigation.map((item, index) => {
-              const current = pathname === item.href;
+              const current = isCurrentPath(pathname, item.href);
 
               return (
                 <Link

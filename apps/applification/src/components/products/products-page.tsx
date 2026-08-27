@@ -159,11 +159,13 @@ function FeaturedStoryLoops() {
                 </li>
               ))}
             </ul>
-            <ExternalProductLink
-              className="bg-[var(--app-action)] text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)]"
-              href="https://storyloop.applification.net/"
-              label="Explore StoryLoops"
-            />
+            <Link
+              className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-4 text-sm font-semibold text-[var(--app-text-on-action)] transition-[background-color,color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
+              href="/products/storyloops"
+            >
+              Explore StoryLoops
+              <ArrowUpRightIcon />
+            </Link>
           </div>
 
           <StoryLoopsProductMap compact />
