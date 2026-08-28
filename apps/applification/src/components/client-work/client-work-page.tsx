@@ -382,6 +382,19 @@ export function ContractFit() {
   );
 }
 
+export function ClientWorkContractCta() {
+  return (
+    <div data-client-work-section="contract-action">
+      <ContractCta
+        actionLabel="Start a conversation"
+        description="Remote contracts across the UK. Hybrid considered in North East England."
+        eyebrow="AVAILABLE FOR CONTRACT WORK"
+        title="Need a senior product engineer to turn an AI idea into working software?"
+      />
+    </div>
+  );
+}
+
 export function ClientWorkPage() {
   return (
     <main>
@@ -390,13 +403,7 @@ export function ClientWorkPage() {
       <SelectedContracts />
       <SupportingEvidence />
       <ContractFit />
-      <div data-client-work-section="contract-action">
-        <ContractCta
-          description="Remote contracts across the UK. Hybrid considered in North East England."
-          eyebrow="AVAILABLE FOR CONTRACT WORK"
-          title="Need a senior product engineer to turn an AI idea into working software?"
-        />
-      </div>
+      <ClientWorkContractCta />
     </main>
   );
 }
