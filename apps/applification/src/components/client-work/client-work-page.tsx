@@ -31,6 +31,12 @@ const logicallyMetrics = [
   ["5 · 3 · 5", "FE · BE · Data Science"],
 ];
 
+const peppyMetrics = [
+  ["100s", "UI components"],
+  ["E2E", "Cypress suite"],
+  ["Overnight", "AI support"],
+];
+
 function CurrentBrief() {
   return (
     <aside
@@ -188,6 +194,103 @@ export function LogicallyCaseStudy() {
   );
 }
 
+export function SelectedContracts() {
+  return (
+    <section
+      aria-labelledby="selected-contracts-heading"
+      className="bg-[var(--app-muted-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:py-[88px]"
+      data-client-work-section="selected-contracts"
+    >
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-9">
+        <div className="grid gap-5 min-[1024px]:grid-cols-[minmax(0,700px)_390px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[110px]">
+          <div className="flex min-w-0 flex-col gap-2.5">
+            <p className="font-caption text-xs font-semibold tracking-[1.25px] text-[var(--app-label-text)]">
+              SELECTED CONTRACTS
+            </p>
+            <h2
+              className="font-heading max-w-[700px] text-[38px] leading-[1.08] font-medium text-[var(--app-text-primary)] min-[720px]:text-[46px]"
+              id="selected-contracts-heading"
+            >
+              Build the new thing. Leave it easier to change.
+            </h2>
+          </div>
+          <p className="max-w-[390px] text-base leading-6 text-[var(--app-text-secondary)]">
+            Two frontend contracts where the work changed how the teams
+            designed, tested and released the product.
+          </p>
+        </div>
+
+        <div className="grid items-start gap-6 min-[1024px]:grid-cols-[470px_minmax(0,706px)]">
+          <article className="flex min-h-[468px] flex-col rounded-[22px] bg-[var(--app-card)] p-6 min-[720px]:p-[30px]">
+            <div className="font-caption flex min-h-8 items-center justify-between gap-4">
+              <p className="text-[11px] font-bold tracking-[1.1px] text-[var(--client-brief-label)]">
+                ERUPTIV
+              </p>
+              <p className="text-[10px] font-semibold tracking-[0.8px] text-[var(--app-text-muted)]">
+                LIVE IN 5 MONTHS
+              </p>
+            </div>
+            <h3 className="font-heading mt-[22px] max-w-[410px] text-[32px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[720px]:text-[34px]">
+              Built the whole recruitment frontend in four months. Production
+              in five.
+            </h3>
+            <p className="mt-[22px] max-w-[400px] text-[15px] leading-[1.6] text-[var(--app-text-secondary)]">
+              Sole frontend engineer alongside an API engineer and designer. I
+              integrated the existing API so recruiters could publish jobs and
+              track applicants while candidates searched and applied.
+            </p>
+            <div className="mt-[22px] rounded-[14px] bg-[var(--client-contract-proof)] px-[18px] py-4 min-[1024px]:py-[10px]">
+              <p className="font-caption text-[9px] font-bold tracking-[1px] text-[var(--client-contract-proof-label)]">
+                HANDOFF QUALITY
+              </p>
+              <p className="mt-1.5 text-sm leading-[1.45] text-[var(--app-text-primary)]">
+                Storybook let the designer inspect UI states before
+                integration. Clear component boundaries kept later changes
+                isolated.
+              </p>
+            </div>
+          </article>
+
+          <article className="flex flex-col rounded-[22px] bg-[#172554] p-6 text-[#f8fafc] min-[720px]:min-h-[385px] min-[720px]:p-[30px]">
+            <div className="font-caption flex min-h-8 items-center justify-between gap-4">
+              <p className="text-[11px] font-bold tracking-[1.1px] text-[#7dd3fc]">
+                PEPPY HEALTH
+              </p>
+              <p className="text-[10px] font-semibold tracking-[0.8px] text-[#f9a8d4]">
+                £12M ARR SERVICE
+              </p>
+            </div>
+            <h3 className="font-heading mt-[22px] max-w-[600px] text-[32px] leading-[1.1] font-medium min-[720px]:text-4xl">
+              Rebuilt a zero-test clinician panel for a £12m ARR service.
+            </h3>
+            <p className="mt-[22px] max-w-[600px] text-[15px] leading-[1.6] text-[#cbd5e1]">
+              Led a two-person senior frontend team. We catalogued hundreds of
+              UI components in Storybook, added a full Cypress end-to-end suite
+              to GitHub Actions, and gave clinicians AI support for common
+              questions overnight.
+            </p>
+            <dl className="mt-[22px] grid gap-3 min-[560px]:grid-cols-3">
+              {peppyMetrics.map(([value, label]) => (
+                <div
+                  className="flex min-h-[75px] flex-col justify-center gap-[5px] rounded-xl bg-[#0f172a] px-[18px] py-3"
+                  key={label}
+                >
+                  <dd className="font-caption text-xl leading-[26px] font-bold">
+                    {value}
+                  </dd>
+                  <dt className="font-caption text-[9px] font-semibold tracking-[0.8px] text-[#94a3b8] uppercase">
+                    {label}
+                  </dt>
+                </div>
+              ))}
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function EvidenceSection({
   description,
   eyebrow,
@@ -265,14 +368,7 @@ export function ClientWorkPage() {
     <main>
       <ClientWorkHero />
       <LogicallyCaseStudy />
-      <EvidenceSection
-        description="Two frontend contracts where the work changed how the teams designed, tested and released the product."
-        eyebrow="SELECTED CONTRACTS"
-        headingId="selected-contracts-heading"
-        id="selected-contracts"
-        title="Build the new thing. Leave it easier to change."
-        tone="muted"
-      />
+      <SelectedContracts />
       <EvidenceSection
         description="Healthcare, secure government services and public-facing tax systems."
         eyebrow="SUPPORTING EVIDENCE"

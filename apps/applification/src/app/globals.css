@@ -132,6 +132,8 @@
   --client-brief-label: light-dark(#0369a1, #0ea5e9);
   --client-narrative: light-dark(#f3f4f6, #1e293b);
   --client-logically-link: light-dark(#0369a1, #0284c7);
+  --client-contract-proof: light-dark(#dbeafe, #172554);
+  --client-contract-proof-label: light-dark(#0369a1, #7dd3fc);
   --workflow-human: light-dark(#a16207, #fff59a);
   --workflow-human-border: light-dark(#ca8a04, #fff59a66);
   --workflow-human-line: light-dark(#ca8a0499, #fff59a66);
