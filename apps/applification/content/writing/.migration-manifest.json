@@ -1,0 +1,368 @@
+{
+  "mode": "collection",
+  "counts": {
+    "published": 36,
+    "posts": 29,
+    "weeknotes": 7,
+    "warnings": 47
+  },
+  "entries": [
+    {
+      "sourceId": "4",
+      "slug": "bdd-with-cypress",
+      "type": "post",
+      "oldUrl": "/posts/bdd-with-cypress",
+      "outputFile": "content/writing/bdd-with-cypress.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "5",
+      "slug": "designing-pwa",
+      "type": "post",
+      "oldUrl": "/posts/designing-pwa",
+      "outputFile": "content/writing/designing-pwa.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "6",
+      "slug": "pwa-with-preact",
+      "type": "post",
+      "oldUrl": "/posts/pwa-with-preact",
+      "outputFile": "content/writing/pwa-with-preact.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "7",
+      "slug": "aws-appsyc-react-native",
+      "type": "post",
+      "oldUrl": "/posts/aws-appsyc-react-native",
+      "outputFile": "content/writing/aws-appsyc-react-native.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "8",
+      "slug": "ui-flows-for-better-products",
+      "type": "post",
+      "oldUrl": "/posts/ui-flows-for-better-products",
+      "outputFile": "content/writing/ui-flows-for-better-products.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "9",
+      "slug": "how-to-build-a-pwa",
+      "type": "post",
+      "oldUrl": "/posts/how-to-build-a-pwa",
+      "outputFile": "content/writing/how-to-build-a-pwa.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text",
+        "Image 3 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "10",
+      "slug": "service-workers-with-workbox-preact",
+      "type": "post",
+      "oldUrl": "/posts/service-workers-with-workbox-preact",
+      "outputFile": "content/writing/service-workers-with-workbox-preact.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text",
+        "Image 3 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "11",
+      "slug": "pwa-splash-screens",
+      "type": "post",
+      "oldUrl": "/posts/pwa-splash-screens",
+      "outputFile": "content/writing/pwa-splash-screens.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "12",
+      "slug": "a-week-with-blockchain-react",
+      "type": "post",
+      "oldUrl": "/posts/a-week-with-blockchain-react",
+      "outputFile": "content/writing/a-week-with-blockchain-react.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "13",
+      "slug": "fastlane-strider-cd-react-native",
+      "type": "post",
+      "oldUrl": "/posts/fastlane-strider-cd-react-native",
+      "outputFile": "content/writing/fastlane-strider-cd-react-native.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "15",
+      "slug": "fixing-react-native-android-permissions",
+      "type": "post",
+      "oldUrl": "/posts/fixing-react-native-android-permissions",
+      "outputFile": "content/writing/fixing-react-native-android-permissions.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "16",
+      "slug": "react-native-local-data",
+      "type": "post",
+      "oldUrl": "/posts/react-native-local-data",
+      "outputFile": "content/writing/react-native-local-data.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text",
+        "Image 3 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "17",
+      "slug": "react-native-custom-fonts",
+      "type": "post",
+      "oldUrl": "/posts/react-native-custom-fonts",
+      "outputFile": "content/writing/react-native-custom-fonts.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text",
+        "Image 3 has no alt text",
+        "Image 4 has no alt text",
+        "Image 5 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "18",
+      "slug": "lottie-react-native",
+      "type": "post",
+      "oldUrl": "/posts/lottie-react-native",
+      "outputFile": "content/writing/lottie-react-native.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text",
+        "Image 3 has no alt text",
+        "Image 4 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "19",
+      "slug": "fastlane-react-native-devops",
+      "type": "post",
+      "oldUrl": "/posts/fastlane-react-native-devops",
+      "outputFile": "content/writing/fastlane-react-native-devops.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text",
+        "Image 3 has no alt text",
+        "Image 4 has no alt text",
+        "Image 5 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "22",
+      "slug": "remixing-this-blog",
+      "type": "post",
+      "oldUrl": "/posts/remixing-this-blog",
+      "outputFile": "content/writing/remixing-this-blog.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "14",
+      "slug": "how-i-setup-react-native-projects",
+      "type": "post",
+      "oldUrl": "/posts/how-i-setup-react-native-projects",
+      "outputFile": "content/writing/how-i-setup-react-native-projects.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "24",
+      "slug": "amplify-typescript",
+      "type": "post",
+      "oldUrl": "/posts/amplify-typescript",
+      "outputFile": "content/writing/amplify-typescript.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "30",
+      "slug": "remix",
+      "type": "post",
+      "oldUrl": "/posts/remix",
+      "outputFile": "content/writing/remix.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "34",
+      "slug": "aiengineer",
+      "type": "post",
+      "oldUrl": "/posts/aiengineer",
+      "outputFile": "content/writing/aiengineer.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "48",
+      "slug": "node-22-experiments",
+      "type": "post",
+      "oldUrl": "/posts/node-22-experiments",
+      "outputFile": "content/writing/node-22-experiments.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "26",
+      "slug": "xstate",
+      "type": "post",
+      "oldUrl": "/posts/xstate",
+      "outputFile": "content/writing/xstate.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text",
+        "Could not download image 2 from https://stately.ai/mockup.svg: 404 Not Found"
+      ]
+    },
+    {
+      "sourceId": "25",
+      "slug": "why-i-hate-redux",
+      "type": "post",
+      "oldUrl": "/posts/why-i-hate-redux",
+      "outputFile": "content/writing/why-i-hate-redux.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "27",
+      "slug": "testing-library",
+      "type": "post",
+      "oldUrl": "/posts/testing-library",
+      "outputFile": "content/writing/testing-library.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "20",
+      "slug": "how-to-git-rebase",
+      "type": "post",
+      "oldUrl": "/posts/how-to-git-rebase",
+      "outputFile": "content/writing/how-to-git-rebase.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "37",
+      "slug": "react-server-components-game-changer-confused-applaud",
+      "type": "post",
+      "oldUrl": "/posts/react-server-components-game-changer-confused-applaud",
+      "outputFile": "content/writing/react-server-components-game-changer-confused-applaud.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text",
+        "Description was missing and the summary was derived from the body"
+      ]
+    },
+    {
+      "sourceId": "35",
+      "slug": "the-ai-cv",
+      "type": "post",
+      "oldUrl": "/posts/the-ai-cv",
+      "outputFile": "content/writing/the-ai-cv.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "40",
+      "slug": "weeknotes-episode-1",
+      "type": "weeknote",
+      "oldUrl": "/weeknotes/weeknotes-episode-1",
+      "outputFile": "content/writing/weeknotes-episode-1.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "44",
+      "slug": "react-server-comonents",
+      "type": "post",
+      "oldUrl": "/posts/react-server-comonents",
+      "outputFile": "content/writing/react-server-comonents.md",
+      "warnings": [
+        "Image 1 has no alt text",
+        "Image 2 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "42",
+      "slug": "ai-generative-ui-rsc",
+      "type": "post",
+      "oldUrl": "/posts/ai-generative-ui-rsc",
+      "outputFile": "content/writing/ai-generative-ui-rsc.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "45",
+      "slug": "weeknotes-ep-3",
+      "type": "weeknote",
+      "oldUrl": "/weeknotes/weeknotes-ep-3",
+      "outputFile": "content/writing/weeknotes-ep-3.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "43",
+      "slug": "weeknotes-ep-2",
+      "type": "weeknote",
+      "oldUrl": "/weeknotes/weeknotes-ep-2",
+      "outputFile": "content/writing/weeknotes-ep-2.md",
+      "warnings": [
+        "Image 1 has no alt text"
+      ]
+    },
+    {
+      "sourceId": "51",
+      "slug": "weeknotes-2026-w02",
+      "type": "weeknote",
+      "oldUrl": "/weeknotes/weeknotes-2026-w02",
+      "outputFile": "content/writing/weeknotes-2026-w02.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "52",
+      "slug": "weeknotes-2026-w03",
+      "type": "weeknote",
+      "oldUrl": "/weeknotes/weeknotes-2026-w03",
+      "outputFile": "content/writing/weeknotes-2026-w03.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "53",
+      "slug": "weeknotes-2026-w04",
+      "type": "weeknote",
+      "oldUrl": "/weeknotes/weeknotes-2026-w04",
+      "outputFile": "content/writing/weeknotes-2026-w04.md",
+      "warnings": []
+    },
+    {
+      "sourceId": "54",
+      "slug": "weeknotes-2026-w05",
+      "type": "weeknote",
+      "oldUrl": "/weeknotes/weeknotes-2026-w05",
+      "outputFile": "content/writing/weeknotes-2026-w05.md",
+      "warnings": []
+    }
+  ]
+}
