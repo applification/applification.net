@@ -7,6 +7,7 @@ import {
   Mic,
   TextCursorInput,
 } from "lucide-react";
+import { DetailContextRail } from "@/components/detail-context-rail";
 import { ContractCta } from "@/components/home/contract-cta";
 import { ProductDetailEyebrow } from "@/components/products/product-detail";
 
@@ -139,7 +140,9 @@ function VoicedCapturePreview() {
 
         <div className="mt-[18px] grid min-h-[154px] grid-cols-[88px_minmax(0,1fr)] items-center gap-4 rounded-2xl bg-[#173f32] p-[18px] min-[560px]:grid-cols-[108px_minmax(0,1fr)] min-[560px]:gap-6 min-[1024px]:min-h-[170px] min-[1024px]:px-[22px] min-[1024px]:py-[31px]">
           <div className="flex aspect-square w-[88px] flex-col justify-between rounded-[18px] border border-[#75c99a] bg-[#254f42] p-3 text-[#f7faf8] min-[560px]:w-[108px] min-[560px]:p-[14px]">
-            <span className="text-[34px] leading-none min-[560px]:text-[38px]">⌘</span>
+            <span className="text-[34px] leading-none min-[560px]:text-[38px]">
+              ⌘
+            </span>
             <span className="font-caption text-[7px] font-bold tracking-[0.6px] text-[#a7e3c1] min-[560px]:text-[8px]">
               RIGHT COMMAND
             </span>
@@ -157,12 +160,15 @@ function VoicedCapturePreview() {
         </div>
 
         <p className="font-heading mt-[18px] text-xl leading-[1.3] text-[#173f32] min-[1024px]:text-[22px]">
-          “Turn that rough thought into something I can edit, without breaking focus.”
+          “Turn that rough thought into something I can edit, without breaking
+          focus.”
         </p>
 
         <div className="font-caption mt-[18px] flex items-center justify-between gap-4 text-[10px] leading-[13px] font-bold tracking-[0.65px] text-[#2f7a52]">
           <span>SPEAK&nbsp; → &nbsp;REVIEW&nbsp; → &nbsp;PASTE</span>
-          <span className="font-data text-xs leading-4 text-[#4d665e]">00:08</span>
+          <span className="font-data text-xs leading-4 text-[#4d665e]">
+            00:08
+          </span>
         </div>
       </div>
     </figure>
@@ -173,34 +179,44 @@ function VoicedHero() {
   return (
     <section
       aria-labelledby="voiced-heading"
-      className="bg-[#eaf3ed] px-6 py-12 min-[1024px]:min-h-[580px] min-[1024px]:px-20 min-[1024px]:py-[70px]"
+      className="bg-[#eaf3ed] px-6 py-12 min-[720px]:px-12 min-[1024px]:min-h-[580px] min-[1024px]:pt-[66px] min-[1024px]:pb-[70px] min-[1440px]:px-[120px]"
     >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-10 min-[1280px]:grid-cols-[560px_minmax(0,650px)] min-[1280px]:items-center min-[1280px]:gap-[70px]">
-        <div className="flex flex-col items-start gap-5">
-          <ProductDetailEyebrow>PRODUCTS&nbsp; / &nbsp;VOICED</ProductDetailEyebrow>
-          <h1
-            className="font-heading max-w-[560px] text-[48px] leading-[0.98] font-medium text-[#173f32] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]"
-            id="voiced-heading"
-          >
-            Capture the thought. Keep your hands on the work.
-          </h1>
-          <p className="max-w-[560px] text-base leading-[1.55] text-[#4d665e] min-[1024px]:text-lg min-[1024px]:leading-[1.5]">
-            A local capture layer for macOS. Speak, select or type, then paste it,
-            queue it or keep it on a shelf you control.
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <VoicedExternalLink href="https://voiced.applification.net/" primary>
-              Download Voiced
-              <Download aria-hidden="true" size={16} strokeWidth={1.8} />
-            </VoicedExternalLink>
-            <VoicedExternalLink href="https://github.com/applification/voiced">
-              GitHub source
-              <GithubIcon />
-            </VoicedExternalLink>
+      <div className="mx-auto w-full max-w-[1200px]">
+        <DetailContextRail
+          backHref="/products"
+          backLabel="Product index"
+          detail="Voiced"
+          family="Products"
+        />
+        <div className="mt-5 grid gap-10 min-[1280px]:grid-cols-[520px_minmax(0,610px)] min-[1280px]:items-center min-[1280px]:gap-[70px]">
+          <div className="flex flex-col items-start gap-5">
+            <h1
+              className="font-heading max-w-[560px] text-[48px] leading-[0.98] font-medium text-[#173f32] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]"
+              id="voiced-heading"
+            >
+              Capture the thought. Keep your hands on the work.
+            </h1>
+            <p className="max-w-[560px] text-base leading-[1.55] text-[#4d665e] min-[1024px]:text-lg min-[1024px]:leading-[1.5]">
+              A local capture layer for macOS. Speak, select or type, then paste
+              it, queue it or keep it on a shelf you control.
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <VoicedExternalLink
+                href="https://voiced.applification.net/"
+                primary
+              >
+                Download Voiced
+                <Download aria-hidden="true" size={16} strokeWidth={1.8} />
+              </VoicedExternalLink>
+              <VoicedExternalLink href="https://github.com/applification/voiced">
+                GitHub source
+                <GithubIcon />
+              </VoicedExternalLink>
+            </div>
           </div>
-        </div>
 
-        <VoicedCapturePreview />
+          <VoicedCapturePreview />
+        </div>
       </div>
     </section>
   );
@@ -227,9 +243,9 @@ function VoicedRationale() {
 
         <div>
           <p className="text-base leading-[1.55] text-[#cfe0d6] min-[1024px]:text-[17px]">
-            Most dictation tools ask you to move into their interface. Voiced works
-            from the editor already in focus, then gives longer captures a quiet
-            place to wait. Nothing needs an account or a cloud transcript.
+            Most dictation tools ask you to move into their interface. Voiced
+            works from the editor already in focus, then gives longer captures a
+            quiet place to wait. Nothing needs an account or a cloud transcript.
           </p>
           <div className="mt-[18px] flex items-center gap-[14px] rounded-[14px] bg-[#254f42] p-[18px]">
             <LockKeyhole
@@ -239,8 +255,8 @@ function VoicedRationale() {
               strokeWidth={1.7}
             />
             <p className="text-[15px] leading-[1.5] font-semibold text-[#f7faf8] min-[1024px]:text-base">
-              Local Whisper transcription. No account, telemetry, cloud storage or
-              server.
+              Local Whisper transcription. No account, telemetry, cloud storage
+              or server.
             </p>
           </div>
         </div>
@@ -267,8 +283,8 @@ function VoicedCaptureRoutes() {
             </h2>
           </div>
           <p className="text-[15px] leading-[1.55] text-[#4d665e]">
-            Quick captures paste straight back. Anything worth keeping can stay in
-            Inbox until it is edited, copied or moved to Done.
+            Quick captures paste straight back. Anything worth keeping can stay
+            in Inbox until it is edited, copied or moved to Done.
           </p>
         </div>
 
@@ -317,8 +333,8 @@ function VoicedBuild() {
           <p className="mt-4 text-[15px] leading-[1.55] text-[#4d665e] min-[1024px]:text-base">
             Voiced uses one CaptureItem across voice, selection and typed input.
             Clipboard writes restore the previous value when safe, storage is
-            atomic, and corrupt data gets a recovery copy before the shelf starts
-            clean.
+            atomic, and corrupt data gets a recovery copy before the shelf
+            starts clean.
           </p>
         </div>
 
@@ -358,8 +374,9 @@ function VoicedAvailability() {
             Download the notarised Mac app or build it yourself.
           </h2>
           <p className="mt-3 text-[15px] leading-[1.55] text-[#4d665e]">
-            Voiced is MIT licensed and distributed directly for macOS 14 or newer.
-            The source includes local build, packaging and smoke-test guides.
+            Voiced is MIT licensed and distributed directly for macOS 14 or
+            newer. The source includes local build, packaging and smoke-test
+            guides.
           </p>
         </div>
 

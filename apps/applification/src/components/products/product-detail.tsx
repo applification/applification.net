@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { DetailContextRail } from "@/components/detail-context-rail";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -69,62 +70,66 @@ export function ProductDetailHero({
   return (
     <section
       aria-labelledby="product-detail-heading"
-      className={`${contexture ? "bg-[#1e1e2e] min-[1024px]:min-h-[590px]" : "bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] min-[1024px]:min-h-[560px]"} px-6 py-12 min-[1024px]:px-20 min-[1024px]:py-16`}
+      className={`${contexture ? "bg-[#1e1e2e] min-[1024px]:min-h-[590px]" : "bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] min-[1024px]:min-h-[560px]"} px-6 py-12 min-[720px]:px-12 min-[1024px]:pt-[66px] min-[1024px]:pb-16 min-[1440px]:px-[120px]`}
     >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-10 min-[1280px]:grid-cols-[minmax(0,560px)_minmax(0,664px)] min-[1280px]:items-center min-[1280px]:gap-14">
-        <div className="flex flex-col items-start gap-5">
-          <ProductDetailEyebrow
-            className={contexture ? "text-[#89dceb]" : undefined}
-          >
-            {breadcrumb}
-          </ProductDetailEyebrow>
-          <h1
-            className={`${contexture ? "text-[#cdd6f4]" : "text-[var(--app-text-primary)]"} font-heading max-w-[560px] text-[48px] leading-[0.98] font-medium tracking-[-0.025em] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]`}
-            id="product-detail-heading"
-          >
-            {title}
-          </h1>
-          <p
-            className={`${contexture ? "text-[#bac2de]" : "text-[var(--app-text-secondary)]"} max-w-[550px] text-base leading-[1.55] min-[1024px]:text-lg min-[1024px]:leading-[1.5]`}
-          >
-            {description}
-          </p>
-          <div className="flex flex-wrap items-center gap-3 pt-1">
-            <a
-              className={`${contexture ? "bg-[#cba6f7] text-[#1e1e2e] hover:bg-[#d8b4fe]" : "bg-[var(--app-action)] text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)]"} inline-flex min-h-[42px] items-center justify-center gap-2 rounded-full px-[18px] text-sm font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
-              href={primaryAction.href}
-              rel={primaryAction.external ? "noreferrer" : undefined}
-              target={primaryAction.external ? "_blank" : undefined}
+      <div className="mx-auto w-full max-w-[1200px]">
+        <DetailContextRail
+          backHref="/products"
+          backLabel="Product index"
+          className={contexture ? "text-[#89dceb]" : undefined}
+          detail={breadcrumb.replace(/^PRODUCTS\s*\/\s*/i, "")}
+          family="Products"
+        />
+        <div className="mt-5 grid gap-10 min-[1280px]:grid-cols-[minmax(0,520px)_minmax(0,624px)] min-[1280px]:items-center min-[1280px]:gap-14">
+          <div className="flex flex-col items-start gap-5">
+            <h1
+              className={`${contexture ? "text-[#cdd6f4]" : "text-[var(--app-text-primary)]"} font-heading max-w-[560px] text-[48px] leading-[0.98] font-medium tracking-[-0.025em] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]`}
+              id="product-detail-heading"
             >
-              {primaryAction.label}
-              {primaryAction.external ? <ArrowUpRightIcon /> : null}
-              {primaryAction.external ? (
-                <span className="sr-only">, opens in a new tab</span>
-              ) : null}
-            </a>
-            {secondaryAction ? (
+              {title}
+            </h1>
+            <p
+              className={`${contexture ? "text-[#bac2de]" : "text-[var(--app-text-secondary)]"} max-w-[550px] text-base leading-[1.55] min-[1024px]:text-lg min-[1024px]:leading-[1.5]`}
+            >
+              {description}
+            </p>
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
-                className={`${contexture ? "border-[#cba6f7] text-[#cdd6f4] hover:bg-[#313244]" : "border-[var(--app-border)] text-[var(--app-text-primary)] hover:bg-[var(--app-muted-section)]"} inline-flex min-h-[42px] items-center justify-center gap-2 rounded-full border px-[18px] text-sm font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
-                href={secondaryAction.href}
-                rel={secondaryAction.external ? "noreferrer" : undefined}
-                target={secondaryAction.external ? "_blank" : undefined}
+                className={`${contexture ? "bg-[#cba6f7] text-[#1e1e2e] hover:bg-[#d8b4fe]" : "bg-[var(--app-action)] text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)]"} inline-flex min-h-[42px] items-center justify-center gap-2 rounded-full px-[18px] text-sm font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
+                href={primaryAction.href}
+                rel={primaryAction.external ? "noreferrer" : undefined}
+                target={primaryAction.external ? "_blank" : undefined}
               >
-                {secondaryAction.label}
-                {secondaryAction.external ? <ArrowUpRightIcon /> : null}
-                {secondaryAction.external ? (
+                {primaryAction.label}
+                {primaryAction.external ? <ArrowUpRightIcon /> : null}
+                {primaryAction.external ? (
                   <span className="sr-only">, opens in a new tab</span>
                 ) : null}
               </a>
-            ) : null}
-            {status ? (
-              <span className="font-caption inline-flex min-h-[42px] items-center rounded-full bg-[var(--app-label)] px-4 text-[10px] font-bold tracking-[0.65px] text-[var(--app-label-text)]">
-                {status}
-              </span>
-            ) : null}
+              {secondaryAction ? (
+                <a
+                  className={`${contexture ? "border-[#cba6f7] text-[#cdd6f4] hover:bg-[#313244]" : "border-[var(--app-border)] text-[var(--app-text-primary)] hover:bg-[var(--app-muted-section)]"} inline-flex min-h-[42px] items-center justify-center gap-2 rounded-full border px-[18px] text-sm font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
+                  href={secondaryAction.href}
+                  rel={secondaryAction.external ? "noreferrer" : undefined}
+                  target={secondaryAction.external ? "_blank" : undefined}
+                >
+                  {secondaryAction.label}
+                  {secondaryAction.external ? <ArrowUpRightIcon /> : null}
+                  {secondaryAction.external ? (
+                    <span className="sr-only">, opens in a new tab</span>
+                  ) : null}
+                </a>
+              ) : null}
+              {status ? (
+                <span className="font-caption inline-flex min-h-[42px] items-center rounded-full bg-[var(--app-label)] px-4 text-[10px] font-bold tracking-[0.65px] text-[var(--app-label-text)]">
+                  {status}
+                </span>
+              ) : null}
+            </div>
           </div>
-        </div>
 
-        <div className="min-w-0">{visual}</div>
+          <div className="min-w-0">{visual}</div>
+        </div>
       </div>
     </section>
   );

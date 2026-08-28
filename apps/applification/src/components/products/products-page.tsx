@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ContractCta } from "@/components/home/contract-cta";
 import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
+import { PageHero } from "@/components/page-hero";
 import { ContextureSchemaPreview } from "@/components/products/contexture-schema-preview";
 
 const focusClasses =
@@ -52,28 +53,9 @@ function ArrowUpRightIcon() {
 
 function ProductsHero() {
   return (
-    <section
-      aria-labelledby="products-page-heading"
-      className="bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] px-6 py-12 min-[821px]:min-h-[420px] min-[821px]:px-20 min-[821px]:py-[72px]"
-    >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-7 min-[821px]:grid-cols-[minmax(0,760px)_320px] min-[821px]:items-center min-[821px]:justify-between min-[821px]:gap-20">
-        <div className="flex flex-col gap-[18px] min-[821px]:gap-[22px]">
-          <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] min-[821px]:text-[13px] min-[821px]:font-semibold">
-            PRODUCTS&nbsp; / &nbsp;BUILT, SHIPPED AND IN DEVELOPMENT
-          </p>
-          <h1
-            className="font-heading max-w-[760px] text-[48px] leading-[0.96] font-medium tracking-[-0.025em] text-[var(--app-text-primary)] min-[821px]:text-[64px]"
-            id="products-page-heading"
-          >
-            Products built around real work.
-          </h1>
-          <p className="max-w-[720px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[821px]:text-[19px]">
-            A small portfolio of tools for clearer agent collaboration, shared
-            domain context and useful everyday software.
-          </p>
-        </div>
-
-        <div className="border-t border-[var(--app-border)] pt-[22px] min-[821px]:border-t-0 min-[821px]:border-l min-[821px]:py-1.5 min-[821px]:pl-7">
+    <PageHero
+      aside={
+        <div className="border-t border-[var(--app-border)] pt-[22px] min-[1024px]:self-end min-[1024px]:border-t-0 min-[1024px]:border-l min-[1024px]:py-1.5 min-[1024px]:pl-7">
           <div className="font-heading text-[76px] leading-[0.82] font-medium text-[var(--app-text-primary)] min-[821px]:text-[96px]">
             04
           </div>
@@ -86,8 +68,18 @@ function ProductsHero() {
             ))}
           </ul>
         </div>
-      </div>
-    </section>
+      }
+      description={
+        <p>
+          A small portfolio of tools for clearer agent collaboration, shared
+          domain context and useful everyday software.
+        </p>
+      }
+      eyebrow="PRODUCTS"
+      eyebrowDetail="BUILT, SHIPPED AND IN DEVELOPMENT"
+      headingId="products-page-heading"
+      title="Products built around real work."
+    />
   );
 }
 

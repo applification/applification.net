@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
+import { PageHero } from "@/components/page-hero";
 import type { WritingEntry } from "@/lib/writing";
 import { WritingArchive, type WritingArchiveEntry } from "./writing-archive";
 import {
@@ -31,24 +32,11 @@ function formatDate(date: string) {
 
 function WritingHero() {
   return (
-    <section className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-20 min-[1440px]:px-[120px]">
-      <div className="mx-auto grid w-full max-w-[1200px] gap-10 min-[1024px]:grid-cols-[minmax(0,780px)_330px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[90px]">
-        <div className="flex min-w-0 flex-col gap-[18px]">
-          <p className="font-caption text-[11px] font-semibold tracking-[1.4px] text-[var(--writing-accent-text)] min-[1024px]:text-xs">
-            WRITING&nbsp; · &nbsp;FIELD NOTES FROM THE WORK
-          </p>
-          <h1 className="font-heading max-w-[780px] text-[46px] leading-[1.04] font-medium tracking-[-1px] text-[var(--app-text-primary)] min-[720px]:text-[56px] min-[1024px]:text-[62px] min-[1024px]:tracking-[-1.4px]">
-            Notes from agent loops, product builds and real constraints.
-          </h1>
-          <p className="max-w-[690px] text-lg leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-[19px]">
-            Practical notes on working with coding agents, shipping my own
-            products and revisiting older technical posts that still hold up.
-          </p>
-        </div>
-
+    <PageHero
+      aside={
         <nav
           aria-label="Browse writing by topic"
-          className="w-full rounded-[18px] bg-[var(--app-card)] p-6 min-[1024px]:w-[330px]"
+          className="w-full rounded-[18px] bg-[var(--app-card)] p-6 min-[1024px]:w-[330px] min-[1024px]:self-end"
         >
           <p className="font-caption text-[10px] font-bold tracking-[1.2px] text-[var(--writing-accent-text)]">
             BROWSE BY TOPIC
@@ -71,8 +59,19 @@ function WritingHero() {
             ))}
           </ul>
         </nav>
-      </div>
-    </section>
+      }
+      description={
+        <p className="max-w-[690px]">
+          Practical notes on working with coding agents, shipping my own
+          products and revisiting older technical posts that still hold up.
+        </p>
+      }
+      eyebrow="WRITING"
+      eyebrowClassName="text-[var(--writing-accent-text)]"
+      eyebrowDetail="FIELD NOTES FROM THE WORK"
+      headingId="writing-page-heading"
+      title="Notes from agent loops, product builds and real constraints."
+    />
   );
 }
 
