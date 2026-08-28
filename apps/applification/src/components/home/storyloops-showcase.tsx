@@ -43,7 +43,7 @@ function DesktopStoryMap({
 
   return (
     <div
-      className={`${detail ? "h-[410px] p-5" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1024px]:flex`}
+      className={`${detail ? "h-[410px] p-5" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} storyloop-map-container hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1024px]:flex`}
     >
       <div className="flex h-[30px] shrink-0 items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -66,7 +66,7 @@ function DesktopStoryMap({
             <span className="font-caption text-[9px] font-medium tracking-[0.8px] text-[var(--storyloop-muted)]">
               CONTROL PLANE
             </span>
-            <span className="text-sm font-semibold text-[var(--storyloop-ink)]">
+            <span className={`${compact ? "text-xs" : "text-sm"} font-semibold text-[var(--storyloop-ink)]`}>
               Applification.net
             </span>
           </div>

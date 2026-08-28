@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 type ContractCtaProps = {
   description?: string;
   eyebrow?: string;
@@ -40,9 +42,7 @@ export function ContractCta({
           href="mailto:dave@applification.net?subject=Project%20enquiry"
         >
           Discuss a contract
-          <span aria-hidden="true" className="text-[var(--contexture-cyan)]">
-            ↗
-          </span>
+          <ArrowUpRight aria-hidden="true" className="size-[17px] shrink-0 text-[var(--app-accent)]" strokeWidth={1.8} />
         </a>
       </div>
     </section>

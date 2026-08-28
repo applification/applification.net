@@ -235,6 +235,22 @@
     padding: 0.5rem;
   }
 
+  .storyloop-map-container {
+    container-type: inline-size;
+  }
+
+  @container (max-width: 899px) {
+    .storyloop-card-grid-compact {
+      --storyloop-card-width: min(120px, calc((100% - 0.5rem) / 2));
+
+      grid-template-columns: repeat(2, var(--storyloop-card-width));
+    }
+
+    .storyloop-card-grid-compact > :nth-child(n + 3) {
+      display: none;
+    }
+  }
+
   .storyloop-card-grid-scroll {
     grid-auto-flow: column;
     grid-template-columns: none;
