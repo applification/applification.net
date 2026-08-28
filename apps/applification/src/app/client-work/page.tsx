@@ -1,14 +1,24 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/page-shell";
+import { ClientWorkPage } from "@/components/client-work/client-work-page";
 
-export const metadata: Metadata = { title: "Client work" };
+const description =
+  "Production case studies from greenfield product builds, frontend rebuilds and AI systems, with the decisions and outcomes attached.";
 
-export default function ClientWorkPage() {
-  return (
-    <PageShell
-      eyebrow="Client work"
-      title="Production work with the decisions attached."
-      description="Evidence-led case studies from greenfield builds, architectural resets and small product teams."
-    />
-  );
+export const metadata: Metadata = {
+  title: "Client work",
+  description,
+  openGraph: {
+    title: "Client work | Applification",
+    description,
+    url: "/client-work",
+  },
+  twitter: {
+    card: "summary",
+    title: "Client work | Applification",
+    description,
+  },
+};
+
+export default function ClientWorkRoute() {
+  return <ClientWorkPage />;
 }
