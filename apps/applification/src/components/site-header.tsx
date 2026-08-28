@@ -141,13 +141,16 @@ export function SiteHeader() {
               );
             })}
           </LayoutGroup>
-          <a
-            className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm leading-[18px] font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
-            href={contactHref}
-          >
-            Discuss a contract
-            <ArrowUpRightIcon />
-          </a>
+          <div className="flex items-center gap-3">
+            <ThemeSwitcher />
+            <a
+              className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm leading-[18px] font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
+              href={contactHref}
+            >
+              Discuss a contract
+              <ArrowUpRightIcon />
+            </a>
+          </div>
         </nav>
 
         <div className="flex items-center min-[821px]:hidden">
