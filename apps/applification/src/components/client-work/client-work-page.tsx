@@ -78,7 +78,7 @@ export function ClientWorkHero() {
   return (
     <section
       aria-labelledby="client-work-heading"
-      className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-14 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:pt-[84px] min-[1024px]:pb-20"
+      className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-14 min-[720px]:px-12 min-[1024px]:pt-[84px] min-[1024px]:pb-20 min-[1440px]:px-[120px]"
       data-client-work-section="opening-brief"
     >
       <div className="mx-auto grid w-full max-w-[1200px] gap-10 min-[1024px]:grid-cols-[minmax(0,780px)_330px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[72px]">
@@ -108,11 +108,11 @@ export function LogicallyCaseStudy() {
   return (
     <section
       aria-labelledby="logically-case-heading"
-      className="bg-[var(--app-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:py-[88px]"
+      className="bg-[var(--app-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[88px] min-[1440px]:px-[120px]"
       data-client-work-section="featured-logically-case"
     >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[38px]">
-        <div className="grid gap-6 min-[1024px]:grid-cols-[minmax(0,720px)_minmax(0,360px)_36px] min-[1024px]:items-end min-[1024px]:gap-[42px]">
+        <div className="grid gap-6 min-[1120px]:grid-cols-[minmax(0,720px)_minmax(0,360px)_44px] min-[1120px]:items-end min-[1120px]:gap-[38px]">
           <div className="flex min-w-0 flex-col gap-3">
             <p className="font-caption text-xs font-semibold tracking-[1.25px] text-[var(--app-label-text)]">
               FEATURED CASE&nbsp; / &nbsp;LOGICALLY
@@ -130,7 +130,7 @@ export function LogicallyCaseStudy() {
           </p>
           <a
             aria-label="Visit Logically, opens in a new tab"
-            className="inline-flex size-9 items-center justify-center rounded-full bg-[var(--client-logically-link)] text-white transition-colors hover:bg-[var(--app-action-hover)] active:bg-[var(--cta-action-active)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+            className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--client-logically-link)] text-white transition-colors hover:bg-[var(--app-action-hover)] active:bg-[var(--cta-action-active)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
             href="https://logically.ai"
             rel="noreferrer"
             target="_blank"
@@ -139,7 +139,7 @@ export function LogicallyCaseStudy() {
           </a>
         </div>
 
-        <div className="grid items-start gap-6 min-[1024px]:grid-cols-[570px_minmax(0,606px)]">
+        <div className="grid items-start gap-6 min-[1120px]:grid-cols-[570px_minmax(0,606px)]">
           <article className="flex flex-col gap-6 rounded-[22px] bg-[var(--client-narrative)] p-6 min-[720px]:p-8">
             <h3 className="font-heading max-w-[500px] text-[30px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[720px]:text-[34px]">
               A typed path from Databricks to the product.
@@ -207,11 +207,11 @@ export function SelectedContracts() {
   return (
     <section
       aria-labelledby="selected-contracts-heading"
-      className="bg-[var(--app-muted-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:py-[88px]"
+      className="bg-[var(--app-muted-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[88px] min-[1440px]:px-[120px]"
       data-client-work-section="selected-contracts"
     >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-9">
-        <div className="grid gap-5 min-[1024px]:grid-cols-[minmax(0,700px)_390px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[110px]">
+        <div className="grid gap-5 min-[1120px]:grid-cols-[minmax(0,700px)_390px] min-[1120px]:items-end min-[1120px]:justify-between min-[1120px]:gap-[110px]">
           <div className="flex min-w-0 flex-col gap-2.5">
             <p className="font-caption text-xs font-semibold tracking-[1.25px] text-[var(--app-label-text)]">
               SELECTED CONTRACTS
@@ -229,7 +229,7 @@ export function SelectedContracts() {
           </p>
         </div>
 
-        <div className="grid items-start gap-6 min-[1024px]:grid-cols-[470px_minmax(0,706px)]">
+        <div className="grid items-start gap-6 min-[1120px]:grid-cols-[470px_minmax(0,706px)]">
           <article className="flex min-h-[468px] flex-col rounded-[22px] bg-[var(--app-card)] p-6 min-[720px]:p-[30px]">
             <div className="font-caption flex min-h-8 items-center justify-between gap-4">
               <p className="text-[11px] font-bold tracking-[1.1px] text-[var(--client-brief-label)]">
@@ -304,13 +304,13 @@ export function SupportingEvidence() {
   return (
     <section
       aria-labelledby="supporting-evidence-heading"
-      className="bg-[var(--app-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:py-[82px]"
+      className="bg-[var(--app-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[82px] min-[1440px]:px-[120px]"
       data-client-work-section="supporting-evidence"
     >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[38px]">
-        <div className="grid gap-4 min-[1024px]:grid-cols-[minmax(0,460px)_420px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[320px]">
+        <div className="grid gap-4 min-[1120px]:grid-cols-[minmax(0,460px)_420px] min-[1120px]:items-end min-[1120px]:justify-between min-[1120px]:gap-[320px]">
           <h2
-            className="font-heading text-[38px] leading-none font-medium text-[var(--app-text-primary)] min-[720px]:text-[42px] min-[1024px]:whitespace-nowrap"
+            className="font-heading text-[38px] leading-none font-medium text-[var(--app-text-primary)] min-[720px]:text-[42px] min-[1120px]:whitespace-nowrap"
             id="supporting-evidence-heading"
           >
             More production context
@@ -321,10 +321,10 @@ export function SupportingEvidence() {
           </p>
         </div>
 
-        <div className="grid gap-9 min-[1024px]:grid-cols-3 min-[1024px]:gap-10">
+        <div className="grid gap-9 min-[1120px]:grid-cols-3 min-[1120px]:gap-10">
           {supportingCases.map((item) => (
             <article
-              className="flex flex-col gap-3 border-t border-[var(--app-border)] pt-5 first:border-t-0 first:pt-0 min-[1024px]:min-h-[178px] min-[1024px]:border-t-0 min-[1024px]:pt-0"
+              className="flex flex-col gap-3 border-t border-[var(--app-border)] pt-5 first:border-t-0 first:pt-0 min-[1120px]:min-h-[178px] min-[1120px]:border-t-0 min-[1120px]:pt-0"
               key={item.company}
             >
               <p className="font-caption min-h-8 text-[10px] font-bold tracking-[0.9px] text-[var(--client-brief-label)]">
@@ -348,10 +348,10 @@ export function ContractFit() {
   return (
     <section
       aria-labelledby="contract-fit-heading"
-      className="bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:py-[54px]"
+      className="bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[54px] min-[1440px]:px-[120px]"
       data-client-work-section="best-contract-fit"
     >
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-7 min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-12">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-7 min-[1120px]:flex-row min-[1120px]:items-center min-[1120px]:justify-between min-[1120px]:gap-12">
         <div className="max-w-[520px]">
           <p className="font-caption text-[10px] font-bold tracking-[1.1px] text-[var(--client-brief-label)]">
             BEST CONTRACT FIT
@@ -392,6 +392,7 @@ export function ClientWorkContractCta() {
         actionLabel="Start a conversation"
         description="Remote contracts across the UK. Hybrid considered in North East England."
         eyebrow="AVAILABLE FOR CONTRACT WORK"
+        layout="wide"
         title="Need a senior product engineer to turn an AI idea into working software?"
       />
     </div>

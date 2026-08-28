@@ -52,6 +52,11 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   await expect(
     canvas.getByRole("link", { name: "Visit Logically, opens in a new tab" }),
   ).toHaveAttribute("target", "_blank");
+  const logicallyLink = canvas.getByRole("link", {
+    name: "Visit Logically, opens in a new tab",
+  });
+  await expect(logicallyLink.offsetWidth).toBeGreaterThanOrEqual(44);
+  await expect(logicallyLink.offsetHeight).toBeGreaterThanOrEqual(44);
   await expect(
     canvas.getByRole("link", { name: "Start a conversation" }),
   ).toHaveAttribute(
@@ -61,6 +66,44 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   await expect(links.every((link) => link.tabIndex >= 0)).toBe(true);
   await expect(canvasElement.querySelectorAll("footer")).toHaveLength(1);
 };
+
+const checkCaseStudyColumns = (
+  expectedColumns: number,
+): NonNullable<Story["play"]> =>
+  async (context) => {
+    await checkCompletePage(context);
+
+    const caseStudyGrid = context.canvasElement.querySelector<HTMLElement>(
+      "[data-client-work-section='featured-logically-case'] > div > div:last-child",
+    );
+    const selectedContractsGrid =
+      context.canvasElement.querySelector<HTMLElement>(
+        "[data-client-work-section='selected-contracts'] > div > div:last-child",
+      );
+
+    await expect(caseStudyGrid).not.toBeNull();
+    await expect(selectedContractsGrid).not.toBeNull();
+    await expect(caseStudyGrid?.children).toHaveLength(2);
+    await expect(selectedContractsGrid?.children).toHaveLength(2);
+
+    if (!caseStudyGrid || !selectedContractsGrid) {
+      return;
+    }
+
+    const caseStudyTopPositions = new Set(
+      [...caseStudyGrid.children].map((element) =>
+        Math.round(element.getBoundingClientRect().top),
+      ),
+    );
+    const selectedTopPositions = new Set(
+      [...selectedContractsGrid.children].map((element) =>
+        Math.round(element.getBoundingClientRect().top),
+      ),
+    );
+
+    await expect(caseStudyTopPositions.size).toBe(expectedColumns === 1 ? 2 : 1);
+    await expect(selectedTopPositions.size).toBe(expectedColumns === 1 ? 2 : 1);
+  };
 
 export const DesktopLight: Story = { play: checkCompletePage };
 
@@ -80,6 +123,21 @@ export const MobileDark: Story = {
     viewport: { value: "mobile", isRotated: false },
   },
   play: checkCompletePage,
+};
+
+export const TabletLight: Story = {
+  globals: { viewport: { value: "tablet", isRotated: false } },
+  play: checkCaseStudyColumns(1),
+};
+
+export const CompactLaptopLight: Story = {
+  globals: { viewport: { value: "compactLaptop", isRotated: false } },
+  play: checkCaseStudyColumns(1),
+};
+
+export const LaptopLight: Story = {
+  globals: { viewport: { value: "laptop", isRotated: false } },
+  play: checkCaseStudyColumns(2),
 };
 
 export const ReducedMotion: Story = {
