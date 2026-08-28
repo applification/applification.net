@@ -1,15 +1,15 @@
 const proofPoints = [
   {
     value: "20+ years",
-    detail: "Shipping products with small teams",
+    detail: "Shipping production software",
   },
   {
-    value: "Days to minutes",
-    detail: "Routine UI changes at Logically",
+    value: "Small teams",
+    detail: "Product shaping and engineering",
   },
   {
-    value: "4 months",
-    detail: "Greenfield Eruptiv frontend built",
+    value: "UK remote",
+    detail: "Contracts through Applification Ltd",
   },
 ];
 
@@ -17,36 +17,36 @@ export function CommercialProof() {
   return (
     <section
       aria-labelledby="commercial-proof-label"
-      className="border-y border-[var(--app-border)] bg-[var(--app-muted-section)] min-[821px]:min-h-[134px] min-[821px]:bg-[var(--app-section)]"
+      className="border-y border-[var(--app-border)] bg-[var(--app-muted-section)] min-[720px]:min-h-[126px] min-[720px]:bg-[var(--app-section)]"
     >
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-4 px-6 py-7 min-[821px]:w-[calc(100%-48px)] min-[821px]:gap-[18px] min-[821px]:px-0 min-[821px]:pt-6 min-[821px]:pb-[26px]">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-3 px-6 py-6 min-[720px]:w-[calc(100%-48px)] min-[720px]:gap-4 min-[720px]:px-0 min-[720px]:pt-5 min-[720px]:pb-6">
         <p
-          className="font-caption text-[11px] leading-[14px] font-bold tracking-[0.9px] text-[var(--app-label-text)] uppercase min-[821px]:tracking-[1px]"
+          className="font-caption text-[11px] leading-[14px] font-bold tracking-[0.9px] text-[var(--app-label-text)] uppercase min-[720px]:tracking-[1px]"
           id="commercial-proof-label"
         >
-          <span className="min-[821px]:hidden">
-            Commercial proof&nbsp; · &nbsp;UK remote contracts
+          <span className="min-[720px]:hidden">
+            Senior delivery&nbsp; · &nbsp;UK remote contracts
           </span>
-          <span className="hidden min-[821px]:inline">
-            Commercial proof&nbsp; · &nbsp;Startups&nbsp; · &nbsp;Health
+          <span className="hidden min-[720px]:inline">
+            Senior delivery&nbsp; · &nbsp;Startups&nbsp; · &nbsp;Health
             tech&nbsp; · &nbsp;UK government
           </span>
         </p>
 
-        <dl className="flex flex-col min-[821px]:flex-row">
+        <dl className="flex flex-col min-[720px]:flex-row">
           {proofPoints.map((point, index) => (
             <div
-              className={`flex items-center gap-4 py-3 min-[821px]:flex-1 min-[821px]:flex-col min-[821px]:items-start min-[821px]:gap-[5px] min-[821px]:py-0 ${
+              className={`flex items-center gap-4 py-2.5 min-[720px]:flex-1 min-[720px]:flex-col min-[720px]:items-start min-[720px]:gap-[5px] min-[720px]:py-0 ${
                 index === 0
-                  ? "min-[821px]:pr-6"
-                  : "border-t border-[var(--app-border)] min-[821px]:border-t-0 min-[821px]:border-l min-[821px]:px-6"
-              } ${index === proofPoints.length - 1 ? "min-[821px]:pr-0" : ""}`}
+                  ? "min-[720px]:pr-6"
+                  : "border-t border-[var(--app-border)] min-[720px]:border-t-0 min-[720px]:border-l min-[720px]:px-6"
+              } ${index === proofPoints.length - 1 ? "min-[720px]:pr-0" : ""}`}
               key={point.value}
             >
-              <dt className="font-heading w-[118px] shrink-0 text-2xl leading-none font-medium text-[var(--app-text-primary)] min-[821px]:w-auto min-[821px]:text-[28px]">
+              <dt className="font-heading w-[112px] shrink-0 text-[22px] leading-none font-medium text-[var(--app-text-primary)] min-[720px]:w-auto min-[720px]:text-[26px]">
                 {point.value}
               </dt>
-              <dd className="text-[13px] leading-[1.4] text-[var(--app-text-secondary)] min-[821px]:leading-[17px]">
+              <dd className="text-[13px] leading-[1.4] text-[var(--app-text-secondary)] min-[720px]:leading-[17px]">
                 {point.detail}
               </dd>
             </div>

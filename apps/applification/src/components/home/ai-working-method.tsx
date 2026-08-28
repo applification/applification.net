@@ -20,7 +20,6 @@ type WorkflowStep = {
   owner: string;
   Icon: LucideIcon;
   desktopTone: string;
-  desktopBorder: string;
   desktopIcon: string;
   mobileTone: string;
   mobileBorder: string;
@@ -34,7 +33,6 @@ const workflowSteps: WorkflowStep[] = [
     owner: "HUMAN",
     Icon: Crosshair,
     desktopTone: "text-[var(--workflow-human)]",
-    desktopBorder: "border-[var(--workflow-human-border)]",
     desktopIcon: "bg-[var(--workflow-human-soft)]",
     mobileTone: "text-[var(--workflow-mobile-human)]",
     mobileBorder: "border-[var(--workflow-mobile-human-border)]",
@@ -46,7 +44,6 @@ const workflowSteps: WorkflowStep[] = [
     owner: "TOOLS",
     Icon: Database,
     desktopTone: "text-[var(--workflow-agent)]",
-    desktopBorder: "border-[var(--workflow-agent-border)]",
     desktopIcon: "bg-[var(--workflow-agent-soft)]",
     mobileTone: "text-[var(--workflow-mobile-agent)]",
     mobileBorder: "border-[var(--workflow-mobile-agent-border)]",
@@ -58,7 +55,6 @@ const workflowSteps: WorkflowStep[] = [
     owner: "AGENT",
     Icon: SquareTerminal,
     desktopTone: "text-[var(--workflow-agent)]",
-    desktopBorder: "border-[var(--workflow-agent-border)]",
     desktopIcon: "bg-[var(--workflow-agent-soft)]",
     mobileTone: "text-[var(--workflow-mobile-agent)]",
     mobileBorder: "border-[var(--workflow-mobile-agent-border)]",
@@ -70,7 +66,6 @@ const workflowSteps: WorkflowStep[] = [
     owner: "CHECKS",
     Icon: ShieldCheck,
     desktopTone: "text-[var(--workflow-checks)]",
-    desktopBorder: "border-[var(--workflow-checks-border)]",
     desktopIcon: "bg-[var(--workflow-checks-soft)]",
     mobileTone: "text-[var(--workflow-mobile-checks)]",
     mobileBorder: "border-[var(--workflow-mobile-checks-border)]",
@@ -82,7 +77,6 @@ const workflowSteps: WorkflowStep[] = [
     owner: "HUMAN",
     Icon: UserCheck,
     desktopTone: "text-[var(--workflow-human)]",
-    desktopBorder: "border-[var(--workflow-human-border)]",
     desktopIcon: "bg-[var(--workflow-human-soft)]",
     mobileTone: "text-[var(--workflow-mobile-human)]",
     mobileBorder: "border-[var(--workflow-mobile-human-border)]",
@@ -110,7 +104,7 @@ function DesktopWorkflowStep({ step }: { step: WorkflowStep }) {
 
   return (
     <li
-      className={`relative z-10 flex h-[138px] w-[84px] flex-col items-center gap-[7px] rounded-xl border bg-[var(--workflow-node)] px-2 py-2.5 text-center ${step.desktopBorder}`}
+      className="relative z-10 flex h-[138px] w-[84px] flex-col items-center gap-[7px] rounded-xl border border-[var(--app-border)] bg-[var(--workflow-node)] px-2 py-2.5 text-center"
       data-motion-step={step.title.toLowerCase()}
     >
       <span className={`font-caption text-[9px] leading-[11px] font-bold tracking-[0.6px] ${step.desktopTone}`}>
@@ -312,7 +306,7 @@ export function AiWorkingMethod() {
   return (
     <section
       aria-labelledby="ai-working-method-heading"
-      className="bg-[var(--app-section)] px-6 py-14 min-[1024px]:px-12 min-[1024px]:py-[84px] min-[1100px]:px-6 min-[1280px]:px-20 min-[1440px]:px-[120px]"
+      className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[72px] min-[1100px]:px-6 min-[1280px]:px-20 min-[1440px]:px-[120px]"
       id="method"
     >
       <div className="mx-auto grid w-full max-w-[1200px] gap-6 min-[768px]:justify-items-center min-[1100px]:grid-cols-[470px_540px] min-[1100px]:items-center min-[1100px]:justify-between min-[1100px]:justify-items-stretch min-[1100px]:gap-10 min-[1280px]:grid-cols-[500px_540px] min-[1280px]:gap-[60px]">

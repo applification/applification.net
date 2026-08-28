@@ -1,10 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { usePathname } from "@storybook/nextjs-vite/navigation.mock";
 import { expect } from "storybook/test";
 import PlantryPage from "@/app/products/plantry/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 function PlantryProductPageStory() {
+  usePathname.mockReturnValue("/products/plantry");
+
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
@@ -33,7 +36,22 @@ const verifyNoHorizontalOverflow: Story["play"] = async ({ canvasElement }) => {
   );
 };
 
-export const DesktopLight: Story = {};
+export const DesktopLight: Story = {
+  play: async ({ canvasElement }) => {
+    const stepsSection = canvasElement.querySelector("#adaptive-loop");
+    const nextSection = stepsSection?.nextElementSibling;
+    const stepCards = stepsSection?.querySelectorAll("ol > li") ?? [];
+    const lowestCardEdge = Math.max(
+      ...Array.from(stepCards, (card) => card.getBoundingClientRect().bottom),
+    );
+
+    await expect(stepCards).toHaveLength(4);
+    await expect(nextSection).not.toBeNull();
+    await expect(lowestCardEdge).toBeLessThanOrEqual(
+      nextSection?.getBoundingClientRect().top ?? 0,
+    );
+  },
+};
 
 export const DesktopDark: Story = {
   globals: { theme: "dark" },
