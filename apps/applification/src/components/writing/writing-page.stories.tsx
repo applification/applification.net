@@ -12,7 +12,7 @@ import { WritingPage } from "./writing-page";
 
 const entries: WritingEntry[] = [
   {
-    title: "Week 05, 2026",
+    title: "The rise of the generalist builder",
     date: "2026-02-01",
     type: "weeknote",
     summary: "What changed across coding agents, product work and open source.",
@@ -24,7 +24,7 @@ const entries: WritingEntry[] = [
     readingTime: 11,
   },
   {
-    title: "Week 04, 2026",
+    title: "Design joins the agent loop",
     date: "2026-01-25",
     type: "weeknote",
     summary: "A week of product engineering notes.",
@@ -61,7 +61,7 @@ const entries: WritingEntry[] = [
   },
 ];
 
-function WritingFixture() {
+function WritingFixture({ search = "" }: { search?: string }) {
   usePathname.mockReturnValue("/writing");
   useRouter.mockReturnValue({
     back: fn(),
@@ -73,7 +73,7 @@ function WritingFixture() {
     replace: fn(),
   });
   useSearchParams.mockReturnValue(
-    new URLSearchParams() as ReturnType<typeof useSearchParams>,
+    new URLSearchParams(search) as ReturnType<typeof useSearchParams>,
   );
 
   return (
@@ -122,6 +122,21 @@ export const DesktopLight: Story = { play: checkPage };
 export const DesktopDark: Story = {
   globals: { theme: "dark" },
   play: checkPage,
+};
+
+export const FilteredDesktop: Story = {
+  args: { search: "q=node" },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const results = canvas.getByTestId("writing-results");
+    const resultTable = within(results);
+
+    await expect(resultTable.getByText("Node v22 Experiments")).toBeVisible();
+    await expect(
+      resultTable.queryByText("Design joins the agent loop"),
+    ).not.toBeInTheDocument();
+    await expect(results.getBoundingClientRect().height).toBeGreaterThanOrEqual(524);
+  },
 };
 
 export const MobileLight: Story = {

@@ -123,7 +123,11 @@ export function getWritingBySlug(
 }
 
 export function getWritingTopics(options: GetWritingOptions = {}) {
-  return [...new Set(getWriting(options).flatMap((entry) => entry.topics))].sort(
-    (left, right) => left.localeCompare(right),
-  );
+  return [
+    ...new Set(
+      getWriting(options)
+        .flatMap((entry) => entry.topics)
+        .filter((topic) => topic !== "weeknote"),
+    ),
+  ].sort((left, right) => left.localeCompare(right));
 }

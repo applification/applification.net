@@ -1,9 +1,10 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { WritingEntry, WritingType } from "@/lib/writing";
+import { displayWritingTopics, formatWritingTopic } from "./writing-topic";
 
 export type WritingArchiveEntry = Omit<WritingEntry, "body">;
 
@@ -12,17 +13,43 @@ type WritingArchiveProps = {
   topics: string[];
 };
 
-function formatTopic(topic: string) {
-  if (topic === "ai") return "AI";
-  if (topic === "next.js") return "Next.js";
-  return topic
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-}
+type WritingFilterSelectProps = {
+  children: React.ReactNode;
+  label: string;
+  onChange: (value: string) => void;
+  value: string;
+  widthClass: string;
+};
 
 function formatArchiveDate(date: string) {
   return date.replaceAll("-", ".");
+}
+
+function WritingFilterSelect({
+  children,
+  label,
+  onChange,
+  value,
+  widthClass,
+}: WritingFilterSelectProps) {
+  return (
+    <div className={`relative ${widthClass}`}>
+      <select
+        aria-label={label}
+        className="font-caption h-9 w-full appearance-none rounded-lg border border-[var(--app-border)] bg-[var(--app-card)] py-0 pr-8 pl-3 text-[10px] font-semibold tracking-[0.35px] text-[var(--app-text-secondary)] shadow-sm shadow-black/5 outline-none hover:border-[var(--writing-accent-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
+        onChange={(event) => onChange(event.target.value)}
+        value={value}
+      >
+        {children}
+      </select>
+      <ChevronDown
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 text-[var(--app-text-muted)]"
+        size={13}
+        strokeWidth={2}
+      />
+    </div>
+  );
 }
 
 export function WritingArchive({ entries, topics }: WritingArchiveProps) {
@@ -62,8 +89,8 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
     });
   }
 
-  const filterClass =
-    "font-caption inline-flex min-h-[30px] items-center rounded-full border px-3 text-[9px] font-bold tracking-[0.6px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]";
+  const filterButtonClass =
+    "font-caption inline-flex min-h-9 items-center rounded-full border px-3 text-[9px] font-bold tracking-[0.6px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]";
 
   return (
     <section
@@ -117,7 +144,7 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
               return (
                 <button
                   aria-pressed={active}
-                  className={`${filterClass} ${
+                  className={`${filterButtonClass} ${
                     active
                       ? "border-[var(--writing-accent-fill)] bg-[var(--writing-accent-fill)] text-[var(--writing-on-accent)]"
                       : "border-[var(--app-border)] text-[var(--app-text-secondary)] hover:border-[var(--writing-accent-text)]"
@@ -131,11 +158,11 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
               );
             })}
 
-            <select
-              aria-label="Filter writing by year"
-              className={`${filterClass} border-[var(--app-border)] bg-[var(--app-card)] text-[var(--app-text-secondary)]`}
-              onChange={(event) => updateParams({ year: event.target.value, show: null })}
+            <WritingFilterSelect
+              label="Filter writing by year"
+              onChange={(value) => updateParams({ year: value, show: null })}
               value={selectedYear}
+              widthClass="w-[112px]"
             >
               <option value="">Any year</option>
               {years.map((year) => (
@@ -143,21 +170,21 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
                   {year}
                 </option>
               ))}
-            </select>
+            </WritingFilterSelect>
 
-            <select
-              aria-label="Filter writing by topic"
-              className={`${filterClass} max-w-[180px] border-[var(--app-border)] bg-[var(--app-card)] text-[var(--app-text-secondary)]`}
-              onChange={(event) => updateParams({ topic: event.target.value, show: null })}
+            <WritingFilterSelect
+              label="Filter writing by topic"
+              onChange={(value) => updateParams({ topic: value, show: null })}
               value={selectedTopic}
+              widthClass="w-[162px]"
             >
               <option value="">Any topic</option>
               {topics.map((topic) => (
                 <option key={topic} value={topic}>
-                  {formatTopic(topic)}
+                  {formatWritingTopic(topic)}
                 </option>
               ))}
-            </select>
+            </WritingFilterSelect>
           </div>
 
           <label className="flex min-h-10 w-full items-center gap-2 rounded-full border border-[var(--app-border)] bg-[var(--app-card)] px-4 text-[var(--app-text-muted)] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[var(--app-focus)] min-[960px]:w-[270px]">
@@ -173,7 +200,10 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
           </label>
         </div>
 
-        <div className="overflow-hidden rounded-[14px] bg-[var(--app-card)]">
+        <div
+          className="overflow-hidden rounded-[14px] bg-[var(--app-card)] min-[860px]:min-h-[524px]"
+          data-testid="writing-results"
+        >
           <div className="hidden grid-cols-[90px_94px_minmax(260px,1fr)_296px_88px] bg-[var(--app-muted-section)] px-7 py-3 min-[860px]:grid">
             {["Date", "Type", "Title", "Topics", "Read"].map((heading) => (
               <span
@@ -186,7 +216,7 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
           </div>
 
           {visibleEntries.length ? (
-            <ol>
+            <ol className="min-[860px]:min-h-[480px]">
               {visibleEntries.map((entry) => (
                 <li
                   className="border-t border-[var(--app-border)] first:border-t-0 min-[860px]:first:border-t"
@@ -209,7 +239,10 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
                       {entry.title}
                     </span>
                     <span className="font-caption truncate text-[9px] font-medium tracking-[0.4px] text-[var(--app-text-secondary)] uppercase">
-                      {entry.topics.slice(0, 4).map(formatTopic).join(" · ")}
+                      {displayWritingTopics(entry.topics)
+                        .slice(0, 4)
+                        .map(formatWritingTopic)
+                        .join(" · ")}
                     </span>
                     <span className="font-caption text-[10px] font-semibold text-[var(--app-text-muted)]">
                       {entry.readingTime} MIN
@@ -219,13 +252,13 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
               ))}
             </ol>
           ) : (
-            <p className="px-6 py-12 text-center text-sm text-[var(--app-text-secondary)]">
+            <p className="px-6 py-12 text-center text-sm text-[var(--app-text-secondary)] min-[860px]:flex min-[860px]:min-h-[480px] min-[860px]:items-center min-[860px]:justify-center min-[860px]:py-0">
               No writing matches those filters.
             </p>
           )}
         </div>
 
-        <div className="flex min-h-9 items-center justify-between gap-5 font-caption text-[10px] font-semibold text-[var(--app-text-muted)]">
+        <div className="flex min-h-11 items-center justify-between gap-5 font-caption text-[10px] font-semibold text-[var(--app-text-muted)]">
           <p>
             Showing {visibleEntries.length} of {filteredEntries.length} matching entries
           </p>

@@ -26,6 +26,11 @@
   --writing-accent-text: light-dark(#075985, #7dd3fc);
   --writing-accent-fill: #0369a1;
   --writing-on-accent: #ffffff;
+  --writing-topic-bg: light-dark(#f0f7fb, #172033);
+  --writing-topic-bg-hover: light-dark(#e0f2fe, #1e293b);
+  --writing-topic-border: light-dark(#cbdde8, #334155);
+  --writing-topic-text: light-dark(#475569, #cbd5e1);
+  --writing-topic-mark: light-dark(#075985, #7dd3fc);
   --loop-bg: #02070c;
   --loop-header: #08131d;
   --loop-muted: #94a3b8;

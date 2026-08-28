@@ -3,6 +3,7 @@ import Link from "next/link";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { WritingEntry } from "@/lib/writing";
+import { displayWritingTopics, WritingTopicBadge } from "./writing-topic";
 
 type WritingArticleProps = {
   entry: WritingEntry;
@@ -16,15 +17,6 @@ function formatDate(date: string) {
     month: "long",
     year: "numeric",
   }).format(new Date(`${date}T00:00:00Z`));
-}
-
-function formatTopic(topic: string) {
-  if (topic === "ai") return "AI";
-  if (topic === "next.js") return "Next.js";
-  return topic
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
 }
 
 const markdownComponents: Components = {
@@ -147,14 +139,9 @@ export function WritingArticle({ entry, newer, older }: WritingArticleProps) {
             {entry.summary}
           </p>
           <ul className="mt-7 flex flex-wrap gap-2" aria-label="Article topics">
-            {entry.topics.map((topic) => (
+            {displayWritingTopics(entry.topics).map((topic) => (
               <li key={topic}>
-                <Link
-                  className="font-caption inline-flex min-h-8 items-center rounded-full border border-[var(--app-border)] px-3 text-[9px] font-semibold tracking-[0.6px] text-[var(--app-text-secondary)] uppercase hover:border-[var(--writing-accent-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
-                  href={`/writing?topic=${encodeURIComponent(topic)}`}
-                >
-                  {formatTopic(topic)}
-                </Link>
+                <WritingTopicBadge topic={topic} />
               </li>
             ))}
           </ul>

@@ -3,6 +3,11 @@ import Link from "next/link";
 import { Suspense } from "react";
 import type { WritingEntry } from "@/lib/writing";
 import { WritingArchive, type WritingArchiveEntry } from "./writing-archive";
+import {
+  displayWritingTopics,
+  formatWritingTopic,
+  WritingTopicBadge,
+} from "./writing-topic";
 
 type WritingPageProps = {
   entries: WritingEntry[];
@@ -22,15 +27,6 @@ function formatDate(date: string) {
     month: "short",
     year: "numeric",
   }).format(new Date(`${date}T00:00:00Z`));
-}
-
-function formatTopic(topic: string) {
-  if (topic === "ai") return "AI";
-  if (topic === "next.js") return "Next.js";
-  return topic
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
 }
 
 function WritingHero() {
@@ -102,12 +98,9 @@ function FeaturedWriting({ entry }: { entry: WritingEntry }) {
             {entry.summary}
           </p>
           <ul className="flex flex-wrap gap-2 pt-1" aria-label="Featured entry topics">
-            {entry.topics.slice(0, 4).map((topic) => (
-              <li
-                className="rounded-full bg-[var(--app-control)] px-3 py-1.5 font-caption text-[9px] font-semibold tracking-[0.7px] text-[var(--app-text-secondary)] uppercase"
-                key={topic}
-              >
-                {formatTopic(topic)}
+            {displayWritingTopics(entry.topics).slice(0, 4).map((topic) => (
+              <li key={topic}>
+                <WritingTopicBadge topic={topic} />
               </li>
             ))}
           </ul>
@@ -121,7 +114,10 @@ function FeaturedWriting({ entry }: { entry: WritingEntry }) {
             [ {entry.type === "weeknote" ? "WEEKNOTE" : "FIELD NOTE"} ]
             <br />
             <br />
-            {entry.topics.slice(0, 3).map(formatTopic).join(" → ")}
+            {displayWritingTopics(entry.topics)
+              .slice(0, 3)
+              .map(formatWritingTopic)
+              .join(" → ")}
           </p>
           <span className="font-caption inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.8px] text-[var(--client-feature-accent)]">
             READ {entry.type === "weeknote" ? "WEEKNOTE" : "FIELD NOTE"}
@@ -177,7 +173,10 @@ function RecentWriting({ entries }: { entries: WritingEntry[] }) {
                   </Link>
                 </h3>
                 <p className="font-caption mt-2 text-[9px] font-semibold tracking-[0.7px] text-[var(--writing-accent-text)] uppercase">
-                  {entry.topics.slice(0, 4).map(formatTopic).join(" · ")}
+                  {displayWritingTopics(entry.topics)
+                    .slice(0, 4)
+                    .map(formatWritingTopic)
+                    .join(" · ")}
                 </p>
               </div>
               <Link

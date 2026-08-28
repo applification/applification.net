@@ -57,6 +57,8 @@ describe("the migrated writing collection", () => {
     expect(entries.filter((entry) => entry.type === "post")).toHaveLength(29);
     expect(entries.filter((entry) => entry.type === "weeknote")).toHaveLength(7);
     expect(new Set(entries.map((entry) => entry.slug)).size).toBe(36);
-    expect(getWritingTopics({ includeDrafts: false })).toContain("react");
+    const topics = getWritingTopics({ includeDrafts: false });
+    expect(topics).toContain("react");
+    expect(topics).not.toContain("weeknote");
   });
 });
