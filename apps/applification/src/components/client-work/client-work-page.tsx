@@ -130,7 +130,7 @@ export function LogicallyCaseStudy() {
           </p>
           <a
             aria-label="Visit Logically, opens in a new tab"
-            className="inline-flex size-9 items-center justify-center rounded-full bg-[var(--client-logically-link)] text-white transition-colors hover:bg-[var(--app-action-hover)] active:bg-[var(--cta-action-active)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
+            className="inline-flex size-9 items-center justify-center rounded-full bg-[var(--client-logically-link)] text-white transition-colors hover:bg-[var(--app-action-hover)] active:bg-[var(--cta-action-active)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
             href="https://logically.ai"
             rel="noreferrer"
             target="_blank"
@@ -308,7 +308,7 @@ export function SupportingEvidence() {
       data-client-work-section="supporting-evidence"
     >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[38px]">
-        <div className="grid gap-4 min-[1024px]:grid-cols-[minmax(0,438px)_420px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[342px]">
+        <div className="grid gap-4 min-[1024px]:grid-cols-[minmax(0,460px)_420px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[320px]">
           <h2
             className="font-heading text-[38px] leading-none font-medium text-[var(--app-text-primary)] min-[720px]:text-[42px] min-[1024px]:whitespace-nowrap"
             id="supporting-evidence-heading"
@@ -384,7 +384,10 @@ export function ContractFit() {
 
 export function ClientWorkContractCta() {
   return (
-    <div data-client-work-section="contract-action">
+    <div
+      className="[--app-accent-band:#0ea5e9] [--app-text-on-accent:#082f49] [--cta-description:#082f49] [--cta-eyebrow:#082f49] [--cta-focus:#082f49]"
+      data-client-work-section="contract-action"
+    >
       <ContractCta
         actionLabel="Start a conversation"
         description="Remote contracts across the UK. Hybrid considered in North East England."
