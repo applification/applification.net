@@ -1,15 +1,6 @@
 import { ContractCta } from "@/components/home/contract-cta";
 import { ArrowUpRight } from "lucide-react";
 
-type EvidenceSectionProps = {
-  description: string;
-  eyebrow: string;
-  headingId: string;
-  id: string;
-  title: string;
-  tone: "base" | "muted";
-};
-
 const contractFit = [
   "Greenfield architecture",
   "React + TypeScript",
@@ -35,6 +26,24 @@ const peppyMetrics = [
   ["100s", "UI components"],
   ["E2E", "Cypress suite"],
   ["Overnight", "AI support"],
+];
+
+const supportingCases = [
+  {
+    company: "PANDO  /  65,000+ USERS",
+    title: "Rebuilt a clinician app used across the NHS and MoD",
+    copy: "Replaced effect-heavy god components with routed React UI. Built a white-label React Native proof of concept in four weeks.",
+  },
+  {
+    company: "SUREVINE  /  SECURITY CLEARED",
+    title: "Shipped secure email across Cabinet Office boundaries",
+    copy: "Worked under government security clearance as the sole frontend engineer in small teams. Story maps turned policy requirements into agreed scope.",
+  },
+  {
+    company: "HMRC  /  £1BN REPAID",
+    title: "Found the release path in a 1.7m-user tax service",
+    copy: "A story map showed the team could release without new feature-flag code. The service repaid £1bn and cut phone demand by £4.5m.",
+  },
 ];
 
 function CurrentBrief() {
@@ -291,41 +300,51 @@ export function SelectedContracts() {
   );
 }
 
-function EvidenceSection({
-  description,
-  eyebrow,
-  headingId,
-  id,
-  title,
-  tone,
-}: EvidenceSectionProps) {
+export function SupportingEvidence() {
   return (
     <section
-      aria-labelledby={headingId}
-      className={`${tone === "base" ? "bg-[var(--app-section)]" : "bg-[var(--app-muted-section)]"} px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[88px] min-[1280px]:px-20 min-[1440px]:px-[120px]`}
-      data-client-work-section={id}
+      aria-labelledby="supporting-evidence-heading"
+      className="bg-[var(--app-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:py-[82px]"
+      data-client-work-section="supporting-evidence"
     >
-      <div className="mx-auto grid w-full max-w-[1200px] gap-5 min-[1024px]:grid-cols-[minmax(0,720px)_minmax(280px,360px)] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-12">
-        <div>
-          <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)]">
-            {eyebrow}
-          </p>
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[38px]">
+        <div className="grid gap-4 min-[1024px]:grid-cols-[minmax(0,438px)_420px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[342px]">
           <h2
-            className="font-heading mt-3 text-[38px] leading-[1.06] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[48px]"
-            id={headingId}
+            className="font-heading text-[38px] leading-none font-medium text-[var(--app-text-primary)] min-[720px]:text-[42px] min-[1024px]:whitespace-nowrap"
+            id="supporting-evidence-heading"
           >
-            {title}
+            More production context
           </h2>
+          <p className="max-w-[420px] text-[15px] leading-[1.3] text-[var(--app-text-secondary)]">
+            Healthcare, secure government services and public-facing tax
+            systems.
+          </p>
         </div>
-        <p className="text-base leading-[1.55] text-[var(--app-text-secondary)]">
-          {description}
-        </p>
+
+        <div className="grid gap-9 min-[1024px]:grid-cols-3 min-[1024px]:gap-10">
+          {supportingCases.map((item) => (
+            <article
+              className="flex flex-col gap-3 border-t border-[var(--app-border)] pt-5 first:border-t-0 first:pt-0 min-[1024px]:min-h-[178px] min-[1024px]:border-t-0 min-[1024px]:pt-0"
+              key={item.company}
+            >
+              <p className="font-caption min-h-8 text-[10px] font-bold tracking-[0.9px] text-[var(--client-brief-label)]">
+                {item.company}
+              </p>
+              <h3 className="font-heading max-w-[360px] text-[25px] leading-[1.12] font-medium text-[var(--app-text-primary)]">
+                {item.title}
+              </h3>
+              <p className="max-w-[360px] text-sm leading-[1.55] text-[var(--app-text-secondary)]">
+                {item.copy}
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-function ContractFit() {
+export function ContractFit() {
   return (
     <section
       aria-labelledby="contract-fit-heading"
@@ -334,11 +353,11 @@ function ContractFit() {
     >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-7 min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-12">
         <div className="max-w-[520px]">
-          <p className="font-caption text-[10px] font-bold tracking-[0.9px] text-[var(--app-accent)]">
+          <p className="font-caption text-[10px] font-bold tracking-[1.1px] text-[var(--client-brief-label)]">
             BEST CONTRACT FIT
           </p>
           <h2
-            className="font-heading mt-2 text-[34px] leading-[1.08] font-medium text-[var(--app-text-primary)]"
+            className="font-heading mt-2 text-[34px] leading-none font-medium text-[var(--app-text-primary)]"
             id="contract-fit-heading"
           >
             Small teams with a real product problem.
@@ -347,11 +366,11 @@ function ContractFit() {
 
         <ul
           aria-label="Best contract fit"
-          className="flex max-w-[600px] flex-wrap gap-2.5"
+          className="flex w-full max-w-[600px] flex-wrap gap-2.5"
         >
           {contractFit.map((item) => (
             <li
-              className="font-caption rounded-full border border-[var(--app-border)] bg-[var(--app-card)] px-3 py-2 text-[10px] font-semibold tracking-[0.4px] text-[var(--app-text-primary)]"
+              className="font-caption rounded-full bg-[var(--app-card)] px-[13px] py-[10px] text-[10px] leading-[13px] font-semibold text-[var(--app-text-primary)]"
               key={item}
             >
               {item}
@@ -369,14 +388,7 @@ export function ClientWorkPage() {
       <ClientWorkHero />
       <LogicallyCaseStudy />
       <SelectedContracts />
-      <EvidenceSection
-        description="Healthcare, secure government services and public-facing tax systems."
-        eyebrow="SUPPORTING EVIDENCE"
-        headingId="supporting-evidence-heading"
-        id="supporting-evidence"
-        title="More production context"
-        tone="base"
-      />
+      <SupportingEvidence />
       <ContractFit />
       <div data-client-work-section="contract-action">
         <ContractCta
