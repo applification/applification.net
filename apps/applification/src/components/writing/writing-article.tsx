@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { DetailContextRail } from "@/components/detail-context-rail";
 import type { WritingEntry } from "@/lib/writing";
 import { displayWritingTopics, WritingTopicBadge } from "./writing-topic";
 
@@ -102,7 +103,9 @@ const markdownComponents: Components = {
   ),
   table: ({ children }) => (
     <div className="my-8 overflow-x-auto rounded-[12px] border border-[var(--app-border)]">
-      <table className="w-full border-collapse text-left text-sm">{children}</table>
+      <table className="w-full border-collapse text-left text-sm">
+        {children}
+      </table>
     </div>
   ),
   th: ({ children }) => (
@@ -120,36 +123,41 @@ const markdownComponents: Components = {
 export function WritingArticle({ entry, newer, older }: WritingArticleProps) {
   return (
     <main className="flex-1 bg-[var(--app-section)]">
-      <header className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pt-12 pb-14 min-[720px]:px-12 min-[1024px]:pt-[76px] min-[1024px]:pb-[72px] min-[1440px]:px-[120px]">
-        <div className="mx-auto w-full max-w-[920px]">
-          <Link
-            className="font-caption inline-flex min-h-11 items-center gap-2 text-[10px] font-bold tracking-[0.6px] text-[var(--writing-accent-text)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)]"
-            href="/writing"
-          >
-            <ArrowLeft aria-hidden="true" size={14} />
-            WRITING INDEX
-          </Link>
-          <p className="font-caption mt-8 text-[10px] font-bold tracking-[0.8px] text-[var(--writing-accent-text)] uppercase">
-            {entry.type} · {formatDate(entry.date)} · {entry.readingTime} min read
-          </p>
-          <h1 className="font-heading mt-4 text-[44px] leading-[1.02] font-medium tracking-[-1px] text-[var(--app-text-primary)] min-[720px]:text-[58px] min-[1024px]:text-[68px]">
-            {entry.title}
-          </h1>
-          <p className="mt-6 max-w-[760px] text-lg leading-[1.6] text-[var(--app-text-secondary)]">
-            {entry.summary}
-          </p>
-          <ul className="mt-7 flex flex-wrap gap-2" aria-label="Article topics">
-            {displayWritingTopics(entry.topics).map((topic) => (
-              <li key={topic}>
-                <WritingTopicBadge topic={topic} />
-              </li>
-            ))}
-          </ul>
+      <header className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pt-12 pb-14 min-[720px]:px-12 min-[1024px]:pt-[66px] min-[1024px]:pb-[72px] min-[1440px]:px-[120px]">
+        <div className="mx-auto w-full max-w-[1200px]">
+          <DetailContextRail
+            backHref="/writing"
+            backLabel="Writing index"
+            className="text-[var(--writing-accent-text)]"
+            detail={`${entry.type} · ${formatDate(entry.date)} · ${entry.readingTime} min read`}
+            family="Writing"
+          />
+          <div className="mt-5 max-w-[920px]">
+            <h1 className="font-heading text-[44px] leading-[1.02] font-medium tracking-[-1px] text-[var(--app-text-primary)] min-[720px]:text-[58px] min-[1024px]:text-[68px]">
+              {entry.title}
+            </h1>
+            <p className="mt-6 max-w-[760px] text-lg leading-[1.6] text-[var(--app-text-secondary)]">
+              {entry.summary}
+            </p>
+            <ul
+              className="mt-7 flex flex-wrap gap-2"
+              aria-label="Article topics"
+            >
+              {displayWritingTopics(entry.topics).map((topic) => (
+                <li key={topic}>
+                  <WritingTopicBadge topic={topic} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </header>
 
       <article className="mx-auto w-full max-w-[760px] px-6 py-14 min-[720px]:px-10 min-[1024px]:py-[76px]">
-        <ReactMarkdown components={markdownComponents} remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown
+          components={markdownComponents}
+          remarkPlugins={[remarkGfm]}
+        >
           {entry.body}
         </ReactMarkdown>
       </article>
@@ -171,7 +179,9 @@ export function WritingArticle({ entry, newer, older }: WritingArticleProps) {
                 {newer.title}
               </span>
             </Link>
-          ) : <span />}
+          ) : (
+            <span />
+          )}
           {older ? (
             <Link
               className="group rounded-[14px] bg-[var(--app-card)] p-5 text-right focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)]"

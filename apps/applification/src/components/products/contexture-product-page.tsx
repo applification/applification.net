@@ -271,7 +271,7 @@ function ContextureAvailability() {
 
 export function ContextureProductPage() {
   return (
-    <main className="[&>section:first-child_a]:border [&>section:first-child_a]:border-[#45475a] [&>section:first-child_a]:px-[17px] [&>section:first-child_a:nth-child(2)]:bg-[#313244] min-[1024px]:[&>section:first-child>div]:translate-y-4 min-[1024px]:[&>section:first-child>div>div:first-child>div:last-child]:pt-0">
+    <main className="[&>section:first-child_a]:border [&>section:first-child_a]:border-[#45475a] [&>section:first-child_a]:px-[17px] [&>section:first-child_a:nth-child(2)]:bg-[#313244] min-[1024px]:[&>section:first-child>div>div:first-child>div:last-child]:pt-0">
       <ProductDetailHero
         breadcrumb="PRODUCTS  /  CONTEXTURE"
         description="A source-of-truth domain model for Convex apps built with agents. The schema, validators and agent context come from the same reviewed structure."

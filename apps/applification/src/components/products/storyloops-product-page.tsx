@@ -9,6 +9,7 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import type { ReactNode } from "react";
+import { DetailContextRail } from "@/components/detail-context-rail";
 import { ContractCta } from "@/components/home/contract-cta";
 import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
 
@@ -97,41 +98,47 @@ function StoryLoopsHero() {
   return (
     <section
       aria-labelledby="storyloops-heading"
-      className="bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] px-6 py-12 min-[1024px]:px-20 min-[1440px]:h-[560px] min-[1440px]:py-0"
+      className="bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] px-6 py-12 min-[720px]:px-12 min-[1024px]:pt-[66px] min-[1024px]:pb-12 min-[1440px]:min-h-[620px] min-[1440px]:px-[120px]"
     >
-      <div className="mx-auto grid h-full w-full max-w-[1280px] gap-10 min-[1440px]:grid-cols-[560px_minmax(0,664px)] min-[1440px]:items-center min-[1440px]:gap-14">
-        <div className="flex flex-col items-start gap-5">
-          <Eyebrow className="text-[#0284c7]">
-            PRODUCTS&nbsp; / &nbsp;STORYLOOPS
-          </Eyebrow>
-          <h1
-            className="font-heading max-w-[560px] text-[48px] leading-[0.98] font-medium tracking-[-0.025em] text-[var(--app-text-primary)] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]"
-            id="storyloops-heading"
-          >
-            Stop renting story-mapping software. Own it.
-          </h1>
-          <p className="max-w-[560px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-lg min-[1024px]:leading-[1.5]">
-            Buy a complete collaborative story-mapping application, deploy it
-            with your coding agent, and own the source for the version you
-            purchase.
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              className={`inline-flex h-[42px] items-center justify-center gap-[9px] rounded-full bg-[#0369a1] px-[17px] text-sm font-semibold text-white transition-colors hover:bg-[#075985] ${focusClasses}`}
-              href="#ownership-path"
+      <div className="mx-auto flex h-full w-full max-w-[1200px] flex-col">
+        <DetailContextRail
+          backHref="/products"
+          backLabel="Product index"
+          className="text-[#0284c7]"
+          detail="StoryLoops"
+          family="Products"
+        />
+        <div className="mt-5 grid gap-10 min-[1440px]:grid-cols-[520px_minmax(0,624px)] min-[1440px]:items-center min-[1440px]:gap-14">
+          <div className="flex flex-col items-start gap-5">
+            <h1
+              className="font-heading max-w-[560px] text-[48px] leading-[0.98] font-medium tracking-[-0.025em] text-[var(--app-text-primary)] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]"
+              id="storyloops-heading"
             >
-              See what you own
-              <PackageOpen aria-hidden="true" size={16} strokeWidth={1.8} />
-            </a>
-            <span className="inline-flex h-[42px] items-center gap-[9px] rounded-full bg-[#e0f2fe] px-[17px] text-sm font-semibold text-[#0369a1]">
-              Product in a Box V1
-              <Box aria-hidden="true" size={16} strokeWidth={1.8} />
-            </span>
+              Stop renting story-mapping software. Own it.
+            </h1>
+            <p className="max-w-[560px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-lg min-[1024px]:leading-[1.5]">
+              Buy a complete collaborative story-mapping application, deploy it
+              with your coding agent, and own the source for the version you
+              purchase.
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                className={`inline-flex h-[42px] items-center justify-center gap-[9px] rounded-full bg-[#0369a1] px-[17px] text-sm font-semibold text-white transition-colors hover:bg-[#075985] ${focusClasses}`}
+                href="#ownership-path"
+              >
+                See what you own
+                <PackageOpen aria-hidden="true" size={16} strokeWidth={1.8} />
+              </a>
+              <span className="inline-flex h-[42px] items-center gap-[9px] rounded-full bg-[#e0f2fe] px-[17px] text-sm font-semibold text-[#0369a1]">
+                Product in a Box V1
+                <Box aria-hidden="true" size={16} strokeWidth={1.8} />
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div className="min-w-0">
-          <StoryLoopsProductMap compact ownershipLabels={ownershipLabels} />
+          <div className="min-w-0">
+            <StoryLoopsProductMap compact ownershipLabels={ownershipLabels} />
+          </div>
         </div>
       </div>
     </section>
@@ -210,7 +217,9 @@ function StoryLoopsOwnership() {
               key={step.number}
             >
               <div className="flex h-6 items-center justify-between text-[var(--app-label-text)]">
-                <span className="font-caption text-sm font-bold">{step.number}</span>
+                <span className="font-caption text-sm font-bold">
+                  {step.number}
+                </span>
                 <span className="text-[var(--app-action)]">{step.icon}</span>
               </div>
               <h3 className="font-heading text-2xl leading-[1.15] font-medium text-[var(--app-text-primary)]">

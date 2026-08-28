@@ -1,4 +1,5 @@
 import { ContractCta } from "@/components/home/contract-cta";
+import { PageHero } from "@/components/page-hero";
 import { ArrowUpRight } from "lucide-react";
 
 const contractFit = [
@@ -76,31 +77,21 @@ function CurrentBrief() {
 
 export function ClientWorkHero() {
   return (
-    <section
-      aria-labelledby="client-work-heading"
-      className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-14 min-[720px]:px-12 min-[1024px]:pt-[84px] min-[1024px]:pb-20 min-[1440px]:px-[120px]"
-      data-client-work-section="opening-brief"
-    >
-      <div className="mx-auto grid w-full max-w-[1200px] gap-10 min-[1024px]:grid-cols-[minmax(0,780px)_330px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[72px]">
-        <div className="flex min-w-0 flex-col gap-[18px]">
-          <p className="font-caption text-[11px] font-semibold tracking-[1.4px] text-[var(--app-label-text)] min-[1024px]:text-xs">
-            CLIENT WORK&nbsp; · &nbsp;EVIDENCE OVER CLAIMS
-          </p>
-          <h1
-            className="font-heading max-w-[780px] text-[46px] leading-[1.04] font-medium tracking-[-1px] text-[var(--app-text-primary)] min-[720px]:text-[56px] min-[1024px]:text-[62px] min-[1024px]:tracking-[-1.4px]"
-            id="client-work-heading"
-          >
-            Production work, with the decisions and outcomes attached.
-          </h1>
-          <p className="max-w-[700px] text-lg leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-[19px]">
-            More than 20 years building greenfield products and rebuilding
-            brittle frontends for startups, scale-ups and public services,
-            close to both product decisions and code.
-          </p>
-        </div>
-        <CurrentBrief />
-      </div>
-    </section>
+    <PageHero
+      aside={<CurrentBrief />}
+      description={
+        <p>
+          More than 20 years building greenfield products and rebuilding
+          brittle frontends for startups, scale-ups and public services, close
+          to both product decisions and code.
+        </p>
+      }
+      eyebrow="CLIENT WORK"
+      eyebrowDetail="EVIDENCE OVER CLAIMS"
+      headingId="client-work-heading"
+      sectionProps={{ "data-client-work-section": "opening-brief" }}
+      title="Production work, with the decisions and outcomes attached."
+    />
   );
 }
 
