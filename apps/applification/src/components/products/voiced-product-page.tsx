@@ -174,7 +174,7 @@ function VoicedHero() {
       aria-labelledby="voiced-heading"
       className="bg-[#eaf3ed] px-6 py-12 min-[1024px]:min-h-[580px] min-[1024px]:px-20 min-[1024px]:py-[70px]"
     >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-10 min-[1024px]:grid-cols-[560px_minmax(0,650px)] min-[1024px]:items-center min-[1024px]:gap-[70px]">
+      <div className="mx-auto grid w-full max-w-[1280px] gap-10 min-[1280px]:grid-cols-[560px_minmax(0,650px)] min-[1280px]:items-center min-[1280px]:gap-[70px]">
         <div className="flex flex-col items-start gap-5">
           <ProductDetailEyebrow>PRODUCTS&nbsp; / &nbsp;VOICED</ProductDetailEyebrow>
           <h1

@@ -40,7 +40,7 @@ export function SiteFooter() {
           className="flex flex-wrap items-center gap-x-[18px] gap-y-3 text-sm font-medium text-[var(--app-text-secondary)] min-[821px]:gap-6 min-[821px]:text-[13px] min-[821px]:font-normal"
         >
           {footerLinks.map((item) => {
-            const classes = `transition-colors hover:text-[var(--app-text-primary)] ${focusClasses}`;
+            const classes = `inline-flex min-h-11 items-center transition-colors hover:text-[var(--app-text-primary)] ${focusClasses}`;
 
             if (item.external) {
               return (

@@ -66,7 +66,7 @@ function EntityCard({
       className={`${detail ? `${accentRingClasses[entity.accent]} min-h-[168px] rounded-xl p-[18px] ring-1 ring-inset sm:min-h-[210px]` : `${accentClasses[entity.accent]} min-w-0 rounded-lg border p-2.5 min-[1024px]:p-3`} bg-[#313244]`}
     >
       <div
-        className={`${detail ? "text-sm leading-[18px]" : "truncate text-[10px] min-[1024px]:text-xs"} font-data font-bold text-[#cdd6f4]`}
+        className={`${detail ? "text-sm leading-[18px]" : "break-words text-[9px] leading-[1.1] min-[821px]:text-[10px] min-[1280px]:text-xs"} font-data font-bold text-[#cdd6f4]`}
       >
         {entity.name}
       </div>

@@ -306,7 +306,7 @@ function ProductDirectory() {
           </p>
         </header>
 
-        <div className="grid gap-[18px] min-[1024px]:grid-cols-3 min-[1024px]:gap-5">
+        <div className="grid gap-[18px] min-[821px]:grid-cols-2 min-[1024px]:gap-5 min-[1280px]:grid-cols-3">
           <ContextureCard />
           <VoicedCard />
           <PlantryCard />

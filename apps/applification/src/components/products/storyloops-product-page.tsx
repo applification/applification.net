@@ -97,9 +97,9 @@ function StoryLoopsHero() {
   return (
     <section
       aria-labelledby="storyloops-heading"
-      className="bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] px-6 py-12 min-[1024px]:h-[560px] min-[1024px]:px-20 min-[1024px]:py-0"
+      className="bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] px-6 py-12 min-[1024px]:px-20 min-[1440px]:h-[560px] min-[1440px]:py-0"
     >
-      <div className="mx-auto grid h-full w-full max-w-[1280px] gap-10 min-[1024px]:grid-cols-[560px_minmax(0,664px)] min-[1024px]:items-center min-[1024px]:gap-14">
+      <div className="mx-auto grid h-full w-full max-w-[1280px] gap-10 min-[1440px]:grid-cols-[560px_minmax(0,664px)] min-[1440px]:items-center min-[1440px]:gap-14">
         <div className="flex flex-col items-start gap-5">
           <Eyebrow className="text-[#0284c7]">
             PRODUCTS&nbsp; / &nbsp;STORYLOOPS
@@ -142,9 +142,9 @@ function StoryLoopsRationale() {
   return (
     <section
       aria-labelledby="storyloops-rationale-heading"
-      className="bg-[#0b1220] px-6 py-14 text-white min-[1024px]:flex min-[1024px]:h-[390px] min-[1024px]:items-center min-[1024px]:px-20 min-[1024px]:py-0"
+      className="bg-[#0b1220] px-6 py-14 text-white min-[1024px]:px-20 min-[1440px]:flex min-[1440px]:h-[390px] min-[1440px]:items-center min-[1440px]:py-0"
     >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-9 min-[1024px]:grid-cols-[470px_minmax(0,1fr)] min-[1024px]:items-center min-[1024px]:gap-24">
+      <div className="mx-auto grid w-full max-w-[1280px] gap-9 min-[1440px]:grid-cols-[470px_minmax(0,1fr)] min-[1440px]:items-center min-[1440px]:gap-24">
         <div className="flex flex-col gap-4">
           <Eyebrow className="text-[#7dd3fc]">WHY THIS EXISTS</Eyebrow>
           <h2
@@ -183,11 +183,11 @@ function StoryLoopsOwnership() {
   return (
     <section
       aria-labelledby="ownership-path-heading"
-      className="scroll-mt-16 bg-[var(--app-section)] px-6 py-14 min-[1024px]:h-[580px] min-[1024px]:px-20 min-[1024px]:py-[62px]"
+      className="scroll-mt-16 bg-[var(--app-section)] px-6 py-14 min-[1024px]:px-20 min-[1440px]:h-[580px] min-[1440px]:py-[62px]"
       id="ownership-path"
     >
       <div className="mx-auto flex h-full w-full max-w-[1280px] flex-col gap-[34px]">
-        <div className="grid gap-4 min-[1024px]:h-[114px] min-[1024px]:grid-cols-[690px_390px] min-[1024px]:items-end min-[1024px]:justify-between">
+        <div className="grid gap-4 min-[1440px]:h-[114px] min-[1440px]:grid-cols-[690px_390px] min-[1440px]:items-end min-[1440px]:justify-between">
           <div className="flex flex-col gap-3">
             <Eyebrow>THE OWNERSHIP PATH</Eyebrow>
             <h2
@@ -231,19 +231,19 @@ function StoryLoopsBuildPrinciples() {
   return (
     <section
       aria-labelledby="storyloops-principles-heading"
-      className="bg-[var(--app-muted-section)] px-6 py-14 min-[1024px]:flex min-[1024px]:h-[420px] min-[1024px]:items-center min-[1024px]:px-20 min-[1024px]:py-0"
+      className="bg-[var(--app-muted-section)] px-6 py-14 min-[1024px]:px-20 min-[1440px]:flex min-[1440px]:h-[420px] min-[1440px]:items-center min-[1440px]:py-0"
     >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-10 min-[1024px]:grid-cols-[500px_700px] min-[1024px]:items-center min-[1024px]:gap-20">
+      <div className="mx-auto grid w-full max-w-[1280px] gap-10 min-[1440px]:grid-cols-[500px_700px] min-[1440px]:items-center min-[1440px]:gap-20">
         <div className="flex flex-col gap-4">
           <Eyebrow>BUILT FOR OWNERSHIP</Eyebrow>
           <h2
             className="font-heading text-[35px] leading-[1.1] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[38px]"
             id="storyloops-principles-heading"
           >
-            <span className="min-[1024px]:whitespace-nowrap">
+            <span className="min-[1440px]:whitespace-nowrap">
               Production software shaped for
             </span>{" "}
-            <br className="hidden min-[1024px]:block" />
+            <br className="hidden min-[1440px]:block" />
             the agent that will change it.
           </h2>
           <p className="text-[15px] leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-base">
@@ -279,10 +279,10 @@ function StoryLoopsAvailability() {
   return (
     <section
       aria-labelledby="storyloops-availability-heading"
-      className="bg-[var(--app-section)] px-6 py-14 min-[1024px]:flex min-[1024px]:h-[270px] min-[1024px]:items-center min-[1024px]:px-20 min-[1024px]:py-0"
+      className="bg-[var(--app-section)] px-6 py-14 min-[1024px]:px-20 min-[1440px]:flex min-[1440px]:h-[270px] min-[1440px]:items-center min-[1440px]:py-0"
     >
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-8 min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-[60px]">
-        <div className="flex max-w-[760px] flex-col gap-3 min-[1024px]:w-[760px]">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-8 min-[1440px]:flex-row min-[1440px]:items-center min-[1440px]:justify-between min-[1440px]:gap-[60px]">
+        <div className="flex max-w-[760px] flex-col gap-3 min-[1440px]:w-[760px]">
           <Eyebrow className="text-[light-dark(#0369a1,#7dd3fc)]">
             WHERE TO GET IT&nbsp; / &nbsp;PRODUCT IN A BOX V1
           </Eyebrow>
@@ -299,7 +299,7 @@ function StoryLoopsAvailability() {
           </p>
         </div>
         <a
-          className={`inline-flex h-[49px] w-full shrink-0 items-center justify-center gap-[10px] rounded-full bg-[#0b1220] px-[21px] text-[15px] font-semibold text-white transition-colors hover:bg-[#1e293b] min-[1024px]:w-[221px] ${focusClasses}`}
+          className={`inline-flex h-[49px] w-full shrink-0 items-center justify-center gap-[10px] rounded-full bg-[#0b1220] px-[21px] text-[15px] font-semibold text-white transition-colors hover:bg-[#1e293b] min-[1440px]:w-[221px] ${focusClasses}`}
           href="mailto:dave@applification.net?subject=StoryLoops%20V1%20launch%20details"
         >
           Get V1 launch details
@@ -329,7 +329,7 @@ function StoryLoopsContractCta() {
 
 export function StoryLoopsProductPage() {
   return (
-    <main className="overflow-x-clip">
+    <main>
       <StoryLoopsHero />
       <StoryLoopsRationale />
       <StoryLoopsOwnership />

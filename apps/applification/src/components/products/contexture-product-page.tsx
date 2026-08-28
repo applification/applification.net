@@ -225,14 +225,14 @@ function ContextureAvailability() {
       aria-labelledby="contexture-availability-heading"
       className="flex bg-[var(--app-section)] px-6 py-14 min-[1024px]:min-h-[270px] min-[1024px]:items-center min-[1024px]:px-20 min-[1024px]:py-[54px]"
     >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-8 min-[1024px]:grid-cols-[760px_auto] min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-[60px]">
+      <div className="mx-auto grid w-full max-w-[1280px] gap-8 min-[1280px]:grid-cols-[760px_auto] min-[1280px]:items-center min-[1280px]:justify-between min-[1280px]:gap-[60px]">
         <div className="flex flex-col gap-3">
           <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--contexture-detail-accent)] min-[1024px]:text-xs min-[1024px]:font-semibold">
             WHERE TO GET IT <span aria-hidden="true">/</span>{" "}
             <span className="text-[var(--app-text-muted)]">OPEN SOURCE</span>
           </p>
           <h2
-            className="font-heading text-[35px] leading-[1.1] font-medium text-[var(--contexture-detail-title)] min-[1024px]:text-[38px] min-[1024px]:leading-[42px] min-[1024px]:whitespace-nowrap"
+            className="font-heading text-[35px] leading-[1.1] font-medium text-[var(--contexture-detail-title)] min-[1024px]:text-[38px] min-[1024px]:leading-[42px] min-[1280px]:whitespace-nowrap"
             id="contexture-availability-heading"
           >
             Inspect the model editor or start with the source.
@@ -242,9 +242,9 @@ function ContextureAvailability() {
             GitHub has the desktop app, runtime packages and generators.
           </p>
         </div>
-        <div className="flex w-full flex-col gap-2.5 min-[1024px]:w-auto min-[1024px]:items-end">
+        <div className="flex w-full flex-col gap-2.5 min-[1280px]:w-auto min-[1280px]:items-end">
           <a
-            className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--contexture-detail-border)] bg-[var(--contexture-detail-accent)] px-[18px] text-sm font-semibold text-[var(--contexture-action-text)] transition-[background-color,transform] hover:bg-[var(--contexture-action-hover)] active:translate-y-px min-[1024px]:w-[176px] ${focusClasses}`}
+            className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--contexture-detail-border)] bg-[var(--contexture-detail-accent)] px-[18px] text-sm font-semibold text-[var(--contexture-action-text)] transition-[background-color,transform] hover:bg-[var(--contexture-action-hover)] active:translate-y-px min-[1280px]:w-[176px] ${focusClasses}`}
             href="https://contexture.applification.net/"
             rel="noreferrer"
             target="_blank"
@@ -254,7 +254,7 @@ function ContextureAvailability() {
             <span className="sr-only">, opens in a new tab</span>
           </a>
           <a
-            className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--contexture-detail-border)] bg-[var(--app-section)] px-[18px] text-sm font-semibold text-[var(--contexture-detail-accent)] transition-[background-color,transform] hover:bg-[var(--contexture-detail-soft)] active:translate-y-px min-[1024px]:w-[164px] ${focusClasses}`}
+            className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--contexture-detail-border)] bg-[var(--app-section)] px-[18px] text-sm font-semibold text-[var(--contexture-detail-accent)] transition-[background-color,transform] hover:bg-[var(--contexture-detail-soft)] active:translate-y-px min-[1280px]:w-[164px] ${focusClasses}`}
             href="https://github.com/applification/contexture"
             rel="noreferrer"
             target="_blank"
@@ -271,7 +271,7 @@ function ContextureAvailability() {
 
 export function ContextureProductPage() {
   return (
-    <main className="overflow-x-clip [&>section:first-child_a]:border [&>section:first-child_a]:border-[#45475a] [&>section:first-child_a]:px-[17px] [&>section:first-child_a:nth-child(2)]:bg-[#313244] min-[1024px]:[&>section:first-child>div]:translate-y-4 min-[1024px]:[&>section:first-child>div>div:first-child>div:last-child]:pt-0">
+    <main className="[&>section:first-child_a]:border [&>section:first-child_a]:border-[#45475a] [&>section:first-child_a]:px-[17px] [&>section:first-child_a:nth-child(2)]:bg-[#313244] min-[1024px]:[&>section:first-child>div]:translate-y-4 min-[1024px]:[&>section:first-child>div>div:first-child>div:last-child]:pt-0">
       <ProductDetailHero
         breadcrumb="PRODUCTS  /  CONTEXTURE"
         description="A source-of-truth domain model for Convex apps built with agents. The schema, validators and agent context come from the same reviewed structure."

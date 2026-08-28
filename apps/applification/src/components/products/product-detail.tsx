@@ -71,7 +71,7 @@ export function ProductDetailHero({
       aria-labelledby="product-detail-heading"
       className={`${contexture ? "bg-[#1e1e2e] min-[1024px]:min-h-[590px]" : "bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] min-[1024px]:min-h-[560px]"} px-6 py-12 min-[1024px]:px-20 min-[1024px]:py-16`}
     >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-10 min-[1024px]:grid-cols-[minmax(0,560px)_minmax(0,664px)] min-[1024px]:items-center min-[1024px]:gap-14">
+      <div className="mx-auto grid w-full max-w-[1280px] gap-10 min-[1280px]:grid-cols-[minmax(0,560px)_minmax(0,664px)] min-[1280px]:items-center min-[1280px]:gap-14">
         <div className="flex flex-col items-start gap-5">
           <ProductDetailEyebrow
             className={contexture ? "text-[#89dceb]" : undefined}

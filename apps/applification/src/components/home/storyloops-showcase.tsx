@@ -39,11 +39,11 @@ function DesktopStoryMap({
   const narrativeNotes = compact
     ? ["Navigation", "StoryLoops"]
     : ["Availability", "Navigation", "Sections", "StoryLoops"];
-  const visibleStories = compact ? mapStories.slice(0, 3) : mapStories;
+  const visibleStories = compact ? mapStories.slice(0, 2) : mapStories;
 
   return (
     <div
-      className={`${detail ? "h-[410px] p-5" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1024px]:flex`}
+      className={`${detail ? "h-[410px] p-5" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1440px]:flex`}
     >
       <div className="flex h-[30px] shrink-0 items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -59,7 +59,7 @@ function DesktopStoryMap({
       </div>
 
       <div
-        className={`${compact ? "grid-cols-[150px_minmax(0,1fr)_260px]" : "grid-cols-[184px_minmax(0,1fr)_310px]"} grid min-h-0 flex-1 overflow-hidden rounded-xl bg-[var(--storyloop-canvas)]`}
+        className={`${compact ? "grid-cols-[128px_minmax(0,1fr)_220px]" : "grid-cols-[184px_minmax(0,1fr)_310px]"} grid min-h-0 flex-1 overflow-hidden rounded-xl bg-[var(--storyloop-canvas)]`}
       >
         <aside className="flex flex-col gap-[18px] border-r border-[var(--storyloop-border)] bg-[var(--storyloop-sidebar)] px-3.5 py-[18px]">
           <div className="flex flex-col gap-1">
@@ -108,7 +108,7 @@ function DesktopStoryMap({
             <span className="rounded-full bg-[var(--storyloop-filter)] px-2.5 py-1.5 text-[11px] font-semibold text-[var(--storyloop-filter-text)]">All⌄</span>
           </div>
           <div className="flex h-[72px] shrink-0 border-b border-[var(--storyloop-row-border)]">
-            <div className={`${compact ? "w-24 px-3" : "w-28 px-3.5"} shrink-0 bg-[var(--storyloop-row-label)] py-3.5`}>
+            <div className={`${compact ? "w-20 px-2.5" : "w-28 px-3.5"} shrink-0 bg-[var(--storyloop-row-label)] py-3.5`}>
               <div className="font-caption text-[8px] font-semibold tracking-[0.8px] text-[var(--storyloop-canvas-muted)]">BACKBONE</div>
               <div className="mt-1 text-[10px] text-[var(--storyloop-row-text)]">User goals</div>
             </div>
@@ -119,7 +119,7 @@ function DesktopStoryMap({
             </div>
           </div>
           <div className="flex h-[72px] shrink-0 border-b border-[var(--storyloop-row-border)]">
-            <div className={`${compact ? "w-24 px-3" : "w-28 px-3.5"} shrink-0 bg-[var(--storyloop-row-label)] py-3.5`}>
+            <div className={`${compact ? "w-20 px-2.5" : "w-28 px-3.5"} shrink-0 bg-[var(--storyloop-row-label)] py-3.5`}>
               <div className="font-caption text-[8px] font-semibold tracking-[0.8px] text-[var(--storyloop-canvas-muted)]">NARRATIVE</div>
               <div className="mt-1 text-[10px] text-[var(--storyloop-row-text)]">User steps</div>
             </div>
@@ -130,11 +130,11 @@ function DesktopStoryMap({
             </div>
           </div>
           <div className="flex min-h-0 flex-1">
-            <div className={`${compact ? "w-24 px-3" : "w-28 px-3.5"} shrink-0 border-r border-[var(--storyloop-row-border)] bg-[var(--storyloop-row-label)] py-4`}>
+            <div className={`${compact ? "w-20 px-2.5" : "w-28 px-3.5"} shrink-0 border-r border-[var(--storyloop-row-border)] bg-[var(--storyloop-row-label)] py-4`}>
               <div className="text-[10px] font-semibold text-[var(--storyloop-now)]">◆&nbsp; Now</div>
               <div className="mt-2 text-[9px] leading-relaxed text-[var(--storyloop-muted)]">9 stories<br />0% complete</div>
             </div>
-            <div className="storyloop-card-grid flex-1">
+            <div className={`${compact ? "storyloop-card-grid-compact" : ""} storyloop-card-grid flex-1`}>
               {visibleStories.map(([reference, title]) => (
                 <div className="h-fit rounded border border-[var(--storyloop-card-border)] bg-[var(--storyloop-canvas)] px-2 py-1.5 shadow-[0_3px_6px_var(--storyloop-card-shadow)]" key={reference}>
                   <div className="font-caption text-[7px] font-semibold text-[var(--storyloop-card-id)]">• {reference}</div>
@@ -175,7 +175,7 @@ function DesktopStoryMap({
 
 function MobileStoryMap({ detail = false }: { detail?: boolean }) {
   return (
-    <div className={`${detail ? "" : "rounded-[20px]"} overflow-hidden bg-[var(--storyloop-shell)] min-[1024px]:hidden`}>
+    <div className={`${detail ? "" : "rounded-[20px]"} overflow-hidden bg-[var(--storyloop-shell)] min-[1440px]:hidden`}>
       <div className="flex h-[42px] items-center justify-between bg-[var(--storyloop-chrome)] px-4">
         <WindowDots small />
         <span className="font-caption text-[8px] font-semibold text-[var(--storyloop-text-dim)]">storyloops / product map</span>
@@ -239,11 +239,11 @@ export function StoryLoopsProductMap({
       <div aria-hidden="true">
         {detail && ownershipLabels ? (
           <>
-            <div className="hidden overflow-hidden rounded-[18px] border border-[#334155] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1024px]:block">
+            <div className="hidden overflow-hidden rounded-[18px] border border-[#334155] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1440px]:block">
               <DesktopStoryMap compact={compact} detail />
               <OwnershipStrip labels={ownershipLabels} />
             </div>
-            <div className="overflow-hidden rounded-[20px] min-[1024px]:hidden">
+            <div className="overflow-hidden rounded-[20px] min-[1440px]:hidden">
               <MobileStoryMap detail />
               <OwnershipStrip labels={ownershipLabels} />
             </div>
