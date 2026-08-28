@@ -156,6 +156,7 @@
                   "type": "frame",
                   "id": "bc8vL",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -7153,6 +7154,7 @@
               "type": "frame",
               "id": "SNmDn",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#0B1220",
               "cornerRadius": 9999,
               "gap": 10,
@@ -7269,6 +7271,7 @@
                   "type": "text",
                   "id": "DrI5K",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -7436,6 +7439,7 @@
                   "type": "frame",
                   "id": "W0TaP",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -14433,6 +14437,7 @@
               "type": "frame",
               "id": "j0ms5",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#0B1220",
               "cornerRadius": 9999,
               "gap": 10,
@@ -14549,6 +14554,7 @@
                   "type": "text",
                   "id": "HVdgP",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -14722,6 +14728,7 @@
                   "type": "frame",
                   "id": "O5hO40",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -18615,6 +18622,7 @@
               "type": "frame",
               "id": "ZKsYx",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#0B1220",
               "cornerRadius": 9999,
               "gap": 10,
@@ -18731,6 +18739,7 @@
                   "type": "text",
                   "id": "t4YvwA",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -18904,6 +18913,7 @@
                   "type": "frame",
                   "id": "MePwu",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -22797,6 +22807,7 @@
               "type": "frame",
               "id": "teLHQ",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#0B1220",
               "cornerRadius": 9999,
               "gap": 10,
@@ -22913,6 +22924,7 @@
                   "type": "text",
                   "id": "V2mqq",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -23086,6 +23098,7 @@
                   "type": "frame",
                   "id": "VwdW4",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -24749,6 +24762,7 @@
               "type": "frame",
               "id": "i0o9L",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#0B1220",
               "cornerRadius": 9999,
               "gap": 10,
@@ -24865,6 +24879,7 @@
                   "type": "text",
                   "id": "dUMrA",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -25038,6 +25053,7 @@
                   "type": "frame",
                   "id": "yn1M2",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -26701,6 +26717,7 @@
               "type": "frame",
               "id": "lFqtZ",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#0B1220",
               "cornerRadius": 9999,
               "gap": 10,
@@ -26817,6 +26834,7 @@
                   "type": "text",
                   "id": "GK9ox",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -26990,6 +27008,7 @@
                   "type": "frame",
                   "id": "r6ydT",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -29617,6 +29636,7 @@
                   "type": "text",
                   "id": "h0CZqO",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -29790,6 +29810,7 @@
                   "type": "frame",
                   "id": "nGEeF",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -32417,6 +32438,7 @@
                   "type": "text",
                   "id": "SgvGn",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -32590,6 +32612,7 @@
                   "type": "frame",
                   "id": "iisLH",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -32604,7 +32627,7 @@
                       "id": "O5QV20",
                       "name": "Navigation contact label",
                       "fill": "$app-text-on-action",
-                      "content": "Discuss a contract",
+                      "content": "Talk to the assistant",
                       "fontFamily": "$font-body",
                       "fontSize": 14,
                       "fontWeight": "600"
@@ -34059,6 +34082,7 @@
           "type": "frame",
           "id": "DMr8V",
           "name": "About contract call to action",
+          "context": "Contact assistant route: /contact",
           "width": "fill_container",
           "fill": "$app-accent-band",
           "gap": 60,
@@ -34082,7 +34106,7 @@
                   "id": "Klpox",
                   "name": "Contract availability label",
                   "fill": "#082F49",
-                  "content": "AVAILABLE FOR CONTRACT WORK",
+                  "content": "AI-GUIDED CONTACT",
                   "fontFamily": "$font-caption",
                   "fontSize": 12,
                   "fontWeight": "600",
@@ -34095,7 +34119,7 @@
                   "fill": "$app-text-on-accent",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Need a senior product engineer to turn an AI idea into working software?",
+                  "content": "Describe the work. Review the summary. Then decide whether to send it.",
                   "lineHeight": 1.08,
                   "fontFamily": "$font-heading",
                   "fontSize": 44,
@@ -34106,7 +34130,10 @@
                   "id": "hggpu",
                   "name": "Contract location note",
                   "fill": "#082F49",
-                  "content": "Remote contracts across the UK. Hybrid considered in North East England.",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The assistant can answer questions and qualify the enquiry. It cannot share personal contact details or send anything without your approval.",
+                  "lineHeight": 1.5,
                   "fontFamily": "$font-body",
                   "fontSize": 15,
                   "fontWeight": "normal"
@@ -34117,6 +34144,7 @@
               "type": "frame",
               "id": "EnkEl",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#0B1220",
               "cornerRadius": 9999,
               "gap": 10,
@@ -34131,7 +34159,7 @@
                   "id": "D7rfH",
                   "name": "Start a conversation label",
                   "fill": "$app-text-on-action",
-                  "content": "Start a conversation",
+                  "content": "Talk to the assistant",
                   "fontFamily": "$font-body",
                   "fontSize": 15,
                   "fontWeight": "600"
@@ -34142,7 +34170,7 @@
                   "name": "Start a conversation arrow",
                   "width": 18,
                   "height": 18,
-                  "icon": "arrow-up-right",
+                  "icon": "message-circle",
                   "library": "lucide",
                   "fill": "$app-control"
                 }
@@ -34233,6 +34261,7 @@
                   "type": "text",
                   "id": "ugbgL",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -34406,6 +34435,7 @@
                   "type": "frame",
                   "id": "zi8Bt",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -34420,7 +34450,7 @@
                       "id": "afV1Q",
                       "name": "Navigation contact label",
                       "fill": "$app-text-on-action",
-                      "content": "Discuss a contract",
+                      "content": "Talk to the assistant",
                       "fontFamily": "$font-body",
                       "fontSize": 14,
                       "fontWeight": "600"
@@ -35875,6 +35905,7 @@
           "type": "frame",
           "id": "awz3z",
           "name": "About contract call to action",
+          "context": "Contact assistant route: /contact",
           "width": "fill_container",
           "fill": "$app-accent-band",
           "gap": 60,
@@ -35898,7 +35929,7 @@
                   "id": "y1buT3",
                   "name": "Contract availability label",
                   "fill": "#082F49",
-                  "content": "AVAILABLE FOR CONTRACT WORK",
+                  "content": "AI-GUIDED CONTACT",
                   "fontFamily": "$font-caption",
                   "fontSize": 12,
                   "fontWeight": "600",
@@ -35911,7 +35942,7 @@
                   "fill": "$app-text-on-accent",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "Need a senior product engineer to turn an AI idea into working software?",
+                  "content": "Describe the work. Review the summary. Then decide whether to send it.",
                   "lineHeight": 1.08,
                   "fontFamily": "$font-heading",
                   "fontSize": 44,
@@ -35922,7 +35953,10 @@
                   "id": "ElONr",
                   "name": "Contract location note",
                   "fill": "#082F49",
-                  "content": "Remote contracts across the UK. Hybrid considered in North East England.",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "The assistant can answer questions and qualify the enquiry. It cannot share personal contact details or send anything without your approval.",
+                  "lineHeight": 1.5,
                   "fontFamily": "$font-body",
                   "fontSize": 15,
                   "fontWeight": "normal"
@@ -35933,6 +35967,7 @@
               "type": "frame",
               "id": "mvLC3",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#0B1220",
               "cornerRadius": 9999,
               "gap": 10,
@@ -35947,7 +35982,7 @@
                   "id": "KnBXX",
                   "name": "Start a conversation label",
                   "fill": "$app-text-on-action",
-                  "content": "Start a conversation",
+                  "content": "Talk to the assistant",
                   "fontFamily": "$font-body",
                   "fontSize": 15,
                   "fontWeight": "600"
@@ -35958,7 +35993,7 @@
                   "name": "Start a conversation arrow",
                   "width": 18,
                   "height": 18,
-                  "icon": "arrow-up-right",
+                  "icon": "message-circle",
                   "library": "lucide",
                   "fill": "$app-control"
                 }
@@ -36049,6 +36084,7 @@
                   "type": "text",
                   "id": "XbRfk",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -43968,6 +44004,7 @@
               "type": "frame",
               "id": "OBrEE",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "width": "fill_container",
               "height": 50,
               "fill": "#0B1220",
@@ -44093,6 +44130,7 @@
                   "type": "text",
                   "id": "zR1ub",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -46036,6 +46074,7 @@
               "type": "frame",
               "id": "RZk2d",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "width": "fill_container",
               "height": 50,
               "fill": "#0B1220",
@@ -46161,6 +46200,7 @@
                   "type": "text",
                   "id": "TwmM5",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -46315,6 +46355,7 @@
                   "type": "frame",
                   "id": "xKfA7",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -49877,6 +49918,7 @@
               "type": "frame",
               "id": "NrNvn",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#F8FAFC",
               "cornerRadius": 9999,
               "stroke": "#CBD5E1",
@@ -49995,6 +50037,7 @@
                   "type": "text",
                   "id": "wps09",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -50149,6 +50192,7 @@
                   "type": "frame",
                   "id": "E5A894",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -51361,6 +51405,7 @@
               "type": "frame",
               "id": "kK3zs",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#F8FAFC",
               "cornerRadius": 9999,
               "stroke": "#CBD5E1",
@@ -51479,6 +51524,7 @@
                   "type": "text",
                   "id": "fpr6O",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -51633,6 +51679,7 @@
                   "type": "frame",
                   "id": "B5IKm",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -52906,6 +52953,7 @@
               "type": "frame",
               "id": "M1jft",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#F8FAFC",
               "cornerRadius": 9999,
               "stroke": "#CBD5E1",
@@ -53024,6 +53072,7 @@
                   "type": "text",
                   "id": "H6TQX",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -53178,6 +53227,7 @@
                   "type": "frame",
                   "id": "ejVDE",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -54381,6 +54431,7 @@
               "type": "frame",
               "id": "K53EoS",
               "name": "Start a conversation button",
+              "context": "Internal link: /contact",
               "fill": "#F8FAFC",
               "cornerRadius": 9999,
               "stroke": "#CBD5E1",
@@ -54499,6 +54550,7 @@
                   "type": "text",
                   "id": "qS17z",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -54672,6 +54724,7 @@
                   "type": "frame",
                   "id": "F3AcUX",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -56308,6 +56361,7 @@
                   "type": "text",
                   "id": "lBHHe",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",
@@ -56481,6 +56535,7 @@
                   "type": "frame",
                   "id": "xUfPY",
                   "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
                   "fill": "$app-action",
                   "cornerRadius": 9999,
                   "gap": 8,
@@ -58117,6 +58172,4047 @@
                   "type": "text",
                   "id": "MAM84",
                   "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
+                  "fill": "$app-text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "wjzUP",
+      "x": 28966,
+      "y": -1232,
+      "name": "AI contact assistant · dark mode",
+      "theme": {
+        "mode": "dark"
+      },
+      "metadata": {
+        "type": "paired-theme",
+        "pair": "applification-contact-assistant",
+        "page": "contact-assistant",
+        "mode": "dark"
+      },
+      "clip": true,
+      "width": 1440,
+      "fill": {
+        "type": "gradient",
+        "gradientType": "linear",
+        "enabled": true,
+        "rotation": 180,
+        "size": {
+          "height": 1
+        },
+        "colors": [
+          {
+            "color": "$app-bg",
+            "position": 0
+          },
+          {
+            "color": "$app-bg-end",
+            "position": 1
+          }
+        ]
+      },
+      "layout": "vertical",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Oyi4O",
+          "name": "Primary navigation",
+          "width": 1200,
+          "height": 64,
+          "fill": "$app-bg",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "PcEWd",
+              "name": "Applification retained logo lockup",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "iLSRM",
+                  "name": "Applification logo",
+                  "context": "Dt - svg",
+                  "clip": true,
+                  "width": 48,
+                  "height": 34,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "Idv4Y",
+                      "x": 15.6,
+                      "y": 6.58,
+                      "geometry": "M2.35 0.14771c-0.91 0.32-1.58 0.92-2.08 1.87l-0.27 0.51 0 27.09999 0.34 0.63c0.6 1.1 1.56 1.77 2.79 1.93001 0.95 0.12 19 0.11 19.86-0.01001 1.29-0.19 2.28-0.92 2.85-2.1l0.26-0.55 0-26.9-0.29-0.59c-0.36-0.73-0.96-1.35-1.68-1.73l-0.53-0.28-10.4-0.02c-9.26-0.02-10.45-0.01-10.85 0.14m19.3 15.33001l0 11-17.2 0 0-22 17.2 0 0 11z m-7.8 12.25c1.35 0.7 1.05 2.81-0.45 3.15-1.01 0.23-2.04-0.64-2.05-1.7 0-0.45 0.36-1.08 0.79-1.37 0.41-0.27 1.26-0.31 1.71-0.08",
+                      "fill": "#F8FAFC",
+                      "width": 17.068120140470665,
+                      "height": 21.104867607761143
+                    },
+                    {
+                      "type": "path",
+                      "id": "DvhNo",
+                      "x": 2.74,
+                      "y": 8.61,
+                      "geometry": "M31.59909 9.12026c-2.31 0.89-3.19 3.61-1.82 5.64 1.58 2.33 5.16 2.06 6.41-0.48 0.24-0.5 0.27-0.66 0.27-1.65 0-1.01-0.02-1.14-0.28-1.63-0.4-0.75-0.87-1.24-1.59-1.63-0.58-0.31-0.71-0.34-1.63-0.36-0.67-0.02-1.12 0.02-1.36 0.11m-26.86-8.51999c-1.97 2.03-3.46 4.75-4.22 7.76-1.47 5.73 0.25 12.44 4.3 16.76l0.62 0.67 0.84-0.83c0.47-0.46 1.03-1.05 1.25-1.31l0.41-0.48-0.5-0.52c-1.37-1.41-2.58-3.56-3.19-5.67-0.75-2.58-0.75-5.62 0.01-8.25 0.57-1.96 1.71-4 3.05-5.48l0.62-0.68-1.23-1.27c-0.68-0.7-1.26-1.28-1.29-1.3-0.03-0.01-0.33 0.26-0.67 0.6m53.61 0.76l-1.21 1.17 0.79 0.95c2.43 2.89 3.5 6.17 3.35 10.2-0.09 2.3-0.5 3.96-1.45 5.85-0.67 1.34-1.26 2.19-2.25 3.23l-0.5 0.54 1.24001 1.24c0.68 0.68 1.28 1.24 1.34 1.23999 0.06001 0 0.33-0.24 0.61-0.53 2.76-2.87 4.35999-6.49 4.73999-10.77 0.36999-4.08-1.04001-8.9-3.58-12.25-0.57-0.74-1.72-2.05-1.81-2.05-0.03 0.01-0.6 0.54-1.27 1.18m-44.96 3.84c-1.7 1.94-2.67 3.91-2.98 6.07-0.18 1.22-0.08 3.03 0.24 4.24 0.28 1.1 1.02 2.73 1.65 3.65 0.58 0.86 1.39 1.82 1.54 1.82 0.13 0 2.27-2.1 2.27-2.23 0-0.04-0.22-0.35-0.49-0.68-0.66-0.81-1.14-1.75-1.47-2.84-0.34-1.15-0.38-2.89-0.1-3.99 0.39-1.47 1.05-2.73 1.93-3.67l0.45-0.48-1.18-1.26c-0.65-0.69-1.21-1.25-1.24-1.25-0.04 0-0.31 0.28-0.62 0.62m36.62 0.73l-1.14 1.15 0.3 0.32c0.8 0.85 1.52 2.28 1.85 3.65 0.27 1.12 0.22 2.78-0.11 3.93-0.29001 1.01-0.98 2.32-1.66 3.14l-0.55999 0.68 1.22 1.22 1.21 1.21 0.64999-0.7c2.18-2.36 3.28-5.54 2.95-8.5-0.27-2.35-1.2-4.49-2.87999-6.58-0.29001-0.37-0.57-0.67-0.61-0.66999-0.04 0-0.59 0.52-1.22 1.14999",
+                      "fill": "#F8FAFC",
+                      "width": 42.550972462999724,
+                      "height": 16.86557062964998
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "l7jTzq",
+                  "name": "Applification wordmark",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YLkjh",
+                      "name": "Applification wordmark name",
+                      "fill": "$app-text-primary",
+                      "content": "APPLIFICATION",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 14,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.3
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kfZx0",
+              "name": "Navigation links and action",
+              "gap": 30,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z2fKnm",
+                  "name": "Products link",
+                  "fill": "$app-text-secondary",
+                  "content": "Products",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "cIEwF",
+                  "name": "Client work link",
+                  "fill": "$app-text-secondary",
+                  "content": "Client work",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "KDblK",
+                  "name": "Writing link",
+                  "fill": "$app-text-secondary",
+                  "content": "Writing",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "yKupF",
+                  "name": "About link",
+                  "fill": "$app-text-secondary",
+                  "content": "About",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "ZESbn",
+                  "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
+                  "fill": "$app-action",
+                  "cornerRadius": 9999,
+                  "gap": 8,
+                  "padding": [
+                    11,
+                    17
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "X7J7zo",
+                      "name": "Navigation contact label",
+                      "fill": "$app-text-on-action",
+                      "content": "Discuss a contract",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "EP5HB",
+                      "name": "Navigation arrow",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "arrow-up-right",
+                      "library": "lucide",
+                      "fill": "$app-section"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mMW9I",
+          "name": "Contact assistant introduction",
+          "width": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "$app-bg",
+                "position": 0
+              },
+              {
+                "color": "$app-bg-end",
+                "position": 1
+              }
+            ]
+          },
+          "gap": 80,
+          "padding": [
+            70,
+            120,
+            62,
+            120
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "end",
+          "children": [
+            {
+              "type": "frame",
+              "id": "RZd6S",
+              "name": "Contact assistant hero copy",
+              "width": 760,
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ocpQw",
+                  "name": "Contact assistant eyebrow",
+                  "fill": "$app-accent",
+                  "content": "CONTACT  /  AI ASSISTANT",
+                  "fontFamily": "$font-caption",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "jJAve",
+                  "name": "Contact assistant title",
+                  "fill": "$app-text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Start with the work. The assistant will handle the handoff.",
+                  "lineHeight": 1.04,
+                  "fontFamily": "$font-heading",
+                  "fontSize": 58,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "F5D2A",
+                  "name": "Contact assistant summary",
+                  "fill": "$app-text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": 680,
+                  "content": "Ask about my experience, describe what you need, and review the contact request before it reaches me.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-body",
+                  "fontSize": 18,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sGRfT",
+              "name": "AI disclosure",
+              "width": 360,
+              "fill": "$app-card",
+              "cornerRadius": 16,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kof97",
+                  "name": "AI disclosure header",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "F8R7bd",
+                      "name": "AI disclosure icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "bot",
+                      "library": "lucide",
+                      "fill": "$app-accent"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FTNKp",
+                      "name": "AI disclosure label",
+                      "fill": "$app-text-primary",
+                      "content": "YOU ARE CHATTING WITH AI",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "gyViz",
+                  "name": "AI disclosure copy",
+                  "fill": "$app-text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "It cannot share personal contact details, promise availability or send anything without your approval.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Tc6OQ",
+          "name": "Contact assistant workspace section",
+          "width": "fill_container",
+          "fill": "$app-section",
+          "padding": [
+            64,
+            120,
+            72,
+            120
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "O602xv",
+              "name": "Contact assistant workspace",
+              "width": 1200,
+              "height": 720,
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tHChR",
+                  "name": "Contact conversation panel",
+                  "clip": true,
+                  "width": 816,
+                  "height": "fill_container",
+                  "fill": "$app-card",
+                  "cornerRadius": 22,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bslXC",
+                      "name": "Contact conversation header",
+                      "width": "fill_container",
+                      "height": 64,
+                      "stroke": "$app-border",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "padding": [
+                        0,
+                        20
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "W9f4K",
+                          "name": "Assistant identity",
+                          "gap": 11,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "TSoxk",
+                              "name": "Assistant avatar",
+                              "width": 34,
+                              "height": 34,
+                              "fill": "$app-action",
+                              "cornerRadius": 17,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "BH5Ai",
+                                  "name": "Assistant avatar icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "bot",
+                                  "library": "lucide",
+                                  "fill": "$app-text-on-action"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "AXjD1",
+                              "name": "Assistant name and state",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "afXiC",
+                                  "name": "Assistant name",
+                                  "fill": "$app-text-primary",
+                                  "content": "Applification assistant",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "htxlV",
+                                  "name": "Assistant online state",
+                                  "fill": "$app-sky-text",
+                                  "content": "AI  ·  ONLINE",
+                                  "fontFamily": "$font-caption",
+                                  "fontSize": 8,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.8
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "ApwAI",
+                          "name": "Restart conversation action",
+                          "fill": "$app-text-muted",
+                          "content": "RESTART",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700",
+                          "letterSpacing": 0.8
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TBZcQ",
+                      "name": "Contact conversation messages",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$app-bg",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        22,
+                        24
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "D7JT6A",
+                          "name": "Assistant opening message",
+                          "width": 610,
+                          "fill": "$app-muted-section",
+                          "cornerRadius": [
+                            14,
+                            14,
+                            14,
+                            4
+                          ],
+                          "layout": "vertical",
+                          "gap": 11,
+                          "padding": [
+                            15,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ZkuKq",
+                              "name": "Assistant opening label",
+                              "fill": "$app-sky-text",
+                              "content": "ASSISTANT",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.8
+                            },
+                            {
+                              "type": "text",
+                              "id": "y78Qq",
+                              "name": "Assistant opening copy",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Hi. I can answer questions about Dave's work, understand what you need, and prepare a contact request. What brings you here?",
+                              "lineHeight": 1.45,
+                              "fontFamily": "$font-body",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "BYDG4",
+                              "name": "Enquiry intent choices",
+                              "gap": 7,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "ab5sk",
+                                  "name": "Contract project choice",
+                                  "height": 28,
+                                  "fill": "$app-action",
+                                  "cornerRadius": 14,
+                                  "stroke": "$app-border",
+                                  "padding": [
+                                    0,
+                                    10
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "lnNHQ",
+                                      "name": "Contract project choice label",
+                                      "fill": "$app-text-on-action",
+                                      "content": "Contract project",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 11,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "ue0nY",
+                                  "name": "Product question choice",
+                                  "height": 28,
+                                  "fill": "$app-card",
+                                  "cornerRadius": 14,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    0,
+                                    10
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "SslfZ",
+                                      "name": "Product question choice label",
+                                      "fill": "$app-text-secondary",
+                                      "content": "Product question",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "RCjRy",
+                                  "name": "Existing client choice",
+                                  "height": 28,
+                                  "fill": "$app-card",
+                                  "cornerRadius": 14,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    0,
+                                    10
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "X8B1C3",
+                                      "name": "Existing client choice label",
+                                      "fill": "$app-text-secondary",
+                                      "content": "Existing client",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "F6xcgF",
+                          "name": "Visitor project message row",
+                          "width": "fill_container",
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "S0q7ma",
+                              "name": "Visitor project message",
+                              "width": 570,
+                              "fill": "$app-action",
+                              "cornerRadius": [
+                                14,
+                                14,
+                                4,
+                                14
+                              ],
+                              "padding": [
+                                14,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Q7gMG",
+                                  "name": "Visitor project message copy",
+                                  "fill": "$app-text-on-action",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "We need a senior React and TypeScript engineer for a health product rebuild. Around three months, starting in October.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "FmfcW",
+                          "name": "Assistant fit assessment",
+                          "width": 640,
+                          "fill": "$app-muted-section",
+                          "cornerRadius": [
+                            14,
+                            14,
+                            14,
+                            4
+                          ],
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": [
+                            15,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "GEFce",
+                              "name": "Fit assessment header",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "dxPn6",
+                                  "name": "Fit assessment icon",
+                                  "width": 15,
+                                  "height": 15,
+                                  "icon": "badge-check",
+                                  "library": "lucide",
+                                  "fill": "$app-accent"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "pooqu",
+                                  "name": "Fit assessment label",
+                                  "fill": "$app-accent",
+                                  "content": "LIKELY FIT",
+                                  "fontFamily": "$font-caption",
+                                  "fontSize": 8,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.8
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "nkiri",
+                              "name": "Fit assessment copy",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "That matches Dave's recent work. I have enough to prepare a summary. Add your work email, then review exactly what will be sent.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "$font-body",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "n1AJl",
+                              "name": "Fit assessment tags",
+                              "gap": 7,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "CX9bd",
+                                  "name": "REACT + TYPESCRIPT fit tag",
+                                  "fill": "$app-card",
+                                  "cornerRadius": 2,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    5,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "M0dXn",
+                                      "name": "REACT + TYPESCRIPT fit tag label",
+                                      "fill": "$app-sky-text",
+                                      "content": "REACT + TYPESCRIPT",
+                                      "fontFamily": "$font-caption",
+                                      "fontSize": 8,
+                                      "fontWeight": "700",
+                                      "letterSpacing": 0.6
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "myWiL",
+                                  "name": "HEALTH PRODUCT fit tag",
+                                  "fill": "$app-card",
+                                  "cornerRadius": 2,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    5,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "mANiE",
+                                      "name": "HEALTH PRODUCT fit tag label",
+                                      "fill": "$app-sky-text",
+                                      "content": "HEALTH PRODUCT",
+                                      "fontFamily": "$font-caption",
+                                      "fontSize": 8,
+                                      "fontWeight": "700",
+                                      "letterSpacing": 0.6
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "O5zuR6",
+                                  "name": "3 MONTHS fit tag",
+                                  "fill": "$app-card",
+                                  "cornerRadius": 2,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    5,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "f7ewmH",
+                                      "name": "3 MONTHS fit tag label",
+                                      "fill": "$app-sky-text",
+                                      "content": "3 MONTHS",
+                                      "fontFamily": "$font-caption",
+                                      "fontSize": 8,
+                                      "fontWeight": "700",
+                                      "letterSpacing": 0.6
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "g9Q2w",
+                      "name": "Contact message composer",
+                      "width": "fill_container",
+                      "height": 82,
+                      "stroke": "$app-border",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "gap": 12,
+                      "padding": [
+                        14,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "HTDDq",
+                          "name": "Contact message field",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "fill": "$app-control",
+                          "cornerRadius": 14,
+                          "padding": [
+                            0,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "vNoDC",
+                              "name": "Contact message placeholder",
+                              "fill": "$app-text-muted",
+                              "content": "Describe the work, team or problem…",
+                              "fontFamily": "$font-body",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "sBrAE",
+                          "name": "Send message button",
+                          "width": 48,
+                          "height": 48,
+                          "fill": "$app-action",
+                          "cornerRadius": 14,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "seNpV",
+                              "name": "Send message icon",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "arrow-up",
+                              "library": "lucide",
+                              "fill": "$app-text-on-action"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Y5bA3k",
+                  "name": "Contact qualification panel",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$app-muted-section",
+                  "cornerRadius": 22,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hEYWU",
+                      "name": "Qualification header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "N4EPpU",
+                          "name": "Qualification title group",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "PODd2",
+                              "name": "Qualification label",
+                              "fill": "$app-text-primary",
+                              "content": "CONTACT CHECK",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 10,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.9
+                            },
+                            {
+                              "type": "text",
+                              "id": "y4bfyY",
+                              "name": "Qualification progress copy",
+                              "fill": "$app-text-muted",
+                              "content": "4 steps before handoff",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "nQI5G",
+                          "name": "Not sent status",
+                          "fill": "$app-card",
+                          "cornerRadius": 12,
+                          "stroke": "$app-border",
+                          "strokeWidth": 1,
+                          "padding": [
+                            6,
+                            9
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "U3E3MQ",
+                              "name": "Not sent status label",
+                              "fill": "$app-text-muted",
+                              "content": "NOT SENT",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "cxUZP",
+                      "name": "Qualification steps",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "b16jx",
+                          "name": "Intent understood step",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "C2GVu6",
+                              "name": "Intent understood state",
+                              "width": 22,
+                              "height": 22,
+                              "fill": "$app-action",
+                              "cornerRadius": 11,
+                              "stroke": "$app-border",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "Mk4QR",
+                                  "name": "Intent understood state icon",
+                                  "width": 12,
+                                  "height": 12,
+                                  "icon": "check",
+                                  "library": "lucide",
+                                  "fill": "$app-text-on-action"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "QnCOM",
+                              "name": "Intent understood step label",
+                              "fill": "$app-text-secondary",
+                              "content": "Intent understood",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "TAELh",
+                          "name": "Project fit checked step",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "tyo5f",
+                              "name": "Project fit checked state",
+                              "width": 22,
+                              "height": 22,
+                              "fill": "$app-action",
+                              "cornerRadius": 11,
+                              "stroke": "$app-border",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "sTCJB",
+                                  "name": "Project fit checked state icon",
+                                  "width": 12,
+                                  "height": 12,
+                                  "icon": "check",
+                                  "library": "lucide",
+                                  "fill": "$app-text-on-action"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "JHzqQ",
+                              "name": "Project fit checked step label",
+                              "fill": "$app-text-secondary",
+                              "content": "Project fit checked",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "z65U6",
+                          "name": "Contact details added step",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "NVwxs",
+                              "name": "Contact details added state",
+                              "width": 22,
+                              "height": 22,
+                              "fill": "$app-action",
+                              "cornerRadius": 11,
+                              "stroke": "$app-border",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "B7NMU",
+                                  "name": "Contact details added state icon",
+                                  "width": 12,
+                                  "height": 12,
+                                  "icon": "check",
+                                  "library": "lucide",
+                                  "fill": "$app-text-on-action"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "wmET0",
+                              "name": "Contact details added step label",
+                              "fill": "$app-text-secondary",
+                              "content": "Contact details added",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "EgThd",
+                          "name": "Approval to send step",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "YXVHD",
+                              "name": "Approval to send state",
+                              "width": 22,
+                              "height": 22,
+                              "fill": "$app-card",
+                              "cornerRadius": 11,
+                              "stroke": "$app-border",
+                              "strokeWidth": 1,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "JzDXy",
+                                  "name": "Approval to send state icon",
+                                  "width": 12,
+                                  "height": 12,
+                                  "icon": "circle",
+                                  "library": "lucide",
+                                  "fill": "$app-accent"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "ePygr",
+                              "name": "Approval to send step label",
+                              "fill": "$app-text-primary",
+                              "content": "Approval to send",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "V6nZRs",
+                      "name": "Contact request summary",
+                      "width": "fill_container",
+                      "fill": "$app-card",
+                      "cornerRadius": 14,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 12,
+                      "padding": [
+                        16,
+                        18
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "joEue",
+                          "name": "Contact request summary label",
+                          "fill": "$app-accent",
+                          "content": "WHAT WILL BE SENT",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700",
+                          "letterSpacing": 0.8
+                        },
+                        {
+                          "type": "frame",
+                          "id": "dTOUD",
+                          "name": "TEAM summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "eFJKq",
+                              "name": "TEAM summary label",
+                              "fill": "$app-text-muted",
+                              "content": "TEAM",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "QWLJK",
+                              "name": "TEAM summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "Northstar Health",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YPr4S",
+                          "name": "NEED summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "v30hT4",
+                              "name": "NEED summary label",
+                              "fill": "$app-text-muted",
+                              "content": "NEED",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "w7t5C",
+                              "name": "NEED summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "Senior React + TypeScript engineer",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "n4SGC",
+                          "name": "TIMING summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "u5a0Wl",
+                              "name": "TIMING summary label",
+                              "fill": "$app-text-muted",
+                              "content": "TIMING",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "b6aXH",
+                              "name": "TIMING summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "3 months · October",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "mhF11",
+                          "name": "REPLY TO summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "IG3G3",
+                              "name": "REPLY TO summary label",
+                              "fill": "$app-text-muted",
+                              "content": "REPLY TO",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "CtuPQ",
+                              "name": "REPLY TO summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "alex@northstar.health",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "V6PY7",
+                      "name": "Contact consent",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "pEC2P",
+                          "name": "Contact consent checkbox",
+                          "width": 20,
+                          "height": 20,
+                          "fill": "$app-action",
+                          "cornerRadius": 5,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "mHHNY",
+                              "name": "Contact consent check",
+                              "width": 12,
+                              "height": 12,
+                              "icon": "check",
+                              "library": "lucide",
+                              "fill": "$app-text-on-action"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "p5MslW",
+                          "name": "Contact consent copy",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": 280,
+                          "content": "I agree to send this summary and reply address to Dave.",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "N249y",
+                      "name": "Approve contact request button",
+                      "width": "fill_container",
+                      "height": 46,
+                      "fill": "$app-action",
+                      "cornerRadius": 12,
+                      "gap": 9,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "lVYsZ",
+                          "name": "Approve contact request label",
+                          "fill": "$app-text-on-action",
+                          "content": "Approve and send",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "h9iF5",
+                          "name": "Approve contact request icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "send",
+                          "library": "lucide",
+                          "fill": "$app-text-on-action"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "TPa7T",
+                      "name": "Contact request safety note",
+                      "fill": "$app-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Nothing is sent until you press the button.",
+                      "textAlign": "center",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tgRE9",
+          "name": "Contact handoff flow section",
+          "width": "fill_container",
+          "fill": "$app-muted-section",
+          "layout": "vertical",
+          "gap": 30,
+          "padding": [
+            64,
+            120,
+            70,
+            120
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "EDlMn",
+              "name": "Contact handoff flow header",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "WwJBD",
+                  "name": "Contact handoff flow title group",
+                  "width": 720,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PPLbL",
+                      "name": "Contact handoff flow label",
+                      "fill": "$app-accent",
+                      "content": "PROPOSED HANDOFF FLOW",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "E1KNx0",
+                      "name": "Contact handoff flow title",
+                      "fill": "$app-text-primary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "The assistant can prepare the message. A person still decides when it leaves.",
+                      "lineHeight": 1.12,
+                      "fontFamily": "$font-heading",
+                      "fontSize": 36,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "q6Lm0V",
+                  "name": "Contact assistant technical stack",
+                  "layout": "vertical",
+                  "gap": 5,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "k1zjRK",
+                      "name": "AI SDK UI stack label",
+                      "fill": "$app-sky-text",
+                      "content": "AI SDK UI  /  useChat",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 9,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.7
+                    },
+                    {
+                      "type": "text",
+                      "id": "L5HWjx",
+                      "name": "AI SDK Core stack label",
+                      "fill": "$app-text-muted",
+                      "content": "AI SDK CORE  /  streamText + tools",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 9,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qhlcE",
+              "name": "Contact handoff flow steps",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "MRYzQ",
+                  "name": "ANSWER handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "JkYVA",
+                      "name": "ANSWER handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MVRMZ",
+                          "name": "ANSWER handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "01",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "JfVfW",
+                          "name": "ANSWER handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "arrow-right",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "HX7rO",
+                      "name": "ANSWER handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "ANSWER",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "toHQy",
+                      "name": "ANSWER handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Stream the conversation.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "J7GSd",
+                  "name": "QUALIFY handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "r2zkla",
+                      "name": "QUALIFY handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XDaC6",
+                          "name": "QUALIFY handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "02",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "WA0Pd",
+                          "name": "QUALIFY handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "arrow-right",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "KBFjk",
+                      "name": "QUALIFY handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "QUALIFY",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "dDqns",
+                      "name": "QUALIFY handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Validate structured details.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "t8OxN",
+                  "name": "REVIEW handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "MzA8G",
+                      "name": "REVIEW handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ao0TH",
+                          "name": "REVIEW handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "03",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "wSvkL",
+                          "name": "REVIEW handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "arrow-right",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "NiauR",
+                      "name": "REVIEW handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "REVIEW",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "IdNzJ",
+                      "name": "REVIEW handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Render the exact summary.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Q9NTJ",
+                  "name": "APPROVE handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "y2Ajh",
+                      "name": "APPROVE handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "lnyFn",
+                          "name": "APPROVE handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "04",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "ZsBwp",
+                          "name": "APPROVE handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "shield-check",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "BaWVI",
+                      "name": "APPROVE handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "APPROVE",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "pySx1",
+                      "name": "APPROVE handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Require visitor consent.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "APIrh",
+                  "name": "NOTIFY handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pNxLQ",
+                      "name": "NOTIFY handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "e2C4t",
+                          "name": "NOTIFY handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "05",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "c9PVu0",
+                          "name": "NOTIFY handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "send",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "YvgwN",
+                      "name": "NOTIFY handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "NOTIFY",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "C39H0f",
+                      "name": "NOTIFY handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Run the server tool.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dk6sQ",
+              "name": "Contact assistant state coverage",
+              "width": "fill_container",
+              "fill": "$app-card",
+              "cornerRadius": 12,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "padding": [
+                16,
+                18
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "nqTc3",
+                  "name": "Contact assistant state coverage label",
+                  "fill": "$app-text-muted",
+                  "content": "STATES TO DESIGN",
+                  "fontFamily": "$font-caption",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "letterSpacing": 0.8
+                },
+                {
+                  "type": "text",
+                  "id": "B5UjPw",
+                  "name": "Contact assistant state coverage values",
+                  "fill": "$app-text-secondary",
+                  "content": "STREAMING  ·  VALIDATION ERROR  ·  APPROVAL REQUESTED  ·  SENT  ·  RATE LIMITED",
+                  "fontFamily": "$font-caption",
+                  "fontSize": 9,
+                  "fontWeight": "600",
+                  "letterSpacing": 0.6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Kr93m",
+          "name": "Site footer",
+          "width": "fill_container",
+          "fill": "$app-section",
+          "padding": [
+            32,
+            120
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "p5ynL",
+              "name": "Footer brand",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Fh98B",
+                  "name": "Footer company name",
+                  "fill": "$app-text-primary",
+                  "content": "APPLIFICATION LTD",
+                  "fontFamily": "$font-caption",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "wMYEC",
+                  "name": "Footer legal line",
+                  "fill": "$app-text-muted",
+                  "content": "Dave Hudson  ·  Contract AI Product Engineer",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "y8FSQ",
+              "name": "Footer links",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "n3mE5A",
+                  "name": "Footer GitHub link",
+                  "fill": "$app-text-secondary",
+                  "content": "GitHub",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "V0Shf",
+                  "name": "Footer LinkedIn link",
+                  "fill": "$app-text-secondary",
+                  "content": "LinkedIn",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "F0zFvZ",
+                  "name": "Footer Writing link",
+                  "fill": "$app-text-secondary",
+                  "content": "Writing",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "kLLeq",
+                  "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
+                  "fill": "$app-text-secondary",
+                  "content": "Contact",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "T77C4",
+      "x": 30566,
+      "y": -1232,
+      "name": "AI contact assistant · light mode",
+      "theme": {
+        "mode": "light"
+      },
+      "metadata": {
+        "type": "paired-theme",
+        "pair": "applification-contact-assistant",
+        "page": "contact-assistant",
+        "mode": "dark"
+      },
+      "clip": true,
+      "width": 1440,
+      "fill": {
+        "type": "gradient",
+        "gradientType": "linear",
+        "enabled": true,
+        "rotation": 180,
+        "size": {
+          "height": 1
+        },
+        "colors": [
+          {
+            "color": "$app-bg",
+            "position": 0
+          },
+          {
+            "color": "$app-bg-end",
+            "position": 1
+          }
+        ]
+      },
+      "layout": "vertical",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "yoOct",
+          "name": "Primary navigation",
+          "width": 1200,
+          "height": 64,
+          "fill": "$app-bg",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "vNrT3",
+              "name": "Applification retained logo lockup",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xgloF",
+                  "name": "Applification logo",
+                  "context": "Dt - svg",
+                  "clip": true,
+                  "width": 48,
+                  "height": 34,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "iCjio",
+                      "x": 15.6,
+                      "y": 6.58,
+                      "geometry": "M2.35 0.14771c-0.91 0.32-1.58 0.92-2.08 1.87l-0.27 0.51 0 27.09999 0.34 0.63c0.6 1.1 1.56 1.77 2.79 1.93001 0.95 0.12 19 0.11 19.86-0.01001 1.29-0.19 2.28-0.92 2.85-2.1l0.26-0.55 0-26.9-0.29-0.59c-0.36-0.73-0.96-1.35-1.68-1.73l-0.53-0.28-10.4-0.02c-9.26-0.02-10.45-0.01-10.85 0.14m19.3 15.33001l0 11-17.2 0 0-22 17.2 0 0 11z m-7.8 12.25c1.35 0.7 1.05 2.81-0.45 3.15-1.01 0.23-2.04-0.64-2.05-1.7 0-0.45 0.36-1.08 0.79-1.37 0.41-0.27 1.26-0.31 1.71-0.08",
+                      "fill": "#F8FAFC",
+                      "width": 17.068120140470665,
+                      "height": 21.104867607761143
+                    },
+                    {
+                      "type": "path",
+                      "id": "Iyz2A",
+                      "x": 2.74,
+                      "y": 8.61,
+                      "geometry": "M31.59909 9.12026c-2.31 0.89-3.19 3.61-1.82 5.64 1.58 2.33 5.16 2.06 6.41-0.48 0.24-0.5 0.27-0.66 0.27-1.65 0-1.01-0.02-1.14-0.28-1.63-0.4-0.75-0.87-1.24-1.59-1.63-0.58-0.31-0.71-0.34-1.63-0.36-0.67-0.02-1.12 0.02-1.36 0.11m-26.86-8.51999c-1.97 2.03-3.46 4.75-4.22 7.76-1.47 5.73 0.25 12.44 4.3 16.76l0.62 0.67 0.84-0.83c0.47-0.46 1.03-1.05 1.25-1.31l0.41-0.48-0.5-0.52c-1.37-1.41-2.58-3.56-3.19-5.67-0.75-2.58-0.75-5.62 0.01-8.25 0.57-1.96 1.71-4 3.05-5.48l0.62-0.68-1.23-1.27c-0.68-0.7-1.26-1.28-1.29-1.3-0.03-0.01-0.33 0.26-0.67 0.6m53.61 0.76l-1.21 1.17 0.79 0.95c2.43 2.89 3.5 6.17 3.35 10.2-0.09 2.3-0.5 3.96-1.45 5.85-0.67 1.34-1.26 2.19-2.25 3.23l-0.5 0.54 1.24001 1.24c0.68 0.68 1.28 1.24 1.34 1.23999 0.06001 0 0.33-0.24 0.61-0.53 2.76-2.87 4.35999-6.49 4.73999-10.77 0.36999-4.08-1.04001-8.9-3.58-12.25-0.57-0.74-1.72-2.05-1.81-2.05-0.03 0.01-0.6 0.54-1.27 1.18m-44.96 3.84c-1.7 1.94-2.67 3.91-2.98 6.07-0.18 1.22-0.08 3.03 0.24 4.24 0.28 1.1 1.02 2.73 1.65 3.65 0.58 0.86 1.39 1.82 1.54 1.82 0.13 0 2.27-2.1 2.27-2.23 0-0.04-0.22-0.35-0.49-0.68-0.66-0.81-1.14-1.75-1.47-2.84-0.34-1.15-0.38-2.89-0.1-3.99 0.39-1.47 1.05-2.73 1.93-3.67l0.45-0.48-1.18-1.26c-0.65-0.69-1.21-1.25-1.24-1.25-0.04 0-0.31 0.28-0.62 0.62m36.62 0.73l-1.14 1.15 0.3 0.32c0.8 0.85 1.52 2.28 1.85 3.65 0.27 1.12 0.22 2.78-0.11 3.93-0.29001 1.01-0.98 2.32-1.66 3.14l-0.55999 0.68 1.22 1.22 1.21 1.21 0.64999-0.7c2.18-2.36 3.28-5.54 2.95-8.5-0.27-2.35-1.2-4.49-2.87999-6.58-0.29001-0.37-0.57-0.67-0.61-0.66999-0.04 0-0.59 0.52-1.22 1.14999",
+                      "fill": "#F8FAFC",
+                      "width": 42.550972462999724,
+                      "height": 16.86557062964998
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "b5swp",
+                  "name": "Applification wordmark",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "B5Po5",
+                      "name": "Applification wordmark name",
+                      "fill": "$app-text-primary",
+                      "content": "APPLIFICATION",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 14,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.3
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "uiBgX",
+              "name": "Navigation links and action",
+              "gap": 30,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "UY2Y0",
+                  "name": "Products link",
+                  "fill": "$app-text-secondary",
+                  "content": "Products",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "c2UYRF",
+                  "name": "Client work link",
+                  "fill": "$app-text-secondary",
+                  "content": "Client work",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "AJ1Ue",
+                  "name": "Writing link",
+                  "fill": "$app-text-secondary",
+                  "content": "Writing",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "S7pQR",
+                  "name": "About link",
+                  "fill": "$app-text-secondary",
+                  "content": "About",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "A8QLE",
+                  "name": "Navigation contact button",
+                  "context": "Internal link: /contact",
+                  "fill": "$app-action",
+                  "cornerRadius": 9999,
+                  "gap": 8,
+                  "padding": [
+                    11,
+                    17
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "i8yIK",
+                      "name": "Navigation contact label",
+                      "fill": "$app-text-on-action",
+                      "content": "Discuss a contract",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "evTY5",
+                      "name": "Navigation arrow",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "arrow-up-right",
+                      "library": "lucide",
+                      "fill": "$app-section"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xhjT5",
+          "name": "Contact assistant introduction",
+          "width": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "$app-bg",
+                "position": 0
+              },
+              {
+                "color": "$app-bg-end",
+                "position": 1
+              }
+            ]
+          },
+          "gap": 80,
+          "padding": [
+            70,
+            120,
+            62,
+            120
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "end",
+          "children": [
+            {
+              "type": "frame",
+              "id": "s6SwRj",
+              "name": "Contact assistant hero copy",
+              "width": 760,
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z2G7dq",
+                  "name": "Contact assistant eyebrow",
+                  "fill": "$app-accent",
+                  "content": "CONTACT  /  AI ASSISTANT",
+                  "fontFamily": "$font-caption",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "text",
+                  "id": "ikGUJ",
+                  "name": "Contact assistant title",
+                  "fill": "$app-text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Start with the work. The assistant will handle the handoff.",
+                  "lineHeight": 1.04,
+                  "fontFamily": "$font-heading",
+                  "fontSize": 58,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "mdiny",
+                  "name": "Contact assistant summary",
+                  "fill": "$app-text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": 680,
+                  "content": "Ask about my experience, describe what you need, and review the contact request before it reaches me.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-body",
+                  "fontSize": 18,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ZL080",
+              "name": "AI disclosure",
+              "width": 360,
+              "fill": "$app-card",
+              "cornerRadius": 16,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                22,
+                24
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "O2U6hf",
+                  "name": "AI disclosure header",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "nnJCT",
+                      "name": "AI disclosure icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "bot",
+                      "library": "lucide",
+                      "fill": "$app-accent"
+                    },
+                    {
+                      "type": "text",
+                      "id": "IrHXV",
+                      "name": "AI disclosure label",
+                      "fill": "$app-text-primary",
+                      "content": "YOU ARE CHATTING WITH AI",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "aji9y",
+                  "name": "AI disclosure copy",
+                  "fill": "$app-text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "It cannot share personal contact details, promise availability or send anything without your approval.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "oVCFn",
+          "name": "Contact assistant workspace section",
+          "width": "fill_container",
+          "fill": "$app-section",
+          "padding": [
+            64,
+            120,
+            72,
+            120
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ktr16",
+              "name": "Contact assistant workspace",
+              "width": 1200,
+              "height": 720,
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xNrBB",
+                  "name": "Contact conversation panel",
+                  "clip": true,
+                  "width": 816,
+                  "height": "fill_container",
+                  "fill": "$app-card",
+                  "cornerRadius": 22,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Z7cMov",
+                      "name": "Contact conversation header",
+                      "width": "fill_container",
+                      "height": 64,
+                      "stroke": "$app-border",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "padding": [
+                        0,
+                        20
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "kRXzh",
+                          "name": "Assistant identity",
+                          "gap": 11,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "qEOgi",
+                              "name": "Assistant avatar",
+                              "width": 34,
+                              "height": 34,
+                              "fill": "$app-action",
+                              "cornerRadius": 17,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "X0Ba9P",
+                                  "name": "Assistant avatar icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "bot",
+                                  "library": "lucide",
+                                  "fill": "$app-text-on-action"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "rFq92",
+                              "name": "Assistant name and state",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "N64wp",
+                                  "name": "Assistant name",
+                                  "fill": "$app-text-primary",
+                                  "content": "Applification assistant",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "K9ghD",
+                                  "name": "Assistant online state",
+                                  "fill": "$app-sky-text",
+                                  "content": "AI  ·  ONLINE",
+                                  "fontFamily": "$font-caption",
+                                  "fontSize": 8,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.8
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Fw1bq",
+                          "name": "Restart conversation action",
+                          "fill": "$app-text-muted",
+                          "content": "RESTART",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700",
+                          "letterSpacing": 0.8
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mzy1V",
+                      "name": "Contact conversation messages",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$app-bg",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        22,
+                        24
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "JkbLm",
+                          "name": "Assistant opening message",
+                          "width": 610,
+                          "fill": "$app-muted-section",
+                          "cornerRadius": [
+                            14,
+                            14,
+                            14,
+                            4
+                          ],
+                          "layout": "vertical",
+                          "gap": 11,
+                          "padding": [
+                            15,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Q7P9F",
+                              "name": "Assistant opening label",
+                              "fill": "$app-sky-text",
+                              "content": "ASSISTANT",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.8
+                            },
+                            {
+                              "type": "text",
+                              "id": "yyw4V",
+                              "name": "Assistant opening copy",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Hi. I can answer questions about Dave's work, understand what you need, and prepare a contact request. What brings you here?",
+                              "lineHeight": 1.45,
+                              "fontFamily": "$font-body",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "b5pqSq",
+                              "name": "Enquiry intent choices",
+                              "gap": 7,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "Y7VU8q",
+                                  "name": "Contract project choice",
+                                  "height": 28,
+                                  "fill": "$app-action",
+                                  "cornerRadius": 14,
+                                  "stroke": "$app-border",
+                                  "padding": [
+                                    0,
+                                    10
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "EHCtP",
+                                      "name": "Contract project choice label",
+                                      "fill": "$app-text-on-action",
+                                      "content": "Contract project",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 11,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "rMmh9",
+                                  "name": "Product question choice",
+                                  "height": 28,
+                                  "fill": "$app-card",
+                                  "cornerRadius": 14,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    0,
+                                    10
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "DJtm2",
+                                      "name": "Product question choice label",
+                                      "fill": "$app-text-secondary",
+                                      "content": "Product question",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "CxRPM",
+                                  "name": "Existing client choice",
+                                  "height": 28,
+                                  "fill": "$app-card",
+                                  "cornerRadius": 14,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    0,
+                                    10
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "ROAjV",
+                                      "name": "Existing client choice label",
+                                      "fill": "$app-text-secondary",
+                                      "content": "Existing client",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yPQ7n",
+                          "name": "Visitor project message row",
+                          "width": "fill_container",
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "P2RxyC",
+                              "name": "Visitor project message",
+                              "width": 570,
+                              "fill": "$app-action",
+                              "cornerRadius": [
+                                14,
+                                14,
+                                4,
+                                14
+                              ],
+                              "padding": [
+                                14,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "mXOZ3",
+                                  "name": "Visitor project message copy",
+                                  "fill": "$app-text-on-action",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "We need a senior React and TypeScript engineer for a health product rebuild. Around three months, starting in October.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wv3a3",
+                          "name": "Assistant fit assessment",
+                          "width": 640,
+                          "fill": "$app-muted-section",
+                          "cornerRadius": [
+                            14,
+                            14,
+                            14,
+                            4
+                          ],
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": [
+                            15,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "zn6Fb",
+                              "name": "Fit assessment header",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "Rok46",
+                                  "name": "Fit assessment icon",
+                                  "width": 15,
+                                  "height": 15,
+                                  "icon": "badge-check",
+                                  "library": "lucide",
+                                  "fill": "$app-accent"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "D9DNsy",
+                                  "name": "Fit assessment label",
+                                  "fill": "$app-accent",
+                                  "content": "LIKELY FIT",
+                                  "fontFamily": "$font-caption",
+                                  "fontSize": 8,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.8
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "XR97O",
+                              "name": "Fit assessment copy",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "That matches Dave's recent work. I have enough to prepare a summary. Add your work email, then review exactly what will be sent.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "$font-body",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "YMeFr",
+                              "name": "Fit assessment tags",
+                              "gap": 7,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "W7KvgF",
+                                  "name": "REACT + TYPESCRIPT fit tag",
+                                  "fill": "$app-card",
+                                  "cornerRadius": 2,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    5,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "u5I0Db",
+                                      "name": "REACT + TYPESCRIPT fit tag label",
+                                      "fill": "$app-sky-text",
+                                      "content": "REACT + TYPESCRIPT",
+                                      "fontFamily": "$font-caption",
+                                      "fontSize": 8,
+                                      "fontWeight": "700",
+                                      "letterSpacing": 0.6
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "RevvZ",
+                                  "name": "HEALTH PRODUCT fit tag",
+                                  "fill": "$app-card",
+                                  "cornerRadius": 2,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    5,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "zCE0K",
+                                      "name": "HEALTH PRODUCT fit tag label",
+                                      "fill": "$app-sky-text",
+                                      "content": "HEALTH PRODUCT",
+                                      "fontFamily": "$font-caption",
+                                      "fontSize": 8,
+                                      "fontWeight": "700",
+                                      "letterSpacing": 0.6
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "yhhD4",
+                                  "name": "3 MONTHS fit tag",
+                                  "fill": "$app-card",
+                                  "cornerRadius": 2,
+                                  "stroke": "$app-border",
+                                  "strokeWidth": 1,
+                                  "padding": [
+                                    5,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Fo2H8",
+                                      "name": "3 MONTHS fit tag label",
+                                      "fill": "$app-sky-text",
+                                      "content": "3 MONTHS",
+                                      "fontFamily": "$font-caption",
+                                      "fontSize": 8,
+                                      "fontWeight": "700",
+                                      "letterSpacing": 0.6
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LYFrS",
+                      "name": "Contact message composer",
+                      "width": "fill_container",
+                      "height": 82,
+                      "stroke": "$app-border",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "gap": 12,
+                      "padding": [
+                        14,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "w7HYdd",
+                          "name": "Contact message field",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "fill": "$app-control",
+                          "cornerRadius": 14,
+                          "padding": [
+                            0,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "d8AcG",
+                              "name": "Contact message placeholder",
+                              "fill": "$app-text-muted",
+                              "content": "Describe the work, team or problem…",
+                              "fontFamily": "$font-body",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "jBGnT",
+                          "name": "Send message button",
+                          "width": 48,
+                          "height": 48,
+                          "fill": "$app-action",
+                          "cornerRadius": 14,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "tMA18",
+                              "name": "Send message icon",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "arrow-up",
+                              "library": "lucide",
+                              "fill": "$app-text-on-action"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "whkGS",
+                  "name": "Contact qualification panel",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$app-muted-section",
+                  "cornerRadius": 22,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Rs1s5",
+                      "name": "Qualification header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "FhOmk",
+                          "name": "Qualification title group",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "YSYBV",
+                              "name": "Qualification label",
+                              "fill": "$app-text-primary",
+                              "content": "CONTACT CHECK",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 10,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.9
+                            },
+                            {
+                              "type": "text",
+                              "id": "hXyPh",
+                              "name": "Qualification progress copy",
+                              "fill": "$app-text-muted",
+                              "content": "4 steps before handoff",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Z7brT",
+                          "name": "Not sent status",
+                          "fill": "$app-card",
+                          "cornerRadius": 12,
+                          "stroke": "$app-border",
+                          "strokeWidth": 1,
+                          "padding": [
+                            6,
+                            9
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "WvSVO",
+                              "name": "Not sent status label",
+                              "fill": "$app-text-muted",
+                              "content": "NOT SENT",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TEiiU",
+                      "name": "Qualification steps",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "p1hTq1",
+                          "name": "Intent understood step",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "J1fYH",
+                              "name": "Intent understood state",
+                              "width": 22,
+                              "height": 22,
+                              "fill": "$app-action",
+                              "cornerRadius": 11,
+                              "stroke": "$app-border",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "SstCz",
+                                  "name": "Intent understood state icon",
+                                  "width": 12,
+                                  "height": 12,
+                                  "icon": "check",
+                                  "library": "lucide",
+                                  "fill": "$app-text-on-action"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "Zewes",
+                              "name": "Intent understood step label",
+                              "fill": "$app-text-secondary",
+                              "content": "Intent understood",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wCSGh",
+                          "name": "Project fit checked step",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "lZFul",
+                              "name": "Project fit checked state",
+                              "width": 22,
+                              "height": 22,
+                              "fill": "$app-action",
+                              "cornerRadius": 11,
+                              "stroke": "$app-border",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "FEE47",
+                                  "name": "Project fit checked state icon",
+                                  "width": 12,
+                                  "height": 12,
+                                  "icon": "check",
+                                  "library": "lucide",
+                                  "fill": "$app-text-on-action"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "cinCE",
+                              "name": "Project fit checked step label",
+                              "fill": "$app-text-secondary",
+                              "content": "Project fit checked",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BTL2U",
+                          "name": "Contact details added step",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "ZWxhU",
+                              "name": "Contact details added state",
+                              "width": 22,
+                              "height": 22,
+                              "fill": "$app-action",
+                              "cornerRadius": 11,
+                              "stroke": "$app-border",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "wPEXp",
+                                  "name": "Contact details added state icon",
+                                  "width": 12,
+                                  "height": 12,
+                                  "icon": "check",
+                                  "library": "lucide",
+                                  "fill": "$app-text-on-action"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "AXDp2",
+                              "name": "Contact details added step label",
+                              "fill": "$app-text-secondary",
+                              "content": "Contact details added",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "KOViL",
+                          "name": "Approval to send step",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "wP2Co",
+                              "name": "Approval to send state",
+                              "width": 22,
+                              "height": 22,
+                              "fill": "$app-card",
+                              "cornerRadius": 11,
+                              "stroke": "$app-border",
+                              "strokeWidth": 1,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "MNszs",
+                                  "name": "Approval to send state icon",
+                                  "width": 12,
+                                  "height": 12,
+                                  "icon": "circle",
+                                  "library": "lucide",
+                                  "fill": "$app-accent"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "xKLp6",
+                              "name": "Approval to send step label",
+                              "fill": "$app-text-primary",
+                              "content": "Approval to send",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "krRVA",
+                      "name": "Contact request summary",
+                      "width": "fill_container",
+                      "fill": "$app-card",
+                      "cornerRadius": 14,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 12,
+                      "padding": [
+                        16,
+                        18
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S9m84",
+                          "name": "Contact request summary label",
+                          "fill": "$app-accent",
+                          "content": "WHAT WILL BE SENT",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700",
+                          "letterSpacing": 0.8
+                        },
+                        {
+                          "type": "frame",
+                          "id": "b1fspC",
+                          "name": "TEAM summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "qx0HP",
+                              "name": "TEAM summary label",
+                              "fill": "$app-text-muted",
+                              "content": "TEAM",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "L2xXG",
+                              "name": "TEAM summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "Northstar Health",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "bdf9R",
+                          "name": "NEED summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ymG2c",
+                              "name": "NEED summary label",
+                              "fill": "$app-text-muted",
+                              "content": "NEED",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "Oerdx",
+                              "name": "NEED summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "Senior React + TypeScript engineer",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "MlAwG",
+                          "name": "TIMING summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "zi7dj",
+                              "name": "TIMING summary label",
+                              "fill": "$app-text-muted",
+                              "content": "TIMING",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "Q97MGE",
+                              "name": "TIMING summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "3 months · October",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "J7pwky",
+                          "name": "REPLY TO summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "XUPZk",
+                              "name": "REPLY TO summary label",
+                              "fill": "$app-text-muted",
+                              "content": "REPLY TO",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "ejJjv",
+                              "name": "REPLY TO summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "alex@northstar.health",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jMYlu",
+                      "name": "Contact consent",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "JQ2Ro",
+                          "name": "Contact consent checkbox",
+                          "width": 20,
+                          "height": 20,
+                          "fill": "$app-action",
+                          "cornerRadius": 5,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "mfLAC",
+                              "name": "Contact consent check",
+                              "width": 12,
+                              "height": 12,
+                              "icon": "check",
+                              "library": "lucide",
+                              "fill": "$app-text-on-action"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "od5v4",
+                          "name": "Contact consent copy",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": 280,
+                          "content": "I agree to send this summary and reply address to Dave.",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZWCyw",
+                      "name": "Approve contact request button",
+                      "width": "fill_container",
+                      "height": 46,
+                      "fill": "$app-action",
+                      "cornerRadius": 12,
+                      "gap": 9,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "H8REhc",
+                          "name": "Approve contact request label",
+                          "fill": "$app-text-on-action",
+                          "content": "Approve and send",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "c3ELM",
+                          "name": "Approve contact request icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "send",
+                          "library": "lucide",
+                          "fill": "$app-text-on-action"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "sQ0HJ",
+                      "name": "Contact request safety note",
+                      "fill": "$app-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Nothing is sent until you press the button.",
+                      "textAlign": "center",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 9,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "H65YT",
+          "name": "Contact handoff flow section",
+          "width": "fill_container",
+          "fill": "$app-muted-section",
+          "layout": "vertical",
+          "gap": 30,
+          "padding": [
+            64,
+            120,
+            70,
+            120
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "MIAdV",
+              "name": "Contact handoff flow header",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "p7bN3",
+                  "name": "Contact handoff flow title group",
+                  "width": 720,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "us5RP",
+                      "name": "Contact handoff flow label",
+                      "fill": "$app-accent",
+                      "content": "PROPOSED HANDOFF FLOW",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "rLjqo",
+                      "name": "Contact handoff flow title",
+                      "fill": "$app-text-primary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "The assistant can prepare the message. A person still decides when it leaves.",
+                      "lineHeight": 1.12,
+                      "fontFamily": "$font-heading",
+                      "fontSize": 36,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EqXh9",
+                  "name": "Contact assistant technical stack",
+                  "layout": "vertical",
+                  "gap": 5,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "g8TT8",
+                      "name": "AI SDK UI stack label",
+                      "fill": "$app-sky-text",
+                      "content": "AI SDK UI  /  useChat",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 9,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.7
+                    },
+                    {
+                      "type": "text",
+                      "id": "aMzqo",
+                      "name": "AI SDK Core stack label",
+                      "fill": "$app-text-muted",
+                      "content": "AI SDK CORE  /  streamText + tools",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 9,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "BW8No",
+              "name": "Contact handoff flow steps",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "M4OLyW",
+                  "name": "ANSWER handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "LggYU",
+                      "name": "ANSWER handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "rvc3w",
+                          "name": "ANSWER handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "01",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "vuXxk",
+                          "name": "ANSWER handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "arrow-right",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "x1GGnY",
+                      "name": "ANSWER handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "ANSWER",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "K7glw",
+                      "name": "ANSWER handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Stream the conversation.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "I7BVjb",
+                  "name": "QUALIFY handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "rELw2",
+                      "name": "QUALIFY handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "sOs7R",
+                          "name": "QUALIFY handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "02",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "B1DB3u",
+                          "name": "QUALIFY handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "arrow-right",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "oj1EG",
+                      "name": "QUALIFY handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "QUALIFY",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "FP84X",
+                      "name": "QUALIFY handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Validate structured details.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DXifp",
+                  "name": "REVIEW handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "WPSL4",
+                      "name": "REVIEW handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ybx50",
+                          "name": "REVIEW handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "03",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "l3Cih",
+                          "name": "REVIEW handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "arrow-right",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "aBJyL",
+                      "name": "REVIEW handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "REVIEW",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "zT8S0",
+                      "name": "REVIEW handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Render the exact summary.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OuEID",
+                  "name": "APPROVE handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pzNWc",
+                      "name": "APPROVE handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Q7QAz",
+                          "name": "APPROVE handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "04",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "cN5QZ",
+                          "name": "APPROVE handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "shield-check",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "l1fgA7",
+                      "name": "APPROVE handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "APPROVE",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "Judd9",
+                      "name": "APPROVE handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Require visitor consent.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uZTAf",
+                  "name": "NOTIFY handoff step",
+                  "width": "fill_container",
+                  "stroke": "$app-border",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    18,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "WAA6Z",
+                      "name": "NOTIFY handoff step header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "owsY8",
+                          "name": "NOTIFY handoff step number",
+                          "fill": "$app-text-muted",
+                          "content": "05",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "AsZRX",
+                          "name": "NOTIFY handoff step icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "send",
+                          "library": "lucide",
+                          "fill": "$app-accent"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "HaQRa",
+                      "name": "NOTIFY handoff step title",
+                      "fill": "$app-text-primary",
+                      "content": "NOTIFY",
+                      "fontFamily": "$font-caption",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "j3oDB",
+                      "name": "NOTIFY handoff step copy",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Run the server tool.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CVv39",
+              "name": "Contact assistant state coverage",
+              "width": "fill_container",
+              "fill": "$app-card",
+              "cornerRadius": 12,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "padding": [
+                16,
+                18
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FRgHJ",
+                  "name": "Contact assistant state coverage label",
+                  "fill": "$app-text-muted",
+                  "content": "STATES TO DESIGN",
+                  "fontFamily": "$font-caption",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "letterSpacing": 0.8
+                },
+                {
+                  "type": "text",
+                  "id": "iv61Z",
+                  "name": "Contact assistant state coverage values",
+                  "fill": "$app-text-secondary",
+                  "content": "STREAMING  ·  VALIDATION ERROR  ·  APPROVAL REQUESTED  ·  SENT  ·  RATE LIMITED",
+                  "fontFamily": "$font-caption",
+                  "fontSize": 9,
+                  "fontWeight": "600",
+                  "letterSpacing": 0.6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "AhG4Z",
+          "name": "Site footer",
+          "width": "fill_container",
+          "fill": "$app-section",
+          "padding": [
+            32,
+            120
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "SKQtu",
+              "name": "Footer brand",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fa3YP",
+                  "name": "Footer company name",
+                  "fill": "$app-text-primary",
+                  "content": "APPLIFICATION LTD",
+                  "fontFamily": "$font-caption",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "LaGH8",
+                  "name": "Footer legal line",
+                  "fill": "$app-text-muted",
+                  "content": "Dave Hudson  ·  Contract AI Product Engineer",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "j7m72m",
+              "name": "Footer links",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "xSc2t",
+                  "name": "Footer GitHub link",
+                  "fill": "$app-text-secondary",
+                  "content": "GitHub",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "ELSgx",
+                  "name": "Footer LinkedIn link",
+                  "fill": "$app-text-secondary",
+                  "content": "LinkedIn",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Wh8ce",
+                  "name": "Footer Writing link",
+                  "fill": "$app-text-secondary",
+                  "content": "Writing",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "UEZWA",
+                  "name": "Footer Contact link",
+                  "context": "Internal link: /contact",
                   "fill": "$app-text-secondary",
                   "content": "Contact",
                   "fontFamily": "$font-body",

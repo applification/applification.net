@@ -23,6 +23,9 @@
   --app-text-on-accent: light-dark(#082f49, #f8fafc);
   --app-accent-band: light-dark(#0ea5e9, #0c4a6e);
   --app-focus: light-dark(#0369a1, #7dd3fc);
+  --writing-accent-text: light-dark(#075985, #7dd3fc);
+  --writing-accent-fill: #0369a1;
+  --writing-on-accent: #ffffff;
   --loop-bg: #02070c;
   --loop-header: #08131d;
   --loop-muted: #94a3b8;
