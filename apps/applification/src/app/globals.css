@@ -129,6 +129,7 @@
   --client-feature-text: #f8fafc;
   --client-feature-muted: #cbd5e1;
   --client-feature-accent: #7dd3fc;
+  --client-brief-label: light-dark(#0369a1, #0ea5e9);
   --workflow-human: light-dark(#a16207, #fff59a);
   --workflow-human-border: light-dark(#ca8a04, #fff59a66);
   --workflow-human-line: light-dark(#ca8a0499, #fff59a66);

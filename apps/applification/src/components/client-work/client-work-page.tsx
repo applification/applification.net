@@ -16,28 +16,66 @@ const contractFit = [
   "Remote UK",
 ];
 
-function ClientWorkIntro() {
+const currentBrief = [
+  ["Role", "AI Product Engineer"],
+  ["Base", "Durham, UK"],
+  ["Preference", "Remote contracts"],
+  ["Best fit", "Small product teams"],
+];
+
+function CurrentBrief() {
+  return (
+    <aside
+      aria-labelledby="current-brief-heading"
+      className="w-full rounded-[18px] bg-[var(--app-card)] p-6 min-[720px]:max-w-[330px] min-[1024px]:w-[330px] min-[1024px]:shrink-0"
+    >
+      <h2
+        className="font-caption text-[10px] font-bold leading-[13px] tracking-[1.2px] text-[var(--client-brief-label)]"
+        id="current-brief-heading"
+      >
+        CURRENT BRIEF
+      </h2>
+      <dl className="mt-4 flex flex-col gap-4">
+        {currentBrief.map(([term, value]) => (
+          <div className="flex flex-col gap-[3px]" key={term}>
+            <dt className="font-caption text-[9px] font-semibold leading-3 tracking-[1px] text-[var(--app-text-muted)] uppercase">
+              {term}
+            </dt>
+            <dd className="text-sm font-semibold leading-[18px] text-[var(--app-text-primary)]">
+              {value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </aside>
+  );
+}
+
+export function ClientWorkHero() {
   return (
     <section
       aria-labelledby="client-work-heading"
-      className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-16 min-[720px]:px-12 min-[1024px]:py-24 min-[1280px]:px-20 min-[1440px]:px-[120px]"
+      className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-14 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:pt-[84px] min-[1024px]:pb-20"
       data-client-work-section="opening-brief"
     >
-      <div className="mx-auto w-full max-w-[1200px]">
-        <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)]">
-          CLIENT WORK&nbsp; · &nbsp;EVIDENCE OVER CLAIMS
-        </p>
-        <h1
-          className="font-heading mt-4 max-w-[820px] text-[46px] leading-[1.02] font-medium text-[var(--app-text-primary)] min-[720px]:text-[56px] min-[1024px]:text-[62px]"
-          id="client-work-heading"
-        >
-          Production work, with the decisions and outcomes attached.
-        </h1>
-        <p className="mt-5 max-w-[700px] text-lg leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-[19px]">
-          More than 20 years building greenfield products and rebuilding
-          brittle frontends for startups, scale-ups and public services, close
-          to both product decisions and code.
-        </p>
+      <div className="mx-auto grid w-full max-w-[1200px] gap-10 min-[1024px]:grid-cols-[minmax(0,780px)_330px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[72px]">
+        <div className="flex min-w-0 flex-col gap-[18px]">
+          <p className="font-caption text-[11px] font-semibold tracking-[1.4px] text-[var(--app-label-text)] min-[1024px]:text-xs">
+            CLIENT WORK&nbsp; · &nbsp;EVIDENCE OVER CLAIMS
+          </p>
+          <h1
+            className="font-heading max-w-[780px] text-[46px] leading-[1.04] font-medium tracking-[-1px] text-[var(--app-text-primary)] min-[720px]:text-[56px] min-[1024px]:text-[62px] min-[1024px]:tracking-[-1.4px]"
+            id="client-work-heading"
+          >
+            Production work, with the decisions and outcomes attached.
+          </h1>
+          <p className="max-w-[700px] text-lg leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-[19px]">
+            More than 20 years building greenfield products and rebuilding
+            brittle frontends for startups, scale-ups and public services,
+            close to both product decisions and code.
+          </p>
+        </div>
+        <CurrentBrief />
       </div>
     </section>
   );
@@ -118,7 +156,7 @@ function ContractFit() {
 export function ClientWorkPage() {
   return (
     <main>
-      <ClientWorkIntro />
+      <ClientWorkHero />
       <EvidenceSection
         description="Built most of the v2 frontend, then co-built its production Agentic Chat for threat analysts."
         eyebrow="FEATURED CASE / LOGICALLY"
