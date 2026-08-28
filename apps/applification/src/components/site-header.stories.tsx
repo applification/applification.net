@@ -29,8 +29,8 @@ export const DesktopLight: Story = {
       canvas.getByRole("link", { name: "Discuss a contract" }),
     ).toBeVisible();
     await expect(
-      canvas.queryByRole("button", { name: "Switch to dark theme" }),
-    ).not.toBeInTheDocument();
+      canvas.getByRole("button", { name: "Switch to dark theme" }),
+    ).toBeVisible();
   },
 };
 
@@ -49,6 +49,23 @@ export const DesktopProducts: Story = {
 
     await expect(productsLink).toHaveAttribute("aria-current", "page");
     await expect(canvas.getByTestId("active-navigation-highlight")).toBeVisible();
+  },
+};
+
+export const DesktopPlantry: Story = {
+  render: () => {
+    usePathname.mockReturnValue("/products/plantry");
+    return <SiteHeader />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const header = canvasElement.querySelector("header");
+
+    await expect(header).toHaveAttribute("data-product-theme", "plantry");
+    await expect(canvas.getByRole("link", { name: "Products" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
   },
 };
 

@@ -226,12 +226,12 @@ export function ProductDetailSteps({
   return (
     <section
       aria-labelledby={headingId}
-      className={`${plantry ? "min-[1280px]:h-[560px] min-[1280px]:py-[58px]" : "min-[1024px]:min-h-[580px] min-[1024px]:py-[62px]"} scroll-mt-16 bg-[var(--app-section)] px-6 py-14 min-[1024px]:px-20`}
+      className={`${plantry ? "xl:h-[560px] xl:py-[58px]" : "min-[1024px]:min-h-[580px] min-[1024px]:py-[62px]"} scroll-mt-16 bg-[var(--app-section)] px-6 py-14 min-[1024px]:px-20`}
       id={id}
     >
       <div className="mx-auto w-full max-w-[1280px]">
         {plantry ? (
-          <div className="grid gap-4 min-[1280px]:grid-cols-[minmax(0,690px)_minmax(0,400px)] min-[1280px]:items-center min-[1280px]:justify-between">
+          <div className="grid gap-4 xl:grid-cols-[minmax(0,690px)_minmax(0,400px)] xl:items-center xl:justify-between">
             <div className="flex flex-col gap-3">
               <ProductDetailEyebrow>{eyebrow}</ProductDetailEyebrow>
               <h2
@@ -263,11 +263,11 @@ export function ProductDetailSteps({
         )}
 
         <ol
-          className={`${plantry ? "min-[1280px]:mt-[30px] min-[1280px]:h-[300px] min-[1280px]:grid-cols-4 min-[1280px]:gap-4" : "min-[1024px]:mt-[34px] min-[1024px]:gap-[14px] lg:grid-cols-4"} mt-8 grid gap-[14px] sm:grid-cols-2`}
+          className={`${plantry ? "xl:mt-[30px] xl:h-[300px] xl:grid-cols-4 xl:gap-4" : "min-[1024px]:mt-[34px] min-[1024px]:gap-[14px] lg:grid-cols-4"} mt-8 grid gap-[14px] sm:grid-cols-2`}
         >
           {steps.map((step) => (
             <li
-              className={`${plantry ? "gap-[14px] min-[1280px]:h-[300px]" : "min-[1024px]:min-h-[308px]"} flex min-h-[280px] flex-col rounded-2xl bg-[var(--app-muted-section)] p-[22px]`}
+              className={`${plantry ? "gap-[14px] xl:h-[300px]" : "min-[1024px]:min-h-[308px]"} flex min-h-[280px] flex-col rounded-2xl bg-[var(--app-muted-section)] p-[22px]`}
               key={step.number}
             >
               {plantry ? (

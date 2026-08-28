@@ -11,6 +11,7 @@ import { ContractCta } from "@/components/home/contract-cta";
 import { ProductDetailEyebrow } from "@/components/products/product-detail";
 
 const voicedTheme = {
+  "--app-accent": "#2f7a52",
   "--app-label-text": "#2f7a52",
   "--app-text-primary": "#173f32",
   "--app-text-secondary": "#4d665e",

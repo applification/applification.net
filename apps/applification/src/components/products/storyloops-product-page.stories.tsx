@@ -1,9 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { usePathname } from "@storybook/nextjs-vite/navigation.mock";
 import StoryLoopsPage from "@/app/products/storyloops/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 function StoryLoopsProductPageStory() {
+  usePathname.mockReturnValue("/products/storyloops");
+
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />

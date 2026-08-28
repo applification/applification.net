@@ -34,16 +34,16 @@ function DesktopStoryMap({
   detail?: boolean;
 }) {
   const backboneNotes = compact
-    ? ["Architecture", "Products"]
+    ? ["Architecture", "Products", "Client work", "Writing"]
     : ["Architecture", "Home", "Products"];
   const narrativeNotes = compact
-    ? ["Navigation", "StoryLoops"]
+    ? ["Navigation", "Homepage", "Product pages", "StoryLoops"]
     : ["Availability", "Navigation", "Sections", "StoryLoops"];
-  const visibleStories = compact ? mapStories.slice(0, 2) : mapStories;
+  const visibleStories = compact ? mapStories.slice(0, 4) : mapStories;
 
   return (
     <div
-      className={`${detail ? "h-[410px] p-5" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1440px]:flex`}
+      className={`${detail ? "h-[410px] p-5" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} storyloop-map-container hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1024px]:flex`}
     >
       <div className="flex h-[30px] shrink-0 items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -66,7 +66,7 @@ function DesktopStoryMap({
             <span className="font-caption text-[9px] font-medium tracking-[0.8px] text-[var(--storyloop-muted)]">
               CONTROL PLANE
             </span>
-            <span className="text-sm font-semibold text-[var(--storyloop-ink)]">
+            <span className={`${compact ? "text-xs" : "text-sm"} font-semibold text-[var(--storyloop-ink)]`}>
               Applification.net
             </span>
           </div>
@@ -136,7 +136,7 @@ function DesktopStoryMap({
             </div>
             <div className={`${compact ? "storyloop-card-grid-compact" : ""} storyloop-card-grid flex-1`}>
               {visibleStories.map(([reference, title]) => (
-                <div className="h-fit rounded border border-[var(--storyloop-card-border)] bg-[var(--storyloop-canvas)] px-2 py-1.5 shadow-[0_3px_6px_var(--storyloop-card-shadow)]" key={reference}>
+                <div className={`${compact ? "h-[84px]" : "h-fit"} rounded border border-[var(--storyloop-card-border)] bg-[var(--storyloop-canvas)] px-2 py-1.5 shadow-[0_3px_6px_var(--storyloop-card-shadow)]`} key={reference}>
                   <div className="font-caption text-[7px] font-semibold text-[var(--storyloop-card-id)]">• {reference}</div>
                   <div className="font-storyloop-title mt-1 text-[var(--storyloop-ink)]">{title}</div>
                   <div className="mt-1 text-[7px] text-[var(--storyloop-card-status)]">• Approved</div>
@@ -175,7 +175,7 @@ function DesktopStoryMap({
 
 function MobileStoryMap({ detail = false }: { detail?: boolean }) {
   return (
-    <div className={`${detail ? "" : "rounded-[20px]"} overflow-hidden bg-[var(--storyloop-shell)] min-[1440px]:hidden`}>
+    <div className={`${detail ? "" : "rounded-[20px]"} overflow-hidden bg-[var(--storyloop-shell)] min-[1024px]:hidden`}>
       <div className="flex h-[42px] items-center justify-between bg-[var(--storyloop-chrome)] px-4">
         <WindowDots small />
         <span className="font-caption text-[8px] font-semibold text-[var(--storyloop-text-dim)]">storyloops / product map</span>
@@ -239,11 +239,11 @@ export function StoryLoopsProductMap({
       <div aria-hidden="true">
         {detail && ownershipLabels ? (
           <>
-            <div className="hidden overflow-hidden rounded-[18px] border border-[#334155] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1440px]:block">
+            <div className="hidden overflow-hidden rounded-[18px] border border-[#334155] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1024px]:block">
               <DesktopStoryMap compact={compact} detail />
               <OwnershipStrip labels={ownershipLabels} />
             </div>
-            <div className="overflow-hidden rounded-[20px] min-[1440px]:hidden">
+            <div className="overflow-hidden rounded-[20px] min-[1024px]:hidden">
               <MobileStoryMap detail />
               <OwnershipStrip labels={ownershipLabels} />
             </div>
@@ -265,18 +265,17 @@ export function StoryLoopsProductMap({
 
 export function StoryLoopsShowcase() {
   return (
-    <section className="bg-[var(--app-section)] px-6 pt-12 pb-0 min-[821px]:px-20 min-[821px]:pt-12" id="products">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 min-[821px]:items-center min-[821px]:gap-[18px]">
-        <p className="font-caption hidden text-xs font-semibold tracking-[1px] text-[var(--app-text-muted)] min-[821px]:block">CURRENTLY BUILDING</p>
-        <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] min-[821px]:tracking-[1.1px]">01&nbsp; / &nbsp;STORYLOOPS&nbsp; · &nbsp;PRODUCT R&amp;D</p>
-        <h2 className="font-heading max-w-[1020px] text-[38px] leading-[1.06] font-medium text-[var(--app-text-primary)] min-[821px]:text-center min-[821px]:text-[44px] min-[821px]:leading-none">A product map that coding agents cannot quietly ignore.</h2>
-        <p className="max-w-[760px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[821px]:text-center min-[821px]:leading-[1.45]">StoryLoops gives coding agents the product context for each task, then puts scope changes into a visual approval flow before the map changes.</p>
+    <section className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-20 min-[1024px]:py-16" id="products">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 min-[720px]:items-center min-[720px]:gap-[18px]">
+        <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] min-[720px]:tracking-[1.1px]">FLAGSHIP PRODUCT&nbsp; · &nbsp;STORYLOOPS</p>
+        <h2 className="font-heading max-w-[1020px] text-[36px] leading-[1.04] font-medium text-[var(--app-text-primary)] min-[720px]:text-center min-[720px]:text-[44px] min-[720px]:leading-none">A product map that coding agents cannot quietly ignore.</h2>
+        <p className="max-w-[760px] text-[15px] leading-[1.5] text-[var(--app-text-secondary)] min-[720px]:text-center min-[720px]:text-base min-[720px]:leading-[1.45]">StoryLoops gives each task product context, then makes scope changes visible for approval before the map changes.</p>
 
-        <StoryLoopsProductMap />
+        <StoryLoopsProductMap compact />
 
-        <aside className="flex w-full flex-col gap-2 rounded-[14px] bg-[var(--app-muted-section)] p-4 min-[821px]:mt-2 min-[821px]:flex-row min-[821px]:items-center min-[821px]:gap-7 min-[821px]:rounded-2xl min-[821px]:px-[26px] min-[821px]:py-[22px]">
-          <h3 className="font-caption shrink-0 text-[11px] font-bold tracking-[0.9px] text-[var(--app-label-text)] min-[821px]:tracking-[1.2px]">PROOF IN USE</h3>
-          <p className="text-sm leading-[1.5] text-[var(--app-text-secondary)] min-[821px]:text-[15px]">Used on this site: Codex proposed the work in chat and on the map, then implemented only the approved scope.</p>
+        <aside className="flex w-full flex-col gap-2 rounded-[14px] bg-[var(--app-muted-section)] p-4 min-[720px]:mt-2 min-[720px]:flex-row min-[720px]:items-center min-[720px]:gap-7 min-[720px]:rounded-2xl min-[720px]:px-[26px] min-[720px]:py-[18px]">
+          <h3 className="font-caption shrink-0 text-[11px] font-bold tracking-[0.9px] text-[var(--app-label-text)] min-[720px]:tracking-[1.2px]">USED ON THIS SITE</h3>
+          <p className="text-sm leading-[1.5] text-[var(--app-text-secondary)] min-[720px]:text-[15px]">Codex proposed this work in chat and on the map, then implemented only the approved scope.</p>
         </aside>
       </div>
     </section>

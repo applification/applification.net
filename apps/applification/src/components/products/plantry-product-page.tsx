@@ -132,13 +132,13 @@ function PlantryHero() {
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <a
-              className={`inline-flex min-h-[42px] items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-[17px] text-sm font-semibold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px min-[1024px]:w-[166px] ${focusClasses}`}
+              className={`inline-flex min-h-11 items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-5 text-sm font-semibold whitespace-nowrap text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
               href={followBuildHref}
             >
               Follow the build
               <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
             </a>
-            <span className="inline-flex min-h-[42px] items-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-muted-section)] px-[17px] text-sm font-semibold text-[var(--app-text-secondary)] min-[1024px]:w-[200px]">
+            <span className="inline-flex min-h-11 items-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-muted-section)] px-5 text-sm font-semibold whitespace-nowrap text-[var(--app-text-secondary)]">
               Apple platforms R&amp;D
               <Smartphone aria-hidden="true" size={16} strokeWidth={1.8} />
             </span>

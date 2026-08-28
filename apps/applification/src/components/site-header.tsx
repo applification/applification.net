@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGroup, motion, useReducedMotion } from "motion/react";
@@ -18,6 +19,86 @@ const contactHref =
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
+
+type ProductHeaderStyle = CSSProperties & Record<`--${string}`, string>;
+type ProductHeaderTheme = "plantry" | "storyloops" | "contexture" | "voiced";
+
+const productHeaderThemes: Record<ProductHeaderTheme, ProductHeaderStyle> = {
+  plantry: {
+    "--app-bg": "light-dark(#fffbef, #102a3a)",
+    "--app-section": "light-dark(#fffdf7, #102a3a)",
+    "--app-muted-section": "light-dark(#f3eee0, #193b4a)",
+    "--app-selected": "light-dark(#e3f3e6, #1d5037)",
+    "--app-control": "light-dark(#f3eee0, #193b4a)",
+    "--app-label": "light-dark(#e3f3e6, #1d5037)",
+    "--app-text-primary": "light-dark(#153447, #fffbef)",
+    "--app-text-secondary": "light-dark(#526879, #d7e3e3)",
+    "--app-border": "light-dark(#ded5c4, #466474)",
+    "--app-label-text": "light-dark(#23683b, #9be4b1)",
+    "--app-action": "light-dark(#153447, #78d696)",
+    "--app-action-hover": "light-dark(#204f67, #9be4b1)",
+    "--app-text-on-action": "light-dark(#fffbef, #102a3a)",
+    "--app-focus": "light-dark(#2e7d4a, #9be4b1)",
+  },
+  storyloops: {
+    "--app-bg": "light-dark(#f9fafb, #111827)",
+    "--app-section": "light-dark(#f9fafb, #111827)",
+    "--app-muted-section": "light-dark(#e7e9f7, #1e293b)",
+    "--app-selected": "light-dark(#e1e4f8, #172554)",
+    "--app-control": "light-dark(#e7e9f7, #1e293b)",
+    "--app-label": "light-dark(#e1e4f8, #172554)",
+    "--app-text-primary": "light-dark(#303347, #f8fafc)",
+    "--app-text-secondary": "light-dark(#65697a, #cbd5e1)",
+    "--app-border": "light-dark(#e1e3ea, #334155)",
+    "--app-label-text": "light-dark(#555bcd, #b9d2ff)",
+    "--app-action": "light-dark(#0b1220, #e7e9f7)",
+    "--app-action-hover": "light-dark(#1e293b, #ffffff)",
+    "--app-text-on-action": "light-dark(#f8fafc, #303347)",
+    "--app-focus": "light-dark(#6c63d9, #b9d2ff)",
+  },
+  contexture: {
+    "--app-bg": "#1e1e2e",
+    "--app-section": "#1e1e2e",
+    "--app-muted-section": "#313244",
+    "--app-selected": "#313244",
+    "--app-control": "#313244",
+    "--app-label": "#313244",
+    "--app-text-primary": "#cdd6f4",
+    "--app-text-secondary": "#bac2de",
+    "--app-border": "#45475a",
+    "--app-label-text": "#89dceb",
+    "--app-action": "#cba6f7",
+    "--app-action-hover": "#d8b4fe",
+    "--app-text-on-action": "#1e1e2e",
+    "--app-focus": "#89dceb",
+  },
+  voiced: {
+    "--app-bg": "#eaf3ed",
+    "--app-section": "#eaf3ed",
+    "--app-muted-section": "#dcebe1",
+    "--app-selected": "#d6eadc",
+    "--app-control": "#dcebe1",
+    "--app-label": "#d6eadc",
+    "--app-text-primary": "#173f32",
+    "--app-text-secondary": "#4d665e",
+    "--app-border": "#b8cec0",
+    "--app-label-text": "#2f7a52",
+    "--app-action": "#173f32",
+    "--app-action-hover": "#254f42",
+    "--app-text-on-action": "#f7faf8",
+    "--app-focus": "#2f7a52",
+  },
+};
+
+function getProductHeaderTheme(pathname: string | null) {
+  const product = pathname?.match(/^\/products\/([^/]+)/)?.[1];
+
+  if (product && product in productHeaderThemes) {
+    return product as ProductHeaderTheme;
+  }
+
+  return null;
+}
 
 function isCurrentPath(pathname: string | null, href: string) {
   return pathname === href || pathname?.startsWith(`${href}/`) === true;
@@ -68,6 +149,7 @@ function MenuIcon({ open }: { open: boolean }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const productHeaderTheme = getProductHeaderTheme(pathname);
   const reduceMotion = useReducedMotion();
   const [menuState, setMenuState] = useState({ open: false, pathname });
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -96,8 +178,12 @@ export function SiteHeader() {
   }, [menuOpen, pathname]);
 
   return (
-    <header className="relative z-40 h-16 w-full shrink-0 bg-[var(--app-bg)] px-5 min-[821px]:mx-auto min-[821px]:w-[calc(100%-48px)] min-[821px]:max-w-[1200px] min-[821px]:px-0">
-      <div className="flex h-full items-center justify-between">
+    <header
+      className="relative z-40 h-16 w-full shrink-0 bg-[var(--app-bg)] transition-colors duration-300 motion-reduce:transition-none"
+      data-product-theme={productHeaderTheme ?? undefined}
+      style={productHeaderTheme ? productHeaderThemes[productHeaderTheme] : undefined}
+    >
+      <div className="mx-auto flex h-full w-full items-center justify-between px-5 min-[700px]:w-[calc(100%-40px)] min-[700px]:max-w-[1200px] min-[700px]:px-0 min-[1024px]:w-[calc(100%-48px)]">
         <Link
           className={`inline-flex min-h-11 items-center gap-2.5 text-[var(--app-text-primary)] ${focusClasses}`}
           href="/"
@@ -107,14 +193,14 @@ export function SiteHeader() {
             aria-hidden="true"
             className="block h-[34px] w-12 bg-current [-webkit-mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat] [mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat]"
           />
-          <span className="font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[821px]:block">
+          <span className="font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[520px]:block">
             APPLIFICATION
           </span>
         </Link>
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-[30px] min-[821px]:flex"
+          className="hidden items-center gap-5 min-[700px]:flex min-[1024px]:gap-[30px]"
         >
           <LayoutGroup id="primary-navigation">
             {navigation.map((item) => {
@@ -147,13 +233,16 @@ export function SiteHeader() {
               className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm leading-[18px] font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
               href={contactHref}
             >
-              Discuss a contract
+              <span className="min-[1024px]:hidden">Contact</span>
+              <span className="hidden min-[1024px]:inline">
+                Discuss a contract
+              </span>
               <ArrowUpRightIcon />
             </a>
           </div>
         </nav>
 
-        <div className="flex items-center min-[821px]:hidden">
+        <div className="flex items-center min-[700px]:hidden">
           <button
             ref={menuButtonRef}
             aria-controls="mobile-navigation"
@@ -173,7 +262,7 @@ export function SiteHeader() {
       {menuOpen ? (
         <nav
           aria-label="Mobile navigation"
-          className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[821px]:hidden"
+          className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[700px]:hidden"
           id="mobile-navigation"
         >
           <div className="mx-auto flex max-w-md flex-col gap-1">
@@ -200,7 +289,7 @@ export function SiteHeader() {
               className={`mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-5 text-base font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
               href={contactHref}
             >
-              Discuss your project
+              Discuss a contract
               <ArrowUpRightIcon />
             </a>
           </div>

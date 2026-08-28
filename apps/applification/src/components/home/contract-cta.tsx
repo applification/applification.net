@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 type ContractCtaProps = {
   description?: string;
   eyebrow?: string;
@@ -39,10 +41,8 @@ export function ContractCta({
           className={`${dark ? "bg-white text-[#111827] hover:bg-[#e2e8f0] active:bg-[#cbd5e1] min-[1024px]:min-h-[51px] min-[1024px]:gap-2.5 min-[1024px]:px-6" : "bg-[var(--cta-action)] text-[var(--cta-action-text)] hover:bg-[var(--cta-action-hover)] active:bg-[var(--cta-action-active)]"} inline-flex min-h-[50px] w-full shrink-0 items-center justify-center gap-2 rounded-full px-[22px] text-[15px] font-bold transition-[background-color,transform] active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--cta-focus)] min-[1024px]:w-auto min-[1024px]:font-semibold`}
           href="mailto:dave@applification.net?subject=Project%20enquiry"
         >
-          Start a conversation
-          <span aria-hidden="true" className="text-[var(--contexture-cyan)]">
-            ↗
-          </span>
+          Discuss a contract
+          <ArrowUpRight aria-hidden="true" className="size-[17px] shrink-0 text-[var(--app-accent)]" strokeWidth={1.8} />
         </a>
       </div>
     </section>

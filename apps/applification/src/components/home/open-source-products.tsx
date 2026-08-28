@@ -96,7 +96,7 @@ function ContextureGraph() {
   return (
     <div
       aria-label="One reviewed Contexture model feeding generated application contracts and coding-agent context."
-      className="overflow-hidden rounded-xl border border-[var(--contexture-border)] bg-[var(--contexture-surface)]"
+      className="hidden overflow-hidden rounded-xl border border-[var(--contexture-border)] bg-[var(--contexture-surface)] min-[720px]:block"
       role="img"
     >
       <div aria-hidden="true">
@@ -135,7 +135,7 @@ function ContextureGraph() {
 
 function ContextureCard() {
   return (
-    <article className="flex flex-col gap-[18px] rounded-[20px] bg-[var(--contexture-shell)] p-5 text-[var(--contexture-text)] shadow-[0_12px_30px_var(--contexture-shadow)] min-[1024px]:rounded-3xl min-[1024px]:p-7">
+    <article className="flex flex-col gap-4 rounded-[20px] bg-[var(--contexture-shell)] p-5 text-[var(--contexture-text)] shadow-[0_12px_30px_var(--contexture-shadow)] min-[720px]:gap-[18px] min-[1024px]:rounded-3xl min-[1024px]:p-7">
       <div className="flex flex-col gap-5 min-[1024px]:flex-row min-[1024px]:items-start min-[1024px]:justify-between">
         <div className="max-w-[720px]">
           <div className="font-caption flex items-center justify-between gap-4 text-[9px] font-bold tracking-[0.7px] text-[var(--contexture-cyan)] min-[1024px]:justify-start">
@@ -169,7 +169,7 @@ function ContextureCard() {
 
       <ContextureGraph />
 
-      <dl className="grid grid-cols-3 gap-2">
+      <dl className="hidden grid-cols-3 gap-2 min-[720px]:grid">
         {contextureMetrics.map((metric) => (
           <div
             className="rounded-lg bg-[var(--contexture-surface)] px-2 py-3 text-center min-[1024px]:text-left"
@@ -223,7 +223,7 @@ function VoiceWaveform() {
 
 function VoicedCard() {
   return (
-    <article className="voiced-card grid gap-[18px] rounded-[20px] border border-[var(--voiced-border)] bg-[var(--voiced-card)] p-5 text-[var(--voiced-ink)] shadow-[0_12px_28px_var(--voiced-shadow)] min-[1024px]:grid-cols-[minmax(0,1fr)_360px] min-[1024px]:gap-12 min-[1024px]:rounded-3xl min-[1024px]:px-12 min-[1024px]:py-8">
+    <article className="voiced-card grid gap-4 rounded-[20px] border border-[var(--voiced-border)] bg-[var(--voiced-card)] p-5 text-[var(--voiced-ink)] shadow-[0_12px_28px_var(--voiced-shadow)] min-[720px]:grid-cols-[minmax(0,1fr)_220px] min-[720px]:items-center min-[1024px]:grid-cols-[minmax(0,1fr)_360px] min-[1024px]:gap-12 min-[1024px]:rounded-3xl min-[1024px]:px-12 min-[1024px]:py-8">
       <div>
         <div className="font-caption flex items-center justify-between gap-4 text-[9px] font-bold tracking-[0.7px] text-[var(--voiced-accent)] min-[1024px]:justify-start">
           <span>VOICED</span>
@@ -255,7 +255,7 @@ function VoicedCard() {
 
       <div
         aria-label="Hold the Right Command key, speak, transcribe and paste into the focused field."
-        className="flex min-h-[132px] flex-col items-center justify-center gap-3 rounded-2xl bg-[var(--voiced-preview)] p-4"
+        className="hidden min-h-[132px] flex-col items-center justify-center gap-3 rounded-2xl bg-[var(--voiced-preview)] p-4 min-[720px]:flex"
         role="img"
       >
         <div aria-hidden="true" className="flex flex-col items-center gap-3">
@@ -279,10 +279,10 @@ export function OpenSourceProducts() {
   return (
     <section
       aria-labelledby="open-source-products-heading"
-      className="bg-[var(--app-muted-section)] px-6 py-14 min-[1024px]:px-[120px] min-[1024px]:py-24"
+      className="bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:py-20"
       id="open-source-products"
     >
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 min-[1024px]:gap-10">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 min-[1024px]:gap-9">
         <header className="grid gap-4 min-[1024px]:grid-cols-[minmax(0,780px)_390px] min-[1024px]:items-end min-[1024px]:justify-between min-[1024px]:gap-[30px]">
           <div>
             <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)]">
@@ -301,7 +301,7 @@ export function OpenSourceProducts() {
           </p>
         </header>
 
-        <div className="flex flex-col gap-6 min-[1024px]:gap-8">
+        <div className="flex flex-col gap-4 min-[720px]:gap-6 min-[1024px]:gap-8">
           <ContextureCard />
           <VoicedCard />
         </div>

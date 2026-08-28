@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect } from "storybook/test";
 import HomePage from "@/app/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -24,7 +25,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DesktopLight: Story = {};
+export const DesktopLight: Story = {
+  play: async ({ canvasElement }) => {
+    const yesLabels = Array.from(canvasElement.querySelectorAll("span")).filter(
+      (element) => element.textContent?.trim() === "YES",
+    );
+
+    await expect(yesLabels).toHaveLength(0);
+  },
+};
 
 export const DesktopDark: Story = {
   globals: { theme: "dark" },

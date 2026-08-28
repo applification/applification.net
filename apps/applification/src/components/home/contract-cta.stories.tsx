@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, within } from "storybook/test";
 import { ContractCta } from "./contract-cta";
 
 const meta = {
@@ -10,7 +11,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DesktopLight: Story = {};
+export const DesktopLight: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const contractLink = canvas.getByRole("link", {
+      name: "Discuss a contract",
+    });
+
+    await expect(contractLink.querySelector("svg")).toBeInTheDocument();
+    await expect(contractLink).not.toHaveTextContent("↗");
+  },
+};
 
 export const DesktopDark: Story = {
   globals: { theme: "dark" },

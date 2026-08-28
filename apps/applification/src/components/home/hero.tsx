@@ -21,24 +21,6 @@ function DownArrowIcon() {
   );
 }
 
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="size-[17px] stroke-current"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M7 17 17 7M7 7h10v10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  );
-}
-
 function FlowArrow({
   className = "",
   direction,
@@ -126,7 +108,7 @@ function DesktopAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-4 hidden h-[94px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[1060px]:block"
+      className="font-caption order-4 hidden h-[112px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[1060px]:block"
     >
       <div className="flex h-5 items-center justify-between border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
         <div className="flex items-center gap-[5px]">
@@ -143,7 +125,7 @@ function DesktopAgentLoop() {
         </span>
       </div>
 
-      <div className="relative h-[74px] px-6 pt-[9px]">
+      <div className="relative h-[92px] px-6 pt-[9px]">
         <div className="grid grid-cols-[110px_42px_198px_42px_160px_42px_178px] items-center">
           {loopNodes.map((node, index) => (
             <div className="contents" key={node.label}>
@@ -152,11 +134,6 @@ function DesktopAgentLoop() {
                 <span
                   className={`relative flex items-center justify-center ${index === 2 ? loopNodes[3].text : node.text}`}
                 >
-                  {index === 2 ? (
-                    <span className="absolute -top-[7px] text-[6.5px] font-bold tracking-[0.8px]">
-                      YES
-                    </span>
-                  ) : null}
                   <FlowArrow direction="right" />
                 </span>
               ) : null}
@@ -165,25 +142,27 @@ function DesktopAgentLoop() {
         </div>
         <svg
           aria-hidden="true"
-          className="absolute top-[43px] left-[270px] h-[17px] w-[227px] text-[var(--loop-pink)]"
+          className="absolute top-[43px] left-[270px] h-[35px] w-[227px] text-[var(--loop-pink)]"
           fill="none"
-          viewBox="0 0 227 17"
+          viewBox="0 0 227 35"
         >
           <path
-            d="M226 0v14H5.5V1"
+            d="M226 0v31H13V7"
             opacity="0.67"
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
+            strokeWidth="1.5"
           />
           <path
-            d="M0.5 6 5.5 1l5 5"
+            d="M1 19 13 7l12 12"
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
+            strokeWidth="2.25"
           />
         </svg>
-        <div className="absolute top-[47px] left-[326px] flex h-4 w-[120px] items-center justify-center bg-[color-mix(in_srgb,var(--loop-bg)_93%,transparent)] text-[6.5px] font-bold tracking-[0.55px] text-[var(--loop-pink)] uppercase">
+        <div className="absolute top-[64px] left-[326px] flex h-4 w-[120px] items-center justify-center bg-[color-mix(in_srgb,var(--loop-bg)_93%,transparent)] text-[6.5px] font-bold tracking-[0.55px] text-[var(--loop-pink)] uppercase">
           No · revise · run again
         </div>
       </div>
@@ -195,7 +174,7 @@ function TabletAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-4 hidden h-[176px] w-full max-w-[640px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[821px]:block min-[1060px]:hidden"
+      className="font-caption order-4 hidden h-[176px] w-full max-w-[640px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[720px]:block min-[1060px]:hidden"
     >
       <div className="flex h-5 items-center justify-between border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
         <div className="flex items-center gap-[5px]">
@@ -229,9 +208,6 @@ function TabletAgentLoop() {
             <AgentLoopNode node={loopNodes[3]} />
           </div>
           <span className="relative col-start-2 row-start-3 flex justify-center text-[var(--loop-cyan)]">
-            <span className="absolute -top-[7px] text-[6.5px] font-bold tracking-[0.8px]">
-              YES
-            </span>
             <FlowArrow direction="left" />
           </span>
           <div className="col-start-3 row-start-3">
@@ -246,7 +222,7 @@ function TabletAgentLoop() {
           viewBox="0 0 100 144"
         >
           <path
-            d="M76 92V132H100V17H96"
+            d="M76 92V132H100V17H95"
             opacity="0.72"
             stroke="currentColor"
             strokeLinecap="round"
@@ -255,7 +231,7 @@ function TabletAgentLoop() {
             vectorEffect="non-scaling-stroke"
           />
           <path
-            d="m99 13-4 4 4 4"
+            d="m99 12-5 5 5 5"
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -275,7 +251,7 @@ function MobileAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-5 w-full overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[821px]:hidden"
+      className="font-caption order-5 w-full overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[720px]:hidden"
     >
       <div className="flex h-5 items-center justify-between border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
         <div className="flex items-center gap-[5px]">
@@ -310,11 +286,6 @@ function MobileAgentLoop() {
                       />
                     ) : (
                       <>
-                        {index === 2 ? (
-                          <span className="absolute left-1/2 ml-4 text-[6.5px] font-bold tracking-[0.8px] text-[var(--loop-cyan)]">
-                            YES
-                          </span>
-                        ) : null}
                         <FlowArrow
                           className={
                             index === 2
@@ -338,7 +309,7 @@ function MobileAgentLoop() {
             viewBox="0 0 100 232"
           >
             <path
-              d="M98 153H100V79H96"
+              d="M98 153H100V79H95"
               opacity="0.72"
               stroke="currentColor"
               strokeLinecap="round"
@@ -347,7 +318,7 @@ function MobileAgentLoop() {
               vectorEffect="non-scaling-stroke"
             />
             <path
-              d="m99 75-4 4 4 4"
+              d="m99 74-5 5 5 5"
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -366,30 +337,37 @@ function MobileAgentLoop() {
 
 export function Hero() {
   return (
-    <section className="flex min-h-[706px] flex-col gap-[22px] bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pt-12 pb-11 min-[821px]:min-h-[593px] min-[821px]:items-center min-[821px]:gap-6 min-[821px]:px-[120px] min-[821px]:pt-14 min-[821px]:pb-11">
-      <div className="order-1 w-full min-[821px]:flex min-[821px]:justify-center">
-        <div className="font-caption flex flex-col gap-[5px] min-[821px]:flex-row min-[821px]:items-center min-[821px]:gap-[10px]">
-          <div className="flex items-center gap-2 min-[821px]:contents">
+    <section className="flex flex-col gap-[18px] bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pt-6 pb-9 min-[720px]:min-h-[620px] min-[720px]:items-center min-[720px]:gap-[22px] min-[720px]:px-12 min-[720px]:pt-12 min-[720px]:pb-10 min-[1060px]:min-h-[606px] min-[1060px]:px-20 min-[1060px]:pt-14 min-[1060px]:pb-11">
+      <div className="order-1 w-full min-[720px]:flex min-[720px]:justify-center">
+        <div className="font-caption flex flex-col gap-[5px] min-[720px]:flex-row min-[720px]:items-center min-[720px]:gap-[10px]">
+          <div className="flex items-center gap-2 min-[720px]:contents">
             <span className="size-2 shrink-0 rounded-full bg-[var(--loop-yellow-strong)]" />
-            <span className="text-[10px] font-bold tracking-[0.6px] text-[var(--app-text-primary)] uppercase min-[821px]:text-xs min-[821px]:font-semibold min-[821px]:tracking-[0.8px]">
-              Contract AI product engineer
+            <span className="text-[10px] font-bold tracking-[0.6px] text-[var(--app-text-primary)] uppercase min-[720px]:text-xs min-[720px]:font-semibold min-[720px]:tracking-[0.8px]">
+              Dave Hudson · Contract engineer
             </span>
           </div>
-          <span className="ml-4 text-[9px] font-semibold tracking-[0.45px] text-[var(--app-action)] uppercase min-[821px]:ml-0 min-[821px]:text-xs min-[821px]:tracking-[0.8px] min-[821px]:text-[var(--app-text-primary)]">
-            <span className="hidden min-[821px]:inline">·&nbsp; </span>
-            React + TypeScript
+          <span className="ml-4 text-[9px] font-semibold tracking-[0.45px] text-[var(--app-action)] uppercase min-[720px]:ml-0 min-[720px]:text-xs min-[720px]:tracking-[0.8px] min-[720px]:text-[var(--app-text-primary)]">
+            <span className="hidden min-[720px]:inline">·&nbsp; </span>
+            UK remote · React + TypeScript
           </span>
         </div>
       </div>
 
-      <h1 className="font-heading order-2 max-w-[874px] text-[48px] leading-none font-medium tracking-[-0.025em] text-[var(--app-text-primary)] min-[821px]:text-center min-[821px]:text-[76px] min-[821px]:leading-[1.02]">
-        Products &amp; AI workflows, built with people in control.
+      <h1 className="font-heading order-2 max-w-[1020px] text-[clamp(2.5rem,12vw,3rem)] leading-[0.98] font-medium tracking-[-0.025em] text-[var(--app-text-primary)] min-[720px]:text-center min-[720px]:text-[64px] min-[720px]:leading-[1.01] min-[1060px]:text-[70px]">
+        Products and AI workflows, built around human judgement.
       </h1>
 
-      <p className="order-3 max-w-[820px] text-[17px] leading-[1.52] text-[var(--app-text-secondary)] min-[821px]:text-center min-[821px]:text-[21px] min-[821px]:leading-[1.45]">
-        I help teams turn early ideas into production software with React and
-        TypeScript. Agents speed up the work; clear scope, tests and approval
-        points keep people in charge.
+      <p className="order-3 max-w-[820px] text-base leading-[1.5] text-[var(--app-text-secondary)] min-[720px]:text-center min-[720px]:text-[19px] min-[720px]:leading-[1.45] min-[1060px]:text-xl">
+        <span className="min-[720px]:hidden">
+          I join small teams to shape ideas and ship production React and
+          TypeScript. Agents do the repetitive work; scope, tests and approval
+          keep people in control.
+        </span>
+        <span className="hidden min-[720px]:inline">
+          I join small teams to shape early ideas and ship production React and
+          TypeScript. Agents handle the repetitive work; agreed scope, tests and
+          approval keep the team in control.
+        </span>
       </p>
 
       <p className="sr-only">
@@ -400,20 +378,20 @@ export function Hero() {
       <DesktopAgentLoop />
       <TabletAgentLoop />
 
-      <div className="order-4 grid w-full gap-3 min-[640px]:grid-cols-2 min-[821px]:order-5 min-[821px]:flex min-[821px]:w-auto min-[821px]:items-center">
+      <div className="order-4 flex w-full flex-col items-stretch gap-1 min-[560px]:flex-row min-[560px]:items-center min-[720px]:order-5 min-[720px]:w-auto">
         <a
-          className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-[22px] text-[15px] font-bold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] min-[821px]:font-semibold ${focusClasses}`}
+          className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-[24px] text-[15px] font-bold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] min-[720px]:font-semibold ${focusClasses}`}
           href={contactHref}
         >
-          Discuss your project
+          Discuss a contract
           <DownArrowIcon />
         </a>
         <a
-          className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-[var(--app-border)] bg-[var(--app-control)] px-[22px] text-[15px] font-bold text-[var(--app-text-primary)] transition-colors hover:border-[var(--app-accent)] min-[821px]:font-semibold ${focusClasses}`}
+          className={`inline-flex min-h-11 items-center justify-center gap-2 px-4 text-sm font-semibold text-[var(--app-text-secondary)] transition-colors hover:text-[var(--app-action)] ${focusClasses}`}
           href="#client-work"
         >
-          See selected work
-          <ArrowUpRightIcon />
+          See client outcomes
+          <DownArrowIcon />
         </a>
       </div>
 
