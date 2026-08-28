@@ -82,7 +82,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Layout", "Homepage"],
+        order: ["Layout", "Homepage", "Products"],
       },
     },
   },

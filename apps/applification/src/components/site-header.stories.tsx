@@ -22,11 +22,15 @@ type Story = StoryObj<typeof meta>;
 
 export const DesktopLight: Story = {
   play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await expect(canvas.getByText("APPLIFICATION")).toBeVisible();
     await expect(
-      within(canvasElement).getByRole("button", {
-        name: "Switch to dark theme",
-      }),
+      canvas.getByRole("link", { name: "Discuss a contract" }),
     ).toBeVisible();
+    await expect(
+      canvas.queryByRole("button", { name: "Switch to dark theme" }),
+    ).not.toBeInTheDocument();
   },
 };
 

@@ -1,3 +1,5 @@
+import { Bot, CloudUpload, CodeXml } from "lucide-react";
+
 const mapStories = [
   ["S-01", "Availability banner"],
   ["S-02", "Header navigation"],
@@ -24,9 +26,25 @@ function WindowDots({ small = false }: { small?: boolean }) {
   );
 }
 
-function DesktopStoryMap() {
+function DesktopStoryMap({
+  compact = false,
+  detail = false,
+}: {
+  compact?: boolean;
+  detail?: boolean;
+}) {
+  const backboneNotes = compact
+    ? ["Architecture", "Products"]
+    : ["Architecture", "Home", "Products"];
+  const narrativeNotes = compact
+    ? ["Navigation", "StoryLoops"]
+    : ["Availability", "Navigation", "Sections", "StoryLoops"];
+  const visibleStories = compact ? mapStories.slice(0, 2) : mapStories;
+
   return (
-    <div className="hidden h-[560px] w-full flex-col gap-4 rounded-3xl bg-[var(--storyloop-shell)] p-5 shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1024px]:flex">
+    <div
+      className={`${detail ? "h-[410px] p-5" : compact ? "h-[440px] rounded-[20px] p-4" : "h-[560px] rounded-3xl p-5"} hidden w-full flex-col gap-4 bg-[var(--storyloop-shell)] ${detail ? "" : "shadow-[0_16px_40px_var(--storyloop-shadow)]"} min-[1440px]:flex`}
+    >
       <div className="flex h-[30px] shrink-0 items-center justify-between">
         <div className="flex items-center gap-2.5">
           <WindowDots />
@@ -40,7 +58,9 @@ function DesktopStoryMap() {
         </span>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-[184px_minmax(0,1fr)_310px] overflow-hidden rounded-xl bg-[var(--storyloop-canvas)]">
+      <div
+        className={`${compact ? "grid-cols-[128px_minmax(0,1fr)_220px]" : "grid-cols-[184px_minmax(0,1fr)_310px]"} grid min-h-0 flex-1 overflow-hidden rounded-xl bg-[var(--storyloop-canvas)]`}
+      >
         <aside className="flex flex-col gap-[18px] border-r border-[var(--storyloop-border)] bg-[var(--storyloop-sidebar)] px-3.5 py-[18px]">
           <div className="flex flex-col gap-1">
             <span className="font-caption text-[9px] font-medium tracking-[0.8px] text-[var(--storyloop-muted)]">
@@ -88,34 +108,34 @@ function DesktopStoryMap() {
             <span className="rounded-full bg-[var(--storyloop-filter)] px-2.5 py-1.5 text-[11px] font-semibold text-[var(--storyloop-filter-text)]">All⌄</span>
           </div>
           <div className="flex h-[72px] shrink-0 border-b border-[var(--storyloop-row-border)]">
-            <div className="w-28 shrink-0 bg-[var(--storyloop-row-label)] px-3.5 py-3.5">
+            <div className={`${compact ? "w-20 px-2.5" : "w-28 px-3.5"} shrink-0 bg-[var(--storyloop-row-label)] py-3.5`}>
               <div className="font-caption text-[8px] font-semibold tracking-[0.8px] text-[var(--storyloop-canvas-muted)]">BACKBONE</div>
               <div className="mt-1 text-[10px] text-[var(--storyloop-row-text)]">User goals</div>
             </div>
-            <div className="storyloop-card-grid flex-1">
-              {['Architecture', 'Home', 'Products'].map((label) => (
-                <div className="font-storyloop-title flex items-center rounded-sm border border-[var(--storyloop-note-blue-border)] bg-[var(--storyloop-note-blue)] px-2.5 text-[var(--storyloop-note-blue-text)]" key={label}>{label}</div>
+            <div className={`${compact ? "storyloop-card-grid-compact" : ""} storyloop-card-grid flex-1`}>
+              {backboneNotes.map((label) => (
+                <div className={`${compact ? "text-[11px] leading-[1.05]" : ""} font-storyloop-title flex min-w-0 items-center overflow-hidden rounded-sm border border-[var(--storyloop-note-blue-border)] bg-[var(--storyloop-note-blue)] px-2 text-[var(--storyloop-note-blue-text)]`} key={label}>{label}</div>
               ))}
             </div>
           </div>
           <div className="flex h-[72px] shrink-0 border-b border-[var(--storyloop-row-border)]">
-            <div className="w-28 shrink-0 bg-[var(--storyloop-row-label)] px-3.5 py-3.5">
+            <div className={`${compact ? "w-20 px-2.5" : "w-28 px-3.5"} shrink-0 bg-[var(--storyloop-row-label)] py-3.5`}>
               <div className="font-caption text-[8px] font-semibold tracking-[0.8px] text-[var(--storyloop-canvas-muted)]">NARRATIVE</div>
               <div className="mt-1 text-[10px] text-[var(--storyloop-row-text)]">User steps</div>
             </div>
-            <div className="storyloop-card-grid storyloop-card-grid-scroll flex-1">
-              {['Availability', 'Navigation', 'Sections', 'StoryLoops'].map((label) => (
-                <div className="font-storyloop-title flex items-center rounded-sm border border-[var(--storyloop-note-yellow-border)] bg-[var(--storyloop-note-yellow)] px-2 text-[var(--storyloop-note-yellow-text)]" key={label}>{label}</div>
+            <div className={`${compact ? "storyloop-card-grid-compact" : ""} storyloop-card-grid storyloop-card-grid-scroll flex-1`}>
+              {narrativeNotes.map((label) => (
+                <div className={`${compact ? "text-[11px] leading-[1.05]" : ""} font-storyloop-title flex min-w-0 items-center overflow-hidden rounded-sm border border-[var(--storyloop-note-yellow-border)] bg-[var(--storyloop-note-yellow)] px-2 text-[var(--storyloop-note-yellow-text)]`} key={label}>{label}</div>
               ))}
             </div>
           </div>
           <div className="flex min-h-0 flex-1">
-            <div className="w-28 shrink-0 border-r border-[var(--storyloop-row-border)] bg-[var(--storyloop-row-label)] px-3.5 py-4">
+            <div className={`${compact ? "w-20 px-2.5" : "w-28 px-3.5"} shrink-0 border-r border-[var(--storyloop-row-border)] bg-[var(--storyloop-row-label)] py-4`}>
               <div className="text-[10px] font-semibold text-[var(--storyloop-now)]">◆&nbsp; Now</div>
               <div className="mt-2 text-[9px] leading-relaxed text-[var(--storyloop-muted)]">9 stories<br />0% complete</div>
             </div>
-            <div className="storyloop-card-grid flex-1">
-              {mapStories.map(([reference, title]) => (
+            <div className={`${compact ? "storyloop-card-grid-compact" : ""} storyloop-card-grid flex-1`}>
+              {visibleStories.map(([reference, title]) => (
                 <div className="h-fit rounded border border-[var(--storyloop-card-border)] bg-[var(--storyloop-canvas)] px-2 py-1.5 shadow-[0_3px_6px_var(--storyloop-card-shadow)]" key={reference}>
                   <div className="font-caption text-[7px] font-semibold text-[var(--storyloop-card-id)]">• {reference}</div>
                   <div className="font-storyloop-title mt-1 text-[var(--storyloop-ink)]">{title}</div>
@@ -153,9 +173,9 @@ function DesktopStoryMap() {
   );
 }
 
-function MobileStoryMap() {
+function MobileStoryMap({ detail = false }: { detail?: boolean }) {
   return (
-    <div className="overflow-hidden rounded-[20px] bg-[var(--storyloop-shell)] min-[1024px]:hidden">
+    <div className={`${detail ? "" : "rounded-[20px]"} overflow-hidden bg-[var(--storyloop-shell)] min-[1440px]:hidden`}>
       <div className="flex h-[42px] items-center justify-between bg-[var(--storyloop-chrome)] px-4">
         <WindowDots small />
         <span className="font-caption text-[8px] font-semibold text-[var(--storyloop-text-dim)]">storyloops / product map</span>
@@ -183,6 +203,66 @@ function MobileStoryMap() {
   );
 }
 
+function OwnershipStrip({ labels }: { labels: string[] }) {
+  const icons = [CodeXml, CloudUpload, Bot];
+
+  return (
+    <ul className="grid gap-2 border-t border-[#334155] bg-[#111827] px-[18px] py-3 sm:grid-cols-3 min-[1024px]:h-12 min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-0 min-[1024px]:py-0">
+      {labels.map((label, index) => {
+        const Icon = icons[index] ?? CodeXml;
+
+        return (
+        <li
+          className="font-caption flex items-center justify-center gap-2 text-[9px] font-bold tracking-[0.5px] text-[#cbd5e1] min-[1024px]:justify-start"
+          key={label}
+        >
+          <Icon aria-hidden="true" className="text-[#7dd3fc]" size={14} strokeWidth={1.8} />
+          {label}
+        </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export function StoryLoopsProductMap({
+  compact = false,
+  ownershipLabels,
+}: {
+  compact?: boolean;
+  ownershipLabels?: string[];
+}) {
+  const detail = Boolean(ownershipLabels?.length);
+
+  return (
+    <figure className="w-full">
+      <div aria-hidden="true">
+        {detail && ownershipLabels ? (
+          <>
+            <div className="hidden overflow-hidden rounded-[18px] border border-[#334155] shadow-[0_16px_40px_var(--storyloop-shadow)] min-[1440px]:block">
+              <DesktopStoryMap compact={compact} detail />
+              <OwnershipStrip labels={ownershipLabels} />
+            </div>
+            <div className="overflow-hidden rounded-[20px] min-[1440px]:hidden">
+              <MobileStoryMap detail />
+              <OwnershipStrip labels={ownershipLabels} />
+            </div>
+          </>
+        ) : (
+          <>
+            <DesktopStoryMap compact={compact} />
+            <MobileStoryMap />
+          </>
+        )}
+      </div>
+      <figcaption className="sr-only">
+        A StoryLoops product map pairs product work with an agent panel that waits
+        for human approval before changing scope.
+      </figcaption>
+    </figure>
+  );
+}
+
 export function StoryLoopsShowcase() {
   return (
     <section className="bg-[var(--app-section)] px-6 pt-12 pb-0 min-[821px]:px-20 min-[821px]:pt-12" id="products">
@@ -192,13 +272,7 @@ export function StoryLoopsShowcase() {
         <h2 className="font-heading max-w-[1020px] text-[38px] leading-[1.06] font-medium text-[var(--app-text-primary)] min-[821px]:text-center min-[821px]:text-[44px] min-[821px]:leading-none">A product map that coding agents cannot quietly ignore.</h2>
         <p className="max-w-[760px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[821px]:text-center min-[821px]:leading-[1.45]">StoryLoops gives coding agents the product context for each task, then puts scope changes into a visual approval flow before the map changes.</p>
 
-        <figure className="mt-0 w-full min-[821px]:mt-0">
-          <div aria-hidden="true">
-            <DesktopStoryMap />
-            <MobileStoryMap />
-          </div>
-          <figcaption className="sr-only">A StoryLoops product map pairs approved homepage stories with an agent panel that waits for human approval before changing product scope.</figcaption>
-        </figure>
+        <StoryLoopsProductMap />
 
         <aside className="flex w-full flex-col gap-2 rounded-[14px] bg-[var(--app-muted-section)] p-4 min-[821px]:mt-2 min-[821px]:flex-row min-[821px]:items-center min-[821px]:gap-7 min-[821px]:rounded-2xl min-[821px]:px-[26px] min-[821px]:py-[22px]">
           <h3 className="font-caption shrink-0 text-[11px] font-bold tracking-[0.9px] text-[var(--app-label-text)] min-[821px]:tracking-[1.2px]">PROOF IN USE</h3>

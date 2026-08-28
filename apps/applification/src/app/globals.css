@@ -20,8 +20,8 @@
   --app-action: #0369a1;
   --app-action-hover: #075985;
   --app-text-on-action: #ffffff;
-  --app-text-on-accent: #082f49;
-  --app-accent-band: #0ea5e9;
+  --app-text-on-accent: light-dark(#082f49, #f8fafc);
+  --app-accent-band: light-dark(#0ea5e9, #0c4a6e);
   --app-focus: light-dark(#0369a1, #7dd3fc);
   --loop-bg: #02070c;
   --loop-header: #08131d;
@@ -104,6 +104,13 @@
   --contexture-amber: #fde68a;
   --contexture-green: #86efac;
   --contexture-shadow: #02061733;
+  --contexture-detail-accent: light-dark(#7c3aed, #c4b5fd);
+  --contexture-detail-title: light-dark(#3b0764, #f3e8ff);
+  --contexture-detail-description: light-dark(#6b21a8, #d8b4fe);
+  --contexture-detail-soft: light-dark(#f3e8ff, #2e1065);
+  --contexture-detail-border: light-dark(#d8b4fe, #7e22ce);
+  --contexture-action-text: light-dark(#ffffff, #1e1e2e);
+  --contexture-action-hover: light-dark(#6d28d9, #d8b4fe);
   --voiced-card: #f7faf8;
   --voiced-preview: #f7faf8;
   --voiced-ink: #101818;
@@ -160,7 +167,9 @@
   --cta-action-hover: #172554;
   --cta-action-active: #020617;
   --cta-action-text: #f8fafc;
-  --cta-focus: #082f49;
+  --cta-eyebrow: light-dark(#082f49, #7dd3fc);
+  --cta-description: light-dark(#082f49, #bae6fd);
+  --cta-focus: light-dark(#082f49, #7dd3fc);
 
   --background: var(--app-bg);
   --background-end: var(--app-bg-end);
@@ -219,6 +228,13 @@
     padding: 0.625rem;
   }
 
+  .storyloop-card-grid-compact {
+    --storyloop-card-width: min(120px, calc((100% - 0.5rem) / 2));
+
+    grid-template-columns: repeat(2, var(--storyloop-card-width));
+    padding: 0.5rem;
+  }
+
   .storyloop-card-grid-scroll {
     grid-auto-flow: column;
     grid-template-columns: none;
@@ -263,11 +279,11 @@ body {
 .page-shell {
   display: flex;
   width: min(1200px, calc(100% - 48px));
-  min-height: 620px;
+  min-height: 0;
   flex: 1;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 auto;
-  padding: 96px 0 120px;
+  padding: clamp(64px, 8vw, 96px) 0;
 }
 
 .page-intro {
@@ -318,8 +334,7 @@ body {
 
 @media (max-width: 820px) {
   .page-shell {
-    min-height: 540px;
-    padding: 72px 0 88px;
+    padding: 56px 0 72px;
   }
 }
 

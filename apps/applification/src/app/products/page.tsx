@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/page-shell";
+import { ProductsPageContent } from "@/components/products/products-page";
 
-export const metadata: Metadata = { title: "Products" };
+export const metadata: Metadata = {
+  title: "Products",
+  description:
+    "StoryLoops, Contexture, Voiced and Plantry. Products built around real work, visible systems and explicit human control.",
+};
 
 export default function ProductsPage() {
-  return (
-    <PageShell
-      eyebrow="Products"
-      title="Software built around real constraints."
-      description="StoryLoops, Contexture, Voiced and the product experiments that inform how I work with AI."
-    />
-  );
+  return <ProductsPageContent />;
 }

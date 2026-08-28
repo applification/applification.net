@@ -30,7 +30,7 @@ export function SiteFooter() {
           <span className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-text-primary)] uppercase min-[821px]:text-xs min-[821px]:font-semibold">
             Applification Ltd
           </span>
-          <span className="text-sm leading-[1.4] text-[var(--app-text-secondary)] min-[821px]:text-[13px]">
+          <span className="text-sm leading-[1.4] text-[var(--app-text-secondary)] min-[821px]:text-[13px] min-[821px]:leading-[17px]">
             Dave Hudson&nbsp; · &nbsp;Contract AI Product Engineer
           </span>
         </div>
@@ -40,7 +40,7 @@ export function SiteFooter() {
           className="flex flex-wrap items-center gap-x-[18px] gap-y-3 text-sm font-medium text-[var(--app-text-secondary)] min-[821px]:gap-6 min-[821px]:text-[13px] min-[821px]:font-normal"
         >
           {footerLinks.map((item) => {
-            const classes = `transition-colors hover:text-[var(--app-text-primary)] ${focusClasses}`;
+            const classes = `inline-flex min-h-11 items-center transition-colors hover:text-[var(--app-text-primary)] ${focusClasses}`;
 
             if (item.external) {
               return (
