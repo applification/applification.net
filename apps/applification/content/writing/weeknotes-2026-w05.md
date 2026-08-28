@@ -1,5 +1,5 @@
 ---
-title: 'Week 05, 2026'
+title: The rise of the generalist builder
 date: '2026-02-01'
 updated: '2026-02-01'
 type: weeknote

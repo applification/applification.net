@@ -1,5 +1,5 @@
 ---
-title: Weeknotes Ep 3
+title: Streaming UI in motion
 date: '2024-03-12'
 updated: '2024-03-14'
 type: weeknote

@@ -1,5 +1,5 @@
 ---
-title: 'Week 04, 2026'
+title: Design joins the agent loop
 date: '2026-01-25'
 updated: '2026-01-25'
 type: weeknote

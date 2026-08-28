@@ -1,5 +1,5 @@
 ---
-title: 'Week 02, 2026'
+title: Claude Code from my phone
 date: '2026-01-09'
 updated: '2026-01-09'
 type: weeknote

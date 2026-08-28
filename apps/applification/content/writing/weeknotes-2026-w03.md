@@ -1,5 +1,5 @@
 ---
-title: 'Week 03, 2026'
+title: When prompts replace pull requests
 date: '2026-01-18'
 updated: '2026-01-18'
 type: weeknote

@@ -1,5 +1,5 @@
 ---
-title: Weeknotes Ep 1
+title: Making server components feel instant
 date: '2024-02-29'
 updated: '2024-02-29'
 type: weeknote

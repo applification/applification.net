@@ -1,5 +1,5 @@
 ---
-title: Weeknotes Ep 2
+title: AI needs more than chat
 date: '2024-03-04'
 updated: '2024-03-07'
 type: weeknote
