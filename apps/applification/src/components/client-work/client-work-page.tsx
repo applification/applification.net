@@ -1,4 +1,5 @@
 import { ContractCta } from "@/components/home/contract-cta";
+import { ArrowUpRight } from "lucide-react";
 
 type EvidenceSectionProps = {
   description: string;
@@ -21,6 +22,13 @@ const currentBrief = [
   ["Base", "Durham, UK"],
   ["Preference", "Remote contracts"],
   ["Best fit", "Small product teams"],
+];
+
+const logicallyMetrics = [
+  ["6 months", "Rebuild to release"],
+  ["Days → minutes", "UI change time"],
+  ["Several / day", "Production releases"],
+  ["5 · 3 · 5", "FE · BE · Data Science"],
 ];
 
 function CurrentBrief() {
@@ -76,6 +84,105 @@ export function ClientWorkHero() {
           </p>
         </div>
         <CurrentBrief />
+      </div>
+    </section>
+  );
+}
+
+export function LogicallyCaseStudy() {
+  return (
+    <section
+      aria-labelledby="logically-case-heading"
+      className="bg-[var(--app-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:px-[120px] min-[1024px]:py-[88px]"
+      data-client-work-section="featured-logically-case"
+    >
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[38px]">
+        <div className="grid gap-6 min-[1024px]:grid-cols-[minmax(0,720px)_minmax(0,360px)_36px] min-[1024px]:items-end min-[1024px]:gap-[42px]">
+          <div className="flex min-w-0 flex-col gap-3">
+            <p className="font-caption text-xs font-semibold tracking-[1.25px] text-[var(--app-label-text)]">
+              FEATURED CASE&nbsp; / &nbsp;LOGICALLY
+            </p>
+            <h2
+              className="font-heading max-w-[720px] text-[40px] leading-[1.07] font-medium text-[var(--app-text-primary)] min-[720px]:text-5xl"
+              id="logically-case-heading"
+            >
+              Rebuilt the frontend, then connected AI to production.
+            </h2>
+          </div>
+          <p className="max-w-[360px] text-base leading-6 text-[var(--app-text-secondary)]">
+            Built most of the v2 frontend, then co-built its production Agentic
+            Chat for threat analysts.
+          </p>
+          <a
+            aria-label="Visit Logically, opens in a new tab"
+            className="inline-flex size-9 items-center justify-center rounded-full bg-[var(--client-logically-link)] text-white transition-colors hover:bg-[var(--app-action-hover)] active:bg-[var(--cta-action-active)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
+            href="https://logically.ai"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <ArrowUpRight aria-hidden="true" size={15} strokeWidth={2} />
+          </a>
+        </div>
+
+        <div className="grid items-start gap-6 min-[1024px]:grid-cols-[570px_minmax(0,606px)]">
+          <article className="flex flex-col gap-6 rounded-[22px] bg-[var(--client-narrative)] p-6 min-[720px]:p-8">
+            <h3 className="font-heading max-w-[500px] text-[30px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[720px]:text-[34px]">
+              A typed path from Databricks to the product.
+            </h3>
+            <p className="max-w-[500px] text-base leading-[1.6] text-[var(--app-text-secondary)]">
+              With one other engineer, I rebuilt an unsupported Create React
+              App frontend in Next.js and took it to production in six months.
+              Orval clients and Zod validation moved report logic behind typed
+              APIs, cutting duplicated frontend business rules.
+            </p>
+            <div className="rounded-[14px] bg-[var(--app-card)] px-5 py-[18px]">
+              <p className="font-caption text-[10px] font-bold tracking-[1px] text-[var(--client-brief-label)]">
+                ARCHITECTURE PATH
+              </p>
+              <p className="font-caption mt-2 text-[13px] leading-5 font-semibold text-[var(--app-text-primary)] min-[720px]:text-sm">
+                AI SDK UI&nbsp; → &nbsp;MCP&nbsp; → &nbsp;typed API&nbsp; →
+                &nbsp;Databricks
+              </p>
+            </div>
+          </article>
+
+          <aside
+            aria-labelledby="logically-evidence-heading"
+            className="flex flex-col gap-[22px] rounded-[22px] bg-[#0b1220] p-6 min-[720px]:p-8 min-[1024px]:min-h-[432px]"
+          >
+            <h3
+              className="font-caption text-[11px] font-bold tracking-[1.2px] text-[#7dd3fc]"
+              id="logically-evidence-heading"
+            >
+              CHANGE / EVIDENCE
+            </h3>
+            <dl className="grid gap-3.5 min-[560px]:grid-cols-2">
+              {logicallyMetrics.map(([value, label]) => (
+                <div
+                  className="flex min-h-[82px] flex-col justify-center gap-[5px] rounded-xl bg-[#111827] px-5 py-[14px]"
+                  key={label}
+                >
+                  <dd className="font-caption text-[19px] leading-7 font-bold text-[#f8fafc] min-[720px]:text-[22px]">
+                    {value}
+                  </dd>
+                  <dt className="font-caption text-[9px] font-semibold tracking-[0.9px] text-[#94a3b8] uppercase">
+                    {label}
+                  </dt>
+                </div>
+              ))}
+            </dl>
+            <div className="rounded-[14px] bg-[#172554] px-5 py-[18px]">
+              <p className="font-caption text-[10px] font-bold tracking-[1px] text-[#f9a8d4]">
+                PRODUCTION AI
+              </p>
+              <p className="mt-2 text-sm leading-[1.5] text-[#cbd5e1]">
+                Shipped Agentic Chat with Databricks tools. Call logging exposed
+                a React effect making thousands of unintended model calls at
+                roughly £500. The team traced it and stopped the waste.
+              </p>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
   );
@@ -157,14 +264,7 @@ export function ClientWorkPage() {
   return (
     <main>
       <ClientWorkHero />
-      <EvidenceSection
-        description="Built most of the v2 frontend, then co-built its production Agentic Chat for threat analysts."
-        eyebrow="FEATURED CASE / LOGICALLY"
-        headingId="logically-case-heading"
-        id="featured-logically-case"
-        title="Rebuilt the frontend, then connected AI to production."
-        tone="base"
-      />
+      <LogicallyCaseStudy />
       <EvidenceSection
         description="Two frontend contracts where the work changed how the teams designed, tested and released the product."
         eyebrow="SELECTED CONTRACTS"
