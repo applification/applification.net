@@ -45,6 +45,7 @@ export const careerTimeline = [
     title: "AI product R&D at Applification",
     description:
       "Building StoryLoops, Contexture and Voiced, with each product testing a different use for agentic workflows.",
+    current: true,
   },
 ] as const;
 
@@ -178,8 +179,8 @@ export function Positioning() {
 export function CareerTimeline() {
   return (
     <section className="bg-[var(--app-muted-section)]" data-about-section="timeline">
-      <div className="mx-auto grid w-full max-w-[1200px] gap-12 px-6 py-16 min-[900px]:grid-cols-[390px_minmax(0,700px)] min-[900px]:gap-20 min-[1200px]:px-0 min-[1200px]:py-[84px]">
-        <div className="flex flex-col gap-3.5">
+      <div className="mx-auto grid w-full max-w-[1200px] gap-12 px-6 py-16 min-[900px]:grid-cols-[350px_minmax(0,1fr)] min-[900px]:gap-24 min-[1200px]:px-0 min-[1200px]:py-[84px]">
+        <div className="flex flex-col gap-3.5 min-[900px]:sticky min-[900px]:top-24 min-[900px]:self-start">
           <p className="font-caption text-xs font-bold tracking-[1.2px] text-[var(--app-label-text)] uppercase">
             Selected timeline
           </p>
@@ -190,35 +191,66 @@ export function CareerTimeline() {
             The through-line is consistent: understand the product, make the
             architecture legible and help a small team ship it.
           </p>
+          <div className="mt-3 flex items-center gap-3" aria-hidden="true">
+            <span className="font-caption text-[10px] font-bold tracking-[0.8px] text-[var(--app-text-muted)] uppercase">
+              2003
+            </span>
+            <span className="h-px w-16 bg-[var(--app-border)]" />
+            <span className="font-caption text-[10px] font-bold tracking-[0.8px] text-[var(--app-text-muted)] uppercase">
+              Now
+            </span>
+          </div>
         </div>
 
-        <ol className="grid gap-[22px]">
-          {careerTimeline.map((entry) => (
-            <li className="grid gap-2 border-t border-[var(--app-border)] pt-[22px] first:border-t-0 first:pt-0 min-[520px]:grid-cols-[70px_1fr] min-[520px]:gap-[22px]" key={entry.year}>
-              <time className="font-caption text-xs font-bold text-[var(--app-label-text)]" dateTime={entry.year}>
+        <ol>
+          {careerTimeline.map((entry, index) => (
+            <li
+              className="relative grid grid-cols-[24px_minmax(0,1fr)] gap-x-4 pb-5 last:pb-0 min-[520px]:grid-cols-[64px_24px_minmax(0,1fr)] min-[520px]:gap-x-5"
+              key={entry.year}
+            >
+              <time
+                className="font-caption col-start-2 row-start-1 mb-2 text-[11px] font-bold tracking-[0.5px] text-[var(--app-label-text)] min-[520px]:col-start-1 min-[520px]:mb-0 min-[520px]:pt-[19px]"
+                dateTime={entry.year}
+              >
                 {entry.year}
               </time>
-              <div className="grid gap-1.5">
-                <h3 className="font-heading text-[23px] leading-[1.15] font-medium">
-                  {"href" in entry ? (
-                    <a
-                      className={`inline-flex items-center gap-2 underline decoration-[var(--app-border)] underline-offset-4 transition-colors hover:text-[var(--app-action)] ${focusClasses}`}
-                      href={entry.href}
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      {entry.title}
-                      <ArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
-                      <span className="sr-only">, opens in a new tab</span>
-                    </a>
-                  ) : (
-                    entry.title
-                  )}
-                </h3>
-                <p className="max-w-[580px] text-[15px] leading-[1.5] text-[var(--app-text-secondary)]">
+              <span
+                className="relative z-10 col-start-1 row-span-2 row-start-1 flex h-full min-h-7 justify-center min-[520px]:col-start-2 min-[520px]:row-span-1"
+                aria-hidden="true"
+              >
+                <span className="mt-[17px] size-3.5 rounded-full border-[3px] border-[var(--app-muted-section)] bg-[var(--app-accent)] ring-1 ring-[var(--app-accent)]" />
+                {index < careerTimeline.length - 1 ? (
+                  <span className="absolute top-8 -bottom-5 left-1/2 w-px -translate-x-1/2 bg-[var(--app-border)]" />
+                ) : null}
+              </span>
+              <article className="col-start-2 row-start-2 rounded-[18px] border border-[var(--app-border)] bg-[var(--app-card)] px-5 py-[18px] shadow-[0_16px_38px_-34px_#0b1220] min-[520px]:col-start-3 min-[520px]:row-start-1">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-heading text-[clamp(1.25rem,2.4vw,1.45rem)] leading-[1.15] font-medium">
+                    {"href" in entry ? (
+                      <a
+                        className={`inline-flex items-center gap-2 underline decoration-[var(--app-border)] underline-offset-4 transition-colors hover:text-[var(--app-action)] motion-reduce:transition-none ${focusClasses}`}
+                        href={entry.href}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        {entry.title}
+                        <ArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
+                        <span className="sr-only">, opens in a new tab</span>
+                      </a>
+                    ) : (
+                      entry.title
+                    )}
+                  </h3>
+                  {"current" in entry ? (
+                    <span className="font-caption mt-0.5 shrink-0 rounded-full bg-[var(--app-label)] px-2.5 py-1 text-[9px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase">
+                      Now
+                    </span>
+                  ) : null}
+                </div>
+                <p className="mt-2 max-w-[590px] text-[15px] leading-[1.52] text-[var(--app-text-secondary)]">
                   {entry.description}
                 </p>
-              </div>
+              </article>
             </li>
           ))}
         </ol>
