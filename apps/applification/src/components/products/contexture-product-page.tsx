@@ -1,5 +1,5 @@
 import { RefreshCw } from "lucide-react";
-import { ContractCta } from "@/components/home/contract-cta";
+import { ProductNavigator } from "@/components/products/product-navigator";
 import {
   ContextureSchemaPreview,
   contextureDomainEntities,
@@ -304,11 +304,7 @@ export function ContextureProductPage() {
 
       <ContextureAvailability />
 
-      <ContractCta
-        description="I can join an existing team or assemble the product, design and engineering team needed to deliver the project. Remote work across the UK."
-        title="Need a senior product engineer or a team to build your AI product?"
-        variant="dark"
-      />
+      <ProductNavigator current="contexture" />
     </main>
   );
 }

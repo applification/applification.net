@@ -39,6 +39,8 @@ const productHeaderThemes: Record<ProductHeaderTheme, ProductHeaderStyle> = {
     "--app-action-hover": "light-dark(#204f67, #9be4b1)",
     "--app-text-on-action": "light-dark(#fffbef, #102a3a)",
     "--app-focus": "light-dark(#2e7d4a, #9be4b1)",
+    "--header-nav-active": "light-dark(#153447, #78d696)",
+    "--header-nav-selected": "light-dark(#f3eee0, #193b4a)",
   },
   storyloops: {
     "--app-bg": "light-dark(#f9fafb, #111827)",
@@ -55,6 +57,8 @@ const productHeaderThemes: Record<ProductHeaderTheme, ProductHeaderStyle> = {
     "--app-action-hover": "light-dark(#1e293b, #ffffff)",
     "--app-text-on-action": "light-dark(#f8fafc, #303347)",
     "--app-focus": "light-dark(#6c63d9, #b9d2ff)",
+    "--header-nav-active": "light-dark(#0369a1, #7dd3fc)",
+    "--header-nav-selected": "light-dark(#e0f2fe, #172554)",
   },
   contexture: {
     "--app-bg": "#1e1e2e",
@@ -71,6 +75,8 @@ const productHeaderThemes: Record<ProductHeaderTheme, ProductHeaderStyle> = {
     "--app-action-hover": "#d8b4fe",
     "--app-text-on-action": "#1e1e2e",
     "--app-focus": "#89dceb",
+    "--header-nav-active": "#cba6f7",
+    "--header-nav-selected": "#313244",
   },
   voiced: {
     "--app-bg": "#eaf3ed",
@@ -87,6 +93,8 @@ const productHeaderThemes: Record<ProductHeaderTheme, ProductHeaderStyle> = {
     "--app-action-hover": "#254f42",
     "--app-text-on-action": "#f7faf8",
     "--app-focus": "#2f7a52",
+    "--header-nav-active": "#2f7a52",
+    "--header-nav-selected": "#d6eadc",
   },
 };
 
@@ -209,14 +217,14 @@ export function SiteHeader() {
               return (
                 <Link
                   aria-current={current ? "page" : undefined}
-                  className={`relative isolate inline-flex min-h-10 items-center text-sm font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--app-action)] aria-[current=page]:text-[var(--app-label-text)] ${focusClasses}`}
+                  className={`relative isolate inline-flex min-h-10 items-center text-sm font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
                   href={item.href}
                   key={item.href}
                 >
                   {current ? (
                     <motion.span
                       aria-hidden="true"
-                      className="absolute -inset-x-2 inset-y-1 -z-10 rounded-full bg-[var(--app-selected)]"
+                      className="absolute -inset-x-2 inset-y-1 -z-10 rounded-full bg-[var(--header-nav-selected,var(--app-selected))]"
                       data-testid="active-navigation-highlight"
                       layoutId="active-link"
                       transition={activeIndicatorTransition}
@@ -273,7 +281,7 @@ export function SiteHeader() {
                 <Link
                   ref={index === 0 ? firstMenuLinkRef : undefined}
                   aria-current={current ? "page" : undefined}
-                  className={`flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)] aria-[current=page]:bg-[var(--app-selected)] aria-[current=page]:text-[var(--app-label-text)] ${focusClasses}`}
+                  className={`flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)] aria-[current=page]:bg-[var(--header-nav-selected,var(--app-selected))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
                   href={item.href}
                   key={item.href}
                   onClick={() => setMenuState({ open: false, pathname })}
