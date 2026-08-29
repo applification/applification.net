@@ -55,26 +55,28 @@ const accentRingClasses = {
 };
 
 function EntityCard({
+  compact,
   detail,
   entity,
 }: {
+  compact: boolean;
   detail: boolean;
   entity: ContextureEntity;
 }) {
   return (
     <div
-      className={`${detail ? `${accentRingClasses[entity.accent]} min-h-[168px] rounded-xl p-[18px] ring-1 ring-inset sm:min-h-[210px]` : `${accentClasses[entity.accent]} min-w-0 rounded-lg border p-2.5 min-[1024px]:p-3`} bg-[#313244]`}
+      className={`${detail ? `${accentRingClasses[entity.accent]} min-h-[168px] rounded-xl p-[18px] ring-1 ring-inset sm:min-h-[210px]` : `${accentClasses[entity.accent]} min-w-0 rounded-lg border ${compact ? "p-2" : "p-2.5 min-[1024px]:p-3"}`} bg-[#313244]`}
     >
       <div
-        className={`${detail ? "text-sm leading-[18px]" : "break-words text-[9px] leading-[1.1] min-[821px]:text-[10px] min-[1280px]:text-xs"} font-data font-bold text-[#cdd6f4]`}
+        className={`${detail ? "text-sm leading-[18px]" : compact ? "truncate whitespace-nowrap text-[9px] leading-none" : "break-words text-[9px] leading-[1.1] min-[821px]:text-[10px] min-[1280px]:text-xs"} font-data font-bold text-[#cdd6f4]`}
       >
         {entity.name}
       </div>
       <ul
-        className={`${detail ? "mt-[14px] gap-0 text-xs leading-[1.6]" : "mt-2 gap-1.5 text-[7px] leading-[1.35] min-[1024px]:text-[9px]"} font-data grid text-[#bac2de]`}
+        className={`${detail ? "mt-[14px] gap-0 text-xs leading-[1.6]" : compact ? "mt-2 gap-1.5 overflow-hidden text-[7px] leading-[1.2]" : "mt-2 gap-1.5 text-[7px] leading-[1.35] min-[1024px]:text-[9px]"} font-data grid text-[#bac2de]`}
       >
-        {entity.fields.map((field) => (
-          <li className="break-words" key={field}>
+        {(compact ? entity.fields.slice(0, 2) : entity.fields).map((field) => (
+          <li className={compact ? "truncate whitespace-nowrap" : "break-words"} key={field}>
             {field}
           </li>
         ))}
@@ -95,12 +97,14 @@ function EntityConnector() {
 }
 
 type ContextureSchemaPreviewProps = {
+  compact?: boolean;
   description?: string;
   detail?: boolean;
   entities?: ContextureEntity[];
 };
 
 export function ContextureSchemaPreview({
+  compact = false,
   description = "Contexture schema preview with users, households and recipes tables.",
   detail = false,
   entities = listingEntities,
@@ -113,7 +117,7 @@ export function ContextureSchemaPreview({
           className="grid h-full grid-cols-3 gap-2 p-3.5 min-[1024px]:gap-3 min-[1024px]:p-5"
         >
           {entities.map((entity) => (
-            <EntityCard detail={false} entity={entity} key={entity.name} />
+            <EntityCard compact={compact} detail={false} entity={entity} key={entity.name} />
           ))}
         </div>
         <figcaption className="sr-only">{description}</figcaption>
@@ -136,7 +140,7 @@ export function ContextureSchemaPreview({
         <div className="grid min-h-0 flex-1 gap-3 p-[22px] sm:grid-cols-[minmax(0,1fr)_22px_minmax(0,1fr)_22px_minmax(0,1fr)] sm:gap-[14px] min-[1024px]:items-center">
           {entities.map((entity, index) => (
             <div className="contents" key={entity.name}>
-              <EntityCard detail entity={entity} />
+              <EntityCard compact={false} detail entity={entity} />
               {index < entities.length - 1 ? <EntityConnector /> : null}
             </div>
           ))}

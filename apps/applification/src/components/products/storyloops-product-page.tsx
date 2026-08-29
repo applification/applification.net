@@ -10,8 +10,8 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { DetailContextRail } from "@/components/detail-context-rail";
-import { ContractCta } from "@/components/home/contract-cta";
 import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
+import { ProductNavigator } from "@/components/products/product-navigator";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -324,18 +324,6 @@ function StoryLoopsAvailability() {
   );
 }
 
-function StoryLoopsContractCta() {
-  return (
-    <div className="min-[1024px]:[&>section]:h-[310px] min-[1024px]:[&>section>div>div>p:last-child]:leading-[1.27] min-[1024px]:[&>section>div>a]:h-[51px] min-[1024px]:[&>section>div>a]:w-[218px] min-[1024px]:[&>section>div>a]:px-5 [&>section>div>a]:whitespace-nowrap [&>section>div>a]:bg-[#f8fafc] [&>section>div>div>p:first-child]:text-[#94a3b8]">
-      <ContractCta
-        description="I can join an existing team or assemble the product, design and engineering team needed to deliver the project. Remote work across the UK."
-        title="Need a senior product engineer or a team to build your AI product?"
-        variant="dark"
-      />
-    </div>
-  );
-}
-
 export function StoryLoopsProductPage() {
   return (
     <main>
@@ -344,7 +332,7 @@ export function StoryLoopsProductPage() {
       <StoryLoopsOwnership />
       <StoryLoopsBuildPrinciples />
       <StoryLoopsAvailability />
-      <StoryLoopsContractCta />
+      <ProductNavigator current="storyloops" />
     </main>
   );
 }

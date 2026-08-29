@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ContractCta } from "@/components/home/contract-cta";
 import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
 import { PageHero } from "@/components/page-hero";
 import { ContextureSchemaPreview } from "@/components/products/contexture-schema-preview";
@@ -354,10 +353,6 @@ export function ProductsPageContent() {
       <FeaturedStoryLoops />
       <ProductDirectory />
       <SharedProductPrinciples />
-      <ContractCta
-        description="I can join an existing team or assemble the product, design and engineering team needed to deliver the project. Remote work across the UK."
-        title="Need a senior product engineer or a team to build your AI product?"
-      />
     </main>
   );
 }
