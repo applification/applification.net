@@ -192,7 +192,7 @@ function TabletAgentLoop() {
       </div>
 
       <div className="relative h-[156px] px-4 pt-3">
-        <div className="grid grid-cols-[minmax(0,1fr)_40px_minmax(0,1fr)] grid-rows-[34px_24px_34px] items-center">
+        <div className="mx-8 grid grid-cols-[minmax(0,1fr)_40px_minmax(0,1fr)] grid-rows-[34px_24px_34px] items-center">
           <AgentLoopNode node={loopNodes[0]} />
           <span className="flex justify-center text-[var(--loop-yellow)]">
             <FlowArrow direction="right" />
@@ -222,7 +222,7 @@ function TabletAgentLoop() {
           viewBox="0 0 100 144"
         >
           <path
-            d="M76 92V132H100V17H95"
+            d="M76 92V132H100V17"
             opacity="0.72"
             stroke="currentColor"
             strokeLinecap="round"
@@ -230,15 +230,10 @@ function TabletAgentLoop() {
             strokeWidth="1.5"
             vectorEffect="non-scaling-stroke"
           />
-          <path
-            d="m99 12-5 5 5 5"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2.25"
-            vectorEffect="non-scaling-stroke"
-          />
         </svg>
+        <span className="pointer-events-none absolute top-5 right-3.5 flex text-[var(--loop-pink)]">
+          <FlowArrow direction="left" />
+        </span>
         <span className="absolute right-6 bottom-[8px] bg-[var(--loop-bg)] px-3 text-[6.5px] font-bold tracking-[0.55px] whitespace-nowrap text-[var(--loop-pink)] uppercase">
           No · revise · run again
         </span>
@@ -270,7 +265,7 @@ function MobileAgentLoop() {
 
       <div className="px-4 pt-3 pb-4">
         <div className="relative">
-          <div className="mx-2 flex flex-col">
+          <div className="mx-9 flex flex-col">
             {loopNodes.map((node, index) => (
               <div className="contents" key={node.label}>
                 <AgentLoopNode node={node} />
@@ -309,7 +304,7 @@ function MobileAgentLoop() {
             viewBox="0 0 100 232"
           >
             <path
-              d="M98 153H100V79H95"
+              d="M94 153H99V79"
               opacity="0.72"
               stroke="currentColor"
               strokeLinecap="round"
@@ -317,15 +312,10 @@ function MobileAgentLoop() {
               strokeWidth="1.5"
               vectorEffect="non-scaling-stroke"
             />
-            <path
-              d="m99 74-5 5 5 5"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2.25"
-              vectorEffect="non-scaling-stroke"
-            />
           </svg>
+          <span className="pointer-events-none absolute top-[70px] right-0.75 flex text-[var(--loop-pink)]">
+            <FlowArrow direction="left" />
+          </span>
           <span className="absolute top-[108px] right-7 bg-[var(--loop-bg)] px-2 text-[6.5px] font-bold tracking-[0.55px] whitespace-nowrap text-[var(--loop-pink)] uppercase">
             No · revise · run again
           </span>
