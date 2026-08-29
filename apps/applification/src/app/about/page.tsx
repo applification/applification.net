@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/page-shell";
+import { AboutPage as AboutPageContent } from "@/components/about/about-page";
 
-export const metadata: Metadata = { title: "About" };
+const description =
+  "Dave Hudson is an independent AI Product Engineer building React and TypeScript products for small teams through Applification Ltd.";
+
+export const metadata: Metadata = {
+  title: "About Dave Hudson",
+  description,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Dave Hudson | Applification",
+    description,
+    url: "/about",
+  },
+  twitter: {
+    card: "summary",
+    title: "About Dave Hudson | Applification",
+    description,
+  },
+};
 
 export default function AboutPage() {
-  return (
-    <PageShell
-      eyebrow="About Dave Hudson"
-      title="Frontend judgement, full-stack delivery and AI-native practice."
-      description="I work through Applification Ltd on remote UK contracts, usually inside small teams with a product to shape."
-    />
-  );
+  return <AboutPageContent />;
 }
