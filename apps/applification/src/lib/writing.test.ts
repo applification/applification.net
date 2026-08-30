@@ -50,13 +50,13 @@ describe("deriveReadingTime", () => {
 });
 
 describe("the migrated writing collection", () => {
-  it("contains the 29 published posts and 7 published weeknotes", () => {
+  it("contains the 31 published posts and 7 published weeknotes", () => {
     const entries = getWriting({ includeDrafts: false });
 
-    expect(entries).toHaveLength(36);
-    expect(entries.filter((entry) => entry.type === "post")).toHaveLength(29);
+    expect(entries).toHaveLength(38);
+    expect(entries.filter((entry) => entry.type === "post")).toHaveLength(31);
     expect(entries.filter((entry) => entry.type === "weeknote")).toHaveLength(7);
-    expect(new Set(entries.map((entry) => entry.slug)).size).toBe(36);
+    expect(new Set(entries.map((entry) => entry.slug)).size).toBe(38);
     const topics = getWritingTopics({ includeDrafts: false });
     expect(topics).toContain("react");
     expect(topics).not.toContain("weeknote");
