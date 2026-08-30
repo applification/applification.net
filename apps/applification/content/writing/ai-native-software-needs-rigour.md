@@ -12,7 +12,7 @@ topics:
   - story-mapping
   - testing
 featured: false
-draft: true
+draft: false
 slug: ai-native-software-needs-rigour
 ---
 [Steve Ruiz's article, "Terrible advice for software engineers"](https://x.com/steveruizok/status/2093748670617256098) gave me a useful way to describe something I have experienced across several codebases.

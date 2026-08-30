@@ -12,7 +12,7 @@ topics:
   - product-development
   - story-mapping
 featured: false
-draft: true
+draft: false
 slug: rethinking-software-delivery-with-ai
 ---
 This blog post started as a conversation.
