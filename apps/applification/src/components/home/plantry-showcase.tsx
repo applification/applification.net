@@ -8,7 +8,8 @@ const previewAlt =
 
 export function PlantryShowcase() {
   return (
-    <section
+    <MotionReveal>
+      <section
       aria-labelledby="plantry-heading"
       className="bg-[var(--app-section)] px-6 pt-6 pb-14 min-[821px]:px-20 min-[1024px]:pt-8 min-[1024px]:pb-16"
       id="plantry"
@@ -77,6 +78,8 @@ export function PlantryShowcase() {
           ······&nbsp; BUILDING IN PUBLIC &nbsp;······
         </p>
       </div>
-    </section>
+      </section>
+    </MotionReveal>
   );
 }
+import { MotionReveal } from "./motion";

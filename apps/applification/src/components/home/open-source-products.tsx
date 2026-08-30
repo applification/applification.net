@@ -79,7 +79,7 @@ function ProductLink({ href, label, primary = false, product }: ProductLinkProps
 
   return (
     <a
-      className={`inline-flex min-h-11 items-center justify-center gap-[7px] rounded-lg px-3.5 text-xs font-bold transition-colors min-[1024px]:min-h-8 min-[1024px]:px-2.5 min-[1024px]:text-[11px] ${palette} ${focusClasses}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-[7px] rounded-lg px-3.5 text-xs font-bold transition-[background-color,border-color,color,transform] active:scale-[0.985] motion-reduce:transform-none min-[1024px]:min-h-8 min-[1024px]:px-2.5 min-[1024px]:text-[11px] ${palette} ${focusClasses}`}
       href={href}
       rel="noopener noreferrer"
       target="_blank"
@@ -302,10 +302,15 @@ export function OpenSourceProducts() {
         </header>
 
         <div className="flex flex-col gap-4 min-[720px]:gap-6 min-[1024px]:gap-8">
-          <ContextureCard />
-          <VoicedCard />
+          <MotionReveal>
+            <ContextureCard />
+          </MotionReveal>
+          <MotionReveal>
+            <VoicedCard />
+          </MotionReveal>
         </div>
       </div>
     </section>
   );
 }
+import { MotionReveal } from "./motion";

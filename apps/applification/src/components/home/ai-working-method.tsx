@@ -13,6 +13,8 @@ import {
   UserCheck,
   Waypoints,
 } from "lucide-react";
+import { WorkflowSequenceController } from "./motion";
+import { WorkflowBorderBeam } from "./workflow-border-beam";
 
 type WorkflowStep = {
   number: string;
@@ -104,9 +106,11 @@ function DesktopWorkflowStep({ step }: { step: WorkflowStep }) {
 
   return (
     <li
-      className="relative z-10 flex h-[138px] w-[84px] flex-col items-center gap-[7px] rounded-xl border border-[var(--app-border)] bg-[var(--workflow-node)] px-2 py-2.5 text-center"
+      className={`relative z-10 flex h-[138px] w-[84px] flex-col items-center gap-[7px] rounded-xl border border-[var(--app-border)] bg-[var(--workflow-node)] px-2 py-2.5 text-center ${step.desktopTone}`}
+      data-motion-node={step.title.toLowerCase()}
       data-motion-step={step.title.toLowerCase()}
     >
+      <WorkflowBorderBeam from="left" radius={12} to="right" />
       <span className={`font-caption text-[9px] leading-[11px] font-bold tracking-[0.6px] ${step.desktopTone}`}>
         {step.number}
       </span>
@@ -128,9 +132,11 @@ function MobileWorkflowStep({ step }: { step: WorkflowStep }) {
 
   return (
     <li
-      className={`relative z-10 flex h-[54px] items-center gap-2.5 rounded-[11px] border bg-[var(--app-muted-section)] px-2.5 py-2 ${step.mobileBorder}`}
+      className={`relative z-10 flex h-[54px] items-center gap-2.5 rounded-[11px] border bg-[var(--app-muted-section)] px-2.5 py-2 ${step.mobileBorder} ${step.mobileTone}`}
+      data-motion-node={step.title.toLowerCase()}
       data-motion-step={step.title.toLowerCase()}
     >
+      <WorkflowBorderBeam from="top" radius={11} to="bottom" />
       <span className={`font-caption text-[9px] leading-[11px] font-bold ${step.mobileTone}`}>
         {step.number}
       </span>
@@ -162,6 +168,7 @@ function DesktopWorkflowDiagram() {
             <span
               aria-hidden="true"
               className="size-[7px] rounded-full bg-[var(--workflow-live)] shadow-[0_0_8px_var(--workflow-live-glow)]"
+              data-motion-live
             />
             <p className="font-caption text-[11px] leading-[13px] font-[650] tracking-[0.8px] text-[var(--workflow-heading)]">
               DELIVERY WORKFLOW
@@ -178,29 +185,29 @@ function DesktopWorkflowDiagram() {
 
       <div className="relative h-[258px] w-full">
         <div aria-hidden="true">
-          <span className="absolute top-[136px] left-[359px] h-[38px] w-0.5 bg-[var(--workflow-checks-line)]" />
-          <span className="absolute top-[172px] left-[254px] h-0.5 w-[107px] bg-[var(--workflow-checks-line)]" />
-          <span className="absolute top-[136px] left-[253px] h-[38px] w-0.5 bg-[var(--workflow-checks-line)]" />
-          <ArrowLeft className="absolute top-[164px] left-[257px] z-20 size-4 text-[var(--workflow-checks)]" strokeWidth={2} />
-          <ArrowUp className="absolute top-[136px] left-[246px] z-20 size-4 text-[var(--workflow-checks)]" strokeWidth={2} />
-          <span className="font-caption absolute top-[160px] left-[278px] z-20 rounded-full bg-[var(--app-card)] px-[7px] py-1 text-[8px] leading-[10px] font-[650] tracking-[0.5px] text-[var(--workflow-checks)]">
+          <span className="absolute top-[136px] left-[359px] h-[38px] w-0.5 bg-[var(--workflow-checks-line)]" data-motion-connector="checks-return" />
+          <span className="absolute top-[172px] left-[254px] h-0.5 w-[107px] bg-[var(--workflow-checks-line)]" data-motion-connector="checks-return" />
+          <span className="absolute top-[136px] left-[253px] h-[38px] w-0.5 bg-[var(--workflow-checks-line)]" data-motion-connector="checks-return" />
+          <ArrowLeft className="absolute top-[164px] left-[257px] z-20 size-4 text-[var(--workflow-checks)]" data-motion-connector="checks-return" strokeWidth={2} />
+          <ArrowUp className="absolute top-[136px] left-[246px] z-20 size-4 text-[var(--workflow-checks)]" data-motion-connector="checks-return" strokeWidth={2} />
+          <span className="font-caption absolute top-[160px] left-[278px] z-20 rounded-full bg-[var(--app-card)] px-[7px] py-1 text-[8px] leading-[10px] font-[650] tracking-[0.5px] text-[var(--workflow-checks)]" data-motion-connector="checks-return" data-motion-label>
             CHECK FAILS
           </span>
 
-          <span className="absolute top-[136px] left-[465px] h-[82px] w-0.5 bg-[var(--workflow-human-line)]" />
-          <span className="absolute top-[216px] left-[148px] h-0.5 w-[319px] bg-[var(--workflow-human-line)]" />
-          <span className="absolute top-[136px] left-[147px] h-[82px] w-0.5 bg-[var(--workflow-human-line)]" />
-          <ArrowDown className="absolute top-[150px] left-[458px] z-20 size-4 text-[var(--workflow-human)]" strokeWidth={2} />
-          <ArrowLeft className="absolute top-[208px] left-[152px] z-20 size-4 text-[var(--workflow-human)]" strokeWidth={2} />
-          <ArrowUp className="absolute top-[136px] left-[140px] z-20 size-4 text-[var(--workflow-human)]" strokeWidth={2} />
-          <span className="font-caption absolute top-[204px] left-[271px] z-20 rounded-full bg-[var(--app-card)] px-[7px] py-1 text-[8px] leading-[10px] font-[650] tracking-[0.5px] text-[var(--workflow-human)]">
+          <span className="absolute top-[136px] left-[465px] h-[82px] w-0.5 bg-[var(--workflow-human-line)]" data-motion-connector="human-return" />
+          <span className="absolute top-[216px] left-[148px] h-0.5 w-[319px] bg-[var(--workflow-human-line)]" data-motion-connector="human-return" />
+          <span className="absolute top-[136px] left-[147px] h-[82px] w-0.5 bg-[var(--workflow-human-line)]" data-motion-connector="human-return" />
+          <ArrowDown className="absolute top-[150px] left-[458px] z-20 size-4 text-[var(--workflow-human)]" data-motion-connector="human-return" strokeWidth={2} />
+          <ArrowLeft className="absolute top-[208px] left-[152px] z-20 size-4 text-[var(--workflow-human)]" data-motion-connector="human-return" strokeWidth={2} />
+          <ArrowUp className="absolute top-[136px] left-[140px] z-20 size-4 text-[var(--workflow-human)]" data-motion-connector="human-return" strokeWidth={2} />
+          <span className="font-caption absolute top-[204px] left-[271px] z-20 rounded-full bg-[var(--app-card)] px-[7px] py-1 text-[8px] leading-[10px] font-[650] tracking-[0.5px] text-[var(--workflow-human)]" data-motion-connector="human-return" data-motion-label>
             HUMAN REDIRECTS
           </span>
 
-          <ArrowRight className="absolute top-[58px] left-[84px] z-20 size-[22px] text-[var(--workflow-agent)]" strokeWidth={2} />
-          <ArrowRight className="absolute top-[58px] left-[190px] z-20 size-[22px] text-[var(--workflow-agent)]" strokeWidth={2} />
-          <ArrowRight className="absolute top-[58px] left-[296px] z-20 size-[22px] text-[var(--workflow-agent)]" strokeWidth={2} />
-          <ArrowRight className="absolute top-[58px] left-[402px] z-20 size-[22px] text-[var(--workflow-agent)]" strokeWidth={2} />
+          <ArrowRight className="absolute top-[58px] left-[84px] z-20 size-[22px] text-[var(--workflow-agent)]" data-motion-connector="intent-context" strokeWidth={2} />
+          <ArrowRight className="absolute top-[58px] left-[190px] z-20 size-[22px] text-[var(--workflow-agent)]" data-motion-connector="context-build" strokeWidth={2} />
+          <ArrowRight className="absolute top-[58px] left-[296px] z-20 size-[22px] text-[var(--workflow-agent)]" data-motion-connector="build-evidence" strokeWidth={2} />
+          <ArrowRight className="absolute top-[58px] left-[402px] z-20 size-[22px] text-[var(--workflow-agent)]" data-motion-connector="evidence-approve" strokeWidth={2} />
         </div>
 
         <ol className="absolute inset-x-0 top-0 grid grid-cols-[repeat(5,84px)] gap-[22px]">
@@ -225,9 +232,16 @@ function MobileWorkflowDiagram() {
       id="workflow-diagram-mobile"
     >
       <div className="flex h-5 shrink-0 items-center justify-between">
-        <p className="font-caption text-[10px] leading-[13px] font-[650] tracking-[0.7px] text-[var(--workflow-mobile-heading)]">
-          DELIVERY WORKFLOW
-        </p>
+        <div className="flex items-center gap-1.5">
+          <span
+            aria-hidden="true"
+            className="size-1.5 rounded-full bg-[var(--workflow-live)] shadow-[0_0_8px_var(--workflow-live-glow)]"
+            data-motion-live
+          />
+          <p className="font-caption text-[10px] leading-[13px] font-[650] tracking-[0.7px] text-[var(--workflow-mobile-heading)]">
+            DELIVERY WORKFLOW
+          </p>
+        </div>
         <span className="font-caption rounded-full bg-[var(--workflow-mobile-badge)] px-[7px] py-[5px] text-[8px] leading-[10px] font-[650] text-[var(--workflow-mobile-heading)]">
           2 LOOPS
         </span>
@@ -235,22 +249,22 @@ function MobileWorkflowDiagram() {
 
       <div className="relative h-[382px] w-full shrink-0">
         <div aria-hidden="true">
-          <span className="absolute top-[170px] right-2.5 h-0.5 w-6 bg-[var(--workflow-mobile-checks-line)]" />
-          <span className="absolute top-[170px] right-2.5 h-[74px] w-0.5 bg-[var(--workflow-mobile-checks-line)]" />
-          <span className="absolute top-[242px] right-2.5 h-0.5 w-6 bg-[var(--workflow-mobile-checks-line)]" />
-          <ArrowLeft className="absolute top-[162px] right-[18px] z-20 size-4 text-[var(--workflow-mobile-checks)]" strokeWidth={2} />
-          <RotateCcw className="absolute top-[194px] right-2 z-20 size-4 text-[var(--workflow-mobile-checks)]" strokeWidth={2} />
+          <span className="absolute top-[170px] right-2.5 h-0.5 w-6 bg-[var(--workflow-mobile-checks-line)]" data-motion-connector="checks-return" />
+          <span className="absolute top-[170px] right-2.5 h-[74px] w-0.5 bg-[var(--workflow-mobile-checks-line)]" data-motion-connector="checks-return" />
+          <span className="absolute top-[242px] right-2.5 h-0.5 w-6 bg-[var(--workflow-mobile-checks-line)]" data-motion-connector="checks-return" />
+          <ArrowLeft className="absolute top-[162px] right-[18px] z-20 size-4 text-[var(--workflow-mobile-checks)]" data-motion-connector="checks-return" strokeWidth={2} />
+          <RotateCcw className="absolute top-[194px] right-2 z-20 size-4 text-[var(--workflow-mobile-checks)]" data-motion-connector="checks-return" strokeWidth={2} />
 
-          <span className="absolute top-[98px] left-2.5 h-0.5 w-6 bg-[var(--workflow-mobile-human-line)]" />
-          <span className="absolute top-[98px] left-2.5 h-[218px] w-0.5 bg-[var(--workflow-mobile-human-line)]" />
-          <span className="absolute top-[314px] left-2.5 h-0.5 w-6 bg-[var(--workflow-mobile-human-line)]" />
-          <ArrowRight className="absolute top-[90px] left-[18px] z-20 size-4 text-[var(--workflow-mobile-human)]" strokeWidth={2} />
-          <RotateCcw className="absolute top-[198px] left-0.5 z-20 size-4 text-[var(--workflow-mobile-human)]" strokeWidth={2} />
+          <span className="absolute top-[98px] left-2.5 h-0.5 w-6 bg-[var(--workflow-mobile-human-line)]" data-motion-connector="human-return" />
+          <span className="absolute top-[98px] left-2.5 h-[218px] w-0.5 bg-[var(--workflow-mobile-human-line)]" data-motion-connector="human-return" />
+          <span className="absolute top-[314px] left-2.5 h-0.5 w-6 bg-[var(--workflow-mobile-human-line)]" data-motion-connector="human-return" />
+          <ArrowRight className="absolute top-[90px] left-[18px] z-20 size-4 text-[var(--workflow-mobile-human)]" data-motion-connector="human-return" strokeWidth={2} />
+          <RotateCcw className="absolute top-[198px] left-0.5 z-20 size-4 text-[var(--workflow-mobile-human)]" data-motion-connector="human-return" strokeWidth={2} />
 
-          <ArrowDown className="absolute top-[54px] left-1/2 z-20 h-[18px] w-4 -translate-x-1/2 text-[var(--workflow-mobile-agent)]" strokeWidth={2} />
-          <ArrowDown className="absolute top-[126px] left-1/2 z-20 h-[18px] w-4 -translate-x-1/2 text-[var(--workflow-mobile-agent)]" strokeWidth={2} />
-          <ArrowDown className="absolute top-[198px] left-1/2 z-20 h-[18px] w-4 -translate-x-1/2 text-[var(--workflow-mobile-agent)]" strokeWidth={2} />
-          <ArrowDown className="absolute top-[270px] left-1/2 z-20 h-[18px] w-4 -translate-x-1/2 text-[var(--workflow-mobile-agent)]" strokeWidth={2} />
+          <ArrowDown className="absolute top-[54px] left-1/2 z-20 h-[18px] w-4 -translate-x-1/2 text-[var(--workflow-mobile-agent)]" data-motion-connector="intent-context" strokeWidth={2} />
+          <ArrowDown className="absolute top-[126px] left-1/2 z-20 h-[18px] w-4 -translate-x-1/2 text-[var(--workflow-mobile-agent)]" data-motion-connector="context-build" strokeWidth={2} />
+          <ArrowDown className="absolute top-[198px] left-1/2 z-20 h-[18px] w-4 -translate-x-1/2 text-[var(--workflow-mobile-agent)]" data-motion-connector="build-evidence" strokeWidth={2} />
+          <ArrowDown className="absolute top-[270px] left-1/2 z-20 h-[18px] w-4 -translate-x-1/2 text-[var(--workflow-mobile-agent)]" data-motion-connector="evidence-approve" strokeWidth={2} />
         </div>
 
         <ol className="absolute inset-x-[34px] top-0 flex flex-col gap-[18px]">
@@ -260,11 +274,11 @@ function MobileWorkflowDiagram() {
         </ol>
 
         <div className="font-caption absolute inset-x-[34px] top-[354px] flex items-center justify-between text-[7px] leading-[9px] font-semibold">
-          <span className="flex items-center gap-[5px] text-[var(--workflow-mobile-checks)]">
+          <span className="flex items-center gap-[5px] text-[var(--workflow-mobile-checks)]" data-motion-connector="checks-return" data-motion-label>
             <span className="size-1.5 rounded-full bg-current" />
             CHECKS → BUILD
           </span>
-          <span className="flex items-center gap-[5px] text-[var(--workflow-mobile-human)]">
+          <span className="flex items-center gap-[5px] text-[var(--workflow-mobile-human)]" data-motion-connector="human-return" data-motion-label>
             <span className="size-1.5 rounded-full bg-current" />
             APPROVAL → CONTEXT
           </span>
@@ -309,6 +323,7 @@ export function AiWorkingMethod() {
       className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[72px] min-[1100px]:px-6 min-[1280px]:px-20 min-[1440px]:px-[120px]"
       id="method"
     >
+      <WorkflowSequenceController />
       <div className="mx-auto grid w-full max-w-[1200px] gap-6 min-[768px]:justify-items-center min-[1100px]:grid-cols-[470px_540px] min-[1100px]:items-center min-[1100px]:justify-between min-[1100px]:justify-items-stretch min-[1100px]:gap-10 min-[1280px]:grid-cols-[500px_540px] min-[1280px]:gap-[60px]">
         <div className="flex w-full max-w-[500px] flex-col gap-6 min-[768px]:h-[386px] min-[768px]:gap-[22px] min-[1100px]:max-w-[470px] min-[1280px]:max-w-[500px]">
           <p className="font-caption text-[11px] leading-[14px] font-bold tracking-[1px] text-[var(--workflow-section-label)] min-[768px]:text-xs min-[768px]:leading-4 min-[768px]:font-semibold">

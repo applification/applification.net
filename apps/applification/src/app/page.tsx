@@ -4,6 +4,7 @@ import { CommercialProof } from "@/components/home/commercial-proof";
 import { ContractCta } from "@/components/home/contract-cta";
 import { Hero } from "@/components/home/hero";
 import { OpenSourceProducts } from "@/components/home/open-source-products";
+import { PlantryShowcase } from "@/components/home/plantry-showcase";
 import { StoryLoopsShowcase } from "@/components/home/storyloops-showcase";
 
 export default function HomePage() {
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Hero />
       <CommercialProof />
       <StoryLoopsShowcase />
+      <PlantryShowcase />
       <ClientOutcomes />
       <OpenSourceProducts />
       <AiWorkingMethod />
