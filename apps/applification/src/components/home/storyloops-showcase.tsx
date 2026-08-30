@@ -1,4 +1,4 @@
-import { Bot, CloudUpload, CodeXml } from "lucide-react";
+import { Bot, ChevronDown, CloudUpload, CodeXml } from "lucide-react";
 import { MotionReveal } from "./motion";
 
 const mapStories = [
@@ -106,7 +106,10 @@ function DesktopStoryMap({
           </div>
           <div className="flex items-center justify-between border-b border-[var(--storyloop-canvas-border)] px-4 py-2.5">
             <span className="text-xs font-semibold text-[var(--storyloop-map-title)]">◇&nbsp; Product story map · 9 stories</span>
-            <span className="rounded-full bg-[var(--storyloop-filter)] px-2.5 py-1.5 text-[11px] font-semibold text-[var(--storyloop-filter-text)]">All⌄</span>
+            <span className="inline-flex h-6 items-center gap-1 rounded-md border border-[var(--storyloop-card-border)] bg-[var(--storyloop-filter)] px-2 text-[10px] font-semibold text-[var(--storyloop-filter-text)]">
+              All
+              <ChevronDown aria-hidden="true" size={11} strokeWidth={1.8} />
+            </span>
           </div>
           <div className="flex h-[72px] shrink-0 border-b border-[var(--storyloop-row-border)]">
             <div className={`${compact ? "w-20 px-2.5" : "w-28 px-3.5"} shrink-0 bg-[var(--storyloop-row-label)] py-3.5`}>
