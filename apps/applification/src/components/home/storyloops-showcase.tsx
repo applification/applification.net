@@ -1,4 +1,5 @@
-import { Bot, CloudUpload, CodeXml } from "lucide-react";
+import { Bot, ChevronDown, CloudUpload, CodeXml } from "lucide-react";
+import { MotionReveal } from "./motion";
 
 const mapStories = [
   ["S-01", "Availability banner"],
@@ -105,7 +106,10 @@ function DesktopStoryMap({
           </div>
           <div className="flex items-center justify-between border-b border-[var(--storyloop-canvas-border)] px-4 py-2.5">
             <span className="text-xs font-semibold text-[var(--storyloop-map-title)]">◇&nbsp; Product story map · 9 stories</span>
-            <span className="rounded-full bg-[var(--storyloop-filter)] px-2.5 py-1.5 text-[11px] font-semibold text-[var(--storyloop-filter-text)]">All⌄</span>
+            <span className="inline-flex h-6 items-center gap-1 rounded-md border border-[var(--storyloop-card-border)] bg-[var(--storyloop-filter)] px-2 text-[10px] font-semibold text-[var(--storyloop-filter-text)]">
+              All
+              <ChevronDown aria-hidden="true" size={11} strokeWidth={1.8} />
+            </span>
           </div>
           <div className="flex h-[72px] shrink-0 border-b border-[var(--storyloop-row-border)]">
             <div className={`${compact ? "w-20 px-2.5" : "w-28 px-3.5"} shrink-0 bg-[var(--storyloop-row-label)] py-3.5`}>
@@ -265,8 +269,9 @@ export function StoryLoopsProductMap({
 
 export function StoryLoopsShowcase() {
   return (
-    <section className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-20 min-[1024px]:py-16" id="products">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 min-[720px]:items-center min-[720px]:gap-[18px]">
+    <MotionReveal>
+      <section className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-20 min-[1024px]:py-16" id="products">
+        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 min-[720px]:items-center min-[720px]:gap-[18px]">
         <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] min-[720px]:tracking-[1.1px]">FLAGSHIP PRODUCT&nbsp; · &nbsp;STORYLOOPS</p>
         <h2 className="font-heading max-w-[1020px] text-[36px] leading-[1.04] font-medium text-[var(--app-text-primary)] min-[720px]:text-center min-[720px]:text-[44px] min-[720px]:leading-none">A product map that coding agents cannot quietly ignore.</h2>
         <p className="max-w-[760px] text-[15px] leading-[1.5] text-[var(--app-text-secondary)] min-[720px]:text-center min-[720px]:text-base min-[720px]:leading-[1.45]">StoryLoops gives each task product context, then makes scope changes visible for approval before the map changes.</p>
@@ -277,7 +282,8 @@ export function StoryLoopsShowcase() {
           <h3 className="font-caption shrink-0 text-[11px] font-bold tracking-[0.9px] text-[var(--app-label-text)] min-[720px]:tracking-[1.2px]">USED ON THIS SITE</h3>
           <p className="text-sm leading-[1.5] text-[var(--app-text-secondary)] min-[720px]:text-[15px]">Codex proposed this work in chat and on the map, then implemented only the approved scope.</p>
         </aside>
-      </div>
-    </section>
+        </div>
+      </section>
+    </MotionReveal>
   );
 }

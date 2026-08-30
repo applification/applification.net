@@ -33,7 +33,7 @@ export function CommercialProof() {
           </span>
         </p>
 
-        <dl className="flex flex-col min-[720px]:flex-row">
+        <ProofStagger className="flex flex-col min-[720px]:flex-row">
           {proofPoints.map((point, index) => (
             <div
               className={`flex items-center gap-4 py-2.5 min-[720px]:flex-1 min-[720px]:flex-col min-[720px]:items-start min-[720px]:gap-[5px] min-[720px]:py-0 ${
@@ -51,8 +51,9 @@ export function CommercialProof() {
               </dd>
             </div>
           ))}
-        </dl>
+        </ProofStagger>
       </div>
     </section>
   );
 }
+import { ProofStagger } from "./motion";

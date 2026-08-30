@@ -98,7 +98,8 @@ function CompactOutcome({
 
 export function ClientOutcomes() {
   return (
-    <section
+    <MotionReveal>
+      <section
       aria-labelledby="client-outcomes-heading"
       className="bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[72px] min-[1280px]:px-20 min-[1440px]:px-[120px]"
       id="client-work"
@@ -129,6 +130,8 @@ export function ClientOutcomes() {
           ))}
         </ul>
       </div>
-    </section>
+      </section>
+    </MotionReveal>
   );
 }
+import { MotionReveal } from "./motion";

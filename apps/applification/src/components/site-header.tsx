@@ -3,7 +3,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutGroup, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 
@@ -238,7 +238,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-3">
             <ThemeSwitcher />
             <a
-              className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm leading-[18px] font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
+              className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm leading-[18px] font-semibold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
               href={contactHref}
             >
               <span className="min-[1024px]:hidden">Contact</span>
@@ -251,7 +251,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center min-[700px]:hidden">
-          <button
+          <motion.button
             ref={menuButtonRef}
             aria-controls="mobile-navigation"
             aria-expanded={menuOpen}
@@ -261,48 +261,58 @@ export function SiteHeader() {
               setMenuState({ open: !menuOpen, pathname })
             }
             type="button"
+            whileTap={reduceMotion ? undefined : { scale: 0.96 }}
           >
             <MenuIcon open={menuOpen} />
-          </button>
+          </motion.button>
         </div>
       </div>
 
-      {menuOpen ? (
-        <nav
-          aria-label="Mobile navigation"
-          className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[700px]:hidden"
-          id="mobile-navigation"
-        >
-          <div className="mx-auto flex max-w-md flex-col gap-1">
-            {navigation.map((item, index) => {
-              const current = isCurrentPath(pathname, item.href);
+      <AnimatePresence initial={false}>
+        {menuOpen ? (
+          <motion.nav
+            animate={{ y: 0 }}
+            aria-label="Mobile navigation"
+            className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[700px]:hidden"
+            exit={reduceMotion ? undefined : { y: -6 }}
+            id="mobile-navigation"
+            initial={reduceMotion ? false : { y: -8 }}
+            transition={{
+              duration: reduceMotion ? 0.01 : 0.18,
+              ease: "easeOut",
+            }}
+          >
+            <div className="mx-auto flex max-w-md flex-col gap-1">
+              {navigation.map((item, index) => {
+                const current = isCurrentPath(pathname, item.href);
 
-              return (
-                <Link
-                  ref={index === 0 ? firstMenuLinkRef : undefined}
-                  aria-current={current ? "page" : undefined}
-                  className={`flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)] aria-[current=page]:bg-[var(--header-nav-selected,var(--app-selected))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
-                  href={item.href}
-                  key={item.href}
-                  onClick={() => setMenuState({ open: false, pathname })}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <div className="my-2 border-t border-[var(--app-border)] pt-2">
-              <ThemeSwitcher labelled />
+                return (
+                  <Link
+                    ref={index === 0 ? firstMenuLinkRef : undefined}
+                    aria-current={current ? "page" : undefined}
+                    className={`flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)] aria-[current=page]:bg-[var(--header-nav-selected,var(--app-selected))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
+                    href={item.href}
+                    key={item.href}
+                    onClick={() => setMenuState({ open: false, pathname })}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <div className="my-2 border-t border-[var(--app-border)] pt-2">
+                <ThemeSwitcher labelled />
+              </div>
+              <a
+                className={`mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-5 text-base font-semibold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
+                href={contactHref}
+              >
+                Discuss a contract
+                <ArrowUpRightIcon />
+              </a>
             </div>
-            <a
-              className={`mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-5 text-base font-semibold text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] ${focusClasses}`}
-              href={contactHref}
-            >
-              Discuss a contract
-              <ArrowUpRightIcon />
-            </a>
-          </div>
-        </nav>
-      ) : null}
+          </motion.nav>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }

@@ -3,26 +3,20 @@ const focusClasses =
 
 const schemaNodes = [
   {
-    name: "stories",
-    detail: "20 tables",
+    name: "source model",
+    detail: "tables, refs, indexes",
     tone: "border-[var(--contexture-purple)]",
   },
   {
-    name: "generated contracts",
-    detail: "287 fields",
+    name: "generated Convex files",
+    detail: "schema, validators",
     tone: "border-[var(--contexture-pink)]",
   },
   {
-    name: "agent context",
-    detail: "84 references",
+    name: "reviewable agent changes",
+    detail: "MCP, drift checks",
     tone: "border-[var(--contexture-amber)]",
   },
-];
-
-const contextureMetrics = [
-  { value: "20", label: "tables" },
-  { value: "287", label: "fields" },
-  { value: "84", label: "references" },
 ];
 
 type ProductLinkProps = {
@@ -79,7 +73,7 @@ function ProductLink({ href, label, primary = false, product }: ProductLinkProps
 
   return (
     <a
-      className={`inline-flex min-h-11 items-center justify-center gap-[7px] rounded-lg px-3.5 text-xs font-bold transition-colors min-[1024px]:min-h-8 min-[1024px]:px-2.5 min-[1024px]:text-[11px] ${palette} ${focusClasses}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-[7px] rounded-lg px-3.5 text-xs font-bold transition-[background-color,border-color,color,transform] active:scale-[0.985] motion-reduce:transform-none min-[1024px]:min-h-8 min-[1024px]:px-2.5 min-[1024px]:text-[11px] ${palette} ${focusClasses}`}
       href={href}
       rel="noopener noreferrer"
       target="_blank"
@@ -95,7 +89,7 @@ function ProductLink({ href, label, primary = false, product }: ProductLinkProps
 function ContextureGraph() {
   return (
     <div
-      aria-label="One reviewed Contexture model feeding generated application contracts and coding-agent context."
+      aria-label="A reviewed Contexture source model generating Convex files and accepting reviewable coding-agent changes through MCP."
       className="hidden overflow-hidden rounded-xl border border-[var(--contexture-border)] bg-[var(--contexture-surface)] min-[720px]:block"
       role="img"
     >
@@ -103,7 +97,7 @@ function ContextureGraph() {
         <div className="font-caption flex h-9 items-center justify-between border-b border-[var(--contexture-border)] bg-[var(--contexture-surface-raised)] px-3 text-[8px] font-semibold text-[var(--contexture-muted)]">
           <span className="text-[var(--contexture-text)]">
             <span className="text-[var(--contexture-purple)]">●</span>
-            &nbsp; Contexture / StoryLoops
+            &nbsp; Contexture / Convex model
           </span>
           <span>REVIEWED MODEL</span>
         </div>
@@ -145,11 +139,12 @@ function ContextureCard() {
             </span>
           </div>
           <h3 className="font-heading mt-3 text-[32px] leading-none font-medium text-[var(--contexture-text)] min-[1024px]:text-[42px]">
-            See the schema. Give the agent context.
+            The visual source of truth for Convex apps.
           </h3>
           <p className="mt-3 max-w-[680px] text-sm leading-[1.5] text-[var(--contexture-muted)] min-[1024px]:text-base">
-            Model the product once. The app, generated contracts and coding
-            agents all work from the same reviewed structure.
+            Model tables, refs and indexes once, generate the files your app
+            imports, and let coding agents propose constrained, reviewable
+            changes through MCP.
           </p>
         </div>
         <div className="grid shrink-0 grid-cols-2 gap-2 min-[1024px]:flex">
@@ -169,29 +164,13 @@ function ContextureCard() {
 
       <ContextureGraph />
 
-      <dl className="hidden grid-cols-3 gap-2 min-[720px]:grid">
-        {contextureMetrics.map((metric) => (
-          <div
-            className="rounded-lg bg-[var(--contexture-surface)] px-2 py-3 text-center min-[1024px]:text-left"
-            key={metric.label}
-          >
-            <dt className="font-data text-lg font-bold text-[var(--contexture-cyan)] min-[1024px]:text-xl">
-              {metric.value}
-            </dt>
-            <dd className="font-caption mt-0.5 text-[8px] font-semibold tracking-[0.6px] text-[var(--contexture-muted)] uppercase min-[1024px]:text-[9px]">
-              {metric.label}
-            </dd>
-          </div>
-        ))}
-      </dl>
-
       <div className="font-caption hidden min-h-14 items-center justify-between rounded-[10px] bg-[var(--contexture-surface-raised)] px-[18px] text-[11px] font-bold min-[1024px]:flex">
-        <span className="text-[var(--contexture-cyan)]">THE TRUSTED LOOP</span>
+        <span className="text-[var(--contexture-cyan)]">THE REVIEWED LOOP</span>
         <span>01&nbsp; MODEL</span>
         <span>02&nbsp; GENERATE</span>
-        <span>03&nbsp; REVIEW</span>
+        <span>03&nbsp; PROPOSE</span>
         <span className="rounded-full bg-[var(--contexture-surface)] px-3 py-1.5 text-[var(--contexture-purple)]">
-          HITL APPROVAL
+          HITL REVIEW
         </span>
       </div>
     </article>
@@ -296,16 +275,21 @@ export function OpenSourceProducts() {
             </h2>
           </div>
           <p className="text-base leading-[1.55] text-[var(--app-text-secondary)]">
-            Contexture gives apps and agents one reviewed product model. Voiced
-            pastes speech into the field you are already using.
+            Contexture gives Convex apps and coding agents one reviewed source
+            model. Voiced pastes speech into the field you are already using.
           </p>
         </header>
 
         <div className="flex flex-col gap-4 min-[720px]:gap-6 min-[1024px]:gap-8">
-          <ContextureCard />
-          <VoicedCard />
+          <MotionReveal>
+            <ContextureCard />
+          </MotionReveal>
+          <MotionReveal>
+            <VoicedCard />
+          </MotionReveal>
         </div>
       </div>
     </section>
   );
 }
+import { MotionReveal } from "./motion";
