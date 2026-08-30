@@ -163,42 +163,44 @@ type SequenceStep = {
   node?: string;
 };
 
+const beamCircuitDuration = 2_250;
+
 const heroSequence: SequenceStep[] = [
-  { node: "human", duration: 1_800 },
+  { node: "human", duration: beamCircuitDuration },
   { node: "human", connector: "human-agent", duration: 460 },
-  { node: "agent", duration: 1_800 },
+  { node: "agent", duration: beamCircuitDuration },
   { node: "agent", connector: "agent-approval", duration: 460 },
-  { node: "approval", duration: 1_800 },
+  { node: "approval", duration: beamCircuitDuration },
   { node: "approval", connector: "reject", duration: 720 },
-  { node: "agent", duration: 1_800 },
+  { node: "agent", duration: beamCircuitDuration },
   { node: "agent", connector: "agent-approval", duration: 460 },
-  { node: "approval", duration: 1_800 },
+  { node: "approval", duration: beamCircuitDuration },
   { node: "approval", connector: "yes", duration: 520 },
-  { node: "outcome", duration: 1_800 },
+  { node: "outcome", duration: beamCircuitDuration },
 ];
 
 const workflowSequence: SequenceStep[] = [
-  { node: "intent", duration: 1_800 },
+  { node: "intent", duration: beamCircuitDuration },
   { node: "intent", connector: "intent-context", duration: 460 },
-  { node: "context", duration: 1_800 },
+  { node: "context", duration: beamCircuitDuration },
   { node: "context", connector: "context-build", duration: 460 },
-  { node: "build", duration: 1_800 },
+  { node: "build", duration: beamCircuitDuration },
   { node: "build", connector: "build-evidence", duration: 460 },
-  { node: "evidence", duration: 1_800 },
+  { node: "evidence", duration: beamCircuitDuration },
   { node: "evidence", connector: "checks-return", duration: 720 },
-  { node: "build", duration: 1_800 },
+  { node: "build", duration: beamCircuitDuration },
   { node: "build", connector: "build-evidence", duration: 460 },
-  { node: "evidence", duration: 1_800 },
+  { node: "evidence", duration: beamCircuitDuration },
   { node: "evidence", connector: "evidence-approve", duration: 460 },
-  { node: "approve", duration: 1_800 },
+  { node: "approve", duration: beamCircuitDuration },
   { node: "approve", connector: "human-return", duration: 860 },
-  { node: "context", duration: 1_800 },
+  { node: "context", duration: beamCircuitDuration },
   { node: "context", connector: "context-build", duration: 460 },
-  { node: "build", duration: 1_800 },
+  { node: "build", duration: beamCircuitDuration },
   { node: "build", connector: "build-evidence", duration: 460 },
-  { node: "evidence", duration: 1_800 },
+  { node: "evidence", duration: beamCircuitDuration },
   { node: "evidence", connector: "evidence-approve", duration: 460 },
-  { node: "approve", duration: 1_800 },
+  { node: "approve", duration: beamCircuitDuration },
 ];
 
 function wait(duration: number) {
