@@ -2,6 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
+import { richBlockSchemas } from "./rich-block-registry";
+import {
+  stripRichBlocks,
+  validateRichBlocks,
+  type RichBlockSchemaRegistry,
+} from "./rich-blocks";
 
 const writingTypeSchema = z.enum(["post", "weeknote"]);
 
@@ -43,6 +49,10 @@ export type GetWritingOptions = {
   includeDrafts?: boolean;
 };
 
+export type ParseWritingOptions = {
+  richBlockSchemas?: RichBlockSchemaRegistry;
+};
+
 const contentDirectory = path.join(process.cwd(), "content", "writing");
 
 function filenameSlug(filename: string) {
@@ -51,14 +61,16 @@ function filenameSlug(filename: string) {
 
 function formatValidationError(filename: string, error: z.ZodError) {
   const details = error.issues
-    .map((issue) => `${issue.path.join(".") || "frontmatter"}: ${issue.message}`)
+    .map(
+      (issue) => `${issue.path.join(".") || "frontmatter"}: ${issue.message}`,
+    )
     .join("; ");
 
   return `Invalid writing frontmatter in ${filename}: ${details}`;
 }
 
 export function deriveReadingTime(markdown: string) {
-  const words = markdown
+  const words = stripRichBlocks(markdown)
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/[\[\]#*_>`~()-]/g, " ")
@@ -69,7 +81,11 @@ export function deriveReadingTime(markdown: string) {
   return Math.max(1, Math.ceil(words / 220));
 }
 
-export function parseWritingDocument(filename: string, source: string): WritingEntry {
+export function parseWritingDocument(
+  filename: string,
+  source: string,
+  options: ParseWritingOptions = {},
+): WritingEntry {
   const parsed = matter(source);
   const result = writingFrontmatterSchema.safeParse(parsed.data);
 
@@ -78,6 +94,11 @@ export function parseWritingDocument(filename: string, source: string): WritingE
   }
 
   const slug = result.data.slug ?? filenameSlug(filename);
+  validateRichBlocks(
+    parsed.content,
+    filename,
+    options.richBlockSchemas ?? richBlockSchemas,
+  );
 
   return {
     ...result.data,
