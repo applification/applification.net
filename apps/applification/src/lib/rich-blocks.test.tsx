@@ -67,6 +67,43 @@ describe("typed rich blocks", () => {
     expect(html).not.toContain("<pre>");
   });
 
+  it("renders the named bespoke visual with an accessible static presentation", () => {
+    const markdown = richBlock(
+      {
+        description:
+          "A specific request passes through an AI build step and becomes a finished article.",
+        caption: "The article gets the format it needs.",
+      },
+      "bespoke-content-flow",
+    );
+    const entry = parseWritingDocument(
+      "bespoke-visual.md",
+      `${frontmatter}\n\n${markdown}`,
+    );
+    const html = renderToStaticMarkup(
+      <ReactMarkdown components={createMarkdownComponents(entry.slug)}>
+        {entry.body}
+      </ReactMarkdown>,
+    );
+
+    expect(html).toContain('data-rich-block="bespoke-content-flow"');
+    expect(html).toContain('role="img"');
+    expect(html).toContain("The article gets the format it needs.");
+    expect(html).toContain("A specific request passes through an AI build step");
+  });
+
+  it("keeps ordinary Markdown SVG images on the native image path", () => {
+    const html = renderToStaticMarkup(
+      <ReactMarkdown components={createMarkdownComponents("static-svg")}>
+        {"![A static diagram](/images/diagram.svg)"}
+      </ReactMarkdown>,
+    );
+
+    expect(html).toContain('<img alt="A static diagram"');
+    expect(html).toContain('src="/images/diagram.svg"');
+    expect(html).not.toContain("data-rich-block");
+  });
+
   it("identifies an unknown block and its article", () => {
     expect(() =>
       parseWritingDocument(

@@ -31,7 +31,17 @@ The new site keeps its writing in the codebase. Manual edits are easy in any Mar
 
 Suppose I want an interactive diagram to explain an idea. Or an animated SVG built with Motion. Or a YouTube video presented in a particular way. Previously I would have needed to add that capability to the admin panel, design a generic editing interface for it, update the JSON schema and teach the renderer about it. The result would still have been limited to the options I had anticipated.
 
-Now I can ask for the exact thing the article needs. The AI can build it in the website, next to the article, using the same components and design system as everything else.
+Now I can ask for the exact thing the article needs. For example, I asked AI to build the animation below directly into this page, using the same components and design system as everything else.
+
+```rich-block
+{
+  "name": "bespoke-content-flow",
+  "props": {
+    "description": "A specific article request travels into an AI build step, then emerges as a finished page made from prose, an animated visual and supporting media.",
+    "caption": "The content format follows the article's need, rather than making the article fit a predefined format."
+  }
+}
+```
 
 The difference is bigger than a nicer publishing workflow. The publishing system changed because the way I build software changed. Since the end of 2025, I have had to rethink much of what I thought I knew about coding.
 
