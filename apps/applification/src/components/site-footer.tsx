@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { contractPositioning } from "@/lib/contract-positioning";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -55,7 +56,7 @@ export function SiteFooter() {
             Applification Ltd
           </span>
           <span className="text-sm leading-[1.4] text-[var(--app-text-secondary)] min-[821px]:text-[13px] min-[821px]:leading-[17px]">
-            Dave Hudson&nbsp; · &nbsp;AI Product Engineer
+            Dave Hudson&nbsp; · &nbsp;{contractPositioning.role}
           </span>
         </div>
 

@@ -1,19 +1,21 @@
 import { ContractCta } from "@/components/home/contract-cta";
 import { PageHero } from "@/components/page-hero";
+import { contractPositioning } from "@/lib/contract-positioning";
 import { ArrowUpRight } from "lucide-react";
 
 const contractFit = [
   "Greenfield architecture",
-  "React + TypeScript",
+  contractPositioning.stack,
   "AI product UX",
-  "Remote UK",
+  contractPositioning.location,
 ];
 
 const currentBrief = [
-  ["Role", "AI Product Engineer"],
-  ["Base", "Durham, UK"],
-  ["Preference", "Remote contracts"],
-  ["Best fit", "Small product teams"],
+  ["Role", contractPositioning.role],
+  ["Core stack", contractPositioning.stack],
+  ["Location", contractPositioning.location],
+  ["Best fit", contractPositioning.teamFit],
+  ["Contract", contractPositioning.contractBasis],
 ];
 
 const logicallyMetrics = [

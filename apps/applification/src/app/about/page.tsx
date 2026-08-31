@@ -1,22 +1,20 @@
 import type { Metadata } from "next";
 import { AboutPage as AboutPageContent } from "@/components/about/about-page";
-
-const description =
-  "Dave Hudson is an independent AI Product Engineer building React and TypeScript products for small teams through Applification Ltd.";
+import { contractPositioningDescriptions } from "@/lib/contract-positioning";
 
 export const metadata: Metadata = {
   title: "About Dave Hudson",
-  description,
+  description: contractPositioningDescriptions.about,
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Dave Hudson | Applification",
-    description,
+    description: contractPositioningDescriptions.about,
     url: "/about",
   },
   twitter: {
     card: "summary",
     title: "About Dave Hudson | Applification",
-    description,
+    description: contractPositioningDescriptions.about,
   },
 };
 

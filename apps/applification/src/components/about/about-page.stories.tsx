@@ -3,6 +3,7 @@ import { usePathname } from "@storybook/nextjs-vite/navigation.mock";
 import { expect, within } from "storybook/test";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { contractPositioning } from "@/lib/contract-positioning";
 import { AboutPage } from "./about-page";
 
 function AboutPageFixture() {
@@ -57,6 +58,9 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   );
   await expect(canvas.getAllByText("2003").length).toBeGreaterThanOrEqual(2);
   await expect(canvas.getByText("2026")).toBeVisible();
+  for (const value of Object.values(contractPositioning)) {
+    await expect(canvas.getAllByText(value).length).toBeGreaterThanOrEqual(1);
+  }
   await expect(
     canvas.getByRole("link", {
       name: /Product and AI engineering at Logically\.ai.*opens in a new tab/,

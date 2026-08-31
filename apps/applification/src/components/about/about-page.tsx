@@ -1,4 +1,5 @@
 import { ArrowUpRight, Check } from "lucide-react";
+import { contractPositioning } from "@/lib/contract-positioning";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -71,11 +72,11 @@ const positions = [
 ] as const;
 
 const profileFacts = [
-  ["Role", "AI Product Engineer", "text-[#f9a8d4]"],
-  ["Company", "Applification Ltd", "text-[#fde68a]"],
-  ["Base", "Durham, UK", "text-[#bbf7d0]"],
-  ["Work", "Remote contracts", "text-[#bae6fd]"],
-  ["Since", "2003", "text-[#c4b5fd]"],
+  ["Role", contractPositioning.role, "text-[#f9a8d4]"],
+  ["Stack", contractPositioning.stack, "text-[#fde68a]"],
+  ["Location", contractPositioning.location, "text-[#bbf7d0]"],
+  ["Fit", contractPositioning.teamFit, "text-[#bae6fd]"],
+  ["Contract", contractPositioning.contractBasis, "text-[#c4b5fd]"],
 ] as const;
 
 const bestFit = [
@@ -119,9 +120,9 @@ export function AboutHero() {
             I build software, shape the work and stay close to the product.
           </h1>
           <p className="max-w-[680px] text-[clamp(1.0625rem,2vw,1.1875rem)] leading-[1.55] text-[var(--app-text-secondary)]">
-            An independent AI Product Engineer with a frontend bias, full-stack
-            depth and more than twenty years of experience turning uncertain
-            product ideas into working software.
+            A {contractPositioning.role} with a frontend bias, full-stack depth
+            and more than twenty years of experience turning uncertain product
+            ideas into working software.
           </p>
         </div>
 

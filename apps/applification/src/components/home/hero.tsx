@@ -1,3 +1,4 @@
+import { contractPositioning } from "@/lib/contract-positioning";
 import { HeroEntrance, HeroSequenceController } from "./motion";
 import { WorkflowBorderBeam } from "./workflow-border-beam";
 
@@ -366,21 +367,40 @@ function MobileAgentLoop() {
 }
 
 export function Hero() {
+  const contractSummary = [
+    ["Core stack", contractPositioning.stack],
+    ["Working location", contractPositioning.location],
+    ["Team fit", contractPositioning.teamFit],
+    ["Contract basis", contractPositioning.contractBasis],
+  ] as const;
+
   return (
     <section className="flex flex-col gap-[18px] bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pt-6 pb-9 min-[720px]:min-h-[620px] min-[720px]:items-center min-[720px]:gap-[22px] min-[720px]:px-12 min-[720px]:pt-12 min-[720px]:pb-10 min-[1060px]:min-h-[606px] min-[1060px]:px-20 min-[1060px]:pt-14 min-[1060px]:pb-11">
       <HeroSequenceController />
       <HeroEntrance className="order-1 w-full min-[720px]:flex min-[720px]:justify-center" order={0}>
-        <div className="font-caption flex flex-col gap-[5px] min-[720px]:flex-row min-[720px]:items-center min-[720px]:gap-[10px]">
-          <div className="flex items-center gap-2 min-[720px]:contents">
+        <div className="font-caption flex flex-col gap-[7px] min-[720px]:items-center">
+          <div className="flex items-center gap-2">
             <span className="size-2 shrink-0 rounded-full bg-[var(--loop-yellow-strong)]" />
             <span className="text-[10px] font-bold tracking-[0.6px] text-[var(--app-text-primary)] uppercase min-[720px]:text-xs min-[720px]:font-semibold min-[720px]:tracking-[0.8px]">
-              Dave Hudson · Contract engineer
+              Dave Hudson · {contractPositioning.role}
             </span>
           </div>
-          <span className="ml-4 text-[9px] font-semibold tracking-[0.45px] text-[var(--app-action)] uppercase min-[720px]:ml-0 min-[720px]:text-xs min-[720px]:tracking-[0.8px] min-[720px]:text-[var(--app-text-primary)]">
-            <span className="hidden min-[720px]:inline">·&nbsp; </span>
-            UK remote · React + TypeScript
-          </span>
+          <dl
+            aria-label="Contract summary"
+            className="ml-4 flex max-w-[540px] flex-wrap items-center gap-x-2 gap-y-1 text-[9px] font-semibold tracking-[0.45px] text-[var(--app-action)] uppercase min-[720px]:ml-0 min-[720px]:justify-center min-[720px]:text-[10px] min-[720px]:tracking-[0.65px] min-[720px]:text-[var(--app-text-primary)]"
+          >
+            {contractSummary.map(([label, value], index) => (
+              <div className="flex items-center gap-2" key={label}>
+                {index > 0 ? (
+                  <span aria-hidden="true" className="text-[var(--app-text-muted)]">
+                    ·
+                  </span>
+                ) : null}
+                <dt className="sr-only">{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </HeroEntrance>
 
