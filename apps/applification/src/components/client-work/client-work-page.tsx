@@ -236,17 +236,28 @@ export function SelectedContracts() {
 
         <div className="grid items-start gap-6 min-[1120px]:grid-cols-[470px_minmax(0,706px)]">
           <article className="flex min-h-[468px] flex-col rounded-[22px] bg-[var(--app-card)] p-6 min-[720px]:p-[30px]">
-            <div className="font-caption flex min-h-8 items-center justify-between gap-4">
+            <div className="font-caption flex min-h-11 items-center justify-between gap-4">
               <p className="text-[11px] font-bold tracking-[1.1px] text-[var(--client-brief-label)]">
                 ERUPTIV
               </p>
-              <p className="text-[10px] font-semibold tracking-[0.8px] text-[var(--app-text-muted)]">
-                LIVE IN 5 MONTHS
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-[10px] font-semibold tracking-[0.8px] text-[var(--app-text-muted)]">
+                  LIVE IN 4 MONTHS
+                </p>
+                <a
+                  aria-label="Visit Client Server, opens in a new tab"
+                  className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--app-action)] text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+                  href="https://www.client-server.com/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={2} />
+                </a>
+              </div>
             </div>
             <h3 className="font-heading mt-[22px] max-w-[410px] text-[32px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[720px]:text-[34px]">
-              Built the whole recruitment frontend in four months. Production
-              in five.
+              Built the whole recruitment frontend in three months. Production
+              in four.
             </h3>
             <p className="mt-[22px] max-w-[400px] text-[15px] leading-[1.6] text-[var(--app-text-secondary)]">
               Sole frontend engineer alongside an API engineer and designer. I
@@ -263,16 +274,34 @@ export function SelectedContracts() {
                 isolated.
               </p>
             </div>
+            <Link
+              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+              href="/client-work/eruptiv"
+            >
+              Read the Eruptiv case
+              <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+            </Link>
           </article>
 
           <article className="flex flex-col rounded-[22px] bg-[#172554] p-6 text-[#f8fafc] min-[720px]:min-h-[385px] min-[720px]:p-[30px]">
-            <div className="font-caption flex min-h-8 items-center justify-between gap-4">
+            <div className="font-caption flex min-h-11 items-center justify-between gap-4">
               <p className="text-[11px] font-bold tracking-[1.1px] text-[#7dd3fc]">
                 PEPPY HEALTH
               </p>
-              <p className="text-[10px] font-semibold tracking-[0.8px] text-[#f9a8d4]">
-                £12M ARR SERVICE
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-[10px] font-semibold tracking-[0.8px] text-[#f9a8d4]">
+                  £12M ARR SERVICE
+                </p>
+                <a
+                  aria-label="Visit Peppy Health, opens in a new tab"
+                  className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--app-action)] text-white transition-colors hover:bg-[var(--app-action-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+                  href="https://peppy.health/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={2} />
+                </a>
+              </div>
             </div>
             <h3 className="font-heading mt-[22px] max-w-[600px] text-[32px] leading-[1.1] font-medium min-[720px]:text-4xl">
               Rebuilt a zero-test clinician panel for a £12m ARR service.
@@ -298,6 +327,13 @@ export function SelectedContracts() {
                 </div>
               ))}
             </dl>
+            <Link
+              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[#7dd3fc] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7dd3fc] motion-reduce:transition-none"
+              href="/client-work/peppy-health"
+            >
+              Read the Peppy Health case
+              <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+            </Link>
           </article>
         </div>
       </div>

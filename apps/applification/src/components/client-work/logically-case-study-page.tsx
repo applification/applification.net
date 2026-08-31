@@ -93,10 +93,10 @@ export function LogicallyCaseStudyPage() {
                 its replacement.
               </p>
               <p>
-                As Principal Frontend Engineer, Dave architected and built most
-                of the v2 frontend with one other engineer. He led five frontend
+                As Principal Frontend Engineer, I architected and built most of
+                the v2 frontend with one other engineer. I led five frontend
                 engineers and coordinated the architecture with three backend
-                engineers and five data scientists. He later moved into the
+                engineers and five data scientists. I later moved into the
                 Principal AI Product Engineer role and co-built the production
                 Agentic Chat experience.
               </p>

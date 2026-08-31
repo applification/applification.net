@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { MotionReveal } from "./motion";
 
@@ -6,12 +6,14 @@ const outcomeDetails = [
   {
     company: "ERUPTIV",
     proof: "4 months",
-    title: "Greenfield frontend built",
+    title: "Greenfield frontend live",
     detail:
-      "Designed and built the entire TypeScript and Next.js frontend against an existing API in four months. The platform reached production after a fifth month of refinement.",
+      "Designed and built the entire TypeScript and Next.js frontend against an existing API in three months. The platform reached production after a fourth month of release work.",
     technologies: "REACT  ·  TYPESCRIPT  ·  STORYBOOK",
-    href: "/client-work#selected-contracts",
-    linkLabel: "Read the Eruptiv contract",
+    href: "/client-work/eruptiv",
+    linkLabel: "Read the Eruptiv case",
+    websiteHref: "https://www.client-server.com/",
+    websiteLabel: "Visit Client Server",
   },
   {
     company: "PEPPY HEALTH",
@@ -20,8 +22,10 @@ const outcomeDetails = [
     detail:
       "Led a two-person senior frontend team, catalogued hundreds of components in Storybook and added a full Cypress end-to-end suite while the business scaled to £12 million ARR.",
     technologies: "REACT  ·  STORYBOOK  ·  CYPRESS",
-    href: "/client-work#selected-contracts",
-    linkLabel: "Read the Peppy Health contract",
+    href: "/client-work/peppy-health",
+    linkLabel: "Read the Peppy Health case",
+    websiteHref: "https://peppy.health/",
+    websiteLabel: "Visit Peppy Health",
   },
 ];
 
@@ -88,6 +92,8 @@ function CompactOutcome({
   proof,
   technologies,
   title,
+  websiteHref,
+  websiteLabel,
 }: (typeof outcomeDetails)[number]) {
   return (
     <li className="flex flex-col justify-between gap-4 rounded-[14px] bg-[var(--app-card)] p-4 min-[1024px]:min-h-[330px] min-[1024px]:rounded-none min-[1024px]:border-l min-[1024px]:border-[var(--app-border)] min-[1024px]:bg-transparent min-[1024px]:px-6 min-[1024px]:py-3">
@@ -109,13 +115,25 @@ function CompactOutcome({
       <p className="font-caption hidden text-[10px] font-semibold tracking-[0.65px] text-[var(--app-text-muted)] min-[1024px]:block">
         {technologies}
       </p>
-      <Link
-        className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
-        href={href}
-      >
-        {linkLabel}
-        <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
-      </Link>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <Link
+          className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+          href={href}
+        >
+          {linkLabel}
+          <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+        </Link>
+        <a
+          className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[var(--app-text-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+          href={websiteHref}
+          rel="noreferrer"
+          target="_blank"
+        >
+          {websiteLabel}
+          <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={2} />
+          <span className="sr-only">, opens in a new tab</span>
+        </a>
+      </div>
     </li>
   );
 }

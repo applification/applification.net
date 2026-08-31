@@ -24,11 +24,25 @@ const checkSelectedContracts: NonNullable<Story["play"]> = async ({
   ).toBeVisible();
   await expect(canvas.getByText("ERUPTIV")).toBeVisible();
   await expect(canvas.getByText("PEPPY HEALTH")).toBeVisible();
-  await expect(canvas.getByText(/four months/)).toBeVisible();
+  await expect(canvas.getByText(/three months/)).toBeVisible();
   await expect(canvas.getByText(/£12m ARR service/)).toBeVisible();
   await expect(canvas.getByText(/full Cypress end-to-end suite/)).toBeVisible();
   await expect(canvasElement.querySelectorAll("dt")).toHaveLength(3);
   await expect(canvasElement.querySelectorAll("dd")).toHaveLength(3);
+  await expect(canvas.getByRole("link", { name: "Read the Eruptiv case" })).toHaveAttribute(
+    "href",
+    "/client-work/eruptiv",
+  );
+  await expect(canvas.getByRole("link", { name: "Read the Peppy Health case" })).toHaveAttribute(
+    "href",
+    "/client-work/peppy-health",
+  );
+  await expect(
+    canvas.getByRole("link", { name: "Visit Client Server, opens in a new tab" }),
+  ).toHaveAttribute("target", "_blank");
+  await expect(
+    canvas.getByRole("link", { name: "Visit Peppy Health, opens in a new tab" }),
+  ).toHaveAttribute("target", "_blank");
 };
 
 export const DesktopLight: Story = { play: checkSelectedContracts };
