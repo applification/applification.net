@@ -5,6 +5,7 @@ import {
 } from "@/lib/rich-blocks";
 import { richBlockSchemas } from "@/lib/rich-block-registry";
 import { LinkPreview } from "./link-preview";
+import { YouTubeEmbed } from "./youtube-embed";
 
 export type RichBlockComponentRegistry = Record<
   string,
@@ -18,6 +19,7 @@ export type RichBlockRegistry = {
 
 export const richBlockComponents = {
   "link-preview": LinkPreview,
+  youtube: YouTubeEmbed,
 } satisfies RichBlockComponentRegistry;
 
 export const richBlockRegistry: RichBlockRegistry = {

@@ -18,7 +18,16 @@ Version 22 has some really nice out of the box features that mean you need a lot
 
 This is just some quick notes on the new features based on a video I watched where Matteo Collina chatted with Jason Lengstorf.
 
-[Watch on YouTube](https://www.youtube.com/watch?v=evCnOaVaOTo)
+```rich-block
+{
+  "name": "youtube",
+  "props": {
+    "videoId": "evCnOaVaOTo",
+    "title": "Node.js and its many, many new features with Matteo Collina",
+    "channel": "CodeTV"
+  }
+}
+```
 
 **TypeScript Support**  
 Working with TypeScript is so much easier, just install TypeScript, tsx and some node types then you’re good to go!
