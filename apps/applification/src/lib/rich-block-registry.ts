@@ -43,9 +43,21 @@ export const youtubeSchema = z
 
 export type YouTubeProps = z.infer<typeof youtubeSchema>;
 
+export const bespokeContentFlowSchema = z
+  .object({
+    description: z.string().trim().min(20).max(240),
+    caption: z.string().trim().min(8).max(160),
+  })
+  .strict();
+
+export type BespokeContentFlowProps = z.infer<
+  typeof bespokeContentFlowSchema
+>;
+
 // Product stories add approved blocks here. Keeping the registry explicit means
 // article content cannot select an arbitrary React component.
 export const richBlockSchemas = {
+  "bespoke-content-flow": bespokeContentFlowSchema,
   "link-preview": linkPreviewSchema,
   youtube: youtubeSchema,
 } satisfies RichBlockSchemaRegistry;

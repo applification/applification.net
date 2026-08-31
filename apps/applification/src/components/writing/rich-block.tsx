@@ -4,6 +4,7 @@ import {
   type RichBlockSchemaRegistry,
 } from "@/lib/rich-blocks";
 import { richBlockSchemas } from "@/lib/rich-block-registry";
+import { BespokeContentFlow } from "./bespoke-content-flow";
 import { LinkPreview } from "./link-preview";
 import { YouTubeEmbed } from "./youtube-embed";
 
@@ -18,6 +19,7 @@ export type RichBlockRegistry = {
 };
 
 export const richBlockComponents = {
+  "bespoke-content-flow": BespokeContentFlow,
   "link-preview": LinkPreview,
   youtube: YouTubeEmbed,
 } satisfies RichBlockComponentRegistry;
