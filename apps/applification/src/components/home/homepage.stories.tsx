@@ -25,8 +25,44 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const checkCommercialEvidenceOrder: NonNullable<Story["play"]> = async ({
+  canvasElement,
+}) => {
+  const headings = [...canvasElement.querySelectorAll("h2")];
+  const storyloopsHeading = headings.find((heading) =>
+    heading.textContent?.includes("coding agents cannot quietly ignore"),
+  );
+  const clientOutcomes = canvasElement.querySelector("#client-work");
+  const plantryHeading = canvasElement.querySelector("#plantry-heading");
+
+  await expect(clientOutcomes).not.toBeNull();
+  await expect(storyloopsHeading).not.toBeUndefined();
+  await expect(plantryHeading).not.toBeNull();
+  await expect(
+    clientOutcomes && storyloopsHeading
+      ? Boolean(
+          clientOutcomes.compareDocumentPosition(storyloopsHeading) &
+            Node.DOCUMENT_POSITION_FOLLOWING,
+        )
+      : false,
+  ).toBe(true);
+  await expect(
+    clientOutcomes && plantryHeading
+      ? Boolean(
+          clientOutcomes.compareDocumentPosition(plantryHeading) &
+            Node.DOCUMENT_POSITION_FOLLOWING,
+        )
+      : false,
+  ).toBe(true);
+  await expect(
+    canvasElement.querySelectorAll("#client-work a[href^='/client-work']"),
+  ).toHaveLength(3);
+};
+
 export const DesktopLight: Story = {
-  play: async ({ canvasElement }) => {
+  play: async (context) => {
+    await checkCommercialEvidenceOrder(context);
+    const { canvasElement } = context;
     const yesLabels = Array.from(canvasElement.querySelectorAll("span")).filter(
       (element) => element.textContent?.trim() === "YES",
     );
@@ -37,10 +73,12 @@ export const DesktopLight: Story = {
 
 export const DesktopDark: Story = {
   globals: { theme: "dark" },
+  play: checkCommercialEvidenceOrder,
 };
 
 export const MobileLight: Story = {
   globals: { viewport: { value: "mobile", isRotated: false } },
+  play: checkCommercialEvidenceOrder,
 };
 
 export const MobileDark: Story = {
@@ -48,4 +86,5 @@ export const MobileDark: Story = {
     theme: "dark",
     viewport: { value: "mobile", isRotated: false },
   },
+  play: checkCommercialEvidenceOrder,
 };

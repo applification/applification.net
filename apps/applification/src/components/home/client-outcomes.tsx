@@ -1,3 +1,7 @@
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { MotionReveal } from "./motion";
+
 const outcomeDetails = [
   {
     company: "ERUPTIV",
@@ -6,6 +10,8 @@ const outcomeDetails = [
     detail:
       "Designed and built the entire TypeScript and Next.js frontend against an existing API in four months. The platform reached production after a fifth month of refinement.",
     technologies: "REACT  ·  TYPESCRIPT  ·  STORYBOOK",
+    href: "/client-work#selected-contracts",
+    linkLabel: "Read the Eruptiv contract",
   },
   {
     company: "PEPPY HEALTH",
@@ -14,6 +20,8 @@ const outcomeDetails = [
     detail:
       "Led a two-person senior frontend team, catalogued hundreds of components in Storybook and added a full Cypress end-to-end suite while the business scaled to £12 million ARR.",
     technologies: "REACT  ·  STORYBOOK  ·  CYPRESS",
+    href: "/client-work#selected-contracts",
+    linkLabel: "Read the Peppy Health contract",
   },
 ];
 
@@ -61,6 +69,13 @@ function LogicallyOutcome() {
       <p className="font-caption hidden text-[10px] font-semibold tracking-[0.65px] text-[var(--app-text-muted)] min-[1024px]:block">
         NEXT.JS&nbsp; · &nbsp;TYPESCRIPT&nbsp; · &nbsp;AI SDK&nbsp; · &nbsp;MCP
       </p>
+      <Link
+        className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--client-feature-accent)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-label-text)] min-[1024px]:hover:text-[var(--app-sky-text)]"
+        href="/client-work/logically"
+      >
+        Read the Logically case
+        <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+      </Link>
     </li>
   );
 }
@@ -68,6 +83,8 @@ function LogicallyOutcome() {
 function CompactOutcome({
   company,
   detail,
+  href,
+  linkLabel,
   proof,
   technologies,
   title,
@@ -92,6 +109,13 @@ function CompactOutcome({
       <p className="font-caption hidden text-[10px] font-semibold tracking-[0.65px] text-[var(--app-text-muted)] min-[1024px]:block">
         {technologies}
       </p>
+      <Link
+        className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+        href={href}
+      >
+        {linkLabel}
+        <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+      </Link>
     </li>
   );
 }
@@ -100,11 +124,11 @@ export function ClientOutcomes() {
   return (
     <MotionReveal>
       <section
-      aria-labelledby="client-outcomes-heading"
-      className="bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[72px] min-[1280px]:px-20 min-[1440px]:px-[120px]"
-      id="client-work"
-    >
-      <div className="mx-auto w-full max-w-[1200px]">
+        aria-labelledby="client-outcomes-heading"
+        className="bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[72px] min-[1280px]:px-20 min-[1440px]:px-[120px]"
+        id="client-work"
+      >
+        <div className="mx-auto w-full max-w-[1200px]">
         <header className="grid gap-4 min-[1024px]:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] min-[1024px]:items-start min-[1024px]:gap-x-12">
           <div className="min-w-0">
             <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)]">
@@ -129,9 +153,8 @@ export function ClientOutcomes() {
             <CompactOutcome key={outcome.company} {...outcome} />
           ))}
         </ul>
-      </div>
+        </div>
       </section>
     </MotionReveal>
   );
 }
-import { MotionReveal } from "./motion";
