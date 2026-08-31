@@ -12,9 +12,9 @@ export default function HomePage() {
     <main className="flex-1">
       <Hero />
       <CommercialProof />
+      <ClientOutcomes />
       <StoryLoopsShowcase />
       <PlantryShowcase />
-      <ClientOutcomes />
       <OpenSourceProducts />
       <AiWorkingMethod />
       <ContractCta />

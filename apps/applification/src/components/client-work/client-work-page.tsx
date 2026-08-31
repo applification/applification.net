@@ -1,7 +1,8 @@
 import { ContractCta } from "@/components/home/contract-cta";
 import { PageHero } from "@/components/page-hero";
 import { contractPositioning } from "@/lib/contract-positioning";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 const contractFit = [
   "Greenfield architecture",
@@ -103,6 +104,7 @@ export function LogicallyCaseStudy() {
       aria-labelledby="logically-case-heading"
       className="bg-[var(--app-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[88px] min-[1440px]:px-[120px]"
       data-client-work-section="featured-logically-case"
+      id="logically"
     >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[38px]">
         <div className="grid gap-6 min-[1120px]:grid-cols-[minmax(0,720px)_minmax(0,360px)_44px] min-[1120px]:items-end min-[1120px]:gap-[38px]">
@@ -117,10 +119,19 @@ export function LogicallyCaseStudy() {
               Rebuilt the frontend, then connected AI to production.
             </h2>
           </div>
-          <p className="max-w-[360px] text-base leading-6 text-[var(--app-text-secondary)]">
-            Built most of the v2 frontend, then co-built its production Agentic
-            Chat for threat analysts.
-          </p>
+          <div className="max-w-[360px]">
+            <p className="text-base leading-6 text-[var(--app-text-secondary)]">
+              Built most of the v2 frontend, then co-built its production Agentic
+              Chat for threat analysts.
+            </p>
+            <Link
+              className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+              href="/client-work/logically"
+            >
+              Read the complete case
+              <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+            </Link>
+          </div>
           <a
             aria-label="Visit Logically, opens in a new tab"
             className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--client-logically-link)] text-white transition-colors hover:bg-[var(--app-action-hover)] active:bg-[var(--cta-action-active)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
@@ -202,6 +213,7 @@ export function SelectedContracts() {
       aria-labelledby="selected-contracts-heading"
       className="bg-[var(--app-muted-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[88px] min-[1440px]:px-[120px]"
       data-client-work-section="selected-contracts"
+      id="selected-contracts"
     >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-9">
         <div className="grid gap-5 min-[1120px]:grid-cols-[minmax(0,700px)_390px] min-[1120px]:items-end min-[1120px]:justify-between min-[1120px]:gap-[110px]">

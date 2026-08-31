@@ -52,6 +52,9 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   await expect(
     canvas.getByRole("link", { name: "Visit Logically, opens in a new tab" }),
   ).toHaveAttribute("target", "_blank");
+  await expect(
+    canvas.getByRole("link", { name: "Read the complete case" }),
+  ).toHaveAttribute("href", "/client-work/logically");
   const logicallyLink = canvas.getByRole("link", {
     name: "Visit Logically, opens in a new tab",
   });
