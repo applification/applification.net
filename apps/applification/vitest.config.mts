@@ -7,13 +7,17 @@ import { defineConfig } from "vitest/config";
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  resolve: {
+    alias: { "@": path.join(dirname, "src") },
+  },
   test: {
     projects: [
       {
+        extends: true,
         test: {
           name: "unit",
           environment: "node",
-          include: ["src/**/*.test.ts"],
+          include: ["src/**/*.test.{ts,tsx}"],
         },
       },
       {

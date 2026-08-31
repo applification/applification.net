@@ -43,9 +43,9 @@ describe("parseWritingDocument", () => {
 describe("deriveReadingTime", () => {
   it("uses 220 words per minute and always returns at least one minute", () => {
     expect(deriveReadingTime("")).toBe(1);
-    expect(deriveReadingTime(Array.from({ length: 221 }, () => "word").join(" "))).toBe(
-      2,
-    );
+    expect(
+      deriveReadingTime(Array.from({ length: 221 }, () => "word").join(" ")),
+    ).toBe(2);
   });
 });
 
@@ -55,10 +55,22 @@ describe("the migrated writing collection", () => {
 
     expect(entries).toHaveLength(38);
     expect(entries.filter((entry) => entry.type === "post")).toHaveLength(31);
-    expect(entries.filter((entry) => entry.type === "weeknote")).toHaveLength(7);
+    expect(entries.filter((entry) => entry.type === "weeknote")).toHaveLength(
+      7,
+    );
     expect(new Set(entries.map((entry) => entry.slug)).size).toBe(38);
     const topics = getWritingTopics({ includeDrafts: false });
     expect(topics).toContain("react");
     expect(topics).not.toContain("weeknote");
+  });
+
+  it("keeps the local preview draft out of published collection queries", () => {
+    const published = getWriting({ includeDrafts: false });
+    const local = getWriting({ includeDrafts: true });
+
+    expect(published.some((entry) => entry.slug === "rte-preview")).toBe(false);
+    expect(local.find((entry) => entry.slug === "rte-preview")?.draft).toBe(
+      true,
+    );
   });
 });
