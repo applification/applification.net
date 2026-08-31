@@ -1,7 +1,7 @@
 ---
 title: AI is making me rethink software delivery
 date: '2026-08-30'
-updated: '2026-08-30'
+updated: '2026-08-31'
 type: post
 summary: >-
   AI has changed how I write, design, test and build software. It may also
@@ -33,7 +33,7 @@ Suppose I want an interactive diagram to explain an idea. Or an animated SVG bui
 
 Now I can ask for the exact thing the article needs. The AI can build it in the website, next to the article, using the same components and design system as everything else.
 
-The difference is bigger than a nicer publishing workflow. It has made me question a lot of what I thought I knew about delivering software.
+The difference is bigger than a nicer publishing workflow. The publishing system changed because the way I build software changed. Since the end of 2025, I have had to rethink much of what I thought I knew about coding.
 
 ## I no longer write code by hand
 
@@ -49,6 +49,8 @@ Prompting is only a small part of this. The real skill is creating a reliable ro
 
 I wrote about the need for that rigour in [AI-native software still needs rigour](/writing/ai-native-software-needs-rigour). Removing human typing does not remove software engineering. It moves the engineering into product definition, context, architecture and validation.
 
+Validation deserves more than a passing mention. It still includes automated tests, but I no longer think of testing as something that happens only inside the codebase.
+
 ## Testing becomes a user journey
 
 Testing used to begin with deciding what automated tests a developer should write alongside the implementation. I still want those tests, but AI allows me to approach the problem from the outside as well.
@@ -61,27 +63,53 @@ That does not make testing automatic or infallible. I still have to describe the
 
 The same applies to accessibility. I can ask the agent to navigate by keyboard, inspect the accessibility tree, check focus order, test at different sizes and fix the problems it finds. Accessibility moves closer to the normal delivery loop instead of waiting for a specialist audit near the end.
 
-## Design has become less constrained
+## Design becomes a conversation with working software
 
-For years I leaned heavily on Tailwind and component libraries such as shadcn/ui. I still use Tailwind, and I still value a good component library, but I no longer need them to supply most of the design thinking.
+For most of my career, the cost of testing a design rose sharply with its fidelity. A sketch was cheap. A second production-quality interface, with real data, navigation, loading states, responsive behaviour and accessibility, was not. By the time an idea reached the product, implementation cost had already narrowed the options.
 
-I have a UI and UX expert available whenever I want to work through an idea. We can discuss visual hierarchy, interaction patterns and the awkward cases before any implementation begins. The agent can then build several approaches and show them in the real product.
+Tools such as [pen.dev](https://www.pen.dev/) and [Paper](https://paper.design/) already make this better. Both connect to Codex through MCP, so the agent can inspect and change a structured design instead of guessing from a screenshot and a paragraph of instructions. That is much better context for the agent.
 
-Oddly, this has pushed me towards a more old-school way of building interfaces. I use lower-level Tailwind and CSS more often now. Starting with a generic component and accepting its design compromises can take longer than describing the interface I actually want.
+But a design canvas is still a model of the interface. It is not the product running with real data, navigation, loading and failure states, responsive behaviour and accessibility. The gap matters.
 
-AI gives me more freedom to care about small details because I do not have to weigh each one against the time it will take me to type the CSS.
+AI lets me cross that gap much earlier. I can describe the user, the job and the awkward cases, then ask an agent to build several approaches inside the real application. I can click through each one, compare them at different sizes and throw away the ones that fail.
 
-That freedom needs taste. AI will happily decorate a page until every card glows and every heading arrives with a gradient. The useful change is not that design decisions disappear. I can explore and implement those decisions without the old cost.
+This is more than rapid prototyping. When a prototype uses the product's real components and behaviour, design and engineering become one conversation. Real content can break a hierarchy that looked convincing in a mock-up. An interaction can expose a missing product decision. Building an alternative can reveal that the data model is wrong.
+
+That experience is not unique to me. [A 2024 study of 14 professional designers](https://research.google/pubs/promptinfuser-how-tightly-coupling-ai-and-ui-design-impacts-designers-workflows/) found that working on interface and behaviour together helped them anticipate UI problems and technical constraints. It turned their process into a back and forth in which each side improved the other.
+
+Speed creates another problem. A model can turn a vague prompt into a polished screen so quickly that plausible gets mistaken for considered. [A 2026 study of generative UI tools](https://arxiv.org/abs/2606.13843) found that exploring several directions challenged people's assumptions and revealed possibilities they had overlooked. The same participants overwhelmingly preferred high-fidelity results. That tension feels right. I want to work with the real thing early, but I do not want the first attractive answer to end the discussion.
+
+I still use Tailwind and shadcn/ui. They give the agent established rules and help keep the product coherent. I no longer need the component library to be a menu of what I am allowed to design. It is a set of constraints I can work within while exploring the interface I actually want.
+
+The bottleneck has moved from producing an interface to choosing one. AI will happily make every card glow and every heading arrive with a gradient. My job is to understand why the interface exists, compare real alternatives and say no to most of them.
+
+## Story mapping holds the work together
+
+As implementation became faster, the danger changed. An idea was less likely to get stuck waiting for somebody to build it. I was more likely to build a great deal before discovering that I had misunderstood something important.
+
+[Plantry](/products/plantry) made that real for me. AI helped me build a private-alpha kitchen-planning app with recipe import, meal planning and a substantial SwiftData and CloudKit model. Evaluation datasets and testing on a real iPhone exposed unreliable AI recipe imports when a site did not provide Schema.org data. I paused before a public release. Building faster would not solve that. I needed to rethink what the product could promise and what evidence I would need before asking people to trust it.
+
+Chat is useful for working through a thought, but a transcript is a poor product model. A conventional backlog breaks the work into tickets and quickly loses the shape of the experience. I kept coming back to story mapping because it arranges the work as a user journey rather than a list.
+
+User story mapping has always helped human teams build alignment, shared understanding and a view of the whole product. I need those same things when one collaborator is an AI. The map gives us a common reference. I can see whether a change belongs in the journey. The agent can see the surrounding stories and agreed outcomes instead of treating my latest prompt as the whole product.
+
+Before implementation, the agent can propose a change on the map for me to inspect. Afterwards, the journey becomes the route through the product that the agent must test. Product definition, design, implementation and validation stay connected to the behaviour the user should experience.
+
+That is why I built [StoryLoops](/products/storyloops). I wanted a place where a person and a coding agent could work on the same product model without handing control of scope to the agent. It began as me scratching my own itch, not as a theory about how software should be sold.
+
+Once StoryLoops began to work for me, I started wondering whether it could help other people work this way too.
 
 ## What happens to software ownership?
 
-The "SaaS apocalypse" has been widely predicted. I do not expect Spotify or Netflix to disappear soon, although I have started building up my vinyl collection again.
+The obvious answer was to run StoryLoops as a service and charge a monthly subscription. It was also the answer I had learned to give without thinking very hard about it.
 
-For many other categories of software, though, I think a change is coming.
+Then I noticed the contradiction. I was building a product around the idea that coding agents make software easier to understand, test and change, while planning to keep the software on my side of a monthly payment.
 
-Take story-mapping software. A team can pay a monthly subscription for StoriesOnBoard or Avion. They are good products. The subscription buys a maintained service, collaboration features and a roadmap someone else is responsible for.
+I do not expect subscriptions to disappear. I do not expect Spotify or Netflix to disappear soon either, although I have started building up my vinyl collection again. A maintained service, shared infrastructure and a roadmap somebody else is responsible for can be exactly what a customer wants.
 
-But does that model make as much sense as it used to for every customer?
+A team can already pay a monthly subscription for story-mapping products such as StoriesOnBoard or Avion. They are good products, and for many teams that model will remain a good deal.
+
+But does it make as much sense as it used to for every customer?
 
 Software once came in a physical box. Later it became a digital download, but the deal remained familiar. You paid for a version and owned it for as long as you could run it. SaaS replaced the high upfront price with a smaller monthly payment. That felt attractive at first. Keep paying for several years, across every tool used by a team, and the total looks rather different.
 
@@ -93,7 +121,7 @@ An AI-native product can arrive with the code, the decisions behind it and the i
 
 ## StoryLoops as a product in a box
 
-This is the idea behind [StoryLoops](/products/storyloops).
+This is the experiment I am now running with StoryLoops.
 
 The vision is a "product in a box". Imagine paying £500 once and owning that version for life. You receive a complete story-mapping product with the source code, deploy it for your organisation and change it when your needs change.
 
