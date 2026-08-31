@@ -1,15 +1,18 @@
+import { contractPositioning } from "@/lib/contract-positioning";
+import { ProofStagger } from "./motion";
+
 const proofPoints = [
   {
     value: "20+ years",
     detail: "Shipping production software",
   },
   {
-    value: "Small teams",
+    value: contractPositioning.teamFit,
     detail: "Product shaping and engineering",
   },
   {
-    value: "UK remote",
-    detail: "Contracts through Applification Ltd",
+    value: contractPositioning.location,
+    detail: contractPositioning.contractBasis,
   },
 ];
 
@@ -25,7 +28,8 @@ export function CommercialProof() {
           id="commercial-proof-label"
         >
           <span className="min-[720px]:hidden">
-            Senior delivery&nbsp; · &nbsp;UK remote contracts
+            Senior delivery&nbsp; · &nbsp;{contractPositioning.location}
+            &nbsp;contracts
           </span>
           <span className="hidden min-[720px]:inline">
             Senior delivery&nbsp; · &nbsp;Startups&nbsp; · &nbsp;Health
@@ -56,4 +60,3 @@ export function CommercialProof() {
     </section>
   );
 }
-import { ProofStagger } from "./motion";

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import {
+  contractPositioning,
+  contractPositioningDescriptions,
+} from "@/lib/contract-positioning";
 import { appFontVariables } from "./fonts";
 import "./globals.css";
 
@@ -9,25 +13,22 @@ const themeBootstrapScript = `(function(){try{var theme=localStorage.getItem("ap
 export const metadata: Metadata = {
   metadataBase: new URL("https://applification.net"),
   title: {
-    default: "Dave Hudson | Contract AI Product Engineer",
+    default: `Dave Hudson | ${contractPositioning.role}`,
     template: "%s | Applification",
   },
-  description:
-    "Dave Hudson helps teams turn early ideas into production software with React and TypeScript, using AI workflows with clear scope, tests and human approval.",
+  description: contractPositioningDescriptions.site,
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: "/",
     siteName: "Applification",
-    title: "Dave Hudson | Contract AI Product Engineer",
-    description:
-      "Production software and AI workflows built with React and TypeScript, clear scope, tests and human approval.",
+    title: `Dave Hudson | ${contractPositioning.role}`,
+    description: contractPositioningDescriptions.site,
   },
   twitter: {
     card: "summary",
-    title: "Dave Hudson | Contract AI Product Engineer",
-    description:
-      "Production software and AI workflows built with React and TypeScript, clear scope, tests and human approval.",
+    title: `Dave Hudson | ${contractPositioning.role}`,
+    description: contractPositioningDescriptions.site,
   },
 };
 

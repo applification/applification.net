@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, within } from "storybook/test";
+import { contractPositioning } from "@/lib/contract-positioning";
 import { ClientWorkHero } from "./client-work-page";
 
 const meta = {
@@ -24,8 +25,11 @@ export const DesktopLight: Story = {
     await expect(
       canvas.getByRole("heading", { level: 2, name: "CURRENT BRIEF" }),
     ).toBeVisible();
-    await expect(canvasElement.querySelectorAll("dt")).toHaveLength(4);
-    await expect(canvasElement.querySelectorAll("dd")).toHaveLength(4);
+    await expect(canvasElement.querySelectorAll("dt")).toHaveLength(5);
+    await expect(canvasElement.querySelectorAll("dd")).toHaveLength(5);
+    for (const value of Object.values(contractPositioning)) {
+      await expect(canvas.getByText(value)).toBeVisible();
+    }
   },
 };
 

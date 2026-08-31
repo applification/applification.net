@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
 import { ClientWorkPage } from "@/components/client-work/client-work-page";
-
-const description =
-  "Production case studies from greenfield product builds, frontend rebuilds and AI systems, with the decisions and outcomes attached.";
+import { contractPositioningDescriptions } from "@/lib/contract-positioning";
 
 export const metadata: Metadata = {
   title: "Client work",
-  description,
+  description: contractPositioningDescriptions.clientWork,
   openGraph: {
     title: "Client work | Applification",
-    description,
+    description: contractPositioningDescriptions.clientWork,
     url: "/client-work",
   },
   twitter: {
     card: "summary",
     title: "Client work | Applification",
-    description,
+    description: contractPositioningDescriptions.clientWork,
   },
 };
 
