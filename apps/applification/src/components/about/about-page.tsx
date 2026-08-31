@@ -32,7 +32,7 @@ export const careerTimeline = [
     year: "2024",
     title: "Greenfield contract builds",
     description:
-      "Sole frontend ownership for Eruptiv, taking the recruitment product from API integration to production in five months.",
+      "Sole frontend ownership for Eruptiv, building the recruitment product in three months and taking it to production after four.",
   },
   {
     year: "2025",
