@@ -31,8 +31,21 @@ export const linkPreviewSchema = z
 
 export type LinkPreviewProps = z.infer<typeof linkPreviewSchema>;
 
+export const youtubeSchema = z
+  .object({
+    videoId: z
+      .string()
+      .regex(/^[A-Za-z0-9_-]{11}$/, "must be an 11-character YouTube video ID"),
+    title: z.string().trim().min(8).max(160),
+    channel: z.string().trim().min(1).max(80),
+  })
+  .strict();
+
+export type YouTubeProps = z.infer<typeof youtubeSchema>;
+
 // Product stories add approved blocks here. Keeping the registry explicit means
 // article content cannot select an arbitrary React component.
 export const richBlockSchemas = {
   "link-preview": linkPreviewSchema,
+  youtube: youtubeSchema,
 } satisfies RichBlockSchemaRegistry;

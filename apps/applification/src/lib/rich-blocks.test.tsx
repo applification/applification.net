@@ -152,4 +152,52 @@ describe("typed rich blocks", () => {
       ),
     ).toThrow("image.src: must be a site-local path captured during authoring");
   });
+
+  it("renders a private YouTube placeholder and normal fallback link", () => {
+    const markdown = richBlock(
+      {
+        videoId: "evCnOaVaOTo",
+        title: "Node.js and its many, many new features with Matteo Collina",
+        channel: "CodeTV",
+      },
+      "youtube",
+    );
+
+    const entry = parseWritingDocument(
+      "node-22-experiments.md",
+      `${frontmatter}\n\n${markdown}`,
+    );
+    const html = renderToStaticMarkup(
+      <ReactMarkdown components={createMarkdownComponents(entry.slug)}>
+        {entry.body}
+      </ReactMarkdown>,
+    );
+
+    expect(html).toContain('data-rich-block="youtube"');
+    expect(html).toContain("From CodeTV on YouTube.");
+    expect(html).toContain("Play video");
+    expect(html).toContain('href="https://www.youtube.com/watch?v=evCnOaVaOTo"');
+    expect(html).not.toContain("youtube-nocookie.com");
+    expect(html).not.toContain("<iframe");
+  });
+
+  it.each([
+    "https://www.youtube.com/watch?v=evCnOaVaOTo",
+    "evCnOaVaOT",
+    "evCnOaVaOTo?",
+  ])("rejects unsupported YouTube identifier %s", (videoId) => {
+    expect(() =>
+      parseWritingDocument(
+        "invalid-youtube.md",
+        `${frontmatter}\n\n${richBlock(
+          {
+            videoId,
+            title: "A meaningful video title",
+            channel: "CodeTV",
+          },
+          "youtube",
+        )}`,
+      ),
+    ).toThrow("videoId: must be an 11-character YouTube video ID");
+  });
 });
