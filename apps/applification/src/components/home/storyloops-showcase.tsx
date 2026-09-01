@@ -202,7 +202,12 @@ function MobileStoryMap({ detail = false }: { detail?: boolean }) {
         >
           <div className="font-caption text-[8px] font-bold tracking-[0.7px] text-[var(--storyloop-pink)]">AGENT REQUESTED 3 CHANGES</div>
           <div className="mt-2.5 grid grid-cols-2 gap-2">
-            <span className="flex h-11 items-center justify-center rounded-full bg-[var(--storyloop-indigo)] text-[13px] font-bold text-[var(--storyloop-text-strong)]">Review</span>
+            <span
+              className="flex h-11 items-center justify-center rounded-full bg-[var(--app-action)] text-[13px] font-bold text-[var(--app-text-on-action)]"
+              data-storyloop-review-action
+            >
+              Review
+            </span>
             <span className="flex h-11 items-center justify-center rounded-full bg-[var(--storyloop-shell)] text-[13px] font-bold text-[var(--storyloop-text-secondary)]">Reject</span>
           </div>
         </div>

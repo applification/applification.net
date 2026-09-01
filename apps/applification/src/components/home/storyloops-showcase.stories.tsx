@@ -18,9 +18,14 @@ const checkMobileApprovalPalette: NonNullable<Story["play"]> = async ({
     "[data-storyloop-mobile-approval]",
   );
   const peer = approval?.previousElementSibling as HTMLElement | null;
+  const reviewAction = approval?.querySelector<HTMLElement>(
+    "[data-storyloop-review-action]",
+  );
 
   await expect(approval).toBeInTheDocument();
   await expect(peer).toBeInTheDocument();
+  await expect(reviewAction).toBeInTheDocument();
+  await expect(reviewAction).toHaveClass("bg-[var(--app-action)]");
   await expect(getComputedStyle(approval!).backgroundColor).toBe(
     getComputedStyle(peer!).backgroundColor,
   );
