@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 
 const metrics = [
   ["6 months", "Rebuild to production"],
@@ -166,10 +167,10 @@ export function LogicallyCaseStudyPage() {
               <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={2} />
               Return to Client work
             </Link>
-            <Link className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href="/client-work#contact">
+            {isContactWorkflowAvailable() ? <Link className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href={buildContactHref({ route: "contract" })}>
               Continue to the contract action
               <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
-            </Link>
+            </Link> : null}
           </div>
         </nav>
       </article>

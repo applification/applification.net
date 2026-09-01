@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "storybook-static/**",
+    "src/app/.well-known/workflow/**",
+    ".workflow-vitest/**",
     "next-env.d.ts",
   ]),
   ...storybook.configs["flat/recommended"]

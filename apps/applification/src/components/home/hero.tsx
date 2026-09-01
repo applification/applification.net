@@ -1,8 +1,9 @@
 import { contractPositioning } from "@/lib/contract-positioning";
+import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 import { HeroEntrance, HeroSequenceController } from "./motion";
 import { WorkflowBorderBeam } from "./workflow-border-beam";
 
-const contactHref = "#contact";
+const contactHref = buildContactHref({ route: "contract" });
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -45,7 +46,7 @@ function FlowArrow({
   return (
     <svg
       aria-hidden="true"
-      className={`${vertical ? "h-6 w-[18px]" : "h-[18px] w-[30px]"} ${className}`}
+      className={`${vertical ? "h-6 w-[18px]" : "h-[18px] w-[30px] min-[1280px]:h-5 min-[1280px]:w-9"} ${className}`}
       data-motion-connector={connector}
       fill="none"
       viewBox={vertical ? "0 0 18 24" : "0 0 30 18"}
@@ -109,17 +110,17 @@ function AgentLoopNode({
 }) {
   return (
     <div
-      className={`relative flex h-[34px] min-w-0 items-center rounded border px-2 ${node.background} ${node.border} ${node.text}`}
+      className={`relative flex h-[34px] min-w-0 items-center rounded border px-2 min-[1280px]:h-[42px] min-[1280px]:px-3 ${node.background} ${node.border} ${node.text}`}
       data-motion-node={node.id}
     >
       <WorkflowBorderBeam from={beamFrom} radius={4} to={beamTo} />
       <div className="flex min-w-0 flex-col justify-center">
         <span
-          className={`truncate text-[9px] font-bold tracking-[0.6px] uppercase ${node.text}`}
+          className={`truncate text-[9px] font-bold tracking-[0.6px] uppercase min-[1280px]:text-[11px] min-[1280px]:tracking-[0.75px] ${node.text}`}
         >
           {node.label}
         </span>
-        <span className="truncate text-[6.5px] font-medium tracking-[0.35px] text-[var(--loop-muted)] uppercase">
+        <span className="truncate text-[6.5px] font-medium tracking-[0.35px] text-[var(--loop-muted)] uppercase min-[1280px]:text-[8px] min-[1280px]:tracking-[0.45px]">
           {node.detail}
         </span>
       </div>
@@ -131,22 +132,22 @@ function DesktopAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-4 hidden h-[112px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-border)] bg-[var(--loop-bg)] min-[1060px]:block"
+      className="font-caption order-4 hidden h-[112px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-border)] bg-[var(--loop-bg)] min-[1060px]:block min-[1280px]:h-[140px] min-[1280px]:max-w-[980px]"
       data-motion-sequence="hero-approval"
     >
-      <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
+      <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px] min-[1280px]:h-6 min-[1280px]:px-3">
         <div className="flex items-center gap-[5px]">
-          <span className="size-1.5 rounded-full bg-[var(--loop-red)]" />
-          <span className="size-1.5 rounded-full bg-[var(--loop-yellow)]" />
-          <span className="size-1.5 rounded-full bg-[var(--loop-green)]" />
-          <span className="ml-1 text-[8px] font-semibold tracking-[0.8px] text-[var(--loop-cyan)]">
+          <span className="size-1.5 rounded-full bg-[var(--loop-red)] min-[1280px]:size-2" />
+          <span className="size-1.5 rounded-full bg-[var(--loop-yellow)] min-[1280px]:size-2" />
+          <span className="size-1.5 rounded-full bg-[var(--loop-green)] min-[1280px]:size-2" />
+          <span className="ml-1 text-[8px] font-semibold tracking-[0.8px] text-[var(--loop-cyan)] min-[1280px]:text-[10px] min-[1280px]:tracking-[1px]">
             AGENT_LOOP://HITL
           </span>
         </div>
       </div>
 
-      <div className="relative h-[92px] px-6 pt-[9px]">
-        <div className="grid grid-cols-[110px_42px_198px_42px_160px_42px_178px] items-center">
+      <div className="relative h-[92px] px-6 pt-[9px] min-[1280px]:h-[116px] min-[1280px]:px-[30px] min-[1280px]:pt-[14px]">
+        <div className="grid grid-cols-[110px_42px_198px_42px_160px_42px_178px] items-center min-[1280px]:grid-cols-[130px_50px_236px_50px_192px_50px_212px]">
           {loopNodes.map((node, index) => (
             <div className="contents" key={node.label}>
               <AgentLoopNode beamFrom="left" beamTo="right" node={node} />
@@ -171,7 +172,7 @@ function DesktopAgentLoop() {
         </div>
         <svg
           aria-hidden="true"
-          className="absolute top-[43px] left-[270px] h-[35px] w-[227px] text-[var(--loop-pink)]"
+          className="absolute top-[43px] left-[270px] h-[35px] w-[227px] text-[var(--loop-pink)] min-[1280px]:top-[55px] min-[1280px]:left-[315px] min-[1280px]:h-[45px] min-[1280px]:w-[278px]"
           data-motion-connector="reject"
           fill="none"
           viewBox="0 0 227 35"
@@ -193,7 +194,7 @@ function DesktopAgentLoop() {
             strokeWidth="2.25"
           />
         </svg>
-        <div className="absolute top-[64px] left-[326px] flex h-4 w-[120px] items-center justify-center bg-[color-mix(in_srgb,var(--loop-bg)_93%,transparent)] text-[6.5px] font-bold tracking-[0.55px] text-[var(--loop-pink)] uppercase" data-motion-connector="reject" data-motion-label>
+        <div className="absolute top-[64px] left-[326px] flex h-4 w-[120px] items-center justify-center bg-[color-mix(in_srgb,var(--loop-bg)_93%,transparent)] text-[6.5px] font-bold tracking-[0.55px] text-[var(--loop-pink)] uppercase min-[1280px]:top-[91px] min-[1280px]:left-[393px] min-[1280px]:h-5 min-[1280px]:w-[145px] min-[1280px]:text-[8px] min-[1280px]:tracking-[0.7px]" data-motion-connector="reject" data-motion-label>
           No · revise · run again
         </div>
       </div>
@@ -365,6 +366,7 @@ function MobileAgentLoop() {
 }
 
 export function Hero() {
+  const contactAvailable = isContactWorkflowAvailable();
   const contractSummary = [
     ["Core stack", contractPositioning.stack],
     ["Working location", contractPositioning.location],
@@ -431,13 +433,13 @@ export function Hero() {
       <TabletAgentLoop />
 
       <HeroEntrance className="order-4 flex w-full flex-col items-stretch gap-2 min-[560px]:flex-row min-[560px]:items-center min-[560px]:gap-3 min-[720px]:order-5 min-[720px]:w-auto" order={4}>
-        <a
+        {contactAvailable ? <a
           className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-[24px] text-base font-bold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none min-[720px]:font-semibold ${focusClasses}`}
           href={contactHref}
         >
           Discuss a contract
           <DownArrowIcon />
-        </a>
+        </a> : null}
         <a
           className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-[var(--app-sky-text)] bg-transparent px-6 text-base font-semibold text-[var(--app-sky-text)] transition-[background-color,color,transform] hover:bg-[var(--app-selected)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
           href="#client-work"

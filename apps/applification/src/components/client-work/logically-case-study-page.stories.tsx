@@ -24,7 +24,7 @@ const checkCompleteCase: NonNullable<Story["play"]> = async ({
   await expect(canvas.getByRole("heading", { name: /boundary testable/i })).toBeVisible();
   await expect(canvas.getByRole("heading", { name: /six months to production/i })).toBeVisible();
   await expect(canvas.getByRole("link", { name: "Return to Client work" })).toHaveAttribute("href", "/client-work#logically");
-  await expect(canvas.getByRole("link", { name: "Continue to the contract action" })).toHaveAttribute("href", "/client-work#contact");
+  await expect(canvas.getByRole("link", { name: "Continue to the contract action" })).toHaveAttribute("href", "/contact?route=contract");
   await expect(canvas.getByRole("link", { name: /Visit Logically/ })).toHaveAttribute("target", "_blank");
   await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
 };

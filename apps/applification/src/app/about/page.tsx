@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { AboutPage as AboutPageContent } from "@/components/about/about-page";
 import { contractPositioningDescriptions } from "@/lib/contract-positioning";
+import { buildContactHref, parseContactProduct, parseContactRoute } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "About Dave Hudson",
@@ -18,6 +20,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutPage() {
+export default async function AboutPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const query = await searchParams;
+  const route = parseContactRoute(query.route);
+  const product = parseContactProduct(query.product);
+
+  if (route || product) {
+    redirect(buildContactHref({ product: product ?? undefined, route: route ?? "contract" }));
+  }
+
   return <AboutPageContent />;
 }

@@ -18,6 +18,7 @@ export default defineConfig({
           name: "unit",
           environment: "node",
           include: ["src/**/*.test.{ts,tsx}"],
+          exclude: ["src/**/*.workflow.test.ts"],
         },
       },
       {

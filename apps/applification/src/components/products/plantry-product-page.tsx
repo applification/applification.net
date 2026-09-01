@@ -18,9 +18,9 @@ import {
   ProductDetailSteps,
   type ProductDetailStep,
 } from "@/components/products/product-detail";
+import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 
-const followBuildHref =
-  "mailto:dave@applification.net?subject=Plantry%20development%20updates";
+const followBuildHref = buildContactHref({ route: "product", product: "plantry" });
 
 const plantryTheme = {
   "--app-bg": "light-dark(#fffbef, #102a3a)",
@@ -141,13 +141,13 @@ function PlantryHero() {
               hands the shopping list to Reminders.
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <a
+              {isContactWorkflowAvailable() ? <a
                 className={`inline-flex min-h-11 items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
                 href={followBuildHref}
               >
                 Follow the build
                 <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
-              </a>
+              </a> : null}
               <span className="inline-flex min-h-11 items-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-muted-section)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-secondary)]">
                 Apple platforms R&amp;D
                 <Smartphone aria-hidden="true" size={16} strokeWidth={1.8} />
@@ -318,7 +318,7 @@ function PlantryAvailability() {
             invitations.
           </p>
         </div>
-        <a
+        {isContactWorkflowAvailable() ? <a
           className={`inline-flex h-[49px] w-full items-center justify-center gap-2.5 rounded-full bg-[var(--app-text-primary)] px-[21px] text-[15px] font-semibold text-[var(--app-section)] transition-[background-color,transform] hover:bg-[var(--app-text-secondary)] active:translate-y-px min-[1200px]:w-[185px] ${focusClasses}`}
           href={followBuildHref}
         >
@@ -329,7 +329,7 @@ function PlantryAvailability() {
             size={18}
             strokeWidth={1.8}
           />
-        </a>
+        </a> : null}
       </div>
     </section>
   );

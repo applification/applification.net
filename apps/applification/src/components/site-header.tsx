@@ -12,10 +12,8 @@ const navigation = [
   { href: "/client-work", label: "Client work" },
   { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
-
-const contactHref =
-  "mailto:dave@applification.net?subject=Project%20enquiry";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -112,24 +110,6 @@ function isCurrentPath(pathname: string | null, href: string) {
   return pathname === href || pathname?.startsWith(`${href}/`) === true;
 }
 
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="size-4 shrink-0 stroke-current"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M7 17 17 7M7 7h10v10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  );
-}
-
 function MenuIcon({ open }: { open: boolean }) {
   return (
     <svg
@@ -155,7 +135,7 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boolean }) {
   const pathname = usePathname();
   const productHeaderTheme = getProductHeaderTheme(pathname);
   const reduceMotion = useReducedMotion();
@@ -163,6 +143,9 @@ export function SiteHeader() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const menuOpen = menuState.pathname === pathname && menuState.open;
+  const visibleNavigation = contactAvailable
+    ? navigation
+    : navigation.filter((item) => item.href !== "/contact");
   const activeIndicatorTransition = reduceMotion
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 430, damping: 36, mass: 0.7 };
@@ -211,7 +194,7 @@ export function SiteHeader() {
           className="hidden items-center gap-5 min-[700px]:flex min-[1024px]:gap-[30px]"
         >
           <LayoutGroup id="primary-navigation">
-            {navigation.map((item) => {
+            {visibleNavigation.map((item) => {
               const current = isCurrentPath(pathname, item.href);
 
               return (
@@ -235,19 +218,7 @@ export function SiteHeader() {
               );
             })}
           </LayoutGroup>
-          <div className="flex items-center gap-3">
-            <ThemeSwitcher />
-            <a
-              className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-base leading-[20px] font-semibold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
-              href={contactHref}
-            >
-              <span className="min-[1024px]:hidden">Contact</span>
-              <span className="hidden min-[1024px]:inline">
-                Discuss a contract
-              </span>
-              <ArrowUpRightIcon />
-            </a>
-          </div>
+          <ThemeSwitcher />
         </nav>
 
         <div className="flex items-center min-[700px]:hidden">
@@ -283,7 +254,7 @@ export function SiteHeader() {
             }}
           >
             <div className="mx-auto flex max-w-md flex-col gap-1">
-              {navigation.map((item, index) => {
+              {visibleNavigation.map((item, index) => {
                 const current = isCurrentPath(pathname, item.href);
 
                 return (
@@ -302,13 +273,6 @@ export function SiteHeader() {
               <div className="my-2 border-t border-[var(--app-border)] pt-2">
                 <ThemeSwitcher labelled />
               </div>
-              <a
-                className={`mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-5 text-base font-semibold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
-                href={contactHref}
-              >
-                Discuss a contract
-                <ArrowUpRightIcon />
-              </a>
             </div>
           </motion.nav>
         ) : null}

@@ -1,8 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { ContextureSchemaPreview } from "@/components/products/contexture-schema-preview";
+import {
+  portfolioProducts,
+  type PortfolioProductSlug,
+} from "@/lib/portfolio";
 
-export type ProductSlug = "contexture" | "plantry" | "storyloops" | "voiced";
+export type ProductSlug = PortfolioProductSlug;
 
 type Product = {
   accent: string;
@@ -13,40 +17,7 @@ type Product = {
   status: string;
 };
 
-const products: Product[] = [
-  {
-    accent: "#cba6f7",
-    description: "Turn one domain model into contracts your code can share.",
-    href: "/products/contexture",
-    name: "Contexture",
-    slug: "contexture",
-    status: "LIVE",
-  },
-  {
-    accent: "#7dd3fc",
-    description: "Keep product scope visible to coding agents and people.",
-    href: "/products/storyloops",
-    name: "StoryLoops",
-    slug: "storyloops",
-    status: "IN DEVELOPMENT",
-  },
-  {
-    accent: "#8fe3a8",
-    description: "Speak into the text field you are already using.",
-    href: "/products/voiced",
-    name: "Voiced",
-    slug: "voiced",
-    status: "LIVE",
-  },
-  {
-    accent: "#e8c66a",
-    description: "Plan a few meals around the household and what needs using.",
-    href: "/products/plantry",
-    name: "Plantry",
-    slug: "plantry",
-    status: "R&D",
-  },
-];
+const products: Product[] = [...portfolioProducts];
 
 function ProductSignal({ product }: { product: Product }) {
   if (product.slug === "contexture") {
