@@ -59,6 +59,8 @@ Peer client cases and their evidence notes use the shared neutral surfaces. Dist
 
 Featured editorial content uses scale and composition for emphasis. Do not turn `--app-selected` into a large page surface; reserve it for selected states and compact orientation cues.
 
+Choice controls nested inside muted cards keep a neutral `--app-card` fill when selected. Use the action border, type weight, and control state to show the choice instead of adding a blue background.
+
 Keep text contrast at WCAG AA. In particular, do not replace the accessible light `--app-text-muted` value with the lighter value found in older pen frames.
 
 ### Product identities

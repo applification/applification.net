@@ -883,7 +883,10 @@ export function ContactWorkspace({
           </p>
         </div>
 
-        <div className="mt-9 overflow-hidden rounded-[24px] border border-[var(--app-border)] bg-[var(--app-card)] shadow-[0_30px_80px_-48px_#0b1220]">
+        <div
+          className="mt-9 overflow-hidden rounded-[24px] border border-[var(--app-border)] bg-[var(--app-card)] shadow-[0_30px_80px_-48px_#0b1220]"
+          data-contact-shell
+        >
           <header className="flex min-h-14 items-center justify-between gap-4 border-b border-[var(--app-border)] px-4 sm:px-5">
             <div className="flex min-w-0 items-center gap-2.5">
               <span className="size-2 shrink-0 rounded-full bg-[var(--workflow-live)]" aria-hidden="true" />
@@ -923,7 +926,7 @@ export function ContactWorkspace({
                     </p>
                     {route && !routeChooserExpanded ? (
                       <div
-                        className="flex min-h-11 items-center justify-between gap-3 rounded-xl border border-[var(--app-action)] bg-[var(--app-selected)] px-3 sm:hidden"
+                        className="flex min-h-11 items-center justify-between gap-3 rounded-xl border border-[var(--app-action)] bg-[var(--app-card)] px-3 sm:hidden"
                         data-contact-selected-route
                       >
                         <span className="truncate font-semibold">{selectedRoute?.shortLabel}</span>
@@ -957,7 +960,7 @@ export function ContactWorkspace({
                       {routes.map((item) => (
                         <ToggleGroupItem
                           aria-label={item.label}
-                          className="h-11 min-h-11 w-full items-center justify-start whitespace-normal px-3 py-2 text-left data-[state=on]:border-[var(--app-action)] data-[state=on]:bg-[var(--app-selected)] sm:h-auto sm:min-h-[74px] sm:flex-col sm:items-start sm:py-3"
+                          className="h-11 min-h-11 w-full items-center justify-start whitespace-normal px-3 py-2 text-left data-[state=on]:border-[var(--app-action)] data-[state=on]:bg-[var(--app-card)] sm:h-auto sm:min-h-[74px] sm:flex-col sm:items-start sm:py-3"
                           key={item.route}
                           value={item.route}
                         >

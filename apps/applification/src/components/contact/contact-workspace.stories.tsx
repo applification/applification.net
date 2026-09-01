@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { ContactWorkspace } from "./contact-workspace";
 
 const meta = {
@@ -32,6 +32,15 @@ async function checkWorkspace(canvasElement: HTMLElement) {
   });
   await userEvent.click(contractRoute);
   await expect(contractRoute).toHaveAttribute("aria-checked", "true");
+  const contactShell = canvasElement.querySelector<HTMLElement>(
+    "[data-contact-shell]",
+  );
+  await expect(contactShell).not.toBeNull();
+  await waitFor(() =>
+    expect(getComputedStyle(contractRoute).backgroundColor).toBe(
+      getComputedStyle(contactShell!).backgroundColor,
+    ),
+  );
   await expect(
     canvas.getByText(/Tell me about the company, the work and when/),
   ).toBeVisible();
@@ -70,11 +79,20 @@ async function checkSmallPhoneWorkspace(canvasElement: HTMLElement) {
   await expect(composer!.offsetHeight).toBeLessThanOrEqual(58);
 
   await userEvent.click(routeButtons[0]!);
+  const selectedRoute = canvasElement.querySelector<HTMLElement>(
+    "[data-contact-selected-route]",
+  );
+  const contactShell = canvasElement.querySelector<HTMLElement>(
+    "[data-contact-shell]",
+  );
+  await expect(selectedRoute).not.toBeNull();
+  await expect(contactShell).not.toBeNull();
   await expect(
-    canvas.getByText("Contract", {
-      selector: "[data-contact-selected-route] > span",
-    }),
+    within(selectedRoute!).getByText("Contract", { selector: "span" }),
   ).toBeVisible();
+  await expect(getComputedStyle(selectedRoute!).backgroundColor).toBe(
+    getComputedStyle(contactShell!).backgroundColor,
+  );
   await expect(
     canvas.queryByRole("radiogroup", { name: "Choose an enquiry route" }),
   ).not.toBeInTheDocument();
