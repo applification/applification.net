@@ -61,6 +61,8 @@ Featured editorial content uses scale and composition for emphasis. Do not turn 
 
 Choice controls nested inside muted cards keep a neutral `--app-card` fill when selected. Use the action border, type weight, and control state to show the choice instead of adding a blue background.
 
+Theme counterparts preserve the same semantic role and comparable emphasis, not the same literal colour. Light mode uses a deeper cyan-blue for readable accent text; dark mode may use a paler cyan. Do not copy a bright dark-mode text value onto a light surface when it loses contrast.
+
 Keep text contrast at WCAG AA. In particular, do not replace the accessible light `--app-text-muted` value with the lighter value found in older pen frames.
 
 ### Product identities
@@ -79,6 +81,8 @@ The registered type roles live in `src/app/fonts.ts` and the corresponding utili
 - `font-data` uses Geist Mono for code, identifiers, commands, timestamps, and aligned technical data.
 
 Do not set whole paragraphs or tables in mono. Do not use a tracked uppercase label as decoration. A label must identify a content type, state, source, or step that helps the reader navigate.
+
+Meaning-bearing labels in interactive workflows use at least 11 pixel type. Reserve 10 pixel captions for secondary metadata; do not rely on colour to make essential small text readable.
 
 Large headings need deliberate line breaks and a stable measure. Keep body copy close to 60 to 70 characters per line. Preserve readable type before trying to make a layout denser.
 
@@ -125,6 +129,8 @@ Design at the content breakpoints rather than only at named devices. The require
 Reflow before shrinking type. Grid and flex children need `min-width: 0` where content may overflow. Long tables may scroll inside a labelled region when reordering would damage lookup. Pages must not create horizontal document overflow at 320 pixels or wider.
 
 Short mobile conversation workspaces use the available small-viewport height. Keep the opening choice and empty composer visible together, then collapse completed choices so the next question replaces them rather than stacking below them.
+
+For the contact workspace, treat 375 by 667 pixels as an explicit compact-height reference alongside the standard 390 pixel mobile story. Keep route choices dense enough to preserve context, and keep the composer to a 56 pixel single row with the return action beside the input rather than below it.
 
 Keep action labels on one line. In narrow cards, remove redundant context from the visible label or stack paired controls before reducing control type.
 
@@ -195,6 +201,7 @@ Change this file when a durable design decision changes. Change CSS variables or
 Known current limitations:
 
 - Several pen frames predate the latest production implementation.
+- The combined About and contact pen frames are historical. Use the standalone current contact page and iPhone SE workspace frames for contact composition, selected-state, and compact-height decisions.
 - The pen document has page frames rather than a reusable component library.
 - Product-detail coverage in the pen document is not complete across themes.
 - Some product mockups still contain repeated literal colours that should become scoped product variables when those components next change.
