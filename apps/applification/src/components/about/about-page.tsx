@@ -1,5 +1,7 @@
 import { ArrowUpRight, Check } from "lucide-react";
+import Link from "next/link";
 import { contractPositioning } from "@/lib/contract-positioning";
+import { AiWorkingMethod } from "@/components/home/ai-working-method";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -84,6 +86,21 @@ const bestFit = [
   "React, TypeScript and Tailwind",
   "AI product interfaces and agent workflows",
   "Direct access to product decisions",
+] as const;
+
+const selectedWriting = [
+  {
+    title: "AI-native software still needs rigour",
+    description:
+      "What old and new codebases taught me about building with AI without surrendering control or quality.",
+    href: "/writing/ai-native-software-needs-rigour",
+  },
+  {
+    title: "AI is making me rethink software delivery",
+    description:
+      "How AI has changed the way I write, design, test and build software, and what that means for ownership.",
+    href: "/writing/rethinking-software-delivery-with-ai",
+  },
 ] as const;
 
 function SectionHeading({
@@ -260,6 +277,76 @@ export function CareerTimeline() {
   );
 }
 
+export function SelectedWriting() {
+  return (
+    <section
+      className="bg-[var(--app-section)]"
+      data-about-section="writing"
+      aria-labelledby="selected-writing-heading"
+    >
+      <div className="mx-auto w-full max-w-[1200px] px-6 py-14 min-[1200px]:px-0 min-[1200px]:py-[72px]">
+        <div className="grid gap-5 min-[900px]:grid-cols-[minmax(0,1fr)_430px] min-[900px]:items-end min-[900px]:gap-16">
+          <div>
+            <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--writing-accent-text)] uppercase">
+              Writing from the work
+            </p>
+            <h2
+              className="font-heading mt-3 text-[clamp(2.25rem,4vw,2.75rem)] leading-[1.05] font-medium tracking-[-0.02em]"
+              id="selected-writing-heading"
+            >
+              The thinking behind the workflow.
+            </h2>
+          </div>
+          <div>
+            <p className="text-[15px] leading-[1.55] text-[var(--app-text-secondary)]">
+              What changes when agents write more of the code, and what
+              engineering discipline still has to do.
+            </p>
+            <Link
+              className={`mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--writing-accent-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] motion-reduce:transition-none ${focusClasses}`}
+              href="/writing"
+            >
+              View all writing
+              <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={2} />
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-7 grid border-y border-[var(--app-border)] min-[760px]:grid-cols-2">
+          {selectedWriting.map((article, index) => (
+            <article
+              className={`py-6 ${index === 0 ? "border-b border-[var(--app-border)] min-[760px]:border-r min-[760px]:border-b-0 min-[760px]:pr-8" : "min-[760px]:pl-8"}`}
+              key={article.href}
+            >
+              <p className="font-caption text-[9px] font-bold tracking-[0.8px] text-[var(--writing-accent-text)] uppercase">
+                Field note
+              </p>
+              <h3 className="font-heading mt-2 text-[26px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[900px]:text-[28px]">
+                <Link
+                  className={`decoration-[var(--writing-accent-text)] underline-offset-4 hover:underline ${focusClasses}`}
+                  href={article.href}
+                >
+                  {article.title}
+                </Link>
+              </h3>
+              <p className="mt-3 max-w-[510px] text-[15px] leading-[1.55] text-[var(--app-text-secondary)]">
+                {article.description}
+              </p>
+              <Link
+                className={`font-caption mt-4 inline-flex min-h-11 items-center gap-2 text-[10px] font-bold tracking-[0.6px] text-[var(--writing-accent-text)] uppercase ${focusClasses}`}
+                href={article.href}
+              >
+                Read field note
+                <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={2} />
+              </Link>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function ContractFit() {
   return (
     <section className="bg-[var(--app-section)]" data-about-section="contract-fit">
@@ -322,6 +409,8 @@ export function AboutPage() {
     <main className="flex-1 overflow-x-clip">
       <AboutHero />
       <Positioning />
+      <AiWorkingMethod />
+      <SelectedWriting />
       <CareerTimeline />
       <ContractFit />
     </main>

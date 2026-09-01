@@ -131,10 +131,10 @@ function DesktopAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-4 hidden h-[112px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[1060px]:block"
+      className="font-caption order-4 hidden h-[112px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] min-[1060px]:block"
       data-motion-sequence="hero-approval"
     >
-      <div className="flex h-5 items-center justify-between border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
+      <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
         <div className="flex items-center gap-[5px]">
           <span className="size-1.5 rounded-full bg-[var(--loop-red)]" />
           <span className="size-1.5 rounded-full bg-[var(--loop-yellow)]" />
@@ -143,10 +143,6 @@ function DesktopAgentLoop() {
             AGENT_LOOP://HITL
           </span>
         </div>
-        <span className="flex items-center gap-[5px] text-[8px] font-bold tracking-[1px] text-[var(--loop-green)]">
-          <span className="size-[5px] rounded-full bg-[var(--loop-green)]" data-motion-live />
-          LIVE
-        </span>
       </div>
 
       <div className="relative h-[92px] px-6 pt-[9px]">
@@ -182,6 +178,7 @@ function DesktopAgentLoop() {
         >
           <path
             d="M226 0v31H13V7"
+            data-motion-path-base
             opacity="0.67"
             stroke="currentColor"
             strokeLinecap="round"
@@ -208,10 +205,10 @@ function TabletAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-4 hidden h-[176px] w-full max-w-[640px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[720px]:block min-[1060px]:hidden"
+      className="font-caption order-4 hidden h-[176px] w-full max-w-[640px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] min-[720px]:block min-[1060px]:hidden"
       data-motion-sequence="hero-approval"
     >
-      <div className="flex h-5 items-center justify-between border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
+      <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
         <div className="flex items-center gap-[5px]">
           <span className="size-1.5 rounded-full bg-[var(--loop-red)]" />
           <span className="size-1.5 rounded-full bg-[var(--loop-yellow)]" />
@@ -220,10 +217,6 @@ function TabletAgentLoop() {
             AGENT_LOOP://HITL
           </span>
         </div>
-        <span className="flex items-center gap-[5px] text-[8px] font-bold tracking-[1px] text-[var(--loop-green)]">
-          <span className="size-[5px] rounded-full bg-[var(--loop-green)]" data-motion-live />
-          LIVE
-        </span>
       </div>
 
       <div className="relative h-[156px] px-4 pt-3">
@@ -259,7 +252,8 @@ function TabletAgentLoop() {
           viewBox="0 0 100 144"
         >
           <path
-            d="M76 92V132H100V17"
+            d="M74 92V132H99.5V17H96"
+            data-motion-path-base
             opacity="0.72"
             stroke="currentColor"
             strokeLinecap="round"
@@ -267,10 +261,17 @@ function TabletAgentLoop() {
             strokeWidth="1.5"
             vectorEffect="non-scaling-stroke"
           />
+          <path
+            d="M97 11l-1 6 1 6"
+            data-motion-path-base
+            opacity="0.72"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.25"
+            vectorEffect="non-scaling-stroke"
+          />
         </svg>
-        <span className="pointer-events-none absolute top-5 right-3.5 flex text-[var(--loop-pink)]" data-motion-connector="reject">
-          <FlowArrow direction="left" />
-        </span>
         <span className="absolute right-6 bottom-[8px] bg-[var(--loop-bg)] px-3 text-[6.5px] font-bold tracking-[0.55px] whitespace-nowrap text-[var(--loop-pink)] uppercase" data-motion-connector="reject" data-motion-label>
           No · revise · run again
         </span>
@@ -283,10 +284,10 @@ function MobileAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-5 w-full overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] shadow-[0_0_18px_color-mix(in_srgb,var(--app-accent)_20%,transparent)] min-[720px]:hidden"
+      className="font-caption order-5 w-full overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] min-[720px]:hidden"
       data-motion-sequence="hero-approval"
     >
-      <div className="flex h-5 items-center justify-between border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
+      <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
         <div className="flex items-center gap-[5px]">
           <span className="size-1.5 rounded-full bg-[var(--loop-red)]" />
           <span className="size-1.5 rounded-full bg-[var(--loop-yellow)]" />
@@ -295,10 +296,6 @@ function MobileAgentLoop() {
             AGENT_LOOP://HITL
           </span>
         </div>
-        <span className="flex items-center gap-[5px] text-[8px] font-bold tracking-[1px] text-[var(--loop-green)]">
-          <span className="size-[5px] rounded-full bg-[var(--loop-green)]" data-motion-live />
-          LIVE
-        </span>
       </div>
 
       <div className="px-4 pt-3 pb-4">
@@ -346,6 +343,7 @@ function MobileAgentLoop() {
           >
             <path
               d="M94 153H99V79"
+              data-motion-path-base
               opacity="0.72"
               stroke="currentColor"
               strokeLinecap="round"
@@ -371,7 +369,6 @@ export function Hero() {
     ["Core stack", contractPositioning.stack],
     ["Working location", contractPositioning.location],
     ["Team fit", contractPositioning.teamFit],
-    ["Contract basis", contractPositioning.contractBasis],
   ] as const;
 
   return (
@@ -433,7 +430,7 @@ export function Hero() {
       <DesktopAgentLoop />
       <TabletAgentLoop />
 
-      <HeroEntrance className="order-4 flex w-full flex-col items-stretch gap-1 min-[560px]:flex-row min-[560px]:items-center min-[720px]:order-5 min-[720px]:w-auto" order={4}>
+      <HeroEntrance className="order-4 flex w-full flex-col items-stretch gap-2 min-[560px]:flex-row min-[560px]:items-center min-[560px]:gap-3 min-[720px]:order-5 min-[720px]:w-auto" order={4}>
         <a
           className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-[24px] text-[15px] font-bold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none min-[720px]:font-semibold ${focusClasses}`}
           href={contactHref}
@@ -442,7 +439,7 @@ export function Hero() {
           <DownArrowIcon />
         </a>
         <a
-          className={`inline-flex min-h-11 items-center justify-center gap-2 px-4 text-sm font-semibold text-[var(--app-text-secondary)] transition-[color,transform] hover:text-[var(--app-action)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
+          className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-[var(--app-action)] bg-transparent px-6 text-sm font-semibold text-[var(--app-action)] transition-[background-color,color,transform] hover:bg-[var(--app-selected)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
           href="#client-work"
         >
           See client outcomes

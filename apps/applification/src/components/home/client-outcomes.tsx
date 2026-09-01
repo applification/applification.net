@@ -8,7 +8,7 @@ const outcomeDetails = [
     proof: "4 months",
     title: "Greenfield frontend live",
     detail:
-      "Designed and built the entire TypeScript and Next.js frontend against an existing API in three months. The platform reached production after a fourth month of release work.",
+      "Designed and built the entire TypeScript and Next.js frontend for Client Server's recruitment platform against an existing API in three months. It reached production after a fourth month of release work.",
     technologies: "REACT  ·  TYPESCRIPT  ·  STORYBOOK",
     href: "/client-work/eruptiv",
     linkLabel: "Read the Eruptiv case",
@@ -43,9 +43,9 @@ function LogicallyOutcome() {
           Intelligence v2 rebuilt for production
         </h3>
         <p className="mt-3 text-sm leading-[1.5] text-[var(--client-feature-muted)] min-[1024px]:max-w-[520px] min-[1024px]:text-[15px] min-[1024px]:text-[var(--app-text-secondary)]">
-          Architected and built most of Intelligence v2 with one other
-          engineer. Routine UI changes fell from days to minutes, and the team
-          released several times per day.
+          As Principal Engineer, I led the team, architected and built
+          Intelligence v2 with one other engineer. Routine UI changes fell from
+          days to minutes, and the team released several times per day.
         </p>
 
         <dl className="mt-4 grid grid-cols-3 gap-1.5 min-[1024px]:hidden">
@@ -73,13 +73,25 @@ function LogicallyOutcome() {
       <p className="font-caption hidden text-[10px] font-semibold tracking-[0.65px] text-[var(--app-text-muted)] min-[1024px]:block">
         NEXT.JS&nbsp; · &nbsp;TYPESCRIPT&nbsp; · &nbsp;AI SDK&nbsp; · &nbsp;MCP
       </p>
-      <Link
-        className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--client-feature-accent)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-label-text)] min-[1024px]:hover:text-[var(--app-sky-text)]"
-        href="/client-work/logically"
-      >
-        Read the Logically case
-        <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
-      </Link>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <Link
+          className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--client-feature-accent)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-label-text)] min-[1024px]:hover:text-[var(--app-sky-text)]"
+          href="/client-work/logically"
+        >
+          Read the Logically case
+          <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+        </Link>
+        <a
+          className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[var(--client-feature-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-text-muted)] min-[1024px]:hover:text-[var(--app-sky-text)]"
+          href="https://www.logically.ai/"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Visit Logically
+          <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={2} />
+          <span className="sr-only">, opens in a new tab</span>
+        </a>
+      </div>
     </li>
   );
 }

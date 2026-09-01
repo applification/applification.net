@@ -1,5 +1,6 @@
 import { Bot, ChevronDown, CloudUpload, CodeXml } from "lucide-react";
 import { MotionReveal } from "./motion";
+import { ProductStatus } from "./product-status";
 
 const mapStories = [
   ["S-01", "Availability banner"],
@@ -273,6 +274,7 @@ export function StoryLoopsShowcase() {
       <section className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-20 min-[1024px]:py-16" id="products">
         <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 min-[720px]:items-center min-[720px]:gap-[18px]">
         <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] min-[720px]:tracking-[1.1px]">FLAGSHIP PRODUCT&nbsp; · &nbsp;STORYLOOPS</p>
+        <ProductStatus status="In Development" />
         <h2 className="font-heading max-w-[1020px] text-[36px] leading-[1.04] font-medium text-[var(--app-text-primary)] min-[720px]:text-center min-[720px]:text-[44px] min-[720px]:leading-none">A product map that coding agents cannot quietly ignore.</h2>
         <p className="max-w-[760px] text-[15px] leading-[1.5] text-[var(--app-text-secondary)] min-[720px]:text-center min-[720px]:text-base min-[720px]:leading-[1.45]">StoryLoops gives each task product context, then makes scope changes visible for approval before the map changes.</p>
 

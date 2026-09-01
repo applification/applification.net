@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { ProductStatus } from "@/components/home/product-status";
 import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
 import { PageHero } from "@/components/page-hero";
 import { ContextureSchemaPreview } from "@/components/products/contexture-schema-preview";
@@ -8,10 +9,10 @@ const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
 
 const portfolioStatuses = [
-  "01 SHIPPED",
-  "01 OPEN SOURCE",
-  "02 IN DEVELOPMENT",
-];
+  { count: "02", status: "Live" },
+  { count: "01", status: "In Development" },
+  { count: "01", status: "R&D" },
+] as const;
 
 const principles = [
   {
@@ -61,13 +62,17 @@ function ProductsHero() {
           <div className="font-caption mt-5 text-[11px] font-semibold tracking-[0.9px] text-[var(--app-text-muted)] min-[821px]:text-xs">
             PRODUCTS IN THE PORTFOLIO
           </div>
-          <ul className="font-caption mt-3 grid gap-1.5 text-[11px] font-medium tracking-[0.45px] text-[var(--app-text-secondary)] min-[821px]:text-xs">
-            {portfolioStatuses.map((status) => (
-              <li key={status}>{status}</li>
+          <ul className="font-caption mt-3 grid gap-2 text-[11px] font-semibold tracking-[0.45px] text-[var(--app-text-secondary)] min-[821px]:text-xs">
+            {portfolioStatuses.map(({ count, status }) => (
+              <li className="flex items-center gap-2" key={status}>
+                <span className="w-5">{count}</span>
+                <ProductStatus status={status} />
+              </li>
             ))}
           </ul>
         </div>
       }
+      density="compact"
       description={
         <p>
           A small portfolio of tools for clearer agent collaboration, shared
@@ -75,7 +80,7 @@ function ProductsHero() {
         </p>
       }
       eyebrow="PRODUCTS"
-      eyebrowDetail="BUILT, SHIPPED AND IN DEVELOPMENT"
+      eyebrowDetail="LIVE, IN DEVELOPMENT AND R&D"
       headingId="products-page-heading"
       title="Products built around real work."
     />
@@ -89,16 +94,16 @@ function FeaturedStoryLoops() {
       className="bg-[var(--app-section)] px-6 py-14 min-[1024px]:px-20 min-[1024px]:py-[68px]"
     >
       <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 min-[1024px]:gap-[30px]">
-        <div className="font-caption flex items-center justify-between text-[11px] font-bold tracking-[1px] min-[1024px]:text-xs min-[1024px]:font-semibold">
-          <span className="text-[var(--app-label-text)]">FEATURED PRODUCT</span>
+        <div className="font-caption flex items-center justify-between gap-4 text-[11px] font-bold tracking-[1px] min-[1024px]:text-xs min-[1024px]:font-semibold">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-[var(--app-label-text)]">FEATURED PRODUCT</span>
+            <ProductStatus status="In Development" />
+          </div>
           <span className="text-[var(--app-text-muted)]">01 / 04</span>
         </div>
 
         <div className="grid gap-7 min-[1024px]:grid-cols-[420px_minmax(0,1fr)] min-[1024px]:items-center min-[1024px]:gap-[42px]">
           <div className="flex flex-col items-start gap-[17px] min-[1024px]:gap-5">
-            <span className="font-caption rounded-full bg-[var(--app-label)] px-2.5 py-1.5 text-[10px] font-bold tracking-[0.65px] text-[var(--app-label-text)] min-[1024px]:text-[11px]">
-              IN DEVELOPMENT
-            </span>
             <h2
               className="font-heading text-[42px] leading-none font-medium text-[var(--app-text-primary)] min-[1024px]:text-[46px]"
               id="featured-storyloops-heading"
@@ -149,9 +154,10 @@ function ContextureCard() {
         <ContextureSchemaPreview />
       </div>
       <ProductCardCopy>
-        <span className="font-caption w-fit rounded-full bg-[var(--contexture-purple)] px-2.5 py-1 text-[9px] font-bold tracking-[0.6px] text-[var(--contexture-shell)] min-[1024px]:text-[10px]">
-          OPEN SOURCE
-        </span>
+        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] font-bold tracking-[0.7px] text-[var(--contexture-cyan)]">
+          <span>OPEN SOURCE&nbsp; · &nbsp;CONVEX</span>
+          <ProductStatus status="Live" />
+        </div>
         <h3 className="font-heading mt-3 text-[30px] leading-none font-medium">Contexture</h3>
         <p className="mt-3 text-lg leading-[1.2] font-semibold">
           Give people and agents the same domain model.
@@ -208,9 +214,10 @@ function VoicedCard() {
         </div>
       </div>
       <ProductCardCopy>
-        <span className="font-caption w-fit rounded-full bg-[#D8F5E1] px-2.5 py-1 text-[9px] font-bold tracking-[0.6px] text-[#197A45] min-[1024px]:text-[10px]">
-          SHIPPED
-        </span>
+        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] font-bold tracking-[0.7px] text-[var(--voiced-accent)]">
+          <span>OPEN SOURCE&nbsp; · &nbsp;NOTARISED</span>
+          <ProductStatus status="Live" />
+        </div>
         <h3 className="font-heading mt-3 text-[30px] leading-none font-medium">Voiced</h3>
         <p className="mt-3 text-lg leading-[1.2] font-semibold">
           Voice input for the text field you are already using.
@@ -249,9 +256,10 @@ function PlantryCard() {
         />
       </div>
       <ProductCardCopy>
-        <span className="font-caption w-fit rounded-full bg-[#2F7D49] px-2.5 py-1 text-[9px] font-bold tracking-[0.6px] text-[#FFFBef] min-[1024px]:text-[10px]">
-          PRODUCT R&amp;D
-        </span>
+        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] font-bold tracking-[0.7px] text-[#526879]">
+          <span>APPLE PLATFORMS</span>
+          <ProductStatus status={"R&D"} />
+        </div>
         <h3 className="font-heading mt-3 text-[30px] leading-none font-medium">Plantry</h3>
         <p className="mt-3 text-lg leading-[1.2] font-semibold">
           Meal planning that understands the household.

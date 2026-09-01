@@ -45,6 +45,15 @@
   --loop-pink-bg: #261027;
   --loop-cyan: #7dd3fc;
   --loop-cyan-bg: #071d2a;
+  --status-development-bg: light-dark(#fef3c7, #422006);
+  --status-development-border: light-dark(#fcd34d, #a16207);
+  --status-development-text: light-dark(#92400e, #fde68a);
+  --status-rnd-bg: light-dark(#e0f2fe, #0c4a6e);
+  --status-rnd-border: light-dark(#7dd3fc, #0284c7);
+  --status-rnd-text: light-dark(#0369a1, #bae6fd);
+  --status-live-bg: light-dark(#dcfce7, #052e16);
+  --status-live-border: light-dark(#86efac, #15803d);
+  --status-live-text: light-dark(#166534, #86efac);
   --storyloop-shell: #0b1220;
   --storyloop-chrome: #111827;
   --storyloop-panel: #0f172a;
@@ -180,9 +189,9 @@
   --cta-action-hover: #172554;
   --cta-action-active: #020617;
   --cta-action-text: #f8fafc;
-  --cta-eyebrow: light-dark(#082f49, #7dd3fc);
-  --cta-description: light-dark(#082f49, #bae6fd);
-  --cta-focus: light-dark(#082f49, #7dd3fc);
+  --cta-eyebrow: var(--app-label-text);
+  --cta-description: var(--app-text-secondary);
+  --cta-focus: var(--app-focus);
 
   --background: var(--app-bg);
   --background-end: var(--app-bg-end);

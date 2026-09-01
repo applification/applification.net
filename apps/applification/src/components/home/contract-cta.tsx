@@ -47,7 +47,7 @@ export function ContractCta({
   return (
     <section
       aria-labelledby="contract-cta-heading"
-      className={`${dark ? `bg-[#111827] text-white ${darkSectionHeight}` : "bg-[var(--app-accent-band)] text-[var(--app-text-on-accent)]"} px-6 py-12 ${sectionLayout}`}
+      className={`${dark ? `bg-[#111827] text-white ${darkSectionHeight}` : "border-y border-[var(--app-border)] bg-[var(--app-muted-section)] text-[var(--app-text-primary)]"} px-6 py-12 ${sectionLayout}`}
       id="contact"
     >
       <div className={`mx-auto flex w-full max-w-[1200px] flex-col gap-[18px] ${contentLayout}`}>

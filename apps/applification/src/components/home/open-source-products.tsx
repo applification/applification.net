@@ -1,3 +1,5 @@
+import { ProductStatus } from "./product-status";
+
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
 
@@ -132,11 +134,12 @@ function ContextureCard() {
     <article className="flex flex-col gap-4 rounded-[20px] bg-[var(--contexture-shell)] p-5 text-[var(--contexture-text)] shadow-[0_12px_30px_var(--contexture-shadow)] min-[720px]:gap-[18px] min-[1024px]:rounded-3xl min-[1024px]:p-7">
       <div className="flex flex-col gap-5 min-[1024px]:flex-row min-[1024px]:items-start min-[1024px]:justify-between">
         <div className="max-w-[720px]">
-          <div className="font-caption flex items-center justify-between gap-4 text-[9px] font-bold tracking-[0.7px] text-[var(--contexture-cyan)] min-[1024px]:justify-start">
+          <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] font-bold tracking-[0.7px] text-[var(--contexture-cyan)]">
             <span>CONTEXTURE</span>
-            <span className="text-[var(--contexture-green)]">
+            <span>
               OPEN SOURCE&nbsp; · &nbsp;CONVEX
             </span>
+            <ProductStatus status="Live" />
           </div>
           <h3 className="font-heading mt-3 text-[32px] leading-none font-medium text-[var(--contexture-text)] min-[1024px]:text-[42px]">
             The visual source of truth for Convex apps.
@@ -204,11 +207,12 @@ function VoicedCard() {
   return (
     <article className="voiced-card grid gap-4 rounded-[20px] border border-[var(--voiced-border)] bg-[var(--voiced-card)] p-5 text-[var(--voiced-ink)] shadow-[0_12px_28px_var(--voiced-shadow)] min-[720px]:grid-cols-[minmax(0,1fr)_220px] min-[720px]:items-center min-[1024px]:grid-cols-[minmax(0,1fr)_360px] min-[1024px]:gap-12 min-[1024px]:rounded-3xl min-[1024px]:px-12 min-[1024px]:py-8">
       <div>
-        <div className="font-caption flex items-center justify-between gap-4 text-[9px] font-bold tracking-[0.7px] text-[var(--voiced-accent)] min-[1024px]:justify-start">
+        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] font-bold tracking-[0.7px] text-[var(--voiced-accent)]">
           <span>VOICED</span>
           <span className="text-[var(--voiced-status)]">
             OPEN SOURCE&nbsp; · &nbsp;NOTARISED
           </span>
+          <ProductStatus status="Live" />
         </div>
         <h3 className="font-heading mt-3 text-[32px] leading-none font-medium min-[1024px]:text-[42px]">
           Hold a key. Speak. Keep typing.
