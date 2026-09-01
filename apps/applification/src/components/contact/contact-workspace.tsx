@@ -82,21 +82,25 @@ const routes: Array<{
   description: string;
   label: string;
   route: ContactRoute;
+  shortLabel: string;
 }> = [
   {
     route: "contract",
     label: "Contract enquiry",
     description: "A role, project or small-team build.",
+    shortLabel: "Contract",
   },
   {
     route: "product",
     label: "Product enquiry",
     description: "A question about one of my products.",
+    shortLabel: "Product",
   },
   {
     route: "general",
     label: "General enquiry",
     description: "Anything useful that does not fit the other routes.",
+    shortLabel: "General",
   },
 ];
 
@@ -178,6 +182,7 @@ export function ContactWorkspace({
   const [attachmentStatus, setAttachmentStatus] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [briefExpanded, setBriefExpanded] = useState(false);
+  const [routeChooserExpanded, setRouteChooserExpanded] = useState(false);
   const [reviewMode, setReviewMode] = useState(false);
   const [editingField, setEditingField] = useState<EditableContactField | null>(null);
   const [editingValue, setEditingValue] = useState("");
@@ -218,6 +223,7 @@ export function ContactWorkspace({
     const nextDraft = changeContactRoute(draftRef.current, nextRoute);
     draftRef.current = nextDraft;
     setDraft(nextDraft);
+    setRouteChooserExpanded(false);
     setReviewMode(false);
     resetDeliveryForDraftChange();
     setPrepareError(null);
@@ -323,6 +329,7 @@ export function ContactWorkspace({
     setLastFailedMessage(null);
     setAttachmentStatus(null);
     setBriefExpanded(false);
+    setRouteChooserExpanded(false);
     setReviewMode(false);
     setEditingField(null);
     setEditingValue("");
@@ -881,32 +888,63 @@ export function ContactWorkspace({
             <div className="flex min-w-0 items-center gap-2.5">
               <span className="size-2 shrink-0 rounded-full bg-[var(--workflow-live)]" aria-hidden="true" />
               <p className="font-caption truncate text-[11px] font-bold tracking-[0.7px] uppercase">
-                Applification contact
+                <span className="sm:hidden">Contact</span>
+                <span className="hidden sm:inline">Applification contact</span>
               </p>
               <span className="hidden rounded-full bg-[var(--app-control)] px-2.5 py-1 font-caption text-[10px] font-bold tracking-[0.45px] text-[var(--app-label-text)] uppercase sm:inline-flex">
                 {contactWorkflowStateLabel(workflowState)}
               </span>
             </div>
-            <Button className="min-h-10" onClick={restart} size="sm" type="button" variant="ghost">
+            <Button className="min-h-11" onClick={restart} size="sm" type="button" variant="ghost">
               <RotateCcw data-icon="inline-start" />
               Restart
             </Button>
           </header>
 
-          <div className="flex h-[clamp(590px,68svh,730px)] min-h-0 flex-col">
+          <div
+            className="flex h-[calc(100svh-88px)] min-h-[440px] max-h-[590px] flex-col sm:h-[clamp(590px,68svh,730px)] sm:min-h-0 sm:max-h-none"
+            data-contact-workspace-body
+          >
             <Conversation className="bg-[var(--app-section)]">
-              <ConversationContent className="mx-auto w-full max-w-[820px] gap-5 px-4 py-6 sm:px-6 sm:py-8">
+              <ConversationContent className="mx-auto w-full max-w-[820px] gap-4 px-3 py-4 sm:gap-5 sm:px-6 sm:py-8">
                 <Message from="assistant">
-                  <MessageContent className="w-full max-w-[720px] gap-4 rounded-2xl bg-[var(--app-muted-section)] p-4 text-base leading-[1.55] sm:p-5">
+                  <MessageContent className="w-full max-w-[720px] gap-3 rounded-2xl bg-[var(--app-muted-section)] p-3 text-base leading-[1.55] sm:gap-4 sm:p-5">
                     <AssistantMessageLabel />
                     <p>
-                      Tell me what brings you here, or choose a route. I will
-                      prepare a checked brief for you to review before anything
-                      is sent.
+                      <span className="sm:hidden">
+                        Tell me what brings you here, or choose a route. You will
+                        review the brief before it is sent.
+                      </span>
+                      <span className="hidden sm:inline">
+                        Tell me what brings you here, or choose a route. I will
+                        prepare a checked brief for you to review before anything
+                        is sent.
+                      </span>
                     </p>
+                    {route && !routeChooserExpanded ? (
+                      <div
+                        className="flex min-h-11 items-center justify-between gap-3 rounded-xl border border-[var(--app-action)] bg-[var(--app-selected)] px-3 sm:hidden"
+                        data-contact-selected-route
+                      >
+                        <span className="truncate font-semibold">{selectedRoute?.shortLabel}</span>
+                        <Button
+                          className="min-h-11 shrink-0 px-2"
+                          onClick={() => setRouteChooserExpanded(true)}
+                          size="sm"
+                          type="button"
+                          variant="ghost"
+                        >
+                          Change
+                        </Button>
+                      </div>
+                    ) : null}
                     <ToggleGroup
                       aria-label="Choose an enquiry route"
-                      className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3"
+                      className={cn(
+                        "w-full grid-cols-1 gap-2 sm:grid sm:grid-cols-3",
+                        route && !routeChooserExpanded ? "hidden" : "grid",
+                      )}
+                      data-contact-route-options
                       onValueChange={(value) => {
                         if (value) {
                           chooseRoute(value as ContactRoute);
@@ -919,12 +957,12 @@ export function ContactWorkspace({
                       {routes.map((item) => (
                         <ToggleGroupItem
                           aria-label={item.label}
-                          className="h-auto min-h-[74px] w-full flex-col items-start whitespace-normal px-3 py-3 text-left data-[state=on]:border-[var(--app-action)] data-[state=on]:bg-[var(--app-selected)]"
+                          className="h-11 min-h-11 w-full items-center justify-start whitespace-normal px-3 py-2 text-left data-[state=on]:border-[var(--app-action)] data-[state=on]:bg-[var(--app-selected)] sm:h-auto sm:min-h-[74px] sm:flex-col sm:items-start sm:py-3"
                           key={item.route}
                           value={item.route}
                         >
                           <span className="font-semibold">{item.label}</span>
-                          <span className="text-[13px] leading-[1.35] font-normal text-[var(--app-text-secondary)]">
+                          <span className="hidden text-[13px] leading-[1.35] font-normal text-[var(--app-text-secondary)] sm:block">
                             {item.description}
                           </span>
                         </ToggleGroupItem>
@@ -1029,8 +1067,11 @@ export function ContactWorkspace({
                           type="button"
                           variant="ghost"
                         >
-                          <FileText data-icon="inline-start" />
-                          <span className="truncate font-semibold">{selectedRoute?.label}</span>
+                          <FileText className="hidden sm:block" data-icon="inline-start" />
+                          <span className="truncate font-semibold">
+                            <span className="sm:hidden">Brief</span>
+                            <span className="hidden sm:inline">{selectedRoute?.label}</span>
+                          </span>
                           <Badge
                             className="ml-auto hidden font-caption tracking-[0.35px] uppercase sm:inline-flex"
                             variant={remainingIssueCount ? "secondary" : "outline"}
@@ -1039,7 +1080,7 @@ export function ContactWorkspace({
                               ? `${remainingIssueCount} ${remainingIssueCount === 1 ? "detail" : "details"} needed`
                               : "Ready to review"}
                           </Badge>
-                          <ChevronsUpDown data-icon="inline-end" />
+                          <ChevronsUpDown className="hidden sm:block" data-icon="inline-end" />
                         </Button>
                       </CollapsibleTrigger>
                       <Button
@@ -1064,11 +1105,20 @@ export function ContactWorkspace({
                         size="sm"
                         type="button"
                       >
-                        {validation.valid
-                          ? reviewMode && briefExpanded
-                            ? "Close review"
-                            : "Review and send"
-                          : `Add ${contactFieldLabel(nextIncompleteField ?? "detail").toLowerCase()}`}
+                        <span className="sm:hidden">
+                          {validation.valid
+                            ? reviewMode && briefExpanded
+                              ? "Close"
+                              : "Review"
+                            : "Add detail"}
+                        </span>
+                        <span className="hidden sm:inline">
+                          {validation.valid
+                            ? reviewMode && briefExpanded
+                              ? "Close review"
+                              : "Review and send"
+                            : `Add ${contactFieldLabel(nextIncompleteField ?? "detail").toLowerCase()}`}
+                        </span>
                       </Button>
                     </div>
                       <CollapsibleContent>{expandedBrief}</CollapsibleContent>
@@ -1076,7 +1126,7 @@ export function ContactWorkspace({
                   ) : null}
                   <PromptInput
                     className={cn(
-                      "[&>[data-slot=input-group]]:border-[var(--app-border)]! [&>[data-slot=input-group]]:bg-[var(--app-muted-section)] [&>[data-slot=input-group]]:opacity-100! [&>[data-slot=input-group]]:ring-0! [&>[data-slot=input-group]]:shadow-none",
+                      "[&>[data-slot=input-group]]:h-14! [&>[data-slot=input-group]]:flex-row! [&>[data-slot=input-group]]:border-[var(--app-border)]! [&>[data-slot=input-group]]:bg-[var(--app-muted-section)] [&>[data-slot=input-group]]:opacity-100! [&>[data-slot=input-group]]:ring-0! [&>[data-slot=input-group]]:shadow-none sm:[&>[data-slot=input-group]]:h-auto! sm:[&>[data-slot=input-group]]:flex-col!",
                       route
                         ? "[&>[data-slot=input-group]]:rounded-t-none [&>[data-slot=input-group]]:rounded-b-2xl"
                         : "[&>[data-slot=input-group]]:rounded-2xl",
@@ -1086,24 +1136,27 @@ export function ContactWorkspace({
                     <PromptInputBody>
                       <PromptInputTextarea
                         aria-label="Describe your enquiry"
-                        className="min-h-14 text-base leading-[1.5] text-[var(--app-text-primary)] caret-[var(--app-action)] placeholder:text-[var(--app-text-secondary)] placeholder:opacity-100"
+                        className="max-h-28 min-h-11 py-2.5 text-base leading-[1.5] text-[var(--app-text-primary)] caret-[var(--app-action)] placeholder:text-[var(--app-text-secondary)] placeholder:opacity-100 sm:max-h-48 sm:min-h-14 sm:py-2"
                         onChange={(event) => setMessage(event.target.value)}
-                        placeholder={route ? "Add a detail, link or question..." : "Tell me what brings you here..."}
+                        placeholder={route ? "Add a detail..." : "Describe your enquiry..."}
                         ref={messageInputRef}
                         value={message}
                       />
                     </PromptInputBody>
-                    <PromptInputFooter>
+                    <PromptInputFooter className="w-auto! shrink-0 self-stretch p-2! sm:w-full! sm:self-auto sm:px-2.5! sm:pt-1.5! sm:pb-2!">
                       {route === "contract" ? (
                         <PromptInputTools>
                           <PromptInputButton
                             aria-label="Attach a contract brief"
+                            className="size-10 p-0 sm:h-auto sm:w-auto sm:px-2.5"
                             disabled={isUploading}
                             onClick={() => fileInputRef.current?.click()}
                             size="sm"
                           >
                             <Paperclip data-icon="inline-start" />
-                            {isUploading ? "Attaching..." : "Attach brief"}
+                            <span className="hidden sm:inline">
+                              {isUploading ? "Attaching..." : "Attach brief"}
+                            </span>
                           </PromptInputButton>
                         </PromptInputTools>
                       ) : null}
@@ -1137,7 +1190,14 @@ export function ContactWorkspace({
                     value={website}
                   />
                 </div>
-                <div aria-atomic="true" aria-live="polite" className="min-h-5 px-2 pt-2">
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  className={cn(
+                    "px-2",
+                    attachmentStatus || route === "contract" ? "min-h-5 pt-2" : "hidden",
+                  )}
+                >
                   {attachmentStatus ? (
                     <p className="text-[13px] leading-[1.4] text-[var(--app-text-secondary)]">
                       {attachmentStatus}

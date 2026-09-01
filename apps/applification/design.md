@@ -122,6 +122,8 @@ Design at the content breakpoints rather than only at named devices. The require
 
 Reflow before shrinking type. Grid and flex children need `min-width: 0` where content may overflow. Long tables may scroll inside a labelled region when reordering would damage lookup. Pages must not create horizontal document overflow at 320 pixels or wider.
 
+Short mobile conversation workspaces use the available small-viewport height. Keep the opening choice and empty composer visible together, then collapse completed choices so the next question replaces them rather than stacking below them.
+
 Keep action labels on one line. In narrow cards, remove redundant context from the visible label or stack paired controls before reducing control type.
 
 Responsive reflow may change geometry, density, and content order, but it must not invent a new colour treatment for the same content. Keep the desktop palette and hierarchy unless the smaller view represents a genuinely different product state.
