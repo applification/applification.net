@@ -115,6 +115,17 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   await expect(canvas.getByPlaceholderText("Search titles or topics")).toBeVisible();
   await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
   await expect(canvas.getAllByRole("link").every((link) => link.tabIndex >= 0)).toBe(true);
+
+  const featuredWriting = canvasElement.querySelector<HTMLElement>("[data-featured-writing]");
+  const recentWriting = canvasElement.querySelector<HTMLElement>(
+    '[data-writing-section="recent"]',
+  );
+
+  await expect(featuredWriting).not.toBeNull();
+  await expect(recentWriting).not.toBeNull();
+  await expect(getComputedStyle(featuredWriting!).backgroundColor).toBe(
+    getComputedStyle(recentWriting!).backgroundColor,
+  );
 };
 
 export const DesktopLight: Story = { play: checkPage };

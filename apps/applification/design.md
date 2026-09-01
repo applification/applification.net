@@ -57,6 +57,8 @@ Colour must explain something. Use it for action, state, product identity, data 
 
 Peer client cases use the shared neutral surfaces. Distinguish clients through their evidence and composition, not separate feature backgrounds.
 
+Featured editorial content uses scale and composition for emphasis. Do not turn `--app-selected` into a large page surface; reserve it for selected states and compact orientation cues.
+
 Keep text contrast at WCAG AA. In particular, do not replace the accessible light `--app-text-muted` value with the lighter value found in older pen frames.
 
 ### Product identities
