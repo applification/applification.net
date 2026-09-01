@@ -179,6 +179,7 @@ export function LogicallyCaseStudy() {
               {logicallyMetrics.map(([value, label]) => (
                 <div
                   className="flex min-h-[82px] flex-col justify-center gap-[5px] rounded-xl bg-[#111827] px-5 py-[14px]"
+                  data-logically-evidence-metric
                   key={label}
                 >
                   <dd className="font-caption text-[19px] leading-7 font-bold text-[#f8fafc] min-[720px]:text-[22px]">
@@ -190,8 +191,11 @@ export function LogicallyCaseStudy() {
                 </div>
               ))}
             </dl>
-            <div className="rounded-[14px] bg-[#172554] px-5 py-[18px]">
-              <p className="font-caption text-[10px] font-bold tracking-[1px] text-[#f9a8d4]">
+            <div
+              className="rounded-[14px] bg-[#111827] px-5 py-[18px]"
+              data-logically-production-ai
+            >
+              <p className="font-caption text-[10px] font-bold tracking-[1px] text-[#7dd3fc]">
                 PRODUCTION AI
               </p>
               <p className="mt-2 text-base leading-[1.55] text-[#cbd5e1]">
@@ -235,7 +239,10 @@ export function SelectedContracts() {
         </div>
 
         <div className="grid items-start gap-6 min-[1120px]:grid-cols-[470px_minmax(0,706px)]">
-          <article className="flex min-h-[468px] flex-col rounded-[22px] bg-[var(--app-card)] p-6 min-[720px]:p-[30px]">
+          <article
+            className="flex min-h-[468px] flex-col rounded-[22px] bg-[var(--app-card)] p-6 min-[720px]:p-[30px]"
+            data-client-contract="eruptiv"
+          >
             <div className="font-caption flex min-h-11 items-center justify-between gap-4">
               <p className="text-[11px] font-bold tracking-[1.1px] text-[var(--client-brief-label)]">
                 ERUPTIV
@@ -283,18 +290,21 @@ export function SelectedContracts() {
             </Link>
           </article>
 
-          <article className="flex flex-col rounded-[22px] bg-[#172554] p-6 text-[#f8fafc] min-[720px]:min-h-[385px] min-[720px]:p-[30px]">
+          <article
+            className="flex flex-col rounded-[22px] bg-[var(--app-card)] p-6 text-[var(--app-text-primary)] min-[720px]:min-h-[385px] min-[720px]:p-[30px]"
+            data-client-contract="peppy-health"
+          >
             <div className="font-caption flex min-h-11 items-center justify-between gap-4">
-              <p className="text-[11px] font-bold tracking-[1.1px] text-[#7dd3fc]">
+              <p className="text-[11px] font-bold tracking-[1.1px] text-[var(--client-brief-label)]">
                 PEPPY HEALTH
               </p>
               <div className="flex items-center gap-2">
-                <p className="text-[10px] font-semibold tracking-[0.8px] text-[#f9a8d4]">
+                <p className="text-[10px] font-semibold tracking-[0.8px] text-[var(--app-text-muted)]">
                   £12M ARR SERVICE
                 </p>
                 <a
                   aria-label="Visit Peppy Health, opens in a new tab"
-                  className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--app-action)] text-white transition-colors hover:bg-[var(--app-action-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+                  className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--app-action)] text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
                   href="https://peppy.health/"
                   rel="noreferrer"
                   target="_blank"
@@ -303,10 +313,10 @@ export function SelectedContracts() {
                 </a>
               </div>
             </div>
-            <h3 className="font-heading mt-[22px] max-w-[600px] text-[32px] leading-[1.1] font-medium min-[720px]:text-4xl">
+            <h3 className="font-heading mt-[22px] max-w-[600px] text-[32px] leading-[1.1] font-medium text-[var(--app-text-primary)] min-[720px]:text-4xl">
               Rebuilt a zero-test clinician panel for a £12m ARR service.
             </h3>
-            <p className="mt-[22px] max-w-[600px] text-[17px] leading-[1.62] text-[#cbd5e1]">
+            <p className="mt-[22px] max-w-[600px] text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
               Led a two-person senior frontend team. We catalogued hundreds of
               UI components in Storybook, added a full Cypress end-to-end suite
               to GitHub Actions, and gave clinicians AI support for common
@@ -315,20 +325,20 @@ export function SelectedContracts() {
             <dl className="mt-[22px] grid gap-3 min-[560px]:grid-cols-3">
               {peppyMetrics.map(([value, label]) => (
                 <div
-                  className="flex min-h-[75px] flex-col justify-center gap-[5px] rounded-xl bg-[#0f172a] px-[18px] py-3"
+                  className="flex min-h-[75px] flex-col justify-center gap-[5px] rounded-xl bg-[var(--app-muted-section)] px-[18px] py-3"
                   key={label}
                 >
                   <dd className="font-caption text-xl leading-[26px] font-bold">
                     {value}
                   </dd>
-                  <dt className="font-caption text-[9px] font-semibold tracking-[0.8px] text-[#94a3b8] uppercase">
+                  <dt className="font-caption text-[9px] font-semibold tracking-[0.8px] text-[var(--app-text-muted)] uppercase">
                     {label}
                   </dt>
                 </div>
               ))}
             </dl>
             <Link
-              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[#7dd3fc] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7dd3fc] motion-reduce:transition-none"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
               href="/client-work/peppy-health"
             >
               Read the Peppy Health case

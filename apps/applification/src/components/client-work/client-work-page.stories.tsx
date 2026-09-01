@@ -68,6 +68,19 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   );
   await expect(links.every((link) => link.tabIndex >= 0)).toBe(true);
   await expect(canvasElement.querySelectorAll("footer")).toHaveLength(1);
+
+  const productionAi = canvasElement.querySelector<HTMLElement>(
+    "[data-logically-production-ai]",
+  );
+  const evidenceMetric = canvasElement.querySelector<HTMLElement>(
+    "[data-logically-evidence-metric]",
+  );
+
+  await expect(productionAi).toBeInTheDocument();
+  await expect(evidenceMetric).toBeInTheDocument();
+  await expect(getComputedStyle(productionAi!).backgroundColor).toBe(
+    getComputedStyle(evidenceMetric!).backgroundColor,
+  );
 };
 
 const checkCaseStudyColumns = (

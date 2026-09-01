@@ -43,6 +43,22 @@ const checkSelectedContracts: NonNullable<Story["play"]> = async ({
   await expect(
     canvas.getByRole("link", { name: "Visit Peppy Health, opens in a new tab" }),
   ).toHaveAttribute("target", "_blank");
+
+  const eruptiv = canvasElement.querySelector<HTMLElement>(
+    "[data-client-contract='eruptiv']",
+  );
+  const peppy = canvasElement.querySelector<HTMLElement>(
+    "[data-client-contract='peppy-health']",
+  );
+
+  await expect(eruptiv).toBeInTheDocument();
+  await expect(peppy).toBeInTheDocument();
+  await expect(getComputedStyle(peppy!).backgroundColor).toBe(
+    getComputedStyle(eruptiv!).backgroundColor,
+  );
+  await expect(getComputedStyle(peppy!).color).toBe(
+    getComputedStyle(eruptiv!).color,
+  );
 };
 
 export const DesktopLight: Story = { play: checkSelectedContracts };
