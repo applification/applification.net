@@ -50,7 +50,7 @@ export function CommercialProof() {
               <dt className="font-heading w-[112px] shrink-0 text-[22px] leading-none font-medium text-[var(--app-text-primary)] min-[720px]:w-auto min-[720px]:text-[26px]">
                 {point.value}
               </dt>
-              <dd className="text-[13px] leading-[1.4] text-[var(--app-text-secondary)] min-[720px]:leading-[17px]">
+              <dd className="text-[15px] leading-[1.45] text-[var(--app-text-secondary)] min-[720px]:leading-[21px]">
                 {point.detail}
               </dd>
             </div>

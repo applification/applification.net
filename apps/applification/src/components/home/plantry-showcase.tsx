@@ -32,7 +32,7 @@ export function PlantryShowcase() {
         <article className="relative grid grid-cols-1 gap-[18px] border-t border-[var(--app-border)] pt-[18px] min-[1024px]:mt-8 min-[1024px]:min-h-[298px] min-[1024px]:grid-cols-[minmax(0,1fr)_340px] min-[1024px]:grid-rows-[auto_1fr] min-[1024px]:gap-x-8 min-[1024px]:gap-y-3 min-[1024px]:overflow-hidden min-[1024px]:rounded-[18px] min-[1024px]:border min-[1024px]:bg-[var(--app-card)] min-[1024px]:p-6 min-[1024px]:pl-7">
           <div className="flex min-w-0 flex-col gap-3 min-[1024px]:col-start-1">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <p className="font-caption text-[11px] font-bold tracking-[0.9px] text-[var(--app-label-text)] min-[1024px]:text-[10px] min-[1024px]:tracking-[1px]">
+              <p className="font-caption text-xs font-bold tracking-[0.7px] text-[var(--app-label-text)]">
                 02&nbsp; / &nbsp;PLANTRY&nbsp; · &nbsp;APPLE PLATFORMS
               </p>
               <ProductStatus status={"R&D"} />
@@ -43,7 +43,7 @@ export function PlantryShowcase() {
             >
               Meal planning that understands the household.
             </h2>
-            <p className="max-w-[760px] text-[15px] leading-[1.5] text-[var(--app-text-secondary)]">
+            <p className="max-w-[760px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
               Plans the next 2 to 7 days around what the household likes, what
               needs using and what is in season. Shopping hands off to
               Reminders.
@@ -67,7 +67,7 @@ export function PlantryShowcase() {
           <ul className="divide-y divide-[var(--app-border)] border-y border-[var(--app-border)] min-[1024px]:col-start-1 min-[1024px]:self-end">
             {capabilities.map((capability) => (
               <li
-                className="flex min-h-10 items-center gap-2.5 py-[11px] text-[13px] leading-[1.4] text-[var(--app-text-primary)]"
+                className="flex min-h-10 items-center gap-2.5 py-[11px] text-[15px] leading-[1.45] text-[var(--app-text-primary)] min-[1024px]:text-base"
                 key={capability}
               >
                 <span

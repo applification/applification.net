@@ -20,7 +20,7 @@ const products: Product[] = [
     href: "/products/contexture",
     name: "Contexture",
     slug: "contexture",
-    status: "OPEN SOURCE",
+    status: "LIVE",
   },
   {
     accent: "#7dd3fc",
@@ -36,7 +36,7 @@ const products: Product[] = [
     href: "/products/voiced",
     name: "Voiced",
     slug: "voiced",
-    status: "SHIPPED",
+    status: "LIVE",
   },
   {
     accent: "#e8c66a",
@@ -44,7 +44,7 @@ const products: Product[] = [
     href: "/products/plantry",
     name: "Plantry",
     slug: "plantry",
-    status: "PRODUCT R&D",
+    status: "R&D",
   },
 ];
 
@@ -156,7 +156,7 @@ export function ProductNavigator({ current }: { current?: ProductSlug }) {
           </div>
           {current ? (
             <Link
-              className="inline-flex min-h-11 w-fit items-center gap-2 text-sm font-semibold text-[#cbd5e1] underline decoration-[#475569] underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
+              className="inline-flex min-h-11 w-fit items-center gap-2 text-[15px] font-semibold text-[#cbd5e1] underline decoration-[#475569] underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
               href="/products"
             >
               View all products
@@ -180,7 +180,7 @@ export function ProductNavigator({ current }: { current?: ProductSlug }) {
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <div className="flex items-center justify-between gap-3">
-                      <span className="font-caption text-[9px] font-bold tracking-[0.7px] text-[#94a3b8]">
+                      <span className="font-caption text-[11px] font-bold tracking-[0.6px] text-[#94a3b8]">
                         {product.status}
                       </span>
                       <ArrowUpRight
@@ -194,7 +194,7 @@ export function ProductNavigator({ current }: { current?: ProductSlug }) {
                     <h3 className="font-heading mt-3 text-[28px] leading-none font-medium">
                       {product.name}
                     </h3>
-                    <p className="mt-3 text-sm leading-[1.45] text-[#b8c4d4]">
+                    <p className="mt-3 text-base leading-[1.55] text-[#b8c4d4]">
                       {product.description}
                     </p>
                   </div>

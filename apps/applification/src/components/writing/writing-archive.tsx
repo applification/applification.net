@@ -36,7 +36,7 @@ function WritingFilterSelect({
     <div className={`relative ${widthClass}`}>
       <select
         aria-label={label}
-        className="font-caption h-9 w-full appearance-none rounded-lg border border-[var(--app-border)] bg-[var(--app-card)] py-0 pr-8 pl-3 text-[10px] font-semibold tracking-[0.35px] text-[var(--app-text-secondary)] shadow-sm shadow-black/5 outline-none hover:border-[var(--writing-accent-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
+        className="font-caption h-10 w-full appearance-none rounded-lg border border-[var(--app-border)] bg-[var(--app-card)] py-0 pr-8 pl-3 text-xs font-semibold tracking-[0.3px] text-[var(--app-text-secondary)] shadow-sm shadow-black/5 outline-none hover:border-[var(--writing-accent-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
         onChange={(event) => onChange(event.target.value)}
         value={value}
       >
@@ -90,7 +90,7 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
   }
 
   const filterButtonClass =
-    "font-caption inline-flex min-h-9 items-center rounded-full border px-3 text-[9px] font-bold tracking-[0.6px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]";
+    "font-caption inline-flex min-h-10 items-center rounded-full border px-3 text-[11px] font-bold tracking-[0.5px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]";
 
   return (
     <section
@@ -110,7 +110,7 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
             >
               Every post, in one place.
             </h2>
-            <p className="max-w-[690px] text-[15px] leading-[1.55] text-[var(--app-text-secondary)]">
+            <p className="max-w-[690px] text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
               The site builds this index from Markdown in Git. Filter by format,
               year or topic.
             </p>
@@ -191,7 +191,7 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
             <Search aria-hidden="true" size={14} />
             <span className="sr-only">Search titles or topics</span>
             <input
-              className="min-w-0 flex-1 bg-transparent text-[13px] text-[var(--app-text-primary)] outline-none placeholder:text-[var(--app-text-muted)]"
+              className="min-w-0 flex-1 bg-transparent text-[15px] text-[var(--app-text-primary)] outline-none placeholder:text-[var(--app-text-muted)]"
               onChange={(event) => updateParams({ q: event.target.value, show: null })}
               placeholder="Search titles or topics"
               type="search"
@@ -204,8 +204,8 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
           className="overflow-hidden rounded-[14px] bg-[var(--app-card)] min-[860px]:min-h-[524px]"
           data-testid="writing-results"
         >
-          <div className="hidden grid-cols-[90px_94px_minmax(260px,1fr)_296px_88px] bg-[var(--app-muted-section)] px-7 py-3 min-[860px]:grid">
-            {["Date", "Type", "Title", "Topics", "Read"].map((heading) => (
+          <div className="hidden grid-cols-[90px_94px_minmax(0,1fr)_88px] bg-[var(--app-muted-section)] px-7 py-3 min-[860px]:grid">
+            {["Date", "Type", "Title", "Read"].map((heading) => (
               <span
                 className="font-caption text-[9px] font-bold tracking-[0.7px] text-[var(--app-text-muted)] uppercase"
                 key={heading}
@@ -223,7 +223,7 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
                   key={entry.slug}
                 >
                   <Link
-                    className="group grid min-h-[60px] gap-2 px-5 py-5 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--app-focus)] min-[860px]:grid-cols-[90px_94px_minmax(260px,1fr)_296px_88px] min-[860px]:items-center min-[860px]:gap-0 min-[860px]:px-7 min-[860px]:py-0"
+                    className="group grid min-h-[72px] gap-2 px-5 py-5 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--app-focus)] min-[860px]:grid-cols-[90px_94px_minmax(0,1fr)_88px] min-[860px]:items-center min-[860px]:gap-0 min-[860px]:px-7 min-[860px]:py-2"
                     href={`/writing/${entry.slug}`}
                   >
                     <time
@@ -235,15 +235,25 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
                     <span className="font-caption text-[10px] font-bold text-[var(--writing-accent-text)] uppercase">
                       {entry.type}
                     </span>
-                    <span className="font-heading text-[19px] leading-[1.2] font-semibold text-[var(--app-text-primary)] transition-colors group-hover:text-[var(--writing-accent-text)] motion-reduce:transition-none">
-                      {entry.title}
-                    </span>
-                    <span className="font-caption truncate text-[9px] font-medium tracking-[0.4px] text-[var(--app-text-secondary)] uppercase">
-                      {displayWritingTopics(entry.topics)
-                        .slice(0, 4)
-                        .map(formatWritingTopic)
-                        .join(" · ")}
-                    </span>
+                    <div className="min-w-0">
+                      <span className="font-heading block text-[19px] leading-[1.2] font-semibold text-[var(--app-text-primary)] transition-colors group-hover:text-[var(--writing-accent-text)] motion-reduce:transition-none">
+                        {entry.title}
+                      </span>
+                      <span className="font-caption mt-1 flex min-w-0 flex-wrap items-center gap-y-0.5 text-[10px] leading-[1.35] font-medium tracking-[0.35px] text-[var(--app-text-secondary)] uppercase">
+                        {displayWritingTopics(entry.topics)
+                          .slice(0, 4)
+                          .map((topic, index) => (
+                            <span className="inline-flex items-center whitespace-nowrap" key={topic}>
+                              {index > 0 ? (
+                                <span aria-hidden="true" className="mx-1">
+                                  ·
+                                </span>
+                              ) : null}
+                              {formatWritingTopic(topic)}
+                            </span>
+                          ))}
+                      </span>
+                    </div>
                     <span className="font-caption text-[10px] font-semibold text-[var(--app-text-muted)]">
                       {entry.readingTime} MIN
                     </span>
@@ -252,7 +262,7 @@ export function WritingArchive({ entries, topics }: WritingArchiveProps) {
               ))}
             </ol>
           ) : (
-            <p className="px-6 py-12 text-center text-sm text-[var(--app-text-secondary)] min-[860px]:flex min-[860px]:min-h-[480px] min-[860px]:items-center min-[860px]:justify-center min-[860px]:py-0">
+            <p className="px-6 py-12 text-center text-base text-[var(--app-text-secondary)] min-[860px]:flex min-[860px]:min-h-[480px] min-[860px]:items-center min-[860px]:justify-center min-[860px]:py-0">
               No writing matches those filters.
             </p>
           )}

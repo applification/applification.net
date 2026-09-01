@@ -45,7 +45,7 @@ function WritingHero() {
             {topicShortcuts.map(([label, topic]) => (
               <li className="border-b border-[var(--app-border)] last:border-0" key={topic}>
                 <Link
-                  className="group flex min-h-11 items-center gap-3 text-sm font-semibold text-[var(--app-text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
+                  className="group flex min-h-11 items-center gap-3 text-base font-semibold text-[var(--app-text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
                   href={`/writing?topic=${encodeURIComponent(topic)}#writing-index`}
                 >
                   <span className="font-caption text-[10px] font-bold text-[var(--app-text-muted)]">
@@ -145,7 +145,7 @@ function RecentWriting({ entries }: { entries: WritingEntry[] }) {
               What I&apos;m learning now
             </h2>
           </div>
-          <p className="text-[15px] text-[var(--app-text-secondary)]">
+          <p className="text-[17px] text-[var(--app-text-secondary)]">
             No schedule. Just notes worth keeping.
           </p>
         </div>
@@ -171,7 +171,7 @@ function RecentWriting({ entries }: { entries: WritingEntry[] }) {
                     {entry.title}
                   </Link>
                 </h3>
-                <p className="font-caption mt-2 text-[9px] font-semibold tracking-[0.7px] text-[var(--writing-accent-text)] uppercase">
+                <p className="font-caption mt-2 text-[11px] font-semibold tracking-[0.6px] text-[var(--writing-accent-text)] uppercase">
                   {displayWritingTopics(entry.topics)
                     .slice(0, 4)
                     .map(formatWritingTopic)
@@ -180,10 +180,10 @@ function RecentWriting({ entries }: { entries: WritingEntry[] }) {
               </div>
               <Link
                 aria-label={`Read ${entry.title}, ${entry.readingTime} minute read`}
-                className="font-caption inline-flex min-h-11 items-center justify-between gap-3 text-[10px] font-bold text-[var(--app-text-primary)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)] min-[760px]:flex-col min-[760px]:items-end min-[760px]:justify-center"
+                className="font-caption inline-flex min-h-11 items-center justify-between gap-3 text-xs font-bold text-[var(--app-text-primary)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)] min-[760px]:flex-col min-[760px]:items-end min-[760px]:justify-center"
                 href={`/writing/${entry.slug}`}
               >
-                <span className="text-[9px] font-semibold text-[var(--app-text-muted)]">
+                <span className="text-[11px] font-semibold text-[var(--app-text-muted)]">
                   {entry.readingTime} MIN
                 </span>
                 <span>READ ↗</span>

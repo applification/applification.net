@@ -114,7 +114,7 @@ function VoicedExternalLink({
           : "border-[#b8cec0] bg-[#f7faf8] text-[#173f32] hover:bg-[#eaf3ed]"
       } ${
         roomy ? "min-h-[44px] px-[18px]" : "min-h-[42px] px-[17px]"
-      } ${focusClasses} inline-flex w-fit items-center justify-center gap-2 rounded-full border text-sm font-semibold transition-[background-color,transform] active:translate-y-px`}
+      } ${focusClasses} inline-flex w-fit items-center justify-center gap-2 rounded-full border text-[15px] font-semibold transition-[background-color,transform] active:translate-y-px`}
       href={href}
       rel="noreferrer"
       target="_blank"
@@ -133,7 +133,7 @@ function VoicedCapturePreview() {
       role="img"
     >
       <div aria-hidden="true" className="flex flex-col">
-        <div className="font-caption flex items-center justify-between gap-4 text-[10px] leading-[14px] font-bold tracking-[0.7px] text-[#2f7a52] min-[1024px]:text-[11px]">
+        <div className="font-caption flex items-center justify-between gap-4 text-[11px] leading-[15px] font-bold tracking-[0.6px] text-[#2f7a52] min-[1024px]:text-xs">
           <span>VOICED&nbsp; / &nbsp;CAPTURE</span>
           <span className="text-[#4d665e]">LOCAL&nbsp; · &nbsp;PRIVATE</span>
         </div>
@@ -143,7 +143,7 @@ function VoicedCapturePreview() {
             <span className="text-[34px] leading-none min-[560px]:text-[38px]">
               ⌘
             </span>
-            <span className="font-caption text-[7px] font-bold tracking-[0.6px] text-[#a7e3c1] min-[560px]:text-[8px]">
+            <span className="font-caption text-[9px] font-bold tracking-[0.55px] text-[#a7e3c1] min-[560px]:text-[10px]">
               RIGHT COMMAND
             </span>
           </div>
@@ -164,7 +164,7 @@ function VoicedCapturePreview() {
           focus.”
         </p>
 
-        <div className="font-caption mt-[18px] flex items-center justify-between gap-4 text-[10px] leading-[13px] font-bold tracking-[0.65px] text-[#2f7a52]">
+        <div className="font-caption mt-[18px] flex items-center justify-between gap-4 text-[11px] leading-[15px] font-bold tracking-[0.55px] text-[#2f7a52] min-[1024px]:text-xs">
           <span>SPEAK&nbsp; → &nbsp;REVIEW&nbsp; → &nbsp;PASTE</span>
           <span className="font-data text-xs leading-4 text-[#4d665e]">
             00:08
@@ -254,7 +254,7 @@ function VoicedRationale() {
               size={26}
               strokeWidth={1.7}
             />
-            <p className="text-[15px] leading-[1.5] font-semibold text-[#f7faf8] min-[1024px]:text-base">
+          <p className="text-base leading-[1.55] font-semibold text-[#f7faf8] min-[1024px]:text-[17px]">
               Local Whisper transcription. No account, telemetry, cloud storage
               or server.
             </p>
@@ -282,7 +282,7 @@ function VoicedCaptureRoutes() {
               Voice, selection and typed notes all land in the same shelf.
             </h2>
           </div>
-          <p className="text-[15px] leading-[1.55] text-[#4d665e]">
+          <p className="text-[17px] leading-[1.6] text-[#4d665e]">
             Quick captures paste straight back. Anything worth keeping can stay
             in Inbox until it is edited, copied or moved to Done.
           </p>
@@ -304,7 +304,7 @@ function VoicedCaptureRoutes() {
               <h3 className="font-heading text-2xl leading-[1.12] font-medium text-[#173f32]">
                 {route.title}
               </h3>
-              <p className="text-sm leading-[1.5] text-[#4d665e]">
+              <p className="text-base leading-[1.55] text-[#4d665e]">
                 {route.description}
               </p>
             </li>
@@ -330,7 +330,7 @@ function VoicedBuild() {
           >
             A native Mac utility built around recoverable actions.
           </h2>
-          <p className="mt-4 text-[15px] leading-[1.55] text-[#4d665e] min-[1024px]:text-base">
+          <p className="mt-4 text-base leading-[1.58] text-[#4d665e] min-[1024px]:text-[17px]">
             Voiced uses one CaptureItem across voice, selection and typed input.
             Clipboard writes restore the previous value when safe, storage is
             atomic, and corrupt data gets a recovery copy before the shelf
@@ -347,7 +347,7 @@ function VoicedBuild() {
               <dt className="font-caption text-[11px] font-bold text-[#2f7a52]">
                 {row.label}
               </dt>
-              <dd className="text-[15px] text-[#173f32]">{row.value}</dd>
+              <dd className="text-base text-[#173f32]">{row.value}</dd>
             </div>
           ))}
         </dl>
@@ -373,7 +373,7 @@ function VoicedAvailability() {
           >
             Download the notarised Mac app or build it yourself.
           </h2>
-          <p className="mt-3 text-[15px] leading-[1.55] text-[#4d665e]">
+          <p className="mt-3 text-[17px] leading-[1.6] text-[#4d665e]">
             Voiced is MIT licensed and distributed directly for macOS 14 or
             newer. The source includes local build, packaging and smoke-test
             guides.

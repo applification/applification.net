@@ -131,7 +131,7 @@ function DesktopAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-4 hidden h-[112px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] min-[1060px]:block"
+      className="font-caption order-4 hidden h-[112px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-border)] bg-[var(--loop-bg)] min-[1060px]:block"
       data-motion-sequence="hero-approval"
     >
       <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
@@ -205,7 +205,7 @@ function TabletAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-4 hidden h-[176px] w-full max-w-[640px] overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] min-[720px]:block min-[1060px]:hidden"
+      className="font-caption order-4 hidden h-[176px] w-full max-w-[640px] overflow-hidden rounded-[7px] border border-[var(--app-border)] bg-[var(--loop-bg)] min-[720px]:block min-[1060px]:hidden"
       data-motion-sequence="hero-approval"
     >
       <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
@@ -284,7 +284,7 @@ function MobileAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-5 w-full overflow-hidden rounded-[7px] border border-[var(--app-accent)] bg-[var(--loop-bg)] min-[720px]:hidden"
+      className="font-caption order-5 w-full overflow-hidden rounded-[7px] border border-[var(--app-border)] bg-[var(--loop-bg)] min-[720px]:hidden"
       data-motion-sequence="hero-approval"
     >
       <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px]">
@@ -432,14 +432,14 @@ export function Hero() {
 
       <HeroEntrance className="order-4 flex w-full flex-col items-stretch gap-2 min-[560px]:flex-row min-[560px]:items-center min-[560px]:gap-3 min-[720px]:order-5 min-[720px]:w-auto" order={4}>
         <a
-          className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-[24px] text-[15px] font-bold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none min-[720px]:font-semibold ${focusClasses}`}
+          className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-[24px] text-base font-bold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none min-[720px]:font-semibold ${focusClasses}`}
           href={contactHref}
         >
           Discuss a contract
           <DownArrowIcon />
         </a>
         <a
-          className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-[var(--app-action)] bg-transparent px-6 text-sm font-semibold text-[var(--app-action)] transition-[background-color,color,transform] hover:bg-[var(--app-selected)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
+          className={`inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-[var(--app-sky-text)] bg-transparent px-6 text-base font-semibold text-[var(--app-sky-text)] transition-[background-color,color,transform] hover:bg-[var(--app-selected)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
           href="#client-work"
         >
           See client outcomes

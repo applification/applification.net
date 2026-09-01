@@ -113,7 +113,7 @@ function FeaturedStoryLoops() {
             <p className="font-heading text-[25px] leading-[1.05] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[27px]">
               A product map that coding agents cannot quietly ignore.
             </p>
-            <p className="text-[15px] leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-base">
+            <p className="text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
               StoryLoops routes agent context and proposed changes through the
               product map, with human approval before scope moves.
             </p>
@@ -128,7 +128,7 @@ function FeaturedStoryLoops() {
               ))}
             </ul>
             <Link
-              className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-4 text-sm font-semibold text-[var(--app-text-on-action)] transition-[background-color,color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
+              className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-4 text-base font-semibold text-[var(--app-text-on-action)] transition-[background-color,color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
               href="/products/storyloops"
             >
               Explore StoryLoops
@@ -154,7 +154,7 @@ function ContextureCard() {
         <ContextureSchemaPreview />
       </div>
       <ProductCardCopy>
-        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] font-bold tracking-[0.7px] text-[var(--contexture-cyan)]">
+        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold tracking-[0.55px] text-[var(--contexture-cyan)]">
           <span>OPEN SOURCE&nbsp; · &nbsp;CONVEX</span>
           <ProductStatus status="Live" />
         </div>
@@ -162,12 +162,12 @@ function ContextureCard() {
         <p className="mt-3 text-lg leading-[1.2] font-semibold">
           Give people and agents the same domain model.
         </p>
-        <p className="mt-3 text-sm leading-[1.5] text-[var(--contexture-muted)]">
+        <p className="mt-3 text-base leading-[1.55] text-[var(--contexture-muted)]">
           A live visual graph for Convex schemas, shared with coding agents through MCP.
         </p>
         <div className="mt-auto pt-5">
           <Link
-            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--contexture-purple)] px-4 text-sm font-semibold text-[var(--contexture-shell)] transition-[background-color,transform] hover:bg-[var(--contexture-text)] active:translate-y-px ${focusClasses}`}
+            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--contexture-purple)] px-4 text-base font-semibold text-[var(--contexture-shell)] transition-[background-color,transform] hover:bg-[var(--contexture-text)] active:translate-y-px ${focusClasses}`}
             href="/products/contexture"
           >
             View Contexture
@@ -214,7 +214,7 @@ function VoicedCard() {
         </div>
       </div>
       <ProductCardCopy>
-        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] font-bold tracking-[0.7px] text-[var(--voiced-accent)]">
+        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold tracking-[0.55px] text-[var(--voiced-accent)]">
           <span>OPEN SOURCE&nbsp; · &nbsp;NOTARISED</span>
           <ProductStatus status="Live" />
         </div>
@@ -222,12 +222,12 @@ function VoicedCard() {
         <p className="mt-3 text-lg leading-[1.2] font-semibold">
           Voice input for the text field you are already using.
         </p>
-        <p className="mt-3 text-sm leading-[1.5] text-[var(--voiced-muted)]">
+        <p className="mt-3 text-base leading-[1.55] text-[var(--voiced-muted)]">
           Hold Right Command, speak, and paste the transcription without changing context.
         </p>
         <div className="mt-auto pt-5">
           <Link
-            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--voiced-action)] px-4 text-sm font-semibold text-[var(--voiced-action-text)] transition-[background-color,transform] hover:bg-[var(--voiced-muted)] active:translate-y-px ${focusClasses}`}
+            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--voiced-action)] px-4 text-base font-semibold text-[var(--voiced-action-text)] transition-[background-color,transform] hover:bg-[var(--voiced-muted)] active:translate-y-px ${focusClasses}`}
             href="/products/voiced"
           >
             View Voiced
@@ -256,7 +256,7 @@ function PlantryCard() {
         />
       </div>
       <ProductCardCopy>
-        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] font-bold tracking-[0.7px] text-[#526879]">
+        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold tracking-[0.55px] text-[#526879]">
           <span>APPLE PLATFORMS</span>
           <ProductStatus status={"R&D"} />
         </div>
@@ -264,12 +264,12 @@ function PlantryCard() {
         <p className="mt-3 text-lg leading-[1.2] font-semibold">
           Meal planning that understands the household.
         </p>
-        <p className="mt-3 text-sm leading-[1.5] text-[#526879]">
+        <p className="mt-3 text-base leading-[1.55] text-[#526879]">
           Plans the next 2 to 7 days around preferences, food that needs using and what is in season.
         </p>
         <div className="mt-auto pt-5">
           <Link
-            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[#153447] px-4 text-sm font-semibold text-[#FFFBef] transition-[background-color,transform] hover:bg-[#204F67] active:translate-y-px ${focusClasses}`}
+            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[#153447] px-4 text-base font-semibold text-[#FFFBef] transition-[background-color,transform] hover:bg-[#204F67] active:translate-y-px ${focusClasses}`}
             href="/products/plantry"
           >
             View Plantry
@@ -300,7 +300,7 @@ function ProductDirectory() {
               Choose a product to go deeper.
             </h2>
           </div>
-          <p className="text-[15px] leading-[1.5] text-[var(--app-text-secondary)]">
+          <p className="text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
             Each product page covers the problem, the working product and what comes next.
           </p>
         </header>
@@ -343,7 +343,7 @@ function SharedProductPrinciples() {
               <h3 className="text-base font-semibold text-[var(--app-text-primary)]">
                 {principle.title}
               </h3>
-              <p className="mt-2 text-[13px] leading-[1.45] text-[var(--app-text-secondary)]">
+              <p className="mt-2 text-base leading-[1.55] text-[var(--app-text-secondary)]">
                 {principle.description}
               </p>
             </article>

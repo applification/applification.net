@@ -115,7 +115,7 @@ function SectionHeading({
       <h2 className="font-heading text-[clamp(2.25rem,4vw,2.75rem)] leading-[1.05] font-medium tracking-[-0.02em]">
         {title}
       </h2>
-      <p className="max-w-[460px] text-[15px] leading-[1.55] text-[var(--app-text-secondary)] min-[900px]:justify-self-end">
+      <p className="max-w-[460px] text-[17px] leading-[1.6] text-[var(--app-text-secondary)] min-[900px]:justify-self-end">
         {description}
       </p>
     </div>
@@ -156,7 +156,7 @@ export function AboutHero() {
                 <dt className="font-caption text-[10px] font-bold tracking-[0.8px] text-[#94a3b8] uppercase">
                   {label}
                 </dt>
-                <dd className={`text-right text-sm font-medium ${colour}`}>{value}</dd>
+                <dd className={`text-right text-[15px] font-medium ${colour}`}>{value}</dd>
               </div>
             ))}
           </dl>
@@ -183,7 +183,7 @@ export function Positioning() {
               <h3 className="font-heading text-[28px] leading-[1.1] font-medium">
                 {position.title}
               </h3>
-              <p className="max-w-[360px] text-[15px] leading-[1.58] text-[var(--app-text-secondary)]">
+              <p className="max-w-[360px] text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
                 {position.description}
               </p>
             </li>
@@ -205,7 +205,7 @@ export function CareerTimeline() {
           <h2 className="font-heading text-[clamp(2.5rem,4vw,2.75rem)] leading-[1.05] font-medium tracking-[-0.02em]">
             More than twenty years, condensed.
           </h2>
-          <p className="max-w-[380px] text-[15px] leading-[1.58] text-[var(--app-text-secondary)]">
+          <p className="max-w-[380px] text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
             The through-line is consistent: understand the product, make the
             architecture legible and help a small team ship it.
           </p>
@@ -265,7 +265,7 @@ export function CareerTimeline() {
                     </span>
                   ) : null}
                 </div>
-                <p className="mt-2 max-w-[590px] text-[15px] leading-[1.52] text-[var(--app-text-secondary)]">
+                <p className="mt-2 max-w-[590px] text-base leading-[1.58] text-[var(--app-text-secondary)]">
                   {entry.description}
                 </p>
               </article>
@@ -298,12 +298,12 @@ export function SelectedWriting() {
             </h2>
           </div>
           <div>
-            <p className="text-[15px] leading-[1.55] text-[var(--app-text-secondary)]">
+            <p className="text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
               What changes when agents write more of the code, and what
               engineering discipline still has to do.
             </p>
             <Link
-              className={`mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--writing-accent-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] motion-reduce:transition-none ${focusClasses}`}
+              className={`mt-3 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--writing-accent-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] motion-reduce:transition-none ${focusClasses}`}
               href="/writing"
             >
               View all writing
@@ -329,7 +329,7 @@ export function SelectedWriting() {
                   {article.title}
                 </Link>
               </h3>
-              <p className="mt-3 max-w-[510px] text-[15px] leading-[1.55] text-[var(--app-text-secondary)]">
+              <p className="mt-3 max-w-[510px] text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
                 {article.description}
               </p>
               <Link
@@ -365,7 +365,7 @@ export function ContractFit() {
             </h3>
             <ul className="mt-6 grid gap-3">
               {bestFit.map((item) => (
-                <li className="flex gap-2.5 text-[15px] leading-[1.4]" key={item}>
+                <li className="flex gap-2.5 text-base leading-[1.5]" key={item}>
                   <Check aria-hidden="true" className="mt-0.5 size-[15px] shrink-0 text-[var(--app-action)]" strokeWidth={2.4} />
                   {item}
                 </li>
@@ -380,7 +380,7 @@ export function ContractFit() {
             <h3 className="font-heading mt-3 text-3xl leading-[1.1] font-medium">
               AI product engineering, not data science consultancy.
             </h3>
-            <p className="mt-5 text-[15px] leading-[1.58] text-[var(--app-text-secondary)]">
+            <p className="mt-5 text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
               I build LLM-enabled products, coding-agent loops, MCP integrations
               and the interfaces that make them usable. I focus on hands-on web
               product engineering, not specialist Python, RAG or big-data
@@ -393,7 +393,7 @@ export function ContractFit() {
           <span className="font-caption text-[10px] font-bold tracking-[0.8px] text-[var(--app-label-text)] uppercase">
             Credentials
           </span>
-          <p className="text-sm leading-[1.5] text-[var(--app-text-secondary)]">
+          <p className="text-base leading-[1.55] text-[var(--app-text-secondary)]">
             Certified Scrum Master&nbsp; · &nbsp;Certified Product Owner&nbsp; ·
             &nbsp;Government security clearance held for relevant engagements
           </p>

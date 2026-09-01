@@ -13,7 +13,7 @@ const statusClasses = {
 export function ProductStatus({ status }: ProductStatusProps) {
   return (
     <span
-      className={`font-caption inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-[9px] leading-none font-bold tracking-[0.65px] uppercase ${statusClasses[status]}`}
+      className={`font-caption inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-[11px] leading-none font-bold tracking-[0.55px] uppercase ${statusClasses[status]}`}
     >
       <span aria-hidden="true" className="size-1.5 rounded-full bg-current" />
       {status}

@@ -292,7 +292,7 @@ function DesktopWorkingSetup() {
   return (
     <ul className="hidden h-[110px] flex-col gap-2.5 min-[768px]:flex">
       {workingSetup.map(({ text, Icon }) => (
-        <li className="flex h-[30px] items-center gap-[11px] text-sm text-[var(--app-text-primary)]" key={text}>
+        <li className="flex min-h-[32px] items-center gap-[11px] text-base text-[var(--app-text-primary)]" key={text}>
           <span className="flex size-[30px] shrink-0 items-center justify-center rounded-lg bg-[var(--workflow-tool-bg)] text-[var(--workflow-tool-icon)]">
             <Icon aria-hidden="true" className="size-3.5" strokeWidth={2} />
           </span>
@@ -371,12 +371,12 @@ export function HomepageAiStatement() {
           </h2>
         </div>
         <div>
-          <p className="text-[15px] leading-[1.58] text-[var(--app-text-secondary)]">
+          <p className="text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
             I use agents to shape scope, gather context, implement, test and
             review. The work still ships on evidence and human approval.
           </p>
           <a
-            className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+            className="mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
             href="/about#method"
           >
             See how I work with AI

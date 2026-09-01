@@ -68,7 +68,7 @@ function CurrentBrief() {
             <dt className="font-caption text-[9px] font-semibold leading-3 tracking-[1px] text-[var(--app-text-muted)] uppercase">
               {term}
             </dt>
-            <dd className="text-sm font-semibold leading-[18px] text-[var(--app-text-primary)]">
+            <dd className="text-[15px] font-semibold leading-[20px] text-[var(--app-text-primary)]">
               {value}
             </dd>
           </div>
@@ -125,7 +125,7 @@ export function LogicallyCaseStudy() {
               Chat for threat analysts.
             </p>
             <Link
-              className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
               href="/client-work/logically"
             >
               Read the complete case
@@ -158,7 +158,7 @@ export function LogicallyCaseStudy() {
               <p className="font-caption text-[10px] font-bold tracking-[1px] text-[var(--client-brief-label)]">
                 ARCHITECTURE PATH
               </p>
-              <p className="font-caption mt-2 text-[13px] leading-5 font-semibold text-[var(--app-text-primary)] min-[720px]:text-sm">
+              <p className="font-caption mt-2 text-[15px] leading-[1.5] font-semibold text-[var(--app-text-primary)]">
                 AI SDK UI&nbsp; → &nbsp;MCP&nbsp; → &nbsp;typed API&nbsp; →
                 &nbsp;Databricks
               </p>
@@ -194,7 +194,7 @@ export function LogicallyCaseStudy() {
               <p className="font-caption text-[10px] font-bold tracking-[1px] text-[#f9a8d4]">
                 PRODUCTION AI
               </p>
-              <p className="mt-2 text-sm leading-[1.5] text-[#cbd5e1]">
+              <p className="mt-2 text-base leading-[1.55] text-[#cbd5e1]">
                 Shipped Agentic Chat with Databricks tools. Call logging exposed
                 a React effect making thousands of unintended model calls at
                 roughly £500. The team traced it and stopped the waste.
@@ -259,7 +259,7 @@ export function SelectedContracts() {
               Built the whole recruitment frontend in three months. Production
               in four.
             </h3>
-            <p className="mt-[22px] max-w-[400px] text-[15px] leading-[1.6] text-[var(--app-text-secondary)]">
+            <p className="mt-[22px] max-w-[400px] text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
               Sole frontend engineer alongside an API engineer and designer. I
               integrated the existing API so recruiters could publish jobs and
               track applicants while candidates searched and applied.
@@ -268,14 +268,14 @@ export function SelectedContracts() {
               <p className="font-caption text-[9px] font-bold tracking-[1px] text-[var(--client-contract-proof-label)]">
                 HANDOFF QUALITY
               </p>
-              <p className="mt-1.5 text-sm leading-[1.45] text-[var(--app-text-primary)]">
+              <p className="mt-1.5 text-base leading-[1.55] text-[var(--app-text-primary)]">
                 Storybook let the designer inspect UI states before
                 integration. Clear component boundaries kept later changes
                 isolated.
               </p>
             </div>
             <Link
-              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
               href="/client-work/eruptiv"
             >
               Read the Eruptiv case
@@ -306,7 +306,7 @@ export function SelectedContracts() {
             <h3 className="font-heading mt-[22px] max-w-[600px] text-[32px] leading-[1.1] font-medium min-[720px]:text-4xl">
               Rebuilt a zero-test clinician panel for a £12m ARR service.
             </h3>
-            <p className="mt-[22px] max-w-[600px] text-[15px] leading-[1.6] text-[#cbd5e1]">
+            <p className="mt-[22px] max-w-[600px] text-[17px] leading-[1.62] text-[#cbd5e1]">
               Led a two-person senior frontend team. We catalogued hundreds of
               UI components in Storybook, added a full Cypress end-to-end suite
               to GitHub Actions, and gave clinicians AI support for common
@@ -328,7 +328,7 @@ export function SelectedContracts() {
               ))}
             </dl>
             <Link
-              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[#7dd3fc] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7dd3fc] motion-reduce:transition-none"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[#7dd3fc] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7dd3fc] motion-reduce:transition-none"
               href="/client-work/peppy-health"
             >
               Read the Peppy Health case
@@ -356,7 +356,7 @@ export function SupportingEvidence() {
           >
             More production context
           </h2>
-          <p className="max-w-[420px] text-[15px] leading-[1.3] text-[var(--app-text-secondary)]">
+          <p className="max-w-[420px] text-[17px] leading-[1.55] text-[var(--app-text-secondary)]">
             Healthcare, secure government services and public-facing tax
             systems.
           </p>
@@ -374,7 +374,7 @@ export function SupportingEvidence() {
               <h3 className="font-heading max-w-[360px] text-[25px] leading-[1.12] font-medium text-[var(--app-text-primary)]">
                 {item.title}
               </h3>
-              <p className="max-w-[360px] text-sm leading-[1.55] text-[var(--app-text-secondary)]">
+              <p className="max-w-[360px] text-base leading-[1.6] text-[var(--app-text-secondary)]">
                 {item.copy}
               </p>
             </article>

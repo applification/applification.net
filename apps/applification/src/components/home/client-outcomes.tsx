@@ -33,7 +33,7 @@ function LogicallyOutcome() {
   return (
     <li className="flex flex-col justify-between gap-5 rounded-[20px] bg-[var(--client-feature)] px-[18px] py-5 text-[var(--client-feature-text)] min-[720px]:col-span-2 min-[1024px]:col-span-1 min-[1024px]:min-h-[330px] min-[1024px]:rounded-none min-[1024px]:bg-transparent min-[1024px]:py-3 min-[1024px]:pr-10 min-[1024px]:pl-0 min-[1024px]:text-[var(--app-text-primary)]">
       <div>
-        <p className="font-caption text-[9px] font-bold tracking-[0.8px] text-[var(--client-feature-accent)] min-[1024px]:text-[11px] min-[1024px]:text-[var(--app-label-text)]">
+        <p className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--client-feature-accent)] min-[1024px]:text-[var(--app-label-text)]">
           LOGICALLY
         </p>
         <p className="font-heading mt-3 text-[34px] leading-none font-medium min-[1024px]:text-[42px]">
@@ -42,7 +42,7 @@ function LogicallyOutcome() {
         <h3 className="mt-3 text-lg leading-[1.25] font-semibold min-[1024px]:text-xl">
           Intelligence v2 rebuilt for production
         </h3>
-        <p className="mt-3 text-sm leading-[1.5] text-[var(--client-feature-muted)] min-[1024px]:max-w-[520px] min-[1024px]:text-[15px] min-[1024px]:text-[var(--app-text-secondary)]">
+        <p className="mt-3 text-base leading-[1.55] text-[var(--client-feature-muted)] min-[1024px]:max-w-[520px] min-[1024px]:text-[17px] min-[1024px]:text-[var(--app-text-secondary)]">
           As Principal Engineer, I led the team, architected and built
           Intelligence v2 with one other engineer. Routine UI changes fell from
           days to minutes, and the team released several times per day.
@@ -75,14 +75,14 @@ function LogicallyOutcome() {
       </p>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
         <Link
-          className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--client-feature-accent)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-label-text)] min-[1024px]:hover:text-[var(--app-sky-text)]"
+          className="inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--client-feature-accent)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-label-text)] min-[1024px]:hover:text-[var(--app-sky-text)]"
           href="/client-work/logically"
         >
           Read the Logically case
           <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
         </Link>
         <a
-          className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[var(--client-feature-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-text-muted)] min-[1024px]:hover:text-[var(--app-sky-text)]"
+          className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-[var(--client-feature-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-text-muted)] min-[1024px]:hover:text-[var(--app-sky-text)]"
           href="https://www.logically.ai/"
           rel="noreferrer"
           target="_blank"
@@ -110,7 +110,7 @@ function CompactOutcome({
   return (
     <li className="flex flex-col justify-between gap-4 rounded-[14px] bg-[var(--app-card)] p-4 min-[1024px]:min-h-[330px] min-[1024px]:rounded-none min-[1024px]:border-l min-[1024px]:border-[var(--app-border)] min-[1024px]:bg-transparent min-[1024px]:px-6 min-[1024px]:py-3">
       <div>
-        <div className="font-caption flex items-center justify-between gap-3 text-[9px] font-bold tracking-[0.8px] text-[var(--app-label-text)] min-[1024px]:text-[11px]">
+        <div className="font-caption flex items-center justify-between gap-3 text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)]">
           <span>{company}</span>
           <span className="font-heading text-[28px] font-medium tracking-normal text-[var(--app-text-primary)] min-[1024px]:hidden">{proof}</span>
         </div>
@@ -120,7 +120,7 @@ function CompactOutcome({
         <h3 className="mt-2 text-lg leading-[1.3] font-semibold text-[var(--app-text-primary)] min-[1024px]:mt-3 min-[1024px]:text-xl">
           {title}
         </h3>
-        <p className="mt-2 text-sm leading-[1.5] text-[var(--app-text-secondary)] min-[1024px]:mt-3 min-[1024px]:text-[15px]">
+        <p className="mt-2 text-base leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:mt-3 min-[1024px]:text-[17px]">
           {detail}
         </p>
       </div>
@@ -129,14 +129,14 @@ function CompactOutcome({
       </p>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
         <Link
-          className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+          className="inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href={href}
         >
           {linkLabel}
           <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
         </Link>
         <a
-          className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[var(--app-text-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+          className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-[var(--app-text-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href={websiteHref}
           rel="noreferrer"
           target="_blank"

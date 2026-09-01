@@ -95,7 +95,7 @@ export function ProductDetailHero({
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
-                className={`${contexture ? "bg-[#cba6f7] text-[#1e1e2e] hover:bg-[#d8b4fe]" : "bg-[var(--app-action)] text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)]"} inline-flex min-h-[42px] items-center justify-center gap-2 rounded-full px-[18px] text-sm font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
+                className={`${contexture ? "bg-[#cba6f7] text-[#1e1e2e] hover:bg-[#d8b4fe]" : "bg-[var(--app-action)] text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)]"} inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-[18px] text-base font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
                 href={primaryAction.href}
                 rel={primaryAction.external ? "noreferrer" : undefined}
                 target={primaryAction.external ? "_blank" : undefined}
@@ -108,7 +108,7 @@ export function ProductDetailHero({
               </a>
               {secondaryAction ? (
                 <a
-                  className={`${contexture ? "border-[#cba6f7] text-[#cdd6f4] hover:bg-[#313244]" : "border-[var(--app-border)] text-[var(--app-text-primary)] hover:bg-[var(--app-muted-section)]"} inline-flex min-h-[42px] items-center justify-center gap-2 rounded-full border px-[18px] text-sm font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
+                  className={`${contexture ? "border-[#cba6f7] text-[#cdd6f4] hover:bg-[#313244]" : "border-[var(--app-border)] text-[var(--app-text-primary)] hover:bg-[var(--app-muted-section)]"} inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border px-[18px] text-base font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
                   href={secondaryAction.href}
                   rel={secondaryAction.external ? "noreferrer" : undefined}
                   target={secondaryAction.external ? "_blank" : undefined}
@@ -121,7 +121,7 @@ export function ProductDetailHero({
                 </a>
               ) : null}
               {status ? (
-                <span className="font-caption inline-flex min-h-[42px] items-center rounded-full bg-[var(--app-label)] px-4 text-[10px] font-bold tracking-[0.65px] text-[var(--app-label-text)]">
+                <span className="font-caption inline-flex min-h-[42px] items-center rounded-full bg-[var(--app-label)] px-4 text-[11px] font-bold tracking-[0.55px] text-[var(--app-label-text)]">
                   {status}
                 </span>
               ) : null}
@@ -190,7 +190,7 @@ export function ProductDetailRationale({
               {calloutIcon}
             </span>
             <p
-              className={`${light ? "text-[var(--contexture-detail-description)]" : "text-white"} text-[15px] leading-[1.5]`}
+              className={`${light ? "text-[var(--contexture-detail-description)]" : "text-white"} text-base leading-[1.55]`}
             >
               {callout}
             </p>
@@ -246,7 +246,7 @@ export function ProductDetailSteps({
                 {title}
               </h2>
             </div>
-            <p className="text-sm leading-[1.5] text-[var(--app-text-secondary)] min-[1024px]:text-[15px]">
+            <p className="text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
               {note}
             </p>
           </div>
@@ -260,7 +260,7 @@ export function ProductDetailSteps({
               >
                 {title}
               </h2>
-              <p className="text-sm leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-[15px]">
+              <p className="text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
                 {note}
               </p>
             </div>
@@ -286,7 +286,7 @@ export function ProductDetailSteps({
                   <h3 className="font-heading text-2xl leading-[1.12] font-medium text-[var(--app-text-primary)]">
                     {step.title}
                   </h3>
-                  <p className="text-sm leading-[1.5] text-[var(--app-text-secondary)]">
+                  <p className="text-base leading-[1.55] text-[var(--app-text-secondary)]">
                     {step.description}
                   </p>
                 </>
@@ -303,7 +303,7 @@ export function ProductDetailSteps({
                   <h3 className="font-heading mt-auto pt-10 text-2xl leading-[1.05] font-medium text-[var(--app-text-primary)]">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-[1.5] text-[var(--app-text-secondary)]">
+                  <p className="mt-3 text-base leading-[1.55] text-[var(--app-text-secondary)]">
                     {step.description}
                   </p>
                 </>
@@ -348,7 +348,7 @@ export function ProductDetailPrinciples({
           >
             {title}
           </h2>
-          <p className="mt-5 text-[15px] leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-base">
+          <p className="mt-5 text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
             {description}
           </p>
         </div>
@@ -359,7 +359,7 @@ export function ProductDetailPrinciples({
               key={principle.title}
             >
               <span className="mt-[7px] size-2 rounded-full bg-[var(--app-accent)]" />
-              <p className="text-sm leading-[1.5] text-[var(--app-text-secondary)]">
+              <p className="text-base leading-[1.55] text-[var(--app-text-secondary)]">
                 <strong className="font-semibold text-[var(--app-text-primary)]">
                   {principle.title}
                 </strong>
@@ -408,7 +408,7 @@ export function ProductDetailSpecifications({
           >
             {title}
           </h2>
-          <p className="mt-5 text-[15px] leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-base">
+          <p className="mt-5 text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
             {description}
           </p>
         </div>
@@ -421,7 +421,7 @@ export function ProductDetailSpecifications({
               <dt className="font-caption text-[10px] font-semibold tracking-[0.55px] text-[var(--contexture-detail-accent)]">
                 {row.label}
               </dt>
-              <dd className="text-sm leading-[1.5] text-[var(--app-text-primary)]">
+              <dd className="text-base leading-[1.55] text-[var(--app-text-primary)]">
                 {row.value}
               </dd>
             </div>
@@ -473,7 +473,7 @@ export function ProductDetailAvailability({
             {title}
           </h2>
           <p
-            className={`${contexture ? "text-[var(--contexture-detail-description)]" : "text-[var(--app-text-secondary)]"} mt-4 max-w-[860px] text-[15px] leading-[1.55] min-[1024px]:text-base`}
+            className={`${contexture ? "text-[var(--contexture-detail-description)]" : "text-[var(--app-text-secondary)]"} mt-4 max-w-[860px] text-base leading-[1.58] min-[1024px]:text-[17px]`}
           >
             {description}
           </p>

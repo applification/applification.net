@@ -32,8 +32,8 @@ export function ContractCta({
     ? "min-[1120px]:mt-3 min-[1120px]:text-[44px] min-[1120px]:font-semibold"
     : "min-[1024px]:mt-3 min-[1024px]:text-[44px] min-[1024px]:font-semibold";
   const descriptionLayout = wide
-    ? `${dark ? "min-[1120px]:leading-[1.27]" : "min-[1120px]:leading-[1.45]"} min-[1120px]:mt-3 min-[1120px]:text-[15px]`
-    : `${dark ? "min-[1024px]:leading-[1.27]" : "min-[1024px]:leading-[1.45]"} min-[1024px]:mt-3 min-[1024px]:text-[15px]`;
+    ? `${dark ? "min-[1120px]:leading-[1.4]" : "min-[1120px]:leading-[1.55]"} min-[1120px]:mt-3 min-[1120px]:text-[17px]`
+    : `${dark ? "min-[1024px]:leading-[1.4]" : "min-[1024px]:leading-[1.55]"} min-[1024px]:mt-3 min-[1024px]:text-[17px]`;
   const actionLayout = wide
     ? "min-[1120px]:w-auto min-[1120px]:font-semibold"
     : "min-[1024px]:w-auto min-[1024px]:font-semibold";
@@ -61,13 +61,13 @@ export function ContractCta({
           >
             {title}
           </h2>
-          <p className={`${dark ? "text-[#cbd5e1]" : "text-[var(--cta-description)]"} mt-[18px] max-w-[760px] text-sm leading-[1.5] ${descriptionLayout}`}>
+          <p className={`${dark ? "text-[#cbd5e1]" : "text-[var(--cta-description)]"} mt-[18px] max-w-[760px] text-base leading-[1.55] ${descriptionLayout}`}>
             {description}
           </p>
         </div>
 
         <a
-          className={`${dark ? `bg-white text-[#111827] hover:bg-[#e2e8f0] active:bg-[#cbd5e1] ${darkActionLayout}` : "bg-[var(--cta-action)] text-[var(--cta-action-text)] hover:bg-[var(--cta-action-hover)] active:bg-[var(--cta-action-active)]"} inline-flex min-h-[50px] w-full shrink-0 items-center justify-center gap-2 rounded-full px-[22px] text-[15px] font-bold transition-[background-color,transform] active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--cta-focus)] motion-reduce:transform-none motion-reduce:transition-none ${actionLayout}`}
+          className={`${dark ? `bg-white text-[#111827] hover:bg-[#e2e8f0] active:bg-[#cbd5e1] ${darkActionLayout}` : "bg-[var(--cta-action)] text-[var(--cta-action-text)] hover:bg-[var(--cta-action-hover)] active:bg-[var(--cta-action-active)]"} inline-flex min-h-[50px] w-full shrink-0 items-center justify-center gap-2 rounded-full px-[22px] text-base font-bold transition-[background-color,transform] active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--cta-focus)] motion-reduce:transform-none motion-reduce:transition-none ${actionLayout}`}
           href="mailto:dave@applification.net?subject=Project%20enquiry"
         >
           {actionLabel}
