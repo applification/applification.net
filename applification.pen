@@ -33914,6 +33914,7 @@
           "name": "Contact and AI assistant section",
           "context": "Page anchor: contact",
           "width": "fill_container",
+          "height": 1482,
           "fill": {
             "type": "gradient",
             "gradientType": "linear",
@@ -33965,7 +33966,7 @@
                       "id": "xr7k1",
                       "name": "Contact assistant eyebrow",
                       "fill": "$app-accent",
-                      "content": "CONTACT  /  AI ASSISTANT",
+                      "content": "CONTACT  /  AI WORKFLOW",
                       "fontFamily": "$font-caption",
                       "fontSize": 11,
                       "fontWeight": "700",
@@ -33978,7 +33979,7 @@
                       "fill": "$app-text-primary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Start with the work. The assistant will handle the handoff.",
+                      "content": "Tell me what you need. The workflow will prepare the handoff.",
                       "lineHeight": 1.04,
                       "fontFamily": "$font-heading",
                       "fontSize": 58,
@@ -33991,7 +33992,7 @@
                       "fill": "$app-text-secondary",
                       "textGrowth": "fixed-width",
                       "width": 680,
-                      "content": "Ask about my experience or describe what you need. The assistant checks the fit, gathers the useful details and shows you exactly what would be sent.",
+                      "content": "Choose a contract, product or general enquiry. The assistant turns your message into a checked brief, then you review exactly what reaches me.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font-body",
                       "fontSize": 18,
@@ -34052,7 +34053,7 @@
                       "fill": "$app-text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "It can answer questions and prepare a contact request. It cannot share personal details, promise availability or send anything without your approval.",
+                      "content": "It can route your enquiry, prepare a checked brief and ask for missing details. It cannot send, release my CV or decide who is trustworthy.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font-body",
                       "fontSize": 14,
@@ -34083,7 +34084,7 @@
                       "id": "nLRty",
                       "name": "How AI contact works label",
                       "fill": "$app-accent",
-                      "content": "HOW AI CONTACT WORKS",
+                      "content": "HOW THE HANDOFF WORKS",
                       "fontFamily": "$font-caption",
                       "fontSize": 10,
                       "fontWeight": "700",
@@ -34094,7 +34095,7 @@
                       "id": "HsqBd",
                       "name": "AI contact control note",
                       "fill": "$app-text-secondary",
-                      "content": "You decide what reaches me.",
+                      "content": "AI proposes. The app checks. You send.",
                       "fontFamily": "$font-body",
                       "fontSize": 14,
                       "fontWeight": "normal"
@@ -34106,13 +34107,13 @@
                   "id": "vIssT",
                   "name": "AI contact steps",
                   "width": "fill_container",
-                  "gap": 24,
+                  "gap": 25,
                   "children": [
                     {
                       "type": "frame",
                       "id": "b2Tgp",
                       "name": "ASK contact step",
-                      "width": "fill_container",
+                      "width": 220,
                       "stroke": "$app-border",
                       "strokeWidth": {
                         "top": 1
@@ -34161,7 +34162,7 @@
                           "id": "S78Vt2",
                           "name": "ASK contact step title",
                           "fill": "$app-text-primary",
-                          "content": "ASK",
+                          "content": "DESCRIBE",
                           "fontFamily": "$font-caption",
                           "fontSize": 10,
                           "fontWeight": "700",
@@ -34174,7 +34175,7 @@
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
-                          "content": "Ask about my work or describe what you need.",
+                          "content": "Say why you are getting in touch.",
                           "lineHeight": 1.45,
                           "fontFamily": "$font-body",
                           "fontSize": 13,
@@ -34186,7 +34187,7 @@
                       "type": "frame",
                       "id": "u9s6V",
                       "name": "CHECK contact step",
-                      "width": "fill_container",
+                      "width": 220,
                       "stroke": "$app-border",
                       "strokeWidth": {
                         "top": 1
@@ -34235,7 +34236,7 @@
                           "id": "KCWam",
                           "name": "CHECK contact step title",
                           "fill": "$app-text-primary",
-                          "content": "CHECK",
+                          "content": "AI PREPARES",
                           "fontFamily": "$font-caption",
                           "fontSize": 10,
                           "fontWeight": "700",
@@ -34248,7 +34249,7 @@
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
-                          "content": "The assistant checks fit and gathers the details.",
+                          "content": "It turns the message into a brief.",
                           "lineHeight": 1.45,
                           "fontFamily": "$font-body",
                           "fontSize": 13,
@@ -34260,7 +34261,7 @@
                       "type": "frame",
                       "id": "mATOT",
                       "name": "REVIEW contact step",
-                      "width": "fill_container",
+                      "width": 220,
                       "stroke": "$app-border",
                       "strokeWidth": {
                         "top": 1
@@ -34309,7 +34310,7 @@
                           "id": "oMeVQ",
                           "name": "REVIEW handoff step title",
                           "fill": "$app-text-primary",
-                          "content": "REVIEW",
+                          "content": "APP CHECKS",
                           "fontFamily": "$font-caption",
                           "fontSize": 10,
                           "fontWeight": "700",
@@ -34322,7 +34323,7 @@
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
-                          "content": "See the exact summary and reply address.",
+                          "content": "Rules check the route, fields and fit.",
                           "lineHeight": 1.45,
                           "fontFamily": "$font-body",
                           "fontSize": 13,
@@ -34334,7 +34335,7 @@
                       "type": "frame",
                       "id": "jeeQM",
                       "name": "SEND contact step",
-                      "width": "fill_container",
+                      "width": 220,
                       "stroke": "$app-border",
                       "strokeWidth": {
                         "top": 1
@@ -34383,7 +34384,7 @@
                           "id": "ejEh5",
                           "name": "SEND contact step title",
                           "fill": "$app-text-primary",
-                          "content": "SEND",
+                          "content": "YOU REVIEW",
                           "fontFamily": "$font-caption",
                           "fontSize": 10,
                           "fontWeight": "700",
@@ -34392,6 +34393,80 @@
                         {
                           "type": "text",
                           "id": "rhWIm",
+                          "name": "SEND contact step copy",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "See and edit the exact request.",
+                          "lineHeight": 1.45,
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DmWQi",
+                      "name": "SEND contact step",
+                      "width": 220,
+                      "stroke": "$app-border",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": [
+                        18,
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "OEKfx",
+                          "name": "APPROVE handoff step header",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "dnaYL",
+                              "name": "APPROVE handoff step number",
+                              "fill": "$app-text-muted",
+                              "content": "05",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 9,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "OYcrg",
+                              "name": "APPROVE handoff step icon",
+                              "width": 15,
+                              "height": 15,
+                              "icon": "shield-check",
+                              "library": "lucide",
+                              "fill": "$app-accent"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "rNcjS",
+                          "name": "SEND contact step title",
+                          "fill": "$app-text-primary",
+                          "content": "SEND",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 10,
+                          "fontWeight": "700",
+                          "letterSpacing": 0.8
+                        },
+                        {
+                          "type": "text",
+                          "id": "P9nZW8",
                           "name": "SEND contact step copy",
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
@@ -34413,7 +34488,7 @@
               "id": "jHMZ2",
               "name": "Contact assistant workspace",
               "width": 1200,
-              "height": 720,
+              "height": 820,
               "gap": 24,
               "alignItems": "center",
               "children": [
@@ -34560,7 +34635,7 @@
                               "id": "dwyZa",
                               "name": "Assistant opening label",
                               "fill": "$app-sky-text",
-                              "content": "ASSISTANT",
+                              "content": "AI ROUTER",
                               "fontFamily": "$font-caption",
                               "fontSize": 8,
                               "fontWeight": "700",
@@ -34573,7 +34648,7 @@
                               "fill": "$app-text-primary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
-                              "content": "Hi. I can answer questions about Dave's work, understand what you need, and prepare a contact request. What brings you here?",
+                              "content": "Tell me what brings you here, or choose a route. I'll prepare a checked brief for you to review before anything is sent.",
                               "lineHeight": 1.45,
                               "fontFamily": "$font-body",
                               "fontSize": 14,
@@ -34605,7 +34680,7 @@
                                       "id": "NDqUy",
                                       "name": "Contract project choice label",
                                       "fill": "$app-text-on-action",
-                                      "content": "Contract project",
+                                      "content": "Contract enquiry",
                                       "fontFamily": "$font-body",
                                       "fontSize": 11,
                                       "fontWeight": "600"
@@ -34633,7 +34708,7 @@
                                       "id": "eOfeV",
                                       "name": "Product question choice label",
                                       "fill": "$app-text-secondary",
-                                      "content": "Product question",
+                                      "content": "Product enquiry",
                                       "fontFamily": "$font-body",
                                       "fontSize": 11,
                                       "fontWeight": "normal"
@@ -34661,7 +34736,7 @@
                                       "id": "IwjHB",
                                       "name": "Existing client choice label",
                                       "fill": "$app-text-secondary",
-                                      "content": "Existing client",
+                                      "content": "General enquiry",
                                       "fontFamily": "$font-body",
                                       "fontSize": 11,
                                       "fontWeight": "normal"
@@ -34754,7 +34829,7 @@
                                   "id": "DeF92",
                                   "name": "Fit assessment label",
                                   "fill": "$app-accent",
-                                  "content": "LIKELY FIT",
+                                  "content": "CONTRACT ENQUIRY  ·  LIKELY FIT",
                                   "fontFamily": "$font-caption",
                                   "fontSize": 8,
                                   "fontWeight": "700",
@@ -34769,7 +34844,7 @@
                               "fill": "$app-text-primary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
-                              "content": "That matches Dave's recent work. I have enough to prepare a summary. Add your work email, then review exactly what will be sent.",
+                              "content": "This matches Dave's usual contract work. Add your work email, then review the exact brief. Dave decides separately whether to send his CV.",
                               "lineHeight": 1.45,
                               "fontFamily": "$font-body",
                               "fontSize": 14,
@@ -34901,7 +34976,7 @@
                               "id": "ah1Xv",
                               "name": "Contact message placeholder",
                               "fill": "$app-text-muted",
-                              "content": "Describe the work, team or problem…",
+                              "content": "Add a detail or correct the brief…",
                               "fontFamily": "$font-body",
                               "fontSize": 14,
                               "fontWeight": "normal"
@@ -34969,7 +35044,7 @@
                               "id": "yWH5R",
                               "name": "Qualification label",
                               "fill": "$app-text-primary",
-                              "content": "CONTACT CHECK",
+                              "content": "CONTRACT ENQUIRY",
                               "fontFamily": "$font-caption",
                               "fontSize": 10,
                               "fontWeight": "700",
@@ -34980,7 +35055,7 @@
                               "id": "kOPKl",
                               "name": "Qualification progress copy",
                               "fill": "$app-text-muted",
-                              "content": "4 steps before handoff",
+                              "content": "Brief ready for your review",
                               "fontFamily": "$font-body",
                               "fontSize": 12,
                               "fontWeight": "normal"
@@ -35060,7 +35135,7 @@
                               "id": "UAO3f",
                               "name": "Intent understood step label",
                               "fill": "$app-text-secondary",
-                              "content": "Intent understood",
+                              "content": "Route confirmed",
                               "fontFamily": "$font-body",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -35104,7 +35179,7 @@
                               "id": "H7X46",
                               "name": "Project fit checked step label",
                               "fill": "$app-text-secondary",
-                              "content": "Project fit checked",
+                              "content": "Brief prepared by AI",
                               "fontFamily": "$font-body",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -35148,7 +35223,7 @@
                               "id": "hPiso",
                               "name": "Contact details added step label",
                               "fill": "$app-text-secondary",
-                              "content": "Contact details added",
+                              "content": "Details checked by app",
                               "fontFamily": "$font-body",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -35193,7 +35268,7 @@
                               "id": "YZz7b",
                               "name": "Approval to send step label",
                               "fill": "$app-text-primary",
-                              "content": "Approval to send",
+                              "content": "Your approval to send",
                               "fontFamily": "$font-body",
                               "fontSize": 13,
                               "fontWeight": "600"
@@ -35223,7 +35298,7 @@
                           "id": "X4Z0M8",
                           "name": "Contact request summary label",
                           "fill": "$app-accent",
-                          "content": "WHAT WILL BE SENT",
+                          "content": "REVIEWED BRIEF",
                           "fontFamily": "$font-caption",
                           "fontSize": 9,
                           "fontWeight": "700",
@@ -35242,7 +35317,7 @@
                               "id": "aSxc3",
                               "name": "TEAM summary label",
                               "fill": "$app-text-muted",
-                              "content": "TEAM",
+                              "content": "COMPANY",
                               "fontFamily": "$font-caption",
                               "fontSize": 8,
                               "fontWeight": "700",
@@ -35404,7 +35479,7 @@
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
                           "width": 280,
-                          "content": "I agree to send this summary and reply address to Dave.",
+                          "content": "I agree to send this brief and reply address to Dave.",
                           "lineHeight": 1.4,
                           "fontFamily": "$font-body",
                           "fontSize": 12,
@@ -35453,11 +35528,53 @@
                       "fill": "$app-text-muted",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Nothing is sent until you press the button.",
+                      "content": "Your request goes to Dave. His CV does not.",
                       "textAlign": "center",
                       "fontFamily": "$font-caption",
                       "fontSize": 9,
                       "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "XAlYf",
+                      "name": "Contract CV follow-up",
+                      "width": "fill_container",
+                      "fill": "$app-bg",
+                      "cornerRadius": 14,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": [
+                        13,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "q6KAW",
+                          "name": "Contract CV follow-up label",
+                          "fill": "$app-accent",
+                          "content": "CV FOLLOW-UP  /  CONTRACT ONLY",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700",
+                          "letterSpacing": 0.8
+                        },
+                        {
+                          "type": "text",
+                          "id": "zbkfP",
+                          "name": "Contract CV follow-up copy",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "After it is sent, Dave reviews the enquiry. Only he can approve the workflow to send his CV.",
+                          "lineHeight": 1.45,
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -36968,6 +37085,7 @@
           "name": "Contact and AI assistant section",
           "context": "Page anchor: contact",
           "width": "fill_container",
+          "height": 1482,
           "fill": {
             "type": "gradient",
             "gradientType": "linear",
@@ -37019,7 +37137,7 @@
                       "id": "LViXF",
                       "name": "Contact assistant eyebrow",
                       "fill": "$app-accent",
-                      "content": "CONTACT  /  AI ASSISTANT",
+                      "content": "CONTACT  /  AI WORKFLOW",
                       "fontFamily": "$font-caption",
                       "fontSize": 11,
                       "fontWeight": "700",
@@ -37032,7 +37150,7 @@
                       "fill": "$app-text-primary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Start with the work. The assistant will handle the handoff.",
+                      "content": "Tell me what you need. The workflow will prepare the handoff.",
                       "lineHeight": 1.04,
                       "fontFamily": "$font-heading",
                       "fontSize": 58,
@@ -37045,7 +37163,7 @@
                       "fill": "$app-text-secondary",
                       "textGrowth": "fixed-width",
                       "width": 680,
-                      "content": "Ask about my experience or describe what you need. The assistant checks the fit, gathers the useful details and shows you exactly what would be sent.",
+                      "content": "Choose a contract, product or general enquiry. The assistant turns your message into a checked brief, then you review exactly what reaches me.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font-body",
                       "fontSize": 18,
@@ -37106,7 +37224,7 @@
                       "fill": "$app-text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "It can answer questions and prepare a contact request. It cannot share personal details, promise availability or send anything without your approval.",
+                      "content": "It can route your enquiry, prepare a checked brief and ask for missing details. It cannot send, release my CV or decide who is trustworthy.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font-body",
                       "fontSize": 14,
@@ -37137,7 +37255,7 @@
                       "id": "L5Z5F",
                       "name": "How AI contact works label",
                       "fill": "$app-accent",
-                      "content": "HOW AI CONTACT WORKS",
+                      "content": "HOW THE HANDOFF WORKS",
                       "fontFamily": "$font-caption",
                       "fontSize": 10,
                       "fontWeight": "700",
@@ -37148,7 +37266,7 @@
                       "id": "Y7f82o",
                       "name": "AI contact control note",
                       "fill": "$app-text-secondary",
-                      "content": "You decide what reaches me.",
+                      "content": "AI proposes. The app checks. You send.",
                       "fontFamily": "$font-body",
                       "fontSize": 14,
                       "fontWeight": "normal"
@@ -37160,13 +37278,13 @@
                   "id": "x8Usgq",
                   "name": "AI contact steps",
                   "width": "fill_container",
-                  "gap": 24,
+                  "gap": 25,
                   "children": [
                     {
                       "type": "frame",
                       "id": "z4NIP9",
                       "name": "ASK contact step",
-                      "width": "fill_container",
+                      "width": 220,
                       "stroke": "$app-border",
                       "strokeWidth": {
                         "top": 1
@@ -37215,7 +37333,7 @@
                           "id": "m39AYh",
                           "name": "ASK contact step title",
                           "fill": "$app-text-primary",
-                          "content": "ASK",
+                          "content": "DESCRIBE",
                           "fontFamily": "$font-caption",
                           "fontSize": 10,
                           "fontWeight": "700",
@@ -37228,7 +37346,7 @@
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
-                          "content": "Ask about my work or describe what you need.",
+                          "content": "Say why you are getting in touch.",
                           "lineHeight": 1.45,
                           "fontFamily": "$font-body",
                           "fontSize": 13,
@@ -37240,7 +37358,7 @@
                       "type": "frame",
                       "id": "rKBqD",
                       "name": "CHECK contact step",
-                      "width": "fill_container",
+                      "width": 220,
                       "stroke": "$app-border",
                       "strokeWidth": {
                         "top": 1
@@ -37289,7 +37407,7 @@
                           "id": "qQU82",
                           "name": "CHECK contact step title",
                           "fill": "$app-text-primary",
-                          "content": "CHECK",
+                          "content": "AI PREPARES",
                           "fontFamily": "$font-caption",
                           "fontSize": 10,
                           "fontWeight": "700",
@@ -37302,7 +37420,7 @@
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
-                          "content": "The assistant checks fit and gathers the details.",
+                          "content": "It turns the message into a brief.",
                           "lineHeight": 1.45,
                           "fontFamily": "$font-body",
                           "fontSize": 13,
@@ -37314,7 +37432,7 @@
                       "type": "frame",
                       "id": "pEe91",
                       "name": "REVIEW contact step",
-                      "width": "fill_container",
+                      "width": 220,
                       "stroke": "$app-border",
                       "strokeWidth": {
                         "top": 1
@@ -37363,7 +37481,7 @@
                           "id": "AXvzk",
                           "name": "REVIEW handoff step title",
                           "fill": "$app-text-primary",
-                          "content": "REVIEW",
+                          "content": "APP CHECKS",
                           "fontFamily": "$font-caption",
                           "fontSize": 10,
                           "fontWeight": "700",
@@ -37376,7 +37494,7 @@
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
-                          "content": "See the exact summary and reply address.",
+                          "content": "Rules check the route, fields and fit.",
                           "lineHeight": 1.45,
                           "fontFamily": "$font-body",
                           "fontSize": 13,
@@ -37388,7 +37506,7 @@
                       "type": "frame",
                       "id": "x04I0Z",
                       "name": "SEND contact step",
-                      "width": "fill_container",
+                      "width": 220,
                       "stroke": "$app-border",
                       "strokeWidth": {
                         "top": 1
@@ -37437,7 +37555,7 @@
                           "id": "nhfmD",
                           "name": "SEND contact step title",
                           "fill": "$app-text-primary",
-                          "content": "SEND",
+                          "content": "YOU REVIEW",
                           "fontFamily": "$font-caption",
                           "fontSize": 10,
                           "fontWeight": "700",
@@ -37446,6 +37564,80 @@
                         {
                           "type": "text",
                           "id": "P2uDh",
+                          "name": "SEND contact step copy",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "See and edit the exact request.",
+                          "lineHeight": 1.45,
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f82Ew",
+                      "name": "SEND contact step",
+                      "width": 220,
+                      "stroke": "$app-border",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": [
+                        18,
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "uH0No",
+                          "name": "APPROVE handoff step header",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "fX1cE",
+                              "name": "APPROVE handoff step number",
+                              "fill": "$app-text-muted",
+                              "content": "05",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 9,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "ot1oK",
+                              "name": "APPROVE handoff step icon",
+                              "width": 15,
+                              "height": 15,
+                              "icon": "shield-check",
+                              "library": "lucide",
+                              "fill": "$app-accent"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "y0egC",
+                          "name": "SEND contact step title",
+                          "fill": "$app-text-primary",
+                          "content": "SEND",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 10,
+                          "fontWeight": "700",
+                          "letterSpacing": 0.8
+                        },
+                        {
+                          "type": "text",
+                          "id": "WsKSn",
                           "name": "SEND contact step copy",
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
@@ -37467,7 +37659,7 @@
               "id": "RID1Q",
               "name": "Contact assistant workspace",
               "width": 1200,
-              "height": 720,
+              "height": 820,
               "gap": 24,
               "alignItems": "center",
               "children": [
@@ -37614,7 +37806,7 @@
                               "id": "s87gH",
                               "name": "Assistant opening label",
                               "fill": "$app-sky-text",
-                              "content": "ASSISTANT",
+                              "content": "AI ROUTER",
                               "fontFamily": "$font-caption",
                               "fontSize": 8,
                               "fontWeight": "700",
@@ -37627,7 +37819,7 @@
                               "fill": "$app-text-primary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
-                              "content": "Hi. I can answer questions about Dave's work, understand what you need, and prepare a contact request. What brings you here?",
+                              "content": "Tell me what brings you here, or choose a route. I'll prepare a checked brief for you to review before anything is sent.",
                               "lineHeight": 1.45,
                               "fontFamily": "$font-body",
                               "fontSize": 14,
@@ -37659,7 +37851,7 @@
                                       "id": "FzP41",
                                       "name": "Contract project choice label",
                                       "fill": "$app-text-on-action",
-                                      "content": "Contract project",
+                                      "content": "Contract enquiry",
                                       "fontFamily": "$font-body",
                                       "fontSize": 11,
                                       "fontWeight": "600"
@@ -37687,7 +37879,7 @@
                                       "id": "onSxq",
                                       "name": "Product question choice label",
                                       "fill": "$app-text-secondary",
-                                      "content": "Product question",
+                                      "content": "Product enquiry",
                                       "fontFamily": "$font-body",
                                       "fontSize": 11,
                                       "fontWeight": "normal"
@@ -37715,7 +37907,7 @@
                                       "id": "SZ7wD",
                                       "name": "Existing client choice label",
                                       "fill": "$app-text-secondary",
-                                      "content": "Existing client",
+                                      "content": "General enquiry",
                                       "fontFamily": "$font-body",
                                       "fontSize": 11,
                                       "fontWeight": "normal"
@@ -37808,7 +38000,7 @@
                                   "id": "cTZRq",
                                   "name": "Fit assessment label",
                                   "fill": "$app-accent",
-                                  "content": "LIKELY FIT",
+                                  "content": "CONTRACT ENQUIRY  ·  LIKELY FIT",
                                   "fontFamily": "$font-caption",
                                   "fontSize": 8,
                                   "fontWeight": "700",
@@ -37823,7 +38015,7 @@
                               "fill": "$app-text-primary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
-                              "content": "That matches Dave's recent work. I have enough to prepare a summary. Add your work email, then review exactly what will be sent.",
+                              "content": "This matches Dave's usual contract work. Add your work email, then review the exact brief. Dave decides separately whether to send his CV.",
                               "lineHeight": 1.45,
                               "fontFamily": "$font-body",
                               "fontSize": 14,
@@ -37955,7 +38147,7 @@
                               "id": "O1vtiJ",
                               "name": "Contact message placeholder",
                               "fill": "$app-text-muted",
-                              "content": "Describe the work, team or problem…",
+                              "content": "Add a detail or correct the brief…",
                               "fontFamily": "$font-body",
                               "fontSize": 14,
                               "fontWeight": "normal"
@@ -38023,7 +38215,7 @@
                               "id": "a6qz1",
                               "name": "Qualification label",
                               "fill": "$app-text-primary",
-                              "content": "CONTACT CHECK",
+                              "content": "CONTRACT ENQUIRY",
                               "fontFamily": "$font-caption",
                               "fontSize": 10,
                               "fontWeight": "700",
@@ -38034,7 +38226,7 @@
                               "id": "ZvnZy",
                               "name": "Qualification progress copy",
                               "fill": "$app-text-muted",
-                              "content": "4 steps before handoff",
+                              "content": "Brief ready for your review",
                               "fontFamily": "$font-body",
                               "fontSize": 12,
                               "fontWeight": "normal"
@@ -38114,7 +38306,7 @@
                               "id": "e0DcxZ",
                               "name": "Intent understood step label",
                               "fill": "$app-text-secondary",
-                              "content": "Intent understood",
+                              "content": "Route confirmed",
                               "fontFamily": "$font-body",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -38158,7 +38350,7 @@
                               "id": "OfACJ",
                               "name": "Project fit checked step label",
                               "fill": "$app-text-secondary",
-                              "content": "Project fit checked",
+                              "content": "Brief prepared by AI",
                               "fontFamily": "$font-body",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -38202,7 +38394,7 @@
                               "id": "FMVSI",
                               "name": "Contact details added step label",
                               "fill": "$app-text-secondary",
-                              "content": "Contact details added",
+                              "content": "Details checked by app",
                               "fontFamily": "$font-body",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -38247,7 +38439,7 @@
                               "id": "CS5h2",
                               "name": "Approval to send step label",
                               "fill": "$app-text-primary",
-                              "content": "Approval to send",
+                              "content": "Your approval to send",
                               "fontFamily": "$font-body",
                               "fontSize": 13,
                               "fontWeight": "600"
@@ -38277,7 +38469,7 @@
                           "id": "XXIYf",
                           "name": "Contact request summary label",
                           "fill": "$app-accent",
-                          "content": "WHAT WILL BE SENT",
+                          "content": "REVIEWED BRIEF",
                           "fontFamily": "$font-caption",
                           "fontSize": 9,
                           "fontWeight": "700",
@@ -38296,7 +38488,7 @@
                               "id": "jPFDw",
                               "name": "TEAM summary label",
                               "fill": "$app-text-muted",
-                              "content": "TEAM",
+                              "content": "COMPANY",
                               "fontFamily": "$font-caption",
                               "fontSize": 8,
                               "fontWeight": "700",
@@ -38458,7 +38650,7 @@
                           "fill": "$app-text-secondary",
                           "textGrowth": "fixed-width",
                           "width": 280,
-                          "content": "I agree to send this summary and reply address to Dave.",
+                          "content": "I agree to send this brief and reply address to Dave.",
                           "lineHeight": 1.4,
                           "fontFamily": "$font-body",
                           "fontSize": 12,
@@ -38507,11 +38699,53 @@
                       "fill": "$app-text-muted",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Nothing is sent until you press the button.",
+                      "content": "Your request goes to Dave. His CV does not.",
                       "textAlign": "center",
                       "fontFamily": "$font-caption",
                       "fontSize": 9,
                       "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "npIuI",
+                      "name": "Contract CV follow-up",
+                      "width": "fill_container",
+                      "fill": "$app-bg",
+                      "cornerRadius": 14,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": [
+                        13,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "eb5kT",
+                          "name": "Contract CV follow-up label",
+                          "fill": "$app-accent",
+                          "content": "CV FOLLOW-UP  /  CONTRACT ONLY",
+                          "fontFamily": "$font-caption",
+                          "fontSize": 9,
+                          "fontWeight": "700",
+                          "letterSpacing": 0.8
+                        },
+                        {
+                          "type": "text",
+                          "id": "gMb17",
+                          "name": "Contract CV follow-up copy",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "After it is sent, Dave reviews the enquiry. Only he can approve the workflow to send his CV.",
+                          "lineHeight": 1.45,
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
                     }
                   ]
                 }
