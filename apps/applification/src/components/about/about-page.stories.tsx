@@ -71,6 +71,12 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   await expect(canvas.queryByRole("link", { name: "Email Dave" })).not.toBeInTheDocument();
   await expect(canvasElement.querySelector("#contact")).not.toBeInTheDocument();
   await expect(canvasElement.querySelectorAll("footer")).toHaveLength(1);
+  const profileFactColours = new Set(
+    [...canvasElement.querySelectorAll<HTMLElement>("[data-profile-fact-value]")].map(
+      (fact) => getComputedStyle(fact).color,
+    ),
+  );
+  await expect(profileFactColours.size).toBe(1);
 };
 
 export const DesktopLight: Story = { play: checkCompletePage };

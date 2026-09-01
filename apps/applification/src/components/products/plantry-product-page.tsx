@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import {
   ArrowUpRight,
   CalendarDays,
@@ -21,25 +21,6 @@ import {
 import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 
 const followBuildHref = buildContactHref({ route: "product", product: "plantry" });
-
-const plantryTheme = {
-  "--app-bg": "light-dark(#fffbef, #102a3a)",
-  "--app-bg-end": "light-dark(#fffbef, #153447)",
-  "--app-section": "light-dark(#fffdf7, #102a3a)",
-  "--app-muted-section": "light-dark(#f3eee0, #193b4a)",
-  "--app-card": "light-dark(#fffdf7, #193b4a)",
-  "--app-label": "light-dark(#e3f3e6, #1d5037)",
-  "--app-text-primary": "light-dark(#153447, #fffBEf)",
-  "--app-text-secondary": "light-dark(#526879, #d7e3e3)",
-  "--app-text-muted": "light-dark(#526879, #a9bdc3)",
-  "--app-border": "light-dark(#ded5c4, #466474)",
-  "--app-accent": "light-dark(#267343, #78d696)",
-  "--app-label-text": "light-dark(#23683b, #9be4b1)",
-  "--app-action": "light-dark(#153447, #78d696)",
-  "--app-action-hover": "light-dark(#204f67, #9be4b1)",
-  "--app-text-on-action": "light-dark(#fffbef, #102a3a)",
-  "--app-focus": "light-dark(#2e7d4a, #9be4b1)",
-} as CSSProperties;
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -337,7 +318,7 @@ function PlantryAvailability() {
 
 export function PlantryProductPage() {
   return (
-    <main className="overflow-x-clip" style={plantryTheme}>
+    <main className="overflow-x-clip" data-product-theme="plantry">
       <PlantryHero />
 
       <PlantryRationale />

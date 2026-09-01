@@ -26,6 +26,7 @@ type ProductLinkProps = {
   label: string;
   primary?: boolean;
   product: "contexture" | "voiced";
+  shortLabel: string;
 };
 
 function GitHubIcon() {
@@ -63,7 +64,13 @@ function ExternalLinkIcon() {
   );
 }
 
-function ProductLink({ href, label, primary = false, product }: ProductLinkProps) {
+function ProductLink({
+  href,
+  label,
+  primary = false,
+  product,
+  shortLabel,
+}: ProductLinkProps) {
   const palette =
     product === "contexture"
       ? primary
@@ -75,13 +82,19 @@ function ProductLink({ href, label, primary = false, product }: ProductLinkProps
 
   return (
     <a
-      className={`inline-flex min-h-11 items-center justify-center gap-[7px] rounded-lg px-3.5 text-[15px] font-bold transition-[background-color,border-color,color,transform] active:scale-[0.985] motion-reduce:transform-none min-[1024px]:px-3.5 ${palette} ${focusClasses}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-[7px] rounded-lg px-2.5 text-[15px] font-bold whitespace-nowrap transition-[background-color,border-color,color,transform] active:scale-[0.985] motion-reduce:transform-none min-[380px]:px-3.5 ${palette} ${focusClasses}`}
+      data-compact-product-link
       href={href}
       rel="noopener noreferrer"
       target="_blank"
     >
       {primary ? null : <GitHubIcon />}
-      {label}
+      <span className="min-[480px]:hidden" data-product-link-short-label>
+        {shortLabel}
+      </span>
+      <span className="hidden min-[480px]:inline" data-product-link-full-label>
+        {label}
+      </span>
       {primary ? <ExternalLinkIcon /> : null}
       <span className="sr-only">, opens in a new tab</span>
     </a>
@@ -150,17 +163,19 @@ function ContextureCard() {
             changes through MCP.
           </p>
         </div>
-        <div className="grid shrink-0 grid-cols-2 gap-2 min-[1024px]:flex">
+        <div className="grid shrink-0 grid-cols-1 gap-2 min-[360px]:grid-cols-2 min-[1024px]:flex">
           <ProductLink
             href="https://github.com/applification/contexture"
             label="GitHub source"
             product="contexture"
+            shortLabel="GitHub"
           />
           <ProductLink
             href="https://contexture.applification.net/"
             label="Open Contexture"
             primary
             product="contexture"
+            shortLabel="Contexture"
           />
         </div>
       </div>
@@ -221,17 +236,19 @@ function VoicedCard() {
           Hold Right Command, speak, and paste the transcription into the text
           field you are already using.
         </p>
-        <div className="mt-5 grid grid-cols-2 gap-2 min-[1024px]:flex">
+        <div className="mt-5 grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 min-[1024px]:flex">
           <ProductLink
             href="https://github.com/applification/voiced"
             label="GitHub source"
             product="voiced"
+            shortLabel="GitHub"
           />
           <ProductLink
             href="https://voiced.applification.net/"
             label="Open Voiced"
             primary
             product="voiced"
+            shortLabel="Voiced"
           />
         </div>
       </div>

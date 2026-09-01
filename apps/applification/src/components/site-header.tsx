@@ -1,6 +1,5 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
@@ -18,88 +17,18 @@ const navigation = [
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
 
-type ProductHeaderStyle = CSSProperties & Record<`--${string}`, string>;
 type ProductHeaderTheme = "plantry" | "storyloops" | "contexture" | "voiced";
-
-const productHeaderThemes: Record<ProductHeaderTheme, ProductHeaderStyle> = {
-  plantry: {
-    "--app-bg": "light-dark(#fffbef, #102a3a)",
-    "--app-section": "light-dark(#fffdf7, #102a3a)",
-    "--app-muted-section": "light-dark(#f3eee0, #193b4a)",
-    "--app-selected": "light-dark(#e3f3e6, #1d5037)",
-    "--app-control": "light-dark(#f3eee0, #193b4a)",
-    "--app-label": "light-dark(#e3f3e6, #1d5037)",
-    "--app-text-primary": "light-dark(#153447, #fffbef)",
-    "--app-text-secondary": "light-dark(#526879, #d7e3e3)",
-    "--app-border": "light-dark(#ded5c4, #466474)",
-    "--app-label-text": "light-dark(#23683b, #9be4b1)",
-    "--app-action": "light-dark(#153447, #78d696)",
-    "--app-action-hover": "light-dark(#204f67, #9be4b1)",
-    "--app-text-on-action": "light-dark(#fffbef, #102a3a)",
-    "--app-focus": "light-dark(#2e7d4a, #9be4b1)",
-    "--header-nav-active": "light-dark(#153447, #78d696)",
-    "--header-nav-selected": "light-dark(#f3eee0, #193b4a)",
-  },
-  storyloops: {
-    "--app-bg": "light-dark(#f9fafb, #111827)",
-    "--app-section": "light-dark(#f9fafb, #111827)",
-    "--app-muted-section": "light-dark(#e7e9f7, #1e293b)",
-    "--app-selected": "light-dark(#e1e4f8, #172554)",
-    "--app-control": "light-dark(#e7e9f7, #1e293b)",
-    "--app-label": "light-dark(#e1e4f8, #172554)",
-    "--app-text-primary": "light-dark(#303347, #f8fafc)",
-    "--app-text-secondary": "light-dark(#65697a, #cbd5e1)",
-    "--app-border": "light-dark(#e1e3ea, #334155)",
-    "--app-label-text": "light-dark(#555bcd, #b9d2ff)",
-    "--app-action": "light-dark(#0b1220, #e7e9f7)",
-    "--app-action-hover": "light-dark(#1e293b, #ffffff)",
-    "--app-text-on-action": "light-dark(#f8fafc, #303347)",
-    "--app-focus": "light-dark(#6c63d9, #b9d2ff)",
-    "--header-nav-active": "light-dark(#0369a1, #7dd3fc)",
-    "--header-nav-selected": "light-dark(#e0f2fe, #172554)",
-  },
-  contexture: {
-    "--app-bg": "#1e1e2e",
-    "--app-section": "#1e1e2e",
-    "--app-muted-section": "#313244",
-    "--app-selected": "#313244",
-    "--app-control": "#313244",
-    "--app-label": "#313244",
-    "--app-text-primary": "#cdd6f4",
-    "--app-text-secondary": "#bac2de",
-    "--app-border": "#45475a",
-    "--app-label-text": "#89dceb",
-    "--app-action": "#cba6f7",
-    "--app-action-hover": "#d8b4fe",
-    "--app-text-on-action": "#1e1e2e",
-    "--app-focus": "#89dceb",
-    "--header-nav-active": "#cba6f7",
-    "--header-nav-selected": "#313244",
-  },
-  voiced: {
-    "--app-bg": "#eaf3ed",
-    "--app-section": "#eaf3ed",
-    "--app-muted-section": "#dcebe1",
-    "--app-selected": "#d6eadc",
-    "--app-control": "#dcebe1",
-    "--app-label": "#d6eadc",
-    "--app-text-primary": "#173f32",
-    "--app-text-secondary": "#4d665e",
-    "--app-border": "#b8cec0",
-    "--app-label-text": "#2f7a52",
-    "--app-action": "#173f32",
-    "--app-action-hover": "#254f42",
-    "--app-text-on-action": "#f7faf8",
-    "--app-focus": "#2f7a52",
-    "--header-nav-active": "#2f7a52",
-    "--header-nav-selected": "#d6eadc",
-  },
-};
+const productHeaderThemeNames = new Set<ProductHeaderTheme>([
+  "plantry",
+  "storyloops",
+  "contexture",
+  "voiced",
+]);
 
 function getProductHeaderTheme(pathname: string | null) {
   const product = pathname?.match(/^\/products\/([^/]+)/)?.[1];
 
-  if (product && product in productHeaderThemes) {
+  if (product && productHeaderThemeNames.has(product as ProductHeaderTheme)) {
     return product as ProductHeaderTheme;
   }
 
@@ -172,7 +101,6 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
     <header
       className="relative z-40 h-16 w-full shrink-0 bg-[var(--app-bg)] transition-colors duration-300 motion-reduce:transition-none"
       data-product-theme={productHeaderTheme ?? undefined}
-      style={productHeaderTheme ? productHeaderThemes[productHeaderTheme] : undefined}
     >
       <div className="mx-auto flex h-full w-full items-center justify-between px-5 min-[700px]:w-[calc(100%-40px)] min-[700px]:max-w-[1200px] min-[700px]:px-0 min-[1024px]:w-[calc(100%-48px)]">
         <Link

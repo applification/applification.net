@@ -75,7 +75,7 @@ export function ContractCta({
           href={buildContactHref({ route: "contract" })}
         >
           {actionLabel}
-          <ArrowUpRight aria-hidden="true" className="size-[17px] shrink-0 text-[var(--app-accent)]" strokeWidth={1.8} />
+          <ArrowUpRight aria-hidden="true" className="size-[17px] shrink-0" strokeWidth={1.8} />
         </a>
       </div>
     </section>

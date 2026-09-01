@@ -19,6 +19,20 @@ export const metadata: Metadata = {
     template: "%s | Applification",
   },
   description: contractPositioningDescriptions.site,
+  icons: {
+    icon: [
+      {
+        url: "/brand/applification-mark-light.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/brand/applification-mark-dark.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_GB",

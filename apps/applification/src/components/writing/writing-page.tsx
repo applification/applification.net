@@ -78,7 +78,10 @@ function WritingHero() {
 function FeaturedWriting({ entry }: { entry: WritingEntry }) {
   return (
     <section className="bg-[var(--app-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[82px] min-[1440px]:px-[120px]">
-      <article className="mx-auto grid w-full max-w-[1200px] gap-10 rounded-[22px] bg-[var(--app-selected)] p-7 min-[720px]:p-[38px] min-[960px]:grid-cols-[minmax(0,760px)_250px] min-[960px]:items-center min-[960px]:justify-between min-[960px]:gap-12">
+      <article
+        className="mx-auto grid w-full max-w-[1200px] gap-10 rounded-[22px] bg-[var(--app-muted-section)] p-7 min-[720px]:p-[38px] min-[960px]:grid-cols-[minmax(0,760px)_250px] min-[960px]:items-center min-[960px]:justify-between min-[960px]:gap-12"
+        data-featured-writing
+      >
         <div className="flex min-w-0 flex-col gap-4">
           <p className="font-caption text-[10px] font-bold tracking-[1px] text-[var(--writing-accent-text)]">
             {entry.type === "weeknote" ? "WEEKNOTE" : "FIELD NOTE"}
@@ -134,7 +137,10 @@ function FeaturedWriting({ entry }: { entry: WritingEntry }) {
 
 function RecentWriting({ entries }: { entries: WritingEntry[] }) {
   return (
-    <section className="bg-[var(--app-muted-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[84px] min-[1440px]:px-[120px]">
+    <section
+      className="bg-[var(--app-muted-section)] px-6 py-14 min-[720px]:px-12 min-[1024px]:py-[84px] min-[1440px]:px-[120px]"
+      data-writing-section="recent"
+    >
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[34px]">
         <div className="flex flex-col gap-4 min-[760px]:flex-row min-[760px]:items-end min-[760px]:justify-between">
           <div className="flex flex-col gap-2">

@@ -68,6 +68,30 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   );
   await expect(links.every((link) => link.tabIndex >= 0)).toBe(true);
   await expect(canvasElement.querySelectorAll("footer")).toHaveLength(1);
+
+  const productionAi = canvasElement.querySelector<HTMLElement>(
+    "[data-logically-production-ai]",
+  );
+  const evidenceMetric = canvasElement.querySelector<HTMLElement>(
+    "[data-logically-evidence-metric]",
+  );
+  const contractProof = canvasElement.querySelector<HTMLElement>(
+    "[data-client-contract-proof]",
+  );
+  const contractMetric = canvasElement.querySelector<HTMLElement>(
+    "[data-client-contract-metric]",
+  );
+
+  await expect(productionAi).toBeInTheDocument();
+  await expect(evidenceMetric).toBeInTheDocument();
+  await expect(getComputedStyle(productionAi!).backgroundColor).toBe(
+    getComputedStyle(evidenceMetric!).backgroundColor,
+  );
+  await expect(contractProof).toBeInTheDocument();
+  await expect(contractMetric).toBeInTheDocument();
+  await expect(getComputedStyle(contractProof!).backgroundColor).toBe(
+    getComputedStyle(contractMetric!).backgroundColor,
+  );
 };
 
 const checkCaseStudyColumns = (
@@ -152,17 +176,21 @@ export const ReducedMotion: Story = {
         return [];
       }
     });
-    const reducedMotionRule = mediaRules.find(
+    const reducedMotionRules = mediaRules.filter(
       (rule) =>
         rule instanceof CSSMediaRule &&
         rule.conditionText === "(prefers-reduced-motion: reduce)",
     );
-    const reducedMotionStyleRule =
-      reducedMotionRule instanceof CSSMediaRule
-        ? [...reducedMotionRule.cssRules].find(
-            (rule) => rule instanceof CSSStyleRule,
-          )
-        : undefined;
+    const reducedMotionStyleRule = reducedMotionRules
+      .flatMap((rule) =>
+        rule instanceof CSSMediaRule ? [...rule.cssRules] : [],
+      )
+      .find(
+        (rule) =>
+          rule instanceof CSSStyleRule &&
+          rule.style.animationName === "none" &&
+          rule.style.transitionProperty === "none",
+      );
 
     await expect(reducedMotionStyleRule).toBeInstanceOf(CSSStyleRule);
     await expect(

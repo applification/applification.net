@@ -32,6 +32,26 @@ const checkCaseLinks: NonNullable<Story["play"]> = async ({ canvasElement }) => 
   );
 };
 
+const checkMobilePalette: NonNullable<Story["play"]> = async ({ canvasElement }) => {
+  await checkCaseLinks({ canvasElement } as Parameters<typeof checkCaseLinks>[0]);
+
+  const logically = canvasElement.querySelector<HTMLElement>(
+    "[data-client-outcome='logically']",
+  );
+  const peer = canvasElement.querySelector<HTMLElement>(
+    "[data-client-outcome='logically'] + li",
+  );
+
+  await expect(logically).toBeInTheDocument();
+  await expect(peer).toBeInTheDocument();
+  await expect(getComputedStyle(logically!).backgroundColor).toBe(
+    getComputedStyle(peer!).backgroundColor,
+  );
+  await expect(getComputedStyle(logically!).color).toBe(
+    getComputedStyle(peer!).color,
+  );
+};
+
 export const DesktopLight: Story = { play: checkCaseLinks };
 
 export const DesktopDark: Story = {
@@ -41,7 +61,7 @@ export const DesktopDark: Story = {
 
 export const MobileLight: Story = {
   globals: { viewport: { value: "mobile", isRotated: false } },
-  play: checkCaseLinks,
+  play: checkMobilePalette,
 };
 
 export const MobileDark: Story = {
@@ -49,7 +69,7 @@ export const MobileDark: Story = {
     theme: "dark",
     viewport: { value: "mobile", isRotated: false },
   },
-  play: checkCaseLinks,
+  play: checkMobilePalette,
 };
 
 export const LaptopLight: Story = {

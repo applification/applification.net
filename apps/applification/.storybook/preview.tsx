@@ -43,6 +43,16 @@ const preview: Preview = {
           styles: { height: "844px", width: "390px" },
           type: "mobile",
         },
+        iphoneSe: {
+          name: "iPhone SE QA · 375px",
+          styles: { height: "667px", width: "375px" },
+          type: "mobile",
+        },
+        iphoneSeSmall: {
+          name: "Small iPhone SE QA · 320px",
+          styles: { height: "568px", width: "320px" },
+          type: "mobile",
+        },
         wideMobile: {
           name: "Wide mobile QA · 646px",
           styles: { height: "743px", width: "646px" },

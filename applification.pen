@@ -32512,7 +32512,7 @@
       "id": "dK8Aj",
       "x": 25766,
       "y": -1232,
-      "name": "About & contact page · dark mode",
+      "name": "Historical · About & contact page · dark mode",
       "theme": {
         "mode": "dark"
       },
@@ -34766,6 +34766,8 @@
                                 4,
                                 14
                               ],
+                              "layout": "vertical",
+                              "gap": 9,
                               "padding": [
                                 14,
                                 16
@@ -34783,6 +34785,43 @@
                                   "fontFamily": "$font-body",
                                   "fontSize": 14,
                                   "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "LzM7H",
+                                  "name": "Contract brief attachment",
+                                  "fill": "#FFFFFF1A",
+                                  "cornerRadius": 8,
+                                  "stroke": "#FFFFFF66",
+                                  "strokeWidth": 1,
+                                  "gap": 7,
+                                  "padding": [
+                                    7,
+                                    9
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "uqbQH",
+                                      "name": "Contract brief file icon",
+                                      "width": 14,
+                                      "height": 14,
+                                      "icon": "file-text",
+                                      "library": "lucide",
+                                      "fill": "#FFFFFF"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "KUWRu",
+                                      "name": "Contract brief file name",
+                                      "fill": "#FFFFFF",
+                                      "content": "Contract brief.pdf  ·  248 KB",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 11,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -34844,7 +34883,7 @@
                               "fill": "$app-text-primary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
-                              "content": "This matches Dave's usual contract work. Add your work email, then review the exact brief. Dave decides separately whether to send his CV.",
+                              "content": "This matches Dave's usual contract work. Add your work email. If you have a brief, paste its link or attach a PDF or DOCX, then review the exact handoff.",
                               "lineHeight": 1.45,
                               "fontFamily": "$font-body",
                               "fontSize": 14,
@@ -34976,10 +35015,35 @@
                               "id": "ah1Xv",
                               "name": "Contact message placeholder",
                               "fill": "$app-text-muted",
-                              "content": "Add a detail or correct the brief…",
+                              "content": "Add a detail, link or document…",
                               "fontFamily": "$font-body",
                               "fontSize": 14,
                               "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Y5QlX",
+                          "name": "Attach contract brief button",
+                          "width": 48,
+                          "height": 48,
+                          "fill": "$app-muted-section",
+                          "cornerRadius": 14,
+                          "stroke": "$app-border",
+                          "strokeWidth": 1,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "H8tfo",
+                              "name": "Attach contract brief icon",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "paperclip",
+                              "library": "lucide",
+                              "fill": "$app-text-secondary"
                             }
                           ]
                         },
@@ -35408,6 +35472,40 @@
                         },
                         {
                           "type": "frame",
+                          "id": "G8F1MM",
+                          "name": "BRIEF summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "rz1RE",
+                              "name": "BRIEF summary label",
+                              "fill": "$app-text-muted",
+                              "content": "BRIEF",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "S1WAeW",
+                              "name": "BRIEF summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "Contract brief.pdf",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
                           "id": "HIIKb",
                           "name": "REPLY TO summary row",
                           "width": "fill_container",
@@ -35683,7 +35781,7 @@
       "id": "X010Bz",
       "x": 27366,
       "y": -1232,
-      "name": "About & contact page · light mode",
+      "name": "Historical · About & contact page · light mode",
       "theme": {
         "mode": "light"
       },
@@ -37937,6 +38035,8 @@
                                 4,
                                 14
                               ],
+                              "layout": "vertical",
+                              "gap": 9,
                               "padding": [
                                 14,
                                 16
@@ -37954,6 +38054,43 @@
                                   "fontFamily": "$font-body",
                                   "fontSize": 14,
                                   "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "tzYeI",
+                                  "name": "Contract brief attachment",
+                                  "fill": "#FFFFFF1A",
+                                  "cornerRadius": 8,
+                                  "stroke": "#FFFFFF66",
+                                  "strokeWidth": 1,
+                                  "gap": 7,
+                                  "padding": [
+                                    7,
+                                    9
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "s65VYi",
+                                      "name": "Contract brief file icon",
+                                      "width": 14,
+                                      "height": 14,
+                                      "icon": "file-text",
+                                      "library": "lucide",
+                                      "fill": "#FFFFFF"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "k8LB6",
+                                      "name": "Contract brief file name",
+                                      "fill": "#FFFFFF",
+                                      "content": "Contract brief.pdf  ·  248 KB",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 11,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -38015,7 +38152,7 @@
                               "fill": "$app-text-primary",
                               "textGrowth": "fixed-width",
                               "width": "fill_container",
-                              "content": "This matches Dave's usual contract work. Add your work email, then review the exact brief. Dave decides separately whether to send his CV.",
+                              "content": "This matches Dave's usual contract work. Add your work email. If you have a brief, paste its link or attach a PDF or DOCX, then review the exact handoff.",
                               "lineHeight": 1.45,
                               "fontFamily": "$font-body",
                               "fontSize": 14,
@@ -38147,10 +38284,35 @@
                               "id": "O1vtiJ",
                               "name": "Contact message placeholder",
                               "fill": "$app-text-muted",
-                              "content": "Add a detail or correct the brief…",
+                              "content": "Add a detail, link or document…",
                               "fontFamily": "$font-body",
                               "fontSize": 14,
                               "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "lLq3U",
+                          "name": "Attach contract brief button",
+                          "width": 48,
+                          "height": 48,
+                          "fill": "$app-muted-section",
+                          "cornerRadius": 14,
+                          "stroke": "$app-border",
+                          "strokeWidth": 1,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "jHm2G",
+                              "name": "Attach contract brief icon",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "paperclip",
+                              "library": "lucide",
+                              "fill": "$app-text-secondary"
                             }
                           ]
                         },
@@ -38570,6 +38732,40 @@
                               "textGrowth": "fixed-width",
                               "width": 210,
                               "content": "3 months · October",
+                              "textAlign": "right",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fXkoD",
+                          "name": "BRIEF summary row",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "B3wEH",
+                              "name": "BRIEF summary label",
+                              "fill": "$app-text-muted",
+                              "content": "BRIEF",
+                              "fontFamily": "$font-caption",
+                              "fontSize": 8,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.7
+                            },
+                            {
+                              "type": "text",
+                              "id": "nOkER",
+                              "name": "BRIEF summary value",
+                              "fill": "$app-text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 210,
+                              "content": "Contract brief.pdf",
                               "textAlign": "right",
                               "fontFamily": "$font-body",
                               "fontSize": 12,
@@ -60936,6 +61132,1580 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "GaGLi",
+      "x": 31406,
+      "y": -1232,
+      "name": "Contact workspace · current · iPhone SE · light · initial",
+      "theme": {
+        "mode": "light"
+      },
+      "metadata": {
+        "type": "current-reference",
+        "page": "contact",
+        "viewport": "iPhone SE 375×667",
+        "state": "initial"
+      },
+      "clip": true,
+      "width": 375,
+      "height": 667,
+      "fill": "$app-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "OXki8",
+          "name": "Workspace header",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$app-section",
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "t48qPF",
+              "name": "Contact status",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "fqG0t",
+                  "name": "Available status dot",
+                  "fill": "#16A34A",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "text",
+                  "id": "S2hUtM",
+                  "name": "Workspace title",
+                  "fill": "$app-text-primary",
+                  "content": "APPLIFICATION CONTACT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "PH79Q",
+              "name": "Restart action",
+              "fill": "$app-text-primary",
+              "content": "↻  Restart",
+              "fontFamily": "Geist",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "uPm7T",
+          "name": "Header divider",
+          "fill": "$app-border",
+          "width": "fill_container",
+          "height": 1
+        },
+        {
+          "type": "frame",
+          "id": "CP4b5",
+          "name": "Conversation",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            16,
+            16,
+            12,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "eCsQS",
+              "name": "Initial assistant message",
+              "width": "fill_container",
+              "fill": "$app-muted-section",
+              "cornerRadius": 24,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jkOnX",
+                  "name": "Assistant label",
+                  "fill": "$app-sky-text",
+                  "content": "▣  ENQUIRY ASSISTANT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "Si7St",
+                  "name": "Assistant prompt",
+                  "fill": "$app-text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Tell me what brings you here, or choose a route. I will prepare a checked brief for you to review before anything is sent.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "Geist",
+                  "fontSize": 19,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "daXjZ",
+                  "name": "Contract enquiry choice",
+                  "width": "fill_container",
+                  "height": 60,
+                  "fill": "$app-muted-section",
+                  "cornerRadius": 14,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 2,
+                  "padding": [
+                    8,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nbaHX",
+                      "name": "Contract enquiry label",
+                      "fill": "$app-text-primary",
+                      "content": "Contract enquiry",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ysupy",
+                      "name": "Contract enquiry description",
+                      "fill": "$app-text-secondary",
+                      "content": "A role, project or small-team build.",
+                      "fontFamily": "Geist",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PqIpH",
+                  "name": "Product enquiry choice",
+                  "width": "fill_container",
+                  "height": 60,
+                  "fill": "$app-muted-section",
+                  "cornerRadius": 14,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 2,
+                  "padding": [
+                    8,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uaFwt",
+                      "name": "Product enquiry label",
+                      "fill": "$app-text-primary",
+                      "content": "Product enquiry",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Bv81N",
+                      "name": "Product enquiry description",
+                      "fill": "$app-text-secondary",
+                      "content": "A question about one of my products.",
+                      "fontFamily": "Geist",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nCQoX",
+                  "name": "General enquiry choice",
+                  "width": "fill_container",
+                  "height": 60,
+                  "fill": "$app-muted-section",
+                  "cornerRadius": 14,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 2,
+                  "padding": [
+                    8,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "J8wy8m",
+                      "name": "General enquiry label",
+                      "fill": "$app-text-primary",
+                      "content": "General enquiry",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "iP06w",
+                      "name": "General enquiry description",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Anything useful that does not fit the other routes.",
+                      "lineHeight": 1.2,
+                      "fontFamily": "Geist",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "diH5O",
+          "name": "Composer dock",
+          "width": "fill_container",
+          "height": 72,
+          "fill": "$app-section",
+          "layout": "vertical",
+          "padding": 8,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "Fzl81",
+              "name": "Composer divider",
+              "fill": "$app-border",
+              "width": "fill_container",
+              "height": 1
+            },
+            {
+              "type": "frame",
+              "id": "XO8IF",
+              "name": "Inline message composer",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$app-muted-section",
+              "cornerRadius": 20,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "gap": 8,
+              "padding": [
+                8,
+                8,
+                8,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hA6xU",
+                  "name": "Message placeholder",
+                  "fill": "$app-text-secondary",
+                  "content": "Tell me what brings you here…",
+                  "fontFamily": "Geist",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "fWGkm",
+                  "name": "Return action",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "$app-action",
+                  "cornerRadius": 14,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yUp2n",
+                      "name": "Return symbol",
+                      "fill": "$app-text-on-action",
+                      "content": "↵",
+                      "fontFamily": "Geist",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "NlRAy",
+      "x": 31861,
+      "y": -1232,
+      "name": "Contact workspace · current · iPhone SE · dark · contract selected",
+      "theme": {
+        "mode": "dark"
+      },
+      "metadata": {
+        "type": "current-reference",
+        "page": "contact",
+        "viewport": "iPhone SE 375×667",
+        "state": "initial"
+      },
+      "clip": true,
+      "width": 375,
+      "height": 667,
+      "fill": "$app-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "nRFzh",
+          "name": "Workspace header",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$app-section",
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "vLdwG",
+              "name": "Contact status",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "V47PU",
+                  "name": "Available status dot",
+                  "fill": "#16A34A",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "text",
+                  "id": "urEiJ",
+                  "name": "Workspace title",
+                  "fill": "$app-text-primary",
+                  "content": "APPLIFICATION CONTACT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "XMB12",
+              "name": "Restart action",
+              "fill": "$app-text-primary",
+              "content": "↻  Restart",
+              "fontFamily": "Geist",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "sAwJy",
+          "name": "Header divider",
+          "fill": "$app-border",
+          "width": "fill_container",
+          "height": 1
+        },
+        {
+          "type": "frame",
+          "id": "z8lfn",
+          "name": "Conversation",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            12,
+            16,
+            10,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "EyxVI",
+              "name": "Initial assistant message",
+              "width": "fill_container",
+              "fill": "$app-muted-section",
+              "cornerRadius": 20,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fJ62d",
+                  "name": "Assistant label",
+                  "fill": "$app-sky-text",
+                  "content": "▣  ENQUIRY ASSISTANT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "Pc2rY",
+                  "name": "Assistant prompt",
+                  "fill": "$app-text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Tell me what brings you here, or choose a route. I will prepare a checked brief before anything is sent.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "Geist",
+                  "fontSize": 17,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "IwlmY",
+                  "name": "Contract enquiry choice",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "$app-control",
+                  "cornerRadius": 14,
+                  "stroke": "$app-action",
+                  "strokeWidth": 2,
+                  "layout": "vertical",
+                  "gap": 1,
+                  "padding": [
+                    6,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oprwH",
+                      "name": "Contract enquiry label",
+                      "fill": "$app-text-primary",
+                      "content": "Contract enquiry",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "vA2yU",
+                      "name": "Contract enquiry description",
+                      "fill": "$app-text-secondary",
+                      "content": "A role, project or small-team build.",
+                      "fontFamily": "Geist",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "umngj",
+                  "name": "Product enquiry choice",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "$app-muted-section",
+                  "cornerRadius": 14,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 1,
+                  "padding": [
+                    6,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "VTMH0",
+                      "name": "Product enquiry label",
+                      "fill": "$app-text-primary",
+                      "content": "Product enquiry",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qBrlF",
+                      "name": "Product enquiry description",
+                      "fill": "$app-text-secondary",
+                      "content": "A question about one of my products.",
+                      "fontFamily": "Geist",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "QNzNt",
+                  "name": "General enquiry choice",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "$app-muted-section",
+                  "cornerRadius": 14,
+                  "stroke": "$app-border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 1,
+                  "padding": [
+                    6,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HNfOx",
+                      "name": "General enquiry label",
+                      "fill": "$app-text-primary",
+                      "content": "General enquiry",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "b1i7J",
+                      "name": "General enquiry description",
+                      "fill": "$app-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Anything useful that does not fit the other routes.",
+                      "lineHeight": 1.2,
+                      "fontFamily": "Geist",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nFfRw",
+              "name": "Selected route assistant message",
+              "width": "fill_container",
+              "fill": "$app-muted-section",
+              "cornerRadius": 18,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RKGay",
+                  "name": "Assistant label",
+                  "fill": "$app-sky-text",
+                  "content": "▣  ENQUIRY ASSISTANT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "FgpOq",
+                  "name": "Contract route prompt",
+                  "fill": "$app-text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Tell me about the company, the work and when you need someone.",
+                  "lineHeight": 1.3,
+                  "fontFamily": "Geist",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "l1wh6",
+              "name": "Contract enquiry brief",
+              "width": "fill_container",
+              "height": 74,
+              "fill": "$app-section",
+              "cornerRadius": 18,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": [
+                10,
+                12
+              ],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hEy2c",
+                  "name": "Brief header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "L4iMO",
+                      "name": "Brief route",
+                      "fill": "$app-text-primary",
+                      "content": "Contract enquiry",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rUxoz",
+                      "name": "Details status",
+                      "fill": "$app-text-secondary",
+                      "content": "6 DETAILS NEEDED",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 11,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.7
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "w1j23j",
+                  "name": "Brief next detail",
+                  "fill": "$app-sky-text",
+                  "content": "Add company or agency",
+                  "fontFamily": "Geist",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "p4f2h",
+          "name": "Composer dock",
+          "width": "fill_container",
+          "height": 72,
+          "fill": "$app-section",
+          "layout": "vertical",
+          "padding": 8,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "rBivm",
+              "name": "Composer divider",
+              "fill": "$app-border",
+              "width": "fill_container",
+              "height": 1
+            },
+            {
+              "type": "frame",
+              "id": "E3cSj",
+              "name": "Inline message composer",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$app-muted-section",
+              "cornerRadius": 20,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "gap": 8,
+              "padding": [
+                8,
+                8,
+                8,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "CBNHz",
+                  "name": "Message placeholder",
+                  "fill": "$app-text-secondary",
+                  "content": "Tell me what brings you here…",
+                  "fontFamily": "Geist",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "fck1H",
+                  "name": "Return action",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "$app-action",
+                  "cornerRadius": 14,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YQlgh",
+                      "name": "Return symbol",
+                      "fill": "$app-text-on-action",
+                      "content": "↵",
+                      "fontFamily": "Geist",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "RGycJ",
+      "x": 32276,
+      "y": -1232,
+      "name": "Contact workspace · current · desktop · light · initial",
+      "theme": {
+        "mode": "light"
+      },
+      "metadata": {
+        "type": "current-reference",
+        "page": "contact",
+        "viewport": "desktop",
+        "state": "initial"
+      },
+      "clip": true,
+      "width": 1200,
+      "height": 820,
+      "fill": "$app-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "boYGc",
+          "name": "Workspace header",
+          "width": "fill_container",
+          "height": 64,
+          "fill": "$app-section",
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "WrgOi",
+              "name": "Contact status",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "OFnzw",
+                  "name": "Available status dot",
+                  "fill": "#16A34A",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "text",
+                  "id": "axWu4",
+                  "name": "Workspace title",
+                  "fill": "$app-text-primary",
+                  "content": "APPLIFICATION CONTACT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Ofraw",
+              "name": "Restart action",
+              "fill": "$app-text-primary",
+              "content": "↻  Restart",
+              "fontFamily": "Geist",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "Xw2Hn",
+          "name": "Header divider",
+          "fill": "$app-border",
+          "width": "fill_container",
+          "height": 1
+        },
+        {
+          "type": "frame",
+          "id": "G34F8",
+          "name": "Conversation",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            40,
+            0
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "W2uAIh",
+              "name": "Initial assistant message",
+              "width": 880,
+              "fill": "$app-muted-section",
+              "cornerRadius": 24,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bZM05",
+                  "name": "Assistant label",
+                  "fill": "$app-sky-text",
+                  "content": "▣  ENQUIRY ASSISTANT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "KzPSl",
+                  "name": "Assistant prompt",
+                  "fill": "$app-text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Tell me what brings you here, or choose a route. I will prepare a checked brief for you to review before anything is sent.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Geist",
+                  "fontSize": 18,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "F0EQs",
+                  "name": "Enquiry choices",
+                  "width": "fill_container",
+                  "height": 84,
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tAksn",
+                      "name": "Contract enquiry choice",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$app-card",
+                      "cornerRadius": 16,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "e3KxVV",
+                          "name": "Contract enquiry label",
+                          "fill": "$app-text-primary",
+                          "content": "Contract enquiry",
+                          "fontFamily": "Geist",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "PLQ37",
+                          "name": "Contract enquiry description",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "A role, project or small-team build.",
+                          "lineHeight": 1.25,
+                          "fontFamily": "Geist",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "o6zvzB",
+                      "name": "Product enquiry choice",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$app-card",
+                      "cornerRadius": 16,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RWueR",
+                          "name": "Product enquiry label",
+                          "fill": "$app-text-primary",
+                          "content": "Product enquiry",
+                          "fontFamily": "Geist",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "w15h2",
+                          "name": "Product enquiry description",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "A question about one of my products.",
+                          "lineHeight": 1.25,
+                          "fontFamily": "Geist",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "W92EU0",
+                      "name": "General enquiry choice",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$app-card",
+                      "cornerRadius": 16,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gNXRr",
+                          "name": "General enquiry label",
+                          "fill": "$app-text-primary",
+                          "content": "General enquiry",
+                          "fontFamily": "Geist",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "uV7x1",
+                          "name": "General enquiry description",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Anything useful that does not fit the other routes.",
+                          "lineHeight": 1.25,
+                          "fontFamily": "Geist",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "gCJSN",
+          "name": "Composer dock",
+          "width": "fill_container",
+          "height": 96,
+          "fill": "$app-section",
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "W9rfb",
+              "name": "Inline message composer",
+              "width": 880,
+              "height": 56,
+              "fill": "$app-muted-section",
+              "cornerRadius": 20,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "gap": 8,
+              "padding": [
+                8,
+                8,
+                8,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "nnh2o",
+                  "name": "Message placeholder",
+                  "fill": "$app-text-secondary",
+                  "content": "Tell me what brings you here…",
+                  "fontFamily": "Geist",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "HGFLu",
+                  "name": "Return action",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "$app-action",
+                  "cornerRadius": 14,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cgmWm",
+                      "name": "Return symbol",
+                      "fill": "$app-text-on-action",
+                      "content": "↵",
+                      "fontFamily": "Geist",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "SRUAt",
+      "x": 33516,
+      "y": -1232,
+      "name": "Contact workspace · current · desktop · dark · contract selected",
+      "theme": {
+        "mode": "dark"
+      },
+      "metadata": {
+        "type": "current-reference",
+        "page": "contact",
+        "viewport": "desktop",
+        "state": "initial"
+      },
+      "clip": true,
+      "width": 1200,
+      "height": 820,
+      "fill": "$app-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Ewalt",
+          "name": "Workspace header",
+          "width": "fill_container",
+          "height": 64,
+          "fill": "$app-section",
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "or0Iq",
+              "name": "Contact status",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "t1JmS",
+                  "name": "Available status dot",
+                  "fill": "#16A34A",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "text",
+                  "id": "BnGVU",
+                  "name": "Workspace title",
+                  "fill": "$app-text-primary",
+                  "content": "APPLIFICATION CONTACT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1.1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "VzImT",
+              "name": "Restart action",
+              "fill": "$app-text-primary",
+              "content": "↻  Restart",
+              "fontFamily": "Geist",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "OLy7O",
+          "name": "Header divider",
+          "fill": "$app-border",
+          "width": "fill_container",
+          "height": 1
+        },
+        {
+          "type": "frame",
+          "id": "uOVsf",
+          "name": "Conversation",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            40,
+            0
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "SVPPM",
+              "name": "Initial assistant message",
+              "width": 880,
+              "fill": "$app-muted-section",
+              "cornerRadius": 24,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "awmrv",
+                  "name": "Assistant label",
+                  "fill": "$app-sky-text",
+                  "content": "▣  ENQUIRY ASSISTANT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "QtcFh",
+                  "name": "Assistant prompt",
+                  "fill": "$app-text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Tell me what brings you here, or choose a route. I will prepare a checked brief for you to review before anything is sent.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "Geist",
+                  "fontSize": 18,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "Hp4ou",
+                  "name": "Enquiry choices",
+                  "width": "fill_container",
+                  "height": 84,
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "TiJV2",
+                      "name": "Contract enquiry choice",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$app-control",
+                      "cornerRadius": 16,
+                      "stroke": "$app-action",
+                      "strokeWidth": 2,
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Eh1eE",
+                          "name": "Contract enquiry label",
+                          "fill": "$app-text-primary",
+                          "content": "Contract enquiry",
+                          "fontFamily": "Geist",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "b5QQl",
+                          "name": "Contract enquiry description",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "A role, project or small-team build.",
+                          "lineHeight": 1.25,
+                          "fontFamily": "Geist",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "e3lByk",
+                      "name": "Product enquiry choice",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$app-card",
+                      "cornerRadius": 16,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "n5z60",
+                          "name": "Product enquiry label",
+                          "fill": "$app-text-primary",
+                          "content": "Product enquiry",
+                          "fontFamily": "Geist",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "jwz3z",
+                          "name": "Product enquiry description",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "A question about one of my products.",
+                          "lineHeight": 1.25,
+                          "fontFamily": "Geist",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "a3k1E",
+                      "name": "General enquiry choice",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$app-card",
+                      "cornerRadius": 16,
+                      "stroke": "$app-border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Due6K",
+                          "name": "General enquiry label",
+                          "fill": "$app-text-primary",
+                          "content": "General enquiry",
+                          "fontFamily": "Geist",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cH9q5",
+                          "name": "General enquiry description",
+                          "fill": "$app-text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Anything useful that does not fit the other routes.",
+                          "lineHeight": 1.25,
+                          "fontFamily": "Geist",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TIX6y",
+              "name": "Selected route assistant message",
+              "width": 880,
+              "fill": "$app-muted-section",
+              "cornerRadius": 20,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "EighH",
+                  "name": "Assistant label",
+                  "fill": "$app-sky-text",
+                  "content": "▣  ENQUIRY ASSISTANT",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "SLrRj",
+                  "name": "Contract route prompt",
+                  "fill": "$app-text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Tell me about the company, the work and when you need someone. You can attach a contract brief or add a link.",
+                  "lineHeight": 1.35,
+                  "fontFamily": "Geist",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RI3sr",
+              "name": "Contract enquiry brief",
+              "width": 880,
+              "height": 88,
+              "fill": "$app-section",
+              "cornerRadius": 20,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "padding": [
+                16,
+                18
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "vXmpP",
+                  "name": "Brief status",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JNiCz",
+                      "name": "Brief route",
+                      "fill": "$app-text-primary",
+                      "content": "Contract enquiry",
+                      "fontFamily": "Geist",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "KvWiM",
+                      "name": "Details status",
+                      "fill": "$app-text-secondary",
+                      "content": "6 DETAILS NEEDED",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 11,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.8
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "alxSf",
+                  "name": "Add company action",
+                  "height": 44,
+                  "fill": "$app-action",
+                  "cornerRadius": 16,
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "P2Wgtr",
+                      "name": "Add company label",
+                      "fill": "$app-text-on-action",
+                      "content": "Add company or agency",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "g8OBI",
+          "name": "Composer dock",
+          "width": "fill_container",
+          "height": 96,
+          "fill": "$app-section",
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "mkYye",
+              "name": "Inline message composer",
+              "width": 880,
+              "height": 56,
+              "fill": "$app-muted-section",
+              "cornerRadius": 20,
+              "stroke": "$app-border",
+              "strokeWidth": 1,
+              "gap": 8,
+              "padding": [
+                8,
+                8,
+                8,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jnAx6",
+                  "name": "Message placeholder",
+                  "fill": "$app-text-secondary",
+                  "content": "Tell me what brings you here…",
+                  "fontFamily": "Geist",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "PFBUE",
+                  "name": "Return action",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "$app-action",
+                  "cornerRadius": 14,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nkAJQ",
+                      "name": "Return symbol",
+                      "fill": "$app-text-on-action",
+                      "content": "↵",
+                      "fontFamily": "Geist",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "themes": {
@@ -61218,7 +62988,7 @@
       "type": "color",
       "value": [
         {
-          "value": "#0284C7",
+          "value": "#006D9C",
           "theme": {
             "mode": "light"
           }
@@ -61407,6 +63177,36 @@
   },
   "fileToken": "0416c374-ae4a-4bea-ba6e-3780efa6cf2b",
   "fonts": [
+    {
+      "name": "__nextjs-Geist",
+      "url": "fonts/localhost/c88ab7d5c971e5f9.woff2",
+      "weight": [
+        400,
+        600
+      ],
+      "axes": [
+        {
+          "tag": "wght",
+          "start": 400,
+          "end": 600
+        }
+      ]
+    },
+    {
+      "name": "__nextjs-Geist Mono",
+      "url": "fonts/localhost/ffee273285ac29d7.woff2",
+      "weight": [
+        400,
+        600
+      ],
+      "axes": [
+        {
+          "tag": "wght",
+          "start": 400,
+          "end": 600
+        }
+      ]
+    },
     {
       "name": "Inter var",
       "url": "fonts/applification.net/f55b18fdf5a4fbca.woff2",

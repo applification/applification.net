@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 const checkCta: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const action = canvas.getByRole("link", { name: "Start a conversation" });
+  const actionIcon = action.querySelector<SVGElement>("svg");
 
   await expect(
     canvas.getByRole("heading", {
@@ -25,7 +26,10 @@ const checkCta: NonNullable<Story["play"]> = async ({ canvasElement }) => {
     "href",
     "/contact?route=contract",
   );
-  await expect(action.querySelector("svg")).toBeInTheDocument();
+  await expect(actionIcon).toBeInTheDocument();
+  await expect(getComputedStyle(actionIcon!).color).toBe(
+    getComputedStyle(action).color,
+  );
   await expect(canvas.getByText(/Hybrid considered in North East England/)).toBeVisible();
 };
 
