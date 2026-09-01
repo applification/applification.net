@@ -31,9 +31,12 @@ const outcomeDetails = [
 
 function LogicallyOutcome() {
   return (
-    <li className="flex flex-col justify-between gap-5 rounded-[20px] bg-[var(--client-feature)] px-[18px] py-5 text-[var(--client-feature-text)] min-[720px]:col-span-2 min-[1024px]:col-span-1 min-[1024px]:min-h-[330px] min-[1024px]:rounded-none min-[1024px]:bg-transparent min-[1024px]:py-3 min-[1024px]:pr-10 min-[1024px]:pl-0 min-[1024px]:text-[var(--app-text-primary)]">
+    <li
+      className="flex flex-col justify-between gap-5 rounded-[20px] bg-[var(--app-card)] px-[18px] py-5 text-[var(--app-text-primary)] min-[720px]:col-span-2 min-[1024px]:col-span-1 min-[1024px]:min-h-[330px] min-[1024px]:rounded-none min-[1024px]:bg-transparent min-[1024px]:py-3 min-[1024px]:pr-10 min-[1024px]:pl-0"
+      data-client-outcome="logically"
+    >
       <div>
-        <p className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--client-feature-accent)] min-[1024px]:text-[var(--app-label-text)]">
+        <p className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)]">
           LOGICALLY
         </p>
         <p className="font-heading mt-3 text-[34px] leading-none font-medium min-[1024px]:text-[42px]">
@@ -42,27 +45,27 @@ function LogicallyOutcome() {
         <h3 className="mt-3 text-lg leading-[1.25] font-semibold min-[1024px]:text-xl">
           Intelligence v2 rebuilt for production
         </h3>
-        <p className="mt-3 text-base leading-[1.55] text-[var(--client-feature-muted)] min-[1024px]:max-w-[520px] min-[1024px]:text-[17px] min-[1024px]:text-[var(--app-text-secondary)]">
+        <p className="mt-3 text-base leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:max-w-[520px] min-[1024px]:text-[17px]">
           As Principal Engineer, I led the team, architected and built
           Intelligence v2 with one other engineer. Routine UI changes fell from
           days to minutes, and the team released several times per day.
         </p>
 
         <dl className="mt-4 grid grid-cols-3 gap-1.5 min-[1024px]:hidden">
-          <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--client-feature-strong)] p-2.5">
-            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--client-feature-muted)]">
+          <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--app-muted-section)] p-2.5">
+            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--app-text-muted)]">
               REBUILD TO RELEASE
             </dt>
             <dd className="font-data text-xs font-bold">6 months</dd>
           </div>
-          <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--client-feature-strong)] p-2.5">
-            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--client-feature-muted)]">
+          <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--app-muted-section)] p-2.5">
+            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--app-text-muted)]">
               UI CHANGE TIME
             </dt>
             <dd className="font-data text-xs font-bold">Days → min</dd>
           </div>
-          <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--client-feature-strong)] p-2.5">
-            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--client-feature-muted)]">
+          <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--app-muted-section)] p-2.5">
+            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--app-text-muted)]">
               PRODUCTION RELEASES
             </dt>
             <dd className="font-data text-xs font-bold">Several / day</dd>
@@ -75,14 +78,14 @@ function LogicallyOutcome() {
       </p>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
         <Link
-          className="inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--client-feature-accent)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-label-text)] min-[1024px]:hover:text-[var(--app-sky-text)]"
+          className="inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href="/client-work/logically"
         >
           Read the Logically case
           <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
         </Link>
         <a
-          className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-[var(--client-feature-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none min-[1024px]:text-[var(--app-text-muted)] min-[1024px]:hover:text-[var(--app-sky-text)]"
+          className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-[var(--app-text-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href="https://www.logically.ai/"
           rel="noreferrer"
           target="_blank"
