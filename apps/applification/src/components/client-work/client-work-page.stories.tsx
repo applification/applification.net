@@ -64,7 +64,7 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
     canvas.getByRole("link", { name: "Start a conversation" }),
   ).toHaveAttribute(
     "href",
-    "mailto:dave@applification.net?subject=Project%20enquiry",
+    "/contact?route=contract",
   );
   await expect(links.every((link) => link.tabIndex >= 0)).toBe(true);
   await expect(canvasElement.querySelectorAll("footer")).toHaveLength(1);

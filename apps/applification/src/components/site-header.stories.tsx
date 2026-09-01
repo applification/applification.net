@@ -25,9 +25,9 @@ export const DesktopLight: Story = {
     const canvas = within(canvasElement);
 
     await expect(canvas.getByText("APPLIFICATION")).toBeVisible();
-    await expect(
-      canvas.getByRole("link", { name: "Discuss a contract" }),
-    ).toBeVisible();
+    const contactLink = canvas.getByRole("link", { name: "Contact" });
+    await expect(contactLink).toBeVisible();
+    await expect(contactLink).toHaveAttribute("href", "/contact");
     await expect(
       canvas.getByRole("button", { name: "Switch to dark theme" }),
     ).toBeVisible();
@@ -36,6 +36,16 @@ export const DesktopLight: Story = {
 
 export const DesktopDark: Story = {
   globals: { theme: "dark" },
+};
+
+export const ContactUnavailable: Story = {
+  args: { contactAvailable: false },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      canvas.queryByRole("link", { name: "Contact" }),
+    ).not.toBeInTheDocument();
+  },
 };
 
 export const DesktopProducts: Story = {
@@ -48,6 +58,20 @@ export const DesktopProducts: Story = {
     const productsLink = canvas.getByRole("link", { name: "Products" });
 
     await expect(productsLink).toHaveAttribute("aria-current", "page");
+    await expect(canvas.getByTestId("active-navigation-highlight")).toBeVisible();
+  },
+};
+
+export const DesktopContact: Story = {
+  render: () => {
+    usePathname.mockReturnValue("/contact");
+    return <SiteHeader />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const contactLink = canvas.getByRole("link", { name: "Contact" });
+
+    await expect(contactLink).toHaveAttribute("aria-current", "page");
     await expect(canvas.getByTestId("active-navigation-highlight")).toBeVisible();
   },
 };

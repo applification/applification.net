@@ -20,6 +20,10 @@ export const DesktopLight: Story = {
 
     await expect(contractLink.querySelector("svg")).toBeInTheDocument();
     await expect(contractLink).not.toHaveTextContent("↗");
+    await expect(contractLink).toHaveAttribute(
+      "href",
+      "/contact?route=contract",
+    );
   },
 };
 

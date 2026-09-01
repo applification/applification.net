@@ -12,6 +12,7 @@ import type { ReactNode } from "react";
 import { DetailContextRail } from "@/components/detail-context-rail";
 import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
 import { ProductNavigator } from "@/components/products/product-navigator";
+import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -307,9 +308,9 @@ function StoryLoopsAvailability() {
             SaaS subscription.
           </p>
         </div>
-        <a
+        {isContactWorkflowAvailable() ? <a
           className={`inline-flex h-[49px] w-full shrink-0 items-center justify-center gap-[10px] rounded-full bg-[#0b1220] px-[21px] text-[15px] font-semibold text-white transition-colors hover:bg-[#1e293b] min-[1440px]:w-[221px] ${focusClasses}`}
-          href="mailto:dave@applification.net?subject=StoryLoops%20V1%20launch%20details"
+          href={buildContactHref({ route: "product", product: "storyloops" })}
         >
           Get V1 launch details
           <ArrowUpRight
@@ -318,7 +319,7 @@ function StoryLoopsAvailability() {
             size={18}
             strokeWidth={1.8}
           />
-        </a>
+        </a> : null}
       </div>
     </section>
   );

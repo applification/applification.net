@@ -23,7 +23,7 @@ const checkCta: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   ).toBeVisible();
   await expect(action).toHaveAttribute(
     "href",
-    "mailto:dave@applification.net?subject=Project%20enquiry",
+    "/contact?route=contract",
   );
   await expect(action.querySelector("svg")).toBeInTheDocument();
   await expect(canvas.getByText(/Hybrid considered in North East England/)).toBeVisible();

@@ -5,6 +5,8 @@ import {
   contractPositioning,
   contractPositioningDescriptions,
 } from "@/lib/contract-positioning";
+import { isContactWorkflowAvailable } from "@/lib/contact";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { appFontVariables } from "./fonts";
 import "./globals.css";
 
@@ -45,11 +47,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="font-body min-h-full bg-[var(--app-bg)] text-[var(--app-text-primary)] antialiased">
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          {children}
-          <SiteFooter />
-        </div>
+        <TooltipProvider>
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader contactAvailable={isContactWorkflowAvailable()} />
+            {children}
+            <SiteFooter />
+          </div>
+        </TooltipProvider>
       </body>
     </html>
   );

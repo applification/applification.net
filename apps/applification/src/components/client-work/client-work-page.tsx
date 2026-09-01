@@ -425,10 +425,7 @@ export function ContractFit() {
 
 export function ClientWorkContractCta() {
   return (
-    <div
-      className="[--app-accent-band:#0ea5e9] [--app-text-on-accent:#082f49] [--cta-description:#082f49] [--cta-eyebrow:#082f49] [--cta-focus:#082f49]"
-      data-client-work-section="contract-action"
-    >
+    <div data-client-work-section="contract-action">
       <ContractCta
         actionLabel="Start a conversation"
         description="Remote contracts across the UK. Hybrid considered in North East England."
