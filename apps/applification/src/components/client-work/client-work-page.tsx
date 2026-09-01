@@ -271,8 +271,11 @@ export function SelectedContracts() {
               integrated the existing API so recruiters could publish jobs and
               track applicants while candidates searched and applied.
             </p>
-            <div className="mt-[22px] rounded-[14px] bg-[var(--client-contract-proof)] px-[18px] py-4 min-[1024px]:py-[10px]">
-              <p className="font-caption text-[9px] font-bold tracking-[1px] text-[var(--client-contract-proof-label)]">
+            <div
+              className="mt-[22px] rounded-[14px] bg-[var(--app-muted-section)] px-[18px] py-4 min-[1024px]:py-[10px]"
+              data-client-contract-proof
+            >
+              <p className="font-caption text-[9px] font-bold tracking-[1px] text-[var(--client-brief-label)]">
                 HANDOFF QUALITY
               </p>
               <p className="mt-1.5 text-base leading-[1.55] text-[var(--app-text-primary)]">
@@ -326,6 +329,7 @@ export function SelectedContracts() {
               {peppyMetrics.map(([value, label]) => (
                 <div
                   className="flex min-h-[75px] flex-col justify-center gap-[5px] rounded-xl bg-[var(--app-muted-section)] px-[18px] py-3"
+                  data-client-contract-metric
                   key={label}
                 >
                   <dd className="font-caption text-xl leading-[26px] font-bold">

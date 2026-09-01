@@ -75,11 +75,22 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   const evidenceMetric = canvasElement.querySelector<HTMLElement>(
     "[data-logically-evidence-metric]",
   );
+  const contractProof = canvasElement.querySelector<HTMLElement>(
+    "[data-client-contract-proof]",
+  );
+  const contractMetric = canvasElement.querySelector<HTMLElement>(
+    "[data-client-contract-metric]",
+  );
 
   await expect(productionAi).toBeInTheDocument();
   await expect(evidenceMetric).toBeInTheDocument();
   await expect(getComputedStyle(productionAi!).backgroundColor).toBe(
     getComputedStyle(evidenceMetric!).backgroundColor,
+  );
+  await expect(contractProof).toBeInTheDocument();
+  await expect(contractMetric).toBeInTheDocument();
+  await expect(getComputedStyle(contractProof!).backgroundColor).toBe(
+    getComputedStyle(contractMetric!).backgroundColor,
   );
 };
 

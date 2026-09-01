@@ -55,7 +55,7 @@ Use semantic variables. Do not add a raw colour to an ordinary page component wh
 
 Colour must explain something. Use it for action, state, product identity, data series, or orientation. Do not give peer facts different colours merely to make a panel lively. A section normally has one accent family. If hierarchy is weak, fix type, spacing, alignment, or content order before adding another colour.
 
-Peer client cases use the shared neutral surfaces. Distinguish clients through their evidence and composition, not separate feature backgrounds.
+Peer client cases and their evidence notes use the shared neutral surfaces. Distinguish clients through their evidence and composition, not separate feature backgrounds.
 
 Featured editorial content uses scale and composition for emphasis. Do not turn `--app-selected` into a large page surface; reserve it for selected states and compact orientation cues.
 
