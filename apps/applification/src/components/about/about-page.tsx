@@ -74,11 +74,11 @@ const positions = [
 ] as const;
 
 const profileFacts = [
-  ["Role", contractPositioning.role, "text-[#f9a8d4]"],
-  ["Stack", contractPositioning.stack, "text-[#fde68a]"],
-  ["Location", contractPositioning.location, "text-[#bbf7d0]"],
-  ["Fit", contractPositioning.teamFit, "text-[#bae6fd]"],
-  ["Contract", contractPositioning.contractBasis, "text-[#c4b5fd]"],
+  ["Role", contractPositioning.role],
+  ["Stack", contractPositioning.stack],
+  ["Location", contractPositioning.location],
+  ["Fit", contractPositioning.teamFit],
+  ["Contract", contractPositioning.contractBasis],
 ] as const;
 
 const bestFit = [
@@ -143,20 +143,25 @@ export function AboutHero() {
           </p>
         </div>
 
-        <aside className="rounded-[20px] bg-[#0b1220] p-[26px] text-[#f8fafc]" aria-label="Profile facts">
-          <p className="font-caption text-[11px] font-bold tracking-[1px] text-[#7dd3fc] uppercase">
+        <aside className="rounded-[20px] bg-[var(--client-feature-strong)] p-[26px] text-[var(--client-feature-text)]" aria-label="Profile facts">
+          <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--client-feature-accent)] uppercase">
             &gt; whoami
           </p>
           <p className="font-caption mt-2 text-lg font-bold tracking-[1.2px] uppercase">
             Dave Hudson
           </p>
           <dl className="mt-5 grid gap-5">
-            {profileFacts.map(([label, value, colour]) => (
+            {profileFacts.map(([label, value]) => (
               <div className="flex items-baseline justify-between gap-5" key={label}>
-                <dt className="font-caption text-[10px] font-bold tracking-[0.8px] text-[#94a3b8] uppercase">
+                <dt className="font-caption text-[10px] font-bold tracking-[0.8px] text-[var(--client-feature-muted)] uppercase">
                   {label}
                 </dt>
-                <dd className={`text-right text-[15px] font-medium ${colour}`}>{value}</dd>
+                <dd
+                  className="text-right text-[15px] font-medium text-[var(--client-feature-accent)]"
+                  data-profile-fact-value
+                >
+                  {value}
+                </dd>
               </div>
             ))}
           </dl>

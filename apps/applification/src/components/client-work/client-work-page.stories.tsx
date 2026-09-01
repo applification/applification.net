@@ -152,17 +152,21 @@ export const ReducedMotion: Story = {
         return [];
       }
     });
-    const reducedMotionRule = mediaRules.find(
+    const reducedMotionRules = mediaRules.filter(
       (rule) =>
         rule instanceof CSSMediaRule &&
         rule.conditionText === "(prefers-reduced-motion: reduce)",
     );
-    const reducedMotionStyleRule =
-      reducedMotionRule instanceof CSSMediaRule
-        ? [...reducedMotionRule.cssRules].find(
-            (rule) => rule instanceof CSSStyleRule,
-          )
-        : undefined;
+    const reducedMotionStyleRule = reducedMotionRules
+      .flatMap((rule) =>
+        rule instanceof CSSMediaRule ? [...rule.cssRules] : [],
+      )
+      .find(
+        (rule) =>
+          rule instanceof CSSStyleRule &&
+          rule.style.animationName === "none" &&
+          rule.style.transitionProperty === "none",
+      );
 
     await expect(reducedMotionStyleRule).toBeInstanceOf(CSSStyleRule);
     await expect(

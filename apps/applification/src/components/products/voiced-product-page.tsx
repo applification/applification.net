@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import {
   Archive,
   Download,
@@ -10,15 +10,6 @@ import {
 import { DetailContextRail } from "@/components/detail-context-rail";
 import { ProductNavigator } from "@/components/products/product-navigator";
 import { ProductDetailEyebrow } from "@/components/products/product-detail";
-
-const voicedTheme = {
-  "--app-accent": "#2f7a52",
-  "--app-label-text": "#2f7a52",
-  "--app-text-primary": "#173f32",
-  "--app-text-secondary": "#4d665e",
-  "--app-text-muted": "#618374",
-  "--app-focus": "#2f7a52",
-} as CSSProperties;
 
 const waveformHeights = [22, 40, 66, 34, 78, 54, 28, 46, 70, 38];
 const waveformColors = [
@@ -404,7 +395,7 @@ function VoicedAvailability() {
 
 export function VoicedProductPage() {
   return (
-    <main className="overflow-x-clip" style={voicedTheme}>
+    <main className="overflow-x-clip" data-product-theme="voiced">
       <VoicedHero />
       <VoicedRationale />
       <VoicedCaptureRoutes />

@@ -60945,38 +60945,6 @@
     ]
   },
   "variables": {
-    "surface-primary": {
-      "type": "color",
-      "value": "#FCFAF7"
-    },
-    "surface-inverse": {
-      "type": "color",
-      "value": "#000000"
-    },
-    "text-primary": {
-      "type": "color",
-      "value": "#000000"
-    },
-    "text-secondary": {
-      "type": "color",
-      "value": "#666666"
-    },
-    "text-muted": {
-      "type": "color",
-      "value": "#999999"
-    },
-    "text-inverse": {
-      "type": "color",
-      "value": "#FFFFFF"
-    },
-    "border-subtle": {
-      "type": "color",
-      "value": "#E8E3DC"
-    },
-    "accent": {
-      "type": "color",
-      "value": "#FF9800"
-    },
     "font-heading": {
       "type": "string",
       "value": "Newsreader"
@@ -61020,7 +60988,7 @@
           }
         },
         {
-          "value": "#1F2937",
+          "value": "#1E293B",
           "theme": {
             "mode": "dark"
           }
@@ -61116,13 +61084,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#E0F2FE",
+          "value": "#DBEAFE",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#0C4A6E",
+          "value": "#172554",
           "theme": {
             "mode": "dark"
           }
@@ -61167,7 +61135,7 @@
       "type": "color",
       "value": [
         {
-          "value": "#7A7F87",
+          "value": "#6B7078",
           "theme": {
             "mode": "light"
           }
@@ -61218,7 +61186,24 @@
       "type": "color",
       "value": [
         {
-          "value": "#0284C7",
+          "value": "#0369A1",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7DD3FC",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "app-label-text": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0369A1",
           "theme": {
             "mode": "light"
           }
@@ -61235,30 +61220,9 @@
       "type": "color",
       "value": "#FFFFFF"
     },
-    "app-text-on-accent": {
-      "type": "color",
-      "value": "#082F49"
-    },
     "app-action": {
       "type": "color",
-      "value": [
-        {
-          "value": "#0369A1",
-          "theme": {
-            "mode": "light"
-          }
-        },
-        {
-          "value": "#0284C7",
-          "theme": {
-            "mode": "dark"
-          }
-        }
-      ]
-    },
-    "app-accent-band": {
-      "type": "color",
-      "value": "#0EA5E9"
+      "value": "#0369A1"
     },
     "plantry-background": {
       "type": "color",

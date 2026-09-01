@@ -20,6 +20,32 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+function productHeaderStory(
+  pathname: `/products/${"contexture" | "plantry" | "storyloops" | "voiced"}`,
+  expectedTheme: string,
+  expectedBackground: string,
+): Story {
+  return {
+    render: () => {
+      usePathname.mockReturnValue(pathname);
+      return <SiteHeader />;
+    },
+    play: async ({ canvasElement }) => {
+      const canvas = within(canvasElement);
+      const header = canvasElement.querySelector("header");
+
+      await expect(header).toHaveAttribute("data-product-theme", expectedTheme);
+      await expect(canvas.getByRole("link", { name: "Products" })).toHaveAttribute(
+        "aria-current",
+        "page",
+      );
+      await expect(getComputedStyle(header!).backgroundColor).toBe(
+        expectedBackground,
+      );
+    },
+  };
+}
+
 export const DesktopLight: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -76,22 +102,29 @@ export const DesktopContact: Story = {
   },
 };
 
-export const DesktopPlantry: Story = {
-  render: () => {
-    usePathname.mockReturnValue("/products/plantry");
-    return <SiteHeader />;
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const header = canvasElement.querySelector("header");
+export const DesktopPlantry = productHeaderStory(
+  "/products/plantry",
+  "plantry",
+  "rgb(255, 251, 239)",
+);
 
-    await expect(header).toHaveAttribute("data-product-theme", "plantry");
-    await expect(canvas.getByRole("link", { name: "Products" })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
-  },
-};
+export const DesktopStoryLoops = productHeaderStory(
+  "/products/storyloops",
+  "storyloops",
+  "rgb(249, 250, 251)",
+);
+
+export const DesktopContexture = productHeaderStory(
+  "/products/contexture",
+  "contexture",
+  "rgb(30, 30, 46)",
+);
+
+export const DesktopVoiced = productHeaderStory(
+  "/products/voiced",
+  "voiced",
+  "rgb(234, 243, 237)",
+);
 
 export const MobileLight: Story = {
   globals: { viewport: { value: "mobile", isRotated: false } },

@@ -8,29 +8,27 @@
 :root {
   color-scheme: light dark;
   --app-bg: light-dark(#f9fafb, #111827);
-  --app-bg-end: light-dark(#f3f4f6, #1f2937);
+  --app-bg-end: var(--app-muted-section);
   --app-section: light-dark(#ffffff, #0b1220);
   --app-muted-section: light-dark(#f3f4f6, #1e293b);
   --app-card: light-dark(#ffffff, #172033);
   --app-selected: light-dark(#dbeafe, #172554);
   --app-control: light-dark(#e5e7eb, #1e293b);
-  --app-label: light-dark(#e0f2fe, #0c4a6e);
+  --app-label: var(--app-selected);
   --app-text-primary: light-dark(#20242c, #f8fafc);
   --app-text-secondary: light-dark(#60646c, #a5a7ad);
   --app-text-muted: light-dark(#6b7078, #94a3b8);
   --app-border: light-dark(#d9dce1, #334155);
   --app-accent: light-dark(#0284c7, #0ea5e9);
-  --app-sky-text: light-dark(#0284c7, #7dd3fc);
+  --app-sky-text: var(--app-label-text);
   --app-label-text: light-dark(#0369a1, #7dd3fc);
   --app-action: #0369a1;
   --app-action-hover: #075985;
   --app-text-on-action: #ffffff;
-  --app-text-on-accent: light-dark(#082f49, #f8fafc);
-  --app-accent-band: light-dark(#0ea5e9, #0c4a6e);
   --app-focus: light-dark(#0369a1, #7dd3fc);
-  --writing-accent-text: light-dark(#075985, #7dd3fc);
-  --writing-accent-fill: #0369a1;
-  --writing-on-accent: #ffffff;
+  --writing-accent-text: var(--app-label-text);
+  --writing-accent-fill: var(--app-action);
+  --writing-on-accent: var(--app-text-on-action);
   --writing-topic-bg: light-dark(#f0f7fb, #172033);
   --writing-topic-bg-hover: light-dark(#e0f2fe, #1e293b);
   --writing-topic-border: light-dark(#cbdde8, #334155);
@@ -46,7 +44,6 @@
   --loop-green: #39ffb6;
   --loop-green-bg: #062019;
   --loop-pink: #f472b6;
-  --loop-pink-strong: #db2777;
   --loop-pink-bg: #261027;
   --loop-cyan: #7dd3fc;
   --loop-cyan-bg: #071d2a;
@@ -124,7 +121,6 @@
   --contexture-purple: #c4b5fd;
   --contexture-pink: #f9a8d4;
   --contexture-amber: #fde68a;
-  --contexture-green: #86efac;
   --contexture-shadow: #02061733;
   --contexture-detail-accent: light-dark(#7c3aed, #c4b5fd);
   --contexture-detail-title: light-dark(#3b0764, #f3e8ff);
@@ -157,14 +153,11 @@
   --client-contract-proof: light-dark(#dbeafe, #172554);
   --client-contract-proof-label: light-dark(#0369a1, #7dd3fc);
   --workflow-human: light-dark(#a16207, #fff59a);
-  --workflow-human-border: light-dark(#ca8a04, #fff59a66);
   --workflow-human-line: light-dark(#ca8a0499, #fff59a66);
   --workflow-human-soft: light-dark(#fde68a80, #eab30822);
   --workflow-agent: light-dark(#0369a1, #7dd3fc);
-  --workflow-agent-border: light-dark(#0284c7, #7dd3fc66);
   --workflow-agent-soft: light-dark(#bae6fd99, #0ea5e91f);
   --workflow-checks: light-dark(#be185d, #f472b6);
-  --workflow-checks-border: light-dark(#db2777, #f472b666);
   --workflow-checks-line: light-dark(#db277799, #f472b680);
   --workflow-checks-soft: light-dark(#fbcfe899, #db277726);
   --workflow-node: light-dark(#f9fafb, #0b1220);
@@ -236,6 +229,88 @@
   --sidebar-accent-foreground: var(--app-text-primary);
   --sidebar-border: var(--app-border);
   --sidebar-ring: var(--app-focus);
+}
+
+[data-product-theme="plantry"] {
+  --app-bg: light-dark(#fffbef, #102a3a);
+  --app-bg-end: light-dark(#fffbef, #153447);
+  --app-section: light-dark(#fffdf7, #102a3a);
+  --app-muted-section: light-dark(#f3eee0, #193b4a);
+  --app-card: light-dark(#fffdf7, #193b4a);
+  --app-selected: light-dark(#e3f3e6, #1d5037);
+  --app-control: light-dark(#f3eee0, #193b4a);
+  --app-label: light-dark(#e3f3e6, #1d5037);
+  --app-text-primary: light-dark(#153447, #fffbef);
+  --app-text-secondary: light-dark(#526879, #d7e3e3);
+  --app-text-muted: light-dark(#526879, #a9bdc3);
+  --app-border: light-dark(#ded5c4, #466474);
+  --app-accent: light-dark(#267343, #78d696);
+  --app-label-text: light-dark(#23683b, #9be4b1);
+  --app-action: light-dark(#153447, #78d696);
+  --app-action-hover: light-dark(#204f67, #9be4b1);
+  --app-text-on-action: light-dark(#fffbef, #102a3a);
+  --app-focus: light-dark(#2e7d4a, #9be4b1);
+  --header-nav-active: light-dark(#153447, #78d696);
+  --header-nav-selected: light-dark(#f3eee0, #193b4a);
+}
+
+[data-product-theme="storyloops"] {
+  --app-bg: light-dark(#f9fafb, #111827);
+  --app-section: light-dark(#f9fafb, #111827);
+  --app-muted-section: light-dark(#e7e9f7, #1e293b);
+  --app-selected: light-dark(#e1e4f8, #172554);
+  --app-control: light-dark(#e7e9f7, #1e293b);
+  --app-label: light-dark(#e1e4f8, #172554);
+  --app-text-primary: light-dark(#303347, #f8fafc);
+  --app-text-secondary: light-dark(#65697a, #cbd5e1);
+  --app-border: light-dark(#e1e3ea, #334155);
+  --app-label-text: light-dark(#555bcd, #b9d2ff);
+  --app-action: light-dark(#0b1220, #e7e9f7);
+  --app-action-hover: light-dark(#1e293b, #ffffff);
+  --app-text-on-action: light-dark(#f8fafc, #303347);
+  --app-focus: light-dark(#6c63d9, #b9d2ff);
+  --header-nav-active: light-dark(#0369a1, #7dd3fc);
+  --header-nav-selected: light-dark(#e0f2fe, #172554);
+}
+
+[data-product-theme="contexture"] {
+  --app-bg: #1e1e2e;
+  --app-section: #1e1e2e;
+  --app-muted-section: #313244;
+  --app-selected: #313244;
+  --app-control: #313244;
+  --app-label: #313244;
+  --app-text-primary: #cdd6f4;
+  --app-text-secondary: #bac2de;
+  --app-border: #45475a;
+  --app-label-text: #89dceb;
+  --app-action: #cba6f7;
+  --app-action-hover: #d8b4fe;
+  --app-text-on-action: #1e1e2e;
+  --app-focus: #89dceb;
+  --header-nav-active: #cba6f7;
+  --header-nav-selected: #313244;
+}
+
+[data-product-theme="voiced"] {
+  --app-bg: #eaf3ed;
+  --app-section: #eaf3ed;
+  --app-muted-section: #dcebe1;
+  --app-selected: #d6eadc;
+  --app-control: #dcebe1;
+  --app-label: #d6eadc;
+  --app-text-primary: #173f32;
+  --app-text-secondary: #4d665e;
+  --app-text-muted: #618374;
+  --app-border: #b8cec0;
+  --app-accent: #2f7a52;
+  --app-label-text: #2f7a52;
+  --app-action: #173f32;
+  --app-action-hover: #254f42;
+  --app-text-on-action: #f7faf8;
+  --app-focus: #2f7a52;
+  --header-nav-active: #2f7a52;
+  --header-nav-selected: #d6eadc;
 }
 
 :root[data-theme="light"] {
