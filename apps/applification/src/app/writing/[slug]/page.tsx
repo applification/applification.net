@@ -50,11 +50,43 @@ export default async function WritingArticlePage({ params }: WritingArticlePageP
     notFound();
   }
 
+  const entry = entries[index];
+  const entryTopics = new Set(
+    entry.topics.filter((topic) => topic !== "weeknote"),
+  );
+  const topicalRelated = entries
+    .filter((candidate) => candidate.slug !== entry.slug)
+    .map((candidate) => ({
+      candidate,
+      score: candidate.topics.filter((topic) => entryTopics.has(topic)).length,
+    }))
+    .filter(({ score }) => score > 0)
+    .sort(
+      (left, right) =>
+        right.score - left.score ||
+        right.candidate.date.localeCompare(left.candidate.date),
+    )
+    .map(({ candidate }) => candidate);
+  const related = [
+    ...topicalRelated,
+    entries[index - 1],
+    entries[index + 1],
+  ]
+    .filter(
+      (candidate, candidateIndex, candidates) =>
+        candidate &&
+        candidate.slug !== entry.slug &&
+        candidates.findIndex((item) => item?.slug === candidate.slug) ===
+          candidateIndex,
+    )
+    .slice(0, 2);
+
   return (
     <WritingArticle
-      entry={entries[index]}
+      entry={entry}
       newer={entries[index - 1]}
       older={entries[index + 1]}
+      related={related}
     />
   );
 }

@@ -123,13 +123,13 @@ function StoryLoopsHero() {
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <a
-                className={`inline-flex h-[42px] items-center justify-center gap-[9px] rounded-full bg-[#0369a1] px-[17px] text-sm font-semibold text-white transition-colors hover:bg-[#075985] ${focusClasses}`}
+                className={`inline-flex h-[44px] items-center justify-center gap-[9px] rounded-full bg-[#0369a1] px-[17px] text-base font-semibold text-white transition-colors hover:bg-[#075985] ${focusClasses}`}
                 href="#ownership-path"
               >
                 See what you own
                 <PackageOpen aria-hidden="true" size={16} strokeWidth={1.8} />
               </a>
-              <span className="inline-flex h-[42px] items-center gap-[9px] rounded-full bg-[#e0f2fe] px-[17px] text-sm font-semibold text-[#0369a1]">
+              <span className="inline-flex h-[44px] items-center gap-[9px] rounded-full bg-[#e0f2fe] px-[17px] text-base font-semibold text-[#0369a1]">
                 Product in a Box V1
                 <Box aria-hidden="true" size={16} strokeWidth={1.8} />
               </span>
@@ -204,7 +204,7 @@ function StoryLoopsOwnership() {
               Purchase. Give it to your agent. Receive a production URL.
             </h2>
           </div>
-          <p className="text-sm leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-[15px] min-[1024px]:leading-[1.5]">
+          <p className="text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
             The installation playbook tells the agent what to provision, how to
             deploy and what to verify before handover.
           </p>
@@ -225,7 +225,7 @@ function StoryLoopsOwnership() {
               <h3 className="font-heading text-2xl leading-[1.15] font-medium text-[var(--app-text-primary)]">
                 {step.title}
               </h3>
-              <p className="text-sm leading-[1.5] text-[var(--app-text-secondary)]">
+              <p className="text-base leading-[1.55] text-[var(--app-text-secondary)]">
                 {step.description}
               </p>
             </li>
@@ -255,7 +255,7 @@ function StoryLoopsBuildPrinciples() {
             <br className="hidden min-[1440px]:block" />
             the agent that will change it.
           </h2>
-          <p className="text-[15px] leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-base">
+          <p className="text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
             The application favours obvious architecture, explicit domain
             concepts and typed boundaries. Agent documentation is part of the
             product, not an appendix added before release.
@@ -272,7 +272,7 @@ function StoryLoopsBuildPrinciples() {
                 <strong className="text-[15px] leading-none font-semibold text-[var(--app-text-primary)]">
                   {principle.title}
                 </strong>
-                <p className="text-[13px] leading-[1.45] text-[var(--app-text-secondary)]">
+                <p className="text-[15px] leading-[1.55] text-[var(--app-text-secondary)]">
                   {principle.description}
                 </p>
               </div>
@@ -301,7 +301,7 @@ function StoryLoopsAvailability() {
           >
             One purchase. The product and source are yours.
           </h2>
-          <p className="text-[15px] leading-[1.5] text-[light-dark(#0c4a6e,#cbd5e1)]">
+          <p className="text-[17px] leading-[1.6] text-[light-dark(#0c4a6e,#cbd5e1)]">
             V1 is in preparation. Buyers receive the working app, source code,
             deployment configuration and agent playbooks. There is no hosted
             SaaS subscription.

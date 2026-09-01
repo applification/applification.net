@@ -1,3 +1,5 @@
+import { ProductStatus } from "./product-status";
+
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
 
@@ -73,7 +75,7 @@ function ProductLink({ href, label, primary = false, product }: ProductLinkProps
 
   return (
     <a
-      className={`inline-flex min-h-11 items-center justify-center gap-[7px] rounded-lg px-3.5 text-xs font-bold transition-[background-color,border-color,color,transform] active:scale-[0.985] motion-reduce:transform-none min-[1024px]:min-h-8 min-[1024px]:px-2.5 min-[1024px]:text-[11px] ${palette} ${focusClasses}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-[7px] rounded-lg px-3.5 text-[15px] font-bold transition-[background-color,border-color,color,transform] active:scale-[0.985] motion-reduce:transform-none min-[1024px]:px-3.5 ${palette} ${focusClasses}`}
       href={href}
       rel="noopener noreferrer"
       target="_blank"
@@ -132,16 +134,17 @@ function ContextureCard() {
     <article className="flex flex-col gap-4 rounded-[20px] bg-[var(--contexture-shell)] p-5 text-[var(--contexture-text)] shadow-[0_12px_30px_var(--contexture-shadow)] min-[720px]:gap-[18px] min-[1024px]:rounded-3xl min-[1024px]:p-7">
       <div className="flex flex-col gap-5 min-[1024px]:flex-row min-[1024px]:items-start min-[1024px]:justify-between">
         <div className="max-w-[720px]">
-          <div className="font-caption flex items-center justify-between gap-4 text-[9px] font-bold tracking-[0.7px] text-[var(--contexture-cyan)] min-[1024px]:justify-start">
+          <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold tracking-[0.55px] text-[var(--contexture-cyan)]">
             <span>CONTEXTURE</span>
-            <span className="text-[var(--contexture-green)]">
+            <span>
               OPEN SOURCE&nbsp; · &nbsp;CONVEX
             </span>
+            <ProductStatus status="Live" />
           </div>
           <h3 className="font-heading mt-3 text-[32px] leading-none font-medium text-[var(--contexture-text)] min-[1024px]:text-[42px]">
             The visual source of truth for Convex apps.
           </h3>
-          <p className="mt-3 max-w-[680px] text-sm leading-[1.5] text-[var(--contexture-muted)] min-[1024px]:text-base">
+          <p className="mt-3 max-w-[680px] text-base leading-[1.55] text-[var(--contexture-muted)] min-[1024px]:text-[17px]">
             Model tables, refs and indexes once, generate the files your app
             imports, and let coding agents propose constrained, reviewable
             changes through MCP.
@@ -204,16 +207,17 @@ function VoicedCard() {
   return (
     <article className="voiced-card grid gap-4 rounded-[20px] border border-[var(--voiced-border)] bg-[var(--voiced-card)] p-5 text-[var(--voiced-ink)] shadow-[0_12px_28px_var(--voiced-shadow)] min-[720px]:grid-cols-[minmax(0,1fr)_220px] min-[720px]:items-center min-[1024px]:grid-cols-[minmax(0,1fr)_360px] min-[1024px]:gap-12 min-[1024px]:rounded-3xl min-[1024px]:px-12 min-[1024px]:py-8">
       <div>
-        <div className="font-caption flex items-center justify-between gap-4 text-[9px] font-bold tracking-[0.7px] text-[var(--voiced-accent)] min-[1024px]:justify-start">
+        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold tracking-[0.55px] text-[var(--voiced-accent)]">
           <span>VOICED</span>
           <span className="text-[var(--voiced-status)]">
             OPEN SOURCE&nbsp; · &nbsp;NOTARISED
           </span>
+          <ProductStatus status="Live" />
         </div>
         <h3 className="font-heading mt-3 text-[32px] leading-none font-medium min-[1024px]:text-[42px]">
           Hold a key. Speak. Keep typing.
         </h3>
-        <p className="mt-3 max-w-[680px] text-sm leading-[1.5] text-[var(--voiced-muted)] min-[1024px]:text-base">
+        <p className="mt-3 max-w-[680px] text-base leading-[1.55] text-[var(--voiced-muted)] min-[1024px]:text-[17px]">
           Hold Right Command, speak, and paste the transcription into the text
           field you are already using.
         </p>
@@ -240,12 +244,12 @@ function VoicedCard() {
         <div aria-hidden="true" className="flex flex-col items-center gap-3">
           <div className="flex h-24 w-24 flex-col justify-between rounded-2xl border border-transparent bg-[var(--voiced-ink)] p-3 text-[var(--voiced-action-text)] shadow-[0_10px_22px_var(--voiced-shadow)] min-[1024px]:border-[var(--voiced-mint)]">
             <span className="text-3xl">⌘</span>
-            <span className="font-caption text-[8px] font-bold tracking-[0.6px] text-[var(--voiced-mint-soft)]">
+            <span className="font-caption text-[10px] font-bold tracking-[0.55px] text-[var(--voiced-mint-soft)]">
               RIGHT COMMAND
             </span>
           </div>
           <VoiceWaveform />
-          <span className="font-caption text-[9px] font-bold tracking-[0.5px] text-[var(--voiced-accent)]">
+          <span className="font-caption text-[11px] font-bold tracking-[0.45px] text-[var(--voiced-accent)] min-[1024px]:text-xs">
             SPEAK&nbsp; → &nbsp;TRANSCRIBE&nbsp; → &nbsp;PASTE
           </span>
         </div>

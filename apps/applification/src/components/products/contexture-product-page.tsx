@@ -1,4 +1,4 @@
-import { RefreshCw } from "lucide-react";
+import { ExternalLink, RefreshCw } from "lucide-react";
 import { ProductNavigator } from "@/components/products/product-navigator";
 import {
   ContextureSchemaPreview,
@@ -11,6 +11,18 @@ import {
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
+
+function GithubIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-4 shrink-0 fill-current"
+      viewBox="0 0 24 24"
+    >
+      <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49v-1.92c-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.56 2.35 1.11 2.92.85.09-.66.35-1.11.64-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.36 9.36 0 0 1 12 6.91a9.3 9.3 0 0 1 2.5.35c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9v2.83c0 .27.18.59.69.49A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" />
+    </svg>
+  );
+}
 
 const contractSteps = [
   {
@@ -77,7 +89,7 @@ function ContextureContractFlow() {
               Change the model. Regenerate. Check the drift is gone.
             </h2>
           </div>
-          <p className="text-sm leading-[1.55] text-[#a6adc8] min-[1024px]:text-[15px]">
+          <p className="text-base leading-[1.58] text-[#a6adc8] min-[1024px]:text-[17px]">
             Derived fields can declare who writes them, so forms and agent tools
             do not accept backend-owned values.
           </p>
@@ -175,7 +187,7 @@ function ContextureSpecifications() {
           >
             A source file first, then editors and generators around it.
           </h2>
-          <p className="mt-4 text-[15px] leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-base min-[1024px]:leading-[25px]">
+          <p className="mt-4 text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
             The centre is a readable domain model under version control. The
             desktop editor helps people shape it, while the runtime and
             generators turn it into the typed surfaces the app needs.
@@ -190,7 +202,7 @@ function ContextureSpecifications() {
               <dt className="font-caption text-[11px] leading-[14px] font-bold text-[var(--contexture-detail-accent)]">
                 {row.label}
               </dt>
-              <dd className="text-[15px] leading-[19px] text-[var(--app-text-primary)]">
+              <dd className="text-base leading-[1.5] text-[var(--app-text-primary)]">
                 {row.value}
               </dd>
             </div>
@@ -201,66 +213,48 @@ function ContextureSpecifications() {
   );
 }
 
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="size-4 shrink-0 stroke-current"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M7 17 17 7M7 7h10v10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  );
-}
-
 function ContextureAvailability() {
   return (
     <section
       aria-labelledby="contexture-availability-heading"
       className="flex bg-[var(--app-section)] px-6 py-14 min-[1024px]:min-h-[270px] min-[1024px]:items-center min-[1024px]:px-20 min-[1024px]:py-[54px]"
     >
-      <div className="mx-auto grid w-full max-w-[1280px] gap-8 min-[1280px]:grid-cols-[760px_auto] min-[1280px]:items-center min-[1280px]:justify-between min-[1280px]:gap-[60px]">
+      <div className="mx-auto grid w-full max-w-[1280px] gap-8 min-[1024px]:grid-cols-[760px_minmax(0,1fr)] min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-[120px]">
         <div className="flex flex-col gap-3">
           <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--contexture-detail-accent)] min-[1024px]:text-xs min-[1024px]:font-semibold">
             WHERE TO GET IT <span aria-hidden="true">/</span>{" "}
             <span className="text-[var(--app-text-muted)]">OPEN SOURCE</span>
           </p>
           <h2
-            className="font-heading text-[35px] leading-[1.1] font-medium text-[var(--contexture-detail-title)] min-[1024px]:text-[38px] min-[1024px]:leading-[42px] min-[1280px]:whitespace-nowrap"
+            className="font-heading text-[35px] leading-[1.1] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[38px] min-[1024px]:leading-[42px] min-[1280px]:whitespace-nowrap"
             id="contexture-availability-heading"
           >
             Inspect the model editor or start with the source.
           </h2>
-          <p className="text-[15px] leading-[1.5] text-[var(--contexture-detail-description)] min-[1024px]:leading-[23px]">
+          <p className="text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
             Contexture is MIT licensed. The web site explains the model, and
             GitHub has the desktop app, runtime packages and generators.
           </p>
         </div>
-        <div className="flex w-full flex-col gap-2.5 min-[1280px]:w-auto min-[1280px]:items-end">
+        <div className="flex flex-wrap gap-2.5 min-[1024px]:w-fit min-[1024px]:flex-col min-[1024px]:items-end min-[1024px]:justify-self-end">
           <a
-            className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--contexture-detail-border)] bg-[var(--contexture-detail-accent)] px-[18px] text-sm font-semibold text-[var(--contexture-action-text)] transition-[background-color,transform] hover:bg-[var(--contexture-action-hover)] active:translate-y-px min-[1280px]:w-[176px] ${focusClasses}`}
+            className={`inline-flex min-h-[44px] w-fit items-center justify-center gap-2 rounded-full border border-[var(--contexture-purple)] bg-[var(--contexture-purple)] px-[18px] text-[15px] font-semibold text-[var(--contexture-shell)] transition-[background-color,transform] hover:bg-[#d8b4fe] active:translate-y-px ${focusClasses}`}
             href="https://contexture.applification.net/"
             rel="noreferrer"
             target="_blank"
           >
             Open Contexture
-            <ArrowUpRightIcon />
+            <ExternalLink aria-hidden="true" size={16} strokeWidth={1.8} />
             <span className="sr-only">, opens in a new tab</span>
           </a>
           <a
-            className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--contexture-detail-border)] bg-[var(--app-section)] px-[18px] text-sm font-semibold text-[var(--contexture-detail-accent)] transition-[background-color,transform] hover:bg-[var(--contexture-detail-soft)] active:translate-y-px min-[1280px]:w-[164px] ${focusClasses}`}
+            className={`inline-flex min-h-[44px] w-fit items-center justify-center gap-2 rounded-full border border-[var(--contexture-border)] bg-[var(--app-section)] px-[18px] text-[15px] font-semibold text-[var(--app-text-primary)] transition-[background-color,transform] hover:bg-[var(--contexture-detail-soft)] active:translate-y-px ${focusClasses}`}
             href="https://github.com/applification/contexture"
             rel="noreferrer"
             target="_blank"
           >
             View on GitHub
-            <ArrowUpRightIcon />
+            <GithubIcon />
             <span className="sr-only">, opens in a new tab</span>
           </a>
         </div>

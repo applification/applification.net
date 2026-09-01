@@ -142,13 +142,13 @@ function PlantryHero() {
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <a
-                className={`inline-flex min-h-11 items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-5 text-sm font-semibold whitespace-nowrap text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
+                className={`inline-flex min-h-11 items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
                 href={followBuildHref}
               >
                 Follow the build
                 <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
               </a>
-              <span className="inline-flex min-h-11 items-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-muted-section)] px-5 text-sm font-semibold whitespace-nowrap text-[var(--app-text-secondary)]">
+              <span className="inline-flex min-h-11 items-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-muted-section)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-secondary)]">
                 Apple platforms R&amp;D
                 <Smartphone aria-hidden="true" size={16} strokeWidth={1.8} />
               </span>
@@ -267,7 +267,7 @@ function PlantryBuildPrinciples() {
           >
             The household model comes before recipe volume.
           </h2>
-          <p className="mt-4 text-[15px] leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-base">
+          <p className="mt-4 text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
             The first prototypes focus on the decisions that make a plan usable:
             who is eating, how much effort is available, what should be used
             soon and what changed last time. The recipe catalogue can grow after
@@ -284,7 +284,7 @@ function PlantryBuildPrinciples() {
               <dt className="font-caption text-[11px] leading-[14px] font-bold text-[var(--app-label-text)]">
                 {principle.title}
               </dt>
-              <dd className="text-sm leading-[1.4] text-[var(--app-text-primary)]">
+              <dd className="text-[15px] leading-[1.5] text-[var(--app-text-primary)]">
                 {principle.description}
               </dd>
             </div>
@@ -312,7 +312,7 @@ function PlantryAvailability() {
           >
             Plantry is still in product development.
           </h2>
-          <p className="mt-3 max-w-[760px] text-[15px] leading-[1.5] text-[var(--app-text-secondary)]">
+          <p className="mt-3 max-w-[760px] text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
             The current iPhone prototype is testing the household planning loop
             before a wider release. Follow the build for availability and test
             invitations.

@@ -1,4 +1,4 @@
-import { AiWorkingMethod } from "@/components/home/ai-working-method";
+import { HomepageAiStatement } from "@/components/home/ai-working-method";
 import { ClientOutcomes } from "@/components/home/client-outcomes";
 import { CommercialProof } from "@/components/home/commercial-proof";
 import { ContractCta } from "@/components/home/contract-cta";
@@ -16,7 +16,7 @@ export default function HomePage() {
       <StoryLoopsShowcase />
       <PlantryShowcase />
       <OpenSourceProducts />
-      <AiWorkingMethod />
+      <HomepageAiStatement />
       <ContractCta />
     </main>
   );

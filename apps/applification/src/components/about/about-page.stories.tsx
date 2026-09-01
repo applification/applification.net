@@ -36,6 +36,8 @@ type Story = StoryObj<typeof meta>;
 const expectedOrder = [
   "profile",
   "positioning",
+  "method",
+  "writing",
   "timeline",
   "contract-fit",
 ];

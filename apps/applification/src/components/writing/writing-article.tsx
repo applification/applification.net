@@ -12,6 +12,14 @@ import { DetailContextRail } from "@/components/detail-context-rail";
 import { RICH_BLOCK_LANGUAGE } from "@/lib/rich-blocks";
 import type { WritingEntry } from "@/lib/writing";
 import { RichBlock, type RichBlockRegistry } from "./rich-block";
+import {
+  WritingArticleMobileOutline,
+  WritingArticleRail,
+} from "./writing-article-rail";
+import {
+  extractWritingOutline,
+  type WritingOutlineItem,
+} from "./writing-outline";
 import { displayWritingTopics, WritingTopicBadge } from "./writing-topic";
 
 type WritingArticleProps = {
@@ -19,6 +27,7 @@ type WritingArticleProps = {
   newer?: WritingEntry;
   older?: WritingEntry;
   preview?: boolean;
+  related?: WritingEntry[];
   richBlockRegistry?: RichBlockRegistry;
 };
 
@@ -38,17 +47,26 @@ type CodeElementProps = {
 export function createMarkdownComponents(
   article: string,
   registry?: RichBlockRegistry,
+  outline: WritingOutlineItem[] = [],
 ): Components {
   let richBlockIndex = 0;
+  let sectionIndex = 0;
+  const nextSectionId = () => outline[sectionIndex++]?.id;
 
   return {
     h1: ({ children }) => (
-      <h2 className="font-heading mt-14 mb-5 text-[34px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[720px]:text-[40px]">
+      <h2
+        className="font-heading mt-14 mb-5 scroll-mt-28 text-[34px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[720px]:text-[40px]"
+        id={nextSectionId()}
+      >
         {children}
       </h2>
     ),
     h2: ({ children }) => (
-      <h2 className="font-heading mt-14 mb-5 text-[34px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[720px]:text-[40px]">
+      <h2
+        className="font-heading mt-14 mb-5 scroll-mt-28 text-[34px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[720px]:text-[40px]"
+        id={nextSectionId()}
+      >
         {children}
       </h2>
     ),
@@ -165,8 +183,15 @@ export function WritingArticle({
   newer,
   older,
   preview = false,
+  related = [],
   richBlockRegistry,
 }: WritingArticleProps) {
+  const outline = extractWritingOutline(entry.body);
+  const relatedLinks = related.map((relatedEntry) => ({
+    href: `/writing/${relatedEntry.slug}`,
+    label: relatedEntry.title,
+  }));
+
   return (
     <main className="flex-1 bg-[var(--app-section)]">
       {preview ? (
@@ -207,14 +232,27 @@ export function WritingArticle({
         </div>
       </header>
 
-      <article className="mx-auto w-full max-w-[760px] px-6 py-14 min-[720px]:px-10 min-[1024px]:py-[76px]">
-        <ReactMarkdown
-          components={createMarkdownComponents(entry.slug, richBlockRegistry)}
-          remarkPlugins={[remarkGfm]}
-        >
-          {entry.body}
-        </ReactMarkdown>
-      </article>
+      <div className="px-6 min-[720px]:px-12 min-[1440px]:px-[120px]">
+        <div className="mx-auto grid w-full max-w-[1200px] min-[1100px]:grid-cols-[minmax(0,680px)_minmax(220px,280px)] min-[1100px]:gap-20">
+          <article className="w-full max-w-[680px] min-w-0 py-14 min-[1024px]:py-[76px] min-[1100px]:col-start-1 min-[1100px]:row-start-1">
+            <WritingArticleMobileOutline outline={outline} />
+            <ReactMarkdown
+              components={createMarkdownComponents(
+                entry.slug,
+                richBlockRegistry,
+                outline,
+              )}
+              remarkPlugins={[remarkGfm]}
+            >
+              {entry.body}
+            </ReactMarkdown>
+          </article>
+          <WritingArticleRail
+            outline={outline}
+            related={relatedLinks}
+          />
+        </div>
+      </div>
 
       {preview ? null : (
         <nav

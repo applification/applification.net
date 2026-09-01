@@ -131,7 +131,7 @@ function ContractCaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
           <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[var(--case-rule)]" />
           <div className="mx-auto w-full max-w-[1200px]">
             <Link
-              className={`inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`}
+              className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`}
               href="/client-work#selected-contracts"
             >
               <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={2} />
@@ -147,7 +147,7 @@ function ContractCaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
                   {caseStudy.title}
                 </h1>
               </div>
-              <p className="max-w-[340px] text-base leading-[1.6] text-[var(--app-text-secondary)]">
+              <p className="max-w-[340px] text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
                 {caseStudy.summary}
               </p>
             </div>
@@ -181,7 +181,7 @@ function ContractCaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
                   {caseStudy.situationTitle}
                 </h2>
               </div>
-              <div className="grid gap-8 text-[16px] leading-[1.68] text-[var(--app-text-secondary)]">
+              <div className="grid gap-8 text-[17px] leading-[1.7] text-[var(--app-text-secondary)]">
                 {caseStudy.situation.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -224,7 +224,7 @@ function ContractCaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
                   <h3 className="font-heading mt-5 text-[28px] leading-[1.08] font-medium">
                     {decision.title}
                   </h3>
-                  <p className="mt-4 text-[15px] leading-[1.62] text-[var(--case-muted)]">
+                  <p className="mt-4 text-base leading-[1.65] text-[var(--case-muted)]">
                     {decision.copy}
                   </p>
                 </li>
@@ -245,12 +245,12 @@ function ContractCaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
               <h2 className="font-heading mt-3 text-[40px] leading-[1.04] font-medium min-[720px]:text-[48px]" id="case-result-heading">
                 {caseStudy.resultTitle}
               </h2>
-              <p className="mt-6 max-w-[680px] text-base leading-[1.68] text-[var(--app-text-secondary)]">
+              <p className="mt-6 max-w-[680px] text-[17px] leading-[1.7] text-[var(--app-text-secondary)]">
                 {caseStudy.result}
               </p>
             </div>
             <a
-              className={`inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] min-[960px]:self-end ${focusClasses}`}
+              className={`inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] min-[960px]:self-end ${focusClasses}`}
               href={caseStudy.websiteHref}
               rel="noreferrer"
               target="_blank"
@@ -264,11 +264,11 @@ function ContractCaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
 
         <nav aria-label="Case study next steps" className="bg-[var(--app-muted-section)] px-6 py-10 min-[720px]:px-12 min-[1440px]:px-[120px]">
           <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-4 min-[680px]:flex-row min-[680px]:items-center min-[680px]:justify-between">
-            <Link className={`inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href="/client-work#selected-contracts">
+            <Link className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href="/client-work#selected-contracts">
               <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={2} />
               Return to Client work
             </Link>
-            <Link className={`inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href={caseStudy.nextHref}>
+            <Link className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href={caseStudy.nextHref}>
               {caseStudy.nextLabel}
               <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
             </Link>

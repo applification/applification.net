@@ -217,7 +217,7 @@ export function SiteHeader() {
               return (
                 <Link
                   aria-current={current ? "page" : undefined}
-                  className={`relative isolate inline-flex min-h-10 items-center text-sm font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
+                  className={`relative isolate inline-flex min-h-10 items-center text-base font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
                   href={item.href}
                   key={item.href}
                 >
@@ -238,7 +238,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-3">
             <ThemeSwitcher />
             <a
-              className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-sm leading-[18px] font-semibold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
+              className={`inline-flex min-h-10 items-center gap-2 rounded-full bg-[var(--app-action)] px-[17px] py-[11px] text-base leading-[20px] font-semibold text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:scale-[0.985] motion-reduce:transform-none ${focusClasses}`}
               href={contactHref}
             >
               <span className="min-[1024px]:hidden">Contact</span>

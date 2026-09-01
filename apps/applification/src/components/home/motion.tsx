@@ -320,7 +320,7 @@ function animateDiagramStep(
     if (step.connector) {
       diagram
         .querySelectorAll<SVGPathElement>(
-          `[data-motion-connector="${step.connector}"] path`,
+          `[data-motion-connector="${step.connector}"] path:not([data-motion-path-base])`,
         )
         .forEach((path) => {
           const controls = animate(

@@ -292,7 +292,7 @@ function DesktopWorkingSetup() {
   return (
     <ul className="hidden h-[110px] flex-col gap-2.5 min-[768px]:flex">
       {workingSetup.map(({ text, Icon }) => (
-        <li className="flex h-[30px] items-center gap-[11px] text-sm text-[var(--app-text-primary)]" key={text}>
+        <li className="flex min-h-[32px] items-center gap-[11px] text-base text-[var(--app-text-primary)]" key={text}>
           <span className="flex size-[30px] shrink-0 items-center justify-center rounded-lg bg-[var(--workflow-tool-bg)] text-[var(--workflow-tool-icon)]">
             <Icon aria-hidden="true" className="size-3.5" strokeWidth={2} />
           </span>
@@ -320,12 +320,13 @@ export function AiWorkingMethod() {
   return (
     <section
       aria-labelledby="ai-working-method-heading"
-      className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[72px] min-[1100px]:px-6 min-[1280px]:px-20 min-[1440px]:px-[120px]"
+      className="border-b border-[var(--app-border)] bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-6 min-[1024px]:py-[72px] min-[1280px]:px-20 min-[1440px]:px-[120px]"
+      data-about-section="method"
       id="method"
     >
       <WorkflowSequenceController />
-      <div className="mx-auto grid w-full max-w-[1200px] gap-6 min-[768px]:justify-items-center min-[1100px]:grid-cols-[470px_540px] min-[1100px]:items-center min-[1100px]:justify-between min-[1100px]:justify-items-stretch min-[1100px]:gap-10 min-[1280px]:grid-cols-[500px_540px] min-[1280px]:gap-[60px]">
-        <div className="flex w-full max-w-[500px] flex-col gap-6 min-[768px]:h-[386px] min-[768px]:gap-[22px] min-[1100px]:max-w-[470px] min-[1280px]:max-w-[500px]">
+      <div className="mx-auto grid w-full max-w-[1200px] gap-6 min-[768px]:justify-items-center min-[1024px]:grid-cols-[minmax(0,1fr)_540px] min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:justify-items-stretch min-[1024px]:gap-6 min-[1280px]:grid-cols-[500px_540px] min-[1280px]:gap-[60px]">
+        <div className="flex w-full max-w-[500px] flex-col gap-6 min-[768px]:h-[386px] min-[768px]:gap-[22px] min-[1024px]:max-w-[470px] min-[1280px]:max-w-[500px]">
           <p className="font-caption text-[11px] leading-[14px] font-bold tracking-[1px] text-[var(--workflow-section-label)] min-[768px]:text-xs min-[768px]:leading-4 min-[768px]:font-semibold">
             HOW I WORK WITH AI
           </p>
@@ -333,14 +334,12 @@ export function AiWorkingMethod() {
             className="font-heading max-w-[500px] text-[36px] leading-[1.12] font-medium tracking-[-0.01em] text-[var(--app-text-primary)] min-[768px]:text-[48px] min-[768px]:leading-[1.06] min-[768px]:tracking-normal min-[1280px]:text-[52px]"
             id="ai-working-method-heading"
           >
-            AI is in the workflow,
-            <br />
-            not the sales pitch.
+            AI is core to how I engineer.
           </h2>
           <p className="max-w-[500px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[768px]:text-lg">
-            I use Claude Code and Codex every day. Each task starts with agreed
-            scope and product context, then ends with tests, QA and explicit
-            human approval.
+            I use Claude Code and Codex throughout the work. Product context and
+            agreed scope guide each task. Tests, visible checks and human
+            approval decide whether it ships.
           </p>
           <DesktopWorkingSetup />
         </div>
@@ -348,6 +347,42 @@ export function AiWorkingMethod() {
         <MobileWorkflowDiagram />
         <MobileWorkingSetup />
         <DesktopWorkflowDiagram />
+      </div>
+    </section>
+  );
+}
+
+export function HomepageAiStatement() {
+  return (
+    <section
+      aria-labelledby="homepage-ai-statement-heading"
+      className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-20 min-[1024px]:py-14 min-[1440px]:px-[120px]"
+    >
+      <div className="mx-auto grid w-full max-w-[1200px] gap-5 border-l-2 border-[var(--app-accent)] pl-5 min-[900px]:grid-cols-[minmax(0,1fr)_420px] min-[900px]:items-center min-[900px]:gap-16 min-[900px]:pl-7">
+        <div>
+          <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] uppercase">
+            AI-assisted engineering
+          </p>
+          <h2
+            className="font-heading mt-3 max-w-[690px] text-[34px] leading-[1.08] font-medium text-[var(--app-text-primary)] min-[720px]:text-[42px]"
+            id="homepage-ai-statement-heading"
+          >
+            AI is now part of how I engineer software.
+          </h2>
+        </div>
+        <div>
+          <p className="text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
+            I use agents to shape scope, gather context, implement, test and
+            review. The work still ships on evidence and human approval.
+          </p>
+          <a
+            className="mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+            href="/about#method"
+          >
+            See how I work with AI
+            <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+          </a>
+        </div>
       </div>
     </section>
   );

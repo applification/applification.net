@@ -37,7 +37,7 @@ export function LogicallyCaseStudyPage() {
         <header className="bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[82px] min-[1440px]:px-[120px]">
           <div className="mx-auto w-full max-w-[1200px]">
             <Link
-              className={`inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`}
+              className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`}
               href="/client-work#logically"
             >
               <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={2} />
@@ -53,7 +53,7 @@ export function LogicallyCaseStudyPage() {
                   Rebuild the product. Then connect AI to production.
                 </h1>
               </div>
-              <p className="max-w-[340px] text-base leading-[1.6] text-[var(--app-text-secondary)]">
+              <p className="max-w-[340px] text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
                 Two roles, one product path: rebuild an unsupported intelligence
                 frontend, make its reporting contracts explicit, then ship an AI
                 interface used by threat analysts.
@@ -85,7 +85,7 @@ export function LogicallyCaseStudyPage() {
                 A live platform that could not pause for a rewrite.
               </h2>
             </div>
-            <div className="grid gap-8 text-[16px] leading-[1.68] text-[var(--app-text-secondary)]">
+            <div className="grid gap-8 text-[17px] leading-[1.7] text-[var(--app-text-secondary)]">
               <p>
                 Logically Intelligence depended on an unsupported Create React
                 App frontend with product rules embedded in the interface. The
@@ -121,7 +121,7 @@ export function LogicallyCaseStudyPage() {
                   <h3 className="font-heading mt-5 text-[28px] leading-[1.08] font-medium">
                     {decision.title}
                   </h3>
-                  <p className="mt-4 text-[15px] leading-[1.62] text-[var(--client-feature-muted)]">
+                  <p className="mt-4 text-base leading-[1.65] text-[var(--client-feature-muted)]">
                     {decision.copy}
                   </p>
                 </li>
@@ -139,7 +139,7 @@ export function LogicallyCaseStudyPage() {
               <h2 className="font-heading mt-3 text-[40px] leading-[1.04] font-medium min-[720px]:text-[48px]" id="case-result-heading">
                 Six months to production, then several releases a day.
               </h2>
-              <p className="mt-6 max-w-[680px] text-base leading-[1.68] text-[var(--app-text-secondary)]">
+              <p className="mt-6 max-w-[680px] text-[17px] leading-[1.7] text-[var(--app-text-secondary)]">
                 Routine interface changes fell from days to minutes. Every pull
                 request received a Vercel preview and automated GitHub Actions
                 checks, and merging released the application. The same product
@@ -148,7 +148,7 @@ export function LogicallyCaseStudyPage() {
               </p>
             </div>
             <a
-              className={`inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] min-[960px]:self-end ${focusClasses}`}
+              className={`inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] min-[960px]:self-end ${focusClasses}`}
               href="https://logically.ai"
               rel="noreferrer"
               target="_blank"
@@ -162,11 +162,11 @@ export function LogicallyCaseStudyPage() {
 
         <nav aria-label="Case study next steps" className="bg-[var(--app-muted-section)] px-6 py-10 min-[720px]:px-12 min-[1440px]:px-[120px]">
           <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-4 min-[680px]:flex-row min-[680px]:items-center min-[680px]:justify-between">
-            <Link className={`inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href="/client-work#logically">
+            <Link className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href="/client-work#logically">
               <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={2} />
               Return to Client work
             </Link>
-            <Link className={`inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href="/client-work#contact">
+            <Link className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href="/client-work#contact">
               Continue to the contract action
               <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
             </Link>
