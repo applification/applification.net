@@ -112,6 +112,8 @@ Shared controls must have:
 
 Use buttons for actions and links for navigation. Keep the same verb through the full interaction. If a control says "Publish", its confirmation says "Published".
 
+Icons inside a filled action control inherit the label colour. Keep the control as one visual mark rather than adding a second accent to its icon.
+
 Prefer native elements and source order. Use semantic headings, landmarks, lists, tables, figures, labels, and descriptions before adding ARIA.
 
 ## Responsive behaviour
