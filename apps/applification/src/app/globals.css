@@ -21,7 +21,7 @@
   --app-border: light-dark(#d9dce1, #334155);
   --app-accent: light-dark(#0284c7, #0ea5e9);
   --app-sky-text: var(--app-label-text);
-  --app-label-text: light-dark(#0369a1, #7dd3fc);
+  --app-label-text: light-dark(#006d9c, #7dd3fc);
   --app-action: #0369a1;
   --app-action-hover: #075985;
   --app-text-on-action: #ffffff;

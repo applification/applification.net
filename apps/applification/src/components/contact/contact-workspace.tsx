@@ -153,7 +153,7 @@ type DeliveryResult = {
 
 function AssistantMessageLabel() {
   return (
-    <div className="flex items-center gap-2 font-caption text-[10px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase">
+    <div className="flex items-center gap-2 font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase">
       <Bot aria-hidden="true" className="size-4" />
       Enquiry assistant
     </div>
@@ -644,7 +644,7 @@ export function ContactWorkspace({
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0 flex-1">
                 <p
-                  className="font-caption text-[10px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase"
+                  className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase"
                   id={`${fieldPrefix}-prepared-message`}
                 >
                   Enquiry overview
@@ -683,7 +683,7 @@ export function ContactWorkspace({
           <section aria-labelledby={`${fieldPrefix}-brief-details`}>
             <div className="flex items-center justify-between gap-3">
               <p
-                className="font-caption text-[10px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase"
+                className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase"
                 id={`${fieldPrefix}-brief-details`}
               >
                 Brief details
@@ -763,7 +763,7 @@ export function ContactWorkspace({
 
           {contractFit ? (
             <div className="rounded-2xl border border-[var(--app-border)] bg-[var(--app-muted-section)] p-4">
-              <p className="font-caption text-[10px] font-bold tracking-[0.65px] text-[var(--app-label-text)] uppercase">
+              <p className="font-caption text-[11px] font-bold tracking-[0.65px] text-[var(--app-label-text)] uppercase">
                 Contract fit / {formatContractFitStatus(contractFit.status)}
               </p>
               <p className="mt-2 text-sm leading-[1.5] text-[var(--app-text-secondary)]">
@@ -781,7 +781,7 @@ export function ContactWorkspace({
 
           {validation.issues.length ? (
             <div className="rounded-2xl border border-[var(--app-border)] p-4" role="alert">
-              <p className="font-caption text-[10px] font-bold tracking-[0.65px] text-[var(--app-label-text)] uppercase">
+              <p className="font-caption text-[11px] font-bold tracking-[0.65px] text-[var(--app-label-text)] uppercase">
                 Next incomplete step
               </p>
               <p className="mt-2 text-sm leading-[1.5] text-[var(--app-text-secondary)]">
@@ -830,7 +830,7 @@ export function ContactWorkspace({
       <Separator />
       <div className="grid gap-4 px-4 py-4 sm:grid-cols-[minmax(0,1.2fr)_minmax(280px,1fr)] sm:px-5">
         <div className="min-w-0">
-          <p className="font-caption text-[10px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase">
+          <p className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase">
             Brief so far
           </p>
           <p className="mt-1.5 text-sm leading-[1.5] text-[var(--app-text-secondary)]">
@@ -894,7 +894,7 @@ export function ContactWorkspace({
                 <span className="sm:hidden">Contact</span>
                 <span className="hidden sm:inline">Applification contact</span>
               </p>
-              <span className="hidden rounded-full bg-[var(--app-control)] px-2.5 py-1 font-caption text-[10px] font-bold tracking-[0.45px] text-[var(--app-label-text)] uppercase sm:inline-flex">
+              <span className="hidden rounded-full bg-[var(--app-control)] px-2.5 py-1 font-caption text-[11px] font-bold tracking-[0.45px] text-[var(--app-label-text)] uppercase sm:inline-flex">
                 {contactWorkflowStateLabel(workflowState)}
               </span>
             </div>
