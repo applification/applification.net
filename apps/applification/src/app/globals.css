@@ -405,6 +405,115 @@ html {
   background: var(--background);
 }
 
+.site-header {
+  --header-tint: 90%;
+}
+
+.site-header-surface {
+  height: 64px;
+  background: var(--app-bg);
+  transition: height 220ms ease-out, background-color 180ms ease-out, box-shadow 180ms ease-out;
+}
+
+.site-header[data-product-theme] {
+  --header-tint: 94%;
+}
+
+@media (min-width: 820px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    pointer-events: none;
+  }
+
+  /* Keep the original layout space so resizing cannot move the page or
+     trigger scroll anchoring, which would reverse the scroll direction. */
+  .site-header-surface {
+    pointer-events: auto;
+    --header-height: 64px;
+    --header-link-size: 16px;
+    --header-control-size: 44px;
+    height: var(--header-height);
+  }
+
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-surface {
+    --header-height: 40px;
+    --header-link-size: 13px;
+    --header-control-size: 32px;
+  }
+
+  .site-header-brand {
+    min-height: var(--header-control-size);
+    transition: min-height 220ms ease-out, gap 220ms ease-out;
+  }
+
+  .site-header-mark {
+    transition: width 220ms ease-out, height 220ms ease-out;
+  }
+
+  .site-header-wordmark {
+    max-width: 160px;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 1;
+    transition: max-width 220ms ease-out, opacity 160ms ease-out;
+  }
+
+  .site-header-navigation > a {
+    min-height: var(--header-control-size);
+    font-size: var(--header-link-size);
+    transition: min-height 220ms ease-out, font-size 220ms ease-out, color 180ms ease-out;
+  }
+
+  .site-header-theme {
+    width: var(--header-control-size);
+    height: var(--header-control-size);
+    transition: width 220ms ease-out, height 220ms ease-out, background-color 180ms ease-out;
+  }
+
+  .site-header-theme svg {
+    transition: width 220ms ease-out, height 220ms ease-out;
+  }
+
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-brand { gap: 0; }
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-mark { width: 32px; height: 24px; }
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-wordmark { max-width: 0; opacity: 0; }
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-theme svg { width: 15px; height: 15px; }
+
+  .site-header[data-scrolled="true"] .site-header-surface {
+    box-shadow:
+      0 1px 0 color-mix(in srgb, var(--app-border) 65%, transparent),
+      0 8px 24px light-dark(#172c430a, #02061726);
+  }
+
+  @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+    .site-header[data-scrolled="true"] .site-header-surface {
+      background: color-mix(in srgb, var(--app-bg) var(--header-tint), transparent);
+      -webkit-backdrop-filter: blur(20px) saturate(1.12);
+      backdrop-filter: blur(20px) saturate(1.12);
+    }
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-header[data-scrolled="true"] .site-header-surface {
+    background: var(--app-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header-surface,
+  .site-header-surface * {
+    transition: none !important;
+  }
+}
+
 html[data-theme-transition="active"]::view-transition-old(root),
 html[data-theme-transition="active"]::view-transition-new(root) {
   animation: none;

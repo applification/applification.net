@@ -106,6 +106,8 @@ Do not force every section into a card grid. Repeated containers are useful only
 
 Use a subtle canvas transition where the current shell calls for it. Do not introduce decorative gradients, glows, glass panels, or ornamental shadows into the shared site language.
 
+The desktop header is the glass exception. At 820 pixels and wider it stays at the top while content scrolls underneath. After scrolling, use a strongly tinted background, restrained backdrop blur and a fine separator to keep navigation readable. Keep the initial header opaque, preserve the product theme, and use an opaque fallback when blur is unsupported or reduced transparency is requested. Anchor targets need 80 pixels of clearance below the header.
+
 ## Components and interaction
 
 Reuse established components and shadcn controls before adding new markup. Keep colour and type in semantic variables or component variants. Use component `className` values mainly for layout and responsive composition.
@@ -212,3 +214,5 @@ Known current limitations:
 - `PageShell` is legacy and should not be treated as the preferred page pattern.
 
 When repeated review feedback exposes a missing rule, add the narrowest observable correction here. Put repeatable mechanics in code and mechanical failures in tests.
+
+The desktop sticky header contracts from 64px to 40px when scrolling down beyond 80px, and expands immediately on upward scrolling. The compact version uses the logo mark alone, 13px navigation labels and a 32px theme control. Its original layout space remains reserved to prevent scroll jumps. CSS transitions last 220ms and are disabled for reduced motion; visible keyboard focus restores the full header. Mobile keeps the full static header.

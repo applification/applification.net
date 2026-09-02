@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { DetailContextRail } from "@/components/detail-context-rail";
 import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 
 const metrics = [
@@ -35,22 +36,18 @@ export function LogicallyCaseStudyPage() {
   return (
     <main className="flex-1 overflow-x-clip">
       <article>
-        <header className="bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[82px] min-[1440px]:px-[120px]">
+        <header className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[82px] min-[1440px]:px-[120px]">
           <div className="mx-auto w-full max-w-[1200px]">
-            <Link
-              className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`}
-              href="/client-work#logically"
-            >
-              <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={2} />
-              Back to Client work
-            </Link>
+            <DetailContextRail
+              backHref="/client-work#logically"
+              backLabel="Back to Client work"
+              family="Logically"
+              detail="2024–2026"
+            />
 
             <div className="mt-8 grid gap-8 min-[1024px]:grid-cols-[minmax(0,760px)_minmax(260px,340px)] min-[1024px]:items-end min-[1024px]:justify-between">
               <div>
-                <p className="font-caption text-[11px] font-bold tracking-[1.2px] text-[var(--app-label-text)]">
-                  LOGICALLY&nbsp; / &nbsp;2024–2026
-                </p>
-                <h1 className="font-heading mt-4 max-w-[760px] text-[clamp(3rem,7vw,5.4rem)] leading-[0.94] font-medium tracking-[-0.035em]">
+                <h1 className="font-heading max-w-[760px] text-[clamp(3rem,7vw,5.4rem)] leading-[0.94] font-medium tracking-[-0.035em]">
                   Rebuild the product. Then connect AI to production.
                 </h1>
               </div>
@@ -105,24 +102,24 @@ export function LogicallyCaseStudyPage() {
           </div>
         </section>
 
-        <section className="bg-[var(--client-feature)] px-6 py-14 text-[var(--client-feature-text)] min-[720px]:px-12 min-[1024px]:py-[88px] min-[1440px]:px-[120px]" aria-labelledby="case-decisions-heading">
+        <section className="bg-[var(--app-muted-section)] px-6 py-14 text-[var(--app-text-primary)] min-[720px]:px-12 min-[1024px]:py-[88px] min-[1440px]:px-[120px]" aria-labelledby="case-decisions-heading">
           <div className="mx-auto w-full max-w-[1200px]">
-            <p className="font-caption text-[11px] font-bold tracking-[1.1px] text-[var(--client-feature-accent)]">
+            <p className="font-caption text-[11px] font-bold tracking-[1.1px] text-[var(--app-label-text)]">
               KEY DECISIONS
             </p>
             <h2 className="font-heading mt-3 max-w-[760px] text-[40px] leading-[1.04] font-medium min-[720px]:text-[48px]" id="case-decisions-heading">
               Make each boundary testable before adding more intelligence.
             </h2>
-            <ol className="mt-10 grid gap-px overflow-hidden rounded-[20px] bg-[#334155] min-[860px]:grid-cols-2">
+            <ol className="mt-10 grid gap-px overflow-hidden rounded-[20px] bg-[var(--app-border)] min-[860px]:grid-cols-2">
               {decisions.map((decision, index) => (
-                <li className="bg-[var(--client-feature-strong)] p-6 min-[720px]:p-8" key={decision.title}>
-                  <span className="font-caption text-[10px] font-bold text-[var(--client-feature-accent)]">
+                <li className="bg-[var(--app-card)] p-6 min-[720px]:p-8" key={decision.title}>
+                  <span className="font-caption text-[10px] font-bold text-[var(--app-label-text)]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="font-heading mt-5 text-[28px] leading-[1.08] font-medium">
                     {decision.title}
                   </h3>
-                  <p className="mt-4 text-base leading-[1.65] text-[var(--client-feature-muted)]">
+                  <p className="mt-4 text-base leading-[1.65] text-[var(--app-text-secondary)]">
                     {decision.copy}
                   </p>
                 </li>

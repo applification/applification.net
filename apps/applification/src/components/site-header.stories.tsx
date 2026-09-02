@@ -40,7 +40,7 @@ function productHeaderStory(
         "page",
       );
       await expect(canvas.getByRole("link", { name: "Home" })).not.toHaveAttribute("aria-current");
-      await expect(getComputedStyle(header!).backgroundColor).toBe(
+      await expect(getComputedStyle(header!.querySelector(".site-header-surface")!).backgroundColor).toBe(
         expectedBackground,
       );
     },
