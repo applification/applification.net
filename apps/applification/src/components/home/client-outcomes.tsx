@@ -53,19 +53,19 @@ function LogicallyOutcome() {
 
         <dl className="mt-4 grid grid-cols-3 gap-1.5 min-[1024px]:hidden">
           <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--app-muted-section)] p-2.5">
-            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--app-text-muted)]">
+            <dt className="font-caption text-[10px] leading-[1.2] font-bold tracking-[0.4px] text-[var(--app-text-muted)]">
               REBUILD TO RELEASE
             </dt>
             <dd className="font-data text-xs font-bold">6 months</dd>
           </div>
           <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--app-muted-section)] p-2.5">
-            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--app-text-muted)]">
+            <dt className="font-caption text-[10px] leading-[1.2] font-bold tracking-[0.4px] text-[var(--app-text-muted)]">
               UI CHANGE TIME
             </dt>
             <dd className="font-data text-xs font-bold">Days → min</dd>
           </div>
           <div className="flex min-h-[68px] flex-col justify-between rounded-[11px] bg-[var(--app-muted-section)] p-2.5">
-            <dt className="font-caption text-[7px] font-bold tracking-[0.5px] text-[var(--app-text-muted)]">
+            <dt className="font-caption text-[10px] leading-[1.2] font-bold tracking-[0.4px] text-[var(--app-text-muted)]">
               PRODUCTION RELEASES
             </dt>
             <dd className="font-data text-xs font-bold">Several / day</dd>
@@ -76,7 +76,7 @@ function LogicallyOutcome() {
       <p className="font-caption hidden text-[10px] font-semibold tracking-[0.65px] text-[var(--app-text-muted)] min-[1024px]:block">
         NEXT.JS&nbsp; · &nbsp;TYPESCRIPT&nbsp; · &nbsp;AI SDK&nbsp; · &nbsp;MCP
       </p>
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+      <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 min-[1024px]:flex-col min-[1024px]:items-start min-[1024px]:gap-y-0">
         <Link
           className="link-sweep inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href="/client-work/logically"
@@ -130,7 +130,7 @@ function CompactOutcome({
       <p className="font-caption hidden text-[10px] font-semibold tracking-[0.65px] text-[var(--app-text-muted)] min-[1024px]:block">
         {technologies}
       </p>
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+      <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 min-[1024px]:flex-col min-[1024px]:items-start min-[1024px]:gap-y-0">
         <Link
           className="link-sweep inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href={href}
@@ -168,7 +168,7 @@ export function ClientOutcomes() {
               SELECTED CLIENT OUTCOMES
             </p>
             <h2
-              className="font-heading mt-3 max-w-[700px] text-[38px] leading-[1.06] font-medium text-[var(--app-text-primary)] min-[1024px]:mt-2.5 min-[1024px]:text-[44px] min-[1024px]:leading-[1.06] min-[1280px]:text-[48px]"
+              className="font-heading mt-3 max-w-[700px] text-[38px] leading-[1.06] font-medium text-[var(--app-text-primary)] min-[1024px]:mt-2.5 min-[1024px]:text-[52px] min-[1024px]:leading-[1.04] min-[1280px]:text-[58px]"
               id="client-outcomes-heading"
             >
               Commercial work under real constraints.

@@ -27,12 +27,27 @@ const checkContractSummary: NonNullable<Story["play"]> = async ({
   ).toBeVisible();
 
   for (const value of [
-    contractPositioning.stack,
-    contractPositioning.location,
     contractPositioning.availability,
+    contractPositioning.location,
   ]) {
     await expect(canvas.getByText(value)).toBeVisible();
   }
+
+  // The stack lives in the headline, so the summary does not repeat it.
+  await expect(
+    within(summary!).queryByText(contractPositioning.stack),
+  ).not.toBeInTheDocument();
+
+  const diagrams = canvasElement.querySelectorAll(
+    "[data-motion-sequence='hero-approval']",
+  );
+  const visibleDiagrams = [...diagrams].filter(
+    (diagram) => getComputedStyle(diagram).display !== "none",
+  );
+  await expect(visibleDiagrams).toHaveLength(1);
+  await expect(
+    canvas.getByRole("link", { name: "See how I work with AI" }),
+  ).toBeVisible();
 
   await expect(
     canvas.getByRole("link", { name: "Discuss a contract" }),

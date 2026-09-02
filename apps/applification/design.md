@@ -63,7 +63,9 @@ Choice controls nested inside muted cards keep the `--app-card` fill when select
 
 Theme counterparts preserve the same semantic role and comparable emphasis, not the same literal colour. Light mode uses a deeper cyan-blue for readable accent text; dark mode may use a paler cyan. Do not copy a bright dark-mode text value onto a light surface when it loses contrast.
 
-Light mode uses a muted grey-blue canvas, slate section bands, and pale cards. Keep saturation low so the blue reads as an undertone. The homepage hero deepens from the canvas colour into a darker slate gradient; ordinary page backgrounds and sections stay flat.
+Light mode uses a muted grey-blue canvas, slate section bands, and pale cards. Keep saturation low so the blue reads as an undertone. Ordinary page backgrounds and sections stay flat.
+
+The homepage hero uses the `--hero-*` roles rather than the canvas roles. In light mode it deepens from the canvas colour into a darker slate gradient, so light mode stays light. In dark mode it drops to navy below the canvas so the first screen carries more depth and the agent-loop terminal reads as part of the hero. Hero text, labels, actions and focus rings use the `--hero-*` roles in both themes. The closing contract call to action keeps its default theme-aware surface. Do not add fixed navy page surfaces to the homepage in light mode.
 
 Keep text contrast at WCAG AA. In particular, do not replace the accessible light `--app-text-muted` value with the lighter value found in older pen frames.
 
@@ -94,6 +96,7 @@ The shared desktop content width is 1200 pixels. Standard outer spacing is 24 pi
 
 Use composition to expose the page's argument:
 
+- The homepage runs hero, client row, client outcomes, products row, contract call to action. The hero holds the claim, the working-method caption and the agent-loop diagram together; do not add a second AI section below it. The client row sets real client and public-sector names in Newsreader with a single mono label, because typographic names are honest evidence until supplied logos exist. Product showcases belong on the products pages; the homepage row gives each product one card with its own identity colours.
 - A contract page should lead with fit, availability, or evidence rather than a generic welcome.
 - A product page should lead with the product's job and a concrete view of the product.
 - A case study should make the constraint, decision, and result easy to connect.

@@ -351,39 +351,3 @@ export function AiWorkingMethod() {
     </section>
   );
 }
-
-export function HomepageAiStatement() {
-  return (
-    <section
-      aria-labelledby="homepage-ai-statement-heading"
-      className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-20 min-[1024px]:py-14 min-[1440px]:px-[120px]"
-    >
-      <div className="mx-auto grid w-full max-w-[1200px] gap-5 border-l-2 border-[var(--app-accent)] pl-5 min-[900px]:grid-cols-[minmax(0,1fr)_420px] min-[900px]:items-center min-[900px]:gap-16 min-[900px]:pl-7">
-        <div>
-          <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] uppercase">
-            AI-assisted engineering
-          </p>
-          <h2
-            className="font-heading mt-3 max-w-[690px] text-[34px] leading-[1.08] font-medium text-[var(--app-text-primary)] min-[720px]:text-[42px]"
-            id="homepage-ai-statement-heading"
-          >
-            AI is now part of how I engineer software.
-          </h2>
-        </div>
-        <div>
-          <p className="text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
-            I use agents to shape scope, gather context, implement, test and
-            review. The work still ships on evidence and human approval.
-          </p>
-          <a
-            className="link-sweep mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
-            href="/about#method"
-          >
-            <span className="link-sweep-label">See how I work with AI</span>
-            <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
