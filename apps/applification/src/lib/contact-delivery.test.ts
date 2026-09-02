@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createContactDraft } from "./contact-draft";
+import { applyContactProposal, contactPrepareRequestSchema, createContactDraft } from "./contact-draft";
 import {
   checkContactAbuse,
   contactDeliveryRequestSchema,
@@ -49,6 +49,22 @@ describe("contact delivery boundary", () => {
         briefLink: "http://example.com/brief",
       }).valid,
     ).toBe(false);
+  });
+
+  it("preserves detailed messages through preparation, acceptance and delivery validation", () => {
+    const message = "Detailed project requirements. ".repeat(200).trim();
+    const draft = createContactDraft({ route: "general" });
+    expect(contactPrepareRequestSchema.safeParse({ draft, message }).success).toBe(true);
+    const applied = applyContactProposal(draft, {
+      baseVersion: 0,
+      changes: { topic: "Project enquiry", message, replyName: "Alex", replyEmail: "alex@example.com" },
+    });
+    expect(applied.accepted).toBe(true);
+    if (!applied.accepted) throw new Error("Expected accepted brief");
+    const delivery = validateDeliveryDraft(applied.draft);
+    expect(delivery.valid).toBe(true);
+    if (delivery.valid) expect(delivery.draft.message).toBe(message);
+    expect(contactPrepareRequestSchema.safeParse({ draft, message: "x".repeat(12001) }).success).toBe(false);
   });
 
   it("applies honeypot, timing and bounded per-client checks", () => {

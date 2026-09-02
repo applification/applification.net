@@ -136,6 +136,8 @@ Short mobile conversation workspaces use the available small-viewport height. Ke
 
 For the contact workspace, treat 375 by 667 pixels as an explicit compact-height reference alongside the standard 390 pixel mobile story. Keep route choices dense enough to preserve context, and keep the composer to a 56 pixel single row with the return action beside the input rather than below it.
 
+Keep the contact composer quiet until it needs correction. Show no persistent character-limit caption. When a message exceeds 12,000 characters, preserve the full text, mark the input and focus outline with the accessible contact error colour, and explain the excess outside the bordered composer beside the attachment guidance. Block submission until the text fits. Manual completion uses the same pale surfaces and review step, preserving accepted details and making the pending original message available.
+
 Keep action labels on one line. In narrow cards, remove redundant context from the visible label or stack paired controls before reducing control type.
 
 Responsive reflow may change geometry, density, and content order, but it must not invent a new colour treatment for the same content. Keep the desktop palette and hierarchy unless the smaller view represents a genuinely different product state.

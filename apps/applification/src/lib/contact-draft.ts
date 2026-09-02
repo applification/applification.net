@@ -6,25 +6,42 @@ import {
   type ContactRoute,
 } from "./contact";
 
-const optionalContactText = z.string().trim().max(500).nullable().optional();
+// Shared by visitor editing, AI proposals and final delivery.
+export const contactTextLimits = {
+  summary: 4000,
+  replyName: 120,
+  replyEmail: 254,
+  company: 240,
+  need: 12000,
+  timing: 500,
+  workingArrangement: 500,
+  briefLink: 2048,
+  question: 12000,
+  context: 12000,
+  topic: 240,
+  message: 12000,
+} as const;
+export const contactMessageLimit = 12000;
+const contactText = (field: keyof typeof contactTextLimits) =>
+  z.string().trim().max(contactTextLimits[field]);
 
 export const contactDraftSchema = z
   .object({
     version: z.number().int().nonnegative(),
     route: z.enum(contactRoutes).nullable(),
-    summary: z.string().max(500).optional(),
-    replyName: z.string().max(120).optional(),
-    replyEmail: z.string().max(254).optional(),
-    company: z.string().max(160).optional(),
-    need: z.string().max(500).optional(),
-    timing: z.string().max(160).optional(),
-    workingArrangement: z.string().max(160).optional(),
-    briefLink: z.string().max(2_048).optional(),
+    summary: contactText("summary").optional(),
+    replyName: contactText("replyName").optional(),
+    replyEmail: contactText("replyEmail").optional(),
+    company: contactText("company").optional(),
+    need: contactText("need").optional(),
+    timing: contactText("timing").optional(),
+    workingArrangement: contactText("workingArrangement").optional(),
+    briefLink: contactText("briefLink").optional(),
     product: z.enum(contactProducts).optional(),
-    question: z.string().max(500).optional(),
-    context: z.string().max(500).optional(),
-    topic: z.string().max(160).optional(),
-    message: z.string().max(500).optional(),
+    question: contactText("question").optional(),
+    context: contactText("context").optional(),
+    topic: contactText("topic").optional(),
+    message: contactText("message").optional(),
     attachment: z
       .object({
         pathname: z.string().min(1).max(1_024),
@@ -42,19 +59,19 @@ export const contactDraftSchema = z
 
 export const contactPatchFieldsSchema = z
   .object({
-    summary: optionalContactText,
-    replyName: optionalContactText,
-    replyEmail: optionalContactText,
-    company: optionalContactText,
-    need: optionalContactText,
-    timing: optionalContactText,
-    workingArrangement: optionalContactText,
-    briefLink: optionalContactText,
+    summary: contactText("summary").nullable().optional(),
+    replyName: contactText("replyName").nullable().optional(),
+    replyEmail: contactText("replyEmail").nullable().optional(),
+    company: contactText("company").nullable().optional(),
+    need: contactText("need").nullable().optional(),
+    timing: contactText("timing").nullable().optional(),
+    workingArrangement: contactText("workingArrangement").nullable().optional(),
+    briefLink: contactText("briefLink").nullable().optional(),
     product: z.enum(contactProducts).nullable().optional(),
-    question: optionalContactText,
-    context: optionalContactText,
-    topic: optionalContactText,
-    message: optionalContactText,
+    question: contactText("question").nullable().optional(),
+    context: contactText("context").nullable().optional(),
+    topic: contactText("topic").nullable().optional(),
+    message: contactText("message").nullable().optional(),
   })
   .strict();
 
@@ -69,7 +86,7 @@ export const contactProposalSchema = z
 export const contactPrepareRequestSchema = z
   .object({
     draft: contactDraftSchema,
-    message: z.string().trim().min(1).max(4_000),
+    message: z.string().trim().min(1).max(contactMessageLimit),
   })
   .strict();
 
@@ -250,7 +267,7 @@ function normaliseText(value: string) {
   return value.trim().replace(/\s+/g, " ");
 }
 
-function isReviewedHttpsLink(value: string) {
+export function isReviewedHttpsLink(value: string) {
   try {
     const url = new URL(value);
     return url.protocol === "https:" && !url.username && !url.password;

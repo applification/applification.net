@@ -687,3 +687,11 @@ body {
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
+
+/* Pale contact surfaces keep the composer distinct from the conversation. */
+.contact-workspace {
+  --contact-error: light-dark(#b42318, #fda29b);
+  --contact-card: light-dark(#eef2f6, #1e293b);
+  --contact-input: light-dark(#fafcfe, #1e293b);
+  --contact-selected: var(--secondary);
+}

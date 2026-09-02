@@ -1,3 +1,4 @@
+import { guardContactRequest, readContactJson } from "@/lib/contact-request-guard";
 import { head } from "@vercel/blob";
 import { getRun, start } from "workflow/api";
 import {
@@ -13,7 +14,9 @@ type StartedDelivery = { digest: string; runId: string };
 const startedDeliveries = new Map<string, StartedDelivery>();
 
 export async function POST(request: Request) {
-  const payload: unknown = await request.json().catch(() => null);
+  const blocked = await guardContactRequest(request, "deliver");
+  if (blocked) return blocked;
+  const payload: unknown = await readContactJson(request);
   const checked = contactDeliveryRequestSchema.safeParse(payload);
 
   if (!checked.success) {
