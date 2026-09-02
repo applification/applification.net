@@ -24,11 +24,11 @@ const checkCaseStudy: NonNullable<Story["play"]> = async ({ canvasElement }) => 
     canvas.getByRole("link", {
       name: "Visit Logically, opens in a new tab",
     }),
-  ).toHaveAttribute("rel", "noreferrer");
+  ).toHaveAttribute("rel", "noopener noreferrer");
   await expect(canvasElement.querySelectorAll("dt")).toHaveLength(4);
   await expect(canvasElement.querySelectorAll("dd")).toHaveLength(4);
   await expect(canvas.getByText(/AI SDK UI/)).toBeVisible();
-  await expect(canvas.getByText(/roughly £500/)).toBeVisible();
+  await expect(canvas.getByText(/connecting the Vercel/)).toBeVisible();
 };
 
 export const DesktopLight: Story = { play: checkCaseStudy };

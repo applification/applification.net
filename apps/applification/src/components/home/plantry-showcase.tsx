@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MotionReveal } from "./motion";
 import { ProductStatus } from "./product-status";
 
@@ -14,10 +15,10 @@ export function PlantryShowcase() {
     <MotionReveal>
       <section
       aria-labelledby="plantry-heading"
-      className="bg-[var(--app-section)] px-6 pt-6 pb-14 min-[821px]:px-20 min-[1024px]:pt-8 min-[1024px]:pb-16"
+      className="bg-[var(--app-section)] px-6 pt-6 pb-14 min-[720px]:px-12 min-[1280px]:px-20 min-[1440px]:px-[120px] min-[1024px]:pt-8 min-[1024px]:pb-16"
       id="plantry"
     >
-      <div className="mx-auto w-full max-w-[1280px]">
+      <div className="mx-auto w-full max-w-[1200px]">
         <div
           aria-hidden="true"
           className="hidden h-[50px] grid-cols-[1fr_auto_1fr] items-center gap-[18px] min-[1024px]:grid"
@@ -48,6 +49,7 @@ export function PlantryShowcase() {
               needs using and what is in season. Shopping hands off to
               Reminders.
             </p>
+            <Link href="/products/plantry" className="link-sweep inline-flex min-h-11 items-center self-start text-[15px] font-semibold text-[var(--app-label-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"><span className="link-sweep-label">Explore Plantry →</span></Link>
           </div>
 
           <div className="relative flex h-[220px] items-center justify-center overflow-hidden rounded-2xl border border-[var(--app-border)] bg-[var(--app-muted-section)] min-[1024px]:absolute min-[1024px]:top-6 min-[1024px]:right-0 min-[1024px]:bottom-0 min-[1024px]:h-auto min-[1024px]:w-[340px] min-[1024px]:rounded-none min-[1024px]:border-0 min-[1024px]:bg-transparent">

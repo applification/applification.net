@@ -23,9 +23,11 @@ const checkCompleteCase: NonNullable<Story["play"]> = async ({
   await expect(canvas.getByRole("heading", { name: /live platform/i })).toBeVisible();
   await expect(canvas.getByRole("heading", { name: /boundary testable/i })).toBeVisible();
   await expect(canvas.getByRole("heading", { name: /six months to production/i })).toBeVisible();
-  await expect(canvas.getByRole("link", { name: "Return to Client work" })).toHaveAttribute("href", "/client-work#logically");
-  await expect(canvas.getByRole("link", { name: "Continue to the contract action" })).toHaveAttribute("href", "/contact?route=contract");
+  await expect(canvas.getByRole("link", { name: "Return to Client work" })).toHaveAttribute("href", "/client-work");
+  await expect(canvas.getByRole("link", { name: "Discuss a similar project" })).toHaveAttribute("href", "/contact?route=contract");
   await expect(canvas.getByRole("link", { name: /Visit Logically/ })).toHaveAttribute("target", "_blank");
+  await expect(canvas.getByRole("img", { name: /Logically Intelligence showing narrative/ })).toBeVisible();
+  await expect(canvas.getByRole("link", { name: /Product image from Logically/ })).toHaveAttribute("href", "https://logically.ai/products/logically-intelligence");
   await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
 };
 

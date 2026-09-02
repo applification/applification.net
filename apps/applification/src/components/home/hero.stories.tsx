@@ -29,7 +29,7 @@ const checkContractSummary: NonNullable<Story["play"]> = async ({
   for (const value of [
     contractPositioning.stack,
     contractPositioning.location,
-    contractPositioning.teamFit,
+    contractPositioning.availability,
   ]) {
     await expect(canvas.getByText(value)).toBeVisible();
   }

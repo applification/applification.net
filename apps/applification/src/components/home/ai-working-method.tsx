@@ -376,10 +376,10 @@ export function HomepageAiStatement() {
             review. The work still ships on evidence and human approval.
           </p>
           <a
-            className="mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+            className="link-sweep mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
             href="/about#method"
           >
-            See how I work with AI
+            <span className="link-sweep-label">See how I work with AI</span>
             <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
           </a>
         </div>

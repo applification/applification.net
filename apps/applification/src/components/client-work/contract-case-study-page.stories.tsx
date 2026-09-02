@@ -21,6 +21,7 @@ const checkCase =
   (websiteName: RegExp, nextHref: string): NonNullable<Story["play"]> =>
   async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    await expect(canvasElement.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument();
 
     await expect(canvasElement.querySelectorAll("h1")).toHaveLength(1);
     await expect(canvas.getByText("SITUATION / RESPONSIBILITY")).toBeVisible();
@@ -28,7 +29,7 @@ const checkCase =
     await expect(canvas.getByText("PRODUCTION RESULT")).toBeVisible();
     await expect(canvas.getByRole("link", { name: "Return to Client work" })).toHaveAttribute(
       "href",
-      "/client-work#selected-contracts",
+      "/client-work",
     );
     await expect(canvas.getByRole("link", { name: websiteName })).toHaveAttribute(
       "target",
@@ -39,6 +40,14 @@ const checkCase =
         `a[href="${nextHref}"]`,
       ),
     ).not.toBeNull();
+    if (nextHref === "/client-work/peppy-health") {
+      await expect(canvas.getByRole("img", { name: /Client Server’s recruitment interface/ })).toBeVisible();
+      const source = canvas.getByRole("link", { name: /View Client Server.*opens in a new tab/ });
+      await expect(source).toHaveAttribute("target", "_blank");
+      await expect(source).toHaveAttribute("rel", "noopener noreferrer");
+      await expect(source.querySelector("svg")).toBeVisible();
+    }
+    await expect(canvas.getByRole("link", { name: "Discuss a similar project" })).toHaveAttribute("href", "/contact?route=contract");
     await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
   };
 

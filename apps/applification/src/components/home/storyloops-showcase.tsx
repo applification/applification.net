@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Bot, ChevronDown, CloudUpload, CodeXml } from "lucide-react";
 import { MotionReveal } from "./motion";
 import { ProductStatus } from "./product-status";
@@ -279,13 +280,14 @@ export function StoryLoopsProductMap({
 export function StoryLoopsShowcase() {
   return (
     <MotionReveal>
-      <section className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:px-20 min-[1024px]:py-16" id="products">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 min-[720px]:items-center min-[720px]:gap-[18px]">
-        <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] min-[720px]:tracking-[1.1px]">FLAGSHIP PRODUCT&nbsp; · &nbsp;STORYLOOPS</p>
+      <section className="bg-[var(--app-section)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-16 min-[1280px]:px-20 min-[1440px]:px-[120px]" id="products">
+        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-5 min-[720px]:items-center min-[720px]:gap-[18px]">
+        <p className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-label-text)] min-[720px]:tracking-[1.1px]">PRODUCT R&amp;D&nbsp; · &nbsp;STORYLOOPS</p>
         <ProductStatus status="In Development" />
         <h2 className="font-heading max-w-[1020px] text-[36px] leading-[1.04] font-medium text-[var(--app-text-primary)] min-[720px]:text-center min-[720px]:text-[44px] min-[720px]:leading-none">A product map that coding agents cannot quietly ignore.</h2>
         <p className="max-w-[760px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[720px]:text-center min-[1024px]:text-[17px]">StoryLoops gives each task product context, then makes scope changes visible for approval before the map changes.</p>
 
+        <div className="min-[720px]:self-center"><Link href="/products/storyloops" className="link-sweep inline-flex min-h-11 items-center self-start text-[15px] font-semibold text-[var(--app-label-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"><span className="link-sweep-label">Explore StoryLoops →</span></Link></div>
         <StoryLoopsProductMap compact />
 
         <aside className="flex w-full flex-col gap-2 rounded-[14px] bg-[var(--app-muted-section)] p-4 min-[720px]:mt-2 min-[720px]:flex-row min-[720px]:items-center min-[720px]:gap-7 min-[720px]:rounded-2xl min-[720px]:px-[26px] min-[720px]:py-[18px]">

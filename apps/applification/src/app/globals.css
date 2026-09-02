@@ -5,6 +5,109 @@
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+.contact-workflow-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.contact-workflow-disclosure[open] .workflow-disclosure-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .workflow-disclosure-chevron {
+    transition: transform 200ms ease;
+  }
+
+  .workflow-preview[data-preview-active="true"] .workflow-preview-step {
+    animation: workflow-preview-step 900ms ease both;
+  }
+
+  .workflow-preview[data-preview-active="true"] .workflow-preview-human {
+    animation-delay: 1.3s;
+  }
+
+  .workflow-preview[data-preview-active="true"] .workflow-preview-email {
+    animation-delay: 2.6s;
+  }
+
+  .workflow-preview[data-preview-active="true"] .workflow-preview-connector::after {
+    content: "";
+    display: block;
+    height: 100%;
+    background: var(--loop-cyan);
+    animation: workflow-preview-connector 900ms ease both;
+    animation-delay: 0.5s;
+  }
+
+  .workflow-preview[data-preview-active="true"] .workflow-preview-second::after {
+    animation-delay: 1.8s;
+  }
+}
+
+@keyframes workflow-preview-step {
+  0%, 100% { transform: translateY(0); }
+  45% { transform: translateY(-3px); }
+}
+
+@keyframes workflow-preview-connector {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+/* Text links keep an underline at rest; the stronger line sweeps across the label. */
+.link-sweep {
+  text-decoration: none;
+}
+
+.link-sweep-label {
+  padding-bottom: 3px;
+  background-image: linear-gradient(currentColor, currentColor),
+    linear-gradient(color-mix(in srgb, currentColor 40%, transparent), color-mix(in srgb, currentColor 40%, transparent));
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 0% 2px, 100% 1px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.link-sweep:focus-visible .link-sweep-label {
+  background-size: 100% 2px, 100% 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link-sweep:hover .link-sweep-label {
+    background-size: 100% 2px, 100% 1px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .link-sweep-label {
+    transition: background-size 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .link-sweep > :is(.lucide-arrow-right, .lucide-arrow-up-right) {
+    transition: transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .link-sweep:focus-visible > .lucide-arrow-right {
+    transform: translateX(4px);
+  }
+
+  .link-sweep:focus-visible > .lucide-arrow-up-right {
+    transform: translate(3px, -3px);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .link-sweep:hover > .lucide-arrow-right {
+      transform: translateX(4px);
+    }
+
+    .link-sweep:hover > .lucide-arrow-up-right {
+      transform: translate(3px, -3px);
+    }
+  }
+}
+
 :root {
   color-scheme: light dark;
   --app-bg: light-dark(#d7dfe7, #111827);
@@ -123,7 +226,7 @@
   --contexture-pink: #f9a8d4;
   --contexture-amber: #fde68a;
   --contexture-shadow: #02061733;
-  --contexture-detail-accent: light-dark(#7c3aed, #c4b5fd);
+  --contexture-detail-accent: light-dark(#6d28d9, #c4b5fd);
   --contexture-detail-title: light-dark(#3b0764, #f3e8ff);
   --contexture-detail-description: light-dark(#6b21a8, #d8b4fe);
   --contexture-detail-soft: light-dark(#f3e8ff, #2e1065);
@@ -405,18 +508,28 @@ html {
   background: var(--background);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .workflow-typing-character {
+    animation: workflow-character-reveal 1ms step-end both;
+  }
+}
+
+@keyframes workflow-character-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .site-header {
-  --header-tint: 90%;
+  --header-glass: light-dark(
+    color-mix(in srgb, var(--app-bg) 52%, transparent),
+    color-mix(in srgb, var(--app-bg) 64%, transparent)
+  );
 }
 
 .site-header-surface {
   height: 64px;
   background: var(--app-bg);
   transition: height 220ms ease-out, background-color 180ms ease-out, box-shadow 180ms ease-out;
-}
-
-.site-header[data-product-theme] {
-  --header-tint: 94%;
 }
 
 @media (min-width: 820px) {
@@ -466,7 +579,13 @@ html {
   .site-header-navigation > a {
     min-height: var(--header-control-size);
     font-size: var(--header-link-size);
-    transition: min-height 220ms ease-out, font-size 220ms ease-out, color 180ms ease-out;
+    transition: min-height 220ms ease-out, font-size 220ms ease-out, color 180ms ease-out, opacity 160ms ease-out;
+  }
+
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-navigation > a {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .site-header-theme {
@@ -486,15 +605,16 @@ html {
 
   .site-header[data-scrolled="true"] .site-header-surface {
     box-shadow:
-      0 1px 0 color-mix(in srgb, var(--app-border) 65%, transparent),
-      0 8px 24px light-dark(#172c430a, #02061726);
+      inset 0 1px 0 light-dark(#ffffff66, #ffffff12),
+      0 1px 0 color-mix(in srgb, var(--app-border) 40%, transparent),
+      0 4px 16px light-dark(#172c4308, #0206171a);
   }
 
   @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
     .site-header[data-scrolled="true"] .site-header-surface {
-      background: color-mix(in srgb, var(--app-bg) var(--header-tint), transparent);
-      -webkit-backdrop-filter: blur(20px) saturate(1.12);
-      backdrop-filter: blur(20px) saturate(1.12);
+      background: var(--header-glass);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      backdrop-filter: blur(16px) saturate(1.4);
     }
   }
 }
@@ -694,4 +814,19 @@ body {
   --contact-card: light-dark(#eef2f6, #1e293b);
   --contact-input: light-dark(#fafcfe, #1e293b);
   --contact-selected: var(--secondary);
+}
+
+
+@keyframes contact-workflow-trace {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+.contact-workflow-trace {
+  stroke-dasharray: 100;
+  animation: contact-workflow-trace 900ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-workflow-trace { animation: none; }
 }

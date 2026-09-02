@@ -1,3 +1,4 @@
+import { ExternalLink } from "@/components/external-link";
 import type { ReactNode } from "react";
 import {
   Archive,
@@ -98,7 +99,7 @@ function VoicedExternalLink({
   roomy?: boolean;
 }) {
   return (
-    <a
+    <ExternalLink
       className={`${
         primary
           ? "border-[#b8cec0] bg-[#173f32] text-[#f7faf8] hover:bg-[#254f42]"
@@ -107,12 +108,9 @@ function VoicedExternalLink({
         roomy ? "min-h-[44px] px-[18px]" : "min-h-[42px] px-[17px]"
       } ${focusClasses} inline-flex w-fit items-center justify-center gap-2 rounded-full border text-[15px] font-semibold transition-[background-color,transform] active:translate-y-px`}
       href={href}
-      rel="noreferrer"
-      target="_blank"
     >
       {children}
-      <span className="sr-only">, opens in a new tab</span>
-    </a>
+    </ExternalLink>
   );
 }
 

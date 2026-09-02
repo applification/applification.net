@@ -240,7 +240,7 @@ function ContextureAvailability() {
           <a
             className={`inline-flex min-h-[44px] w-fit items-center justify-center gap-2 rounded-full border border-[var(--contexture-purple)] bg-[var(--contexture-purple)] px-[18px] text-[15px] font-semibold text-[var(--contexture-shell)] transition-[background-color,transform] hover:bg-[#d8b4fe] active:translate-y-px ${focusClasses}`}
             href="https://contexture.applification.net/"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Open Contexture
@@ -250,11 +250,12 @@ function ContextureAvailability() {
           <a
             className={`inline-flex min-h-[44px] w-fit items-center justify-center gap-2 rounded-full border border-[var(--contexture-border)] bg-[var(--app-section)] px-[18px] text-[15px] font-semibold text-[var(--app-text-primary)] transition-[background-color,transform] hover:bg-[var(--contexture-detail-soft)] active:translate-y-px ${focusClasses}`}
             href="https://github.com/applification/contexture"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             target="_blank"
           >
             View on GitHub
             <GithubIcon />
+            <ExternalLink aria-hidden="true" size={16} strokeWidth={1.8} />
             <span className="sr-only">, opens in a new tab</span>
           </a>
         </div>

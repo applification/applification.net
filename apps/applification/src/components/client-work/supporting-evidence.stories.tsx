@@ -27,6 +27,7 @@ const checkEvidence: NonNullable<Story["play"]> = async ({ canvasElement }) => {
     canvas.getByRole("heading", { level: 2, name: "More production context" }),
   ).toBeVisible();
   await expect(canvas.getByText("PANDO / 65,000+ USERS")).toBeVisible();
+  await expect(canvas.getByRole("img", { name: /Pando Control overview design/ })).toBeVisible();
   await expect(canvas.getByText(/NHS and MoD/)).toBeVisible();
   await expect(canvas.getByText(/Cabinet Office boundaries/)).toBeVisible();
   await expect(canvas.getByText(/1.7m-user tax service/)).toBeVisible();
@@ -37,7 +38,7 @@ const checkEvidence: NonNullable<Story["play"]> = async ({ canvasElement }) => {
       name: "Small teams with a real product problem.",
     }),
   ).toBeVisible();
-  await expect(canvas.getByText("React + TypeScript")).toBeVisible();
+  await expect(canvas.getByText("React, Next.js + TypeScript")).toBeVisible();
 };
 
 export const DesktopLight: Story = { play: checkEvidence };

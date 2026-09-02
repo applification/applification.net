@@ -32,14 +32,14 @@ const outcomeDetails = [
 function LogicallyOutcome() {
   return (
     <li
-      className="flex flex-col justify-between gap-5 rounded-[20px] bg-[var(--app-card)] px-[18px] py-5 text-[var(--app-text-primary)] min-[720px]:col-span-2 min-[1024px]:col-span-1 min-[1024px]:min-h-[330px] min-[1024px]:rounded-none min-[1024px]:bg-transparent min-[1024px]:py-3 min-[1024px]:pr-10 min-[1024px]:pl-0"
+      className="flex flex-col gap-4 rounded-[20px] bg-[var(--app-card)] px-[18px] py-5 text-[var(--app-text-primary)] min-[720px]:col-span-2 min-[1024px]:col-span-1 min-[1024px]:rounded-none min-[1024px]:bg-transparent min-[1024px]:py-3 min-[1024px]:pr-6 min-[1024px]:pl-0"
       data-client-outcome="logically"
     >
       <div>
         <p className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)]">
           LOGICALLY
         </p>
-        <p className="font-heading mt-3 text-[34px] leading-none font-medium min-[1024px]:text-[42px]">
+        <p className="font-heading mt-3 text-[34px] leading-none font-medium min-[1024px]:text-[38px]">
           Days to minutes
         </p>
         <h3 className="mt-3 text-lg leading-[1.25] font-semibold min-[1024px]:text-xl">
@@ -78,19 +78,19 @@ function LogicallyOutcome() {
       </p>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
         <Link
-          className="inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+          className="link-sweep inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href="/client-work/logically"
         >
-          Read the Logically case
+          <span className="link-sweep-label">Read the Logically case</span>
           <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
         </Link>
         <a
-          className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-[var(--app-text-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+          className="link-sweep inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-[var(--app-text-muted)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href="https://www.logically.ai/"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           target="_blank"
         >
-          Visit Logically
+          <span className="link-sweep-label">Visit Logically</span>
           <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={2} />
           <span className="sr-only">, opens in a new tab</span>
         </a>
@@ -111,7 +111,7 @@ function CompactOutcome({
   websiteLabel,
 }: (typeof outcomeDetails)[number]) {
   return (
-    <li className="flex flex-col justify-between gap-4 rounded-[14px] bg-[var(--app-card)] p-4 min-[1024px]:min-h-[330px] min-[1024px]:rounded-none min-[1024px]:border-l min-[1024px]:border-[var(--app-border)] min-[1024px]:bg-transparent min-[1024px]:px-6 min-[1024px]:py-3">
+    <li className="flex flex-col gap-4 rounded-[14px] bg-[var(--app-card)] p-4 min-[1024px]:rounded-none min-[1024px]:border-l min-[1024px]:border-[var(--app-border)] min-[1024px]:bg-transparent min-[1024px]:px-6 min-[1024px]:py-3">
       <div>
         <div className="font-caption flex items-center justify-between gap-3 text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)]">
           <span>{company}</span>
@@ -132,19 +132,19 @@ function CompactOutcome({
       </p>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
         <Link
-          className="inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+          className="link-sweep inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href={href}
         >
-          {linkLabel}
+          <span className="link-sweep-label">{linkLabel}</span>
           <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
         </Link>
         <a
-          className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-[var(--app-text-muted)] underline decoration-current/40 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+          className="link-sweep inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-[var(--app-text-muted)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
           href={websiteHref}
-          rel="noreferrer"
+          rel="noopener noreferrer"
           target="_blank"
         >
-          {websiteLabel}
+          <span className="link-sweep-label">{websiteLabel}</span>
           <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={2} />
           <span className="sr-only">, opens in a new tab</span>
         </a>
@@ -180,7 +180,7 @@ export function ClientOutcomes() {
           </p>
         </header>
 
-        <ul className="mt-6 grid gap-4 min-[720px]:grid-cols-2 min-[1024px]:mt-9 min-[1024px]:grid-cols-[2fr_1fr_1fr] min-[1024px]:gap-0">
+        <ul className="mt-6 grid gap-4 min-[720px]:grid-cols-2 min-[1024px]:mt-9 min-[1024px]:grid-cols-3 min-[1024px]:gap-0">
           <LogicallyOutcome />
           {outcomeDetails.map((outcome) => (
             <CompactOutcome key={outcome.company} {...outcome} />
