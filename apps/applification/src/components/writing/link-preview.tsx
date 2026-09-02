@@ -14,11 +14,11 @@ export function LinkPreview(props: Record<string, unknown>) {
 
   return (
     <a
-      aria-label={`${preview.title} on ${preview.siteName}, external link`}
+      aria-label={`${preview.title} on ${preview.siteName}, external link, opens in a new tab`}
       className="group relative my-9 grid min-h-44 overflow-hidden rounded-[18px] border border-[var(--app-border)] bg-[var(--app-card)] shadow-sm shadow-black/5 outline-none hover:border-[var(--writing-accent-text)] focus-visible:border-[var(--writing-accent-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] min-[640px]:grid-cols-[minmax(0,1fr)_auto]"
       data-rich-block="link-preview"
       href={preview.destination}
-      rel="noreferrer"
+      rel="noopener noreferrer"
       target="_blank"
     >
       <span

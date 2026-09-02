@@ -25,8 +25,8 @@ export const DesktopLight: Story = {
     await expect(
       canvas.getByRole("heading", { level: 2, name: "CURRENT BRIEF" }),
     ).toBeVisible();
-    await expect(canvasElement.querySelectorAll("dt")).toHaveLength(5);
-    await expect(canvasElement.querySelectorAll("dd")).toHaveLength(5);
+    await expect(canvasElement.querySelectorAll("dt")).toHaveLength(6);
+    await expect(canvasElement.querySelectorAll("dd")).toHaveLength(6);
     for (const value of Object.values(contractPositioning)) {
       await expect(canvas.getByText(value)).toBeVisible();
     }

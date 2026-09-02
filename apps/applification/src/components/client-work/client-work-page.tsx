@@ -1,6 +1,8 @@
+import { ExternalLink } from "@/components/external-link";
+import { CaseStudyVisual } from "./case-study-visual";
 import { ContractCta } from "@/components/home/contract-cta";
 import { PageHero } from "@/components/page-hero";
-import { contractPositioning } from "@/lib/contract-positioning";
+import { contractPositioning, personalLinkedInUrl } from "@/lib/contract-positioning";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
@@ -12,6 +14,7 @@ const contractFit = [
 ];
 
 const currentBrief = [
+  ["Availability", contractPositioning.availability],
   ["Role", contractPositioning.role],
   ["Core stack", contractPositioning.stack],
   ["Location", contractPositioning.location],
@@ -74,6 +77,7 @@ function CurrentBrief() {
           </div>
         ))}
       </dl>
+      <ExternalLink href={personalLinkedInUrl} className="link-sweep mt-4 inline-flex min-h-11 items-center text-sm text-[var(--app-label-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"><span className="link-sweep-label">View my LinkedIn profile</span></ExternalLink>
     </aside>
   );
 }
@@ -125,10 +129,10 @@ export function LogicallyCaseStudy() {
               Chat for threat analysts.
             </p>
             <Link
-              className="mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+              className="link-sweep mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
               href="/client-work/logically"
             >
-              Read the complete case
+              <span className="link-sweep-label">Read the complete case</span>
               <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
             </Link>
           </div>
@@ -136,7 +140,7 @@ export function LogicallyCaseStudy() {
             aria-label="Visit Logically, opens in a new tab"
             className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--client-logically-link)] text-white transition-colors hover:bg-[var(--app-action-hover)] active:bg-[var(--cta-action-active)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
             href="https://logically.ai"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <ArrowUpRight aria-hidden="true" size={15} strokeWidth={2} />
@@ -199,9 +203,9 @@ export function LogicallyCaseStudy() {
                 PRODUCTION AI
               </p>
               <p className="mt-2 text-base leading-[1.55] text-[#cbd5e1]">
-                Shipped Agentic Chat with Databricks tools. Call logging exposed
-                a React effect making thousands of unintended model calls at
-                roughly £500. The team traced it and stopped the waste.
+                Shipped Agentic Chat for threat analysts, connecting the Vercel
+                AI SDK to Databricks analysis and person-lookup tools through MCP
+                and typed APIs.
               </p>
             </div>
           </aside>
@@ -255,7 +259,7 @@ export function SelectedContracts() {
                   aria-label="Visit Client Server, opens in a new tab"
                   className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--app-action)] text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
                   href="https://www.client-server.com/"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={2} />
@@ -285,10 +289,10 @@ export function SelectedContracts() {
               </p>
             </div>
             <Link
-              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+              className="link-sweep mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
               href="/client-work/eruptiv"
             >
-              Read the Eruptiv case
+              <span className="link-sweep-label">Read the Eruptiv case</span>
               <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
             </Link>
           </article>
@@ -309,7 +313,7 @@ export function SelectedContracts() {
                   aria-label="Visit Peppy Health, opens in a new tab"
                   className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--app-action)] text-[var(--app-text-on-action)] transition-colors hover:bg-[var(--app-action-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
                   href="https://peppy.health/"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={2} />
@@ -342,10 +346,10 @@ export function SelectedContracts() {
               ))}
             </dl>
             <Link
-              className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
+              className="link-sweep mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] transition-colors hover:text-[var(--app-sky-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] motion-reduce:transition-none"
               href="/client-work/peppy-health"
             >
-              Read the Peppy Health case
+              <span className="link-sweep-label">Read the Peppy Health case</span>
               <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
             </Link>
           </article>
@@ -376,8 +380,17 @@ export function SupportingEvidence() {
           </p>
         </div>
 
-        <div className="grid gap-9 min-[1120px]:grid-cols-3 min-[1120px]:gap-10">
-          {supportingCases.map((item) => (
+        <article className="grid gap-8 min-[960px]:grid-cols-[300px_minmax(0,1fr)] min-[960px]:items-start" aria-labelledby="pando-context-heading">
+          <div>
+            <p className="font-caption text-[11px] font-bold tracking-[0.9px] text-[var(--client-brief-label)]">{supportingCases[0].company}</p>
+            <h3 id="pando-context-heading" className="font-heading mt-4 text-[30px] leading-[1.12] font-medium">{supportingCases[0].title}</h3>
+            <p className="mt-4 text-base leading-relaxed text-[var(--app-text-secondary)]">{supportingCases[0].copy}</p>
+            <p className="mt-4 text-sm leading-relaxed text-[var(--app-text-secondary)]">The Pando Control design reference shows the organisation dashboard, with usage reporting and access to users, teams and pagers.</p>
+          </div>
+          <div className="[&>figure]:mt-0"><CaseStudyVisual project="pando" /></div>
+        </article>
+        <div className="grid gap-9 border-t border-[var(--app-border)] pt-8 min-[720px]:grid-cols-2 min-[1120px]:gap-10">
+          {supportingCases.slice(1).map((item) => (
             <article
               className="flex flex-col gap-3 border-t border-[var(--app-border)] pt-5 first:border-t-0 first:pt-0 min-[1120px]:min-h-[178px] min-[1120px]:border-t-0 min-[1120px]:pt-0"
               key={item.company}

@@ -97,7 +97,7 @@ export function ProductDetailHero({
               <a
                 className={`${contexture ? "bg-[#cba6f7] text-[#1e1e2e] hover:bg-[#d8b4fe]" : "bg-[var(--app-action)] text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)]"} inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-[18px] text-base font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
                 href={primaryAction.href}
-                rel={primaryAction.external ? "noreferrer" : undefined}
+                rel={primaryAction.external ? "noopener noreferrer" : undefined}
                 target={primaryAction.external ? "_blank" : undefined}
               >
                 {primaryAction.label}
@@ -110,7 +110,7 @@ export function ProductDetailHero({
                 <a
                   className={`${contexture ? "border-[#cba6f7] text-[#cdd6f4] hover:bg-[#313244]" : "border-[var(--app-border)] text-[var(--app-text-primary)] hover:bg-[var(--app-muted-section)]"} inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border px-[18px] text-base font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
                   href={secondaryAction.href}
-                  rel={secondaryAction.external ? "noreferrer" : undefined}
+                  rel={secondaryAction.external ? "noopener noreferrer" : undefined}
                   target={secondaryAction.external ? "_blank" : undefined}
                 >
                   {secondaryAction.label}
@@ -482,7 +482,7 @@ export function ProductDetailAvailability({
           <a
             className={`${contexture ? "border border-[var(--contexture-detail-border)] bg-[var(--contexture-detail-accent)] text-[var(--contexture-action-text)] hover:bg-[var(--contexture-action-hover)]" : "bg-[var(--app-text-primary)] text-[var(--app-section)] hover:bg-[var(--app-text-secondary)]"} inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full px-[22px] text-[15px] font-semibold transition-[background-color,transform] active:translate-y-px min-[1024px]:w-auto ${focusClasses}`}
             href={action.href}
-            rel={action.external ? "noreferrer" : undefined}
+            rel={action.external ? "noopener noreferrer" : undefined}
             target={action.external ? "_blank" : undefined}
           >
             {action.label}
@@ -495,7 +495,7 @@ export function ProductDetailAvailability({
             <a
               className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--contexture-detail-border)] bg-[var(--app-section)] px-[22px] text-[15px] font-semibold text-[var(--contexture-detail-accent)] transition-[background-color,transform] hover:bg-[var(--contexture-detail-soft)] active:translate-y-px min-[1024px]:w-auto ${focusClasses}`}
               href={secondaryAction.href}
-              rel={secondaryAction.external ? "noreferrer" : undefined}
+              rel={secondaryAction.external ? "noopener noreferrer" : undefined}
               target={secondaryAction.external ? "_blank" : undefined}
             >
               {secondaryAction.label}

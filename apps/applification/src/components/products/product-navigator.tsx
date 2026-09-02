@@ -127,10 +127,10 @@ export function ProductNavigator({ current }: { current?: ProductSlug }) {
           </div>
           {current ? (
             <Link
-              className="inline-flex min-h-11 w-fit items-center gap-2 text-[15px] font-semibold text-[#cbd5e1] underline decoration-[#475569] underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
+              className="link-sweep inline-flex min-h-11 w-fit items-center gap-2 text-[15px] font-semibold text-[#cbd5e1] transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
               href="/products"
             >
-              View all products
+              <span className="link-sweep-label">View all products</span>
               <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
             </Link>
           ) : null}

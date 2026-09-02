@@ -1,3 +1,4 @@
+import { ExternalLink } from "@/components/external-link";
 import type { ComponentType } from "react";
 import { contractPositioning } from "@/lib/contract-positioning";
 
@@ -66,20 +67,17 @@ export function SiteFooter() {
         >
           {socialLinks.map((item) => {
             const Icon = item.icon;
-            const classes = `inline-flex min-h-11 items-center gap-2 transition-colors hover:text-[var(--app-text-primary)] ${focusClasses}`;
+            const classes = `link-sweep inline-flex min-h-11 items-center gap-2 transition-colors hover:text-[var(--app-text-primary)] ${focusClasses}`;
 
             return (
-              <a
+              <ExternalLink
                 className={classes}
                 href={item.href}
                 key={item.href}
-                rel="noreferrer"
-                target="_blank"
               >
                 <Icon />
-                {item.label}
-                <span className="sr-only">, opens in a new tab</span>
-              </a>
+                <span className="link-sweep-label">{item.label}</span>
+              </ExternalLink>
             );
           })}
         </nav>

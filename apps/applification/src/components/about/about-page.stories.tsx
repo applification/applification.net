@@ -64,11 +64,11 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
     await expect(canvas.getAllByText(value).length).toBeGreaterThanOrEqual(1);
   }
   await expect(
-    canvas.getByRole("link", {
-      name: /Product and AI engineering at Logically\.ai.*opens in a new tab/,
+    canvas.getByRole("heading", {
+      name: "Principal Engineer",
     }),
-  ).toHaveAttribute("target", "_blank");
-  await expect(canvas.queryByRole("link", { name: "Email Dave" })).not.toBeInTheDocument();
+  ).toBeVisible();
+  await expect(canvasElement.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument();
   await expect(canvasElement.querySelector("#contact")).not.toBeInTheDocument();
   await expect(canvasElement.querySelectorAll("footer")).toHaveLength(1);
   const profileFactColours = new Set(

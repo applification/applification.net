@@ -1,5 +1,8 @@
 "use client";
 
+import { ExternalLink } from "@/components/external-link";
+
+
 import { useRef, useState } from "react";
 import {
   youtubeSchema,
@@ -76,14 +79,12 @@ export function YouTubeEmbed(props: Record<string, unknown>) {
         <span className="font-caption text-[9px] font-semibold tracking-[0.45px] text-[var(--storyloop-text-subtle)] uppercase">
           YouTube video
         </span>
-        <a
-          className="font-caption inline-flex min-h-11 items-center gap-2 text-[9px] font-bold tracking-[0.5px] text-[var(--loop-cyan)] uppercase focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--loop-cyan)]"
+        <ExternalLink
+          className="link-sweep font-caption inline-flex min-h-11 items-center gap-2 text-[9px] font-bold tracking-[0.5px] text-[var(--loop-cyan)] uppercase focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--loop-cyan)]"
           href={watchUrl(video.videoId)}
-          rel="noreferrer"
-          target="_blank"
         >
-          Watch on YouTube <span aria-hidden="true">↗</span>
-        </a>
+          <span className="link-sweep-label">Watch on YouTube</span>
+        </ExternalLink>
       </figcaption>
     </figure>
   );

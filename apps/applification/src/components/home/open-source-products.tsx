@@ -95,7 +95,7 @@ function ProductLink({
       <span className="hidden min-[480px]:inline" data-product-link-full-label>
         {label}
       </span>
-      {primary ? <ExternalLinkIcon /> : null}
+      <ExternalLinkIcon />
       <span className="sr-only">, opens in a new tab</span>
     </a>
   );

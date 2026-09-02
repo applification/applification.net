@@ -1,6 +1,8 @@
+import { ExternalLink } from "@/components/external-link";
 import { ArrowUpRight, Check } from "lucide-react";
 import Link from "next/link";
-import { contractPositioning } from "@/lib/contract-positioning";
+import { isContactWorkflowAvailable } from "@/lib/contact";
+import { contractPositioning, personalLinkedInUrl } from "@/lib/contract-positioning";
 import { AiWorkingMethod } from "@/components/home/ai-working-method";
 
 const focusClasses =
@@ -10,44 +12,50 @@ export const careerTimeline = [
   {
     year: "2003",
     title: "Founded Applification Ltd",
-    description: "Independent consulting, product delivery and software engineering.",
+    description: "Founded in 2003, Applification is still the business through which I deliver my contract work.",
+    earlyClients: "bet365, Department of Health, Newcastle Business School, University of York, Sunderland Council and Entrepreneurs Forum.",
   },
   {
     year: "2013",
     title: "Mobile product teams",
     description:
-      "React Native, Node.js APIs and delivery leadership across travel and public-sector products.",
+      "Mobile engineering and delivery leadership for TUI, Le Boat, Chubb Travel and the British Army. Appcelerator Titanium and Node.js APIs, with React Native later.",
   },
   {
-    year: "2018",
+    year: "2016–2017",
+    title: "Scrum Master at HMRC",
+    description:
+      "Scrum Master for a co-located team of 17 delivering tax repayments, company car, medical benefits and tax estimation services. Introduced mob programming, user story mapping, ATDD/BDD and example mapping to improve delivery.",
+  },
+  {
+    year: "2018–2019",
     title: "Secure government work",
     description:
-      "Security-cleared frontend delivery for Cabinet Office and other government agencies.",
+      "Security-cleared frontend delivery for Cabinet Office, MoD and other government agencies. Senior Engineer, then Scrum Master and Tech Lead at Surevine.",
   },
   {
-    year: "2021",
-    title: "Clinician platforms",
+    year: "2021–2023",
+    title: "Health tech",
     description:
-      "Pando and Peppy: reliable admin surfaces, component systems and testing practices.",
+      "Built Pando Access and rebuilt Peppy Admin to support clinicians’ day-to-day work. Delivered the Pando Access prototype in four weeks, then architected its Next.js application. At Peppy, replaced tightly coupled screens with reusable components, a Storybook design system and automated tests.",
   },
   {
     year: "2024",
-    title: "Greenfield contract builds",
+    title: "Recruitment platform",
     description:
-      "Sole frontend ownership for Eruptiv, building the recruitment product in three months and taking it to production after four.",
+      "Sole frontend ownership of Client Server’s recruitment platform, building it in three months and taking it to production after four.",
   },
   {
-    year: "2025",
-    title: "Product and AI engineering at Logically.ai",
+    year: "2024–2026",
+    title: "Principal Engineer",
     description:
-      "Rebuilt the frontend in Next.js, then co-built Agentic Chat for threat analysts with AI SDK UI, MCP and Databricks tools.",
-    href: "https://www.logically.ai/",
+      "Full-time at Logically from October 2024 to May 2026. Rebuilt the frontend in Next.js, then co-built Agentic Chat for threat analysts with AI SDK UI, MCP and Databricks tools.",
   },
   {
     year: "2026",
-    title: "AI product R&D at Applification",
+    title: "Released products and AI research",
     description:
-      "Building StoryLoops, Contexture and Voiced, with each product testing a different use for agentic workflows.",
+      "Contexture and Voiced are live, open-source products. StoryLoops remains in development, alongside AI product research at Applification.",
     current: true,
   },
 ] as const;
@@ -74,6 +82,7 @@ const positions = [
 ] as const;
 
 const profileFacts = [
+  ["Availability", contractPositioning.availability],
   ["Role", contractPositioning.role],
   ["Stack", contractPositioning.stack],
   ["Location", contractPositioning.location],
@@ -141,6 +150,10 @@ export function AboutHero() {
             and more than twenty years of experience turning uncertain product
             ideas into working software.
           </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {isContactWorkflowAvailable() ? <Link className={`link-sweep inline-flex min-h-11 items-center font-semibold text-[var(--app-label-text)] ${focusClasses}`} href="/contact?route=contract"><span className="link-sweep-label">Discuss a contract</span></Link> : null}
+            <ExternalLink className={`link-sweep inline-flex min-h-11 items-center text-[var(--app-label-text)] ${focusClasses}`} href={personalLinkedInUrl}><span className="link-sweep-label">View my LinkedIn profile</span></ExternalLink>
+          </div>
         </div>
 
         <aside className="rounded-[20px] bg-[var(--client-feature-strong)] p-[26px] text-[var(--client-feature-text)]" aria-label="Profile facts">
@@ -249,20 +262,7 @@ export function CareerTimeline() {
               <article className="col-start-2 row-start-2 rounded-[18px] border border-[var(--app-border)] bg-[var(--app-card)] px-5 py-[18px] shadow-[0_16px_38px_-34px_#0b1220] min-[520px]:col-start-3 min-[520px]:row-start-1">
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="font-heading text-[clamp(1.25rem,2.4vw,1.45rem)] leading-[1.15] font-medium">
-                    {"href" in entry ? (
-                      <a
-                        className={`inline-flex items-center gap-2 underline decoration-[var(--app-border)] underline-offset-4 transition-colors hover:text-[var(--app-action)] motion-reduce:transition-none ${focusClasses}`}
-                        href={entry.href}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        {entry.title}
-                        <ArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
-                        <span className="sr-only">, opens in a new tab</span>
-                      </a>
-                    ) : (
-                      entry.title
-                    )}
+                    {entry.title}
                   </h3>
                   {"current" in entry ? (
                     <span className="font-caption mt-0.5 shrink-0 rounded-full bg-[var(--app-label)] px-2.5 py-1 text-[9px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase">
@@ -273,6 +273,12 @@ export function CareerTimeline() {
                 <p className="mt-2 max-w-[590px] text-base leading-[1.58] text-[var(--app-text-secondary)]">
                   {entry.description}
                 </p>
+                {"earlyClients" in entry && (
+                  <p className="mt-3 text-base leading-relaxed text-[var(--app-text-secondary)]">
+                    <span className="font-semibold text-[var(--app-text-primary)]">Early clients included </span>
+                    {entry.earlyClients}
+                  </p>
+                )}
               </article>
             </li>
           ))}
@@ -308,10 +314,10 @@ export function SelectedWriting() {
               engineering discipline still has to do.
             </p>
             <Link
-              className={`mt-3 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--writing-accent-text)] underline decoration-current/45 underline-offset-4 transition-colors hover:text-[var(--app-sky-text)] motion-reduce:transition-none ${focusClasses}`}
+              className={`link-sweep mt-3 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--writing-accent-text)] transition-colors hover:text-[var(--app-sky-text)] motion-reduce:transition-none ${focusClasses}`}
               href="/writing"
             >
-              View all writing
+              <span className="link-sweep-label">View all writing</span>
               <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={2} />
             </Link>
           </div>
@@ -328,10 +334,10 @@ export function SelectedWriting() {
               </p>
               <h3 className="font-heading mt-2 text-[26px] leading-[1.12] font-medium text-[var(--app-text-primary)] min-[900px]:text-[28px]">
                 <Link
-                  className={`decoration-[var(--writing-accent-text)] underline-offset-4 hover:underline ${focusClasses}`}
+                  className={`link-sweep ${focusClasses}`}
                   href={article.href}
                 >
-                  {article.title}
+                  <span className="link-sweep-label">{article.title}</span>
                 </Link>
               </h3>
               <p className="mt-3 max-w-[510px] text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
@@ -399,8 +405,9 @@ export function ContractFit() {
             Credentials
           </span>
           <p className="text-base leading-[1.55] text-[var(--app-text-secondary)]">
-            Certified Scrum Master&nbsp; · &nbsp;Certified Product Owner&nbsp; ·
-            &nbsp;Government security clearance held for relevant engagements
+            Scrum Master and Product Owner certifications awarded in 2015,
+            expired in 2019. Previously held government security clearance for
+            relevant engagements.
           </p>
         </div>
 

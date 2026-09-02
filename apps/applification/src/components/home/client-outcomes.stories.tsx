@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { ClientOutcomes } from "./client-outcomes";
 
 const meta = {
@@ -11,8 +11,31 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const checkLinkFocus: NonNullable<Story["play"]> = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const internal = canvas.getByRole("link", { name: "Read the Logically case" });
+  const external = canvas.getByRole("link", { name: /Visit Logically/ });
+
+  await userEvent.tab();
+  await expect(internal).toHaveFocus();
+  await waitFor(() => expect(getComputedStyle(internal.querySelector(".link-sweep-label")!).backgroundSize).toBe("100% 2px, 100% 1px"));
+  await expect(getComputedStyle(internal).outlineStyle).not.toBe("none");
+  await userEvent.tab();
+  await expect(external).toHaveFocus();
+  await waitFor(() => expect(getComputedStyle(external.querySelector(".link-sweep-label")!).backgroundSize).toBe("100% 2px, 100% 1px"));
+  await expect(external).toHaveAttribute("target", "_blank");
+  await expect(external).toHaveAccessibleName(/opens in a new tab/);
+  await expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    await expect(getComputedStyle(external.querySelector("svg")!).transform).toBe("none");
+    await expect(getComputedStyle(external.querySelector(".link-sweep-label")!).transitionDuration).toBe("0s");
+  }
+};
+
 const checkCaseLinks: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
+  await checkLinkFocus({ canvasElement } as Parameters<typeof checkLinkFocus>[0]);
 
   await expect(canvas.getByRole("link", { name: "Read the Eruptiv case" })).toHaveAttribute(
     "href",

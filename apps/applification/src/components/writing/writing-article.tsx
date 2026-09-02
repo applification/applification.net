@@ -1,3 +1,4 @@
+import { ExternalLink } from "@/components/external-link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import {
@@ -86,16 +87,15 @@ export function createMarkdownComponents(
       </p>
     ),
     a: ({ children, href }) => {
-      const external = href?.startsWith("http");
+      const external = /^(?:https?:)?\/\//i.test(href ?? "") && !/^(?:https?:)?\/\/(?:www\.)?applification\.net(?:[/?#]|$)/i.test(href ?? "");
+      const ArticleLink = external ? ExternalLink : "a";
       return (
-        <a
-          className="font-medium text-[var(--writing-accent-text)] underline decoration-[var(--app-border)] underline-offset-4 hover:decoration-[var(--writing-accent-text)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)]"
+        <ArticleLink
+          className="link-sweep font-medium text-[var(--writing-accent-text)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)]"
           href={href}
-          rel={external ? "noreferrer" : undefined}
-          target={external ? "_blank" : undefined}
         >
-          {children}
-        </a>
+          <span className="link-sweep-label">{children}</span>
+        </ArticleLink>
       );
     },
     ul: ({ children }) => (

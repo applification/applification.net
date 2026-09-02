@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { usePathname } from "@storybook/nextjs-vite/navigation.mock";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
+import { useState } from "react";
 import { SiteHeader } from "./site-header";
 
 const meta = {
@@ -19,6 +20,73 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+function ScrollNavigationFixture() {
+  const [pathname, setPathname] = useState("/client-work");
+  usePathname.mockReturnValue(pathname);
+  return (
+    <div>
+      <SiteHeader />
+      <main className="min-h-[2000px] px-8 pt-[900px]">
+        {[
+          { href: "/client-work/logically", label: "Read the complete case" },
+          { href: "/products/contexture", label: "Explore Contexture" },
+        ].map(({ href, label }) => (
+          <a className="mr-6" href={href} key={href} onClick={event => {
+            event.preventDefault();
+            setPathname(href);
+            window.scrollTo(0, 0);
+          }}>{label}</a>
+        ))}
+      </main>
+    </div>
+  );
+}
+
+export const ScrollNavigation: Story = {
+  render: () => <ScrollNavigationFixture />,
+  globals: { viewport: { value: "desktop", isRotated: false } },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const header = canvasElement.querySelector("header")!;
+    for (const destination of [
+      { label: "Read the complete case", active: "Client work" },
+      { label: "Explore Contexture", active: "Products" },
+    ]) {
+      window.scrollTo(0, 800);
+      await waitFor(() => expect(header).toHaveAttribute("data-compact", "true"));
+
+      // Sample every rendered frame through both same-section and cross-section
+      // route changes. The highlight must remain anchored to its current link.
+      const escapedFrames: Array<{ top: number; left: number }> = [];
+      const frames = new Promise<void>(resolve => {
+        const started = performance.now();
+        const sample = () => {
+          const pill = canvas.getByTestId("active-navigation-highlight");
+          const link = pill.parentElement!;
+          if (getComputedStyle(link).visibility === "visible" && Number(getComputedStyle(link).opacity) > 0) {
+            const bounds = pill.getBoundingClientRect();
+            const linkBounds = link.getBoundingClientRect();
+            const headerBounds = header.getBoundingClientRect();
+            if (
+              bounds.top < headerBounds.top - 1 || bounds.bottom > headerBounds.bottom + 1 ||
+              Math.abs(bounds.top - linkBounds.top - 4) > 1 ||
+              Math.abs(bounds.left - linkBounds.left + 8) > 1
+            ) escapedFrames.push({ top: bounds.top, left: bounds.left });
+          }
+          if (performance.now() - started < 1200) requestAnimationFrame(sample);
+          else resolve();
+        };
+        requestAnimationFrame(sample);
+      });
+      await userEvent.click(canvas.getByRole("link", { name: destination.label }));
+      await frames;
+      await expect(header).toHaveAttribute("data-compact", "false");
+      await expect(canvas.getByRole("link", { name: destination.active })).toHaveAttribute("aria-current", "page");
+      await expect(escapedFrames, "The active pill must stay anchored to its navigation link during scroll restoration").toEqual([]);
+    }
+  },
+};
 
 function productHeaderStory(
   pathname: `/products/${"contexture" | "plantry" | "storyloops" | "voiced"}`,

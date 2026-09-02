@@ -1,4 +1,5 @@
-import { contractPositioning } from "@/lib/contract-positioning";
+import { ExternalLink } from "@/components/external-link";
+import { contractPositioning, personalLinkedInUrl } from "@/lib/contract-positioning";
 import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 import { HeroEntrance, HeroSequenceController } from "./motion";
 import { WorkflowBorderBeam } from "./workflow-border-beam";
@@ -132,7 +133,7 @@ function DesktopAgentLoop() {
   return (
     <div
       aria-hidden="true"
-      className="font-caption order-4 hidden h-[112px] w-full max-w-[820px] overflow-hidden rounded-[7px] border border-[var(--app-border)] bg-[var(--loop-bg)] min-[1060px]:block min-[1280px]:h-[140px] min-[1280px]:max-w-[980px]"
+      className="font-caption order-4 hidden h-[112px] w-full max-w-[1200px] overflow-hidden rounded-[7px] border border-[var(--app-border)] bg-[var(--loop-bg)] min-[1060px]:block min-[1280px]:h-[140px]"
       data-motion-sequence="hero-approval"
     >
       <div className="flex h-5 items-center border-b border-[color-mix(in_srgb,var(--app-accent)_35%,transparent)] bg-[var(--loop-header)] px-[10px] min-[1280px]:h-6 min-[1280px]:px-3">
@@ -146,8 +147,8 @@ function DesktopAgentLoop() {
         </div>
       </div>
 
-      <div className="relative h-[92px] px-6 pt-[9px] min-[1280px]:h-[116px] min-[1280px]:px-[30px] min-[1280px]:pt-[14px]">
-        <div className="grid grid-cols-[110px_42px_198px_42px_160px_42px_178px] items-center min-[1280px]:grid-cols-[130px_50px_236px_50px_192px_50px_212px]">
+      <div className="relative mx-6 h-[92px] pt-[9px] min-[1280px]:mx-[30px] min-[1280px]:h-[116px] min-[1280px]:pt-[14px]">
+        <div className="grid grid-cols-[14%_6%_26%_6%_22%_6%_20%] items-center">
           {loopNodes.map((node, index) => (
             <div className="contents" key={node.label}>
               <AgentLoopNode beamFrom="left" beamTo="right" node={node} />
@@ -172,13 +173,15 @@ function DesktopAgentLoop() {
         </div>
         <svg
           aria-hidden="true"
-          className="absolute top-[43px] left-[270px] h-[35px] w-[227px] text-[var(--loop-pink)] min-[1280px]:top-[55px] min-[1280px]:left-[315px] min-[1280px]:h-[45px] min-[1280px]:w-[278px]"
+          className="absolute top-[43px] left-[33%] h-[35px] w-[30%] overflow-visible text-[var(--loop-pink)] min-[1280px]:top-[56px] min-[1280px]:h-[45px]"
           data-motion-connector="reject"
           fill="none"
+          preserveAspectRatio="none"
           viewBox="0 0 227 35"
         >
           <path
-            d="M226 0v31H13V7"
+            d="M227 0v31H0V7"
+            vectorEffect="non-scaling-stroke"
             data-motion-path-base
             opacity="0.67"
             stroke="currentColor"
@@ -187,14 +190,15 @@ function DesktopAgentLoop() {
             strokeWidth="1.5"
           />
           <path
-            d="M1 19 13 7l12 12"
+            d="M-8 15 0 7l8 8"
+            vectorEffect="non-scaling-stroke"
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2.25"
           />
         </svg>
-        <div className="absolute top-[64px] left-[326px] flex h-4 w-[120px] items-center justify-center bg-[color-mix(in_srgb,var(--loop-bg)_93%,transparent)] text-[6.5px] font-bold tracking-[0.55px] text-[var(--loop-pink)] uppercase min-[1280px]:top-[91px] min-[1280px]:left-[393px] min-[1280px]:h-5 min-[1280px]:w-[145px] min-[1280px]:text-[8px] min-[1280px]:tracking-[0.7px]" data-motion-connector="reject" data-motion-label>
+        <div className="absolute top-[64px] left-[48%] -translate-x-1/2 flex h-4 w-[120px] items-center justify-center bg-[color-mix(in_srgb,var(--loop-bg)_93%,transparent)] text-[6.5px] font-bold tracking-[0.55px] text-[var(--loop-pink)] uppercase min-[1280px]:top-[91px] min-[1280px]:h-5 min-[1280px]:w-[145px] min-[1280px]:text-[8px] min-[1280px]:tracking-[0.7px]" data-motion-connector="reject" data-motion-label>
           No · revise · run again
         </div>
       </div>
@@ -370,23 +374,22 @@ export function Hero() {
   const contractSummary = [
     ["Core stack", contractPositioning.stack],
     ["Working location", contractPositioning.location],
-    ["Team fit", contractPositioning.teamFit],
+    ["Availability", contractPositioning.availability],
   ] as const;
 
   return (
-    <section className="flex flex-col gap-[18px] bg-linear-to-b from-[var(--app-bg)] to-[var(--app-hero-end)] px-6 pt-6 pb-9 min-[720px]:min-h-[620px] min-[720px]:items-center min-[720px]:gap-[22px] min-[720px]:px-12 min-[720px]:pt-12 min-[720px]:pb-10 min-[1060px]:min-h-[606px] min-[1060px]:px-20 min-[1060px]:pt-14 min-[1060px]:pb-11">
-      <HeroSequenceController />
+    <section className="flex flex-col gap-[18px] bg-linear-to-b from-[var(--app-bg)] to-[var(--app-hero-end)] px-6 pt-6 pb-9 min-[720px]:items-center min-[720px]:gap-[22px] min-[720px]:px-12 min-[720px]:pt-12 min-[720px]:pb-10 min-[1060px]:px-20 min-[1060px]:pt-14 min-[1060px]:pb-11">
       <HeroEntrance className="order-1 w-full min-[720px]:flex min-[720px]:justify-center" order={0}>
         <div className="font-caption flex flex-col gap-[7px] min-[720px]:items-center">
           <div className="flex items-center gap-2">
             <span className="size-2 shrink-0 rounded-full bg-[var(--loop-yellow-strong)]" />
-            <span className="text-[10px] font-bold tracking-[0.6px] text-[var(--app-text-primary)] uppercase min-[720px]:text-xs min-[720px]:font-semibold min-[720px]:tracking-[0.8px]">
+            <span className="text-[11px] font-bold tracking-[0.6px] text-[var(--app-text-primary)] uppercase min-[720px]:text-xs min-[720px]:font-semibold min-[720px]:tracking-[0.8px]">
               Dave Hudson · {contractPositioning.role}
             </span>
           </div>
           <dl
             aria-label="Contract summary"
-            className="ml-4 flex max-w-[540px] flex-wrap items-center gap-x-2 gap-y-1 text-[9px] font-semibold tracking-[0.45px] text-[var(--app-label-text)] uppercase min-[720px]:ml-0 min-[720px]:justify-center min-[720px]:text-[10px] min-[720px]:tracking-[0.65px] min-[720px]:text-[var(--app-text-primary)]"
+            className="ml-4 flex max-w-[540px] flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold tracking-[0.45px] text-[var(--app-label-text)] uppercase min-[720px]:ml-0 min-[720px]:justify-center min-[720px]:text-[11px] min-[720px]:tracking-[0.65px] min-[720px]:text-[var(--app-text-primary)]"
           >
             {contractSummary.map(([label, value], index) => (
               <div className="flex items-center gap-2" key={label}>
@@ -405,32 +408,18 @@ export function Hero() {
 
       <HeroEntrance className="order-2" order={1}>
         <h1 className="font-heading max-w-[1020px] text-[clamp(2.5rem,12vw,3rem)] leading-[0.98] font-medium tracking-[-0.025em] text-[var(--app-text-primary)] min-[720px]:text-center min-[720px]:text-[64px] min-[720px]:leading-[1.01] min-[1060px]:text-[70px]">
-          Products and AI workflows, built around human judgement.
+          React and Next.js products.
+          <br className="hidden min-[720px]:block" /> Production AI that earns its place.
         </h1>
       </HeroEntrance>
 
       <HeroEntrance className="order-3" order={2}>
-        <p className="max-w-[820px] text-base leading-[1.5] text-[var(--app-text-secondary)] min-[720px]:text-center min-[720px]:text-[19px] min-[720px]:leading-[1.45] min-[1060px]:text-xl">
-          <span className="min-[720px]:hidden">
-            I join small teams to shape ideas and ship production React and
-            TypeScript. Agents do the repetitive work; scope, tests and approval
-            keep people in control.
-          </span>
-          <span className="hidden min-[720px]:inline">
-            I join small teams to shape early ideas and ship production React and
-            TypeScript. Agents handle the repetitive work; agreed scope, tests and
-            approval keep the team in control.
-          </span>
+        <p className="max-w-[1200px] text-base leading-[1.5] text-[var(--app-text-secondary)] min-[720px]:text-center min-[720px]:text-[19px] min-[720px]:leading-[1.45] min-[1060px]:text-xl">
+          I join product teams to build web applications, modernise existing
+          frontends and put AI into production. Senior engineering, from the
+          first technical decision through to release.
         </p>
       </HeroEntrance>
-
-      <p className="sr-only">
-        The delivery loop starts with human intent and context. An agent works
-        within that scope and runs tests. A person reviews the evidence before
-        the outcome ships, or sends the work back for another pass.
-      </p>
-      <DesktopAgentLoop />
-      <TabletAgentLoop />
 
       <HeroEntrance className="order-4 flex w-full flex-col items-stretch gap-2 min-[560px]:flex-row min-[560px]:items-center min-[560px]:gap-3 min-[720px]:order-5 min-[720px]:w-auto" order={4}>
         {contactAvailable ? <a
@@ -448,6 +437,24 @@ export function Hero() {
           <DownArrowIcon />
         </a>
       </HeroEntrance>
+
+      <ExternalLink className={`link-sweep order-6 inline-flex min-h-11 items-center text-sm text-[var(--app-label-text)] ${focusClasses}`} href={personalLinkedInUrl}>
+        <span className="link-sweep-label">View my LinkedIn profile</span></ExternalLink>
+    </section>
+  );
+}
+
+export function AgentDeliveryLoop() {
+  return (
+    <section aria-label="How I use AI in delivery" className="flex flex-col items-center bg-[var(--app-section)] px-6 pb-12 min-[720px]:px-12 min-[1280px]:px-20 min-[1440px]:px-[120px]">
+      <HeroSequenceController />
+      <p className="sr-only">
+        The delivery loop starts with human intent and context. An agent works
+        within that scope and runs tests. A person reviews the evidence before
+        the outcome ships, or sends the work back for another pass.
+      </p>
+      <DesktopAgentLoop />
+      <TabletAgentLoop />
 
       <MobileAgentLoop />
     </section>

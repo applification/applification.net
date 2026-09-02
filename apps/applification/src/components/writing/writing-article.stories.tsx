@@ -25,7 +25,7 @@ const entry: WritingEntry = {
   featured: false,
   draft: false,
   slug: "typed-rich-article",
-  body: `Ordinary Markdown stays ordinary.\n\n${block}\n\n## The next section\n\nProse after the block still renders in order.`,
+  body: `Ordinary Markdown stays ordinary. [External reference](https://example.com/reference) and [internal contact](/contact).\n\n${block}\n\n## The next section\n\nProse after the block still renders in order.`,
   readingTime: 1,
 };
 
@@ -54,10 +54,14 @@ const checkRichArticle: NonNullable<Story["play"]> = async ({
     canvas.getByRole("heading", { name: "A typed rich article" }),
   ).toBeVisible();
   await expect(
-    canvas.getByText("Ordinary Markdown stays ordinary."),
+    canvas.getByText(/Ordinary Markdown stays ordinary\./),
   ).toBeVisible();
+  const external = canvas.getByRole("link", { name: /External reference.*opens in a new tab/ });
+  await expect(external).toHaveAttribute("target", "_blank");
+  await expect(external.querySelector("svg")).toBeInTheDocument();
+  await expect(canvas.getByRole("link", { name: "internal contact" })).not.toHaveAttribute("target");
   const preview = canvas.getByRole("link", {
-    name: "Shape product work as a shared user journey on StoryLoop, external link",
+    name: "Shape product work as a shared user journey on StoryLoop, external link, opens in a new tab",
   });
 
   await expect(preview).toBeVisible();
@@ -66,7 +70,7 @@ const checkRichArticle: NonNullable<Story["play"]> = async ({
     "https://storyloop.applification.net/",
   );
   await expect(preview).toHaveAttribute("target", "_blank");
-  await expect(preview).toHaveAttribute("rel", "noreferrer");
+  await expect(preview).toHaveAttribute("rel", "noopener noreferrer");
   preview.focus();
   await expect(preview).toHaveFocus();
   await expect(

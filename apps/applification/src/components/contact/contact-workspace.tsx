@@ -1,5 +1,8 @@
 "use client";
 
+import { ContactWorkflow } from "./contact-workflow";
+
+
 import {
   Bot,
   Check,
@@ -7,7 +10,6 @@ import {
   FileText,
   FileUp,
   Link as LinkIcon,
-  Paperclip,
   Pencil,
   RotateCcw,
   ShieldCheck,
@@ -23,12 +25,10 @@ import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
   PromptInputBody,
-  PromptInputButton,
   PromptInputFooter,
   type PromptInputMessage,
   PromptInputSubmit,
   PromptInputTextarea,
-  PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
 import {
   Alert,
@@ -58,7 +58,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ManualContactBrief } from "./manual-contact-brief";
 import { contactMessageLimit, contactTextLimits } from "@/lib/contact-draft";
-import { contactAttachmentSchema } from "@/lib/contact-attachment";
+import { contactAttachmentSchema, validateContactAttachment } from "@/lib/contact-attachment";
 import type { ContactRoute } from "@/lib/contact";
 import {
   applyContactProposal,
@@ -108,7 +108,7 @@ const routes: Array<{
 
 const routePrompts: Record<ContactRoute, string> = {
   contract:
-    "Tell me about the company, the work and when you need someone. You can attach a contract brief or add a link.",
+    "Paste an existing role or project brief, or tell me about the company, the work and when you need someone. I will extract the details and ask only for what is missing.",
   product:
     "Which product are you asking about, and what would you like to know?",
   general: "What would you like Dave to know?",
@@ -183,12 +183,17 @@ export function ContactWorkspace({
   const [lastFailedMessage, setLastFailedMessage] = useState<string | null>(null);
   const [attachmentStatus, setAttachmentStatus] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [isDraggingFile, setIsDraggingFile] = useState(false);
+  const uploadingRef = useRef(false);
+  const attachmentContextRef = useRef(0);
+  const dragDepthRef = useRef(0);
   const [briefExpanded, setBriefExpanded] = useState(false);
   const [routeChooserExpanded, setRouteChooserExpanded] = useState(false);
   const [reviewMode, setReviewMode] = useState(false);
   const [manualMode, setManualMode] = useState(false);
   const [editingField, setEditingField] = useState<EditableContactField | null>(null);
   const [editingValue, setEditingValue] = useState("");
+  const [summaryNeedsReview, setSummaryNeedsReview] = useState(false);
   const [visitorApproved, setVisitorApproved] = useState(false);
   const [delivery, setDelivery] = useState<ContactDeliveryState>("idle");
   const [deliveryError, setDeliveryError] = useState<string | null>(null);
@@ -220,12 +225,16 @@ export function ContactWorkspace({
       return;
     }
 
+    attachmentContextRef.current += 1;
+    setIsDraggingFile(false);
+    dragDepthRef.current = 0;
     if (nextRoute !== "contract" && draftRef.current.attachment) {
       void deletePrivateAttachment(draftRef.current.attachment.pathname, sessionRef.current);
       setAttachmentStatus("The contract document was removed when the route changed.");
     }
 
     const nextDraft = changeContactRoute(draftRef.current, nextRoute);
+    setSummaryNeedsReview(Boolean(nextDraft.summary));
     draftRef.current = nextDraft;
     setDraft(nextDraft);
     setRouteChooserExpanded(false);
@@ -292,6 +301,8 @@ export function ContactWorkspace({
         );
       }
 
+      const firstSummary = !draftRef.current.summary ? applied.draft.summary : undefined;
+      if (!applied.draft.summary || applied.draft.summary !== draftRef.current.summary) setSummaryNeedsReview(false);
       draftRef.current = applied.draft;
       setDraft(applied.draft);
       resetDeliveryForDraftChange();
@@ -301,9 +312,10 @@ export function ContactWorkspace({
         {
           author: "assistant",
           id: Date.now() + 1,
-          text:
-            nextQuestion ??
-            "That is everything I need. Open the brief when you want to check and send it.",
+          text: [
+            firstSummary ? `Here is what I’ve captured: ${firstSummary}` : null,
+            nextQuestion ?? "That is everything I need. Open the brief when you want to check and send it.",
+          ].filter(Boolean).join("\n\n"),
         },
       ]);
       setMessage((current) => (current.trim() === opening ? "" : current));
@@ -322,6 +334,10 @@ export function ContactWorkspace({
   }
 
   function restart() {
+    attachmentContextRef.current += 1;
+    setIsDraggingFile(false);
+    dragDepthRef.current = 0;
+    setSummaryNeedsReview(false);
     setManualMode(false);
     if (draftRef.current.attachment) {
       void deletePrivateAttachment(draftRef.current.attachment.pathname, sessionRef.current);
@@ -349,16 +365,19 @@ export function ContactWorkspace({
   }
 
   async function uploadContactAttachment(file: File) {
-    if (draftRef.current.route !== "contract" || isUploading) {
+    if (draftRef.current.route !== "contract" || uploadingRef.current) {
       return;
     }
 
+    uploadingRef.current = true;
+    const context = attachmentContextRef.current;
     setIsUploading(true);
     setAttachmentStatus("Checking and storing the document privately...");
     const form = new FormData();
     form.set("file", file);
 
     try {
+      await validateContactAttachment(file);
       const response = await fetch("/api/contact/attachment", {
         method: "POST",
         headers: { "x-contact-session": sessionRef.current },
@@ -379,6 +398,11 @@ export function ContactWorkspace({
         throw new Error("Private storage returned an invalid document record. Nothing was attached.");
       }
 
+      if (context !== attachmentContextRef.current) {
+        void deletePrivateAttachment(checked.data.pathname, sessionRef.current);
+        return;
+      }
+
       const previous = draftRef.current.attachment;
       const nextDraft = setContactAttachment(draftRef.current, checked.data);
       draftRef.current = nextDraft;
@@ -390,12 +414,14 @@ export function ContactWorkspace({
         void deletePrivateAttachment(previous.pathname, sessionRef.current);
       }
     } catch (error) {
+      if (context !== attachmentContextRef.current) return;
       setAttachmentStatus(
         error instanceof Error
           ? error.message
           : "The document could not be attached. You can retry or use an HTTPS link.",
       );
     } finally {
+      uploadingRef.current = false;
       setIsUploading(false);
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -418,6 +444,7 @@ export function ContactWorkspace({
   }
 
   function editDraftField(field: EditableContactField, value: string) {
+    const changed = value !== (draftRef.current[field] ?? "");
     const nextDraft: ContactDraft = {
       ...draftRef.current,
       version: draftRef.current.version + 1,
@@ -433,6 +460,9 @@ export function ContactWorkspace({
     if (!checked.success) {
       return;
     }
+
+    if (field === "summary") setSummaryNeedsReview(false);
+    else if (changed && nextDraft.summary) setSummaryNeedsReview(true);
 
     draftRef.current = nextDraft;
     setDraft(nextDraft);
@@ -457,9 +487,11 @@ export function ContactWorkspace({
       return;
     }
 
+    const checkOverview = editingField !== "summary" && Boolean(draftRef.current.summary)
+      && editingValue.trim() !== (draftRef.current[editingField] ?? "");
     editDraftField(editingField, editingValue.trim());
-    setEditingField(null);
-    setEditingValue("");
+    setEditingField(checkOverview ? "summary" : null);
+    setEditingValue(checkOverview ? draftRef.current.summary ?? "" : "");
   }
 
   function cancelEditingField() {
@@ -540,7 +572,7 @@ export function ContactWorkspace({
   }
 
   async function sendApprovedBrief() {
-    if (!validation.valid || delivery === "delivering") {
+    if (!validation.valid || summaryNeedsReview || editingField || delivery === "delivering") {
       return;
     }
 
@@ -659,6 +691,10 @@ export function ContactWorkspace({
       <Separator />
       <div className="max-h-[min(24svh,260px)] overflow-y-auto overscroll-contain">
         <div className="flex flex-col gap-5 px-4 py-4 sm:px-5">
+          {summaryNeedsReview ? <Alert>
+            <AlertTitle>Check the overview after your correction</AlertTitle>
+            <AlertDescription>A detail changed. Update the overview to match, then save it before sending.</AlertDescription>
+          </Alert> : null}
           <section
             aria-labelledby={`${fieldPrefix}-prepared-message`}
             className="rounded-2xl bg-[var(--contact-card)] p-4 sm:p-5"
@@ -832,6 +868,7 @@ export function ContactWorkspace({
           className="min-h-11 rounded-full px-5"
           disabled={
             !validation.valid ||
+            summaryNeedsReview ||
             Boolean(editingField) ||
             delivery === "delivering" ||
             delivery === "delivered"
@@ -897,11 +934,12 @@ export function ContactWorkspace({
             className="font-heading mt-4 text-[clamp(2.75rem,6vw,4.5rem)] leading-[0.98] font-medium tracking-[-0.035em]"
             id="contact-heading"
           >
-            Start with a message. End with a checked brief.
+            Tell me about the work. Try an AI workflow.
           </h1>
           <p className="mx-auto mt-5 max-w-[690px] text-[clamp(1.0625rem,2vw,1.1875rem)] leading-[1.58] text-[var(--app-text-secondary)]">
-            The assistant structures your enquiry. The app checks the details.
-            Nothing reaches me until you review and approve it.
+            This is a working AI demo and a way to contact me. Paste a role or
+            project brief, and the assistant extracts the details and asks for
+            what is missing. Review and approve the brief before it reaches me.
           </p>
         </div>
 
@@ -909,7 +947,7 @@ export function ContactWorkspace({
           className="mt-9 overflow-hidden rounded-[24px] border border-[var(--app-border)] bg-[var(--app-card)] shadow-[0_30px_80px_-48px_#0b1220]"
           data-contact-shell
         >
-          <header className="flex min-h-14 items-center justify-between gap-4 border-b border-[var(--app-border)] px-4 sm:px-5">
+          <header className="flex min-h-14 items-center justify-between gap-2 border-b border-[var(--app-border)] px-3 sm:px-5">
             <div className="flex min-w-0 items-center gap-2.5">
               <span className="size-2 shrink-0 rounded-full bg-[var(--workflow-live)]" aria-hidden="true" />
               <p className="font-caption truncate text-[11px] font-bold tracking-[0.7px] uppercase">
@@ -920,10 +958,28 @@ export function ContactWorkspace({
                 {contactWorkflowStateLabel(workflowState)}
               </span>
             </div>
-            <Button className="min-h-11" onClick={restart} size="sm" type="button" variant="ghost">
-              <RotateCcw data-icon="inline-start" />
-              Restart
-            </Button>
+            <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+              <Button
+                className="min-h-11 gap-2 px-2.5 motion-reduce:transition-none"
+                disabled={isPreparing || isUploading || delivery !== "idle"}
+                onClick={() => {
+                  if (manualMode) {
+                    setManualMode(false);
+                    requestAnimationFrame(() => messageInputRef.current?.focus());
+                  } else openManualBrief();
+                }}
+                size="sm"
+                type="button"
+                variant="ghost"
+              >
+                {manualMode ? <Sparkles aria-hidden="true" className="size-4" /> : <FileText aria-hidden="true" className="size-4" />}
+                {manualMode ? "Use AI" : "Use form"}
+              </Button>
+              <Button className="min-h-11 gap-2 px-2.5 motion-reduce:transition-none" onClick={restart} size="sm" type="button" variant="ghost">
+                <RotateCcw aria-hidden="true" className="size-4" />
+                Restart
+              </Button>
+            </div>
           </header>
 
           <div
@@ -936,11 +992,10 @@ export function ContactWorkspace({
               onRoute={chooseRoute}
               onField={editDraftField}
               onReview={() => { setManualMode(false); setReviewMode(true); setBriefExpanded(true); setPrepareError(null); }}
-              onAssistant={() => setManualMode(false)}
             /> : <Conversation className="bg-[var(--app-section)]">
-              <ConversationContent className="mx-auto w-full max-w-[820px] gap-4 px-3 py-4 sm:gap-5 sm:px-6 sm:py-8">
-                <Message from="assistant">
-                  <MessageContent className="w-full max-w-[720px] gap-3 rounded-2xl bg-[var(--contact-card)] p-3 text-base leading-[1.55] sm:gap-4 sm:p-5">
+              <ConversationContent className="mx-auto w-full max-w-[920px] gap-4 px-3 py-4 sm:gap-5 sm:px-5 sm:py-8" data-contact-conversation>
+                <Message className="max-w-full" from="assistant">
+                  <MessageContent className="w-full max-w-full gap-3 rounded-2xl bg-[var(--contact-card)] p-3 text-base leading-[1.55] sm:gap-4 sm:p-5">
                     <AssistantMessageLabel />
                     <p>
                       <span className="sm:hidden">
@@ -1013,7 +1068,7 @@ export function ContactWorkspace({
                       }
                     >
                       {item.author === "assistant" ? <AssistantMessageLabel /> : null}
-                      <p>{item.text}</p>
+                      <p className="whitespace-pre-line">{item.text}</p>
                     </MessageContent>
                   </Message>
                 ))}
@@ -1053,8 +1108,8 @@ export function ContactWorkspace({
               <ConversationScrollButton aria-label="Scroll to the latest message" />
             </Conversation>}
 
-            <div hidden={manualMode} className="shrink-0 border-t border-[var(--app-border)] bg-[var(--app-card)] p-3 sm:p-4">
-              <div className="mx-auto max-w-[820px]">
+            <div hidden={manualMode} className="shrink-0 border-t border-[var(--app-border)] bg-[var(--app-card)] p-3 sm:px-5 sm:py-4">
+              <div className="mx-auto w-full max-w-[880px]" data-contact-composer>
                 {deliveryResult ? (
                   <Alert
                     aria-live="polite"
@@ -1164,11 +1219,45 @@ export function ContactWorkspace({
                   ) : null}
                   <PromptInput
                     data-invalid={message.length > contactMessageLimit}
+                    onDragEnterCapture={(event) => {
+                      if (!event.dataTransfer.types.includes("Files")) return;
+                      event.preventDefault();
+                      dragDepthRef.current += 1;
+                      if (route === "contract") setIsDraggingFile(true);
+                    }}
+                    onDragOverCapture={(event) => {
+                      if (!event.dataTransfer.types.includes("Files")) return;
+                      event.preventDefault();
+                      event.stopPropagation();
+                      event.dataTransfer.dropEffect = route === "contract" && !isUploading ? "copy" : "none";
+                    }}
+                    onDragLeaveCapture={() => {
+                      dragDepthRef.current = Math.max(0, dragDepthRef.current - 1);
+                      if (!dragDepthRef.current) setIsDraggingFile(false);
+                    }}
+                    onDropCapture={(event) => {
+                      if (!event.dataTransfer.types.includes("Files")) return;
+                      // Keep private documents out of PromptInput's AI attachment handling.
+                      event.preventDefault();
+                      event.stopPropagation();
+                      dragDepthRef.current = 0;
+                      setIsDraggingFile(false);
+                      if (route !== "contract" || isUploading) return;
+                      if (event.dataTransfer.files.length !== 1) {
+                        setAttachmentStatus("Please attach one PDF or DOCX at a time.");
+                        return;
+                      }
+                      const file = event.dataTransfer.files[0];
+                      if (file) void uploadContactAttachment(file);
+                    }}
                     className={cn(
                       message.length > contactMessageLimit
                         ? "[&>[data-slot=input-group]]:border-[var(--contact-error)]! [&>[data-slot=input-group]:focus-within]:border-[var(--contact-error)]!"
                         : "[&>[data-slot=input-group]]:border-[var(--app-border)]! [&>[data-slot=input-group]:focus-within]:border-[var(--app-accent)]!",
-                      "[&>[data-slot=input-group]]:h-14! [&>[data-slot=input-group]]:flex-row! [&>[data-slot=input-group]]:bg-[var(--contact-input)] [&>[data-slot=input-group]]:opacity-100! [&>[data-slot=input-group]]:ring-0! [&>[data-slot=input-group]]:shadow-none sm:[&>[data-slot=input-group]]:h-auto! sm:[&>[data-slot=input-group]]:flex-col!",
+                      "[&>[data-slot=input-group]]:bg-[var(--contact-input)] [&>[data-slot=input-group]]:opacity-100! [&>[data-slot=input-group]]:ring-0! [&>[data-slot=input-group]]:shadow-none sm:[&>[data-slot=input-group]]:h-auto! sm:[&>[data-slot=input-group]]:flex-col!",
+                      route === "contract"
+                        ? "[&>[data-slot=input-group]]:h-auto! [&>[data-slot=input-group]]:flex-col!"
+                        : "[&>[data-slot=input-group]]:h-14! [&>[data-slot=input-group]]:flex-row!",
                       route
                         ? "[&>[data-slot=input-group]]:rounded-t-none [&>[data-slot=input-group]]:rounded-b-2xl"
                         : "[&>[data-slot=input-group]]:rounded-2xl",
@@ -1182,33 +1271,56 @@ export function ContactWorkspace({
                         aria-describedby={message.length > contactMessageLimit ? `${fieldPrefix}-message-error` : undefined}
                         className="max-h-28 min-h-11 py-2.5 text-base leading-[1.5] text-[var(--app-text-primary)] caret-[var(--app-action)] placeholder:text-[var(--app-text-secondary)] placeholder:opacity-100 sm:max-h-48 sm:min-h-14 sm:py-2"
                         onChange={(event) => setMessage(event.target.value)}
-                        placeholder={route ? "Add a detail..." : "Describe your enquiry..."}
+                        placeholder={route === "contract" && !draft.need ? "Paste a role or project brief..." : route ? "Add a detail or correction..." : "Describe your enquiry..."}
                         ref={messageInputRef}
                         value={message}
                       />
                     </PromptInputBody>
-                    <PromptInputFooter className="w-auto! shrink-0 self-stretch p-2! sm:w-full! sm:self-auto sm:px-2.5! sm:pt-1.5! sm:pb-2!">
+                    <PromptInputFooter className={cn(
+                      "shrink-0 p-2! sm:w-full! sm:px-2.5! sm:pt-1.5! sm:pb-2!",
+                      route === "contract" ? "w-full! flex-col items-stretch gap-2" : "w-auto! self-stretch sm:self-auto",
+                    )}>
+                      <div className="flex w-full items-center justify-between gap-2">
+                        <PromptInputSubmit
+                          className="ml-auto size-10 rounded-xl"
+                          disabled={!message.trim() || isPreparing || message.length > contactMessageLimit}
+                          status={isPreparing ? "submitted" : prepareError ? "error" : "ready"}
+                        />
+                      </div>
                       {route === "contract" ? (
-                        <PromptInputTools>
-                          <PromptInputButton
-                            aria-label="Attach a contract brief"
-                            className="size-10 p-0 sm:h-auto sm:w-auto sm:px-2.5"
-                            disabled={isUploading}
-                            onClick={() => fileInputRef.current?.click()}
-                            size="sm"
-                          >
-                            <Paperclip data-icon="inline-start" />
-                            <span className="hidden sm:inline">
-                              {isUploading ? "Attaching..." : "Attach brief"}
-                            </span>
-                          </PromptInputButton>
-                        </PromptInputTools>
+                        <div data-contact-dropzone data-dragging={isDraggingFile} className={cn(
+                          "w-full rounded-xl border border-dashed transition-colors motion-reduce:transition-none",
+                          isDraggingFile ? "border-[var(--app-action)] bg-[var(--contact-selected)]" : "border-[var(--app-border)] bg-[var(--contact-card)]",
+                        )}>
+                          {draft.attachment && !isDraggingFile && !isUploading ? (
+                            <div className="flex min-h-16 items-center gap-2 px-3 py-1">
+                              <FileText aria-hidden="true" className="size-5 shrink-0 text-[var(--app-action)]" />
+                              <div className="min-w-0 flex-1">
+                                <p className="truncate text-sm font-semibold text-[var(--app-text-primary)]">{draft.attachment.filename}</p>
+                                <p className="text-xs text-[var(--app-text-muted)]">{formatFileSize(draft.attachment.size)} · Private attachment</p>
+                              </div>
+                              <Button className="min-h-11 px-2" variant="ghost" type="button" onClick={removeContactAttachment}>Remove</Button>
+                            </div>
+                          ) : (
+                            <Button
+                              aria-label="Upload a contract brief"
+                              className="h-auto min-h-20 w-full justify-center gap-3 rounded-xl px-3 py-3 whitespace-normal text-left"
+                              disabled={isUploading}
+                              onClick={() => fileInputRef.current?.click()}
+                              variant="ghost"
+                              type="button"
+                            >
+                              <FileUp aria-hidden="true" className="size-6 shrink-0 text-[var(--app-action)]" />
+                              <span className="min-w-0">
+                                <span className="block text-sm text-[var(--app-label-text)]">
+                                  {isUploading ? "Storing your brief privately…" : isDraggingFile ? "Drop your brief here" : <><span className="font-semibold underline underline-offset-4">Upload a brief</span> or drag and drop</>}
+                                </span>
+                                <span className="mt-1 block text-xs font-normal text-[var(--app-text-muted)]">Optional PDF or DOCX · up to 4 MB</span>
+                              </span>
+                            </Button>
+                          )}
+                        </div>
                       ) : null}
-                      <PromptInputSubmit
-                        className="ml-auto size-10 rounded-xl"
-                        disabled={!message.trim() || isPreparing || message.length > contactMessageLimit}
-                        status={isPreparing ? "submitted" : prepareError ? "error" : "ready"}
-                      />
                     </PromptInputFooter>
                   </PromptInput>
                 </div>
@@ -1218,6 +1330,7 @@ export function ContactWorkspace({
                   </p>
                 ) : null}
                 <input
+                  aria-label="Contract brief document"
                   accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.docx"
                   hidden
                   onChange={(event) => {
@@ -1253,7 +1366,7 @@ export function ContactWorkspace({
                     </p>
                   ) : route === "contract" ? (
                     <p className="text-[12px] text-[var(--app-text-muted)]">
-                      Optional PDF or DOCX, 4 MB maximum. Documents stay out of the AI conversation.
+                      Files are attached privately, not read by AI. Paste the text above for AI help.
                     </p>
                   ) : null}
                 </div>
@@ -1263,14 +1376,12 @@ export function ContactWorkspace({
             </div>
           </div>
         </div>
-
-        <div className="mx-auto mt-3 flex max-w-[820px] flex-wrap items-center justify-between gap-3">
-          <Button disabled={isPreparing || delivery !== "idle"} onClick={openManualBrief} variant="ghost" type="button">Prefer to fill in the details yourself?</Button>
-          <a className="text-sm text-[var(--app-label-text)] underline underline-offset-4" href="https://www.linkedin.com/in/hudsond/" target="_blank" rel="noreferrer">Contact Dave on LinkedIn</a>
-        </div>
-        <div className="mx-auto mt-5 flex max-w-[820px] items-start gap-3 px-1 text-sm leading-[1.5] text-[var(--app-text-secondary)]">
-          <ShieldCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-[var(--app-action)]" />
-          <p>Your enquiry is only sent after you review and approve it.</p>
+        <div className="mt-6" data-contact-workflow-section>
+          <div className="mx-auto flex w-full max-w-[920px] items-start justify-center gap-3 px-3 pt-3 pb-5 text-center text-sm leading-[1.5] text-[var(--app-text-secondary)] sm:px-5">
+            <ShieldCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-[var(--app-action)]" />
+            <p>Your enquiry is only sent after you review and approve it.</p>
+          </div>
+          <ContactWorkflow />
         </div>
       </div>
 

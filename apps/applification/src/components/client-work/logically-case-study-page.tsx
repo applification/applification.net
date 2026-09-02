@@ -1,13 +1,12 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import Link from "next/link";
+import { CaseStudyVisual } from "./case-study-visual";
+import { CaseStudyContact, CaseStudyFacts } from "./case-study-contact";
+import { ArrowUpRight } from "lucide-react";
 import { DetailContextRail } from "@/components/detail-context-rail";
-import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 
 const metrics = [
   ["6 months", "Rebuild to production"],
   ["Days to minutes", "Routine UI change time"],
   ["Several each day", "Production releases"],
-  ["£500", "Runaway model cost found"],
 ];
 
 const decisions = [
@@ -42,7 +41,7 @@ export function LogicallyCaseStudyPage() {
               backHref="/client-work#logically"
               backLabel="Back to Client work"
               family="Logically"
-              detail="2024–2026"
+              detail="October 2024 to May 2026"
             />
 
             <div className="mt-8 grid gap-8 min-[1024px]:grid-cols-[minmax(0,760px)_minmax(260px,340px)] min-[1024px]:items-end min-[1024px]:justify-between">
@@ -58,7 +57,8 @@ export function LogicallyCaseStudyPage() {
               </p>
             </div>
 
-            <dl className="mt-10 grid gap-px overflow-hidden rounded-[18px] bg-[var(--app-border)] min-[560px]:grid-cols-2 min-[1024px]:grid-cols-4">
+            <CaseStudyFacts role="Principal Frontend Engineer, then Principal AI Product Engineer" engagement="Full-time at Logically" stack="Next.js, TypeScript, Vercel AI SDK, MCP" />
+            <dl className="mt-10 grid gap-px overflow-hidden rounded-[18px] bg-[var(--app-border)] min-[720px]:grid-cols-3">
               {metrics.map(([value, label]) => (
                 <div className="bg-[var(--app-card)] px-5 py-5" key={label}>
                   <dd className="font-heading text-[28px] leading-none font-medium min-[720px]:text-[32px]">
@@ -70,6 +70,7 @@ export function LogicallyCaseStudyPage() {
                 </div>
               ))}
             </dl>
+            <CaseStudyVisual project="logically" />
           </div>
         </header>
 
@@ -146,30 +147,19 @@ export function LogicallyCaseStudyPage() {
               </p>
             </div>
             <a
-              className={`inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] min-[960px]:self-end ${focusClasses}`}
+              className={`link-sweep inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] hover:text-[var(--app-sky-text)] min-[960px]:self-end ${focusClasses}`}
               href="https://logically.ai"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
             >
-              Visit Logically
+              <span className="link-sweep-label">Visit Logically</span>
               <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={2} />
               <span className="sr-only">, opens in a new tab</span>
             </a>
           </div>
         </section>
 
-        <nav aria-label="Case study next steps" className="bg-[var(--app-muted-section)] px-6 py-10 min-[720px]:px-12 min-[1440px]:px-[120px]">
-          <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-4 min-[680px]:flex-row min-[680px]:items-center min-[680px]:justify-between">
-            <Link className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href="/client-work#logically">
-              <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={2} />
-              Return to Client work
-            </Link>
-            {isContactWorkflowAvailable() ? <Link className={`inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--app-label-text)] underline decoration-current/45 underline-offset-4 hover:text-[var(--app-sky-text)] ${focusClasses}`} href={buildContactHref({ route: "contract" })}>
-              Continue to the contract action
-              <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
-            </Link> : null}
-          </div>
-        </nav>
+        <CaseStudyContact nextHref="/client-work/eruptiv" nextLabel="Read the Eruptiv case" />
       </article>
     </main>
   );

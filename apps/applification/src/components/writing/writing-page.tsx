@@ -90,10 +90,10 @@ function FeaturedWriting({ entry }: { entry: WritingEntry }) {
           </p>
           <h2 className="font-heading max-w-[760px] text-[36px] leading-[1.08] font-medium text-[var(--app-text-primary)] min-[720px]:text-[40px]">
             <Link
-              className="decoration-[var(--writing-accent-text)] decoration-2 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
+              className="link-sweep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
               href={`/writing/${entry.slug}`}
             >
-              {entry.title}
+              <span className="link-sweep-label">{entry.title}</span>
             </Link>
           </h2>
           <p className="max-w-[700px] text-base leading-[1.58] text-[var(--app-text-secondary)]">

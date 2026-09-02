@@ -12,10 +12,10 @@ type ContractCtaProps = {
 
 export function ContractCta({
   actionLabel = "Discuss a contract",
-  description = "I can join an existing team or assemble the product, design and engineering team for a complete build. Remote across the UK.",
-  eyebrow = "CONTRACT ENGINEERING · PROJECT TEAMS",
+  description = "Available immediately for remote UK contracts through Applification Ltd. I join your team to build React and Next.js products, improve existing frontends and deliver production AI.",
+  eyebrow = "AVAILABLE IMMEDIATELY · REMOTE UK",
   layout = "default",
-  title = "Need a senior product engineer, or a small team for the whole build?",
+  title = "Need a senior engineer for your next release?",
   variant = "accent",
 }: ContractCtaProps = {}) {
   if (!isContactWorkflowAvailable()) {

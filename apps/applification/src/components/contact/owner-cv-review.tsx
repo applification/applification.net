@@ -1,3 +1,4 @@
+import { ExternalLink } from "@/components/external-link";
 import { AlertTriangle, CheckCircle2, FileText, LockKeyhole, ShieldCheck, XCircle } from "lucide-react";
 import { contactReviewRows, type ContactCvReviewMetadata } from "@/lib/contact-cv-review";
 
@@ -52,24 +53,20 @@ export function OwnerCvReview({
                   </dt>
                   <dd className="min-w-0 text-base leading-7 break-words text-[var(--app-text-primary)]">
                     {label === "Contract brief link" ? (
-                      <a
-                        className="font-semibold text-[var(--app-label-text)] underline decoration-[var(--app-border)] underline-offset-4 hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)]"
+                      <ExternalLink
+                        className="link-sweep font-semibold text-[var(--app-label-text)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)]"
                         href={value}
-                        rel="noreferrer"
-                        target="_blank"
                       >
-                        {value}
-                      </a>
+                        <span className="link-sweep-label">{value}</span>
+                      </ExternalLink>
                     ) : label === "Private document" && attachmentUrl ? (
-                      <a
-                        className="inline-flex min-h-11 items-center gap-2 font-semibold text-[var(--app-label-text)] underline decoration-[var(--app-border)] underline-offset-4 hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)]"
+                      <ExternalLink
+                        className="link-sweep inline-flex min-h-11 items-center gap-2 font-semibold text-[var(--app-label-text)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--app-focus)]"
                         href={attachmentUrl}
-                        rel="noreferrer"
-                        target="_blank"
                       >
-                        <FileText aria-hidden="true" className="size-4" />
-                        Open {value}
-                      </a>
+                        <span className="link-sweep-label"><FileText aria-hidden="true" className="size-4" />
+                        Open {value}</span>
+                      </ExternalLink>
                     ) : (
                       value
                     )}

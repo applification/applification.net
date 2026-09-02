@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 
 const navigation = [
   { href: "/", label: "Home" },
-  { href: "/products", label: "Products" },
   { href: "/client-work", label: "Client work" },
+  { href: "/products", label: "Products" },
   { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -78,9 +78,6 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
   const visibleNavigation = contactAvailable
     ? navigation
     : navigation.filter((item) => item.href !== "/contact");
-  const activeIndicatorTransition = reduceMotion
-    ? { duration: 0 }
-    : { type: "spring" as const, stiffness: 430, damping: 36, mass: 0.7 };
 
   useEffect(() => {
     let previousY = Math.max(0, window.scrollY);
@@ -141,31 +138,30 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
             aria-label="Primary navigation"
             className="site-header-navigation hidden items-center gap-5 min-[820px]:flex min-[1024px]:gap-[30px]"
           >
-            <LayoutGroup id="primary-navigation">
-              {visibleNavigation.map((item) => {
-                const current = isCurrentPath(pathname, item.href);
+            {visibleNavigation.map((item) => {
+              const current = isCurrentPath(pathname, item.href);
 
-                return (
-                  <Link
-                    aria-current={current ? "page" : undefined}
-                    className={`relative isolate inline-flex min-h-10 items-center text-base font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
-                    href={item.href}
-                    key={item.href}
-                  >
-                    {current ? (
-                      <motion.span
-                        aria-hidden="true"
-                        className="absolute -inset-x-2 inset-y-1 -z-10 rounded-full bg-[var(--header-nav-selected,var(--app-selected))]"
-                        data-testid="active-navigation-highlight"
-                        layoutId="active-link"
-                        transition={activeIndicatorTransition}
-                      />
-                    ) : null}
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </LayoutGroup>
+              return (
+                <Link
+                  aria-current={current ? "page" : undefined}
+                  className={`relative isolate inline-flex min-h-10 items-center text-base font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
+                  href={item.href}
+                  key={item.href}
+                >
+                  {/* Keep the pill in the link's CSS coordinate space. Shared
+                      layout projection can mistake sticky scroll restoration
+                      for a page-length movement. */}
+                  {current ? (
+                    <span
+                      aria-hidden="true"
+                      className="absolute -inset-x-2 inset-y-1 -z-10 rounded-full bg-[var(--header-nav-selected,var(--app-selected))]"
+                      data-testid="active-navigation-highlight"
+                    />
+                  ) : null}
+                  {item.label}
+                </Link>
+              );
+            })}
             <ThemeSwitcher className="site-header-theme" />
           </nav>
 
