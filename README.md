@@ -15,10 +15,15 @@ packages/          Shared packages when the project needs them
 ```bash
 bun install
 bun run dev
+bun run dev:tailscale
 bun run build
 bun run lint
 bun run typecheck
 ```
+
+`bun run dev` uses Portless and serves the site at `https://applification.localhost` with a trusted local certificate. The first run creates and trusts Portless's local certificate authority. The `.localhost` name only works on the Mac running the server because every device resolves it to its own loopback address.
+
+`bun run dev:tailscale` also exposes the site through Tailscale HTTPS and prints the assigned `https://rufus.tail12a0a0.ts.net[:port]` URL. Use that URL from another Mac, another tailnet device or T3 Code's shared preview. Portless chooses a free Tailscale HTTPS port, so existing Serve routes are preserved. Use `bun run dev:direct` only when the proxy is unsuitable; it retains the old `http://localhost:3333` server.
 
 ## Railway
 
