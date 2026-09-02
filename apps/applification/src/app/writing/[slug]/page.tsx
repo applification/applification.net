@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraph } from "@/lib/social-metadata";
 import { notFound } from "next/navigation";
 import { WritingArticle } from "@/components/writing/writing-article";
 import { getWriting, getWritingBySlug } from "@/lib/writing";
@@ -30,6 +31,7 @@ export async function generateMetadata({
     description: entry.summary,
     alternates: { canonical: `/writing/${entry.slug}` },
     openGraph: {
+      ...defaultOpenGraph,
       type: "article",
       title: entry.title,
       description: entry.summary,

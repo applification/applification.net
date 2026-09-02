@@ -9,12 +9,15 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/client-work/eruptiv" },
   openGraph: {
+    type: "article",
+    siteName: "Applification",
+    locale: "en_GB",
     title: "Eruptiv case study | Applification",
     description,
     url: "/client-work/eruptiv",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Eruptiv case study | Applification",
     description,
   },

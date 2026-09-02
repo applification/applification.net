@@ -9,12 +9,15 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/client-work/logically" },
   openGraph: {
+    type: "article",
+    siteName: "Applification",
+    locale: "en_GB",
     title: "Logically case study | Applification",
     description,
     url: "/client-work/logically",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Logically case study | Applification",
     description,
   },

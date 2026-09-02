@@ -9,12 +9,15 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/client-work/peppy-health" },
   openGraph: {
+    type: "article",
+    siteName: "Applification",
+    locale: "en_GB",
     title: "Peppy Health case study | Applification",
     description,
     url: "/client-work/peppy-health",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Peppy Health case study | Applification",
     description,
   },

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraph } from "@/lib/social-metadata";
 import { notFound } from "next/navigation";
 import { ContactWorkspace } from "@/components/contact/contact-workspace";
 import {
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     "Prepare a contract, product or general enquiry with an AI-assisted brief that you review before sending.",
   alternates: { canonical: "/contact" },
   openGraph: {
+    ...defaultOpenGraph,
     title: "Contact Dave Hudson | Applification",
     description:
       "Prepare a checked enquiry and review every detail before it reaches Dave.",
