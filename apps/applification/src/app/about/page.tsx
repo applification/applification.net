@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraph } from "@/lib/social-metadata";
 import { redirect } from "next/navigation";
 import { AboutPage as AboutPageContent } from "@/components/about/about-page";
 import { contractPositioningDescriptions } from "@/lib/contract-positioning";
@@ -9,12 +10,13 @@ export const metadata: Metadata = {
   description: contractPositioningDescriptions.about,
   alternates: { canonical: "/about" },
   openGraph: {
+    ...defaultOpenGraph,
     title: "About Dave Hudson | Applification",
     description: contractPositioningDescriptions.about,
     url: "/about",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "About Dave Hudson | Applification",
     description: contractPositioningDescriptions.about,
   },

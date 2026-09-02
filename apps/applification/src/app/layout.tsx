@@ -14,7 +14,7 @@ import "./globals.css";
 const themeBootstrapScript = `(function(){try{var theme=localStorage.getItem("applification-theme");if(theme==="light"||theme==="dark"){document.documentElement.dataset.theme=theme}}catch(error){}})()`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://applification.net"),
+  metadataBase: new URL("https://www.applification.net"),
   title: {
     default: `Dave Hudson | ${contractPositioning.role}`,
     template: "%s | Applification",
@@ -43,9 +43,7 @@ export const metadata: Metadata = {
     description: contractPositioningDescriptions.site,
   },
   twitter: {
-    card: "summary",
-    title: `Dave Hudson | ${contractPositioning.role}`,
-    description: contractPositioningDescriptions.site,
+    card: "summary_large_image",
   },
 };
 

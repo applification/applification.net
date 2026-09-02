@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraph } from "@/lib/social-metadata";
 import { StoryLoopsProductPage } from "@/components/products/storyloops-product-page";
 
 export const metadata: Metadata = {
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Buy StoryLoops as a complete collaborative story-mapping application, deploy it with your coding agent, and own the source.",
   openGraph: {
+    ...defaultOpenGraph,
     title: "StoryLoops | Applification",
     description:
       "A complete collaborative story-mapping product, source code and agent installation playbook.",
