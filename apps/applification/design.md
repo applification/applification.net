@@ -7,7 +7,7 @@ description: "Design and review user-visible work for applification.net. Use for
 
 Applification is Dave Hudson's working site. It explains how he builds and leads software work, shows commercial evidence, and gives people a direct route to discuss a contract. The site should read as the work of one experienced engineer with editorial judgment, not as a generic agency or SaaS template.
 
-The visual identity comes from a deliberate contrast. Newsreader gives conclusions and page turns an editorial voice. Geist and the mono faces make delivery details, evidence, and product interfaces feel exact. Cool neutral surfaces keep that contrast quiet. Sky blue marks action and orientation.
+The visual identity comes from a deliberate contrast. Newsreader gives conclusions and page turns an editorial voice. Geist and the mono faces make delivery details, evidence, and product interfaces feel exact. Slate-blue surfaces connect the light and dark themes. Sky blue marks action and orientation.
 
 ## Scope and authority
 
@@ -46,8 +46,8 @@ The page should feel authored. A strong line break, a useful diagram, a product 
 
 The shared shell uses a compact palette:
 
-- Cool neutral canvas and section colours from `--app-bg`, `--app-bg-end`, `--app-section`, `--app-muted-section`, and `--app-card`.
-- Near-black and near-white text from `--app-text-primary` with quieter copy from `--app-text-secondary` and `--app-text-muted`.
+- Slate-blue canvas and section colours from `--app-bg`, `--app-bg-end`, `--app-hero-end`, `--app-section`, `--app-muted-section`, and `--app-card`.
+- Deep navy and near-white text from `--app-text-primary` with quieter copy from `--app-text-secondary` and `--app-text-muted`.
 - Sky blue action and orientation colours from `--app-action`, `--app-label-text`, `--app-sky-text`, and `--app-focus`.
 - Semantic status colours only when success, warning, error, or workflow ownership has meaning.
 
@@ -55,13 +55,15 @@ Use semantic variables. Do not add a raw colour to an ordinary page component wh
 
 Colour must explain something. Use it for action, state, product identity, data series, or orientation. Do not give peer facts different colours merely to make a panel lively. A section normally has one accent family. If hierarchy is weak, fix type, spacing, alignment, or content order before adding another colour.
 
-Peer client cases and their evidence notes use the shared neutral surfaces. Distinguish clients through their evidence and composition, not separate feature backgrounds.
+Peer client cases and their evidence notes use the shared slate-blue surfaces. Distinguish clients through their evidence and composition, not separate feature backgrounds.
 
 Featured editorial content uses scale and composition for emphasis. Do not turn `--app-selected` into a large page surface; reserve it for selected states and compact orientation cues.
 
-Choice controls nested inside muted cards keep a neutral `--app-card` fill when selected. Use the action border, type weight, and control state to show the choice instead of adding a blue background.
+Choice controls nested inside muted cards keep the `--app-card` fill when selected. Use the action border, type weight, and control state to show the choice instead of adding a blue background.
 
 Theme counterparts preserve the same semantic role and comparable emphasis, not the same literal colour. Light mode uses a deeper cyan-blue for readable accent text; dark mode may use a paler cyan. Do not copy a bright dark-mode text value onto a light surface when it loses contrast.
+
+Light mode uses a muted grey-blue canvas, slate section bands, and pale cards. Keep saturation low so the blue reads as an undertone. The homepage hero deepens from the canvas colour into a darker slate gradient; ordinary page backgrounds and sections stay flat.
 
 Keep text contrast at WCAG AA. In particular, do not replace the accessible light `--app-text-muted` value with the lighter value found in older pen frames.
 
@@ -104,6 +106,8 @@ Do not force every section into a card grid. Repeated containers are useful only
 
 Use a subtle canvas transition where the current shell calls for it. Do not introduce decorative gradients, glows, glass panels, or ornamental shadows into the shared site language.
 
+The desktop header is the glass exception. At 820 pixels and wider it stays at the top while content scrolls underneath. After scrolling, use a strongly tinted background, restrained backdrop blur and a fine separator to keep navigation readable. Keep the initial header opaque, preserve the product theme, and use an opaque fallback when blur is unsupported or reduced transparency is requested. Anchor targets need 80 pixels of clearance below the header.
+
 ## Components and interaction
 
 Reuse established components and shadcn controls before adding new markup. Keep colour and type in semantic variables or component variants. Use component `className` values mainly for layout and responsive composition.
@@ -141,6 +145,8 @@ Light and dark themes are both first-class for the shared site. Product interfac
 ## Motion
 
 Motion should explain state or direction. The homepage working-method sequence, menu transitions, and theme transition are examples of motion with a job.
+
+The theme toggle uses a 400 millisecond circular reveal expanding from the control. Capture final colours together so controls do not lag behind the reveal. Reduced motion and browsers without View Transitions switch immediately.
 
 Keep one orchestrated motion idea per section. Do not add ambient movement to make a static composition feel more expensive. Respect `prefers-reduced-motion`, preserve the final state without animation, and never require motion to understand the content.
 
@@ -208,3 +214,5 @@ Known current limitations:
 - `PageShell` is legacy and should not be treated as the preferred page pattern.
 
 When repeated review feedback exposes a missing rule, add the narrowest observable correction here. Put repeatable mechanics in code and mechanical failures in tests.
+
+The desktop sticky header contracts from 64px to 40px when scrolling down beyond 80px, and expands immediately on upward scrolling. The compact version uses the logo mark alone, 13px navigation labels and a 32px theme control. Its original layout space remains reserved to prevent scroll jumps. CSS transitions last 220ms and are disabled for reduced motion; visible keyboard focus restores the full header. Mobile keeps the full static header.

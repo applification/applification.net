@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect } from "storybook/test";
+import { expect, waitFor } from "storybook/test";
 import HomePage from "@/app/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -87,4 +87,42 @@ export const MobileDark: Story = {
     viewport: { value: "mobile", isRotated: false },
   },
   play: checkCommercialEvidenceOrder,
+};
+
+const checkStickyHeader: NonNullable<Story["play"]> = async ({ canvasElement }) => {
+  const header = canvasElement.querySelector("header")!;
+  const target = canvasElement.querySelector("#client-work")!;
+  const surface = header.querySelector(".site-header-surface")!;
+  try {
+    window.scrollTo(0, 420);
+    await waitFor(() => {
+      expect(header).toHaveAttribute("data-scrolled", "true");
+      expect(header.getBoundingClientRect().top).toBe(0);
+    });
+    await waitFor(() => {
+      expect(surface.getBoundingClientRect().height).toBe(40);
+      expect(window.scrollY).toBe(420);
+    });
+    window.scrollTo(0, 419);
+    await waitFor(() => {
+      expect(header).toHaveAttribute("data-compact", "false");
+      expect(surface.getBoundingClientRect().height).toBe(64);
+      expect(window.scrollY).toBe(419);
+    });
+    target.scrollIntoView({ block: "start" });
+    await waitFor(() => {
+      expect(target.getBoundingClientRect().top).toBeGreaterThanOrEqual(64);
+      expect(target.getBoundingClientRect().top).toBeLessThanOrEqual(81);
+    });
+  } finally {
+    window.scrollTo(0, 0);
+    await waitFor(() => expect(header).toHaveAttribute("data-scrolled", "false"));
+  }
+};
+
+export const StickyHeaderLight: Story = { play: checkStickyHeader };
+
+export const StickyHeaderDark: Story = {
+  globals: { theme: "dark" },
+  play: checkStickyHeader,
 };

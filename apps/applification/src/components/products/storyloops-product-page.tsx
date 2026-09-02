@@ -105,7 +105,6 @@ function StoryLoopsHero() {
         <DetailContextRail
           backHref="/products"
           backLabel="Product index"
-          className="text-[#0284c7]"
           detail="StoryLoops"
           family="Products"
         />

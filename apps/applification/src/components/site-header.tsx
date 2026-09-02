@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 
 const navigation = [
+  { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/client-work", label: "Client work" },
   { href: "/writing", label: "Writing" },
@@ -36,7 +37,7 @@ function getProductHeaderTheme(pathname: string | null) {
 }
 
 function isCurrentPath(pathname: string | null, href: string) {
-  return pathname === href || pathname?.startsWith(`${href}/`) === true;
+  return pathname === href || (href !== "/" && pathname?.startsWith(`${href}/`) === true);
 }
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -69,6 +70,8 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
   const productHeaderTheme = getProductHeaderTheme(pathname);
   const reduceMotion = useReducedMotion();
   const [menuState, setMenuState] = useState({ open: false, pathname });
+  const [scrolled, setScrolled] = useState(false);
+  const [compact, setCompact] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const menuOpen = menuState.pathname === pathname && menuState.open;
@@ -78,6 +81,20 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
   const activeIndicatorTransition = reduceMotion
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 430, damping: 36, mass: 0.7 };
+
+  useEffect(() => {
+    let previousY = Math.max(0, window.scrollY);
+    const syncScroll = () => {
+      const y = Math.max(0, window.scrollY);
+      setScrolled(y > 8);
+      if (y <= 80 || y < previousY) setCompact(false);
+      else if (y > previousY) setCompact(true);
+      previousY = y;
+    };
+    syncScroll();
+    window.addEventListener("scroll", syncScroll, { passive: true });
+    return () => window.removeEventListener("scroll", syncScroll);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -99,72 +116,77 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
 
   return (
     <header
-      className="relative z-40 h-16 w-full shrink-0 bg-[var(--app-bg)] transition-colors duration-300 motion-reduce:transition-none"
+      className="site-header relative z-40 h-16 w-full shrink-0"
       data-product-theme={productHeaderTheme ?? undefined}
+      data-scrolled={scrolled}
+      data-compact={compact}
     >
-      <div className="mx-auto flex h-full w-full items-center justify-between px-5 min-[700px]:w-[calc(100%-40px)] min-[700px]:max-w-[1200px] min-[700px]:px-0 min-[1024px]:w-[calc(100%-48px)]">
-        <Link
-          className={`inline-flex min-h-11 items-center gap-2.5 text-[var(--app-text-primary)] ${focusClasses}`}
-          href="/"
-          aria-label="Applification home"
-        >
-          <span
-            aria-hidden="true"
-            className="block h-[34px] w-12 bg-current [-webkit-mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat] [mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat]"
-          />
-          <span className="font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[520px]:block">
-            APPLIFICATION
-          </span>
-        </Link>
-
-        <nav
-          aria-label="Primary navigation"
-          className="hidden items-center gap-5 min-[700px]:flex min-[1024px]:gap-[30px]"
-        >
-          <LayoutGroup id="primary-navigation">
-            {visibleNavigation.map((item) => {
-              const current = isCurrentPath(pathname, item.href);
-
-              return (
-                <Link
-                  aria-current={current ? "page" : undefined}
-                  className={`relative isolate inline-flex min-h-10 items-center text-base font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
-                  href={item.href}
-                  key={item.href}
-                >
-                  {current ? (
-                    <motion.span
-                      aria-hidden="true"
-                      className="absolute -inset-x-2 inset-y-1 -z-10 rounded-full bg-[var(--header-nav-selected,var(--app-selected))]"
-                      data-testid="active-navigation-highlight"
-                      layoutId="active-link"
-                      transition={activeIndicatorTransition}
-                    />
-                  ) : null}
-                  {item.label}
-                </Link>
-              );
-            })}
-          </LayoutGroup>
-          <ThemeSwitcher />
-        </nav>
-
-        <div className="flex items-center min-[700px]:hidden">
-          <motion.button
-            ref={menuButtonRef}
-            aria-controls="mobile-navigation"
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-            className={`flex size-11 items-center justify-center rounded-full bg-[var(--app-control)] text-[var(--app-text-primary)] ${focusClasses}`}
-            onClick={() =>
-              setMenuState({ open: !menuOpen, pathname })
-            }
-            type="button"
-            whileTap={reduceMotion ? undefined : { scale: 0.96 }}
+      <div className="site-header-surface">
+        <div className="mx-auto flex h-full w-full items-center justify-between px-5 min-[700px]:w-[calc(100%-40px)] min-[700px]:max-w-[1200px] min-[700px]:px-0 min-[1024px]:w-[calc(100%-48px)]">
+          <Link
+            className={`site-header-brand inline-flex min-h-11 items-center gap-2.5 text-[var(--app-text-primary)] ${focusClasses}`}
+            href="/"
+            aria-label="Applification home"
           >
-            <MenuIcon open={menuOpen} />
-          </motion.button>
+            <span
+              aria-hidden="true"
+              className="site-header-mark block h-[34px] w-12 bg-current [-webkit-mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat] [mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat]"
+            />
+            <span className="site-header-wordmark font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[520px]:block">
+              APPLIFICATION
+            </span>
+          </Link>
+
+          <nav
+            aria-label="Primary navigation"
+            className="site-header-navigation hidden items-center gap-5 min-[820px]:flex min-[1024px]:gap-[30px]"
+          >
+            <LayoutGroup id="primary-navigation">
+              {visibleNavigation.map((item) => {
+                const current = isCurrentPath(pathname, item.href);
+
+                return (
+                  <Link
+                    aria-current={current ? "page" : undefined}
+                    className={`relative isolate inline-flex min-h-10 items-center text-base font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
+                    href={item.href}
+                    key={item.href}
+                  >
+                    {current ? (
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute -inset-x-2 inset-y-1 -z-10 rounded-full bg-[var(--header-nav-selected,var(--app-selected))]"
+                        data-testid="active-navigation-highlight"
+                        layoutId="active-link"
+                        transition={activeIndicatorTransition}
+                      />
+                    ) : null}
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </LayoutGroup>
+            <ThemeSwitcher className="site-header-theme" />
+          </nav>
+
+          <div className="flex items-center min-[820px]:hidden">
+            <motion.button
+              ref={menuButtonRef}
+              aria-controls="mobile-navigation"
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+              className={`flex size-11 items-center justify-center rounded-full bg-[var(--app-control)] text-[var(--app-text-primary)] ${focusClasses}`}
+              onClick={() =>
+                setMenuState({ open: !menuOpen, pathname })
+              }
+              type="button"
+              whileTap={reduceMotion ? undefined : { scale: 0.96 }}
+            >
+              <MenuIcon open={menuOpen} />
+            </motion.button>
+          </div>
         </div>
+
       </div>
 
       <AnimatePresence initial={false}>
@@ -172,7 +194,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           <motion.nav
             animate={{ y: 0 }}
             aria-label="Mobile navigation"
-            className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[700px]:hidden"
+            className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[820px]:hidden"
             exit={reduceMotion ? undefined : { y: -6 }}
             id="mobile-navigation"
             initial={reduceMotion ? false : { y: -8 }}

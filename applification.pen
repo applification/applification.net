@@ -38,6 +38,7 @@
           "type": "frame",
           "id": "dbmiY",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -112,6 +113,26 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "frame",
+                  "id": "jsakY",
+                  "name": "Home current page",
+                  "fill": "$app-selected",
+                  "cornerRadius": 9999,
+                  "padding": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "W4mREE",
+                      "name": "Home link",
+                      "fill": "$app-label-text",
+                      "content": "Home",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
                 {
                   "type": "text",
                   "id": "MfHH1",
@@ -211,7 +232,7 @@
                 "position": 0
               },
               {
-                "color": "$app-bg-end",
+                "color": "$app-hero-end",
                 "position": 1
               }
             ]
@@ -7295,25 +7316,7 @@
       },
       "clip": true,
       "width": 1440,
-      "fill": {
-        "type": "gradient",
-        "gradientType": "linear",
-        "enabled": true,
-        "rotation": 180,
-        "size": {
-          "height": 1
-        },
-        "colors": [
-          {
-            "color": "$app-bg",
-            "position": 0
-          },
-          {
-            "color": "$app-bg-end",
-            "position": 1
-          }
-        ]
-      },
+      "fill": "$app-bg",
       "layout": "vertical",
       "alignItems": "center",
       "children": [
@@ -7321,6 +7324,7 @@
           "type": "frame",
           "id": "sORI7",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -7395,6 +7399,26 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "frame",
+                  "id": "dXjQi",
+                  "name": "Home current page",
+                  "fill": "$app-selected",
+                  "cornerRadius": 9999,
+                  "padding": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "gAiTl",
+                      "name": "Home link",
+                      "fill": "$app-label-text",
+                      "content": "Home",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
                 {
                   "type": "text",
                   "id": "ZvxpR",
@@ -7494,7 +7518,7 @@
                 "position": 0
               },
               {
-                "color": "$app-bg-end",
+                "color": "$app-hero-end",
                 "position": 1
               }
             ]
@@ -14610,6 +14634,7 @@
           "type": "frame",
           "id": "Q25Fa",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -14684,6 +14709,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "uapJx",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "rVV4i",
@@ -18795,6 +18830,7 @@
           "type": "frame",
           "id": "p7jajL",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -18869,6 +18905,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "CTUrf",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "I6H58d",
@@ -22980,6 +23026,7 @@
           "type": "frame",
           "id": "EeyYF",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -23054,6 +23101,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "X1VYYg",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "QyrGH",
@@ -24935,6 +24992,7 @@
           "type": "frame",
           "id": "Y2XKHZ",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -25009,6 +25067,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "QZCch",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "erlKl",
@@ -26890,6 +26958,7 @@
           "type": "frame",
           "id": "umA4W",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -26964,6 +27033,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "wcJkc",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "hRbhe",
@@ -29720,6 +29799,7 @@
           "type": "frame",
           "id": "gu4d3",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -29794,6 +29874,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "orMg7",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "H2PqVI",
@@ -39218,7 +39308,7 @@
                 "position": 0
               },
               {
-                "color": "$app-bg-end",
+                "color": "$app-hero-end",
                 "position": 1
               }
             ]
@@ -42053,25 +42143,7 @@
       },
       "clip": true,
       "width": 390,
-      "fill": {
-        "type": "gradient",
-        "gradientType": "linear",
-        "enabled": true,
-        "rotation": 180,
-        "size": {
-          "height": 1
-        },
-        "colors": [
-          {
-            "color": "$app-bg",
-            "position": 0
-          },
-          {
-            "color": "$app-bg-end",
-            "position": 1
-          }
-        ]
-      },
+      "fill": "$app-bg",
       "layout": "vertical",
       "alignItems": "center",
       "children": [
@@ -42206,7 +42278,7 @@
                 "position": 0
               },
               {
-                "color": "$app-bg-end",
+                "color": "$app-hero-end",
                 "position": 1
               }
             ]
@@ -49185,6 +49257,7 @@
           "type": "frame",
           "id": "U4UMNk",
           "name": "StoryLoops primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -49259,6 +49332,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "zf7MC",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "HrIZn",
@@ -53022,6 +53105,7 @@
           "type": "frame",
           "id": "IUm0x",
           "name": "Contexture primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -53096,6 +53180,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "DfSQd",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "lkLka",
@@ -54509,6 +54603,7 @@
           "type": "frame",
           "id": "n12j82",
           "name": "Voiced primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -54583,6 +54678,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "poExv",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "H2ECk0",
@@ -56057,6 +56162,7 @@
           "type": "frame",
           "id": "y7h8D",
           "name": "Plantry primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -56131,6 +56237,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "j2jnb",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "UwI3u",
@@ -57554,6 +57670,7 @@
           "type": "frame",
           "id": "zaF0r",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -57628,6 +57745,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "VV0aM",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "w70vo",
@@ -59365,6 +59492,7 @@
           "type": "frame",
           "id": "HoWq7",
           "name": "Primary navigation",
+          "context": "Desktop interaction: sticky at top from 820px viewport width, 64px high. Opaque at scroll start; after 8px scrolling, 20px backdrop blur with 90% theme tint, or 94% on product pages, and a fine bottom separator. Opaque fallback for reduced transparency or unsupported blur. Anchor clearance: 80px. Mobile header remains in normal document flow. On downward scroll beyond 80px, the visible surface contracts to 40px, with a 32×24px logo mark, no wordmark, 13px navigation and 32px theme control with 15px icon. Any upward scroll restores 64px immediately. Animate dimensions over 220ms with CSS; preserve 64px layout space to prevent scroll jumps. Reduced motion disables transitions. Visible keyboard focus restores full size.",
           "width": 1200,
           "height": 64,
           "fill": "$app-bg",
@@ -59439,6 +59567,16 @@
               "gap": 30,
               "alignItems": "center",
               "children": [
+                {
+                  "type": "text",
+                  "id": "xwwPY",
+                  "name": "Home link",
+                  "fill": "$app-text-secondary",
+                  "content": "Home",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
                 {
                   "type": "text",
                   "id": "U0sGYv",
@@ -62715,38 +62853,6 @@
     ]
   },
   "variables": {
-    "surface-primary": {
-      "type": "color",
-      "value": "#FCFAF7"
-    },
-    "surface-inverse": {
-      "type": "color",
-      "value": "#000000"
-    },
-    "text-primary": {
-      "type": "color",
-      "value": "#000000"
-    },
-    "text-secondary": {
-      "type": "color",
-      "value": "#666666"
-    },
-    "text-muted": {
-      "type": "color",
-      "value": "#999999"
-    },
-    "text-inverse": {
-      "type": "color",
-      "value": "#FFFFFF"
-    },
-    "border-subtle": {
-      "type": "color",
-      "value": "#E8E3DC"
-    },
-    "accent": {
-      "type": "color",
-      "value": "#FF9800"
-    },
     "font-heading": {
       "type": "string",
       "value": "Newsreader"
@@ -62767,7 +62873,7 @@
       "type": "color",
       "value": [
         {
-          "value": "#F9FAFB",
+          "value": "#d7dfe7",
           "theme": {
             "mode": "light"
           }
@@ -62784,13 +62890,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#F3F4F6",
+          "value": "#cbd5df",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#1F2937",
+          "value": "#1e293b",
           "theme": {
             "mode": "dark"
           }
@@ -62801,13 +62907,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#FFFFFF",
+          "value": "#e6ebf0",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#0B1220",
+          "value": "#0b1220",
           "theme": {
             "mode": "dark"
           }
@@ -62818,13 +62924,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#F3F4F6",
+          "value": "#cbd5df",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#1E293B",
+          "value": "#1e293b",
           "theme": {
             "mode": "dark"
           }
@@ -62835,7 +62941,7 @@
       "type": "color",
       "value": [
         {
-          "value": "#FFFFFF",
+          "value": "#eef2f6",
           "theme": {
             "mode": "light"
           }
@@ -62852,7 +62958,7 @@
       "type": "color",
       "value": [
         {
-          "value": "#DBEAFE",
+          "value": "#c1d1df",
           "theme": {
             "mode": "light"
           }
@@ -62869,13 +62975,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#E5E7EB",
+          "value": "#c5d1dd",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#1E293B",
+          "value": "#1e293b",
           "theme": {
             "mode": "dark"
           }
@@ -62886,13 +62992,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#E0F2FE",
+          "value": "#c1d1df",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#0C4A6E",
+          "value": "#172554",
           "theme": {
             "mode": "dark"
           }
@@ -62903,13 +63009,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#20242C",
+          "value": "#202e40",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#F8FAFC",
+          "value": "#f8fafc",
           "theme": {
             "mode": "dark"
           }
@@ -62920,13 +63026,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#60646C",
+          "value": "#425367",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#A5A7AD",
+          "value": "#a5a7ad",
           "theme": {
             "mode": "dark"
           }
@@ -62937,13 +63043,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#7A7F87",
+          "value": "#42566c",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#94A3B8",
+          "value": "#94a3b8",
           "theme": {
             "mode": "dark"
           }
@@ -62954,7 +63060,7 @@
       "type": "color",
       "value": [
         {
-          "value": "#D9DCE1",
+          "value": "#a2b2c2",
           "theme": {
             "mode": "light"
           }
@@ -62971,13 +63077,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#0284C7",
+          "value": "#146b9c",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#0EA5E9",
+          "value": "#0ea5e9",
           "theme": {
             "mode": "dark"
           }
@@ -62988,13 +63094,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#006D9C",
+          "value": "#12577e",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#7DD3FC",
+          "value": "#7dd3fc",
           "theme": {
             "mode": "dark"
           }
@@ -63003,7 +63109,7 @@
     },
     "app-text-on-action": {
       "type": "color",
-      "value": "#FFFFFF"
+      "value": "#ffffff"
     },
     "app-text-on-accent": {
       "type": "color",
@@ -63013,13 +63119,13 @@
       "type": "color",
       "value": [
         {
-          "value": "#0369A1",
+          "value": "#125985",
           "theme": {
             "mode": "light"
           }
         },
         {
-          "value": "#0284C7",
+          "value": "#0369a1",
           "theme": {
             "mode": "dark"
           }
@@ -63173,6 +63279,719 @@
     "plantry-on-secondary": {
       "type": "color",
       "value": "#FFFBef"
+    },
+    "app-label-text": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "app-action-hover": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#104a70",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#075985",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "app-focus": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#125985",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "writing-accent-text": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "writing-accent-fill": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#125985",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#0369a1",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "writing-on-accent": {
+      "type": "color",
+      "value": "#ffffff"
+    },
+    "writing-topic-bg": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#e0e8ef",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#172033",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "writing-topic-bg-hover": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#cfdee9",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#1e293b",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "writing-topic-border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#aabccc",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#334155",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "writing-topic-text": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#425367",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#cbd5e1",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "writing-topic-mark": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "client-feature": {
+      "type": "color",
+      "value": "#172554"
+    },
+    "client-feature-strong": {
+      "type": "color",
+      "value": "#0f172a"
+    },
+    "client-feature-text": {
+      "type": "color",
+      "value": "#f8fafc"
+    },
+    "client-feature-muted": {
+      "type": "color",
+      "value": "#cbd5e1"
+    },
+    "client-feature-accent": {
+      "type": "color",
+      "value": "#7dd3fc"
+    },
+    "client-brief-label": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#0ea5e9",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "client-narrative": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#cbd5df",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#1e293b",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "client-logically-link": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#0284c7",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-human": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#854d0e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#fff59a",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-human-line": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#ca8a0499",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#fff59a66",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-human-soft": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#fde68a80",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#eab30822",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-agent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-agent-soft": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#bae6fd99",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#0ea5e91f",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-checks": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#9d174d",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#f472b6",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-checks-line": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#db277799",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#f472b680",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-checks-soft": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#fbcfe899",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#db277726",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-node": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#e6ebf0",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#0b1220",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-owner": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#42566c",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#94a3b8",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-heading": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#202e40",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#cdd6f4",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-live": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#16a34a",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#39ffb6",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-live-glow": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#16a34a55",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#39ffb688",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-badge": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#e0f2fe",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#0c4a6e",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-badge-text": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0369a1",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-section-label": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#0ea5e9",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-mobile-heading": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-tool-bg": {
+      "type": "color",
+      "value": "#1c1c1c"
+    },
+    "workflow-tool-icon": {
+      "type": "color",
+      "value": "#a9a9a9"
+    },
+    "workflow-mobile-human": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#92400e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#eab308",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-mobile-human-border": {
+      "type": "color",
+      "value": "#eab30866"
+    },
+    "workflow-mobile-human-line": {
+      "type": "color",
+      "value": "#eab30888"
+    },
+    "workflow-mobile-human-soft": {
+      "type": "color",
+      "value": "#eab30822"
+    },
+    "workflow-mobile-agent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-mobile-agent-border": {
+      "type": "color",
+      "value": "#7dd3fc66"
+    },
+    "workflow-mobile-agent-soft": {
+      "type": "color",
+      "value": "#0ea5e91f"
+    },
+    "workflow-mobile-checks": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#9d174d",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#f472b6",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "workflow-mobile-checks-border": {
+      "type": "color",
+      "value": "#f472b666"
+    },
+    "workflow-mobile-checks-line": {
+      "type": "color",
+      "value": "#f472b680"
+    },
+    "workflow-mobile-checks-soft": {
+      "type": "color",
+      "value": "#db277726"
+    },
+    "workflow-mobile-badge": {
+      "type": "color",
+      "value": "#0ea5e91a"
+    },
+    "cta-action": {
+      "type": "color",
+      "value": "#0b1220"
+    },
+    "cta-action-hover": {
+      "type": "color",
+      "value": "#172554"
+    },
+    "cta-action-active": {
+      "type": "color",
+      "value": "#020617"
+    },
+    "cta-action-text": {
+      "type": "color",
+      "value": "#f8fafc"
+    },
+    "cta-eyebrow": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#12577e",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "cta-description": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#425367",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#a5a7ad",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "cta-focus": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#125985",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#7dd3fc",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
+    },
+    "app-hero-end": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#bfccd9",
+          "theme": {
+            "mode": "light"
+          }
+        },
+        {
+          "value": "#1e293b",
+          "theme": {
+            "mode": "dark"
+          }
+        }
+      ]
     }
   },
   "fileToken": "0416c374-ae4a-4bea-ba6e-3780efa6cf2b",
