@@ -34,28 +34,28 @@ export const careerTimeline = [
       "Security-cleared frontend delivery for Cabinet Office, MoD and other government agencies. Senior Engineer, then Scrum Master and Tech Lead at Surevine.",
   },
   {
-    year: "2021",
+    year: "2021–2023",
     title: "Health tech",
     description:
-      "Pando and Peppy: reliable admin surfaces, component systems and testing practices.",
+      "Built Pando Access and rebuilt Peppy Admin to support clinicians’ day-to-day work. Delivered the Pando Access prototype in four weeks, then architected its Next.js application. At Peppy, replaced tightly coupled screens with reusable components, a Storybook design system and automated tests.",
   },
   {
     year: "2024",
-    title: "Greenfield contract builds",
+    title: "Recruitment platform",
     description:
-      "Sole frontend ownership for Eruptiv, building the recruitment product in three months and taking it to production after four.",
+      "Sole frontend ownership of Client Server’s recruitment platform, building it in three months and taking it to production after four.",
   },
   {
     year: "2024–2026",
-    title: "Product and AI engineering at Logically.ai",
+    title: "Principal Engineer",
     description:
       "Full-time at Logically from October 2024 to May 2026. Rebuilt the frontend in Next.js, then co-built Agentic Chat for threat analysts with AI SDK UI, MCP and Databricks tools.",
   },
   {
     year: "2026",
-    title: "Released products and ongoing R&D",
+    title: "Released products and AI research",
     description:
-      "Contexture and Voiced are live, open-source products. StoryLoops remains in development, alongside product research at Applification.",
+      "Contexture and Voiced are live, open-source products. StoryLoops remains in development, alongside AI product research at Applification.",
     current: true,
   },
 ] as const;

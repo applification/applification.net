@@ -65,7 +65,7 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
   }
   await expect(
     canvas.getByRole("heading", {
-      name: "Product and AI engineering at Logically.ai",
+      name: "Principal Engineer",
     }),
   ).toBeVisible();
   await expect(canvasElement.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument();
