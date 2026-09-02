@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 
 const navigation = [
+  { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/client-work", label: "Client work" },
   { href: "/writing", label: "Writing" },
@@ -36,7 +37,7 @@ function getProductHeaderTheme(pathname: string | null) {
 }
 
 function isCurrentPath(pathname: string | null, href: string) {
-  return pathname === href || pathname?.startsWith(`${href}/`) === true;
+  return pathname === href || (href !== "/" && pathname?.startsWith(`${href}/`) === true);
 }
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -119,7 +120,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-5 min-[700px]:flex min-[1024px]:gap-[30px]"
+          className="hidden items-center gap-5 min-[820px]:flex min-[1024px]:gap-[30px]"
         >
           <LayoutGroup id="primary-navigation">
             {visibleNavigation.map((item) => {
@@ -149,7 +150,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           <ThemeSwitcher />
         </nav>
 
-        <div className="flex items-center min-[700px]:hidden">
+        <div className="flex items-center min-[820px]:hidden">
           <motion.button
             ref={menuButtonRef}
             aria-controls="mobile-navigation"
@@ -172,7 +173,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           <motion.nav
             animate={{ y: 0 }}
             aria-label="Mobile navigation"
-            className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[700px]:hidden"
+            className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[820px]:hidden"
             exit={reduceMotion ? undefined : { y: -6 }}
             id="mobile-navigation"
             initial={reduceMotion ? false : { y: -8 }}

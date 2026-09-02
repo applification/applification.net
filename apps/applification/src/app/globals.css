@@ -7,33 +7,34 @@
 
 :root {
   color-scheme: light dark;
-  --app-bg: light-dark(#f9fafb, #111827);
+  --app-bg: light-dark(#d7dfe7, #111827);
   --app-bg-end: var(--app-muted-section);
-  --app-section: light-dark(#ffffff, #0b1220);
-  --app-muted-section: light-dark(#f3f4f6, #1e293b);
-  --app-card: light-dark(#ffffff, #172033);
-  --app-selected: light-dark(#dbeafe, #172554);
-  --app-control: light-dark(#e5e7eb, #1e293b);
+  --app-hero-end: light-dark(#bfccd9, #1e293b);
+  --app-section: light-dark(#e6ebf0, #0b1220);
+  --app-muted-section: light-dark(#cbd5df, #1e293b);
+  --app-card: light-dark(#eef2f6, #172033);
+  --app-selected: light-dark(#c1d1df, #172554);
+  --app-control: light-dark(#c5d1dd, #1e293b);
   --app-label: var(--app-selected);
-  --app-text-primary: light-dark(#20242c, #f8fafc);
-  --app-text-secondary: light-dark(#60646c, #a5a7ad);
-  --app-text-muted: light-dark(#6b7078, #94a3b8);
-  --app-border: light-dark(#d9dce1, #334155);
-  --app-accent: light-dark(#0284c7, #0ea5e9);
+  --app-text-primary: light-dark(#202e40, #f8fafc);
+  --app-text-secondary: light-dark(#425367, #a5a7ad);
+  --app-text-muted: light-dark(#42566c, #94a3b8);
+  --app-border: light-dark(#a2b2c2, #334155);
+  --app-accent: light-dark(#146b9c, #0ea5e9);
   --app-sky-text: var(--app-label-text);
-  --app-label-text: light-dark(#006d9c, #7dd3fc);
-  --app-action: #0369a1;
-  --app-action-hover: #075985;
+  --app-label-text: light-dark(#12577e, #7dd3fc);
+  --app-action: light-dark(#125985, #0369a1);
+  --app-action-hover: light-dark(#104a70, #075985);
   --app-text-on-action: #ffffff;
-  --app-focus: light-dark(#0369a1, #7dd3fc);
+  --app-focus: light-dark(#125985, #7dd3fc);
   --writing-accent-text: var(--app-label-text);
   --writing-accent-fill: var(--app-action);
   --writing-on-accent: var(--app-text-on-action);
-  --writing-topic-bg: light-dark(#f0f7fb, #172033);
-  --writing-topic-bg-hover: light-dark(#e0f2fe, #1e293b);
-  --writing-topic-border: light-dark(#cbdde8, #334155);
-  --writing-topic-text: light-dark(#475569, #cbd5e1);
-  --writing-topic-mark: light-dark(#075985, #7dd3fc);
+  --writing-topic-bg: light-dark(#e0e8ef, #172033);
+  --writing-topic-bg-hover: light-dark(#cfdee9, #1e293b);
+  --writing-topic-border: light-dark(#aabccc, #334155);
+  --writing-topic-text: light-dark(#425367, #cbd5e1);
+  --writing-topic-mark: light-dark(#12577e, #7dd3fc);
   --loop-bg: #02070c;
   --loop-header: #08131d;
   --loop-muted: #94a3b8;
@@ -147,36 +148,36 @@
   --client-feature-text: #f8fafc;
   --client-feature-muted: #cbd5e1;
   --client-feature-accent: #7dd3fc;
-  --client-brief-label: light-dark(#0369a1, #0ea5e9);
-  --client-narrative: light-dark(#f3f4f6, #1e293b);
-  --client-logically-link: light-dark(#0369a1, #0284c7);
-  --workflow-human: light-dark(#a16207, #fff59a);
+  --client-brief-label: light-dark(#12577e, #0ea5e9);
+  --client-narrative: var(--app-muted-section);
+  --client-logically-link: light-dark(#12577e, #0284c7);
+  --workflow-human: light-dark(#854d0e, #fff59a);
   --workflow-human-line: light-dark(#ca8a0499, #fff59a66);
   --workflow-human-soft: light-dark(#fde68a80, #eab30822);
-  --workflow-agent: light-dark(#0369a1, #7dd3fc);
+  --workflow-agent: light-dark(#12577e, #7dd3fc);
   --workflow-agent-soft: light-dark(#bae6fd99, #0ea5e91f);
-  --workflow-checks: light-dark(#be185d, #f472b6);
+  --workflow-checks: light-dark(#9d174d, #f472b6);
   --workflow-checks-line: light-dark(#db277799, #f472b680);
   --workflow-checks-soft: light-dark(#fbcfe899, #db277726);
-  --workflow-node: light-dark(#f9fafb, #0b1220);
-  --workflow-owner: light-dark(#5f6670, #94a3b8);
-  --workflow-heading: light-dark(#20242c, #cdd6f4);
+  --workflow-node: light-dark(#e6ebf0, #0b1220);
+  --workflow-owner: light-dark(#42566c, #94a3b8);
+  --workflow-heading: light-dark(#202e40, #cdd6f4);
   --workflow-live: light-dark(#16a34a, #39ffb6);
   --workflow-live-glow: light-dark(#16a34a55, #39ffb688);
   --workflow-badge: light-dark(#e0f2fe, #0c4a6e);
   --workflow-badge-text: light-dark(#0369a1, #7dd3fc);
-  --workflow-section-label: light-dark(#0369a1, #0ea5e9);
-  --workflow-mobile-heading: light-dark(#0369a1, #7dd3fc);
+  --workflow-section-label: light-dark(#12577e, #0ea5e9);
+  --workflow-mobile-heading: light-dark(#12577e, #7dd3fc);
   --workflow-tool-bg: #1c1c1c;
   --workflow-tool-icon: #a9a9a9;
   --workflow-mobile-human: light-dark(#92400e, #eab308);
   --workflow-mobile-human-border: #eab30866;
   --workflow-mobile-human-line: #eab30888;
   --workflow-mobile-human-soft: #eab30822;
-  --workflow-mobile-agent: light-dark(#0369a1, #7dd3fc);
+  --workflow-mobile-agent: light-dark(#12577e, #7dd3fc);
   --workflow-mobile-agent-border: #7dd3fc66;
   --workflow-mobile-agent-soft: #0ea5e91f;
-  --workflow-mobile-checks: light-dark(#be185d, #f472b6);
+  --workflow-mobile-checks: light-dark(#9d174d, #f472b6);
   --workflow-mobile-checks-border: #f472b666;
   --workflow-mobile-checks-line: #f472b680;
   --workflow-mobile-checks-soft: #db277726;
@@ -418,10 +419,17 @@ html[data-theme-transition="active"]::view-transition-new(root) {
   clip-path: var(--theme-transition-clip-from);
 }
 
+/* Capture the final colours together, including controls with hover transitions. */
+html[data-theme-transition="active"] *,
+html[data-theme-transition="active"] *::before,
+html[data-theme-transition="active"] *::after {
+  transition: none !important;
+}
+
 body {
   min-height: 100vh;
   margin: 0;
-  background: linear-gradient(to bottom, var(--app-bg), var(--app-bg-end));
+  background: var(--app-bg);
   color: var(--text);
   font-family: var(--font-geist), sans-serif;
 }

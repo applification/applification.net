@@ -222,7 +222,7 @@ export function ThemeSwitcher({
   const label = theme ? `Switch to ${targetTheme} theme` : "Switch colour theme";
   const buttonClasses = labelled
     ? "flex min-h-11 w-full items-center justify-between rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)]"
-    : "inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)]";
+    : "inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)]";
 
   return (
     <button

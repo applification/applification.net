@@ -39,6 +39,7 @@ function productHeaderStory(
         "aria-current",
         "page",
       );
+      await expect(canvas.getByRole("link", { name: "Home" })).not.toHaveAttribute("aria-current");
       await expect(getComputedStyle(header!).backgroundColor).toBe(
         expectedBackground,
       );
@@ -51,6 +52,11 @@ export const DesktopLight: Story = {
     const canvas = within(canvasElement);
 
     await expect(canvas.getByText("APPLIFICATION")).toBeVisible();
+    const navigation = canvas.getByRole("navigation", { name: "Primary navigation" });
+    const home = within(navigation).getAllByRole("link")[0];
+    await expect(home).toHaveAccessibleName("Home");
+    await expect(home).toHaveAttribute("href", "/");
+    await expect(home).toHaveAttribute("aria-current", "page");
     const contactLink = canvas.getByRole("link", { name: "Contact" });
     await expect(contactLink).toBeVisible();
     await expect(contactLink).toHaveAttribute("href", "/contact");
@@ -62,6 +68,20 @@ export const DesktopLight: Story = {
 
 export const DesktopDark: Story = {
   globals: { theme: "dark" },
+};
+
+export const NarrowDesktop: Story = {
+  globals: { viewport: { value: "narrowTablet", isRotated: false } },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const brand = canvas.getByRole("link", { name: "Applification home" });
+    const navigation = canvas.getByRole("navigation", { name: "Primary navigation" });
+    await expect(navigation).toBeVisible();
+    await expect(brand.getBoundingClientRect().right + 16).toBeLessThanOrEqual(
+      navigation.getBoundingClientRect().left,
+    );
+    await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
+  },
 };
 
 export const ContactUnavailable: Story = {
@@ -84,6 +104,7 @@ export const DesktopProducts: Story = {
     const productsLink = canvas.getByRole("link", { name: "Products" });
 
     await expect(productsLink).toHaveAttribute("aria-current", "page");
+    await expect(canvas.getByRole("link", { name: "Home" })).not.toHaveAttribute("aria-current");
     await expect(canvas.getByTestId("active-navigation-highlight")).toBeVisible();
   },
 };
@@ -155,6 +176,11 @@ export const MobileDarkMenuOpen: Story = {
     });
 
     await expect(mobileNavigation).toBeVisible();
+    const home = within(mobileNavigation).getAllByRole("link")[0];
+    await expect(home).toHaveAccessibleName("Home");
+    await expect(home).toHaveAttribute("href", "/");
+    await expect(home).toHaveAttribute("aria-current", "page");
+    await expect(home).toHaveFocus();
     await expect(
       within(mobileNavigation).getByRole("button", {
         name: "Switch to light theme",
