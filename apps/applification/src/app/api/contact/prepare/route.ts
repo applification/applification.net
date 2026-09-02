@@ -1,8 +1,13 @@
+import { guardContactRequest, readContactJson } from "@/lib/contact-request-guard";
+export const maxDuration = 60;
+
 import { contactPrepareRequestSchema } from "@/lib/contact-draft";
 import { ContactPrepareError, prepareContactProposal } from "@/lib/prepare-contact";
 
 export async function POST(request: Request) {
-  const payload: unknown = await request.json().catch(() => null);
+  const blocked = await guardContactRequest(request, "prepare");
+  if (blocked) return blocked;
+  const payload: unknown = await readContactJson(request);
   const checked = contactPrepareRequestSchema.safeParse(payload);
 
   if (!checked.success) {

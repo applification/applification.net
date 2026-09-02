@@ -56,6 +56,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ManualContactBrief } from "./manual-contact-brief";
+import { contactMessageLimit, contactTextLimits } from "@/lib/contact-draft";
 import { contactAttachmentSchema } from "@/lib/contact-attachment";
 import type { ContactRoute } from "@/lib/contact";
 import {
@@ -184,6 +186,7 @@ export function ContactWorkspace({
   const [briefExpanded, setBriefExpanded] = useState(false);
   const [routeChooserExpanded, setRouteChooserExpanded] = useState(false);
   const [reviewMode, setReviewMode] = useState(false);
+  const [manualMode, setManualMode] = useState(false);
   const [editingField, setEditingField] = useState<EditableContactField | null>(null);
   const [editingValue, setEditingValue] = useState("");
   const [visitorApproved, setVisitorApproved] = useState(false);
@@ -192,6 +195,8 @@ export function ContactWorkspace({
   const [deliveryResult, setDeliveryResult] = useState<DeliveryResult | null>(null);
   const [website, setWebsite] = useState("");
   const draftRef = useRef(draft);
+  const preparingRef = useRef(false);
+  const sessionRef = useRef(crypto.randomUUID());
   const startedAtRef = useRef(0);
   const idempotencyKeyRef = useRef(crypto.randomUUID());
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -216,7 +221,7 @@ export function ContactWorkspace({
     }
 
     if (nextRoute !== "contract" && draftRef.current.attachment) {
-      void deletePrivateAttachment(draftRef.current.attachment.pathname);
+      void deletePrivateAttachment(draftRef.current.attachment.pathname, sessionRef.current);
       setAttachmentStatus("The contract document was removed when the route changed.");
     }
 
@@ -234,6 +239,7 @@ export function ContactWorkspace({
   }
 
   function submitOpening(prompt: PromptInputMessage) {
+    if (message.length > contactMessageLimit) return;
     const opening = prompt.text.trim();
     if (opening) {
       void prepareBrief(opening, true);
@@ -241,9 +247,12 @@ export function ContactWorkspace({
   }
 
   async function prepareBrief(opening: string, appendVisitorMessage: boolean) {
-    if (isPreparing) {
+    if (preparingRef.current) return;
+    if (opening.length > contactMessageLimit) {
+      setPrepareError(`Please keep each message within ${contactMessageLimit.toLocaleString()} characters. Your text is still here.`);
       return;
     }
+    preparingRef.current = true;
 
     if (appendVisitorMessage) {
       setMessages((current) => [
@@ -258,7 +267,7 @@ export function ContactWorkspace({
     try {
       const response = await fetch("/api/contact/prepare", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-contact-session": sessionRef.current },
         body: JSON.stringify({ draft: draftRef.current, message: opening }),
       });
       const payload: unknown = await response.json().catch(() => null);
@@ -279,7 +288,7 @@ export function ContactWorkspace({
         throw new Error(
           applied.reason === "stale"
             ? "The brief changed while the assistant was working. Retry this message against the latest version."
-            : "The assistant proposed an unsafe or conflicting change. Nothing changed. Please retry.",
+            : "The assistant could not apply these details. Your brief is unchanged; retry or complete it manually.",
         );
       }
 
@@ -307,13 +316,15 @@ export function ContactWorkspace({
       );
       setLastFailedMessage(opening);
     } finally {
+      preparingRef.current = false;
       setIsPreparing(false);
     }
   }
 
   function restart() {
+    setManualMode(false);
     if (draftRef.current.attachment) {
-      void deletePrivateAttachment(draftRef.current.attachment.pathname);
+      void deletePrivateAttachment(draftRef.current.attachment.pathname, sessionRef.current);
     }
 
     const initialDraft = createContactDraft({ product: initialProduct, route: initialRoute });
@@ -350,6 +361,7 @@ export function ContactWorkspace({
     try {
       const response = await fetch("/api/contact/attachment", {
         method: "POST",
+        headers: { "x-contact-session": sessionRef.current },
         body: form,
       });
       const payload: unknown = await response.json().catch(() => null);
@@ -375,7 +387,7 @@ export function ContactWorkspace({
       setAttachmentStatus(`${checked.data.filename} is attached privately.`);
 
       if (previous) {
-        void deletePrivateAttachment(previous.pathname);
+        void deletePrivateAttachment(previous.pathname, sessionRef.current);
       }
     } catch (error) {
       setAttachmentStatus(
@@ -402,7 +414,7 @@ export function ContactWorkspace({
     setDraft(nextDraft);
     resetDeliveryForDraftChange();
     setAttachmentStatus(`${attachment.filename} was removed.`);
-    void deletePrivateAttachment(attachment.pathname);
+    void deletePrivateAttachment(attachment.pathname, sessionRef.current);
   }
 
   function editDraftField(field: EditableContactField, value: string) {
@@ -422,9 +434,17 @@ export function ContactWorkspace({
       return;
     }
 
-    draftRef.current = checked.data;
-    setDraft(checked.data);
+    draftRef.current = nextDraft;
+    setDraft(nextDraft);
     resetDeliveryForDraftChange();
+  }
+
+  function openManualBrief() {
+    if (!draftRef.current.route) chooseRoute("general");
+    const pending = message.trim() || lastFailedMessage || "";
+    const field = draftRef.current.route === "contract" ? "need" : draftRef.current.route === "product" ? "question" : "message";
+    if (pending && !draftRef.current[field] && pending.length <= contactTextLimits[field]) editDraftField(field, pending);
+    setManualMode(true);
   }
 
   function startEditingField(field: EditableContactField) {
@@ -484,6 +504,7 @@ export function ContactWorkspace({
             disabled={delivery !== "idle"}
             id={fieldId}
             onChange={(event) => setEditingValue(event.target.value)}
+            maxLength={contactTextLimits[field]}
             rows={4}
             value={editingValue}
           />
@@ -493,6 +514,7 @@ export function ContactWorkspace({
             className="h-11 text-base"
             disabled={delivery !== "idle"}
             id={fieldId}
+            maxLength={contactTextLimits[field]}
             inputMode={field === "replyEmail" ? "email" : undefined}
             onChange={(event) => setEditingValue(event.target.value)}
             type={field === "replyEmail" ? "email" : field === "briefLink" ? "url" : "text"}
@@ -529,7 +551,7 @@ export function ContactWorkspace({
     try {
       const response = await fetch("/api/contact/deliver", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-contact-session": sessionRef.current },
         body: JSON.stringify({
           consent: true,
           draft: draftRef.current,
@@ -639,7 +661,7 @@ export function ContactWorkspace({
         <div className="flex flex-col gap-5 px-4 py-4 sm:px-5">
           <section
             aria-labelledby={`${fieldPrefix}-prepared-message`}
-            className="rounded-2xl bg-[var(--app-muted-section)] p-4 sm:p-5"
+            className="rounded-2xl bg-[var(--contact-card)] p-4 sm:p-5"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0 flex-1">
@@ -732,7 +754,7 @@ export function ContactWorkspace({
           </section>
 
           {route === "contract" ? (
-            <div className="rounded-2xl border border-[var(--app-border)] bg-[var(--app-muted-section)] p-4">
+            <div className="rounded-2xl border border-[var(--app-border)] bg-[var(--contact-card)] p-4">
               {draft.attachment ? (
                 <div className="flex items-start gap-3">
                   <FileUp aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-[var(--app-action)]" />
@@ -762,7 +784,7 @@ export function ContactWorkspace({
           ) : null}
 
           {contractFit ? (
-            <div className="rounded-2xl border border-[var(--app-border)] bg-[var(--app-muted-section)] p-4">
+            <div className="rounded-2xl border border-[var(--app-border)] bg-[var(--contact-card)] p-4">
               <p className="font-caption text-[11px] font-bold tracking-[0.65px] text-[var(--app-label-text)] uppercase">
                 Contract fit / {formatContractFitStatus(contractFit.status)}
               </p>
@@ -792,7 +814,7 @@ export function ContactWorkspace({
 
           <div aria-atomic="true" aria-live="polite">
             {deliveryError ? (
-              <div className="rounded-2xl border border-[var(--app-border)] bg-[var(--app-muted-section)] p-4" role="alert">
+              <div className="rounded-2xl border border-[var(--app-border)] bg-[var(--contact-card)] p-4" role="alert">
                 <p className="text-sm leading-[1.5]">{deliveryError}</p>
                 <Button className="mt-3" onClick={() => void sendApprovedBrief()} type="button" variant="outline">
                   Retry approved brief
@@ -802,7 +824,7 @@ export function ContactWorkspace({
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3 border-t border-[var(--app-border)] bg-[var(--app-muted-section)] px-4 py-3 sm:flex-row sm:items-center sm:px-5">
+      <div className="flex flex-col gap-3 border-t border-[var(--app-border)] bg-[var(--contact-card)] px-4 py-3 sm:flex-row sm:items-center sm:px-5">
         <p className="mr-auto font-caption text-[11px] tracking-[0.5px] text-[var(--app-text-muted)] uppercase">
           Nothing sends without your approval
         </p>
@@ -864,7 +886,7 @@ export function ContactWorkspace({
   return (
     <section
       aria-labelledby="contact-heading"
-      className="flex-1 bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)]"
+      className="contact-workspace flex-1 bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)]"
     >
       <div className="mx-auto w-full max-w-[1040px] px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
         <div className="mx-auto max-w-[780px] text-center">
@@ -894,7 +916,7 @@ export function ContactWorkspace({
                 <span className="sm:hidden">Contact</span>
                 <span className="hidden sm:inline">Applification contact</span>
               </p>
-              <span className="hidden rounded-full bg-[var(--app-control)] px-2.5 py-1 font-caption text-[11px] font-bold tracking-[0.45px] text-[var(--app-label-text)] uppercase sm:inline-flex">
+              <span className="hidden rounded-full bg-[var(--contact-selected)] px-2.5 py-1 font-caption text-[11px] font-bold tracking-[0.45px] text-[var(--app-label-text)] uppercase sm:inline-flex">
                 {contactWorkflowStateLabel(workflowState)}
               </span>
             </div>
@@ -908,10 +930,17 @@ export function ContactWorkspace({
             className="flex h-[calc(100svh-88px)] min-h-[440px] max-h-[590px] flex-col sm:h-[clamp(590px,68svh,730px)] sm:min-h-0 sm:max-h-none"
             data-contact-workspace-body
           >
-            <Conversation className="bg-[var(--app-section)]">
+            {manualMode ? <ManualContactBrief
+              draft={draft}
+              originalMessage={message.trim() || lastFailedMessage || ""}
+              onRoute={chooseRoute}
+              onField={editDraftField}
+              onReview={() => { setManualMode(false); setReviewMode(true); setBriefExpanded(true); setPrepareError(null); }}
+              onAssistant={() => setManualMode(false)}
+            /> : <Conversation className="bg-[var(--app-section)]">
               <ConversationContent className="mx-auto w-full max-w-[820px] gap-4 px-3 py-4 sm:gap-5 sm:px-6 sm:py-8">
                 <Message from="assistant">
-                  <MessageContent className="w-full max-w-[720px] gap-3 rounded-2xl bg-[var(--app-muted-section)] p-3 text-base leading-[1.55] sm:gap-4 sm:p-5">
+                  <MessageContent className="w-full max-w-[720px] gap-3 rounded-2xl bg-[var(--contact-card)] p-3 text-base leading-[1.55] sm:gap-4 sm:p-5">
                     <AssistantMessageLabel />
                     <p>
                       <span className="sm:hidden">
@@ -926,7 +955,7 @@ export function ContactWorkspace({
                     </p>
                     {route && !routeChooserExpanded ? (
                       <div
-                        className="flex min-h-11 items-center justify-between gap-3 rounded-xl border border-[var(--app-action)] bg-[var(--app-card)] px-3 sm:hidden"
+                        className="flex min-h-11 items-center justify-between gap-3 rounded-xl border border-[var(--app-action)] bg-[var(--contact-selected)] px-3 sm:hidden"
                         data-contact-selected-route
                       >
                         <span className="truncate font-semibold">{selectedRoute?.shortLabel}</span>
@@ -960,7 +989,7 @@ export function ContactWorkspace({
                       {routes.map((item) => (
                         <ToggleGroupItem
                           aria-label={item.label}
-                          className="h-11 min-h-11 w-full items-center justify-start whitespace-normal px-3 py-2 text-left data-[state=on]:border-[var(--app-action)] data-[state=on]:bg-[var(--app-card)] sm:h-auto sm:min-h-[74px] sm:flex-col sm:items-start sm:py-3"
+                          className="h-11 min-h-11 w-full items-center justify-start whitespace-normal px-3 py-2 text-left data-[state=on]:border-[var(--app-action)] data-[state=on]:bg-[var(--contact-selected)] data-[state=on]:text-[var(--app-label-text)] sm:h-auto sm:min-h-[74px] sm:flex-col sm:items-start sm:py-3"
                           key={item.route}
                           value={item.route}
                         >
@@ -980,7 +1009,7 @@ export function ContactWorkspace({
                       className={
                         item.author === "visitor"
                           ? "max-w-[680px] rounded-2xl bg-[var(--app-action)] px-4 py-3 text-base leading-[1.55] text-[var(--app-text-on-action)]"
-                          : "max-w-[720px] rounded-2xl bg-[var(--app-muted-section)] px-4 py-3 text-base leading-[1.55]"
+                          : "max-w-[720px] rounded-2xl bg-[var(--contact-card)] px-4 py-3 text-base leading-[1.55]"
                       }
                     >
                       {item.author === "assistant" ? <AssistantMessageLabel /> : null}
@@ -992,7 +1021,7 @@ export function ContactWorkspace({
                 <div aria-atomic="true" aria-live="polite">
                   {isPreparing ? (
                     <Message from="assistant">
-                      <MessageContent className="rounded-2xl bg-[var(--app-muted-section)] px-4 py-3 text-sm text-[var(--app-text-secondary)]">
+                      <MessageContent className="rounded-2xl bg-[var(--contact-card)] px-4 py-3 text-sm text-[var(--app-text-secondary)]">
                         <AssistantMessageLabel />
                         <span className="flex items-center gap-2">
                           <Sparkles aria-hidden="true" className="size-4 text-[var(--app-action)]" />
@@ -1002,9 +1031,10 @@ export function ContactWorkspace({
                     </Message>
                   ) : prepareError ? (
                     <Message from="assistant">
-                      <MessageContent className="max-w-[720px] rounded-2xl border border-[var(--app-border)] bg-[var(--app-muted-section)] p-4" role="alert">
+                      <MessageContent className="max-w-[720px] rounded-2xl border border-[var(--app-border)] bg-[var(--contact-card)] p-4" role="alert">
                         <AssistantMessageLabel />
                         <p className="text-sm leading-[1.5]">{prepareError}</p>
+                        <Button className="mt-3 min-h-11" onClick={openManualBrief} type="button">Complete manually</Button>
                         {lastFailedMessage ? (
                           <Button
                             className="mt-3 min-h-11"
@@ -1021,9 +1051,9 @@ export function ContactWorkspace({
                 </div>
               </ConversationContent>
               <ConversationScrollButton aria-label="Scroll to the latest message" />
-            </Conversation>
+            </Conversation>}
 
-            <div className="shrink-0 border-t border-[var(--app-border)] bg-[var(--app-card)] p-3 sm:p-4">
+            <div hidden={manualMode} className="shrink-0 border-t border-[var(--app-border)] bg-[var(--app-card)] p-3 sm:p-4">
               <div className="mx-auto max-w-[820px]">
                 {deliveryResult ? (
                   <Alert
@@ -1051,7 +1081,12 @@ export function ContactWorkspace({
                   </Alert>
                 ) : (
                   <>
-                <div className="rounded-2xl transition-shadow has-[[data-slot=input-group-control]:focus-visible]:ring-2 has-[[data-slot=input-group-control]:focus-visible]:ring-[var(--app-action)]">
+                <div className={cn(
+                  "rounded-2xl transition-shadow has-[[data-slot=input-group-control]:focus-visible]:ring-2",
+                  message.length > contactMessageLimit
+                    ? "has-[[data-slot=input-group-control]:focus-visible]:ring-[var(--contact-error)]"
+                    : "has-[[data-slot=input-group-control]:focus-visible]:ring-[var(--app-action)]",
+                )}>
                   {route ? (
                     <Collapsible
                       className="rounded-t-2xl border border-b-0 border-[var(--app-border)] bg-[var(--app-card)]"
@@ -1066,7 +1101,7 @@ export function ContactWorkspace({
                     <div className="flex min-h-14 items-center gap-2 px-2 sm:px-3">
                       <CollapsibleTrigger asChild>
                         <Button
-                          className="min-w-0 flex-1 justify-start rounded-xl px-2 hover:bg-[var(--app-muted-section)]"
+                          className="min-w-0 flex-1 justify-start rounded-xl px-2 hover:bg-[var(--contact-card)]"
                           type="button"
                           variant="ghost"
                         >
@@ -1128,8 +1163,12 @@ export function ContactWorkspace({
                     </Collapsible>
                   ) : null}
                   <PromptInput
+                    data-invalid={message.length > contactMessageLimit}
                     className={cn(
-                      "[&>[data-slot=input-group]]:h-14! [&>[data-slot=input-group]]:flex-row! [&>[data-slot=input-group]]:border-[var(--app-border)]! [&>[data-slot=input-group]]:bg-[var(--app-muted-section)] [&>[data-slot=input-group]]:opacity-100! [&>[data-slot=input-group]]:ring-0! [&>[data-slot=input-group]]:shadow-none sm:[&>[data-slot=input-group]]:h-auto! sm:[&>[data-slot=input-group]]:flex-col!",
+                      message.length > contactMessageLimit
+                        ? "[&>[data-slot=input-group]]:border-[var(--contact-error)]! [&>[data-slot=input-group]:focus-within]:border-[var(--contact-error)]!"
+                        : "[&>[data-slot=input-group]]:border-[var(--app-border)]! [&>[data-slot=input-group]:focus-within]:border-[var(--app-accent)]!",
+                      "[&>[data-slot=input-group]]:h-14! [&>[data-slot=input-group]]:flex-row! [&>[data-slot=input-group]]:bg-[var(--contact-input)] [&>[data-slot=input-group]]:opacity-100! [&>[data-slot=input-group]]:ring-0! [&>[data-slot=input-group]]:shadow-none sm:[&>[data-slot=input-group]]:h-auto! sm:[&>[data-slot=input-group]]:flex-col!",
                       route
                         ? "[&>[data-slot=input-group]]:rounded-t-none [&>[data-slot=input-group]]:rounded-b-2xl"
                         : "[&>[data-slot=input-group]]:rounded-2xl",
@@ -1139,6 +1178,8 @@ export function ContactWorkspace({
                     <PromptInputBody>
                       <PromptInputTextarea
                         aria-label="Describe your enquiry"
+                        aria-invalid={message.length > contactMessageLimit}
+                        aria-describedby={message.length > contactMessageLimit ? `${fieldPrefix}-message-error` : undefined}
                         className="max-h-28 min-h-11 py-2.5 text-base leading-[1.5] text-[var(--app-text-primary)] caret-[var(--app-action)] placeholder:text-[var(--app-text-secondary)] placeholder:opacity-100 sm:max-h-48 sm:min-h-14 sm:py-2"
                         onChange={(event) => setMessage(event.target.value)}
                         placeholder={route ? "Add a detail..." : "Describe your enquiry..."}
@@ -1164,13 +1205,18 @@ export function ContactWorkspace({
                         </PromptInputTools>
                       ) : null}
                       <PromptInputSubmit
-                        className="size-10 rounded-xl"
-                        disabled={!message.trim() || isPreparing}
+                        className="ml-auto size-10 rounded-xl"
+                        disabled={!message.trim() || isPreparing || message.length > contactMessageLimit}
                         status={isPreparing ? "submitted" : prepareError ? "error" : "ready"}
                       />
                     </PromptInputFooter>
                   </PromptInput>
                 </div>
+                {message.length > contactMessageLimit ? (
+                  <p id={`${fieldPrefix}-message-error`} role="alert" className="mt-2 px-2 text-sm text-[var(--contact-error)]">
+                    Your message is {(message.length - contactMessageLimit).toLocaleString()} {message.length - contactMessageLimit === 1 ? "character" : "characters"} over the {contactMessageLimit.toLocaleString()}-character limit. Shorten it to continue.
+                  </p>
+                ) : null}
                 <input
                   accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.docx"
                   hidden
@@ -1218,6 +1264,10 @@ export function ContactWorkspace({
           </div>
         </div>
 
+        <div className="mx-auto mt-3 flex max-w-[820px] flex-wrap items-center justify-between gap-3">
+          <Button disabled={isPreparing || delivery !== "idle"} onClick={openManualBrief} variant="ghost" type="button">Prefer to fill in the details yourself?</Button>
+          <a className="text-sm text-[var(--app-label-text)] underline underline-offset-4" href="https://www.linkedin.com/in/hudsond/" target="_blank" rel="noreferrer">Contact Dave on LinkedIn</a>
+        </div>
         <div className="mx-auto mt-5 flex max-w-[820px] items-start gap-3 px-1 text-sm leading-[1.5] text-[var(--app-text-secondary)]">
           <ShieldCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-[var(--app-action)]" />
           <p>Your enquiry is only sent after you review and approve it.</p>
@@ -1329,10 +1379,10 @@ function readDeliveryResult(value: unknown): DeliveryResult | null {
   };
 }
 
-async function deletePrivateAttachment(pathname: string) {
+async function deletePrivateAttachment(pathname: string, session: string) {
   await fetch("/api/contact/attachment", {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "x-contact-session": session },
     body: JSON.stringify({ pathname }),
   }).catch(() => null);
 }

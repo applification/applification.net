@@ -1,3 +1,4 @@
+import { guardContactRequest, readContactBody, readContactJson } from "@/lib/contact-request-guard";
 import { del, put } from "@vercel/blob";
 import { start } from "workflow/api";
 import {
@@ -9,6 +10,8 @@ import {
 import { expireContactAttachmentWorkflow } from "@/workflows/contact-attachment-cleanup";
 
 export async function POST(request: Request) {
+  const blocked = await guardContactRequest(request, "attachment");
+  if (blocked) return blocked;
   const contentLength = Number(request.headers.get("content-length") ?? 0);
   if (contentLength > 4.25 * 1_024 * 1_024) {
     return Response.json(
@@ -17,7 +20,11 @@ export async function POST(request: Request) {
     );
   }
 
-  const form = await request.formData().catch(() => null);
+  const bytes = await readContactBody(request, 4.25 * 1_024 * 1_024);
+  if (!bytes) {
+    return Response.json({ code: "size", message: "The contract brief could not be read. Choose a file of 4 MB or smaller." }, { status: 413 });
+  }
+  const form = await new Response(bytes, { headers: { "content-type": request.headers.get("content-type") ?? "" } }).formData().catch(() => null);
   const file = form?.get("file");
 
   if (!(file instanceof File)) {
@@ -85,7 +92,9 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const payload: unknown = await request.json().catch(() => null);
+  const blocked = await guardContactRequest(request, "attachment");
+  if (blocked) return blocked;
+  const payload: unknown = await readContactJson(request);
   const checked = deleteContactAttachmentSchema.safeParse(payload);
 
   if (!checked.success) {
