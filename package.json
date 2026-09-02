@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "dev": "bun --cwd apps/applification dev",
+    "dev:tailscale": "bun --cwd apps/applification dev:tailscale",
+    "dev:direct": "bun --cwd apps/applification dev:direct",
     "build": "bun --cwd apps/applification build",
     "start": "bun --cwd apps/applification start",
     "lint": "bun --cwd apps/applification lint",

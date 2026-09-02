@@ -1,23 +1,16 @@
-import { HomepageAiStatement } from "@/components/home/ai-working-method";
+import { ClientLogos } from "@/components/home/client-logos";
 import { ClientOutcomes } from "@/components/home/client-outcomes";
-import { CommercialProof } from "@/components/home/commercial-proof";
 import { ContractCta } from "@/components/home/contract-cta";
-import { AgentDeliveryLoop, Hero } from "@/components/home/hero";
-import { OpenSourceProducts } from "@/components/home/open-source-products";
-import { PlantryShowcase } from "@/components/home/plantry-showcase";
-import { StoryLoopsShowcase } from "@/components/home/storyloops-showcase";
+import { Hero } from "@/components/home/hero";
+import { ProductsRow } from "@/components/home/products-row";
 
 export default function HomePage() {
   return (
     <main className="flex-1">
       <Hero />
-      <CommercialProof />
+      <ClientLogos />
       <ClientOutcomes />
-      <HomepageAiStatement />
-      <AgentDeliveryLoop />
-      <OpenSourceProducts />
-      <StoryLoopsShowcase />
-      <PlantryShowcase />
+      <ProductsRow />
       <ContractCta />
     </main>
   );

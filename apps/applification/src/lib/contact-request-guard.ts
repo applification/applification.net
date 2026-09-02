@@ -1,13 +1,15 @@
 import { checkBotId } from "botid/server";
 import { checkRateLimit } from "@vercel/firewall";
+import { getContactPublicBaseUrl } from "./contact-public-url";
 
 export type ContactOperation = "prepare" | "attachment" | "deliver";
 
 export async function guardContactRequest(request: Request, operation: ContactOperation) {
   const origin = request.headers.get("origin");
   const allowedOrigins = [new URL(request.url).origin];
-  if (process.env.CONTACT_PUBLIC_BASE_URL) {
-    try { allowedOrigins.push(new URL(process.env.CONTACT_PUBLIC_BASE_URL).origin); }
+  const publicBaseUrl = getContactPublicBaseUrl();
+  if (publicBaseUrl) {
+    try { allowedOrigins.push(new URL(publicBaseUrl).origin); }
     catch { return Response.json({ code: "protection_unavailable", message: "The contact service is temporarily unavailable. Please try again shortly." }, { status: 503 }); }
   }
   if (!origin || !allowedOrigins.includes(origin)) {

@@ -9,6 +9,7 @@ import {
   type ContactCvReviewMetadata,
 } from "@/lib/contact-cv-review";
 import { createOwnerReviewCapability } from "@/lib/contact-owner-review-capability";
+import { getContactPublicBaseUrl } from "@/lib/contact-public-url";
 import { getPortfolioProduct } from "@/lib/portfolio";
 import { contactCvDecisionHook, contactCvHookToken } from "./contact-cv-decision-gate";
 
@@ -329,7 +330,7 @@ function renderDeliveryEmail(input: ContactDeliveryInput, ownerReviewUrl: string
 
 function createOwnerReviewUrl(input: ContactDeliveryInput) {
   const secret = process.env.CONTACT_OWNER_REVIEW_SECRET;
-  const baseUrl = process.env.CONTACT_PUBLIC_BASE_URL;
+  const baseUrl = getContactPublicBaseUrl();
   if (!secret || !baseUrl) {
     throw new FatalError("Owner CV review is not configured.");
   }
@@ -373,7 +374,7 @@ function resendHeaders(apiKey: string, idempotencyKey: string) {
 
 function createPrivateAttachmentUrl(attachment: NonNullable<ContactDraft["attachment"]>) {
   const secret = process.env.CONTACT_ATTACHMENT_ACCESS_SECRET;
-  const baseUrl = process.env.CONTACT_PUBLIC_BASE_URL;
+  const baseUrl = getContactPublicBaseUrl();
   if (!secret || secret.length < 24 || !baseUrl) {
     throw new FatalError("Private attachment access is not configured.");
   }

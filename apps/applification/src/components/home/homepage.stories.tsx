@@ -28,14 +28,18 @@ type Story = StoryObj<typeof meta>;
 const checkCommercialEvidenceOrder: NonNullable<Story["play"]> = async ({
   canvasElement,
 }) => {
+  const hero = canvasElement.querySelector("[data-hero-surface]");
+  const logos = canvasElement.querySelector("[data-client-logos]");
   const clientOutcomes = canvasElement.querySelector("#client-work");
-  const method = canvasElement.querySelector("#homepage-ai-statement-heading");
   const products = canvasElement.querySelector("#products");
-  const plantry = canvasElement.querySelector("#plantry-heading");
-  for (const laterSection of [method, products, plantry]) {
-    await expect(clientOutcomes).not.toBeNull();
-    await expect(laterSection).not.toBeNull();
-    await expect(Boolean(clientOutcomes!.compareDocumentPosition(laterSection!) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
+  const cta = canvasElement.querySelector("#contract-cta-heading");
+  const order = [hero, logos, clientOutcomes, products, cta];
+  for (let index = 1; index < order.length; index += 1) {
+    const earlier = order[index - 1];
+    const later = order[index];
+    await expect(earlier).not.toBeNull();
+    await expect(later).not.toBeNull();
+    await expect(Boolean(earlier!.compareDocumentPosition(later!) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
   }
   await expect(
     canvasElement.querySelectorAll("#client-work a[href^='/client-work']"),
@@ -46,10 +50,16 @@ const checkCommercialEvidenceOrder: NonNullable<Story["play"]> = async ({
     await expect(link.querySelector("svg")).toBeInTheDocument();
   }
   const canvas = within(canvasElement);
-  for (const name of ["StoryLoops", "Plantry"]) {
-    await expect(canvas.getByRole("link", { name: `Explore ${name} →` })).toHaveAttribute("href", `/products/${name.toLowerCase()}`);
+  for (const name of ["Contexture", "Voiced", "StoryLoops"]) {
+    await expect(canvas.getByRole("link", { name: `Explore ${name}` })).toHaveAttribute("href", `/products/${name.toLowerCase()}`);
   }
-  const diagram = canvasElement.querySelector<HTMLElement>("[data-motion-sequence='hero-approval']")!;
+  // The homepage no longer carries the Plantry showcase or a second AI section.
+  await expect(canvasElement.querySelector("#plantry")).toBeNull();
+  await expect(canvasElement.querySelectorAll("[data-motion-sequence='hero-approval']").length).toBeGreaterThan(0);
+  const diagram = [...canvasElement.querySelectorAll<HTMLElement>("[data-motion-sequence='hero-approval']")].find(
+    (element) => getComputedStyle(element).display !== "none",
+  )!;
+  await expect(hero!.contains(diagram)).toBe(true);
   if (window.innerWidth >= 1060) {
     const content = clientOutcomes!.firstElementChild!.getBoundingClientRect();
     const diagramBounds = diagram.getBoundingClientRect();
@@ -153,12 +163,12 @@ export const ProductLinkKeyboardFocus: Story = {
   play: async (context) => {
     await checkCommercialEvidenceOrder(context);
     const canvas = within(context.canvasElement);
-    const storyloops = canvas.getByRole("link", { name: "Explore StoryLoops →" });
-    storyloops.focus();
-    await expect(storyloops).toHaveFocus();
+    const contexture = canvas.getByRole("link", { name: "Explore Contexture" });
+    contexture.focus();
+    await expect(contexture).toHaveFocus();
     await userEvent.tab();
-    const plantry = canvas.getByRole("link", { name: "Explore Plantry →" });
-    await expect(plantry).toHaveFocus();
-    await expect(getComputedStyle(plantry).outlineStyle).not.toBe("none");
+    const voiced = canvas.getByRole("link", { name: "Explore Voiced" });
+    await expect(voiced).toHaveFocus();
+    await expect(getComputedStyle(voiced).outlineStyle).not.toBe("none");
   },
 };

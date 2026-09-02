@@ -2,6 +2,7 @@ import { getHookByToken } from "workflow/api";
 import { createAttachmentAccessToken } from "./contact-attachment-access";
 import { contactCvReviewMetadataSchema } from "./contact-cv-review";
 import { verifyOwnerReviewCapability } from "./contact-owner-review-capability";
+import { getContactPublicBaseUrl } from "./contact-public-url";
 
 type HookLookup = typeof getHookByToken;
 
@@ -37,7 +38,7 @@ function createReviewAttachmentUrl(
 ) {
   const attachment = review.draft.attachment;
   const secret = process.env.CONTACT_ATTACHMENT_ACCESS_SECRET;
-  const baseUrl = process.env.CONTACT_PUBLIC_BASE_URL;
+  const baseUrl = getContactPublicBaseUrl();
   if (!attachment || !secret || secret.length < 24 || !baseUrl) return null;
 
   const token = createAttachmentAccessToken(
