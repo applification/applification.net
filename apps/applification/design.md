@@ -234,4 +234,4 @@ The desktop sticky header contracts from 64px to 40px when scrolling down beyond
 
 In the compact desktop header, hide navigation links while scrolling down. Keep the logo and theme switcher visible. Restore navigation on upward scrolling, near the top, or when keyboard focus enters the header.
 
-The active navigation pill is an ordinary absolutely positioned span anchored to the current link. Do not use shared-layout projection for it: document scroll restoration and the sticky header's changing size must never animate the pill from page content into the header. The header's own reveal and resize transitions remain independent.
+The active navigation pill slides between desktop links with a short spring. Position it in the navigation's local coordinate system. Do not use shared-layout projection: document scroll restoration and the sticky header's changing size must never animate the pill from page content into the header. Reduced motion changes its position immediately. The header's own reveal and resize transitions remain independent.

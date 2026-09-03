@@ -595,7 +595,13 @@ html {
     transition: min-height 220ms ease-out, font-size 220ms ease-out, color 180ms ease-out, opacity 160ms ease-out;
   }
 
-  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-navigation > a {
+  .site-header-active-indicator {
+    opacity: 1;
+    transition: opacity 160ms ease-out;
+  }
+
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-navigation > a,
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-active-indicator {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
