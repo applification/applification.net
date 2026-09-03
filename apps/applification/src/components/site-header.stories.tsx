@@ -57,21 +57,23 @@ export const ScrollNavigation: Story = {
       await waitFor(() => expect(header).toHaveAttribute("data-compact", "true"));
 
       // Sample every rendered frame through both same-section and cross-section
-      // route changes. The highlight must remain anchored to its current link.
+      // route changes. The highlight may move between links, but it must never
+      // escape the navigation during scroll restoration.
       const escapedFrames: Array<{ top: number; left: number }> = [];
+      const sampledLefts: number[] = [];
       const frames = new Promise<void>(resolve => {
         const started = performance.now();
         const sample = () => {
           const pill = canvas.getByTestId("active-navigation-highlight");
-          const link = pill.parentElement!;
-          if (getComputedStyle(link).visibility === "visible" && Number(getComputedStyle(link).opacity) > 0) {
+          const navigation = pill.parentElement!;
+          if (getComputedStyle(pill).visibility === "visible" && Number(getComputedStyle(pill).opacity) > 0) {
             const bounds = pill.getBoundingClientRect();
-            const linkBounds = link.getBoundingClientRect();
+            sampledLefts.push(bounds.left);
+            const navigationBounds = navigation.getBoundingClientRect();
             const headerBounds = header.getBoundingClientRect();
             if (
               bounds.top < headerBounds.top - 1 || bounds.bottom > headerBounds.bottom + 1 ||
-              Math.abs(bounds.top - linkBounds.top - 4) > 1 ||
-              Math.abs(bounds.left - linkBounds.left + 8) > 1
+              bounds.left < navigationBounds.left - 8 || bounds.right > navigationBounds.right + 8
             ) escapedFrames.push({ top: bounds.top, left: bounds.left });
           }
           if (performance.now() - started < 1200) requestAnimationFrame(sample);
@@ -82,8 +84,22 @@ export const ScrollNavigation: Story = {
       await userEvent.click(canvas.getByRole("link", { name: destination.label }));
       await frames;
       await expect(header).toHaveAttribute("data-compact", "false");
-      await expect(canvas.getByRole("link", { name: destination.active })).toHaveAttribute("aria-current", "page");
-      await expect(escapedFrames, "The active pill must stay anchored to its navigation link during scroll restoration").toEqual([]);
+      const activeLink = canvas.getByRole("link", { name: destination.active });
+      const pill = canvas.getByTestId("active-navigation-highlight");
+      const pillBounds = pill.getBoundingClientRect();
+      const linkBounds = activeLink.getBoundingClientRect();
+      await expect(activeLink).toHaveAttribute("aria-current", "page");
+      await expect(Math.abs(pillBounds.left - linkBounds.left + 8)).toBeLessThan(1);
+      await expect(Math.abs(pillBounds.width - linkBounds.width - 16)).toBeLessThan(1);
+      await expect(escapedFrames, "The active pill must stay inside the navigation during scroll restoration").toEqual([]);
+      if (destination.active === "Products") {
+        const start = sampledLefts[0];
+        const end = pillBounds.left;
+        await expect(
+          sampledLefts.some((left) => left > Math.min(start, end) + 1 && left < Math.max(start, end) - 1),
+          "The active pill must animate between different navigation sections",
+        ).toBe(true);
+      }
     }
   },
 };

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 
 const navigation = [
@@ -17,6 +17,11 @@ const navigation = [
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
+
+type ActiveIndicatorPosition = {
+  width: number;
+  x: number;
+};
 
 type ProductHeaderTheme = "plantry" | "storyloops" | "contexture" | "voiced";
 const productHeaderThemeNames = new Set<ProductHeaderTheme>([
@@ -72,12 +77,44 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
   const [menuState, setMenuState] = useState({ open: false, pathname });
   const [scrolled, setScrolled] = useState(false);
   const [compact, setCompact] = useState(false);
+  const [activeIndicatorPosition, setActiveIndicatorPosition] =
+    useState<ActiveIndicatorPosition | null>(null);
+  const navigationRef = useRef<HTMLElement>(null);
+  const navigationLinkRefs = useRef(new Map<string, HTMLAnchorElement>());
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const menuOpen = menuState.pathname === pathname && menuState.open;
   const visibleNavigation = contactAvailable
     ? navigation
     : navigation.filter((item) => item.href !== "/contact");
+  const activeHref = visibleNavigation.find((item) => isCurrentPath(pathname, item.href))?.href;
+
+  useLayoutEffect(() => {
+    const navigationElement = navigationRef.current;
+    const activeLink = activeHref ? navigationLinkRefs.current.get(activeHref) : undefined;
+
+    if (!navigationElement || !activeLink) {
+      setActiveIndicatorPosition(null);
+      return;
+    }
+
+    const measure = () => {
+      const navigationBounds = navigationElement.getBoundingClientRect();
+      const linkBounds = activeLink.getBoundingClientRect();
+
+      setActiveIndicatorPosition({
+        width: linkBounds.width + 16,
+        x: linkBounds.left - navigationBounds.left - 8,
+      });
+    };
+
+    measure();
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(navigationElement);
+    resizeObserver.observe(activeLink);
+
+    return () => resizeObserver.disconnect();
+  }, [activeHref]);
 
   useEffect(() => {
     let previousY = Math.max(0, window.scrollY);
@@ -135,29 +172,38 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           </Link>
 
           <nav
+            ref={navigationRef}
             aria-label="Primary navigation"
-            className="site-header-navigation hidden items-center gap-5 min-[820px]:flex min-[1024px]:gap-[30px]"
+            className="site-header-navigation relative isolate hidden items-center gap-5 min-[820px]:flex min-[1024px]:gap-[30px]"
           >
+            {activeIndicatorPosition ? (
+              <motion.span
+                animate={activeIndicatorPosition}
+                aria-hidden="true"
+                className="site-header-active-indicator pointer-events-none absolute inset-y-1 left-0 -z-10 rounded-full bg-[var(--header-nav-selected,var(--app-selected))]"
+                data-testid="active-navigation-highlight"
+                initial={false}
+                transition={
+                  reduceMotion
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 430, damping: 36, mass: 0.7 }
+                }
+              />
+            ) : null}
             {visibleNavigation.map((item) => {
               const current = isCurrentPath(pathname, item.href);
 
               return (
                 <Link
+                  ref={(element) => {
+                    if (element) navigationLinkRefs.current.set(item.href, element);
+                    else navigationLinkRefs.current.delete(item.href);
+                  }}
                   aria-current={current ? "page" : undefined}
                   className={`relative isolate inline-flex min-h-10 items-center text-base font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
                   href={item.href}
                   key={item.href}
                 >
-                  {/* Keep the pill in the link's CSS coordinate space. Shared
-                      layout projection can mistake sticky scroll restoration
-                      for a page-length movement. */}
-                  {current ? (
-                    <span
-                      aria-hidden="true"
-                      className="absolute -inset-x-2 inset-y-1 -z-10 rounded-full bg-[var(--header-nav-selected,var(--app-selected))]"
-                      data-testid="active-navigation-highlight"
-                    />
-                  ) : null}
                   {item.label}
                 </Link>
               );
