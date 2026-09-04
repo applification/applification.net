@@ -12,8 +12,8 @@ type ContractCtaProps = {
 
 export function ContractCta({
   actionLabel = "Discuss a contract",
-  description = "Available immediately for remote UK contracts through Applification Ltd. I join your team to build React and Next.js products, improve existing frontends and deliver production AI.",
-  eyebrow = "AVAILABLE IMMEDIATELY · REMOTE UK",
+  description = "Open to upcoming remote UK contracts through Applification Ltd. I join your team to build React and Next.js products, improve existing frontends and deliver production AI.",
+  eyebrow = "OPEN TO UPCOMING CONTRACTS · REMOTE UK",
   layout = "default",
   title = "Need a senior engineer for your next release?",
   variant = "accent",
