@@ -1,7 +1,7 @@
 export const personalLinkedInUrl = "https://www.linkedin.com/in/hudsond/";
 
 export const contractPositioning = {
-  availability: "Available immediately",
+  availability: "Open to upcoming contracts",
   contractBasis: "Through Applification Ltd",
   location: "Remote UK",
   role: "Senior Contract AI Product Engineer",
