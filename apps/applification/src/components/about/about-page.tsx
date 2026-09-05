@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import { ExternalLink } from "@/components/external-link";
 import { ArrowUpRight, Check } from "lucide-react";
 import Link from "next/link";
@@ -137,7 +138,7 @@ export function AboutHero() {
       className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)]"
       data-about-section="profile"
     >
-      <div className="mx-auto grid w-full max-w-[1200px] gap-12 px-6 py-16 min-[900px]:grid-cols-[minmax(0,760px)_350px] min-[900px]:items-center min-[900px]:gap-20 min-[1200px]:px-0 min-[1200px]:py-[84px]">
+      <div className={`${heroTopSpacing} mx-auto grid w-full max-w-[1200px] gap-12 px-6 pb-16 min-[900px]:grid-cols-[minmax(0,760px)_350px] min-[900px]:items-start min-[900px]:gap-20 min-[1200px]:px-0 min-[1200px]:pb-[84px]`}>
         <div className="flex flex-col gap-[18px]">
           <p className="font-caption text-xs font-bold tracking-[1.4px] text-[var(--app-label-text)] uppercase">
             About&nbsp; · &nbsp;Dave Hudson

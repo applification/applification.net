@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+export const heroTopSpacing = "pt-12 min-[1024px]:pt-16";
+
 type PageHeroProps = {
   aside: ReactNode;
   density?: "compact" | "default";
@@ -26,7 +28,7 @@ export function PageHero({
   return (
     <section
       aria-labelledby={headingId}
-      className={`${density === "compact" ? "min-[1024px]:min-h-[390px] min-[1024px]:py-14" : "min-[1024px]:min-h-[498px] min-[1024px]:py-20"} bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-14 min-[720px]:px-12 min-[1440px]:px-[120px]`}
+      className={`${density === "compact" ? "min-[1024px]:min-h-[390px] min-[1024px]:pb-14" : "min-[1024px]:min-h-[498px] min-[1024px]:pb-20"} bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 ${heroTopSpacing} pb-14 min-[720px]:px-12 min-[1440px]:px-[120px]`}
       {...sectionProps}
     >
       <div className="mx-auto grid w-full max-w-[1200px] gap-10 min-[1024px]:grid-cols-[minmax(0,780px)_330px] min-[1024px]:items-start min-[1024px]:justify-between min-[1024px]:gap-[90px]">

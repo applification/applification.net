@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import { ExternalLink } from "@/components/external-link";
 import { contractPositioning, personalLinkedInUrl } from "@/lib/contract-positioning";
 import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
@@ -382,14 +383,14 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="bg-linear-to-b from-[var(--hero-bg)] to-[var(--hero-bg-end)] px-6 pt-8 pb-8 text-[var(--hero-text)] min-[720px]:px-12 min-[720px]:pt-12 min-[720px]:pb-10 min-[1060px]:pt-16 min-[1060px]:pb-12 min-[1280px]:px-20 min-[1440px]:px-[120px]"
+      className={`${heroTopSpacing} bg-linear-to-b from-[var(--hero-bg)] to-[var(--hero-bg-end)] px-6 pb-8 text-[var(--hero-text)] min-[720px]:px-12 min-[720px]:pb-10 min-[1060px]:pb-12 min-[1280px]:px-20 min-[1440px]:px-[120px]`}
       data-hero-surface
     >
       <HeroSequenceController />
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 min-[720px]:gap-7 min-[1060px]:gap-9">
         <HeroEntrance order={0}>
-          <div className="font-caption flex flex-col gap-2">
-            <p className="flex items-start gap-2.5 text-[11px] leading-[16px] font-bold tracking-[0.7px] text-[var(--hero-text)] uppercase min-[720px]:items-center min-[720px]:text-xs min-[720px]:tracking-[0.9px]">
+          <div className="font-caption relative">
+            <p className="absolute bottom-[calc(100%+8px)] left-0 flex items-start gap-2.5 text-[11px] leading-[16px] font-bold tracking-[0.7px] text-[var(--hero-text)] uppercase min-[720px]:items-center min-[720px]:text-xs min-[720px]:tracking-[0.9px]">
               <span
                 aria-hidden="true"
                 className="mt-[5px] size-2 shrink-0 rounded-full bg-[var(--hero-availability)] min-[720px]:mt-0"

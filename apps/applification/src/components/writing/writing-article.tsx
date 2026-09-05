@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import { ExternalLink } from "@/components/external-link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -202,7 +203,7 @@ export function WritingArticle({
           Local preview · {entry.draft ? "Draft" : "Published"}
         </aside>
       ) : null}
-      <header className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pt-12 pb-14 min-[720px]:px-12 min-[1024px]:pt-[66px] min-[1024px]:pb-[72px] min-[1440px]:px-[120px]">
+      <header className={`${heroTopSpacing} bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pb-14 min-[720px]:px-12 min-[1024px]:pb-[72px] min-[1440px]:px-[120px]`}>
         <div className="mx-auto w-full max-w-[1200px]">
           <DetailContextRail
             backHref="/writing"

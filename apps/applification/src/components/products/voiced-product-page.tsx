@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import { ExternalLink } from "@/components/external-link";
 import type { ReactNode } from "react";
 import {
@@ -168,7 +169,7 @@ function VoicedHero() {
   return (
     <section
       aria-labelledby="voiced-heading"
-      className="bg-[#eaf3ed] px-6 py-12 min-[720px]:px-12 min-[1024px]:min-h-[580px] min-[1024px]:pt-[66px] min-[1024px]:pb-[70px] min-[1440px]:px-[120px]"
+      className={`${heroTopSpacing} bg-[#eaf3ed] px-6 pb-12 min-[720px]:px-12 min-[1024px]:min-h-[580px] min-[1024px]:pb-[70px] min-[1440px]:px-[120px]`}
     >
       <div className="mx-auto w-full max-w-[1200px]">
         <DetailContextRail

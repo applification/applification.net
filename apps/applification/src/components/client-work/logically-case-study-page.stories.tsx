@@ -18,6 +18,11 @@ const checkCompleteCase: NonNullable<Story["play"]> = async ({
   canvasElement,
 }) => {
   const canvas = within(canvasElement);
+    const header = canvasElement.querySelector("article > header")!;
+    const label = header.querySelector("p")!;
+    await expect(label.getBoundingClientRect().top - header.getBoundingClientRect().top)
+      .toBe(window.innerWidth >= 1024 ? 64 : 48);
+
 
   await expect(canvasElement.querySelectorAll("h1")).toHaveLength(1);
   await expect(canvas.getByRole("heading", { name: /live platform/i })).toBeVisible();

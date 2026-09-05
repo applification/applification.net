@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import {
   ArrowUpRight,
   BadgeCheck,
@@ -99,7 +100,7 @@ function StoryLoopsHero() {
   return (
     <section
       aria-labelledby="storyloops-heading"
-      className="bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] px-6 py-12 min-[720px]:px-12 min-[1024px]:pt-[66px] min-[1024px]:pb-12 min-[1440px]:min-h-[620px] min-[1440px]:px-[120px]"
+      className={`${heroTopSpacing} bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] px-6 pb-12 min-[720px]:px-12 min-[1024px]:pb-12 min-[1440px]:min-h-[620px] min-[1440px]:px-[120px]`}
     >
       <div className="mx-auto flex h-full w-full max-w-[1200px] flex-col">
         <DetailContextRail
