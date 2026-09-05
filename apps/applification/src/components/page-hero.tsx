@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export const heroTopSpacing = "pt-8 min-[720px]:pt-12 min-[1024px]:pt-16";
+export const heroTopSpacing = "pt-12 min-[1024px]:pt-16";
 
 type PageHeroProps = {
   aside: ReactNode;

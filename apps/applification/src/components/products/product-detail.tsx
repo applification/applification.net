@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import type { ReactNode } from "react";
 import { DetailContextRail } from "@/components/detail-context-rail";
 
@@ -70,7 +71,7 @@ export function ProductDetailHero({
   return (
     <section
       aria-labelledby="product-detail-heading"
-      className={`${contexture ? "bg-[#1e1e2e] min-[1024px]:min-h-[590px]" : "bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] min-[1024px]:min-h-[560px]"} px-6 py-12 min-[720px]:px-12 min-[1024px]:pt-[66px] min-[1024px]:pb-16 min-[1440px]:px-[120px]`}
+      className={`${heroTopSpacing} ${contexture ? "bg-[#1e1e2e] min-[1024px]:min-h-[590px]" : "bg-[linear-gradient(180deg,var(--app-bg),var(--app-bg-end))] min-[1024px]:min-h-[560px]"} px-6 pb-12 min-[720px]:px-12 min-[1024px]:pb-16 min-[1440px]:px-[120px]`}
     >
       <div className="mx-auto w-full max-w-[1200px]">
         <DetailContextRail

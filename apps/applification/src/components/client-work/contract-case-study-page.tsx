@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import { CaseStudyVisual } from "./case-study-visual";
 import { CaseStudyContact, CaseStudyFacts } from "./case-study-contact";
 import { ArrowUpRight } from "lucide-react";
@@ -132,7 +133,7 @@ function ContractCaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
   return (
     <main className="flex-1 overflow-x-clip">
       <article>
-        <header className="bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 py-12 min-[720px]:px-12 min-[1024px]:py-[82px] min-[1440px]:px-[120px]">
+        <header className={`${heroTopSpacing} bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pb-12 min-[720px]:px-12 min-[1024px]:pb-[82px] min-[1440px]:px-[120px]`}>
           <div className="mx-auto w-full max-w-[1200px]">
             <DetailContextRail
               backHref="/client-work#selected-contracts"

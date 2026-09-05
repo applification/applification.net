@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import type { ReactNode } from "react";
 import {
   ArrowUpRight,
@@ -99,7 +100,7 @@ function PlantryHero() {
   return (
     <section
       aria-labelledby="plantry-detail-heading"
-      className="bg-[var(--app-bg)] px-6 py-12 min-[720px]:px-12 min-[1024px]:min-h-[610px] min-[1024px]:pt-[66px] min-[1024px]:pb-[55px] min-[1440px]:px-[120px]"
+      className={`${heroTopSpacing} bg-[var(--app-bg)] px-6 pb-12 min-[720px]:px-12 min-[1024px]:min-h-[610px] min-[1024px]:pb-[55px] min-[1440px]:px-[120px]`}
     >
       <div className="mx-auto w-full max-w-[1200px]">
         <DetailContextRail
