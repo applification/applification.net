@@ -51,7 +51,7 @@ function ArrowUpRightIcon() {
   );
 }
 
-function ProductsHero() {
+export function ProductsHero() {
   return (
     <PageHero
       aside={

@@ -1,3 +1,4 @@
+import { heroTopSpacing } from "@/components/page-hero";
 import { ExternalLink } from "@/components/external-link";
 import { contractPositioning, personalLinkedInUrl } from "@/lib/contract-positioning";
 import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
@@ -382,7 +383,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="bg-linear-to-b from-[var(--hero-bg)] to-[var(--hero-bg-end)] px-6 pt-8 pb-8 text-[var(--hero-text)] min-[720px]:px-12 min-[720px]:pt-12 min-[720px]:pb-10 min-[1060px]:pt-16 min-[1060px]:pb-12 min-[1280px]:px-20 min-[1440px]:px-[120px]"
+      className={`${heroTopSpacing} bg-linear-to-b from-[var(--hero-bg)] to-[var(--hero-bg-end)] px-6 pb-8 text-[var(--hero-text)] min-[720px]:px-12 min-[720px]:pb-10 min-[1060px]:pb-12 min-[1280px]:px-20 min-[1440px]:px-[120px]`}
       data-hero-surface
     >
       <HeroSequenceController />

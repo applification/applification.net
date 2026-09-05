@@ -103,6 +103,8 @@ Use composition to expose the page's argument:
 - A writing page should favour reading rhythm over card density.
 - An interactive contact page should put the next useful action ahead of explanation about the mechanism.
 
+Main-page hero labels share top spacing of 32px below 720px, 48px from 720px, and 64px from 1024px. Anchor their content to the top; hero density and aside height must not move the opening label.
+
 Choose section geometry before choosing components. Use a shared edge and consistent baselines. Evidence tables, diagrams, and product previews may use the full content width. Reading prose should not stretch across it.
 
 Do not force every section into a card grid. Repeated containers are useful only for true peers. When one item carries the conclusion, give it more space or place it earlier.
