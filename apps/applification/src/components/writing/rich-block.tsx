@@ -7,6 +7,7 @@ import { richBlockSchemas } from "@/lib/rich-block-registry";
 import { BespokeContentFlow } from "./bespoke-content-flow";
 import { LinkPreview } from "./link-preview";
 import { YouTubeEmbed } from "./youtube-embed";
+import { TweetEmbed } from "./tweet-embed";
 
 export type RichBlockComponentRegistry = Record<
   string,
@@ -22,6 +23,7 @@ export const richBlockComponents = {
   "bespoke-content-flow": BespokeContentFlow,
   "link-preview": LinkPreview,
   youtube: YouTubeEmbed,
+  tweet: TweetEmbed,
 } satisfies RichBlockComponentRegistry;
 
 export const richBlockRegistry: RichBlockRegistry = {
