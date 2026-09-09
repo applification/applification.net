@@ -43,6 +43,12 @@ export const youtubeSchema = z
 
 export type YouTubeProps = z.infer<typeof youtubeSchema>;
 
+export const tweetSchema = z.object({
+  id: z.string().regex(/^\d{1,25}$/),
+  author: z.string().trim().min(1).max(80),
+  quote: z.string().trim().min(1).max(1000),
+}).strict();
+
 export const bespokeContentFlowSchema = z
   .object({
     description: z.string().trim().min(20).max(240),
@@ -60,4 +66,5 @@ export const richBlockSchemas = {
   "bespoke-content-flow": bespokeContentFlowSchema,
   "link-preview": linkPreviewSchema,
   youtube: youtubeSchema,
+  tweet: tweetSchema,
 } satisfies RichBlockSchemaRegistry;
