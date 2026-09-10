@@ -6,7 +6,22 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["applification.localhost", "rufus.tail12a0a0.ts.net"],
   outputFileTracingIncludes: {
     "/design.md": ["./design.md"],
-    "/[...notFound]": ["./.next/server/app/_not-found.html"],
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [],
+      // Runs only after every page, route handler, static file and dynamic
+      // route has failed to match. Browsers (Accept: text/html) fall through
+      // to app/not-found.tsx; everything else gets a Markdown 404.
+      fallback: [
+        {
+          source: "/:path*",
+          missing: [{ type: "header", key: "accept", value: ".*text/html.*" }],
+          destination: "/api/not-found/:path*",
+        },
+      ],
+    };
   },
 };
 

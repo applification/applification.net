@@ -53,30 +53,7 @@ Tip: use ${siteUrl}/api/v1/search?query=<words> to find published content by key
 `;
 }
 
-/**
- * Browsers always list text/html in Accept. Agents, curl and fetch typically
- * send a wildcard or a markdown/plain preference, so they get the Markdown body.
- */
-export function prefersHtml(accept: string | null) {
-  if (!accept) return false;
-  return accept
-    .split(",")
-    .some((entry) => {
-      const [type, ...params] = entry.trim().split(";");
-      const q = params
-        .map((param) => param.trim())
-        .find((param) => param.startsWith("q="));
-      const weight = q ? Number(q.slice(2)) : 1;
-      const mediaType = type.trim().toLowerCase();
-      return (
-        (mediaType === "text/html" || mediaType === "application/xhtml+xml") &&
-        weight > 0
-      );
-    });
-}
-
-export function notFoundResponse(request: Request) {
-  const { pathname } = new URL(request.url);
+export function notFoundResponse(pathname: string) {
   return new Response(notFoundMarkdown(pathname), {
     status: 404,
     headers: {

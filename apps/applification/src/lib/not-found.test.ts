@@ -1,23 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { notFoundMarkdown, notFoundResponse, prefersHtml } from "./not-found";
-
-describe("prefersHtml", () => {
-  it("is true for browser Accept headers", () => {
-    expect(
-      prefersHtml(
-        "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      ),
-    ).toBe(true);
-  });
-
-  it("is false for curl, fetch defaults and agent preferences", () => {
-    expect(prefersHtml(null)).toBe(false);
-    expect(prefersHtml("*/*")).toBe(false);
-    expect(prefersHtml("text/markdown, text/plain;q=0.9")).toBe(false);
-    expect(prefersHtml("application/json")).toBe(false);
-    expect(prefersHtml("text/html;q=0, text/markdown")).toBe(false);
-  });
-});
+import { notFoundMarkdown, notFoundResponse } from "./not-found";
 
 describe("notFoundMarkdown", () => {
   it("names the path and points at the sitemap, llms.txt and search", () => {
@@ -40,13 +22,12 @@ describe("notFoundMarkdown", () => {
 
 describe("notFoundResponse", () => {
   it("returns a 404 Markdown response", async () => {
-    const response = notFoundResponse(
-      new Request("https://www.applification.net/nope"),
-    );
+    const response = notFoundResponse("/nope");
     expect(response.status).toBe(404);
     expect(response.headers.get("content-type")).toBe(
       "text/markdown; charset=utf-8",
     );
+    expect(response.headers.get("vary")).toBe("Accept");
     expect(response.headers.get("x-robots-tag")).toBe("noindex");
     expect(await response.text()).toContain("/nope");
   });
