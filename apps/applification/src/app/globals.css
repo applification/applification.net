@@ -424,7 +424,7 @@
   --app-action-hover: #254f42;
   --app-text-on-action: #f7faf8;
   --app-focus: #2f7a52;
-  --header-nav-active: #2f7a52;
+  --header-nav-active: var(--app-text-primary);
   --header-nav-selected: #d6eadc;
 }
 

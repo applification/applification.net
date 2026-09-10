@@ -1,3 +1,8 @@
+import {
+  storyloopsOwnershipSteps,
+  storyloopsBuildPrinciples,
+  productPageCopy,
+} from "@/lib/content/product-details";
 import { heroTopSpacing } from "@/components/page-hero";
 import {
   ArrowUpRight,
@@ -24,65 +29,26 @@ const ownershipLabels = [
   "CHANGE WITH YOUR AGENT",
 ];
 
-type OwnershipStep = {
-  description: string;
-  icon: ReactNode;
-  number: string;
-  title: string;
-};
+const ownershipSteps = storyloopsOwnershipSteps.map((item, index) => ({
+  ...item,
+  icon: [
+    <ShoppingBag
+      key="ShoppingBag"
+      aria-hidden="true"
+      size={24}
+      strokeWidth={1.7}
+    />,
+    <Bot key="Bot" aria-hidden="true" size={24} strokeWidth={1.7} />,
+    <Rocket key="Rocket" aria-hidden="true" size={24} strokeWidth={1.7} />,
+    <Blocks key="Blocks" aria-hidden="true" size={24} strokeWidth={1.7} />,
+  ][index],
+}));
 
-const ownershipSteps: OwnershipStep[] = [
-  {
-    number: "01",
-    title: "Purchase V1",
-    description:
-      "Receive the complete working application and the source code for the version you bought.",
-    icon: <ShoppingBag aria-hidden="true" size={24} strokeWidth={1.7} />,
-  },
-  {
-    number: "02",
-    title: "Open with your agent",
-    description:
-      "Ask your preferred coding agent to install StoryLoops for your organisation.",
-    icon: <Bot aria-hidden="true" size={24} strokeWidth={1.7} />,
-  },
-  {
-    number: "03",
-    title: "Deploy your instance",
-    description:
-      "The agent provisions services, configures the app, deploys it and runs smoke tests.",
-    icon: <Rocket aria-hidden="true" size={24} strokeWidth={1.7} />,
-  },
-  {
-    number: "04",
-    title: "Make it yours",
-    description:
-      "Change the brand, roles, estimates, workflow or integrations in your owned version.",
-    icon: <Blocks aria-hidden="true" size={24} strokeWidth={1.7} />,
-  },
-];
-
-const buildPrinciples = [
-  {
-    title: "Production core",
-    description:
-      "Next.js, React, TypeScript, Convex and WorkOS form an opinionated collaborative stack.",
-  },
-  {
-    title: "Agent-native installation",
-    description:
-      "The playbook covers provisioning, environment setup, deployment and verification.",
-  },
-  {
-    title: "Safe to customise",
-    description:
-      "Predictable modules, documented invariants and tests help an unfamiliar agent change it correctly.",
-  },
-];
+const buildPrinciples = storyloopsBuildPrinciples;
 
 function Eyebrow({
   children,
-  className = "text-[light-dark(#0369a1,#7dd3fc)]",
+  className = "text-[var(--app-label-text)]",
 }: {
   children: ReactNode;
   className?: string;
@@ -115,12 +81,10 @@ function StoryLoopsHero() {
               className="font-heading max-w-[560px] text-[48px] leading-[0.98] font-medium tracking-[-0.025em] text-[var(--app-text-primary)] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]"
               id="storyloops-heading"
             >
-              Stop renting story-mapping software. Own it.
+              {productPageCopy.storyloops.hero.title}
             </h1>
             <p className="max-w-[560px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-lg min-[1024px]:leading-[1.5]">
-              Buy a complete collaborative story-mapping application, deploy it
-              with your coding agent, and own the source for the version you
-              purchase.
+              {productPageCopy.storyloops.hero.paragraphs[0]}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <a
@@ -159,15 +123,12 @@ function StoryLoopsRationale() {
             className="font-heading text-[36px] leading-[1.08] font-medium min-[1024px]:text-[40px]"
             id="storyloops-rationale-heading"
           >
-            Start with a production product, not an empty directory.
+            {productPageCopy.storyloops.rationale.title}
           </h2>
         </div>
         <div className="flex flex-col gap-5">
           <p className="text-base leading-[1.55] text-[#cbd5e1] min-[1024px]:text-[17px]">
-            An agent can generate code, but starting from zero still means
-            hundreds of architecture, security, data and product decisions.
-            StoryLoops gives the agent a coherent application that already
-            works.
+            {productPageCopy.storyloops.rationale.paragraphs[0]}
           </p>
           <div className="flex gap-4 rounded-[14px] border border-[#334155] bg-[#172033] p-5 min-[1024px]:h-[84px] min-[1024px]:items-center min-[1024px]:py-0">
             <BadgeCheck
@@ -177,8 +138,7 @@ function StoryLoopsRationale() {
               strokeWidth={1.7}
             />
             <p className="text-[16px] leading-[1.4] font-semibold text-[#f8fafc]">
-              You are buying the decisions, implementation and debugging already
-              done, plus the source to take it further.
+              {productPageCopy.storyloops.rationale.paragraphs[1]}
             </p>
           </div>
         </div>
@@ -202,12 +162,11 @@ function StoryLoopsOwnership() {
               className="font-heading text-[36px] leading-[1.08] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[40px]"
               id="ownership-path-heading"
             >
-              Purchase. Give it to your agent. Receive a production URL.
+              {productPageCopy.storyloops.ownership.title}
             </h2>
           </div>
           <p className="text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
-            The installation playbook tells the agent what to provision, how to
-            deploy and what to verify before handover.
+            {productPageCopy.storyloops.ownership.paragraphs[0]}
           </p>
         </div>
 
@@ -257,9 +216,7 @@ function StoryLoopsBuildPrinciples() {
             the agent that will change it.
           </h2>
           <p className="text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
-            The application favours obvious architecture, explicit domain
-            concepts and typed boundaries. Agent documentation is part of the
-            product, not an appendix added before release.
+            {productPageCopy.storyloops.buildPrinciples.paragraphs[0]}
           </p>
         </div>
         <ul>
@@ -300,26 +257,26 @@ function StoryLoopsAvailability() {
             className="font-heading text-[35px] leading-[1.1] font-medium text-[light-dark(#082f49,#f8fafc)] min-[1024px]:text-[38px]"
             id="storyloops-availability-heading"
           >
-            One purchase. The product and source are yours.
+            {productPageCopy.storyloops.availability.title}
           </h2>
           <p className="text-[17px] leading-[1.6] text-[light-dark(#0c4a6e,#cbd5e1)]">
-            V1 is in preparation. Buyers receive the working app, source code,
-            deployment configuration and agent playbooks. There is no hosted
-            SaaS subscription.
+            {productPageCopy.storyloops.availability.paragraphs[0]}
           </p>
         </div>
-        {isContactWorkflowAvailable() ? <a
-          className={`inline-flex h-[49px] w-full shrink-0 items-center justify-center gap-[10px] rounded-full bg-[#0b1220] px-[21px] text-[15px] font-semibold text-white transition-colors hover:bg-[#1e293b] min-[1440px]:w-[221px] ${focusClasses}`}
-          href={buildContactHref({ route: "product", product: "storyloops" })}
-        >
-          Get V1 launch details
-          <ArrowUpRight
-            aria-hidden="true"
-            className="text-[#7dd3fc]"
-            size={18}
-            strokeWidth={1.8}
-          />
-        </a> : null}
+        {isContactWorkflowAvailable() ? (
+          <a
+            className={`inline-flex h-[49px] w-full shrink-0 items-center justify-center gap-[10px] rounded-full bg-[#0b1220] px-[21px] text-[15px] font-semibold text-white transition-colors hover:bg-[#1e293b] min-[1440px]:w-[221px] ${focusClasses}`}
+            href={buildContactHref({ route: "product", product: "storyloops" })}
+          >
+            Get V1 launch details
+            <ArrowUpRight
+              aria-hidden="true"
+              className="text-[#7dd3fc]"
+              size={18}
+              strokeWidth={1.8}
+            />
+          </a>
+        ) : null}
       </div>
     </section>
   );

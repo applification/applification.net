@@ -1,3 +1,9 @@
+import {
+  voicedCaptureRoutes,
+  voicedBuildRows,
+  productPageCopy,
+  productLinks,
+} from "@/lib/content/product-details";
 import { heroTopSpacing } from "@/components/page-hero";
 import { ExternalLink } from "@/components/external-link";
 import type { ReactNode } from "react";
@@ -27,51 +33,22 @@ const waveformColors = [
   "bg-[#75c99a]",
 ];
 
-const captureRoutes = [
-  {
-    shortcut: "Hold ⌘",
-    shortcutLabel: "Hold Command",
-    title: "Speak and paste",
-    description: "Transcribe into the previously focused editor.",
-    icon: <Mic aria-hidden="true" size={25} strokeWidth={1.7} />,
-  },
-  {
-    shortcut: "⇧ + ⌘",
-    shortcutLabel: "Shift plus Command",
-    title: "Save quietly",
-    description: "Record, release and send the capture to Inbox.",
-    icon: <Inbox aria-hidden="true" size={25} strokeWidth={1.7} />,
-  },
-  {
-    shortcut: "Shift ×2",
-    shortcutLabel: "Shift twice",
-    title: "Capture selection",
-    description: "Take the selected text without changing tools.",
-    icon: <TextCursorInput aria-hidden="true" size={25} strokeWidth={1.7} />,
-  },
-  {
-    shortcut: "⌥ Space",
-    shortcutLabel: "Option Space",
-    title: "Open the shelf",
-    description: "Search, edit, export or move saved captures.",
-    icon: <Archive aria-hidden="true" size={25} strokeWidth={1.7} />,
-  },
-];
+const captureRoutes = voicedCaptureRoutes.map((item, index) => ({
+  ...item,
+  icon: [
+    <Mic key="Mic" aria-hidden="true" size={25} strokeWidth={1.7} />,
+    <Inbox key="Inbox" aria-hidden="true" size={25} strokeWidth={1.7} />,
+    <TextCursorInput
+      key="TextCursorInput"
+      aria-hidden="true"
+      size={25}
+      strokeWidth={1.7}
+    />,
+    <Archive key="Archive" aria-hidden="true" size={25} strokeWidth={1.7} />,
+  ][index],
+}));
 
-const buildRows = [
-  {
-    label: "Native application",
-    value: "Swift 6 · SwiftUI · macOS 14+",
-  },
-  {
-    label: "Speech and storage",
-    value: "Local Whisper · readable JSON · atomic writes",
-  },
-  {
-    label: "Distribution",
-    value: "Developer ID · Hardened Runtime · notarised",
-  },
-];
+const buildRows = voicedBuildRows;
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2f7a52]";
@@ -184,21 +161,17 @@ function VoicedHero() {
               className="font-heading max-w-[560px] text-[48px] leading-[0.98] font-medium text-[#173f32] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]"
               id="voiced-heading"
             >
-              Capture the thought. Keep your hands on the work.
+              {productPageCopy.voiced.hero.title}
             </h1>
             <p className="max-w-[560px] text-base leading-[1.55] text-[#4d665e] min-[1024px]:text-lg min-[1024px]:leading-[1.5]">
-              A local capture layer for macOS. Speak, select or type, then paste
-              it, queue it or keep it on a shelf you control.
+              {productPageCopy.voiced.hero.paragraphs[0]}
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <VoicedExternalLink
-                href="https://voiced.applification.net/"
-                primary
-              >
+              <VoicedExternalLink href={productLinks.voiced[0].url} primary>
                 Download Voiced
                 <Download aria-hidden="true" size={16} strokeWidth={1.8} />
               </VoicedExternalLink>
-              <VoicedExternalLink href="https://github.com/applification/voiced">
+              <VoicedExternalLink href={productLinks.voiced[1].url}>
                 GitHub source
                 <GithubIcon />
               </VoicedExternalLink>
@@ -227,15 +200,13 @@ function VoicedRationale() {
             className="font-heading mt-[18px] text-[36px] leading-[1.08] font-medium min-[1024px]:text-[40px]"
             id="voiced-rationale-heading"
           >
-            Good thoughts often arrive while the cursor is somewhere else.
+            {productPageCopy.voiced.rationale.title}
           </h2>
         </div>
 
         <div>
           <p className="text-base leading-[1.55] text-[#cfe0d6] min-[1024px]:text-[17px]">
-            Most dictation tools ask you to move into their interface. Voiced
-            works from the editor already in focus, then gives longer captures a
-            quiet place to wait. Nothing needs an account or a cloud transcript.
+            {productPageCopy.voiced.rationale.paragraphs[0]}
           </p>
           <div className="mt-[18px] flex items-center gap-[14px] rounded-[14px] bg-[#254f42] p-[18px]">
             <LockKeyhole
@@ -244,9 +215,8 @@ function VoicedRationale() {
               size={26}
               strokeWidth={1.7}
             />
-          <p className="text-base leading-[1.55] font-semibold text-[#f7faf8] min-[1024px]:text-[17px]">
-              Local Whisper transcription. No account, telemetry, cloud storage
-              or server.
+            <p className="text-base leading-[1.55] font-semibold text-[#f7faf8] min-[1024px]:text-[17px]">
+              {productPageCopy.voiced.rationale.paragraphs[1]}
             </p>
           </div>
         </div>
@@ -269,12 +239,11 @@ function VoicedCaptureRoutes() {
               className="font-heading mt-3 text-[36px] leading-[1.08] font-medium text-[#173f32] min-[1024px]:text-[40px]"
               id="voiced-capture-model-heading"
             >
-              Voice, selection and typed notes all land in the same shelf.
+              {productPageCopy.voiced.captureRoutes.title}
             </h2>
           </div>
           <p className="text-[17px] leading-[1.6] text-[#4d665e]">
-            Quick captures paste straight back. Anything worth keeping can stay
-            in Inbox until it is edited, copied or moved to Done.
+            {productPageCopy.voiced.captureRoutes.paragraphs[0]}
           </p>
         </div>
 
@@ -318,13 +287,10 @@ function VoicedBuild() {
             className="font-heading mt-4 text-[35px] leading-[1.08] font-medium text-[#173f32] min-[1024px]:text-[38px] min-[1024px]:leading-[1.1]"
             id="voiced-build-heading"
           >
-            A native Mac utility built around recoverable actions.
+            {productPageCopy.voiced.build.title}
           </h2>
           <p className="mt-4 text-base leading-[1.58] text-[#4d665e] min-[1024px]:text-[17px]">
-            Voiced uses one CaptureItem across voice, selection and typed input.
-            Clipboard writes restore the previous value when safe, storage is
-            atomic, and corrupt data gets a recovery copy before the shelf
-            starts clean.
+            {productPageCopy.voiced.build.paragraphs[0]}
           </p>
         </div>
 
@@ -361,28 +327,19 @@ function VoicedAvailability() {
             className="font-heading mt-3 text-[35px] leading-[1.08] font-medium text-[#173f32] min-[1024px]:text-[38px] min-[1024px]:leading-[1.1]"
             id="voiced-availability-heading"
           >
-            Download the notarised Mac app or build it yourself.
+            {productPageCopy.voiced.availability.title}
           </h2>
           <p className="mt-3 text-[17px] leading-[1.6] text-[#4d665e]">
-            Voiced is MIT licensed and distributed directly for macOS 14 or
-            newer. The source includes local build, packaging and smoke-test
-            guides.
+            {productPageCopy.voiced.availability.paragraphs[0]}
           </p>
         </div>
 
         <div className="flex flex-wrap gap-2.5 min-[1024px]:w-fit min-[1024px]:flex-col min-[1024px]:items-end min-[1024px]:justify-self-end">
-          <VoicedExternalLink
-            href="https://voiced.applification.net/"
-            primary
-            roomy
-          >
+          <VoicedExternalLink href={productLinks.voiced[0].url} primary roomy>
             Download Voiced
             <Download aria-hidden="true" size={16} strokeWidth={1.8} />
           </VoicedExternalLink>
-          <VoicedExternalLink
-            href="https://github.com/applification/voiced"
-            roomy
-          >
+          <VoicedExternalLink href={productLinks.voiced[1].url} roomy>
             View on GitHub
             <GithubIcon />
           </VoicedExternalLink>

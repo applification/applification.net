@@ -1,5 +1,9 @@
 "use client";
 
+import { flushSync } from "react-dom";
+import { fillContactDraft, fillContactInputSchema } from "@/lib/contact-webmcp";
+import { registerPageTool, toolInputSchema } from "@/lib/webmcp";
+
 import { ContactWorkflow } from "./contact-workflow";
 
 
@@ -211,6 +215,41 @@ export function ContactWorkspace({
   useEffect(() => {
     startedAtRef.current = currentTimestamp();
   }, []);
+
+  useEffect(() => {
+    // A drafting tool is meaningful only while this page can accept edits.
+    if (delivery !== "idle" || isPreparing || isUploading || editingField) return;
+    let active = true;
+    const unregister = registerPageTool({
+      name: "fill_contact_draft",
+      description: "Fill empty fields in the visible contract, product or general enquiry form using visitor-provided details. Existing values are preserved. Returns missing fields and validation issues. The visitor reviews and sends separately; filling makes no network request.",
+      inputSchema: toolInputSchema(fillContactInputSchema),
+      annotations: {readOnlyHint: false},
+      execute: async input => {
+        if (!active || preparingRef.current || uploadingRef.current) return {error: {code: "BUSY", message: "The enquiry is busy. Finish the current action before filling it."}};
+        if (message.trim() || lastFailedMessage) return {error: {code: "PENDING_MESSAGE", message: "The visitor has an unsaved message. Ask them to use the form or finish that message first."}};
+        const filled = fillContactDraft(draftRef.current, input);
+        if (!filled.ok) return {error: filled.error};
+        flushSync(() => {
+          draftRef.current = filled.draft;
+          setDraft(filled.draft);
+          setManualMode(true);
+          setReviewMode(false);
+          setRouteChooserExpanded(false);
+          setVisitorApproved(false);
+          setDeliveryError(null);
+          setDeliveryResult(null);
+          setPrepareError(null);
+          if (filled.result.changedFields.length) {
+            setSummaryNeedsReview(Boolean(filled.draft.summary));
+            idempotencyKeyRef.current = createContactUuid();
+          }
+        });
+        return filled.result;
+      },
+    });
+    return () => { active = false; unregister(); };
+  }, [delivery, isPreparing, isUploading, editingField, message, lastFailedMessage]);
 
   function resetDeliveryForDraftChange() {
     setVisitorApproved(false);
@@ -474,6 +513,11 @@ export function ContactWorkspace({
     const pending = message.trim() || lastFailedMessage || "";
     const field = draftRef.current.route === "contract" ? "need" : draftRef.current.route === "product" ? "question" : "message";
     if (pending && !draftRef.current[field] && pending.length <= contactTextLimits[field]) editDraftField(field, pending);
+    if (pending && draftRef.current[field] === pending) {
+      // The pending text is now editable in the form; it no longer blocks drafting.
+      setMessage("");
+      setLastFailedMessage(null);
+    }
     setManualMode(true);
   }
 
@@ -983,7 +1027,7 @@ export function ContactWorkspace({
           </header>
 
           <div
-            className="flex h-[calc(100svh-88px)] min-h-[440px] max-h-[590px] flex-col sm:h-[clamp(590px,68svh,730px)] sm:min-h-0 sm:max-h-none"
+            className={cn("flex flex-col", !manualMode && "h-[calc(100svh-88px)] min-h-[440px] max-h-[590px] sm:h-[clamp(590px,68svh,730px)] sm:min-h-0 sm:max-h-none")}
             data-contact-workspace-body
           >
             {manualMode ? <ManualContactBrief
@@ -991,7 +1035,7 @@ export function ContactWorkspace({
               originalMessage={message.trim() || lastFailedMessage || ""}
               onRoute={chooseRoute}
               onField={editDraftField}
-              onReview={() => { setManualMode(false); setReviewMode(true); setBriefExpanded(true); setPrepareError(null); }}
+              onReview={() => { setSummaryNeedsReview(false); setManualMode(false); setReviewMode(true); setBriefExpanded(true); setPrepareError(null); }}
             /> : <Conversation className="bg-[var(--app-section)]">
               <ConversationContent className="mx-auto w-full max-w-[920px] gap-4 px-3 py-4 sm:gap-5 sm:px-5 sm:py-8" data-contact-conversation>
                 <Message className="max-w-full" from="assistant">

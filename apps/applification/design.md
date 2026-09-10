@@ -40,6 +40,12 @@ Aim for calm, direct, technically literate, and personal. Confidence comes from 
 
 Avoid startup theatre, agency puffery, invented urgency, and vague claims about transformation. Do not make the site sound larger than the person and products behind it. Copy should use plain British English, active voice, sentence case, and the vocabulary a client or product user recognises.
 
+Agent-filled enquiries use the existing manual form and review flow. The manual card grows with its content without an internal scrolling panel or fixed height. Use 2px label-to-input gaps, 12px row gaps and shorter optional textareas; retain 44px inputs and review actions with clear focus. Keep the review action in normal flow below the fields so it remains inside the card. Filling never sends an enquiry.
+
+Agent access belongs in a concise `/agents` guide linked from the footer. Lead with the context and tools agents can use; keep the API reference available in an expandable section. Pricing and commercial terms belong in the catalog JSON and tool responses, not a standalone pricing page or a visible commercial section added for scanner coverage.
+
+The Agents reader uses the shared Select menu used by the contact form, with a 44px trigger aligned to the search field and action. Keep a styled native select fallback for JavaScript-free readers, with explicit height and appearance so Safari does not shrink the control.
+
 The page should feel authored. A strong line break, a useful diagram, a product interaction, or a well-composed comparison is worth more than decorative effects.
 
 ## Shared colour system

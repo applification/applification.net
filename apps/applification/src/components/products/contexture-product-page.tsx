@@ -1,13 +1,16 @@
+import {
+  contextureContractSteps,
+  contextureBuildRows,
+  productPageCopy,
+  productLinks,
+} from "@/lib/content/product-details";
 import { ExternalLink, RefreshCw } from "lucide-react";
 import { ProductNavigator } from "@/components/products/product-navigator";
 import {
   ContextureSchemaPreview,
   contextureDomainEntities,
 } from "@/components/products/contexture-schema-preview";
-import {
-  ProductDetailHero,
-  type ProductDetailSpecification,
-} from "@/components/products/product-detail";
+import { ProductDetailHero } from "@/components/products/product-detail";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -24,51 +27,9 @@ function GithubIcon() {
   );
 }
 
-const contractSteps = [
-  {
-    accent: "text-[#cba6f7]",
-    detail: ".contexture.json",
-    line: "bg-[#cba6f7]",
-    number: "01",
-    title: "Model",
-  },
-  {
-    accent: "text-[#89dceb]",
-    detail: "Convex schema",
-    line: "bg-[#89dceb]",
-    number: "02",
-    title: "Generate",
-  },
-  {
-    accent: "text-[#a6e3a1]",
-    detail: "Zod + JSON Schema",
-    line: "bg-[#a6e3a1]",
-    number: "03",
-    title: "Validate",
-  },
-  {
-    accent: "text-[#fab387]",
-    detail: "MCP tools + AI contracts",
-    line: "bg-[#fab387]",
-    number: "04",
-    title: "Describe",
-  },
-];
+const contractSteps = contextureContractSteps;
 
-const buildRows: ProductDetailSpecification[] = [
-  {
-    label: "Desktop editor",
-    value: "Electron · React · TypeScript · React Flow",
-  },
-  {
-    label: "Application stack",
-    value: "Convex · Zod · JSON Schema",
-  },
-  {
-    label: "Distribution",
-    value: "Open source · MIT · GitHub releases",
-  },
-];
+const buildRows = contextureBuildRows;
 
 function ContextureContractFlow() {
   return (
@@ -86,12 +47,11 @@ function ContextureContractFlow() {
               className="font-heading mt-3 text-[36px] leading-[1.08] font-medium min-[1024px]:text-[40px] min-[1024px]:leading-[43px]"
               id="contexture-contract-flow-heading"
             >
-              Change the model. Regenerate. Check the drift is gone.
+              {productPageCopy.contexture.contractFlow.title}
             </h2>
           </div>
           <p className="text-base leading-[1.58] text-[#a6adc8] min-[1024px]:text-[17px]">
-            Derived fields can declare who writes them, so forms and agent tools
-            do not accept backend-owned values.
+            {productPageCopy.contexture.contractFlow.paragraphs[0]}
           </p>
         </div>
 
@@ -142,15 +102,12 @@ function ContextureRationale() {
             className="font-heading mt-4 text-[36px] leading-[1.08] font-medium min-[1024px]:text-[40px]"
             id="contexture-rationale-heading"
           >
-            A schema change should not leave five different truths behind.
+            {productPageCopy.contexture.rationale.title}
           </h2>
         </div>
         <div>
           <p className="text-base leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
-            In an agent-built app, drift compounds quickly. The database accepts
-            one shape, forms accept another, and the agent works from old
-            assumptions. Contexture turns the reviewed model into generated
-            contracts that can be checked before code ships.
+            {productPageCopy.contexture.rationale.paragraphs[0]}
           </p>
           <div className="mt-[18px] flex items-center gap-[14px] rounded-[14px] bg-[var(--contexture-detail-soft)] p-[18px] ring-1 ring-[var(--contexture-detail-border)] ring-inset">
             <RefreshCw
@@ -160,8 +117,7 @@ function ContextureRationale() {
               strokeWidth={1.7}
             />
             <p className="text-base leading-[21px] font-semibold text-[var(--contexture-detail-description)]">
-              One model is reviewed. Every generated surface can prove it
-              matches.
+              {productPageCopy.contexture.rationale.paragraphs[1]}
             </p>
           </div>
         </div>
@@ -185,12 +141,10 @@ function ContextureSpecifications() {
             className="font-heading mt-4 text-[35px] leading-[1.1] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[38px] min-[1024px]:leading-[42px]"
             id="contexture-specifications-heading"
           >
-            A source file first, then editors and generators around it.
+            {productPageCopy.contexture.specifications.title}
           </h2>
           <p className="mt-4 text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
-            The centre is a readable domain model under version control. The
-            desktop editor helps people shape it, while the runtime and
-            generators turn it into the typed surfaces the app needs.
+            {productPageCopy.contexture.specifications.paragraphs[0]}
           </p>
         </div>
         <dl>
@@ -229,17 +183,16 @@ function ContextureAvailability() {
             className="font-heading text-[35px] leading-[1.1] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[38px] min-[1024px]:leading-[42px] min-[1280px]:whitespace-nowrap"
             id="contexture-availability-heading"
           >
-            Inspect the model editor or start with the source.
+            {productPageCopy.contexture.availability.title}
           </h2>
           <p className="text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
-            Contexture is MIT licensed. The web site explains the model, and
-            GitHub has the desktop app, runtime packages and generators.
+            {productPageCopy.contexture.availability.paragraphs[0]}
           </p>
         </div>
         <div className="flex flex-wrap gap-2.5 min-[1024px]:w-fit min-[1024px]:flex-col min-[1024px]:items-end min-[1024px]:justify-self-end">
           <a
             className={`inline-flex min-h-[44px] w-fit items-center justify-center gap-2 rounded-full border border-[var(--contexture-purple)] bg-[var(--contexture-purple)] px-[18px] text-[15px] font-semibold text-[var(--contexture-shell)] transition-[background-color,transform] hover:bg-[#d8b4fe] active:translate-y-px ${focusClasses}`}
-            href="https://contexture.applification.net/"
+            href={productLinks.contexture[0].url}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -249,7 +202,7 @@ function ContextureAvailability() {
           </a>
           <a
             className={`inline-flex min-h-[44px] w-fit items-center justify-center gap-2 rounded-full border border-[var(--contexture-border)] bg-[var(--app-section)] px-[18px] text-[15px] font-semibold text-[var(--app-text-primary)] transition-[background-color,transform] hover:bg-[var(--contexture-detail-soft)] active:translate-y-px ${focusClasses}`}
-            href="https://github.com/applification/contexture"
+            href={productLinks.contexture[1].url}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -269,18 +222,18 @@ export function ContextureProductPage() {
     <main className="[&>section:first-child_a]:border [&>section:first-child_a]:border-[#45475a] [&>section:first-child_a]:px-[17px] [&>section:first-child_a:nth-child(2)]:bg-[#313244] min-[1024px]:[&>section:first-child>div>div:first-child>div:last-child]:pt-0">
       <ProductDetailHero
         breadcrumb="PRODUCTS  /  CONTEXTURE"
-        description="A source-of-truth domain model for Convex apps built with agents. The schema, validators and agent context come from the same reviewed structure."
+        description={productPageCopy.contexture.hero.description}
         primaryAction={{
           external: true,
-          href: "https://contexture.applification.net/",
+          href: productLinks.contexture[0].url,
           label: "Open Contexture",
         }}
         secondaryAction={{
           external: true,
-          href: "https://github.com/applification/contexture",
+          href: productLinks.contexture[1].url,
           label: "GitHub source",
         }}
-        title="Design the domain once. Generate the contracts."
+        title={productPageCopy.contexture.hero.title}
         variant="contexture"
         visual={
           <ContextureSchemaPreview

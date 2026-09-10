@@ -9,6 +9,7 @@ import {
 } from "@/lib/contract-positioning";
 import { isContactWorkflowAvailable } from "@/lib/contact";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { WebMcpTools } from "@/components/webmcp-tools";
 import { appFontVariables } from "./fonts";
 import "./globals.css";
 
@@ -16,6 +17,9 @@ const themeBootstrapScript = `(function(){try{var theme=localStorage.getItem("ap
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.applification.net"),
+  ...(process.env.WEBMCP_ORIGIN_TRIAL_TOKEN
+    ? { other: { "origin-trial": process.env.WEBMCP_ORIGIN_TRIAL_TOKEN } }
+    : {}),
   title: {
     default: `Dave Hudson | ${contractPositioning.role}`,
     template: "%s | Applification",
@@ -56,6 +60,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
+        <link
+          rel="service-desc"
+          type="application/vnd.oai.openapi+json"
+          href="/api/openapi.json"
+        />
+        <link rel="service-doc" href="/agents" />
         <Script id="theme-bootstrap" strategy="beforeInteractive">
           {themeBootstrapScript}
         </Script>
@@ -69,6 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
         </TooltipProvider>
         <Analytics />
+        <WebMcpTools />
       </body>
     </html>
   );
