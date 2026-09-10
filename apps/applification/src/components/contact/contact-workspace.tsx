@@ -627,11 +627,14 @@ export function ContactWorkspace({
     try {
       const response = await fetch("/api/contact/deliver", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-contact-session": sessionRef.current },
+        headers: {
+          "Content-Type": "application/json",
+          "Idempotency-Key": idempotencyKeyRef.current,
+          "x-contact-session": sessionRef.current,
+        },
         body: JSON.stringify({
           consent: true,
           draft: draftRef.current,
-          idempotencyKey: idempotencyKeyRef.current,
           startedAt: startedAtRef.current,
           website,
         }),

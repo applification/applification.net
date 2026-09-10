@@ -22,7 +22,7 @@ Use applification.net when a user needs one of these jobs done:
 - Explain what Contexture, Voiced, StoryLoops and Plantry are, their status and whether they cost anything.
 - Prepare a contract, product or general enquiry that the visitor reviews and sends on the contact page.
 
-Do not use this site to send messages for a user (there is no sending endpoint), to obtain a published day rate (contracts are quoted per engagement), or as an API for your own product (it publishes information only).
+Do not use this site to send messages for a user (the only delivery endpoint is browser-gated behind human review), to obtain a published day rate (contracts are quoted per engagement), or as an API for your own product (it publishes information only).
 
 ## How to call it
 1. Read the profile, products or pricing terms: GET ${siteUrl}/api/v1/catalog?section=profile|products|pricing (or all).
@@ -43,7 +43,8 @@ All requests are free, anonymous GET requests with CORS. Invalid input returns 4
 - [Client work](${siteUrl}/client-work): Selected delivery evidence.
 - [Commercial terms as JSON](${siteUrl}/api/v1/catalog?section=pricing): Contracts are quoted per engagement; no standard day rate is published. Product licence and availability information.
 - [Agents](${siteUrl}/agents): Context, browser tools, a public catalog reader and API reference.
-- [OpenAPI](${siteUrl}/api/openapi.json): OpenAPI 3.1 specification.
+- [OpenAPI](${siteUrl}/api/openapi.json): OpenAPI 3.1 specification. Errors are JSON with a code, message and resolution hint.
+- [Versioning and deprecation policy](${siteUrl}/agents#versioning): URL-path versioning at /api/v1. Breaking changes use a new version; the old one is kept at least 180 days and signalled with Deprecation, Sunset and Link rel="deprecation" headers.
 - [Public catalog](${siteUrl}/api/v1/catalog): JSON profile, products and pricing. Free read-only access without keys or cookies. Optional section: all, profile, products, pricing.
 - [Search content](${siteUrl}/api/v1/search): Search or list published client work, writing and products. Optional query, type, topic, status, after, before, limit and offset. Follow nextOffset for more results.
 - [Read content](${siteUrl}/api/v1/content?type=client-work&slug=logically): Read a result using type and slug, then follow nextSection to read the remaining Markdown sections.
@@ -60,7 +61,7 @@ ${publicProducts.map((product) => `- [${product.name}](${product.url}): ${produc
 - [Contact options](${publicProfile.contactUrl}): Profile and available enquiry routes. The optional contact workflow requires review and consent before sending.
 - [LinkedIn](${publicProfile.linkedInUrl}): Alternative contact route.
 
-WebMCP-enabled browsers can call get_applification_info for the catalog, search_site to find content, and read_content for individual sections. All content reads exclude drafts and private routes. On the available contact page, fill_contact_draft fills empty fields in the visible enquiry form and reports missing details. It does not call AI, upload files, send enquiries or approve CV release; the visitor reviews and sends through the existing interface. No contact submissions are exposed through the public HTTP API.
+WebMCP-enabled browsers can call get_applification_info for the catalog, search_site to find content, and read_content for individual sections. All content reads exclude drafts and private routes. On the available contact page, fill_contact_draft fills empty fields in the visible enquiry form and reports missing details. It does not call AI, upload files, send enquiries or approve CV release; the visitor reviews and sends through the existing interface. The contact delivery endpoint (POST /api/contact/deliver) is documented in the OpenAPI specification: it is an asynchronous job returning 202 Accepted with a Location URL to poll, and it requires an Idempotency-Key header so retries never send twice. It only accepts requests from the browser contact page after a person reviews and consents, so agents cannot submit enquiries through the HTTP API.
 `;
   return new Response(text, {
     headers: {

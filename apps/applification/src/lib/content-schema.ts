@@ -74,8 +74,12 @@ export const readContentInputSchema = z.strictObject({
 });
 export const publicContentErrorSchema = z.object({
   error: z.object({
-    code: z.enum(["INVALID_QUERY", "NOT_FOUND"]),
-    message: z.string(),
+    code: z
+      .enum(["INVALID_QUERY", "NOT_FOUND", "METHOD_NOT_ALLOWED"])
+      .describe("Stable machine-readable error code."),
+    message: z.string().describe("What went wrong."),
+    hint: z.string().describe("How to resolve or recover from the error."),
+    docs: z.url().describe("Where the API is documented."),
   }),
 });
 export const contentSummarySchema = z.object({

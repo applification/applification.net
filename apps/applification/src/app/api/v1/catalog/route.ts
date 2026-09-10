@@ -1,5 +1,11 @@
 import { catalogInputSchema, getPublicCatalog } from "@/lib/public-catalog";
-import { publicReadOptions, withPublicReadLimit } from "@/lib/public-content-http";
+import {
+  publicApiError,
+  publicReadOnlyMethods,
+  publicReadOptions,
+  publicReadResponse,
+  withPublicReadLimit,
+} from "@/lib/public-content-http";
 
 export function GET(request: Request) {
   return withPublicReadLimit(request, () => readCatalog(request));
@@ -11,21 +17,16 @@ function readCatalog(request: Request) {
   const repeatedSection = params.getAll("section").length > 1;
 
   if (!parsed.success || repeatedSection) {
-    return Response.json(
-      {
-        error: {
-          code: "INVALID_QUERY",
-          message:
-            "Use an optional section parameter: all, profile, products or pricing. Repeated and unknown parameters are not supported.",
-        },
-      },
-      {
-        status: 400,
-      },
+    return publicApiError(
+      400,
+      "INVALID_QUERY",
+      "Invalid, repeated or unknown query parameter.",
+      "Use an optional section parameter with one of: all, profile, products or pricing. Send it at most once and no other parameters.",
     );
   }
 
-  return Response.json(getPublicCatalog(parsed.data));
+  return publicReadResponse(getPublicCatalog(parsed.data));
 }
 
 export const OPTIONS = publicReadOptions;
+export const { POST, PUT, PATCH, DELETE } = publicReadOnlyMethods;

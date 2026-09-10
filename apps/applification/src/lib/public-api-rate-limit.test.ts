@@ -111,7 +111,17 @@ describe("public response quota contract", () => {
   });
 
   it("documents quota headers and the 429 contract for every public operation", () => {
-    for (const { get } of Object.values(publicOpenApi.paths)) {
+    type Operation = {
+      tags?: string[];
+      responses: Record<string, { headers?: Record<string, unknown> }>;
+    };
+    const operations = Object.values(publicOpenApi.paths).map(
+      ({ get }) => get as Operation,
+    );
+    // The contact status poll is browser-gated and outside the public quota.
+    const publicOperations = operations.filter((get) => !get.tags?.includes("contact"));
+    expect(publicOperations.length).toBeGreaterThan(0);
+    for (const get of publicOperations) {
       for (const response of Object.values(get.responses)) {
         expect(response.headers).toHaveProperty("RateLimit");
         expect(response.headers).toHaveProperty("RateLimit-Remaining");

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/external-link";
 import { sandboxUrl, siteUrl } from "@/lib/public-catalog";
 import { ContentTypeSelect } from "./content-type-select";
+import { RevealHashTarget } from "./reveal-hash-target";
 import {
   CodeSample,
   InfoLink,
@@ -13,6 +14,7 @@ import {
 export function AgentsPage() {
   return (
     <main className="flex-1">
+      <RevealHashTarget />
       <PageHero
         density="compact"
         eyebrow="Agents"
@@ -184,23 +186,28 @@ export function AgentsPage() {
                   "Search returns results, total and nextOffset. Read a result through /api/v1/content using its type and slug. Content responses include a section index and nextSection; follow it until null for the full text. The profile catalog remains at /api/v1/catalog.",
                 ],
                 [
-                  "Invalid input",
-                  "400 with error.code INVALID_QUERY for invalid, unknown or repeated parameters. Content that is unpublished, missing or outside the section range returns 404.",
+                  "Errors",
+                  "Every error is JSON with error.code, error.message, a resolution hint and a docs link. 400 INVALID_QUERY covers invalid, unknown or repeated parameters; 404 NOT_FOUND covers unpublished or missing content and unknown /api paths; 405 METHOD_NOT_ALLOWED carries an Allow header.",
                 ],
                 [
                   "Caching and usage",
                   "Public API reads share 120 requests per minute per client IP on each server instance. Responses are not cached. RateLimit-Policy gives the quota; RateLimit gives remaining requests and seconds until reset. RateLimit-Limit, RateLimit-Remaining and RateLimit-Reset support older clients. On 429, wait at least Retry-After seconds before retrying. OPTIONS is free; hosting limits may also apply.",
                 ],
                 [
-                  "Versioning",
-                  "The endpoint is versioned at /api/v1. Clients should tolerate new fields.",
+                  "Versioning and deprecation",
+                  "The API is versioned in the URL path; the current version is /api/v1. Additive changes such as new optional fields, enum values, parameters or endpoints ship without a version change, so clients should ignore unknown fields. Breaking changes ship under a new path version. The previous version keeps responding for at least 180 days and signals retirement with a Deprecation response header (RFC 9745), a Sunset response header (RFC 8594) giving the date it stops responding, a Link header with rel=\"deprecation\" pointing at this policy, and deprecated: true on affected operations in the OpenAPI document naming the replacement. Every response already carries a Link header with rel=\"service-desc\" for the OpenAPI document and rel=\"service-doc\" for this page. The same policy is machine-readable as x-versioning-policy in the OpenAPI document.",
+                  "versioning",
+                ],
+                [
+                  "Contact delivery",
+                  "POST /api/contact/deliver is an asynchronous job: it returns 202 Accepted with a Location URL to poll and requires an Idempotency-Key header so retries never send twice. It only accepts requests from the contact page after a person reviews and consents, so agents cannot submit enquiries through it.",
                 ],
                 [
                   "WebMCP",
                   "search_site and read_content use the public HTTP responses. get_applification_info provides the profile and catalog overview. On the contact page, fill_contact_draft fills empty fields and reports missing details; review and sending remain separate. Registration uses document.modelContext with navigator as a compatibility fallback.",
                 ],
-              ].map(([term, detail]) => (
-                <div key={term}>
+              ].map(([term, detail, anchor]) => (
+                <div key={term} id={anchor}>
                   <dt className="font-medium text-[var(--app-text-primary)]">
                     {term}
                   </dt>

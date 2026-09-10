@@ -6,12 +6,15 @@ export async function GET(request: Request) {
   const secret = process.env.CONTACT_ATTACHMENT_ACCESS_SECRET;
   const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
   if (!accessToken || !secret || !blobToken) {
-    return new Response("Not found", { status: 404 });
+    return notFound();
   }
 
   const access = verifyAttachmentAccessToken(accessToken, secret);
   if (!access) {
-    return new Response("This private document link is invalid or has expired.", { status: 403 });
+    return Response.json(
+      { code: "link_expired", message: "This private document link is invalid or has expired." },
+      { status: 403 },
+    );
   }
 
   try {
@@ -21,7 +24,7 @@ export async function GET(request: Request) {
       useCache: false,
     });
     if (!result || result.statusCode !== 200 || result.blob.contentType !== access.contentType) {
-      return new Response("Not found", { status: 404 });
+      return notFound();
     }
 
     return new Response(result.stream, {
@@ -33,6 +36,13 @@ export async function GET(request: Request) {
       },
     });
   } catch {
-    return new Response("Not found", { status: 404 });
+    return notFound();
   }
+}
+
+function notFound() {
+  return Response.json(
+    { code: "not_found", message: "No private document matches this link." },
+    { status: 404 },
+  );
 }
