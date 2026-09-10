@@ -2,18 +2,13 @@ import { PageHero } from "@/components/page-hero";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/external-link";
 import { siteUrl } from "@/lib/public-catalog";
+import { ContentTypeSelect } from "./content-type-select";
 import {
   CodeSample,
   InfoLink,
   InfoSection,
   infoLinkClass,
 } from "./info-layout";
-
-const readerSections = [
-  { value: "client-work", label: "Client work" },
-  { value: "writing", label: "Writing" },
-  { value: "products", label: "Products" },
-];
 
 export function AgentsPage() {
   return (
@@ -55,25 +50,14 @@ export function AgentsPage() {
           method="get"
           className="flex flex-col items-start gap-3 min-[720px]:flex-row min-[720px]:flex-wrap min-[720px]:items-end"
         >
-          <div className="flex w-full min-w-0 flex-col gap-2 min-[520px]:w-auto">
+          <div className="flex w-full min-w-0 flex-col gap-2 min-[520px]:w-auto min-[520px]:min-w-52">
             <label
               htmlFor="catalog-section"
               className="text-sm font-medium text-[var(--app-text-primary)]"
             >
               Where would you like to look?
             </label>
-            <select
-              id="catalog-section"
-              name="type"
-              defaultValue="client-work"
-              className="min-h-11 w-full rounded-lg border border-[var(--app-border)] bg-[var(--app-card)] px-3 text-base text-[var(--app-text-primary)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] min-[520px]:min-w-52"
-            >
-              {readerSections.map(({ value, label }) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
+            <ContentTypeSelect />
           </div>
           <div className="flex w-full min-w-0 flex-col gap-2 min-[720px]:w-auto min-[720px]:flex-1">
             <label

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { usePathname } from "@storybook/nextjs-vite/navigation.mock";
-import { expect, within, userEvent } from "storybook/test";
+import { expect, within, userEvent, waitFor } from "storybook/test";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { AgentsPage } from "./agents-page";
@@ -35,12 +35,26 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   const select = canvas.getByRole("combobox", {
     name: "Where would you like to look?",
   });
-  await userEvent.selectOptions(select, "products");
-  await expect(select).toHaveValue("products");
+  await expect(select.getBoundingClientRect().height).toBe(44);
+  await userEvent.click(select);
+  const page = within(canvasElement.ownerDocument.body);
+  for (const name of ["Client work", "Writing", "Products"]) {
+    await waitFor(() =>
+      expect(page.getByRole("option", { name })).toBeVisible(),
+    );
+  }
+  await userEvent.keyboard("{End}{Enter}");
+  await expect(select).toHaveTextContent("Products");
+  await waitFor(() => expect(select).toHaveFocus());
   const form = select.closest("form")!;
   await expect(form).toHaveAttribute("action", "/api/v1/search");
   await expect(form).toHaveAttribute("method", "get");
   await expect(new FormData(form).get("type")).toBe("products");
+  await expect(new FormData(form).getAll("type")).toHaveLength(1);
+  await userEvent.tab();
+  await expect(
+    canvas.getByRole("textbox", { name: "Search words (optional)" }),
+  ).toHaveFocus();
   await expect(
     canvas.getByRole("button", { name: "Find content" }),
   ).toBeEnabled();
@@ -84,4 +98,42 @@ export const TabletLight: Story = {
 export const SmallMobileLight: Story = {
   globals: { viewport: { value: "iphoneSeSmall", isRotated: false } },
   play: checkPage,
+};
+
+const checkMenuDismissal: NonNullable<Story["play"]> = async ({
+  canvasElement,
+}) => {
+  const select = within(canvasElement).getByRole("combobox", {
+    name: "Where would you like to look?",
+  });
+  await userEvent.click(select);
+  const menu = within(canvasElement.ownerDocument.body).getByRole("listbox");
+  await waitFor(() =>
+    expect(
+      within(menu).getByRole("option", { name: "Client work" }),
+    ).toBeVisible(),
+  );
+  await waitFor(() =>
+    expect(
+      within(menu).getByRole("option", { name: "Client work" }),
+    ).toHaveFocus(),
+  );
+  await expect(within(menu).getAllByRole("option")).toHaveLength(3);
+  await expect(menu.getBoundingClientRect().left).toBeGreaterThanOrEqual(0);
+  await expect(menu.getBoundingClientRect().right).toBeLessThanOrEqual(
+    window.innerWidth,
+  );
+  await userEvent.keyboard("{Escape}");
+  await waitFor(() => expect(select).toHaveFocus());
+  await expect(select).toHaveTextContent("Client work");
+  await expect(select).toHaveAttribute("aria-expanded", "false");
+};
+export const MenuDismissalLight: Story = { play: checkMenuDismissal };
+export const MenuDismissalDark: Story = {
+  globals: { theme: "dark" },
+  play: checkMenuDismissal,
+};
+export const MenuDismissalMobileDark: Story = {
+  globals: { theme: "dark", viewport: { value: "mobile", isRotated: false } },
+  play: checkMenuDismissal,
 };

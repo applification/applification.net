@@ -20,7 +20,9 @@ The HTTP endpoint and WebMCP tool derive profile, product and pricing data from 
 
 `get_applification_info`, `search_site` and `read_content` are registered in the shared site layout when `document.modelContext.registerTool` is available, with `navigator.modelContext` as a trailing compatibility fallback. All three validate input and are annotated read-only. The content tools fetch the same-origin public HTTP endpoints; the overview returns catalog data directly. The registration uses an AbortSignal for cleanup; the old navigator unregistration method is used only where available on that fallback.
 
-The reader is a native GET form that works without JavaScript. Browser agents use the imperative search_site tool; the form does not register a duplicate search tool.
+The reader submits a standard GET form. Its dropdown uses the shared Select from the contact form after hydration, with a styled native select fallback that keeps the reader usable without JavaScript. Both versions submit exactly one type parameter. Browser agents use the imperative search_site tool; the form does not register a duplicate search tool.
+
+The dropdown was verified in Chromium and WebKit in both themes, including 44px sizing, selection, form submission and the JavaScript-free fallback. Storybook covers selection, keyboard focus and Escape dismissal. An additional open-popup axe check reported `aria-hidden-focus` on the background page hidden by the shared Radix Select; that open-state finding remains for accessibility follow-up. No axe rules were disabled.
 
 Authored case-study and product copy lives in `src/lib/content/` and is imported by both the pages and the content readers. Writing uses the existing Markdown loader with `includeDrafts: false` explicitly, including local development. Private contact data and preview routes never enter search or read responses.
 

@@ -44,6 +44,8 @@ Agent-filled enquiries use the existing manual form and review flow. The manual 
 
 Agent access belongs in a concise `/agents` guide linked from the footer. Lead with the context and tools agents can use; keep the API reference available in an expandable section. Pricing and commercial terms belong in the catalog JSON and tool responses, not a standalone pricing page or a visible commercial section added for scanner coverage.
 
+The Agents reader uses the shared Select menu used by the contact form, with a 44px trigger aligned to the search field and action. Keep a styled native select fallback for JavaScript-free readers, with explicit height and appearance so Safari does not shrink the control.
+
 The page should feel authored. A strong line break, a useful diagram, a product interaction, or a well-composed comparison is worth more than decorative effects.
 
 ## Shared colour system
