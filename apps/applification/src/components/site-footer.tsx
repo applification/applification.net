@@ -72,6 +72,9 @@ export function SiteFooter() {
             <Bot aria-hidden="true" className="size-4 shrink-0" />
             <span className="link-sweep-label">Agents</span>
           </Link>
+          <Link href="/privacy" className={linkClasses}>
+            <span className="link-sweep-label">Privacy</span>
+          </Link>
           {socialLinks.map((item) => {
             const Icon = item.icon;
 
