@@ -1,4 +1,5 @@
 import { publicProfile, publicProducts, siteUrl } from "@/lib/public-catalog";
+import { publicApiUsageDescription } from "@/lib/public-api-policy";
 
 export const dynamic = "force-static";
 
@@ -17,6 +18,9 @@ export function GET() {
 - [Search content](${siteUrl}/api/v1/search): Search or list published client work, writing and products. Optional query, type, topic, status, after, before, limit and offset. Follow nextOffset for more results.
 - [Read content](${siteUrl}/api/v1/content?type=client-work&slug=logically): Read a result using type and slug, then follow nextSection to read the remaining Markdown sections.
 - [Writing](${siteUrl}/writing): Published articles and weeknotes.
+
+## API usage
+${publicApiUsageDescription}
 
 ## Products
 ${publicProducts.map((product) => `- [${product.name}](${product.url}): ${product.description} Status: ${product.status}. ${product.pricing.label}.`).join("\n")}

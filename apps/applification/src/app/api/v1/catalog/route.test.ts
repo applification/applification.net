@@ -21,7 +21,7 @@ describe("public catalog API", () => {
         section === "all" ? ["profile", "products", "pricing"] : [section],
       );
       expect(response.headers.get("access-control-allow-origin")).toBe("*");
-      expect(response.headers.get("cache-control")).toBe("public, max-age=300");
+      expect(response.headers.get("cache-control")).toBe("no-store");
     },
   );
 
@@ -57,7 +57,7 @@ describe("public catalog API", () => {
   });
 
   it("allows cross-origin read preflight without credentials or write methods", () => {
-    const response = OPTIONS();
+    const response = OPTIONS(new Request("https://example.com/api/v1/catalog", { method: "OPTIONS" }));
     expect(response.status).toBe(204);
     expect(response.headers.get("access-control-allow-methods")).toBe(
       "GET, HEAD, OPTIONS",
