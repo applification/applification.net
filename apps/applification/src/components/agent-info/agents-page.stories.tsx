@@ -32,6 +32,13 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   await expect(
     canvas.getByRole("link", { name: "OpenAPI reference" }),
   ).toHaveAttribute("href", "/api/openapi.json");
+  await expect(
+    canvas.getByRole("link", { name: "Sandbox first call" }),
+  ).toHaveAttribute("href", "/api/v1/sandbox");
+  await expect(
+    canvas.getByRole("link", { name: "Make the first call" }),
+  ).toHaveAttribute("href", "/api/v1/sandbox");
+  await expect(canvas.getAllByText(/free tier/i).length).toBeGreaterThan(0);
   const select = canvas.getByRole("combobox", {
     name: "Where would you like to look?",
   });

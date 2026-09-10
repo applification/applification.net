@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { catalogSections, siteUrl } from "./public-catalog";
+import {
+  catalogSections,
+  publicOnboarding,
+  sandboxUrl,
+  siteUrl,
+} from "./public-catalog";
 import {
   searchSiteInputSchema,
   readContentInputSchema,
@@ -58,6 +63,9 @@ const pricing = z.object({
     model: z.literal("free"),
     description: z.string(),
     price: z.literal(0),
+    freeTier: z.literal(true),
+    apiKeyRequired: z.literal(false),
+    sandboxUrl: url.describe("Live sandbox and first-call endpoint."),
   }),
   products: z.array(
     productTerms.extend({ slug: z.string(), name: z.string() }),
@@ -87,6 +95,46 @@ export const catalogResponseSchema = z.discriminatedUnion("section", [
     data: z.object({ pricing }),
   }),
 ]);
+
+export const onboardingSchema = z.object({
+  humanInTheLoop: z.literal(false),
+  freeTier: z.object({
+    available: z.literal(true),
+    price: z.literal(0),
+    scope: z.string(),
+    accountRequired: z.literal(false),
+    signupUrl: z.null().describe("No sign-up exists; none is needed."),
+    quota: z.string(),
+    verifyUrl: url,
+  }),
+  apiKeys: z.object({
+    required: z.literal(false),
+    selfServe: z.literal("not_applicable"),
+    description: z.string(),
+  }),
+  sandbox: z.object({
+    available: z.literal(true),
+    url,
+    environment: z.literal("shared"),
+    description: z.string(),
+  }),
+  firstCall: z.object({
+    method: z.literal("GET"),
+    url,
+    expectedStatus: z.literal(200),
+    curl: z.string(),
+  }),
+  documentation: z.object({ guide: url, openapi: url, llms: url }),
+});
+
+export const sandboxResponseSchema = z.object({
+  ...envelope,
+  environment: z.literal("sandbox"),
+  status: z.literal("ok"),
+  message: z.string(),
+  onboarding: onboardingSchema,
+  tryNext: z.array(z.object({ url, description: z.string() })),
+});
 
 export const catalogErrorSchema = z.object({
   error: z.object({ code: z.literal("INVALID_QUERY"), message: z.string() }),
@@ -144,18 +192,69 @@ export const publicOpenApi = {
   openapi: "3.1.0",
   info: {
     title: "Applification Public Information API",
-    version: "1.1.0",
+    version: "1.2.0",
     description:
-      "Read the public profile and commercial catalog, search published client work, writing and products, and read their content in bounded sections. Free, read-only access without API keys, accounts or cookies. Responses may be cached for five minutes. No application-level quota; infrastructure may impose limits. Back off on 429 or 503 and honour Retry-After when present. The contact workflow and individual product APIs are outside this API.",
+      "Read the public profile and commercial catalog, search published client work, writing and products, and read their content in bounded sections. Free tier: every endpoint is free, read-only and needs no API key, account, sign-up or sales contact. Sandbox: GET /api/v1/sandbox is a live first call that confirms this; the sandbox is the production API because every read is side-effect free. Responses may be cached for five minutes. No application-level quota; infrastructure may impose limits. Back off on 429 or 503 and honour Retry-After when present. The contact workflow and individual product APIs are outside this API.",
     contact: { name: "Applification", url: `${siteUrl}/agents` },
+    "x-onboarding": publicOnboarding,
   },
-  servers: [{ url: siteUrl }],
+  servers: [
+    {
+      url: siteUrl,
+      description:
+        "Production and sandbox. Free tier, anonymous, read-only; no API key.",
+    },
+  ],
   security: [],
+  tags: [
+    {
+      name: "Onboarding",
+      description: `Free tier and sandbox verification. Start with GET ${sandboxUrl}.`,
+    },
+  ],
   externalDocs: {
     description: "Agent guide, tools and API reference",
     url: `${siteUrl}/agents`,
   },
   paths: {
+    "/api/v1/sandbox": {
+      get: {
+        operationId: "getSandbox",
+        tags: ["Onboarding"],
+        summary: "Make a free first call and read the onboarding facts",
+        description:
+          "Anonymous sandbox call with no side effects. Returns status ok, the free tier, API key and sandbox facts with URLs that verify each claim, and suggested next requests. Credentials are ignored. Query parameters return 400.",
+        parameters: [],
+        responses: {
+          "200": {
+            description: "First call succeeded. Free tier and sandbox confirmed.",
+            headers: {
+              "Cache-Control": {
+                schema: { type: "string" },
+                description: "public, max-age=300",
+              },
+              "Access-Control-Allow-Origin": {
+                schema: { type: "string" },
+                description: "* — public reads without credentials",
+              },
+            },
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/SandboxResponse" },
+              },
+            },
+          },
+          "400": {
+            description: "Unknown query parameter",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/PublicContentError" },
+              },
+            },
+          },
+        },
+      },
+    },
     "/api/v1/search": {
       get: contentOperation(
         "searchSite",
@@ -230,6 +329,10 @@ export const publicOpenApi = {
       }),
       PublicContentError: z.toJSONSchema(publicContentErrorSchema, {
         target: "draft-2020-12",
+      }),
+      SandboxResponse: z.toJSONSchema(sandboxResponseSchema, {
+        target: "draft-2020-12",
+        io: "input",
       }),
       CatalogResponse: z.toJSONSchema(catalogResponseSchema, {
         target: "draft-2020-12",

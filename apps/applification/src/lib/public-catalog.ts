@@ -7,6 +7,7 @@ import {
 import { portfolioProducts } from "./portfolio";
 
 export const siteUrl = "https://www.applification.net";
+export const sandboxUrl = `${siteUrl}/api/v1/sandbox`;
 export const catalogSections = [
   "all",
   "profile",
@@ -88,6 +89,9 @@ export const publicPricing = {
     description:
       "The public catalog API is free to read and requires no account or API key.",
     price: 0,
+    freeTier: true,
+    apiKeyRequired: false,
+    sandboxUrl,
   },
   products: publicProducts.map(({ slug, name, pricing }) => ({
     slug,
@@ -95,6 +99,46 @@ export const publicPricing = {
     ...pricing,
   })),
 };
+
+// Machine-readable onboarding facts. Every claim links to a live URL so an
+// agent can verify it with a single unauthenticated GET.
+export const publicOnboarding = {
+  humanInTheLoop: false,
+  freeTier: {
+    available: true,
+    price: 0,
+    scope: "Every endpoint under /api/v1, without time limit.",
+    accountRequired: false,
+    signupUrl: null,
+    quota:
+      "No application-level quota. Hosting infrastructure may rate limit; back off on 429 or 503 and honour Retry-After.",
+    verifyUrl: `${siteUrl}/api/v1/catalog?section=pricing`,
+  },
+  apiKeys: {
+    required: false,
+    selfServe: "not_applicable",
+    description:
+      "No API key, token, cookie or Authorization header is read. Requests carrying credentials are treated as anonymous.",
+  },
+  sandbox: {
+    available: true,
+    url: sandboxUrl,
+    environment: "shared",
+    description:
+      "The sandbox is the production API. Every read is side-effect free, so there is no separate test environment to request. GET the sandbox URL to confirm a first call end to end.",
+  },
+  firstCall: {
+    method: "GET",
+    url: sandboxUrl,
+    expectedStatus: 200,
+    curl: `curl --fail --show-error '${sandboxUrl}'`,
+  },
+  documentation: {
+    guide: `${siteUrl}/agents`,
+    openapi: `${siteUrl}/api/openapi.json`,
+    llms: `${siteUrl}/llms.txt`,
+  },
+} as const;
 
 const catalogData = {
   profile: publicProfile,

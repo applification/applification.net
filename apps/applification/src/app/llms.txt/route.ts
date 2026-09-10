@@ -1,4 +1,9 @@
-import { publicProfile, publicProducts, siteUrl } from "@/lib/public-catalog";
+import {
+  publicProfile,
+  publicProducts,
+  sandboxUrl,
+  siteUrl,
+} from "@/lib/public-catalog";
 
 export const dynamic = "force-static";
 
@@ -6,6 +11,12 @@ export function GET() {
   const text = `# Applification
 
 > ${publicProfile.description}
+
+## Onboarding
+- Free tier: every endpoint under ${siteUrl}/api/v1 is free, without time limit, account, sign-up, API key or sales contact. Verify at ${siteUrl}/api/v1/catalog?section=pricing (data.pricing.api.freeTier is true).
+- Sandbox: [First call](${sandboxUrl}) returns status ok plus the onboarding facts and suggested next requests. The sandbox is the production API because every read is side-effect free; there is no separate test environment to request.
+- API keys: none are issued or read. Requests carrying credentials are treated as anonymous.
+- First call: \`curl --fail --show-error '${sandboxUrl}'\`
 
 ## Public information
 - [Profile](${siteUrl}/about): Dave Hudson's engineering experience and contract fit.

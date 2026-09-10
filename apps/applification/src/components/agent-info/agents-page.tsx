@@ -1,7 +1,7 @@
 import { PageHero } from "@/components/page-hero";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/external-link";
-import { siteUrl } from "@/lib/public-catalog";
+import { sandboxUrl, siteUrl } from "@/lib/public-catalog";
 import { ContentTypeSelect } from "./content-type-select";
 import {
   CodeSample,
@@ -32,12 +32,51 @@ export function AgentsPage() {
               Read-only access. No account or key.
             </p>
             <div className="flex flex-col items-start">
+              <InfoLink href="/api/v1/sandbox">Sandbox first call</InfoLink>
               <InfoLink href="/llms.txt">Site guide for agents</InfoLink>
               <InfoLink href="/api/openapi.json">OpenAPI reference</InfoLink>
             </div>
           </aside>
         }
       />
+
+      <InfoSection id="onboarding" title="Start without an account">
+        <p className="max-w-[65ch]">
+          Everything here is a free tier. There is no sign-up, API key, trial
+          period or sales contact, so an agent can go from finding this page to
+          a successful call on its own.
+        </p>
+        <p className="max-w-[65ch]">
+          The sandbox is the live API. Every request is read-only with no side
+          effects, so there is no separate test environment to request. One
+          request confirms that end to end and lists what to try next.
+        </p>
+        <CodeSample label="Sandbox first call">{`curl --fail --show-error '${sandboxUrl}'`}</CodeSample>
+        <dl className="space-y-4 text-base">
+          {[
+            [
+              "Free tier",
+              "Every endpoint under /api/v1, without time limit. The catalog records this as freeTier true and price 0.",
+            ],
+            [
+              "API keys",
+              "None are issued or read. Requests carrying credentials are treated as anonymous.",
+            ],
+            [
+              "Sandbox",
+              "GET /api/v1/sandbox returns status ok, the onboarding facts with a URL that verifies each one, and suggested next requests.",
+            ],
+          ].map(([term, detail]) => (
+            <div key={term}>
+              <dt className="font-medium text-[var(--app-text-primary)]">
+                {term}
+              </dt>
+              <dd>{detail}</dd>
+            </div>
+          ))}
+        </dl>
+        <InfoLink href="/api/v1/sandbox">Make the first call</InfoLink>
+      </InfoSection>
 
       <InfoSection id="sandbox" title="See what your agent can read">
         <p className="max-w-[65ch]">
