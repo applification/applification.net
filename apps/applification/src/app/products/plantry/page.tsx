@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbStructuredData } from "@/lib/public-catalog";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 import { PlantryProductPage } from "@/components/products/plantry-product-page";
 
@@ -16,5 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default function PlantryPage() {
-  return <PlantryProductPage />;
+  return (
+    <>
+      <StructuredData data={breadcrumbStructuredData([{ name: "Products", path: "/products" }, { name: "Plantry", path: "/products/plantry" }])} />
+      <PlantryProductPage />
+    </>
+  );
 }

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbStructuredData } from "@/lib/public-catalog";
 import { PeppyHealthCaseStudyPage } from "@/components/client-work/contract-case-study-page";
 
 const description =
@@ -24,5 +26,10 @@ export const metadata: Metadata = {
 };
 
 export default function PeppyHealthCaseStudyRoute() {
-  return <PeppyHealthCaseStudyPage />;
+  return (
+    <>
+      <StructuredData data={breadcrumbStructuredData([{ name: "Client work", path: "/client-work" }, { name: "Peppy Health", path: "/client-work/peppy-health" }])} />
+      <PeppyHealthCaseStudyPage />
+    </>
+  );
 }

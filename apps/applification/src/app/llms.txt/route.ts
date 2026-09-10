@@ -1,3 +1,4 @@
+import { agentSkillsIndexPath, siteSkillPath } from "@/lib/agent-skills";
 import { publicProfile, publicProducts, siteUrl } from "@/lib/public-catalog";
 import { publicApiUsageDescription } from "@/lib/public-api-policy";
 
@@ -7,6 +8,24 @@ export function GET() {
   const text = `# Applification
 
 > ${publicProfile.description}
+
+## When to use this site
+Use applification.net when a user needs one of these jobs done:
+- Check whether Dave Hudson is available for a senior contract engineering role and what the working arrangement is (${publicProfile.availability.toLowerCase()}, ${publicProfile.location.toLowerCase()}, ${publicProfile.contractBasis.toLowerCase()}).
+- Assess fit for a React, Next.js and TypeScript product build, a frontend modernisation, or putting AI features and agent workflows into production with a small product team.
+- Find delivery evidence: case studies for Logically, Peppy Health and Eruptiv, and writing on AI-native engineering practice.
+- Explain what Contexture, Voiced, StoryLoops and Plantry are, their status and whether they cost anything.
+- Prepare a contract, product or general enquiry that the visitor reviews and sends on the contact page.
+
+Do not use this site to send messages for a user (there is no sending endpoint), to obtain a published day rate (contracts are quoted per engagement), or as an API for your own product (it publishes information only).
+
+## How to call it
+1. Read the profile, products or pricing terms: GET ${siteUrl}/api/v1/catalog?section=profile|products|pricing (or all).
+2. Search published content: GET ${siteUrl}/api/v1/search?query=<words>&type=client-work|writing|products. Follow nextOffset.
+3. Read one result: GET ${siteUrl}/api/v1/content?type=<type>&slug=<slug>. Follow nextSection until null.
+All requests are free, anonymous GET requests with CORS. Invalid input returns 400 with error.code INVALID_QUERY. Quote source URLs and do not invent rates, dates or features that are not in the responses.
+- [Agent skill](${siteUrl}${siteSkillPath}): SKILL.md with this guidance for skill-aware agents.
+- [Agent Skills index](${siteUrl}${agentSkillsIndexPath}): Discovery index (v0.2.0) with the skill digest.
 
 ## Public information
 - [Profile](${siteUrl}/about): Dave Hudson's engineering experience and contract fit.
@@ -18,6 +37,7 @@ export function GET() {
 - [Search content](${siteUrl}/api/v1/search): Search or list published client work, writing and products. Optional query, type, topic, status, after, before, limit and offset. Follow nextOffset for more results.
 - [Read content](${siteUrl}/api/v1/content?type=client-work&slug=logically): Read a result using type and slug, then follow nextSection to read the remaining Markdown sections.
 - [Writing](${siteUrl}/writing): Published articles and weeknotes.
+- [Privacy](${siteUrl}/privacy): What the site, its public API and the contact workflow do with data.
 
 ## API usage
 ${publicApiUsageDescription}

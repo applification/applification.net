@@ -13,6 +13,10 @@ The ora scan supplied for applification.net scored 35/100 (D). This branch adds 
 - `/api/openapi.json`: OpenAPI 3.1 reference with response schemas, including both content routes.
 - `/llms.txt`, `/sitemap.xml`, `/robots.txt`: discovery links, published pages only in the sitemap, and explicit public crawling access. Robots exclusions are not access controls; existing private-route checks remain responsible for protection.
 - Shared footer links and `service-desc` / `service-doc` links make the documentation discoverable.
+- `/.well-known/agent-skills/index.json` and `/.well-known/agent-skills/applification-site/SKILL.md`: an Agent Skills discovery index (v0.2.0) pointing at one `skill-md` artifact with its SHA-256 digest. Both derive from `apps/applification/src/lib/agent-skills.ts`, so the digest always matches the served bytes; a unit test checks this.
+- `/llms.txt` now opens with "When to use this site" and "How to call it" sections that name the jobs the site is right for, the jobs it is not for, and the three read-only endpoints in order.
+- `/`: the JSON-LD graph adds `contactPoint` and `address` to the `Organization` (contact URL and `addressCountry` only, because no email, phone or street address is published), a `Service` for contract engineering, `SoftwareApplication` entries for the MIT-licensed products, and an `FAQPage`. Product, client-work, about, agents and privacy pages emit a `BreadcrumbList`.
+- `/privacy`: a plain-language privacy page covering anonymous reading, analytics, the contact workflow, third-party services and UK GDPR rights. Linked from the footer, `llms.txt` and the sitemap.
 
 The HTTP endpoint and WebMCP tool derive profile, product and pricing data from `apps/applification/src/lib/public-catalog.ts`, using the existing positioning and product catalog. Update that source when commercial terms change. The visible reader searches client work, writing and products. The complete catalog and imperative overview tool also expose pricing. The API's `pricing` section and response fields remain available.
 

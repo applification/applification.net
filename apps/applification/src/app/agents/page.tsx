@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbStructuredData } from "@/lib/public-catalog";
 import { AgentsPage } from "@/components/agent-info/agents-page";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 
@@ -17,4 +19,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default AgentsPage;
+export default function AgentsRoute() {
+  return (
+    <>
+      <StructuredData data={breadcrumbStructuredData([{ name: "Agents", path: "/agents" }])} />
+      <AgentsPage />
+    </>
+  );
+}
