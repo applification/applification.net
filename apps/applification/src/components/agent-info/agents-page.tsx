@@ -34,6 +34,9 @@ export function AgentsPage() {
             <div className="flex flex-col items-start">
               <InfoLink href="/llms.txt">Site guide for agents</InfoLink>
               <InfoLink href="/api/openapi.json">OpenAPI reference</InfoLink>
+              <InfoLink href="/.well-known/ard.json">
+                ARD catalog
+              </InfoLink>
             </div>
           </aside>
         }
@@ -106,7 +109,7 @@ export function AgentsPage() {
         </p>
       </InfoSection>
 
-      <InfoSection id="reference" title="Connecting an agent">
+      <InfoSection id="reference" title="Connecting an agent to the Applification API">
         <details className="group rounded-xl border border-[var(--app-border)] bg-[var(--app-card)]">
           <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-xl px-5 py-4 font-medium text-[var(--app-text-primary)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] [&::-webkit-details-marker]:hidden">
             API and WebMCP reference

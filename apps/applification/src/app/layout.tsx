@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     ? { other: { "origin-trial": process.env.WEBMCP_ORIGIN_TRIAL_TOKEN } }
     : {}),
   title: {
-    default: `Dave Hudson | ${contractPositioning.role}`,
+    default: `Dave Hudson | ${contractPositioning.role} | Applification`,
     template: "%s | Applification",
   },
   description: contractPositioningDescriptions.site,
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: "/",
     siteName: "Applification",
-    title: `Dave Hudson | ${contractPositioning.role}`,
+    title: `Dave Hudson | ${contractPositioning.role} | Applification`,
     description: contractPositioningDescriptions.site,
   },
   twitter: {

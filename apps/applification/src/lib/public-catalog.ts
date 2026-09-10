@@ -129,8 +129,11 @@ export const homepageStructuredData = {
       "@type": "Organization",
       "@id": `${siteUrl}/#organization`,
       name: "Applification",
+      alternateName: [publicProfile.company, "Applification Limited"],
       legalName: publicProfile.company,
       url: siteUrl,
+      sameAs: ["https://github.com/applification", personalLinkedInUrl],
+      founder: { "@id": `${siteUrl}/#person` },
       description:
         "The business through which Dave Hudson delivers senior contract AI product engineering for small product teams.",
       logo: `${siteUrl}/brand/applification-mark-light.svg`,

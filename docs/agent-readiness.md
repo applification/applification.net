@@ -36,6 +36,14 @@ Unit tests cover input validation, the document preference, navigator compatibil
 
 Native verification on 10 September 2026 exercised the overview's four catalog sections and client-side navigation in a WebMCP-enabled Chromium browser. The expanded tool set was then verified against `https://applification.localhost` with `@ora-ai/webmcp-verify@0.1.0`: `search_site` found Logically for “production AI”, `read_content` returned the selected case-study section and nextSection, and `fill_contact_draft` populated a synthetic enquiry with reviewRequired true and sent false. All three verifier runs completed with no lint findings. This verifies native tool execution locally, not origin-trial activation on production.
 
+## Discovery follow-up (September 2026 rescan, 61/100)
+
+- `/.well-known/ard.json`: Agentic Resource Discovery manifest (spec v0.91) built from `apps/applification/src/lib/agent-discovery.ts`. Entries: the OpenAPI document, `/llms.txt`, the SDK package and the authenticated StoryLoop MCP server (`https://mcp.storyloop.applification.net/mcp`, OAuth via its protected-resource metadata, status in development). Update the manifest when resources change. Served static with CORS and one-hour caching.
+- `/robots.txt` is now a route handler so it can emit AI-crawler tiers: answer-engine and agent fetchers (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, Claude-SearchBot, PerplexityBot, Perplexity-User) are allowed with the same private-route exclusions; training-only crawlers (CCBot, Bytespider) are disallowed; the default group carries `Content-Signal: search=yes, ai-input=yes`. Robots exclusions remain advisory.
+- `packages/applification-sdk`: `@applification/sdk`, a zero-dependency TypeScript client for the public API with `repository` and `homepage` pointing at this repo and the apex domain. Build with `bun run build` in that directory. **Not yet published**; run `npm publish --access public` from the package after verifying `npm whoami` under the applification org.
+- Developer resource discoverability: `/llms.txt` gains a Developer resources section linking the ARD catalog, API reference, OpenAPI document, SDK and MCP server; the agents page links the ARD catalog and names the Applification API in its reference heading and title.
+- Brand discoverability: the homepage and default title now end with `| Applification`; the Organization JSON-LD adds `alternateName`, `sameAs` and `founder`. Remaining work is external: consistent NAP on listings and press links to the apex domain.
+
 ## Wikipedia and Wikidata: external follow-up
 
 No Wikipedia article or Wikidata item was created. Search found existing profiles and directory listings, but did not establish substantial independent coverage for a Wikipedia article. This gap cannot be resolved by a code change or by adding a fictional `sameAs` URL.

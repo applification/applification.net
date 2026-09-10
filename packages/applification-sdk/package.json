@@ -1,0 +1,40 @@
+{
+  "name": "@applification/sdk",
+  "version": "0.1.0",
+  "description": "Official TypeScript client for the Applification Public Information API: profile, products, pricing, search and content reads from applification.net.",
+  "license": "MIT",
+  "author": "Dave Hudson (https://www.applification.net)",
+  "homepage": "https://www.applification.net",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/applification/applification.net.git",
+    "directory": "packages/applification-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/applification/applification.net/issues"
+  },
+  "keywords": ["applification", "sdk", "api-client", "openapi", "agents", "typescript"],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "bun run build"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

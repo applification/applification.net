@@ -6,12 +6,12 @@ const description =
   "Give your agent context about Dave Hudson and Applification. Read public profile and product information through WebMCP tools or the catalog API.";
 
 export const metadata: Metadata = {
-  title: "Agents",
+  title: "Agents and developer API",
   description,
   alternates: { canonical: "/agents" },
   openGraph: {
     ...defaultOpenGraph,
-    title: "Agents | Applification",
+    title: "Agents and developer API | Applification",
     description,
     url: "/agents",
   },
