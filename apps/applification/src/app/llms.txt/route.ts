@@ -1,5 +1,10 @@
 import { agentSkillsIndexPath, siteSkillPath } from "@/lib/agent-skills";
-import { publicProfile, publicProducts, siteUrl } from "@/lib/public-catalog";
+import {
+  publicProfile,
+  publicProducts,
+  sandboxUrl,
+  siteUrl,
+} from "@/lib/public-catalog";
 import { publicApiUsageDescription } from "@/lib/public-api-policy";
 
 export const dynamic = "force-static";
@@ -26,6 +31,12 @@ Do not use this site to send messages for a user (there is no sending endpoint),
 All requests are free, anonymous GET requests with CORS. Invalid input returns 400 with error.code INVALID_QUERY. Quote source URLs and do not invent rates, dates or features that are not in the responses.
 - [Agent skill](${siteUrl}${siteSkillPath}): SKILL.md with this guidance for skill-aware agents.
 - [Agent Skills index](${siteUrl}${agentSkillsIndexPath}): Discovery index (v0.2.0) with the skill digest.
+
+## Onboarding
+- Free tier: every endpoint under ${siteUrl}/api/v1 is free, without time limit, account, sign-up, API key or sales contact. Verify at ${siteUrl}/api/v1/catalog?section=pricing (data.pricing.api.freeTier is true).
+- Sandbox: [First call](${sandboxUrl}) returns status ok plus the onboarding facts and suggested next requests. The sandbox is the production API because every read is side-effect free; there is no separate test environment to request.
+- API keys: none are issued or read. Requests carrying credentials are treated as anonymous.
+- First call: \`curl --fail --show-error '${sandboxUrl}'\`
 
 ## Public information
 - [Profile](${siteUrl}/about): Dave Hudson's engineering experience and contract fit.
