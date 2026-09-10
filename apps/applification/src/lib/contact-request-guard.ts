@@ -1,6 +1,7 @@
 import { checkBotId } from "botid/server";
 import { checkRateLimit } from "@vercel/firewall";
 import { getContactPublicBaseUrl } from "./contact-public-url";
+import { rateLimitHeaders } from "./rate-limit-headers";
 
 export type ContactOperation = "prepare" | "attachment" | "deliver";
 
@@ -43,7 +44,8 @@ export async function guardContactRequest(request: Request, operation: ContactOp
 }
 
 function limited() {
-  return Response.json({ code: "rate_limited", message: "Too many requests. Please wait up to 15 minutes before trying again. You can continue editing your brief manually." }, { status: 429, headers: { "Retry-After": "900" } });
+  // The Firewall SDK exposes only a boolean, so use a conservative full window.
+  return Response.json({ code: "rate_limited", message: "Too many requests. Please wait up to 15 minutes before trying again. You can continue editing your brief manually." }, { status: 429, headers: { ...rateLimitHeaders({ policy: "contact-write", limit: 30, remaining: 0, windowSeconds: 900, resetSeconds: 900 }), "Retry-After": "900", "Cache-Control": "no-store" } });
 }
 
 export async function readContactJson(request: Request, maxBytes = 384 * 1024): Promise<unknown> {

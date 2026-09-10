@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products",
     "/writing",
     "/agents",
+    "/privacy",
   ];
   return [
     ...pages.map((page) => ({ url: `${siteUrl}${page}` })),

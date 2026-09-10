@@ -57,13 +57,17 @@ describe("public API HTTP helpers", () => {
   });
 
   it("advertises the OpenAPI document and docs through RFC 8288 Link headers", () => {
-    const link = publicReadOptions().headers.get("link") ?? "";
+    const options = () =>
+      publicReadOptions(
+        new Request("https://example.com/api/v1/catalog", { method: "OPTIONS" }),
+      );
+    const link = options().headers.get("link") ?? "";
     expect(link).toContain('rel="service-desc"');
     expect(link).toContain("/api/openapi.json");
     expect(link).toContain('rel="service-doc"');
     expect(link).not.toContain('rel="deprecation"');
-    expect(publicReadOptions().headers.has("deprecation")).toBe(false);
-    expect(publicReadOptions().headers.has("sunset")).toBe(false);
+    expect(options().headers.has("deprecation")).toBe(false);
+    expect(options().headers.has("sunset")).toBe(false);
   });
 
   it("emits Deprecation, Sunset and a deprecation link once a version is deprecated", async () => {

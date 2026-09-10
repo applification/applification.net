@@ -4,9 +4,14 @@ import {
   publicReadOnlyMethods,
   publicReadOptions,
   publicReadResponse,
+  withPublicReadLimit,
 } from "@/lib/public-content-http";
 
 export function GET(request: Request) {
+  return withPublicReadLimit(request, () => readCatalog(request));
+}
+
+function readCatalog(request: Request) {
   const params = new URL(request.url).searchParams;
   const parsed = catalogInputSchema.safeParse(Object.fromEntries(params));
   const repeatedSection = params.getAll("section").length > 1;

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { siteUrl } from "./public-catalog";
+import { checkPublicApiRateLimit } from "./public-api-rate-limit";
 
 export const publicApiDocsUrl = `${siteUrl}/agents`;
 export const publicApiSpecUrl = `${siteUrl}/api/openapi.json`;
@@ -39,7 +40,9 @@ export function publicApiLifecycleHeaders(): Record<string, string> {
 export const publicReadHeaders = {
   "Access-Control-Allow-Origin": "*",
   "X-Content-Type-Options": "nosniff",
-  "Cache-Control": "public, max-age=300",
+  "Cache-Control": "no-store",
+  "Access-Control-Expose-Headers":
+    "RateLimit, RateLimit-Policy, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After",
 };
 
 function withLifecycle(headers: Record<string, string>) {
@@ -59,7 +62,8 @@ export function publicReadResponse(body: unknown, init: ResponseInit = {}) {
 export type PublicApiErrorCode =
   | "INVALID_QUERY"
   | "NOT_FOUND"
-  | "METHOD_NOT_ALLOWED";
+  | "METHOD_NOT_ALLOWED"
+  | "RATE_LIMITED";
 
 /** Structured JSON error: code, message and a resolution hint agents can act on. */
 export function publicApiError(
@@ -82,15 +86,40 @@ export function publicApiError(
   );
 }
 
-export function publicReadOptions() {
-  return new Response(null, {
-    status: 204,
-    headers: withLifecycle({
-      ...publicReadHeaders,
-      "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
-      "Access-Control-Max-Age": "86400",
-    }),
-  });
+export function withPublicReadLimit(request: Request, handler: () => Response) {
+  const quota = checkPublicApiRateLimit(request);
+  const response = quota.allowed
+    ? handler()
+    : publicApiError(
+        429,
+        "RATE_LIMITED",
+        "Too many public API requests.",
+        "Wait at least Retry-After seconds before retrying; rejected requests do not extend the window.",
+        { "Retry-After": String(quota.resetSeconds) },
+      );
+  for (const [name, value] of Object.entries({
+    ...publicApiLifecycleHeaders(),
+    ...publicReadHeaders,
+    ...quota.headers,
+  })) {
+    response.headers.set(name, value);
+  }
+  return response;
+}
+
+export function publicReadOptions(request: Request) {
+  return withPublicReadLimit(
+    request,
+    () =>
+      new Response(null, {
+        status: 204,
+        headers: withLifecycle({
+          ...publicReadHeaders,
+          "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+          "Access-Control-Max-Age": "86400",
+        }),
+      }),
+  );
 }
 
 const readOnlyAllow = "GET, HEAD, OPTIONS";
@@ -135,6 +164,10 @@ export function publicRead<T>(
   schema: z.ZodType<T>,
   handler: (input: T) => unknown,
 ) {
+  return withPublicReadLimit(request, () => readQuery(request, schema, handler));
+}
+
+function readQuery<T>(request: Request, schema: z.ZodType<T>, handler: (input: T) => unknown) {
   const params = new URL(request.url).searchParams;
   const query: Record<string, unknown> = Object.fromEntries(params);
   const repeated = [...params.keys()].some(

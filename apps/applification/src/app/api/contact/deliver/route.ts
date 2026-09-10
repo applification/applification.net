@@ -88,7 +88,7 @@ export async function POST(request: Request) {
   if (!abuse.allowed) {
     return Response.json(
       { code: "rate_limited", message: "This enquiry cannot be sent yet. Wait and try again." },
-      { status: 429 },
+      { status: 429, headers: { "Retry-After": "900", "Cache-Control": "no-store" } },
     );
   }
 

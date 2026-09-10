@@ -1,6 +1,12 @@
 import { z } from "zod";
-import { catalogSections, siteUrl } from "./public-catalog";
+import {
+  catalogSections,
+  publicOnboarding,
+  sandboxUrl,
+  siteUrl,
+} from "./public-catalog";
 import { contactRoutes } from "./contact";
+import { publicApiUsageDescription } from "./public-api-policy";
 import {
   publicApiDocsUrl,
   publicApiLifecycle,
@@ -64,6 +70,9 @@ const pricing = z.object({
     model: z.literal("free"),
     description: z.string(),
     price: z.literal(0),
+    freeTier: z.literal(true),
+    apiKeyRequired: z.literal(false),
+    sandboxUrl: url.describe("Live sandbox and first-call endpoint."),
   }),
   products: z.array(
     productTerms.extend({ slug: z.string(), name: z.string() }),
@@ -93,6 +102,46 @@ export const catalogResponseSchema = z.discriminatedUnion("section", [
     data: z.object({ pricing }),
   }),
 ]);
+
+export const onboardingSchema = z.object({
+  humanInTheLoop: z.literal(false),
+  freeTier: z.object({
+    available: z.literal(true),
+    price: z.literal(0),
+    scope: z.string(),
+    accountRequired: z.literal(false),
+    signupUrl: z.null().describe("No sign-up exists; none is needed."),
+    quota: z.string(),
+    verifyUrl: url,
+  }),
+  apiKeys: z.object({
+    required: z.literal(false),
+    selfServe: z.literal("not_applicable"),
+    description: z.string(),
+  }),
+  sandbox: z.object({
+    available: z.literal(true),
+    url,
+    environment: z.literal("shared"),
+    description: z.string(),
+  }),
+  firstCall: z.object({
+    method: z.literal("GET"),
+    url,
+    expectedStatus: z.literal(200),
+    curl: z.string(),
+  }),
+  documentation: z.object({ guide: url, openapi: url, llms: url }),
+});
+
+export const sandboxResponseSchema = z.object({
+  ...envelope,
+  environment: z.literal("sandbox"),
+  status: z.literal("ok"),
+  message: z.string(),
+  onboarding: onboardingSchema,
+  tryNext: z.array(z.object({ url, description: z.string() })),
+});
 
 export const catalogErrorSchema = z.object({
   error: z.object({
@@ -171,6 +220,18 @@ const versioningPolicy = {
   minimumDeprecationWindowDays: 180,
 } as const;
 
+const quotaHeaders = Object.fromEntries(
+  ["RateLimit", "RateLimit-Policy", "RateLimit-Limit", "RateLimit-Remaining", "RateLimit-Reset"].map(
+    (name) => [name, { $ref: `#/components/headers/${name}` }],
+  ),
+);
+const rateLimitedResponse = {
+  description: "Public read allowance exhausted. Wait at least Retry-After seconds before retrying. Rejected requests do not extend the window.",
+  headers: { ...quotaHeaders, "Retry-After": { $ref: "#/components/headers/Retry-After" } },
+  content: { "application/json": { schema: { $ref: "#/components/schemas/RateLimitError" } } },
+};
+const readHeaders = { ...quotaHeaders, ...lifecycleHeaders };
+
 function contentOperation(
   operationId: string,
   summary: string,
@@ -193,8 +254,8 @@ function contentOperation(
     responses: {
       "200": {
         description:
-          "Published content. Read-only, with canonical source URLs. Cached for five minutes.",
-        headers: lifecycleHeaders,
+          "Published content. Read-only, with canonical source URLs. Not cached, so quota headers stay current.",
+        headers: readHeaders,
         content: {
           "application/json": {
             schema: { $ref: `#/components/schemas/${response}` },
@@ -203,6 +264,7 @@ function contentOperation(
       },
       "400": {
         description: "Invalid, repeated or unknown query parameter",
+        headers: quotaHeaders,
         content: {
           "application/json": {
             schema: { $ref: "#/components/schemas/PublicContentError" },
@@ -211,12 +273,14 @@ function contentOperation(
       },
       "404": {
         description: "Published content or section not found",
+        headers: quotaHeaders,
         content: {
           "application/json": {
             schema: { $ref: "#/components/schemas/PublicContentError" },
           },
         },
       },
+      "429": rateLimitedResponse,
     },
   };
 }
@@ -227,18 +291,23 @@ export const publicOpenApi = {
     title: "Applification Public Information API",
     version: "1.2.0",
     description:
-      "Read the public profile and commercial catalog, search published client work, writing and products, and read their content in bounded sections. Free, read-only access without API keys, accounts or cookies. Responses may be cached for five minutes. No application-level quota; infrastructure may impose limits. Back off on 429 or 503 and honour Retry-After when present.\n\nErrors are always JSON with a stable code, a message and a resolution hint; unknown /api paths return a JSON 404 and unsupported methods a JSON 405 with an Allow header.\n\nVersioning: the API is versioned in the URL path (/api/v1). Additive changes never bump the version; breaking changes ship under a new path and the old version is kept for at least 180 days, signalled by Deprecation and Sunset response headers, a Link rel=\"deprecation\" header and deprecated: true in this document. Policy: " +
-      publicApiPolicyUrl +
-      "\n\nThe contact delivery endpoint is documented for transparency. It is an asynchronous job (202 Accepted plus a Location URL to poll) protected by an Idempotency-Key header, but it is reachable only from the browser contact page after a human reviews and consents to the brief; it is not an agent write surface. Individual product APIs are outside this document.",
+      `Read the public profile and commercial catalog, search published client work, writing and products, and read their content in bounded sections. Free tier: every endpoint is free, read-only and needs no API key, account, sign-up or sales contact. Sandbox: GET /api/v1/sandbox is a live first call that confirms this; the sandbox is the production API because every read is side-effect free. ${publicApiUsageDescription}\n\nErrors are always JSON with a stable code, a message and a resolution hint; unknown /api paths return a JSON 404 and unsupported methods a JSON 405 with an Allow header.\n\nVersioning: the API is versioned in the URL path (/api/v1). Additive changes never bump the version; breaking changes ship under a new path and the old version is kept for at least 180 days, signalled by Deprecation and Sunset response headers, a Link rel="deprecation" header and deprecated: true in this document. Policy: ${publicApiPolicyUrl}\n\nThe contact delivery endpoint is documented for transparency. It is an asynchronous job (202 Accepted plus a Location URL to poll) protected by an Idempotency-Key header, but it is reachable only from the browser contact page after a human reviews and consents to the brief; it is not an agent write surface. Individual product APIs are outside this document.`,
     contact: { name: "Applification", url: publicApiDocsUrl },
+    "x-onboarding": publicOnboarding,
   },
-  servers: [{ url: siteUrl }],
+  servers: [
+    {
+      url: siteUrl,
+      description:
+        "Production and sandbox. Free tier, anonymous, read-only; no API key.",
+    },
+  ],
   security: [],
-  externalDocs: {
-    description: "Agent guide, versioning policy and API reference",
-    url: publicApiDocsUrl,
-  },
   tags: [
+    {
+      name: "Onboarding",
+      description: `Free tier and sandbox verification. Start with GET ${sandboxUrl}.`,
+    },
     {
       name: "public",
       description: "Free read-only information. No authentication.",
@@ -249,8 +318,50 @@ export const publicOpenApi = {
         "Human-reviewed enquiry delivery. Browser-session gated; documented so agents understand the flow, not so they can call it.",
     },
   ],
+  externalDocs: {
+    description: "Agent guide, versioning policy and API reference",
+    url: publicApiDocsUrl,
+  },
   "x-versioning-policy": versioningPolicy,
   paths: {
+    "/api/v1/sandbox": {
+      get: {
+        operationId: "getSandbox",
+        tags: ["Onboarding"],
+        summary: "Make a free first call and read the onboarding facts",
+        description:
+          "Anonymous sandbox call with no side effects. Returns status ok, the free tier, API key and sandbox facts with URLs that verify each claim, and suggested next requests. Credentials are ignored. Query parameters return 400.",
+        parameters: [],
+        responses: {
+          "200": {
+            description:
+              "First call succeeded. Free tier and sandbox confirmed. Not cached, so quota headers stay current.",
+            headers: {
+              ...quotaHeaders,
+              "Access-Control-Allow-Origin": {
+                schema: { type: "string" },
+                description: "* — public reads without credentials",
+              },
+            },
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/SandboxResponse" },
+              },
+            },
+          },
+          "400": {
+            description: "Unknown query parameter",
+            headers: quotaHeaders,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/PublicContentError" },
+              },
+            },
+          },
+          "429": rateLimitedResponse,
+        },
+      },
+    },
     "/api/v1/search": {
       get: contentOperation(
         "searchSite",
@@ -289,9 +400,10 @@ export const publicOpenApi = {
           "200": {
             description: "Public catalog information",
             headers: {
+              ...quotaHeaders,
               "Cache-Control": {
                 schema: { type: "string" },
-                description: "public, max-age=300",
+                description: "no-store",
               },
               "Access-Control-Allow-Origin": {
                 schema: { type: "string" },
@@ -307,12 +419,14 @@ export const publicOpenApi = {
           },
           "400": {
             description: "Invalid, repeated or unknown query parameter",
+            headers: quotaHeaders,
             content: {
               "application/json": {
                 schema: { $ref: "#/components/schemas/CatalogError" },
               },
             },
           },
+          "429": rateLimitedResponse,
         },
       },
     },
@@ -479,8 +593,43 @@ export const publicOpenApi = {
         description:
           "RFC 8594. Present only after this API version is deprecated; the HTTP date after which it stops responding, at least 180 days after Deprecation.",
       },
+      "RateLimit-Policy": {
+        description: "HTTPAPI structured quota policy: q is the request allowance and w is the window in seconds.",
+        schema: { type: "string", example: '\"public-read\";q=120;w=60' },
+      },
+      RateLimit: {
+        description: "HTTPAPI structured quota status: r is remaining requests after this request, t is seconds until reset. Instance-local, per client IP.",
+        schema: { type: "string", example: '\"public-read\";r=119;t=42' },
+      },
+      "RateLimit-Limit": {
+        description: "Compatibility field: requests allowed in the current fixed window.",
+        schema: { type: "integer", minimum: 1, example: 120 },
+      },
+      "RateLimit-Remaining": {
+        description: "Compatibility field: requests remaining after this request. Zero on quota exhaustion.",
+        schema: { type: "integer", minimum: 0, example: 119 },
+      },
+      "RateLimit-Reset": {
+        description: "Compatibility field: seconds until the current window resets, rounded up; NOT a Unix timestamp.",
+        schema: { type: "integer", minimum: 1, example: 42 },
+      },
+      "Retry-After": {
+        description: "Minimum seconds to wait before retrying. On public API 429s this equals RateLimit-Reset. Takes precedence over quota hints.",
+        schema: { type: "integer", minimum: 1, example: 42 },
+      },
     },
     schemas: {
+      RateLimitError: z.toJSONSchema(
+        z.object({
+          error: z.object({
+            code: z.literal("RATE_LIMITED"),
+            message: z.string(),
+            hint: z.string(),
+            docs: url,
+          }),
+        }),
+        { target: "draft-2020-12" },
+      ),
       SearchSiteResponse: z.toJSONSchema(searchSiteResponseSchema, {
         target: "draft-2020-12",
       }),
@@ -489,6 +638,10 @@ export const publicOpenApi = {
       }),
       PublicContentError: z.toJSONSchema(publicContentErrorSchema, {
         target: "draft-2020-12",
+      }),
+      SandboxResponse: z.toJSONSchema(sandboxResponseSchema, {
+        target: "draft-2020-12",
+        io: "input",
       }),
       CatalogResponse: z.toJSONSchema(catalogResponseSchema, {
         target: "draft-2020-12",

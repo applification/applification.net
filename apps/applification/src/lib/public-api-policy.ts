@@ -1,0 +1,4 @@
+export const publicApiLimit = 120;
+export const publicApiWindowSeconds = 60;
+export const publicApiUsageDescription =
+  `Public GET and HEAD requests share ${publicApiLimit} requests per ${publicApiWindowSeconds}-second fixed window per client IP, per server instance, across /api/v1/sandbox, /api/v1/catalog, /api/v1/search, /api/v1/content and /api/openapi.json. OPTIONS is free. Counters reset on instance restarts and are not a global quota across instances. Responses use Cache-Control: no-store so quota headers stay current. RateLimit-Policy describes the quota; RateLimit reports remaining requests (r) after this request and seconds until reset (t). RateLimit-Limit, RateLimit-Remaining and RateLimit-Reset provide the same values for older clients; reset is seconds, not a Unix timestamp. On 429, wait at least Retry-After seconds before retrying. Hosting infrastructure may impose additional limits; back off on 503 too.`;

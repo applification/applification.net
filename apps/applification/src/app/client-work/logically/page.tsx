@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbStructuredData } from "@/lib/public-catalog";
 import { LogicallyCaseStudyPage } from "@/components/client-work/logically-case-study-page";
 
 const description =
@@ -24,5 +26,10 @@ export const metadata: Metadata = {
 };
 
 export default function LogicallyCaseStudyRoute() {
-  return <LogicallyCaseStudyPage />;
+  return (
+    <>
+      <StructuredData data={breadcrumbStructuredData([{ name: "Client work", path: "/client-work" }, { name: "Logically", path: "/client-work/logically" }])} />
+      <LogicallyCaseStudyPage />
+    </>
+  );
 }

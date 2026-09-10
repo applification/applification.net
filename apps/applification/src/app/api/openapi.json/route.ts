@@ -1,21 +1,16 @@
 import { publicOpenApi } from "@/lib/public-api-schema";
 import {
-  publicApiLifecycleHeaders,
   publicReadOnlyMethodsAt,
+  publicReadOptions,
+  withPublicReadLimit,
 } from "@/lib/public-content-http";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
-export function GET() {
-  return Response.json(publicOpenApi, {
-    headers: {
-      ...publicApiLifecycleHeaders(),
-      "Access-Control-Allow-Origin": "*",
-      "Cache-Control": "public, max-age=3600",
-      "X-Content-Type-Options": "nosniff",
-    },
-  });
+export function GET(request: Request) {
+  return withPublicReadLimit(request, () => Response.json(publicOpenApi));
 }
 
+export const OPTIONS = publicReadOptions;
 export const { POST, PUT, PATCH, DELETE } =
   publicReadOnlyMethodsAt("/api/openapi.json");

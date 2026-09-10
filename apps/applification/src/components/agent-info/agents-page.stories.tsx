@@ -32,6 +32,13 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   await expect(
     canvas.getByRole("link", { name: "OpenAPI reference" }),
   ).toHaveAttribute("href", "/api/openapi.json");
+  await expect(
+    canvas.getByRole("link", { name: "Sandbox first call" }),
+  ).toHaveAttribute("href", "/api/v1/sandbox");
+  await expect(
+    canvas.getByRole("link", { name: "Make the first call" }),
+  ).toHaveAttribute("href", "/api/v1/sandbox");
+  await expect(canvas.getAllByText(/free tier/i).length).toBeGreaterThan(0);
   const select = canvas.getByRole("combobox", {
     name: "Where would you like to look?",
   });
@@ -65,6 +72,7 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   await expect(disclosure.open).toBe(false);
   await userEvent.click(canvas.getByText("API and WebMCP reference"));
   await expect(disclosure.open).toBe(true);
+  await expect(canvas.getByText(/On 429, wait at least Retry-After/)).toBeVisible();
   await expect(
     canvas.getByRole("link", { name: "Read the full API specification" }),
   ).toBeVisible();
