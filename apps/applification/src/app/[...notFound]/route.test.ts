@@ -1,45 +1,58 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
-import { GET, HEAD } from "./route";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+const readFile = vi.fn();
+vi.mock("node:fs/promises", () => ({ readFile }));
 
 const origin = "https://www.applification.net";
 
-afterEach(() => {
-  vi.unstubAllGlobals();
+beforeEach(() => {
+  vi.resetModules();
+  readFile.mockReset();
 });
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
+
+async function load() {
+  return import("./route");
+}
 
 describe("GET unknown path", () => {
   it("serves Markdown with a 404 to agents and curl", async () => {
-    const fetchMock = vi.fn();
-    vi.stubGlobal("fetch", fetchMock);
+    const { GET } = await load();
     const response = await GET(new Request(`${origin}/missing`));
     expect(response.status).toBe(404);
     expect(response.headers.get("content-type")).toBe(
       "text/markdown; charset=utf-8",
     );
     expect(await response.text()).toContain(`${origin}/llms.txt`);
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(readFile).not.toHaveBeenCalled();
   });
 
-  it("serves the prerendered not-found page to browsers", async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValue(new Response("<html>404 page</html>", { status: 404 }));
-    vi.stubGlobal("fetch", fetchMock);
-    const response = await GET(
+  it("serves the prerendered not-found page to browsers, read once", async () => {
+    readFile.mockResolvedValue("<html>404 page</html>");
+    const { GET, notFoundPageFile } = await load();
+    const request = () =>
       new Request(`${origin}/missing`, {
         headers: { accept: "text/html,application/xhtml+xml,*/*;q=0.8" },
-      }),
-    );
+      });
+    const response = await GET(request());
     expect(response.status).toBe(404);
     expect(response.headers.get("content-type")).toBe(
       "text/html; charset=utf-8",
     );
+    expect(response.headers.get("x-robots-tag")).toBe("noindex");
     expect(await response.text()).toBe("<html>404 page</html>");
-    expect(String(fetchMock.mock.calls[0][0])).toBe(`${origin}/_not-found`);
+    expect(String(readFile.mock.calls[0][0])).toContain(notFoundPageFile);
+
+    await GET(request());
+    expect(readFile).toHaveBeenCalledTimes(1);
   });
 
-  it("falls back to Markdown when the page cannot be fetched", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline")));
+  it("falls back to Markdown when the page file is missing", async () => {
+    readFile.mockRejectedValue(new Error("ENOENT"));
+    const { GET, HEAD } = await load();
     const response = await GET(
       new Request(`${origin}/missing`, { headers: { accept: "text/html" } }),
     );
@@ -47,15 +60,10 @@ describe("GET unknown path", () => {
     expect(response.headers.get("content-type")).toBe(
       "text/markdown; charset=utf-8",
     );
-  });
 
-  it("never fetches itself for the internal not-found path", async () => {
-    const fetchMock = vi.fn();
-    vi.stubGlobal("fetch", fetchMock);
-    const response = await HEAD(
-      new Request(`${origin}/_not-found`, { headers: { accept: "text/html" } }),
+    const head = await HEAD(
+      new Request(`${origin}/missing`, { headers: { accept: "text/html" } }),
     );
-    expect(response.status).toBe(404);
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(head.status).toBe(404);
   });
 });

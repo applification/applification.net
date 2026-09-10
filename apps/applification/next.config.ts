@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["applification.localhost", "rufus.tail12a0a0.ts.net"],
   outputFileTracingIncludes: {
     "/design.md": ["./design.md"],
+    "/[...notFound]": ["./.next/server/app/_not-found.html"],
   },
 };
 
