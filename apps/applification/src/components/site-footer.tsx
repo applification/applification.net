@@ -1,5 +1,5 @@
 import { ExternalLink } from "@/components/external-link";
-import { Bot, Code } from "lucide-react";
+import { Bot, Code, ShieldCheck } from "lucide-react";
 import type { ComponentType } from "react";
 import { contractPositioning } from "@/lib/contract-positioning";
 import Link from "next/link";
@@ -75,6 +75,10 @@ export function SiteFooter() {
           <Link href="/agents" className={linkClasses}>
             <Bot aria-hidden="true" className="size-4 shrink-0" />
             <span className="link-sweep-label">Agents</span>
+          </Link>
+          <Link href="/privacy" className={linkClasses}>
+            <ShieldCheck aria-hidden="true" className="size-4 shrink-0" />
+            <span className="link-sweep-label">Privacy</span>
           </Link>
           {socialLinks.map((item) => {
             const Icon = item.icon;

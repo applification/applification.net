@@ -47,6 +47,8 @@ bun run packages:test
 
 `.github/workflows/publish-packages.yml` publishes `@applification/sdk`, `@applification/cli` and the `applification` PyPI package with provenance when a `packages-v*` tag is pushed, or on manual dispatch. It relies on npm trusted publishing and PyPI trusted publishing (OIDC), so configure both registries to trust this repository's workflow before the first run; no long-lived tokens are stored. Bump the version in each package before tagging. Each package sets `homepage` to applification.net and `repository` to this project, which is how agents verify an official package.
 
+Public API reads use an independent, instance-local 120-request/minute allowance per client IP and return quota headers on success, query errors and throttling. See [rate-limit conventions](docs/agent-readiness.md#rate-limit-response-conventions) for header examples, scope, caching and deployment requirements.
+
 ## Contact service protection
 
 The contact workflow uses Vercel BotID Basic and the Vercel Firewall SDK before AI preparation, attachment writes/deletes and delivery. A shared SDK rule named `contact-write` allows 30 requests per 15-minute fixed window, checked separately by IP address and a browser-session UUID. The session key is an extra fairness limit, not authentication. Vercel counters are regional; an AI Gateway key budget provides the separate spend limit. Redis is not required.

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { catalogSections, siteUrl } from "./public-catalog";
+import { publicApiUsageDescription } from "./public-api-policy";
 import {
   searchSiteInputSchema,
   readContentInputSchema,
@@ -92,6 +93,17 @@ export const catalogErrorSchema = z.object({
   error: z.object({ code: z.literal("INVALID_QUERY"), message: z.string() }),
 });
 
+const quotaHeaders = Object.fromEntries(
+  ["RateLimit", "RateLimit-Policy", "RateLimit-Limit", "RateLimit-Remaining", "RateLimit-Reset"].map(
+    (name) => [name, { $ref: `#/components/headers/${name}` }],
+  ),
+);
+const rateLimitedResponse = {
+  description: "Public read allowance exhausted. Wait at least Retry-After seconds before retrying. Rejected requests do not extend the window.",
+  headers: { ...quotaHeaders, "Retry-After": { $ref: "#/components/headers/Retry-After" } },
+  content: { "application/json": { schema: { $ref: "#/components/schemas/RateLimitError" } } },
+};
+
 function contentOperation(
   operationId: string,
   summary: string,
@@ -113,7 +125,8 @@ function contentOperation(
     responses: {
       "200": {
         description:
-          "Published content. Read-only, with canonical source URLs. Cached for five minutes.",
+          "Published content. Read-only, with canonical source URLs. Not cached, so quota headers stay current.",
+        headers: quotaHeaders,
         content: {
           "application/json": {
             schema: { $ref: `#/components/schemas/${response}` },
@@ -122,6 +135,7 @@ function contentOperation(
       },
       "400": {
         description: "Invalid, repeated or unknown query parameter",
+        headers: quotaHeaders,
         content: {
           "application/json": {
             schema: { $ref: "#/components/schemas/PublicContentError" },
@@ -130,12 +144,14 @@ function contentOperation(
       },
       "404": {
         description: "Published content or section not found",
+        headers: quotaHeaders,
         content: {
           "application/json": {
             schema: { $ref: "#/components/schemas/PublicContentError" },
           },
         },
       },
+      "429": rateLimitedResponse,
     },
   };
 }
@@ -144,9 +160,9 @@ export const publicOpenApi = {
   openapi: "3.1.0",
   info: {
     title: "Applification Public Information API",
-    version: "1.1.0",
+    version: "1.2.0",
     description:
-      "Read the public profile and commercial catalog, search published client work, writing and products, and read their content in bounded sections. Free, read-only access without API keys, accounts or cookies. Responses may be cached for five minutes. No application-level quota; infrastructure may impose limits. Back off on 429 or 503 and honour Retry-After when present. The contact workflow and individual product APIs are outside this API.",
+      `Read the public profile and commercial catalog, search published client work, writing and products, and read their content in bounded sections. Free, read-only access without API keys, accounts or cookies. ${publicApiUsageDescription} The contact workflow and individual product APIs are outside this API.`,
     contact: { name: "Applification", url: `${siteUrl}/developers` },
     license: { name: "Public read-only API, no charge", identifier: "MIT" },
   },
@@ -194,9 +210,10 @@ export const publicOpenApi = {
           "200": {
             description: "Public catalog information",
             headers: {
+              ...quotaHeaders,
               "Cache-Control": {
                 schema: { type: "string" },
-                description: "public, max-age=300",
+                description: "no-store",
               },
               "Access-Control-Allow-Origin": {
                 schema: { type: "string" },
@@ -211,18 +228,49 @@ export const publicOpenApi = {
           },
           "400": {
             description: "Invalid, repeated or unknown query parameter",
+            headers: quotaHeaders,
             content: {
               "application/json": {
                 schema: { $ref: "#/components/schemas/CatalogError" },
               },
             },
           },
+          "429": rateLimitedResponse,
         },
       },
     },
   },
   components: {
+    headers: {
+      "RateLimit-Policy": {
+        description: "HTTPAPI structured quota policy: q is the request allowance and w is the window in seconds.",
+        schema: { type: "string", example: '\"public-read\";q=120;w=60' },
+      },
+      RateLimit: {
+        description: "HTTPAPI structured quota status: r is remaining requests after this request, t is seconds until reset. Instance-local, per client IP.",
+        schema: { type: "string", example: '\"public-read\";r=119;t=42' },
+      },
+      "RateLimit-Limit": {
+        description: "Compatibility field: requests allowed in the current fixed window.",
+        schema: { type: "integer", minimum: 1, example: 120 },
+      },
+      "RateLimit-Remaining": {
+        description: "Compatibility field: requests remaining after this request. Zero on quota exhaustion.",
+        schema: { type: "integer", minimum: 0, example: 119 },
+      },
+      "RateLimit-Reset": {
+        description: "Compatibility field: seconds until the current window resets, rounded up; NOT a Unix timestamp.",
+        schema: { type: "integer", minimum: 1, example: 42 },
+      },
+      "Retry-After": {
+        description: "Minimum seconds to wait before retrying. On public API 429s this equals RateLimit-Reset. Takes precedence over quota hints.",
+        schema: { type: "integer", minimum: 1, example: 42 },
+      },
+    },
     schemas: {
+      RateLimitError: z.toJSONSchema(z.object({
+        error: z.object({ code: z.literal("RATE_LIMITED"), message: z.string() }),
+      }), { target: "draft-2020-12" }),
       SearchSiteResponse: z.toJSONSchema(searchSiteResponseSchema, {
         target: "draft-2020-12",
       }),

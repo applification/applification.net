@@ -1,6 +1,7 @@
 import { PageHero } from "@/components/page-hero";
 import { ExternalLink } from "@/components/external-link";
 import { mcpEndpoint, mcpTools } from "@/lib/mcp-metadata";
+import { publicApiUsageDescription } from "@/lib/public-api-policy";
 import { siteUrl } from "@/lib/public-catalog";
 import {
   CodeSample,
@@ -89,11 +90,7 @@ export function DevelopersPage() {
             response; the interactive reader on the Agents page does the same
             from a plain HTML form.
           </Definition>
-          <Definition term="Rate limits">
-            No application-level quota. Hosting infrastructure may apply
-            limits; back off on 429 or 503 and honour Retry-After when present.
-            Responses may be cached for five minutes.
-          </Definition>
+          <Definition term="Rate limits">{publicApiUsageDescription}</Definition>
           <Definition term="Cross-origin">
             Access-Control-Allow-Origin is * on every read. GET, HEAD and
             OPTIONS are supported on the REST routes; other methods return 405.
@@ -104,8 +101,9 @@ export function DevelopersPage() {
       <InfoSection id="mcp" title="MCP server">
         <p className="max-w-[65ch]">
           A remote Model Context Protocol server using the Streamable HTTP
-          transport, stateless, with JSON responses. Add it to Claude, Cursor,
-          ChatGPT or any MCP host that accepts a URL.
+          transport, stateless, with JSON responses. It shares the public API
+          rate limit above and returns the same RateLimit headers. Add it to
+          Claude, Cursor, ChatGPT or any MCP host that accepts a URL.
         </p>
         <CodeSample label="MCP endpoint">{mcpEndpoint}</CodeSample>
         <CodeSample label="MCP client configuration">{mcpConfig}</CodeSample>
@@ -159,7 +157,8 @@ console.log(section.content, section.nextSection);`}</CodeSample>
           <Definition term="Errors">
             Always JSON. 400 returns error.code INVALID_QUERY for invalid,
             unknown or repeated parameters. 404 returns NOT_FOUND for
-            unpublished or missing content. Messages are plain language.
+            unpublished or missing content. 429 returns RATE_LIMITED with
+            Retry-After. Messages are plain language.
           </Definition>
           <Definition term="Versioning">
             Breaking changes use a new URL version. Clients should tolerate new

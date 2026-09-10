@@ -44,6 +44,8 @@ describe("remote MCP server over Streamable HTTP", () => {
     expect(response.headers.get("mcp-session-id")).toBeNull();
     expect(response.headers.get("access-control-allow-origin")).toBe("*");
     expect(response.headers.get("cache-control")).toBe("no-store");
+    expect(response.headers.get("ratelimit-policy")).toMatch(/^"public-read";q=\d+;w=\d+$/);
+    expect(response.headers.get("ratelimit-remaining")).toMatch(/^\d+$/);
     const body = await response.json();
     expect(body.result.serverInfo.name).toBe(mcpServerCard.name);
     expect(body.result.capabilities.tools).toBeDefined();

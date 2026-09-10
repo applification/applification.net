@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/writing",
     "/agents",
     "/developers",
+    "/privacy",
   ];
   return [
     ...pages.map((page) => ({ url: `${siteUrl}${page}` })),

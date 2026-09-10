@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbStructuredData } from "@/lib/public-catalog";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 import { StoryLoopsProductPage } from "@/components/products/storyloops-product-page";
 
@@ -16,5 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default function StoryLoopsPage() {
-  return <StoryLoopsProductPage />;
+  return (
+    <>
+      <StructuredData data={breadcrumbStructuredData([{ name: "Products", path: "/products" }, { name: "StoryLoops", path: "/products/storyloops" }])} />
+      <StoryLoopsProductPage />
+    </>
+  );
 }

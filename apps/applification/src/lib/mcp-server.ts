@@ -19,6 +19,7 @@ import {
   getPublicCatalog,
   siteUrl,
 } from "./public-catalog";
+import { checkPublicApiRateLimit } from "./public-api-rate-limit";
 import { readContent, searchSite } from "./public-content.server";
 import { catalogTool, readContentTool, searchSiteTool } from "./webmcp";
 
@@ -121,7 +122,8 @@ const mcpHeaders = {
   "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
   "Access-Control-Allow-Headers":
     "Content-Type, Accept, Mcp-Session-Id, Mcp-Protocol-Version, Last-Event-ID",
-  "Access-Control-Expose-Headers": "Mcp-Session-Id, Mcp-Protocol-Version",
+  "Access-Control-Expose-Headers":
+    "Mcp-Session-Id, Mcp-Protocol-Version, RateLimit, RateLimit-Policy, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After",
   "X-Content-Type-Options": "nosniff",
 };
 
@@ -150,6 +152,29 @@ export async function handleMcpRequest(request: Request) {
       },
       { status: 405, headers: { ...mcpHeaders, Allow: "POST, OPTIONS" } },
     );
+  // Same courtesy limit and RateLimit headers as the public REST reads.
+  const quota = checkPublicApiRateLimit(request);
+  if (!quota.allowed)
+    return Response.json(
+      {
+        jsonrpc: "2.0",
+        error: {
+          code: -32000,
+          message:
+            "Too many public API requests. Wait for Retry-After before retrying.",
+        },
+        id: null,
+      },
+      {
+        status: 429,
+        headers: {
+          ...mcpHeaders,
+          ...quota.headers,
+          "Retry-After": String(quota.resetSeconds),
+          "Cache-Control": "no-store",
+        },
+      },
+    );
   const server = createMcpServer();
   const transport = new WebStandardStreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
@@ -159,7 +184,7 @@ export async function handleMcpRequest(request: Request) {
     await server.connect(transport);
     const response = await transport.handleRequest(request);
     const headers = new Headers(response.headers);
-    for (const [key, value] of Object.entries(mcpHeaders))
+    for (const [key, value] of Object.entries({ ...mcpHeaders, ...quota.headers }))
       headers.set(key, value);
     headers.set("Cache-Control", "no-store");
     return new Response(response.body, { status: response.status, headers });

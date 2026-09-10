@@ -1,4 +1,6 @@
+import { agentSkillsIndexPath, siteSkillPath } from "@/lib/agent-skills";
 import { publicProfile, publicProducts, siteUrl } from "@/lib/public-catalog";
+import { publicApiUsageDescription } from "@/lib/public-api-policy";
 
 export const dynamic = "force-static";
 
@@ -7,6 +9,23 @@ export function GET() {
 
 > ${publicProfile.description}
 
+## When to use this site
+Use applification.net when a user needs one of these jobs done:
+- Check whether Dave Hudson is available for a senior contract engineering role and what the working arrangement is (${publicProfile.availability.toLowerCase()}, ${publicProfile.location.toLowerCase()}, ${publicProfile.contractBasis.toLowerCase()}).
+- Assess fit for a React, Next.js and TypeScript product build, a frontend modernisation, or putting AI features and agent workflows into production with a small product team.
+- Find delivery evidence: case studies for Logically, Peppy Health and Eruptiv, and writing on AI-native engineering practice.
+- Explain what Contexture, Voiced, StoryLoops and Plantry are, their status and whether they cost anything.
+- Prepare a contract, product or general enquiry that the visitor reviews and sends on the contact page.
+
+Do not use this site to send messages for a user (there is no sending endpoint), to obtain a published day rate (contracts are quoted per engagement), or as an API for your own product (it publishes information only).
+
+## How to call it
+1. Read the profile, products or pricing terms: GET ${siteUrl}/api/v1/catalog?section=profile|products|pricing (or all).
+2. Search published content: GET ${siteUrl}/api/v1/search?query=<words>&type=client-work|writing|products. Follow nextOffset.
+3. Read one result: GET ${siteUrl}/api/v1/content?type=<type>&slug=<slug>. Follow nextSection until null.
+4. Or connect an MCP host to ${siteUrl}/api/mcp (Streamable HTTP, no authentication) for the same operations as tools.
+All requests are free, anonymous GET requests with CORS. Invalid input returns 400 with error.code INVALID_QUERY. Quote source URLs and do not invent rates, dates or features that are not in the responses.
+
 ## Developers
 - [Developer documentation](${siteUrl}/developers): Applification API, MCP server, SDKs and CLI. Authentication: none. Free tier: the entire API, no key, no sign-up. Sandbox: production endpoints are read-only and safe to call.
 - [MCP server](${siteUrl}/api/mcp): Streamable HTTP Model Context Protocol endpoint with search_site, read_content and get_applification_info. Server card: ${siteUrl}/.well-known/mcp/server-card.json
@@ -14,8 +33,8 @@ export function GET() {
 - [TypeScript SDK](https://www.npmjs.com/package/@applification/sdk): npm install @applification/sdk
 - [Python SDK](https://pypi.org/project/applification/): pip install applification
 - [CLI](https://www.npmjs.com/package/@applification/cli): npx @applification/cli search "production AI"
+- [Agent skill](${siteUrl}${siteSkillPath}): SKILL.md with when-to-use guidance for skill-aware agents; indexed at ${siteUrl}${agentSkillsIndexPath}.
 - [ARD catalog](${siteUrl}/.well-known/ard.json): Agentic Resource Discovery entries for the MCP server, skill, API and docs.
-- [Agent Skills index](${siteUrl}/.well-known/agent-skills/index.json): SKILL.md describing when and how to use these surfaces.
 
 ## Public information
 - [Profile](${siteUrl}/about): Dave Hudson's engineering experience and contract fit.
@@ -26,6 +45,10 @@ export function GET() {
 - [Search content](${siteUrl}/api/v1/search): Search or list published client work, writing and products. Optional query, type, topic, status, after, before, limit and offset. Follow nextOffset for more results.
 - [Read content](${siteUrl}/api/v1/content?type=client-work&slug=logically): Read a result using type and slug, then follow nextSection to read the remaining Markdown sections.
 - [Writing](${siteUrl}/writing): Published articles and weeknotes.
+- [Privacy](${siteUrl}/privacy): What the site, its public API and the contact workflow do with data.
+
+## API usage
+${publicApiUsageDescription}
 
 ## Products
 ${publicProducts.map((product) => `- [${product.name}](${product.url}): ${product.description} Status: ${product.status}. ${product.pricing.label}.`).join("\n")}

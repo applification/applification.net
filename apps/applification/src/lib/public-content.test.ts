@@ -147,7 +147,7 @@ describe("public HTTP content contract", () => {
       searchSite({ type: "products", limit: 2 }, content),
     );
     expect(response.headers.get("access-control-allow-origin")).toBe("*");
-    expect(OPTIONS().headers.get("access-control-allow-methods")).toBe(
+    expect(OPTIONS(new Request("https://test.local/api/v1/search", { method: "OPTIONS" })).headers.get("access-control-allow-methods")).toBe(
       "GET, HEAD, OPTIONS",
     );
     const details = contentGet(

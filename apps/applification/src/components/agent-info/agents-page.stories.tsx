@@ -65,6 +65,7 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   await expect(disclosure.open).toBe(false);
   await userEvent.click(canvas.getByText("API and WebMCP reference"));
   await expect(disclosure.open).toBe(true);
+  await expect(canvas.getByText(/On 429, wait at least Retry-After/)).toBeVisible();
   await expect(
     canvas.getByRole("link", { name: "Read the full API specification" }),
   ).toBeVisible();

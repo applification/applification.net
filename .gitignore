@@ -11,3 +11,5 @@ coverage/
 .railway/
 fonts/localhost/
 .vercel
+__pycache__/
+*.pyc
