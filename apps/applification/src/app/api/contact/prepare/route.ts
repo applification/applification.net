@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
       return Response.json(
         { code: error.code, message: error.message },
-        { status },
+        { status, headers: status === 429 ? { "Retry-After": "60", "Cache-Control": "no-store" } : undefined },
       );
     }
 

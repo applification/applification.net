@@ -17,7 +17,8 @@ describe("public sandbox API", () => {
     for (const step of body.tryNext)
       expect(step.url.startsWith(body.url)).toBe(true);
     expect(response.headers.get("access-control-allow-origin")).toBe("*");
-    expect(response.headers.get("cache-control")).toBe("public, max-age=300");
+    expect(response.headers.get("cache-control")).toBe("no-store");
+    expect(response.headers.get("ratelimit-policy")).toBeTruthy();
     expect(JSON.stringify(body)).not.toMatch(
       /mailto:|[\w.+-]+@applification\.net/i,
     );
@@ -41,7 +42,9 @@ describe("public sandbox API", () => {
   });
 
   it("allows cross-origin read preflight without write methods", () => {
-    const response = OPTIONS();
+    const response = OPTIONS(
+      new Request("https://example.com/api/v1/sandbox", { method: "OPTIONS" }),
+    );
     expect(response.status).toBe(204);
     expect(response.headers.get("access-control-allow-methods")).toBe(
       "GET, HEAD, OPTIONS",

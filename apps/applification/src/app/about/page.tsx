@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbStructuredData } from "@/lib/public-catalog";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 import { redirect } from "next/navigation";
 import { AboutPage as AboutPageContent } from "@/components/about/about-page";
@@ -35,5 +37,10 @@ export default async function AboutPage({
     redirect(buildContactHref({ product: product ?? undefined, route: route ?? "contract" }));
   }
 
-  return <AboutPageContent />;
+  return (
+    <>
+      <StructuredData data={breadcrumbStructuredData([{ name: "About", path: "/about" }])} />
+      <AboutPageContent />
+    </>
+  );
 }

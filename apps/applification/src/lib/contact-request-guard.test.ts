@@ -37,6 +37,8 @@ describe("contact protection", () => {
     const response = await guardContactRequest(request(), "prepare");
     expect(response!.status).toBe(429);
     expect(response!.headers.get("Retry-After")).toBe("900");
+    expect(response!.headers.get("RateLimit-Remaining")).toBe("0");
+    expect(response!.headers.get("RateLimit-Policy")).toBe('"contact-write";q=30;w=900');
     expect(mocks.bot).not.toHaveBeenCalled();
   });
   it("fails closed when a required firewall rule is missing", async () => {

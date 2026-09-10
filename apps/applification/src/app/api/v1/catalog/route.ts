@@ -1,11 +1,11 @@
 import { catalogInputSchema, getPublicCatalog } from "@/lib/public-catalog";
-
-const publicHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "X-Content-Type-Options": "nosniff",
-};
+import { publicReadOptions, withPublicReadLimit } from "@/lib/public-content-http";
 
 export function GET(request: Request) {
+  return withPublicReadLimit(request, () => readCatalog(request));
+}
+
+function readCatalog(request: Request) {
   const params = new URL(request.url).searchParams;
   const parsed = catalogInputSchema.safeParse(Object.fromEntries(params));
   const repeatedSection = params.getAll("section").length > 1;
@@ -21,23 +21,11 @@ export function GET(request: Request) {
       },
       {
         status: 400,
-        headers: { ...publicHeaders, "Cache-Control": "no-store" },
       },
     );
   }
 
-  return Response.json(getPublicCatalog(parsed.data), {
-    headers: { ...publicHeaders, "Cache-Control": "public, max-age=300" },
-  });
+  return Response.json(getPublicCatalog(parsed.data));
 }
 
-export function OPTIONS() {
-  return new Response(null, {
-    status: 204,
-    headers: {
-      ...publicHeaders,
-      "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
-      "Access-Control-Max-Age": "86400",
-    },
-  });
-}
+export const OPTIONS = publicReadOptions;

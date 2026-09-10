@@ -189,7 +189,7 @@ export function AgentsPage() {
                 ],
                 [
                   "Caching and usage",
-                  "Responses may be cached for five minutes. No application-level quota is imposed; hosting infrastructure may apply limits. Back off on 429 or 503 and honour Retry-After when present.",
+                  "Public API reads share 120 requests per minute per client IP on each server instance. Responses are not cached. RateLimit-Policy gives the quota; RateLimit gives remaining requests and seconds until reset. RateLimit-Limit, RateLimit-Remaining and RateLimit-Reset support older clients. On 429, wait at least Retry-After seconds before retrying. OPTIONS is free; hosting limits may also apply.",
                 ],
                 [
                   "Versioning",

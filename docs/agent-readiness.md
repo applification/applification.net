@@ -14,8 +14,41 @@ The ora scan supplied for applification.net scored 35/100 (D). This branch adds 
 - `/api/openapi.json`: OpenAPI 3.1 reference with response schemas, including both content routes and the sandbox route.
 - `/llms.txt`, `/sitemap.xml`, `/robots.txt`: discovery links, published pages only in the sitemap, and explicit public crawling access. Robots exclusions are not access controls; existing private-route checks remain responsible for protection.
 - Shared footer links and `service-desc` / `service-doc` links make the documentation discoverable.
+- `/.well-known/agent-skills/index.json` and `/.well-known/agent-skills/applification-site/SKILL.md`: an Agent Skills discovery index (v0.2.0) pointing at one `skill-md` artifact with its SHA-256 digest. Both derive from `apps/applification/src/lib/agent-skills.ts`, so the digest always matches the served bytes; a unit test checks this.
+- `/llms.txt` now opens with "When to use this site" and "How to call it" sections that name the jobs the site is right for, the jobs it is not for, and the three read-only endpoints in order.
+- `/`: the JSON-LD graph adds `contactPoint` and `address` to the `Organization` (contact URL and `addressCountry` only, because no email, phone or street address is published), a `Service` for contract engineering, `SoftwareApplication` entries for the MIT-licensed products, and an `FAQPage`. Product, client-work, about, agents and privacy pages emit a `BreadcrumbList`.
+- `/privacy`: a plain-language privacy page covering anonymous reading, analytics, the contact workflow, third-party services and UK GDPR rights. Linked from the footer, `llms.txt` and the sitemap.
 
 The HTTP endpoint and WebMCP tool derive profile, product and pricing data from `apps/applification/src/lib/public-catalog.ts`, using the existing positioning and product catalog. Update that source when commercial terms change. The visible reader searches client work, writing and products. The complete catalog and imperative overview tool also expose pricing. The API's `pricing` section and response fields remain available.
+
+## Rate-limit response conventions
+
+Public `GET` and `HEAD` requests share **120 requests per 60-second fixed window per client IP, per server instance** across `/api/v1/catalog`, `/api/v1/search`, `/api/v1/content` and `/api/openapi.json`. Successful reads and invalid/missing-content requests consume one unit. Exhausted requests return `429` with `error.code: RATE_LIMITED`; they do not extend the window. `OPTIONS` is unmetered, succeeds even at zero remaining, and reports the current allowance.
+
+Every response from these GET/HEAD/OPTIONS handlers carries the following fields. Example after the first request, with 42 seconds left:
+
+```http
+RateLimit-Policy: "public-read";q=120;w=60
+RateLimit: "public-read";r=119;t=42
+RateLimit-Limit: 120
+RateLimit-Remaining: 119
+RateLimit-Reset: 42
+Cache-Control: no-store
+Access-Control-Allow-Origin: *
+Access-Control-Expose-Headers: RateLimit, RateLimit-Policy, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After
+```
+
+`RateLimit-Policy` and `RateLimit` follow the [IETF HTTPAPI RateLimit draft](https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-ratelimit-headers), which has not yet been published as an RFC. The individual `RateLimit-*` fields support clients using earlier conventions. `q`/Limit is the window allowance, `w` the window length, `r`/Remaining the allowance after this request, and `t`/Reset whole seconds until reset, rounded up. Reset is **not** a Unix timestamp. On `429`, remaining is zero and `Retry-After` equals Reset. Wait at least that many seconds, then retry with backoff and jitter if still throttled. Infrastructure can impose additional limits; also back off on `503`.
+
+Responses use `no-store` and the OpenAPI route runs dynamically so browsers/CDNs cannot reuse another request's counters. No shared quota store or new external service is required. The in-memory counters reset on server restarts and are shared only among route handlers in the same runtime, not across regions or serverless instances. This is a courtesy limit for free reads, not a global abuse or spending cap. At most 10,000 hashed client addresses are retained per window; additional addresses share one overflow allowance until reset. Missing/invalid addresses share a fallback allowance.
+
+Vercel uses its overwritten `x-vercel-forwarded-for` header. On other hosts, the trusted ingress must **overwrite** `x-forwarded-for` with the client address and prevent direct origin access; never trust caller-supplied forwarding values. Test headers can be supplied directly only on a local test server. Contact endpoints keep their existing Vercel Firewall protection: a blocked `contact-write` bucket reports its 30-per-900-second policy with zero remaining and a conservative 900-second reset/Retry-After because the SDK exposes no exact counter or reset. AI-provider throttles recommend a 60-second retry delay; delivery throttles recommend 900 seconds. Successful contact requests do not invent remaining quota values unavailable from the SDK.
+
+Use `curl -i` for a success, an invalid query and a HEAD request against a local production build. Automated tests exhaust a small quota, check independent clients and cross-route sharing, allow preflight while exhausted, and advance the clock to verify reset. Do not flood production to test `429`.
+
+Verified locally on 10 September 2026: lint, typecheck, production build, 166 unit tests and nine Agents page Storybook tests passed. The production server returned shared, decreasing counters across all four public routes, including `400` and `404`; request 121 returned `429` with matching Retry-After/Reset. Exhausted HEAD returned no body, OPTIONS still returned `204`, and a browser on another origin could read the quota fields through CORS. The updated usage copy was checked at desktop and mobile widths in both themes.
+
+A forced ora rescan completed at `2026-09-10T17:34:49.156Z`: **61/100 (C)**; `rate-limit-headers` still failed (0/2). That result describes the deployed site, which does not include these local changes. Deploy this change and repeat the scan below to verify the live fix.
 
 ## WebMCP
 

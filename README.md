@@ -35,6 +35,8 @@ The site shell is intentionally small. Product sections and page content will be
 
 `/agents` introduces the site's agent tools, with public content search and an expandable API reference. WebMCP tools can search and read published client work, writing and products, and fill an editable enquiry on the contact page for the visitor to review. The read-only `/api/v1/catalog` endpoint includes profile, product and commercial information. Pricing stays in JSON and tool responses rather than visible site pages. See [agent readiness](docs/agent-readiness.md) for WebMCP setup, verification commands and the remaining Wikipedia/Wikidata work.
 
+Public API reads use an independent, instance-local 120-request/minute allowance per client IP and return quota headers on success, query errors and throttling. See [rate-limit conventions](docs/agent-readiness.md#rate-limit-response-conventions) for header examples, scope, caching and deployment requirements.
+
 ## Contact service protection
 
 The contact workflow uses Vercel BotID Basic and the Vercel Firewall SDK before AI preparation, attachment writes/deletes and delivery. A shared SDK rule named `contact-write` allows 30 requests per 15-minute fixed window, checked separately by IP address and a browser-session UUID. The session key is an extra fairness limit, not authentication. Vercel counters are regional; an AI Gateway key budget provides the separate spend limit. Redis is not required.
