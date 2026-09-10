@@ -3,15 +3,42 @@ import { z } from "zod";
 import { contactDraftSchema, type ContactDraft } from "./contact-draft";
 import { validateContactDraft } from "./contact-state";
 
+export const contactIdempotencyKeySchema = z.uuid();
+
 export const contactDeliveryRequestSchema = z
   .object({
     consent: z.literal(true),
     draft: contactDraftSchema,
-    idempotencyKey: z.string().uuid(),
+    /** Legacy body key. Prefer the Idempotency-Key request header. */
+    idempotencyKey: contactIdempotencyKeySchema.optional(),
     startedAt: z.number().int().positive(),
     website: z.string().max(0),
   })
   .strict();
+
+/**
+ * Resolves the delivery idempotency key from the Idempotency-Key header,
+ * falling back to the body field. Both present but different is a client bug.
+ */
+export function resolveContactIdempotencyKey(
+  request: Request,
+  bodyKey: string | undefined,
+):
+  | { ok: true; key: string }
+  | { ok: false; code: "idempotency_required" | "idempotency_invalid" | "idempotency_mismatch" } {
+  const header = request.headers.get("idempotency-key")?.trim();
+  if (header !== undefined && header !== "") {
+    if (!contactIdempotencyKeySchema.safeParse(header).success) {
+      return { ok: false, code: "idempotency_invalid" };
+    }
+    if (bodyKey !== undefined && bodyKey !== header) {
+      return { ok: false, code: "idempotency_mismatch" };
+    }
+    return { ok: true, key: header };
+  }
+  if (bodyKey === undefined) return { ok: false, code: "idempotency_required" };
+  return { ok: true, key: bodyKey };
+}
 
 type RateLimitEntry = { attempts: number[] };
 const contactRateLimits = new Map<string, RateLimitEntry>();

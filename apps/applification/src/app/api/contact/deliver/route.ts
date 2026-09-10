@@ -5,6 +5,7 @@ import {
   checkContactAbuse,
   contactDeliveryRequestSchema,
   deliveryPayloadDigest,
+  resolveContactIdempotencyKey,
   validateDeliveryDraft,
 } from "@/lib/contact-delivery";
 import { deliverContactEnquiryWorkflow } from "@/workflows/contact-delivery";
@@ -12,6 +13,27 @@ import type { ContactDraft } from "@/lib/contact-draft";
 
 type StartedDelivery = { digest: string; runId: string };
 const startedDeliveries = new Map<string, StartedDelivery>();
+
+const idempotencyMessages = {
+  idempotency_required:
+    "Send an Idempotency-Key header (UUID) so a retried request cannot send the enquiry twice.",
+  idempotency_invalid: "The Idempotency-Key header must be a UUID.",
+  idempotency_mismatch:
+    "The Idempotency-Key header and the body idempotencyKey differ. Send one key, preferably the header.",
+} as const;
+
+/** 202 Accepted: delivery runs durably; poll the Location URL for the outcome. */
+function accepted(request: Request, runId: string, route: string | null, replayed: boolean) {
+  const statusUrl = new URL("/api/contact/deliver", request.url);
+  statusUrl.searchParams.set("runId", runId);
+  return Response.json(
+    { status: "accepted", runId, statusUrl: statusUrl.toString(), route, replayed },
+    {
+      status: 202,
+      headers: { Location: statusUrl.toString() },
+    },
+  );
+}
 
 export async function POST(request: Request) {
   const blocked = await guardContactRequest(request, "deliver");
@@ -26,23 +48,35 @@ export async function POST(request: Request) {
     );
   }
 
-  const existing = startedDeliveries.get(checked.data.idempotencyKey);
+  const resolvedKey = resolveContactIdempotencyKey(request, checked.data.idempotencyKey);
+  if (!resolvedKey.ok) {
+    return Response.json(
+      { code: resolvedKey.code, message: idempotencyMessages[resolvedKey.code] },
+      { status: 400 },
+    );
+  }
+  const idempotencyKey = resolvedKey.key;
+
+  const existing = startedDeliveries.get(idempotencyKey);
   const digest = deliveryPayloadDigest(checked.data.draft);
   if (existing) {
     if (existing.digest !== digest) {
       return Response.json(
-        { code: "idempotency_conflict", message: "This approval key belongs to a different brief." },
+        {
+          code: "idempotency_conflict",
+          message: "This Idempotency-Key was already used for a different brief. Use a new key for a new brief.",
+        },
         { status: 409 },
       );
     }
     try {
       const existingStatus = await getRun(existing.runId).status;
       if (existingStatus !== "failed") {
-        return Response.json({ runId: existing.runId, route: checked.data.draft.route });
+        return accepted(request, existing.runId, checked.data.draft.route, true);
       }
-      startedDeliveries.delete(checked.data.idempotencyKey);
+      startedDeliveries.delete(idempotencyKey);
     } catch {
-      startedDeliveries.delete(checked.data.idempotencyKey);
+      startedDeliveries.delete(idempotencyKey);
     }
   }
 
@@ -83,13 +117,13 @@ export async function POST(request: Request) {
     const run = await start(deliverContactEnquiryWorkflow, [
       {
         enquiryId: crypto.randomUUID(),
-        idempotencyKey: checked.data.idempotencyKey,
+        idempotencyKey,
         approvedAt: new Date().toISOString(),
         draft: deliveryDraft.draft,
       },
     ]);
-    startedDeliveries.set(checked.data.idempotencyKey, { digest, runId: run.runId });
-    return Response.json({ runId: run.runId, route: deliveryDraft.draft.route });
+    startedDeliveries.set(idempotencyKey, { digest, runId: run.runId });
+    return accepted(request, run.runId, deliveryDraft.draft.route, false);
   } catch {
     return Response.json(
       {
@@ -104,7 +138,10 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
   const runId = new URL(request.url).searchParams.get("runId");
   if (!runId || !/^wrun_[A-Za-z0-9_-]+$/.test(runId)) {
-    return Response.json({ code: "invalid_run" }, { status: 400 });
+    return Response.json(
+      { code: "invalid_run", message: "Provide the runId returned by POST /api/contact/deliver." },
+      { status: 400 },
+    );
   }
 
   try {
