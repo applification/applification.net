@@ -20,6 +20,14 @@ const checkPositioning: NonNullable<Story["play"]> = async ({
   await expect(
     canvas.getByText(`Dave Hudson · ${contractPositioning.role}`),
   ).toBeVisible();
+  await expect(canvas.getByRole("link", { name: "Agents" })).toHaveAttribute(
+    "href",
+    "/agents",
+  );
+  await expect(canvas.queryByRole("link", { name: "Pricing" })).toBeNull();
+  await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(
+    canvasElement.clientWidth,
+  );
 };
 
 export const DesktopLight: Story = { play: checkPositioning };

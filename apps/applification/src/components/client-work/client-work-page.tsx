@@ -1,3 +1,4 @@
+import { supportingCases } from "@/lib/content/client-work";
 import { ExternalLink } from "@/components/external-link";
 import { CaseStudyVisual } from "./case-study-visual";
 import { ContractCta } from "@/components/home/contract-cta";
@@ -35,23 +36,7 @@ const peppyMetrics = [
   ["Overnight", "AI support"],
 ];
 
-const supportingCases = [
-  {
-    company: "PANDO  /  65,000+ USERS",
-    title: "Rebuilt a clinician app used across the NHS and MoD",
-    copy: "Replaced effect-heavy god components with routed React UI. Built a white-label React Native proof of concept in four weeks.",
-  },
-  {
-    company: "SUREVINE  /  SECURITY CLEARED",
-    title: "Shipped secure email across Cabinet Office boundaries",
-    copy: "Worked under government security clearance as the sole frontend engineer in small teams. Story maps turned policy requirements into agreed scope.",
-  },
-  {
-    company: "HMRC  /  £1BN REPAID",
-    title: "Found the release path in a 1.7m-user tax service",
-    copy: "A story map showed the team could release without new feature-flag code. The service repaid £1bn and cut phone demand by £4.5m.",
-  },
-];
+
 
 function CurrentBrief() {
   return (

@@ -1,3 +1,8 @@
+import {
+  plantryPlanningSteps,
+  plantryBuildPrinciples,
+  productPageCopy,
+} from "@/lib/content/product-details";
 import { heroTopSpacing } from "@/components/page-hero";
 import type { ReactNode } from "react";
 import {
@@ -17,11 +22,13 @@ import { ProductNavigator } from "@/components/products/product-navigator";
 import {
   ProductDetailEyebrow,
   ProductDetailSteps,
-  type ProductDetailStep,
 } from "@/components/products/product-detail";
 import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 
-const followBuildHref = buildContactHref({ route: "product", product: "plantry" });
+const followBuildHref = buildContactHref({
+  route: "product",
+  product: "plantry",
+});
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -115,21 +122,25 @@ function PlantryHero() {
               className="font-heading max-w-[580px] text-[48px] leading-[0.98] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[60px] min-[1024px]:leading-[1.02]"
               id="plantry-detail-heading"
             >
-              Plan meals around the household you actually have.
+              {productPageCopy.plantry.hero.title}
             </h1>
             <p className="max-w-[580px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[1024px]:text-lg min-[1024px]:leading-[1.5]">
-              A meal planner for the next two to seven days. It accounts for
-              preferences, effort, what needs using and what is in season, then
-              hands the shopping list to Reminders.
+              {productPageCopy.plantry.hero.paragraphs[0]}
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              {isContactWorkflowAvailable() ? <a
-                className={`inline-flex min-h-11 items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
-                href={followBuildHref}
-              >
-                Follow the build
-                <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
-              </a> : null}
+              {isContactWorkflowAvailable() ? (
+                <a
+                  className={`inline-flex min-h-11 items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
+                  href={followBuildHref}
+                >
+                  Follow the build
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    size={16}
+                    strokeWidth={1.8}
+                  />
+                </a>
+              ) : null}
               <span className="inline-flex min-h-11 items-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-muted-section)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-secondary)]">
                 Apple platforms R&amp;D
                 <Smartphone aria-hidden="true" size={16} strokeWidth={1.8} />
@@ -159,15 +170,12 @@ function PlantryRationale() {
             className="font-heading mt-4 text-[36px] leading-[1.08] font-medium min-[1024px]:text-[40px]"
             id="plantry-rationale-heading"
           >
-            A technically perfect meal plan can still be useless by Tuesday.
+            {productPageCopy.plantry.rationale.title}
           </h2>
         </div>
         <div>
           <p className="text-base leading-[1.55] text-[#d7e3e3] min-[1024px]:text-[17px]">
-            Meal planning breaks when it ignores energy, leftovers and the
-            people around the table. Plantry treats the plan as a short
-            household forecast, then learns from what was cooked, skipped or
-            changed.
+            {productPageCopy.plantry.rationale.paragraphs[0]}
           </p>
           <div className="mt-[18px] flex items-center gap-[14px] rounded-[14px] bg-[#244354] p-[18px]">
             <RefreshCw
@@ -177,8 +185,7 @@ function PlantryRationale() {
               strokeWidth={1.7}
             />
             <p className="text-base leading-[21px] font-semibold text-[#fffbef]">
-              A useful plan adapts to the household instead of asking the
-              household to obey it.
+              {productPageCopy.plantry.rationale.paragraphs[1]}
             </p>
           </div>
         </div>
@@ -187,52 +194,27 @@ function PlantryRationale() {
   );
 }
 
-const planningSteps: ProductDetailStep[] = [
-  {
-    number: "01",
-    title: "Read the household",
-    description:
-      "Preferences, available effort, seasonality and food that needs using.",
-    icon: <Users aria-hidden="true" size={25} strokeWidth={1.7} />,
-  },
-  {
-    number: "02",
-    title: "Propose 2–7 days",
-    description: "Build a plan short enough to stay realistic and useful.",
-    icon: <CalendarDays aria-hidden="true" size={25} strokeWidth={1.7} />,
-  },
-  {
-    number: "03",
-    title: "Hand off shopping",
-    description: "Put the resulting list into Apple Reminders.",
-    icon: <ListChecks aria-hidden="true" size={25} strokeWidth={1.7} />,
-  },
-  {
-    number: "04",
-    title: "Learn what happened",
-    description:
-      "Use cooked, skipped and changed meals to shape the next plan.",
-    icon: <Sparkles aria-hidden="true" size={25} strokeWidth={1.7} />,
-  },
-];
+const planningSteps = plantryPlanningSteps.map((item, index) => ({
+  ...item,
+  icon: [
+    <Users key="Users" aria-hidden="true" size={25} strokeWidth={1.7} />,
+    <CalendarDays
+      key="CalendarDays"
+      aria-hidden="true"
+      size={25}
+      strokeWidth={1.7}
+    />,
+    <ListChecks
+      key="ListChecks"
+      aria-hidden="true"
+      size={25}
+      strokeWidth={1.7}
+    />,
+    <Sparkles key="Sparkles" aria-hidden="true" size={25} strokeWidth={1.7} />,
+  ][index],
+}));
 
-const buildPrinciples = [
-  {
-    title: "Household first",
-    description:
-      "Preferences and constraints belong to the people, not a generic meal plan.",
-  },
-  {
-    title: "Native handoff",
-    description:
-      "Shopping moves into Reminders instead of becoming another list to maintain.",
-  },
-  {
-    title: "Feedback over streaks",
-    description:
-      "Cooked, skipped and changed are useful signals, not failure states.",
-  },
-];
+const buildPrinciples = plantryBuildPrinciples;
 
 function PlantryBuildPrinciples() {
   return (
@@ -247,13 +229,10 @@ function PlantryBuildPrinciples() {
             className="font-heading mt-4 text-[35px] leading-[1.1] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[38px]"
             id="plantry-build-heading"
           >
-            The household model comes before recipe volume.
+            {productPageCopy.plantry.buildPrinciples.title}
           </h2>
           <p className="mt-4 text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
-            The first prototypes focus on the decisions that make a plan usable:
-            who is eating, how much effort is available, what should be used
-            soon and what changed last time. The recipe catalogue can grow after
-            that loop earns trust.
+            {productPageCopy.plantry.buildPrinciples.paragraphs[0]}
           </p>
         </div>
 
@@ -292,26 +271,26 @@ function PlantryAvailability() {
             className="font-heading mt-3 text-[35px] leading-[1.1] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[38px]"
             id="plantry-availability-heading"
           >
-            Plantry is still in product development.
+            {productPageCopy.plantry.availability.title}
           </h2>
           <p className="mt-3 max-w-[760px] text-[17px] leading-[1.6] text-[var(--app-text-secondary)]">
-            The current iPhone prototype is testing the household planning loop
-            before a wider release. Follow the build for availability and test
-            invitations.
+            {productPageCopy.plantry.availability.paragraphs[0]}
           </p>
         </div>
-        {isContactWorkflowAvailable() ? <a
-          className={`inline-flex h-[49px] w-full items-center justify-center gap-2.5 rounded-full bg-[var(--app-text-primary)] px-[21px] text-[15px] font-semibold text-[var(--app-section)] transition-[background-color,transform] hover:bg-[var(--app-text-secondary)] active:translate-y-px min-[1200px]:w-[185px] ${focusClasses}`}
-          href={followBuildHref}
-        >
-          Follow the build
-          <ArrowUpRight
-            aria-hidden="true"
-            className="shrink-0 text-[#78d696]"
-            size={18}
-            strokeWidth={1.8}
-          />
-        </a> : null}
+        {isContactWorkflowAvailable() ? (
+          <a
+            className={`inline-flex h-[49px] w-full items-center justify-center gap-2.5 rounded-full bg-[var(--app-text-primary)] px-[21px] text-[15px] font-semibold text-[var(--app-section)] transition-[background-color,transform] hover:bg-[var(--app-text-secondary)] active:translate-y-px min-[1200px]:w-[185px] ${focusClasses}`}
+            href={followBuildHref}
+          >
+            Follow the build
+            <ArrowUpRight
+              aria-hidden="true"
+              className="shrink-0 text-[#78d696]"
+              size={18}
+              strokeWidth={1.8}
+            />
+          </a>
+        ) : null}
       </div>
     </section>
   );

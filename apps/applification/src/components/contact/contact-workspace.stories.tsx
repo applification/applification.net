@@ -371,3 +371,35 @@ export const ManualFieldLayout: Story = {
 export const ManualFieldLayoutDark: Story = { ...ManualFieldLayout, globals: { theme: "dark" } };
 export const ManualFieldLayoutMobile: Story = { ...ManualFieldLayout, globals: { viewport: { value: "iphoneSe", isRotated: false } } };
 export const ManualFieldLayoutMobileDark: Story = { ...ManualFieldLayout, globals: { theme: "dark", viewport: { value: "iphoneSe", isRotated: false } } };
+
+async function checkReviewAction(canvasElement: HTMLElement, messageLabel = "Your message") {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button", {name:"Use form"}));
+  const form = canvas.getByRole("form", {name:"Complete enquiry manually"});
+  const review = within(form).getByRole("button", {name:"Review enquiry"});
+  const checkBounds = () => {
+    const buttonBox = review.getBoundingClientRect(), formBox = form.getBoundingClientRect();
+    expect(buttonBox.bottom).toBeLessThanOrEqual(formBox.bottom - 12);
+    expect(buttonBox.top).toBeGreaterThanOrEqual(formBox.top);
+    expect(buttonBox.height).toBeGreaterThanOrEqual(44);
+    const workspace = canvasElement.querySelector<HTMLElement>("[data-contact-workspace-body]")!;
+    expect(formBox.bottom).toBeLessThanOrEqual(workspace.getBoundingClientRect().bottom + 1);
+    for (const element of [workspace, form, ...form.querySelectorAll<HTMLElement>("div, textarea")]) {
+      expect(element.scrollHeight).toBeLessThanOrEqual(element.clientHeight + 1);
+    }
+  };
+  await waitFor(checkBounds);
+  if (window.innerWidth >= 640 && messageLabel === "Your message") expect(form.getBoundingClientRect().height).toBeLessThanOrEqual(590);
+  const message = within(form).getByRole("textbox",{name:messageLabel});
+  await userEvent.click(message);
+  await userEvent.paste("A long enquiry with several details.\n".repeat(150));
+  await waitFor(checkBounds);
+  await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
+}
+export const ReviewActionVisible: Story = {play: ({canvasElement}) => checkReviewAction(canvasElement)};
+export const ReviewActionVisibleDark: Story = {...ReviewActionVisible,globals:{theme:"dark"}};
+export const ReviewActionVisibleMobile: Story = {...ReviewActionVisible,globals:{viewport:{value:"mobile",isRotated:false}}};
+export const ReviewActionVisibleSmall: Story = {...ReviewActionVisible,globals:{viewport:{value:"iphoneSeSmall",isRotated:false}}};
+export const ReviewActionVisibleTablet: Story = {...ReviewActionVisible,globals:{viewport:{value:"tablet",isRotated:false}}};
+export const ManualContractWithoutScrolling: Story = {args:{initialRoute:"contract"},play:({canvasElement}) => checkReviewAction(canvasElement,"Role or project")};
+export const ManualProductWithoutScrolling: Story = {args:{initialRoute:"product"},play:({canvasElement}) => checkReviewAction(canvasElement,"Your question")};
