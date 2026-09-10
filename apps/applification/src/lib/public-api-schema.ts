@@ -147,13 +147,14 @@ export const publicOpenApi = {
     version: "1.1.0",
     description:
       "Read the public profile and commercial catalog, search published client work, writing and products, and read their content in bounded sections. Free, read-only access without API keys, accounts or cookies. Responses may be cached for five minutes. No application-level quota; infrastructure may impose limits. Back off on 429 or 503 and honour Retry-After when present. The contact workflow and individual product APIs are outside this API.",
-    contact: { name: "Applification", url: `${siteUrl}/agents` },
+    contact: { name: "Applification", url: `${siteUrl}/developers` },
+    license: { name: "Public read-only API, no charge", identifier: "MIT" },
   },
   servers: [{ url: siteUrl }],
   security: [],
   externalDocs: {
-    description: "Agent guide, tools and API reference",
-    url: `${siteUrl}/agents`,
+    description: "Developer documentation: API, MCP server, SDKs and CLI",
+    url: `${siteUrl}/developers`,
   },
   paths: {
     "/api/v1/search": {

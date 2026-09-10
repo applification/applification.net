@@ -24,6 +24,9 @@ const checkPositioning: NonNullable<Story["play"]> = async ({
     "href",
     "/agents",
   );
+  await expect(
+    canvas.getByRole("link", { name: "Developers" }),
+  ).toHaveAttribute("href", "/developers");
   await expect(canvas.queryByRole("link", { name: "Pricing" })).toBeNull();
   await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(
     canvasElement.clientWidth,

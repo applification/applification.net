@@ -65,7 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/vnd.oai.openapi+json"
           href="/api/openapi.json"
         />
-        <link rel="service-doc" href="/agents" />
+        <link rel="service-doc" href="/developers" />
         <Script id="theme-bootstrap" strategy="beforeInteractive">
           {themeBootstrapScript}
         </Script>

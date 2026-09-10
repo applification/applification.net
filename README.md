@@ -7,7 +7,10 @@ Bun workspace for the Applification website and future services.
 ```text
 apps/
   applification/   Next.js website
-packages/          Shared packages when the project needs them
+packages/
+  sdk/             @applification/sdk (npm): TypeScript client for the public API
+  cli/             @applification/cli (npm): `applification` command-line tool
+  sdk-python/      applification (PyPI): Python client for the public API
 ```
 
 ## Commands
@@ -33,7 +36,16 @@ The site shell is intentionally small. Product sections and page content will be
 
 ## Public API and agent access
 
-`/agents` introduces the site's agent tools, with public content search and an expandable API reference. WebMCP tools can search and read published client work, writing and products, and fill an editable enquiry on the contact page for the visitor to review. The read-only `/api/v1/catalog` endpoint includes profile, product and commercial information. Pricing stays in JSON and tool responses rather than visible site pages. See [agent readiness](docs/agent-readiness.md) for WebMCP setup, verification commands and the remaining Wikipedia/Wikidata work.
+`/developers` is the developer documentation (API, MCP server, SDKs, CLI) and is linked from the site footer; `/docs` and `/api` redirect to it. `/api/mcp` is a stateless Streamable HTTP MCP server exposing the same read-only tools as the WebMCP bundle. Discovery files: `/.well-known/mcp/server-card.json`, `/.well-known/ard.json`, `/.well-known/agent-skills/index.json` and `/llms.txt`. `/agents` introduces the site's agent tools, with public content search and an expandable API reference. WebMCP tools can search and read published client work, writing and products, and fill an editable enquiry on the contact page for the visitor to review. The read-only `/api/v1/catalog` endpoint includes profile, product and commercial information. Pricing stays in JSON and tool responses rather than visible site pages. See [agent readiness](docs/agent-readiness.md) for WebMCP setup, verification commands and the remaining Wikipedia/Wikidata work.
+
+## Publishing the SDK and CLI packages
+
+```bash
+bun run packages:build
+bun run packages:test
+```
+
+`.github/workflows/publish-packages.yml` publishes `@applification/sdk`, `@applification/cli` and the `applification` PyPI package with provenance when a `packages-v*` tag is pushed, or on manual dispatch. It relies on npm trusted publishing and PyPI trusted publishing (OIDC), so configure both registries to trust this repository's workflow before the first run; no long-lived tokens are stored. Bump the version in each package before tagging. Each package sets `homepage` to applification.net and `repository` to this project, which is how agents verify an official package.
 
 ## Contact service protection
 

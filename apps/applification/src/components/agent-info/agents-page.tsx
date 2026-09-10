@@ -34,6 +34,7 @@ export function AgentsPage() {
             <div className="flex flex-col items-start">
               <InfoLink href="/llms.txt">Site guide for agents</InfoLink>
               <InfoLink href="/api/openapi.json">OpenAPI reference</InfoLink>
+              <InfoLink href="/developers">Developer documentation</InfoLink>
             </div>
           </aside>
         }
@@ -155,6 +156,10 @@ export function AgentsPage() {
                 [
                   "Versioning",
                   "The endpoint is versioned at /api/v1. Clients should tolerate new fields.",
+                ],
+                [
+                  "MCP server",
+                  "A remote Streamable HTTP MCP server at /api/mcp exposes search_site, read_content and get_applification_info to any MCP host. The developer documentation covers configuration, SDKs and the CLI.",
                 ],
                 [
                   "WebMCP",

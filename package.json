@@ -13,6 +13,8 @@
     "build": "bun --cwd apps/applification build",
     "start": "bun --cwd apps/applification start",
     "lint": "bun --cwd apps/applification lint",
-    "typecheck": "bun --cwd apps/applification typecheck"
+    "typecheck": "bun --cwd apps/applification typecheck",
+    "packages:build": "bun --cwd packages/sdk build && bun --cwd packages/cli build",
+    "packages:test": "bun --cwd packages/sdk test && bun --cwd packages/cli test && cd packages/sdk-python && PYTHONPATH=src python3 -m unittest discover -s tests"
   }
 }

@@ -1,0 +1,58 @@
+{
+  "name": "@applification/sdk",
+  "version": "0.1.0",
+  "description": "Official TypeScript client for the Applification public information API: Dave Hudson's profile, client work, writing and products. Free, read-only, no API key.",
+  "keywords": [
+    "applification",
+    "dave hudson",
+    "sdk",
+    "api-client",
+    "mcp",
+    "agent",
+    "contract engineering"
+  ],
+  "homepage": "https://www.applification.net/developers",
+  "bugs": {
+    "url": "https://github.com/applification/applification.net/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/applification/applification.net.git",
+    "directory": "packages/sdk"
+  },
+  "license": "MIT",
+  "author": "Dave Hudson (https://www.applification.net)",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "bun test",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "bun run build && bun test"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.0",
+    "typescript": "^5"
+  }
+}

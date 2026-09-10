@@ -36,6 +36,20 @@ Unit tests cover input validation, the document preference, navigator compatibil
 
 Native verification on 10 September 2026 exercised the overview's four catalog sections and client-side navigation in a WebMCP-enabled Chromium browser. The expanded tool set was then verified against `https://applification.localhost` with `@ora-ai/webmcp-verify@0.1.0`: `search_site` found Logically for “production AI”, `read_content` returned the selected case-study section and nextSection, and `fill_contact_draft` populated a synthetic enquiry with reviewRequired true and sent false. All three verifier runs completed with no lint findings. This verifies native tool execution locally, not origin-trial activation on production.
 
+## Second pass: MCP, discovery files, developer docs, SDKs and CLI
+
+A later ora scan scored 61/100 (C). This pass addresses the selected gaps:
+
+- **MCP server / manifest.** `/api/mcp` is a stateless Streamable HTTP MCP server built on `@modelcontextprotocol/sdk` (`WebStandardStreamableHTTPServerTransport`, JSON responses). It registers `search_site`, `read_content` and `get_applification_info`, calling the server-side content functions directly rather than the HTTP API, and a `llms.txt` resource. GET and DELETE return 405 because there are no sessions. Metadata shared with pages lives in `src/lib/mcp-metadata.ts`; the server and transport live in `src/lib/mcp-server.ts`. A server card is served at `/.well-known/mcp/server-card.json` and `/.well-known/mcp`.
+- **ARD discovery.** `/.well-known/ard.json` lists the MCP server card, the skill, the OpenAPI document, the developer documentation and llms.txt as `urn:air:applification.net:*` entries with representative queries.
+- **Agent discovery file.** `/.well-known/agent-skills/index.json` points at `/.well-known/agent-skills/applification/SKILL.md`, whose sha256 digest is computed from the served Markdown at build time.
+- **Public API/docs linked from homepage.** `/developers` is now a real page (`DevelopersPage`) covering authentication (none), free tier, sandbox, rate limits, MCP, HTTP API, SDKs, CLI and discovery. The footer on every page, including the homepage, links to it; `/docs` and `/api` permanently redirect to it; `rel="service-doc"` and the OpenAPI `externalDocs`/contact point at it. `/agents` remains the human guide and links across.
+- **Developer resource discoverability.** The developers page title and H1 contain the product name, llms.txt has a Developers section listing every developer URL, and the sitemap includes `/developers`.
+- **Onboarding friction.** The developers page and llms.txt state explicitly that there is no key, the whole API is the free tier, and production is a safe read-only sandbox.
+- **SDK packages and CLI.** `packages/sdk` (`@applification/sdk`, npm), `packages/cli` (`@applification/cli`, npm, binary `applification`) and `packages/sdk-python` (`applification`, PyPI) are dependency-free clients with tests. Each declares `homepage` on applification.net and `repository` on GitHub. **They are not yet published**; ora verifies against the registries, so these three checks stay failed until `packages-v*` is tagged (or the workflow is dispatched) after npm and PyPI trusted publishing are configured for `.github/workflows/publish-packages.yml`. If the `@applification` npm scope is unavailable, rename the packages and update `developers-page.tsx`, `llms.txt`, `SKILL.md` text and the READMEs together.
+
+Local verification on 10 September 2026 against `next start`: MCP `initialize`, `tools/list` and `tools/call` returned JSON with CORS headers and no session id; every well-known file returned 200 with the expected content type; `/docs` and `/api` returned 308 to `/developers`; the homepage HTML contains two links to `/developers`. Unit tests cover the MCP route (initialise, tool listing, calls, tool errors, malformed bodies, method handling) and the discovery documents (digest, same-origin URLs, no private routes). Storybook covers the developers page and footer in both themes and on mobile.
+
 ## Wikipedia and Wikidata: external follow-up
 
 No Wikipedia article or Wikidata item was created. Search found existing profiles and directory listings, but did not establish substantial independent coverage for a Wikipedia article. This gap cannot be resolved by a code change or by adding a fictional `sameAs` URL.
@@ -55,6 +69,8 @@ bun run build
 bun run typecheck
 bun --cwd apps/applification test
 bun --cwd apps/applification test-storybook --run src/components/agent-info src/components/site-footer.stories.tsx
+bun run packages:build
+bun run packages:test
 bun --cwd apps/applification test-storybook --run src/components/contact/contact-workspace.stories.tsx src/components/contact/contact-webmcp.stories.tsx src/components/client-work src/components/products
 ```
 

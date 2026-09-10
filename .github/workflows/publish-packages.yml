@@ -1,0 +1,44 @@
+name: Publish packages
+
+on:
+  push:
+    tags: ["packages-v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  npm:
+    name: npm (@applification/sdk, @applification/cli)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - run: bun install --frozen-lockfile
+      - run: bun run packages:build
+      - run: bun --cwd packages/sdk test && bun --cwd packages/cli test
+      # Trusted publishing: configure npm to trust this workflow for both packages.
+      - run: cd packages/sdk && npm publish --provenance --access public
+      - run: cd packages/cli && npm publish --provenance --access public
+
+  pypi:
+    name: PyPI (applification)
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: cd packages/sdk-python && PYTHONPATH=src python3 -m unittest discover -s tests
+      - run: cd packages/sdk-python && uv build
+      # Trusted publishing: register this repository and workflow on PyPI.
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: packages/sdk-python/dist

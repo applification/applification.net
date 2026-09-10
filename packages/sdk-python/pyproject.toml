@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "applification"
+version = "0.1.0"
+description = "Official Python client for the Applification public information API: Dave Hudson's profile, client work, writing and products. Free, read-only, no API key."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "Dave Hudson" }]
+keywords = ["applification", "dave hudson", "sdk", "api-client", "mcp", "agent"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Software Development :: Libraries",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://www.applification.net"
+Documentation = "https://www.applification.net/developers"
+Repository = "https://github.com/applification/applification.net"
+Issues = "https://github.com/applification/applification.net/issues"
+Changelog = "https://github.com/applification/applification.net/commits/main/packages/sdk-python"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/applification"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/applification", "tests", "README.md", "LICENSE", "pyproject.toml"]

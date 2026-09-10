@@ -1,0 +1,61 @@
+{
+  "name": "@applification/cli",
+  "version": "0.1.0",
+  "description": "Official command-line tool for the Applification public information API: search Dave Hudson's client work, writing and products, read content as Markdown and print the MCP configuration. Free, no API key.",
+  "keywords": [
+    "applification",
+    "dave hudson",
+    "cli",
+    "mcp",
+    "agent",
+    "api-client"
+  ],
+  "homepage": "https://www.applification.net/developers",
+  "bugs": {
+    "url": "https://github.com/applification/applification.net/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/applification/applification.net.git",
+    "directory": "packages/cli"
+  },
+  "license": "MIT",
+  "author": "Dave Hudson (https://www.applification.net)",
+  "type": "module",
+  "bin": {
+    "applification": "./dist/bin.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.js",
+      "default": "./dist/main.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && chmod +x dist/bin.js",
+    "test": "bun test",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "bun run build && bun test"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "@applification/sdk": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.0",
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}
