@@ -3,7 +3,9 @@ import { usePathname } from "@storybook/nextjs-vite/navigation.mock";
 import { expect, within, userEvent, waitFor } from "storybook/test";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Toaster } from "@/components/ui/sonner";
 import { AgentsPage } from "./agents-page";
+import { agentsCopy } from "@/lib/content/site-pages";
 
 function Fixture() {
   usePathname.mockReturnValue("/agents");
@@ -12,6 +14,7 @@ function Fixture() {
       <SiteHeader />
       <AgentsPage />
       <SiteFooter />
+      <Toaster />
     </>
   );
 }
@@ -29,6 +32,46 @@ type Story = StoryObj<typeof meta>;
 const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await expect(canvas.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+  await expect(canvas.getByRole("heading", { level: 1 })).toHaveTextContent("Explore my work with your AI.");
+  await expect(canvas.getByRole("button", { name: "Copy prompt" })).toBeVisible();
+  const destinations = [
+    ["Open in ChatGPT", "https://chatgpt.com/"],
+    ["Open in Claude", "https://claude.ai/new"],
+    ["Open in Perplexity", "https://www.perplexity.ai/search/new"],
+    ["Open in Grok", "https://grok.com/"],
+    ["Copy prompt and open Gemini", "https://gemini.google.com/app"],
+  ] as const;
+  const buttons = destinations.map(([label]) => canvas.getByRole("button", { name: `${label}, opens in a new tab` }) as HTMLButtonElement);
+  await expect(canvas.getByRole("textbox", { name: "Your prompt" })).toHaveValue(agentsCopy.prompt);
+  for (const [index, [label, destination]] of destinations.entries()) {
+    const button = buttons[index];
+    await expect(button).toBeVisible();
+    await expect(button.formAction).toBe(destination);
+    await expect(button.form!.method).toBe("get");
+    await expect(button.form!.target).toBe("_blank");
+    await expect(button.form).toHaveAttribute("rel", "noopener noreferrer");
+    await expect(new FormData(button.form!).get("q")).toBe(label.includes("Gemini") ? null : agentsCopy.prompt);
+    await expect(button.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
+    await expect(button.getBoundingClientRect().width).toBeGreaterThanOrEqual(44);
+    await expect(button.getBoundingClientRect().width).toBeLessThan(144);
+    await expect(button.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+    await expect(button.textContent).toBe(label.split(" ").at(-1));
+  }
+  canvas.getByRole("button", { name: "Reset prompt" }).focus();
+  await userEvent.tab();
+  const copyButton = canvas.getByRole("button", { name: "Copy prompt" });
+  await expect(copyButton).toHaveFocus();
+  await expect(copyButton).toHaveAttribute("title", "Copy prompt");
+  await expect(copyButton.getBoundingClientRect().width).toBeGreaterThanOrEqual(44);
+  await expect(copyButton.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
+  await userEvent.tab();
+  await expect(canvas.getByRole("textbox", { name: "Your prompt" })).toHaveFocus();
+  await userEvent.tab();
+  for (const button of buttons) {
+    await expect(button).toHaveFocus();
+    await userEvent.tab();
+  }
+  await expect(canvas.getByText(/Enable web access/)).toBeVisible();
   await expect(
     canvas.getByRole("link", { name: "OpenAPI reference" }),
   ).toHaveAttribute("href", "/api/openapi.json");
@@ -106,6 +149,113 @@ export const TabletLight: Story = {
 export const SmallMobileLight: Story = {
   globals: { viewport: { value: "iphoneSeSmall", isRotated: false } },
   play: checkPage,
+};
+
+function checkGeminiCopy(fail: boolean): NonNullable<Story["play"]> {
+  return async ({ canvasElement }) => {
+    const descriptor = Object.getOwnPropertyDescriptor(navigator, "clipboard");
+    let copied = "";
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async (text: string) => {
+      if (fail) throw new Error("Clipboard unavailable");
+      copied = text;
+    } } });
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: "Copy prompt and open Gemini, opens in a new tab" }) as HTMLButtonElement;
+    const keepStoryOpen = (event: Event) => event.preventDefault();
+    button.form!.addEventListener("submit", keepStoryOpen);
+    try {
+      await userEvent.click(button);
+      await waitFor(() => expect(canvas.getByText(fail ? "Select and copy your prompt, then paste it into Gemini." : "Paste it into Gemini to start your conversation.")).toBeVisible());
+      await expect(copied).toBe(fail ? "" : agentsCopy.prompt);
+      await expect(button.formAction).toBe("https://gemini.google.com/app");
+      await expect(button.form!.target).toBe("_blank");
+    } finally {
+      button.form!.removeEventListener("submit", keepStoryOpen);
+      if (descriptor) Object.defineProperty(navigator, "clipboard", descriptor);
+      else Reflect.deleteProperty(navigator, "clipboard");
+    }
+  };
+}
+
+export const GeminiCopyPrompt: Story = { play: checkGeminiCopy(false) };
+export const GeminiClipboardUnavailable: Story = { play: checkGeminiCopy(true) };
+
+const checkCopyToast: NonNullable<Story["play"]> = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const descriptor = Object.getOwnPropertyDescriptor(navigator, "clipboard");
+  let copied = "";
+  Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async (text: string) => { copied = text; } } });
+  const button = canvas.getByRole("button", { name: "Copy prompt" });
+  const choices = canvas.getByRole("group", { name: "Open this prompt with an assistant" });
+  try {
+    button.focus();
+    const before = choices.getBoundingClientRect();
+    await userEvent.keyboard("{Enter}");
+    await waitFor(() => expect(canvas.getByText("Prompt copied")).toBeVisible());
+    await expect(copied).toBe(agentsCopy.prompt);
+    await expect(button).toHaveFocus();
+    await expect(choices.getBoundingClientRect().top).toBe(before.top);
+    await expect(choices.getBoundingClientRect().height).toBe(before.height);
+    await userEvent.keyboard("{Enter}");
+    await expect(canvas.getAllByText("Prompt copied")).toHaveLength(1);
+    await waitFor(() => expect(canvas.queryByText("Prompt copied")).not.toBeInTheDocument(), { timeout: 6000 });
+    await expect(choices.getBoundingClientRect().top).toBe(before.top);
+  } finally {
+    if (descriptor) Object.defineProperty(navigator, "clipboard", descriptor);
+    else Reflect.deleteProperty(navigator, "clipboard");
+  }
+};
+
+export const CopyToast: Story = { play: checkCopyToast };
+export const CopyToastMobileDark: Story = {
+  globals: { theme: "dark", viewport: { value: "mobile", isRotated: false } },
+  play: checkCopyToast,
+};
+
+export const EditAndResetPrompt: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const field = canvas.getByRole("textbox", { name: "Your prompt" }) as HTMLTextAreaElement;
+    const edited = "Read https://www.applification.net and compare R&D + C# projects.\nWhat’s relevant to my team?";
+    const buttons = within(canvas.getByRole("group", { name: "Open this prompt with an assistant" })).getAllByRole("button") as HTMLButtonElement[];
+    const descriptor = Object.getOwnPropertyDescriptor(navigator, "clipboard");
+    let copied = "";
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async (text: string) => { copied = text; } } });
+    const submissions: FormData[] = [];
+    const preventNavigation = (event: Event) => {
+      event.preventDefault();
+      submissions.push(new FormData(event.target as HTMLFormElement));
+    };
+    const forms = new Set(buttons.map(button => button.form!));
+    forms.forEach(form => form.addEventListener("submit", preventNavigation));
+    try {
+      await userEvent.clear(field);
+      await userEvent.type(field, edited);
+      for (const button of buttons) await userEvent.click(button);
+      await expect(submissions).toHaveLength(5);
+      for (const submission of submissions.slice(0, 4)) await expect(submission.get("q")).toBe(edited);
+      await expect(submissions[4].get("q")).toBeNull();
+      await expect(copied).toBe(edited);
+      await userEvent.click(canvas.getByRole("button", { name: "Copy prompt" }));
+      await expect(copied).toBe(edited);
+      await waitFor(() => expect(canvas.getByText("Paste it into your chat.")).toBeVisible());
+      await userEvent.type(field, " More detail.");
+      await waitFor(() => expect(canvas.queryByText("Paste it into your chat.")).not.toBeInTheDocument());
+      await userEvent.click(canvas.getByRole("button", { name: "Reset prompt" }));
+      await expect(field).toHaveValue(agentsCopy.prompt);
+      await expect(new FormData(field.form!).get("q")).toBe(agentsCopy.prompt);
+      await userEvent.clear(field);
+      await userEvent.type(field, "   ");
+      for (const button of buttons) await expect(button).toBeDisabled();
+      await expect(canvas.getByRole("button", { name: "Copy prompt" })).toBeDisabled();
+      await userEvent.click(canvas.getByRole("button", { name: "Reset prompt" }));
+      for (const button of buttons) await expect(button).toBeEnabled();
+    } finally {
+      forms.forEach(form => form.removeEventListener("submit", preventNavigation));
+      if (descriptor) Object.defineProperty(navigator, "clipboard", descriptor);
+      else Reflect.deleteProperty(navigator, "clipboard");
+    }
+  },
 };
 
 const checkMenuDismissal: NonNullable<Story["play"]> = async ({

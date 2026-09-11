@@ -1,3 +1,4 @@
+import { sitePageCopy } from "@/lib/content/site-pages";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -62,15 +63,14 @@ function WritingHero() {
       }
       description={
         <p className="max-w-[690px]">
-          Practical notes on working with coding agents, shipping my own
-          products and revisiting older technical posts that still hold up.
+          {sitePageCopy.writing.description}
         </p>
       }
       eyebrow="WRITING"
       eyebrowClassName="text-[var(--writing-accent-text)]"
       eyebrowDetail="FIELD NOTES FROM THE WORK"
       headingId="writing-page-heading"
-      title="Notes from agent loops, product builds and real constraints."
+      title={sitePageCopy.writing.title}
     />
   );
 }

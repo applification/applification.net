@@ -436,6 +436,29 @@
   color-scheme: only dark;
 }
 
+/* The server-rendered reader selects its own theme without changing the
+   visitor's stored Human preference. Removing it restores the shared palette. */
+:root:has(.agent-page) {
+  color-scheme: only dark;
+  --app-bg: #101214;
+  --app-bg-end: var(--app-bg);
+  --app-section: var(--app-bg);
+  --app-card: #171b1e;
+  --app-muted-section: var(--app-card);
+  --app-control: var(--app-card);
+  --app-selected: var(--app-card);
+  --app-text-primary: #e6edf1;
+  --app-text-secondary: #a4afb7;
+  --app-text-muted: var(--app-text-secondary);
+  --app-border: #343c42;
+  --app-accent: var(--loop-cyan);
+  --app-label-text: var(--loop-cyan);
+  --app-action: var(--loop-cyan);
+  --app-action-hover: var(--app-text-primary);
+  --app-text-on-action: var(--app-bg);
+  --app-focus: var(--loop-cyan);
+}
+
 @layer base {
   .font-body {
     font-family: var(--font-geist), "Geist", sans-serif;
@@ -532,6 +555,11 @@ html {
   to { opacity: 1; }
 }
 
+/* Leave the last footer links clear of the floating reader control. */
+.site-footer:has(.page-view-switch) {
+  padding-bottom: calc(52px + env(safe-area-inset-bottom));
+}
+
 .site-header {
   --header-glass: light-dark(
     color-mix(in srgb, var(--app-bg) 52%, transparent),
@@ -600,20 +628,22 @@ html {
     transition: opacity 160ms ease-out;
   }
 
-  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-navigation > a,
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-navigation > a:not(.site-header-agents),
   .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-active-indicator {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
 
-  .site-header-theme {
+  .site-header-theme,
+  .site-header-agents {
     width: var(--header-control-size);
     height: var(--header-control-size);
     transition: width 220ms ease-out, height 220ms ease-out, background-color 180ms ease-out;
   }
 
-  .site-header-theme svg {
+  .site-header-theme svg,
+  .site-header-agents svg {
     transition: width 220ms ease-out, height 220ms ease-out;
   }
 
@@ -621,6 +651,7 @@ html {
   .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-mark { width: 32px; height: 24px; }
   .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-wordmark { max-width: 0; opacity: 0; }
   .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-theme svg { width: 15px; height: 15px; }
+  .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-agents svg { width: 15px; height: 15px; }
 
   .site-header[data-scrolled="true"] .site-header-surface {
     box-shadow:

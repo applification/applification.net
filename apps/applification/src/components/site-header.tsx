@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { AgentsLink } from "./agents-link";
+import { agentPath, hasAgentView, humanPath } from "@/lib/page-view";
 
 const navigation = [
   { href: "/", label: "Home" },
@@ -73,7 +74,10 @@ function MenuIcon({ open }: { open: boolean }) {
 
 export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boolean }) {
   const pathname = usePathname();
-  const productHeaderTheme = getProductHeaderTheme(pathname);
+  const contentPath = humanPath(pathname ?? "/");
+  const agent = pathname === agentPath(contentPath);
+  const navigationHref = (href: string) => agent && hasAgentView(href) ? agentPath(href) : href;
+  const productHeaderTheme = agent ? null : getProductHeaderTheme(pathname);
   const reduceMotion = useReducedMotion();
   const [menuState, setMenuState] = useState({ open: false, pathname });
   const [scrolled, setScrolled] = useState(false);
@@ -88,7 +92,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
   const visibleNavigation = contactAvailable
     ? navigation
     : navigation.filter((item) => item.href !== "/contact");
-  const activeHref = visibleNavigation.find((item) => isCurrentPath(pathname, item.href))?.href;
+  const activeHref = visibleNavigation.find((item) => isCurrentPath(contentPath, item.href))?.href;
 
   useLayoutEffect(() => {
     const navigationElement = navigationRef.current;
@@ -160,14 +164,14 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
         <div className="mx-auto flex h-full w-full items-center justify-between px-5 min-[700px]:w-[calc(100%-40px)] min-[700px]:max-w-[1200px] min-[700px]:px-0 min-[1024px]:w-[calc(100%-48px)]">
           <Link
             className={`site-header-brand inline-flex min-h-11 items-center gap-2.5 text-[var(--app-text-primary)] ${focusClasses}`}
-            href="/"
+            href={navigationHref("/")}
             aria-label="Applification home"
           >
             <span
               aria-hidden="true"
               className="site-header-mark block h-[34px] w-12 bg-current [-webkit-mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat] [mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat]"
             />
-            <span className="site-header-wordmark font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[520px]:block">
+            <span className="site-header-wordmark font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[520px]:block min-[820px]:hidden min-[1200px]:block">
               APPLIFICATION
             </span>
           </Link>
@@ -175,7 +179,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           <nav
             ref={navigationRef}
             aria-label="Primary navigation"
-            className="site-header-navigation relative isolate hidden items-center gap-5 min-[820px]:flex min-[1024px]:gap-[30px]"
+            className="site-header-navigation relative isolate hidden items-center gap-3 min-[820px]:flex min-[1100px]:gap-5"
           >
             {activeIndicatorPosition ? (
               <motion.span
@@ -192,7 +196,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
               />
             ) : null}
             {visibleNavigation.map((item) => {
-              const current = isCurrentPath(pathname, item.href);
+              const current = isCurrentPath(contentPath, item.href);
 
               return (
                 <Link
@@ -202,7 +206,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                   }}
                   aria-current={current ? "page" : undefined}
                   className={`relative isolate inline-flex min-h-10 items-center text-base font-medium text-[var(--app-text-secondary)] transition-colors hover:text-[var(--header-nav-active,var(--app-action))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
-                  href={item.href}
+                  href={navigationHref(item.href)}
                   key={item.href}
                 >
                   {item.label}
@@ -210,10 +214,11 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
               );
             })}
             <AgentsLink className="site-header-agents" />
-            <ThemeSwitcher className="site-header-theme" />
+            {!agent ? <ThemeSwitcher className="site-header-theme" /> : null}
           </nav>
 
-          <div className="flex items-center min-[820px]:hidden">
+          <div className="flex items-center gap-2 min-[820px]:hidden">
+            <AgentsLink />
             <motion.button
               ref={menuButtonRef}
               aria-controls="mobile-navigation"
@@ -249,14 +254,14 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           >
             <div className="mx-auto flex max-w-md flex-col gap-1">
               {visibleNavigation.map((item, index) => {
-                const current = isCurrentPath(pathname, item.href);
+                const current = isCurrentPath(contentPath, item.href);
 
                 return (
                   <Link
                     ref={index === 0 ? firstMenuLinkRef : undefined}
                     aria-current={current ? "page" : undefined}
                     className={`flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)] aria-[current=page]:bg-[var(--header-nav-selected,var(--app-selected))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
-                    href={item.href}
+                    href={navigationHref(item.href)}
                     key={item.href}
                     onClick={() => setMenuState({ open: false, pathname })}
                   >
@@ -264,13 +269,11 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                   </Link>
                 );
               })}
-              <div className="my-2 border-t border-[var(--app-border)] pt-2">
-                <AgentsLink
-                  labelled
-                  onClick={() => setMenuState({ open: false, pathname })}
-                />
-                <ThemeSwitcher labelled />
-              </div>
+              {!agent ? (
+                <div className="my-2 border-t border-[var(--app-border)] pt-2">
+                  <ThemeSwitcher labelled />
+                </div>
+              ) : null}
             </div>
           </motion.nav>
         ) : null}

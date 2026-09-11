@@ -5,7 +5,7 @@ import { AgentsPage } from "@/components/agent-info/agents-page";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 
 const description =
-  "Applification API docs and developer resources for agents: OpenAPI 3.1 reference, WebMCP tools and a free, keyless sandbox for reading Dave Hudson's public profile and product information.";
+  "Explore Dave Hudson’s work with ChatGPT or Claude. Copy a starter prompt, read page Markdown, or use the API docs, WebMCP tools and free developer sandbox.";
 
 export const metadata: Metadata = {
   title: "Agents & API docs",

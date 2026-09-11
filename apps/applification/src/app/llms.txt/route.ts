@@ -50,6 +50,7 @@ ${publishedSkills.map((skill) => `- [${skill.name}](${skill.skillsShUrl}): ${ski
 - First call: \`curl --fail --show-error '${sandboxUrl}'\`
 
 ## Public information
+- [Markdown site](${siteUrl}/markdown): Public page content as Markdown. Prefix a supported page path with /markdown, for example /markdown/about, /markdown/products/contexture or /markdown/writing/<slug>. The visual Agent view at /agent uses the same text. Private contact reviews, previews and unpublished writing are excluded.
 - [Profile](${siteUrl}/about): Dave Hudson's engineering experience and contract fit.
 - [Client work](${siteUrl}/client-work): Selected delivery evidence.
 - [Commercial terms as JSON](${siteUrl}/api/v1/catalog?section=pricing): Contracts are quoted per engagement; no standard day rate is published. Product licence and availability information.

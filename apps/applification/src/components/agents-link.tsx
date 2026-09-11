@@ -10,8 +10,8 @@ type AgentsLinkProps = {
 };
 
 // Mirrors ThemeSwitcher's icon-button sizing so the two sit as a pair in the
-// header: an unlabelled 44px icon button in the desktop nav, and a labelled
-// row in the mobile menu. Kept separate from ThemeSwitcher because this is a
+// header: a 44px icon link in the desktop nav and beside the mobile menu.
+// Kept separate from ThemeSwitcher because this is a
 // static link, not a client-side toggle.
 export function AgentsLink({
   className = "",

@@ -1,10 +1,12 @@
 import { PageHero } from "@/components/page-hero";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/external-link";
-import { publishedSkills, siteRepositorySkillsShUrl } from "@/lib/agent-skills";
+import { publishedSkills, siteRepositorySkillsShUrl } from "@/lib/agent-skills-public";
 import { sandboxUrl, siteUrl } from "@/lib/public-catalog";
 import { ContentTypeSelect } from "./content-type-select";
 import { RevealHashTarget } from "./reveal-hash-target";
+import { agentsCopy } from "@/lib/content/site-pages";
+import { AssistantPromptComposer } from "./assistant-prompt-links";
 import {
   CodeSample,
   InfoLink,
@@ -21,8 +23,8 @@ export function AgentsPage() {
         eyebrow="Agents & API docs"
         eyebrowDetail="Context and tools"
         headingId="agents-heading"
-        title="Applification API docs for agents."
-        description="Using an agent to explore my work or products? It can read the OpenAPI reference, call the developer sandbox, find client work, read my writing, explore products and help prepare an enquiry."
+        title={agentsCopy.title}
+        description={agentsCopy.description}
         aside={
           <aside
             className="space-y-2 border-l-2 border-[var(--app-action)] pl-6"
@@ -42,6 +44,17 @@ export function AgentsPage() {
           </aside>
         }
       />
+
+      <InfoSection id="conversation" title="A starting point for your conversation">
+        <p className="max-w-[65ch]">{agentsCopy.handoff}</p>
+        <AssistantPromptComposer />
+        <p className="max-w-[65ch]">{agentsCopy.guidance}</p>
+        <p className="max-w-[65ch] text-base">
+          You can also ask which products are available, find examples of production AI,
+          or explore how I work with a team. Your assistant reads the public pages;
+          the API docs below are for agents that can call tools directly.
+        </p>
+      </InfoSection>
 
       <InfoSection id="onboarding" title="Start without an account">
         <p className="max-w-[65ch]">

@@ -4,6 +4,15 @@ import { expect, userEvent, waitFor, within } from "storybook/test";
 import { useState } from "react";
 import { SiteHeader } from "./site-header";
 
+async function checkHeaderUtilities(canvasElement: HTMLElement) {
+  const canvas = within(canvasElement);
+  const agents = canvas.getByRole("link", { name: "Agents & API docs" });
+  await expect(agents).toBeVisible();
+  await expect(agents).toHaveAttribute("href", "/agents");
+  await expect(getComputedStyle(agents).opacity).toBe("1");
+  await expect(canvas.queryByRole("group", { name: "Page view" })).not.toBeInTheDocument();
+}
+
 const meta = {
   title: "Layout/Site header",
   component: SiteHeader,
@@ -55,6 +64,7 @@ export const ScrollNavigation: Story = {
     ]) {
       window.scrollTo(0, 800);
       await waitFor(() => expect(header).toHaveAttribute("data-compact", "true"));
+      await checkHeaderUtilities(canvasElement);
 
       // Sample every rendered frame through both same-section and cross-section
       // route changes. The highlight may move between links, but it must never
@@ -133,6 +143,7 @@ function productHeaderStory(
 
 export const DesktopLight: Story = {
   play: async ({ canvasElement }) => {
+    await checkHeaderUtilities(canvasElement);
     const canvas = within(canvasElement);
 
     await expect(canvas.getByText("APPLIFICATION")).toBeVisible();
@@ -157,6 +168,7 @@ export const DesktopDark: Story = {
 export const NarrowDesktop: Story = {
   globals: { viewport: { value: "narrowTablet", isRotated: false } },
   play: async ({ canvasElement }) => {
+    await checkHeaderUtilities(canvasElement);
     const canvas = within(canvasElement);
     const brand = canvas.getByRole("link", { name: "Applification home" });
     const navigation = canvas.getByRole("navigation", { name: "Primary navigation" });
@@ -199,11 +211,52 @@ export const DesktopContact: Story = {
     return <SiteHeader />;
   },
   play: async ({ canvasElement }) => {
+    await checkHeaderUtilities(canvasElement);
     const canvas = within(canvasElement);
     const contactLink = canvas.getByRole("link", { name: "Contact" });
 
     await expect(contactLink).toHaveAttribute("aria-current", "page");
     await expect(canvas.getByTestId("active-navigation-highlight")).toBeVisible();
+  },
+};
+
+export const AgentDetail: Story = {
+  render: () => {
+    usePathname.mockReturnValue("/agent/products/contexture");
+    return <SiteHeader />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await checkHeaderUtilities(canvasElement);
+    await expect(canvas.getByRole("link", { name: "Products" })).toHaveAttribute("href", "/agent/products");
+    await expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute("href", "/agent");
+    await expect(canvas.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+    await expect(canvasElement.querySelector("header")).not.toHaveAttribute("data-product-theme");
+    await expect(canvas.queryByRole("button", { name: /Switch.*theme/ })).not.toBeInTheDocument();
+  },
+};
+
+export const PrivateReview: Story = {
+  render: () => {
+    usePathname.mockReturnValue("/contact/review/private-capability");
+    return <SiteHeader />;
+  },
+  play: async ({ canvasElement }) => {
+    await checkHeaderUtilities(canvasElement);
+  },
+};
+
+export const SmallMobile: Story = {
+  globals: { viewport: { value: "iphoneSeSmall", isRotated: false } },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await checkHeaderUtilities(canvasElement);
+    const agents = canvas.getByRole("link", { name: "Agents & API docs" });
+    const brand = canvas.getByRole("link", { name: "Applification home" });
+    const menu = canvas.getByRole("button", { name: "Open navigation menu" });
+    await expect(brand.getBoundingClientRect().right + 8).toBeLessThanOrEqual(agents.getBoundingClientRect().left);
+    await expect(agents.getBoundingClientRect().right + 8).toBeLessThanOrEqual(menu.getBoundingClientRect().left);
+    await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
   },
 };
 
@@ -234,6 +287,7 @@ export const DesktopVoiced = productHeaderStory(
 export const MobileLight: Story = {
   globals: { viewport: { value: "mobile", isRotated: false } },
   play: async ({ canvasElement }) => {
+    await checkHeaderUtilities(canvasElement);
     const canvas = within(canvasElement);
 
     await expect(
@@ -248,6 +302,7 @@ export const MobileDarkMenuOpen: Story = {
     viewport: { value: "mobile", isRotated: false },
   },
   play: async ({ canvasElement }) => {
+    await checkHeaderUtilities(canvasElement);
     const canvas = within(canvasElement);
     const menuButton = canvas.getByRole("button", {
       name: "Open navigation menu",
