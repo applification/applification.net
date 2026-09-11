@@ -436,6 +436,29 @@
   color-scheme: only dark;
 }
 
+/* The server-rendered reader selects its own theme without changing the
+   visitor's stored Human preference. Removing it restores the shared palette. */
+:root:has(.agent-page) {
+  color-scheme: only dark;
+  --app-bg: #101214;
+  --app-bg-end: var(--app-bg);
+  --app-section: var(--app-bg);
+  --app-card: #171b1e;
+  --app-muted-section: var(--app-card);
+  --app-control: var(--app-card);
+  --app-selected: var(--app-card);
+  --app-text-primary: #e6edf1;
+  --app-text-secondary: #a4afb7;
+  --app-text-muted: var(--app-text-secondary);
+  --app-border: #343c42;
+  --app-accent: var(--loop-cyan);
+  --app-label-text: var(--loop-cyan);
+  --app-action: var(--loop-cyan);
+  --app-action-hover: var(--app-text-primary);
+  --app-text-on-action: var(--app-bg);
+  --app-focus: var(--loop-cyan);
+}
+
 @layer base {
   .font-body {
     font-family: var(--font-geist), "Geist", sans-serif;

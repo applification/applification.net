@@ -232,6 +232,7 @@ export const AgentDetail: Story = {
     await expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute("href", "/agent");
     await expect(canvas.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
     await expect(canvasElement.querySelector("header")).not.toHaveAttribute("data-product-theme");
+    await expect(canvas.queryByRole("button", { name: /Switch.*theme/ })).not.toBeInTheDocument();
   },
 };
 

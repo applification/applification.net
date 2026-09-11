@@ -214,7 +214,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
               );
             })}
             <AgentsLink className="site-header-agents" />
-            <ThemeSwitcher className="site-header-theme" />
+            {!agent ? <ThemeSwitcher className="site-header-theme" /> : null}
           </nav>
 
           <div className="flex items-center gap-2 min-[820px]:hidden">
@@ -269,9 +269,11 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                   </Link>
                 );
               })}
-              <div className="my-2 border-t border-[var(--app-border)] pt-2">
-                <ThemeSwitcher labelled />
-              </div>
+              {!agent ? (
+                <div className="my-2 border-t border-[var(--app-border)] pt-2">
+                  <ThemeSwitcher labelled />
+                </div>
+              ) : null}
             </div>
           </motion.nav>
         ) : null}
