@@ -6,7 +6,6 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { AgentsLink } from "./agents-link";
-import { PageViewSwitch } from "./page-view-switch";
 import { agentPath, hasAgentView, humanPath } from "@/lib/page-view";
 
 const navigation = [
@@ -77,7 +76,6 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
   const pathname = usePathname();
   const contentPath = humanPath(pathname ?? "/");
   const agent = pathname === agentPath(contentPath);
-  const viewAvailable = pathname !== null && hasAgentView(pathname);
   const navigationHref = (href: string) => agent && hasAgentView(href) ? agentPath(href) : href;
   const productHeaderTheme = agent ? null : getProductHeaderTheme(pathname);
   const reduceMotion = useReducedMotion();
@@ -215,12 +213,12 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                 </Link>
               );
             })}
-            {viewAvailable ? <PageViewSwitch pathname={pathname!} /> : <AgentsLink className="site-header-agents" />}
+            <AgentsLink className="site-header-agents" />
             <ThemeSwitcher className="site-header-theme" />
           </nav>
 
           <div className="flex items-center gap-2 min-[820px]:hidden">
-            {viewAvailable ? <PageViewSwitch pathname={pathname!} /> : null}
+            <AgentsLink />
             <motion.button
               ref={menuButtonRef}
               aria-controls="mobile-navigation"
@@ -272,10 +270,6 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                 );
               })}
               <div className="my-2 border-t border-[var(--app-border)] pt-2">
-                <AgentsLink
-                  labelled
-                  onClick={() => setMenuState({ open: false, pathname })}
-                />
                 <ThemeSwitcher labelled />
               </div>
             </div>

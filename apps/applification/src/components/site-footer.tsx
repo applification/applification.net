@@ -3,6 +3,7 @@ import { ShieldCheck } from "lucide-react";
 import type { ComponentType } from "react";
 import { contractPositioning } from "@/lib/contract-positioning";
 import Link from "next/link";
+import { PageViewSwitch } from "./page-view-switch";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -53,7 +54,7 @@ const socialLinks: SocialLink[] = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[var(--app-section)]">
+    <footer className="site-footer bg-[var(--app-section)]">
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-5 px-6 py-8 min-[821px]:min-h-[101px] min-[821px]:w-[calc(100%-48px)] min-[821px]:flex-row min-[821px]:items-center min-[821px]:justify-between min-[821px]:px-0">
         <div className="flex flex-col gap-1">
           <span className="font-caption text-[11px] font-bold tracking-[1px] text-[var(--app-text-primary)] uppercase min-[821px]:text-xs min-[821px]:font-semibold">
@@ -88,6 +89,7 @@ export function SiteFooter() {
           })}
         </nav>
       </div>
+      <PageViewSwitch />
     </footer>
   );
 }
