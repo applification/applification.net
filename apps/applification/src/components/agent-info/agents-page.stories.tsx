@@ -32,22 +32,32 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   await expect(canvas.getAllByRole("heading", { level: 1 })).toHaveLength(1);
   await expect(canvas.getByRole("heading", { level: 1 })).toHaveTextContent("Explore my work with your AI.");
   await expect(canvas.getByRole("button", { name: "Copy a starter prompt" })).toBeVisible();
-  const chatgpt = canvas.getByRole("link", { name: "Open in ChatGPT, opens in a new tab" });
-  const claude = canvas.getByRole("link", { name: "Open in Claude, opens in a new tab" });
-  for (const [link, destination] of [[chatgpt, "https://chatgpt.com/"], [claude, "https://claude.ai/new"]] as const) {
+  const destinations = [
+    ["Open in ChatGPT", "https://chatgpt.com/"],
+    ["Open in Claude", "https://claude.ai/new"],
+    ["Open in Perplexity", "https://www.perplexity.ai/search/new"],
+    ["Open in Grok", "https://grok.com/"],
+    ["Copy prompt and open Gemini", "https://gemini.google.com/app"],
+  ] as const;
+  const links = destinations.map(([label]) => canvas.getByRole("link", { name: `${label}, opens in a new tab` }));
+  for (const [index, [label, destination]] of destinations.entries()) {
+    const link = links[index];
     await expect(link).toBeVisible();
     const url = new URL(link.getAttribute("href")!);
     await expect(`${url.origin}${url.pathname}`).toBe(destination);
-    await expect(url.searchParams.get("q")).toBe(agentsCopy.prompt);
+    await expect(url.searchParams.get("q")).toBe(label.includes("Gemini") ? null : agentsCopy.prompt);
     await expect(link).toHaveAttribute("target", "_blank");
     await expect(link).toHaveAttribute("rel", "noopener noreferrer");
     await expect(link.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
+    await expect(link.getBoundingClientRect().width).toBe(44);
+    await expect(link.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+    await expect(link.textContent).toBe("");
   }
-  chatgpt.focus();
-  await expect(chatgpt).toHaveFocus();
-  await userEvent.tab();
-  await expect(claude).toHaveFocus();
-  await userEvent.tab();
+  links[0].focus();
+  for (const link of links) {
+    await expect(link).toHaveFocus();
+    await userEvent.tab();
+  }
   await expect(canvas.getByRole("button", { name: "Copy a starter prompt" })).toHaveFocus();
   await expect(canvas.getByText(/Enable web access/)).toBeVisible();
   await expect(
@@ -128,6 +138,35 @@ export const SmallMobileLight: Story = {
   globals: { viewport: { value: "iphoneSeSmall", isRotated: false } },
   play: checkPage,
 };
+
+function checkGeminiCopy(fail: boolean): NonNullable<Story["play"]> {
+  return async ({ canvasElement }) => {
+    const descriptor = Object.getOwnPropertyDescriptor(navigator, "clipboard");
+    let copied = "";
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async (text: string) => {
+      if (fail) throw new Error("Clipboard unavailable");
+      copied = text;
+    } } });
+    const canvas = within(canvasElement);
+    const link = canvas.getByRole("link", { name: "Copy prompt and open Gemini, opens in a new tab" });
+    const keepStoryOpen = (event: Event) => event.preventDefault();
+    link.addEventListener("click", keepStoryOpen);
+    try {
+      await userEvent.click(link);
+      await expect(canvas.getByText(fail ? "Copy the prompt above, then paste it into Gemini." : "Prompt copied. Paste it into Gemini to start your conversation.")).toBeVisible();
+      await expect(copied).toBe(fail ? "" : agentsCopy.prompt);
+      await expect(link).toHaveAttribute("href", "https://gemini.google.com/app");
+      await expect(link).toHaveAttribute("target", "_blank");
+    } finally {
+      link.removeEventListener("click", keepStoryOpen);
+      if (descriptor) Object.defineProperty(navigator, "clipboard", descriptor);
+      else Reflect.deleteProperty(navigator, "clipboard");
+    }
+  };
+}
+
+export const GeminiCopyPrompt: Story = { play: checkGeminiCopy(false) };
+export const GeminiClipboardUnavailable: Story = { play: checkGeminiCopy(true) };
 
 const checkMenuDismissal: NonNullable<Story["play"]> = async ({
   canvasElement,
