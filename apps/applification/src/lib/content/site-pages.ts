@@ -28,17 +28,17 @@ export const sitePageCopy = {
 export const agentsCopy = {
   title: "Explore my work with your AI.",
   description: "Prefer a conversation? Explore this site with your favourite AI assistant. Ask about my experience, explore a product, or find work relevant to your project.",
-  handoff: "Choose an assistant to start with the prompt below. For Gemini, paste the copied prompt into the new chat. You may need to sign in; if the prompt does not carry over, copy and paste it.",
+  handoff: "Make the prompt your own, then choose an assistant to open a new chat. For Gemini, paste the copied prompt into the new chat. You may need to sign in; if the prompt does not carry over, copy and paste it.",
   guidance: "Enable web access so your assistant can read the linked pages. If it cannot open a page, use Agent view to copy its Markdown into your conversation.",
   prompt: "Read https://www.applification.net and help me understand Dave Hudson’s experience. Ask me about my project, then find relevant examples from his client work and writing. Include links to your sources. If you cannot access a page, tell me and ask me to paste its content.",
 } as const;
 
-// Keep the visible, copied and linked prompts identical. Use ordinary web links
-// so visitors can continue in a browser without installing a desktop app.
+// Default deep links are also published in Markdown. The prompt editor uses
+// these destinations in native GET forms to pass the current field value.
 export const assistantPromptLinks = [
-  { id: "chatgpt", label: "Open in ChatGPT", href: `https://chatgpt.com/?q=${encodeURIComponent(agentsCopy.prompt)}` },
-  { id: "claude", label: "Open in Claude", href: `https://claude.ai/new?q=${encodeURIComponent(agentsCopy.prompt)}` },
-  { id: "perplexity", label: "Open in Perplexity", href: `https://www.perplexity.ai/search/new?q=${encodeURIComponent(agentsCopy.prompt)}` },
-  { id: "grok", label: "Open in Grok", href: `https://grok.com/?q=${encodeURIComponent(agentsCopy.prompt)}` },
-  { id: "gemini", label: "Open in Gemini", href: "https://gemini.google.com/app" },
+  { id: "chatgpt", name: "ChatGPT", label: "Open in ChatGPT", href: `https://chatgpt.com/?q=${encodeURIComponent(agentsCopy.prompt)}` },
+  { id: "claude", name: "Claude", label: "Open in Claude", href: `https://claude.ai/new?q=${encodeURIComponent(agentsCopy.prompt)}` },
+  { id: "perplexity", name: "Perplexity", label: "Open in Perplexity", href: `https://www.perplexity.ai/search/new?q=${encodeURIComponent(agentsCopy.prompt)}` },
+  { id: "grok", name: "Grok", label: "Open in Grok", href: `https://grok.com/?q=${encodeURIComponent(agentsCopy.prompt)}` },
+  { id: "gemini", name: "Gemini", label: "Open in Gemini", href: "https://gemini.google.com/app" },
 ] as const;

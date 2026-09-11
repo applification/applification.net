@@ -31,7 +31,7 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await expect(canvas.getAllByRole("heading", { level: 1 })).toHaveLength(1);
   await expect(canvas.getByRole("heading", { level: 1 })).toHaveTextContent("Explore my work with your AI.");
-  await expect(canvas.getByRole("button", { name: "Copy a starter prompt" })).toBeVisible();
+  await expect(canvas.getByRole("button", { name: "Copy prompt" })).toBeVisible();
   const destinations = [
     ["Open in ChatGPT", "https://chatgpt.com/"],
     ["Open in Claude", "https://claude.ai/new"],
@@ -39,26 +39,28 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
     ["Open in Grok", "https://grok.com/"],
     ["Copy prompt and open Gemini", "https://gemini.google.com/app"],
   ] as const;
-  const links = destinations.map(([label]) => canvas.getByRole("link", { name: `${label}, opens in a new tab` }));
+  const buttons = destinations.map(([label]) => canvas.getByRole("button", { name: `${label}, opens in a new tab` }) as HTMLButtonElement);
+  await expect(canvas.getByRole("textbox", { name: "Your prompt" })).toHaveValue(agentsCopy.prompt);
   for (const [index, [label, destination]] of destinations.entries()) {
-    const link = links[index];
-    await expect(link).toBeVisible();
-    const url = new URL(link.getAttribute("href")!);
-    await expect(`${url.origin}${url.pathname}`).toBe(destination);
-    await expect(url.searchParams.get("q")).toBe(label.includes("Gemini") ? null : agentsCopy.prompt);
-    await expect(link).toHaveAttribute("target", "_blank");
-    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
-    await expect(link.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
-    await expect(link.getBoundingClientRect().width).toBe(44);
-    await expect(link.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
-    await expect(link.textContent).toBe("");
+    const button = buttons[index];
+    await expect(button).toBeVisible();
+    await expect(button.formAction).toBe(destination);
+    await expect(button.form!.method).toBe("get");
+    await expect(button.form!.target).toBe("_blank");
+    await expect(button.form).toHaveAttribute("rel", "noopener noreferrer");
+    await expect(new FormData(button.form!).get("q")).toBe(label.includes("Gemini") ? null : agentsCopy.prompt);
+    await expect(button.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
+    await expect(button.getBoundingClientRect().width).toBeGreaterThanOrEqual(144);
+    await expect(button.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+    await expect(button.textContent).toBe(label.split(" ").at(-1));
   }
-  links[0].focus();
-  for (const link of links) {
-    await expect(link).toHaveFocus();
+  canvas.getByRole("textbox", { name: "Your prompt" }).focus();
+  await userEvent.tab();
+  for (const button of buttons) {
+    await expect(button).toHaveFocus();
     await userEvent.tab();
   }
-  await expect(canvas.getByRole("button", { name: "Copy a starter prompt" })).toHaveFocus();
+  await expect(canvas.getByRole("button", { name: "Copy prompt" })).toHaveFocus();
   await expect(canvas.getByText(/Enable web access/)).toBeVisible();
   await expect(
     canvas.getByRole("link", { name: "OpenAPI reference" }),
@@ -148,17 +150,17 @@ function checkGeminiCopy(fail: boolean): NonNullable<Story["play"]> {
       copied = text;
     } } });
     const canvas = within(canvasElement);
-    const link = canvas.getByRole("link", { name: "Copy prompt and open Gemini, opens in a new tab" });
+    const button = canvas.getByRole("button", { name: "Copy prompt and open Gemini, opens in a new tab" }) as HTMLButtonElement;
     const keepStoryOpen = (event: Event) => event.preventDefault();
-    link.addEventListener("click", keepStoryOpen);
+    button.form!.addEventListener("submit", keepStoryOpen);
     try {
-      await userEvent.click(link);
-      await expect(canvas.getByText(fail ? "Copy the prompt above, then paste it into Gemini." : "Prompt copied. Paste it into Gemini to start your conversation.")).toBeVisible();
+      await userEvent.click(button);
+      await expect(canvas.getByText(fail ? "Select and copy your prompt, then paste it into Gemini." : "Prompt copied. Paste it into Gemini to start your conversation.")).toBeVisible();
       await expect(copied).toBe(fail ? "" : agentsCopy.prompt);
-      await expect(link).toHaveAttribute("href", "https://gemini.google.com/app");
-      await expect(link).toHaveAttribute("target", "_blank");
+      await expect(button.formAction).toBe("https://gemini.google.com/app");
+      await expect(button.form!.target).toBe("_blank");
     } finally {
-      link.removeEventListener("click", keepStoryOpen);
+      button.form!.removeEventListener("submit", keepStoryOpen);
       if (descriptor) Object.defineProperty(navigator, "clipboard", descriptor);
       else Reflect.deleteProperty(navigator, "clipboard");
     }
@@ -167,6 +169,52 @@ function checkGeminiCopy(fail: boolean): NonNullable<Story["play"]> {
 
 export const GeminiCopyPrompt: Story = { play: checkGeminiCopy(false) };
 export const GeminiClipboardUnavailable: Story = { play: checkGeminiCopy(true) };
+
+export const EditAndResetPrompt: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const field = canvas.getByRole("textbox", { name: "Your prompt" }) as HTMLTextAreaElement;
+    const edited = "Read https://www.applification.net and compare R&D + C# projects.\nWhat’s relevant to my team?";
+    const buttons = within(canvas.getByRole("group", { name: "Open this prompt with an assistant" })).getAllByRole("button") as HTMLButtonElement[];
+    const descriptor = Object.getOwnPropertyDescriptor(navigator, "clipboard");
+    let copied = "";
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async (text: string) => { copied = text; } } });
+    const submissions: FormData[] = [];
+    const preventNavigation = (event: Event) => {
+      event.preventDefault();
+      submissions.push(new FormData(event.target as HTMLFormElement));
+    };
+    const forms = new Set(buttons.map(button => button.form!));
+    forms.forEach(form => form.addEventListener("submit", preventNavigation));
+    try {
+      await userEvent.clear(field);
+      await userEvent.type(field, edited);
+      for (const button of buttons) await userEvent.click(button);
+      await expect(submissions).toHaveLength(5);
+      for (const submission of submissions.slice(0, 4)) await expect(submission.get("q")).toBe(edited);
+      await expect(submissions[4].get("q")).toBeNull();
+      await expect(copied).toBe(edited);
+      await userEvent.click(canvas.getByRole("button", { name: "Copy prompt" }));
+      await expect(copied).toBe(edited);
+      await expect(canvas.getByText("Prompt copied. Paste it into your chat.")).toBeVisible();
+      await userEvent.type(field, " More detail.");
+      await expect(canvas.queryByText("Prompt copied. Paste it into your chat.")).not.toBeInTheDocument();
+      await userEvent.click(canvas.getByRole("button", { name: "Reset prompt" }));
+      await expect(field).toHaveValue(agentsCopy.prompt);
+      await expect(new FormData(field.form!).get("q")).toBe(agentsCopy.prompt);
+      await userEvent.clear(field);
+      await userEvent.type(field, "   ");
+      for (const button of buttons) await expect(button).toBeDisabled();
+      await expect(canvas.getByRole("button", { name: "Copy prompt" })).toBeDisabled();
+      await userEvent.click(canvas.getByRole("button", { name: "Reset prompt" }));
+      for (const button of buttons) await expect(button).toBeEnabled();
+    } finally {
+      forms.forEach(form => form.removeEventListener("submit", preventNavigation));
+      if (descriptor) Object.defineProperty(navigator, "clipboard", descriptor);
+      else Reflect.deleteProperty(navigator, "clipboard");
+    }
+  },
+};
 
 const checkMenuDismissal: NonNullable<Story["play"]> = async ({
   canvasElement,
