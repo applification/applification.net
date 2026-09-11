@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { agentPath, hasAgentView, humanPath, markdownPath } from "@/lib/page-view";
+import { usePageViewTransition } from "./use-page-view-transition";
 
 export function PageViewSwitch() {
   const pathname = usePathname();
+  const navigate = usePageViewTransition(pathname);
   if (!pathname || !hasAgentView(pathname)) return null;
   const agent = pathname === agentPath(pathname);
   return (
@@ -23,6 +25,7 @@ export function PageViewSwitch() {
           key={label}
           href={href}
           prefetch={false}
+          onClick={(event) => navigate(event, href, label === "Agent")}
           aria-current={current ? "page" : undefined}
           className="relative inline-flex min-h-11 min-w-14 items-center justify-center gap-1.5 rounded-md px-2 hover:text-[var(--app-text-primary)] aria-[current=page]:font-medium aria-[current=page]:text-[var(--app-text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
         >
