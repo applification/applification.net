@@ -284,7 +284,7 @@ export const homepageStructuredData = {
           name: "How can an AI agent read information about Applification?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: `Read ${siteUrl}/llms.txt, the OpenAPI reference at ${siteUrl}/api/openapi.json, or the Agent Skills index at ${siteUrl}/.well-known/agent-skills/index.json. The public catalog, search and content endpoints are free, read-only and need no account or key.`,
+            text: `Read ${siteUrl}/llms.txt, the OpenAPI reference at ${siteUrl}/api/openapi.json, the Agent Skills index at ${siteUrl}/.well-known/agent-skills/index.json, or the Agentic Resource Discovery manifest at ${siteUrl}/.well-known/ard.json. The public catalog, search and content endpoints are free, read-only and need no account or key.`,
           },
         },
         {

@@ -1,4 +1,5 @@
 import { agentSkillsIndexPath, siteSkillPath } from "@/lib/agent-skills";
+import { ardPath } from "@/lib/ard";
 import {
   publicProfile,
   publicProducts,
@@ -31,6 +32,7 @@ Do not use this site to send messages for a user (the only delivery endpoint is 
 All requests are free, anonymous GET requests with CORS. Invalid input returns 400 with error.code INVALID_QUERY. Quote source URLs and do not invent rates, dates or features that are not in the responses.
 - [Agent skill](${siteUrl}${siteSkillPath}): SKILL.md with this guidance for skill-aware agents.
 - [Agent Skills index](${siteUrl}${agentSkillsIndexPath}): Discovery index (v0.2.0) with the skill digest.
+- [Agentic Resource Discovery](${siteUrl}${ardPath}): ARD manifest at /.well-known/ard.json listing the API, skill and this guide.
 
 ## Onboarding
 - Free tier: every endpoint under ${siteUrl}/api/v1 is free, without time limit, account, sign-up, API key or sales contact. Verify at ${siteUrl}/api/v1/catalog?section=pricing (data.pricing.api.freeTier is true).
