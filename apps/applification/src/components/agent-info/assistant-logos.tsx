@@ -20,7 +20,7 @@ const paths = {
 
 export function AssistantLogo({ name }: { name: keyof typeof paths }) {
   return (
-    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" className="size-6">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" className="size-[18px]">
       {paths[name].map((path, index) => <path key={index} d={path} />)}
     </svg>
   );

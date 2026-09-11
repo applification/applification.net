@@ -50,7 +50,8 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
     await expect(button.form).toHaveAttribute("rel", "noopener noreferrer");
     await expect(new FormData(button.form!).get("q")).toBe(label.includes("Gemini") ? null : agentsCopy.prompt);
     await expect(button.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
-    await expect(button.getBoundingClientRect().width).toBeGreaterThanOrEqual(144);
+    await expect(button.getBoundingClientRect().width).toBeGreaterThanOrEqual(44);
+    await expect(button.getBoundingClientRect().width).toBeLessThan(144);
     await expect(button.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
     await expect(button.textContent).toBe(label.split(" ").at(-1));
   }

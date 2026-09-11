@@ -68,25 +68,28 @@ export function AssistantPromptComposer() {
           />
           <p id={`${id}-hint`} className="mt-2 text-sm text-[var(--app-text-muted)]">Add your project, a question, or what you’d like to explore.</p>
         </div>
-        <div role="group" aria-label="Open this prompt with an assistant" className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,144px),1fr))] gap-3">
+        <div role="group" aria-label="Open this prompt with an assistant" className="flex flex-wrap gap-x-2">
           {assistantPromptLinks.map(({ id: assistant, name, label, href }) => (
             <Button
               key={assistant}
               type="submit"
+              variant="ghost"
               form={assistant === "gemini" ? geminiFormId : undefined}
               formAction={href.split("?")[0]}
               disabled={!hasPrompt}
               aria-label={`${assistant === "gemini" ? "Copy prompt and open Gemini" : label}, opens in a new tab`}
-              className="min-h-12 w-full justify-start gap-2 px-3 hover:bg-[var(--app-action-hover)] motion-reduce:transform-none motion-reduce:transition-none"
+              className="min-h-11 rounded-md border-0 px-0 text-[var(--app-text-secondary)] hover:bg-transparent hover:text-[var(--app-text-primary)] dark:hover:bg-transparent motion-reduce:transform-none motion-reduce:transition-none"
             >
-              <AssistantLogo name={assistant} />
-              <span>{name}</span>
-              <ArrowUpRight aria-hidden="true" className="ml-auto size-3.5" />
+              <span className="inline-flex h-9 items-center gap-1.5 rounded-md border border-[var(--app-border)] bg-[var(--app-card)] px-2.5 group-hover/button:bg-[var(--app-muted-section)]">
+                <AssistantLogo name={assistant} />
+                <span>{name}</span>
+                <ArrowUpRight aria-hidden="true" className="size-3" />
+              </span>
             </Button>
           ))}
         </div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <Button type="button" variant="outline" disabled={!hasPrompt} onClick={() => { void copyPrompt("clipboard"); }} className="min-h-11 gap-2 px-4 motion-reduce:transform-none motion-reduce:transition-none">
+          <Button type="button" variant="ghost" disabled={!hasPrompt} onClick={() => { void copyPrompt("clipboard"); }} className="min-h-11 gap-1.5 px-2 text-[var(--app-text-secondary)] motion-reduce:transform-none motion-reduce:transition-none">
             <Copy aria-hidden="true" /> Copy prompt
           </Button>
           <p role="status" className="text-sm text-[var(--app-text-secondary)] empty:hidden">{copyStatus}</p>
