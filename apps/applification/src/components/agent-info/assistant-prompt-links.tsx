@@ -49,11 +49,16 @@ export function AssistantPromptComposer() {
         className="space-y-5"
       >
         <div>
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-x-4">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-x-1">
             <label htmlFor={`${id}-prompt`} className="text-base font-medium text-[var(--app-text-primary)]">Your prompt</label>
-            <Button type="reset" variant="ghost" className="min-h-11 gap-2 px-2 text-[var(--app-text-secondary)] motion-reduce:transition-none">
-              <RotateCcw aria-hidden="true" /> Reset prompt
-            </Button>
+            <div className="ml-auto flex items-center">
+              <Button type="reset" variant="ghost" className="min-h-11 gap-2 px-1.5 text-[var(--app-text-secondary)] motion-reduce:transition-none">
+                <RotateCcw aria-hidden="true" /> Reset prompt
+              </Button>
+              <Button type="button" variant="ghost" size="icon" aria-label="Copy prompt" title="Copy prompt" disabled={!hasPrompt} onClick={() => { void copyPrompt("clipboard"); }} className="size-11 text-[var(--app-text-secondary)] motion-reduce:transform-none motion-reduce:transition-none">
+                <Copy aria-hidden="true" />
+              </Button>
+            </div>
           </div>
           <Textarea
             ref={promptRef}
@@ -67,6 +72,7 @@ export function AssistantPromptComposer() {
             className="min-h-48 resize-y bg-[var(--app-card)] p-4 text-base leading-relaxed text-[var(--app-text-primary)] md:text-base dark:bg-[var(--app-card)] motion-reduce:transition-none"
           />
           <p id={`${id}-hint`} className="mt-2 text-sm text-[var(--app-text-muted)]">Add your project, a question, or what you’d like to explore.</p>
+          <p role="status" className="mt-2 text-sm text-[var(--app-text-secondary)] empty:hidden">{copyStatus}</p>
         </div>
         <div role="group" aria-label="Open this prompt with an assistant" className="flex flex-wrap gap-x-2">
           {assistantPromptLinks.map(({ id: assistant, name, label, href }) => (
@@ -87,12 +93,6 @@ export function AssistantPromptComposer() {
               </span>
             </Button>
           ))}
-        </div>
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <Button type="button" variant="ghost" disabled={!hasPrompt} onClick={() => { void copyPrompt("clipboard"); }} className="min-h-11 gap-1.5 px-2 text-[var(--app-text-secondary)] motion-reduce:transform-none motion-reduce:transition-none">
-            <Copy aria-hidden="true" /> Copy prompt
-          </Button>
-          <p role="status" className="text-sm text-[var(--app-text-secondary)] empty:hidden">{copyStatus}</p>
         </div>
         <noscript><p className="text-sm">To copy your prompt, select the text above. For Gemini, paste it into the new chat.</p></noscript>
       </form>

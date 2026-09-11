@@ -30,7 +30,7 @@ export const agentsCopy = {
   description: "Prefer a conversation? Explore this site with your favourite AI assistant. Ask about my experience, explore a product, or find work relevant to your project.",
   handoff: "Make the prompt your own, then choose an assistant to open a new chat. For Gemini, paste the copied prompt into the new chat. You may need to sign in; if the prompt does not carry over, copy and paste it.",
   guidance: "Enable web access so your assistant can read the linked pages. If it cannot open a page, use Agent view to copy its Markdown into your conversation.",
-  prompt: "Read https://www.applification.net and help me understand Dave Hudson’s experience. Ask me about my project, then find relevant examples from his client work and writing. Include links to your sources. If you cannot access a page, tell me and ask me to paste its content.",
+  prompt: "Read https://www.applification.net and help me understand Dave Hudson’s experience. Ask me about my project, then find relevant examples from his client work and writing. Include links to your sources.",
 } as const;
 
 // Default deep links are also published in Markdown. The prompt editor uses

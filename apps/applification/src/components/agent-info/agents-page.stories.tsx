@@ -55,13 +55,20 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
     await expect(button.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
     await expect(button.textContent).toBe(label.split(" ").at(-1));
   }
-  canvas.getByRole("textbox", { name: "Your prompt" }).focus();
+  canvas.getByRole("button", { name: "Reset prompt" }).focus();
+  await userEvent.tab();
+  const copyButton = canvas.getByRole("button", { name: "Copy prompt" });
+  await expect(copyButton).toHaveFocus();
+  await expect(copyButton).toHaveAttribute("title", "Copy prompt");
+  await expect(copyButton.getBoundingClientRect().width).toBeGreaterThanOrEqual(44);
+  await expect(copyButton.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
+  await userEvent.tab();
+  await expect(canvas.getByRole("textbox", { name: "Your prompt" })).toHaveFocus();
   await userEvent.tab();
   for (const button of buttons) {
     await expect(button).toHaveFocus();
     await userEvent.tab();
   }
-  await expect(canvas.getByRole("button", { name: "Copy prompt" })).toHaveFocus();
   await expect(canvas.getByText(/Enable web access/)).toBeVisible();
   await expect(
     canvas.getByRole("link", { name: "OpenAPI reference" }),
