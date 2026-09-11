@@ -42,7 +42,7 @@ Avoid startup theatre, agency puffery, invented urgency, and vague claims about 
 
 Agent-filled enquiries use the existing manual form and review flow. The manual card grows with its content without an internal scrolling panel or fixed height. Use 2px label-to-input gaps, 12px row gaps and shorter optional textareas; retain 44px inputs and review actions with clear focus. Keep the review action in normal flow below the fields so it remains inside the card. Filling never sends an enquiry.
 
-Agent access belongs in a concise `/agents` guide linked from the footer. Lead with the context and tools agents can use; keep the API reference available in an expandable section. Pricing and commercial terms belong in the catalog JSON and tool responses, not a standalone pricing page or a visible commercial section added for scanner coverage.
+Agent access belongs in a concise `/agents` guide, reached through a small `Bot`-icon link that sits beside the theme switcher in the header (desktop icon button, labelled row in the mobile menu), not a new homepage section or a business-facing call to action. Lead with the context and tools agents can use; keep the API reference available in an expandable section. Pricing and commercial terms belong in the catalog JSON and tool responses, not a standalone pricing page or a visible commercial section added for scanner coverage.
 
 The Agents reader uses the shared Select menu used by the contact form, with a 44px trigger aligned to the search field and action. Keep a styled native select fallback for JavaScript-free readers, with explicit height and appearance so Safari does not shrink the control.
 

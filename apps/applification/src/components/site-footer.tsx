@@ -1,5 +1,5 @@
 import { ExternalLink } from "@/components/external-link";
-import { Bot, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import type { ComponentType } from "react";
 import { contractPositioning } from "@/lib/contract-positioning";
 import Link from "next/link";
@@ -68,10 +68,6 @@ export function SiteFooter() {
           aria-label="Footer navigation"
           className="flex flex-wrap items-center gap-x-[18px] gap-y-3 text-sm font-medium text-[var(--app-text-secondary)] min-[821px]:gap-6 min-[821px]:text-[13px] min-[821px]:font-normal"
         >
-          <Link href="/agents" className={linkClasses}>
-            <Bot aria-hidden="true" className="size-4 shrink-0" />
-            <span className="link-sweep-label">Agents</span>
-          </Link>
           <Link href="/privacy" className={linkClasses}>
             <ShieldCheck aria-hidden="true" className="size-4 shrink-0" />
             <span className="link-sweep-label">Privacy</span>

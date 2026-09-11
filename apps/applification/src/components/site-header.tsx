@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
+import { AgentsLink } from "./agents-link";
 
 const navigation = [
   { href: "/", label: "Home" },
@@ -208,6 +209,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                 </Link>
               );
             })}
+            <AgentsLink className="site-header-agents" />
             <ThemeSwitcher className="site-header-theme" />
           </nav>
 
@@ -263,6 +265,10 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                 );
               })}
               <div className="my-2 border-t border-[var(--app-border)] pt-2">
+                <AgentsLink
+                  labelled
+                  onClick={() => setMenuState({ open: false, pathname })}
+                />
                 <ThemeSwitcher labelled />
               </div>
             </div>
