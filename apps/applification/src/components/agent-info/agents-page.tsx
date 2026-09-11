@@ -18,11 +18,11 @@ export function AgentsPage() {
       <RevealHashTarget />
       <PageHero
         density="compact"
-        eyebrow="Agents"
+        eyebrow="Agents & API docs"
         eyebrowDetail="Context and tools"
         headingId="agents-heading"
-        title="A starting point for your agent."
-        description="Using an agent to explore my work or products? It can find client work, read my writing, explore products and help prepare an enquiry."
+        title="Applification API docs for agents."
+        description="Using an agent to explore my work or products? It can read the OpenAPI reference, call the developer sandbox, find client work, read my writing, explore products and help prepare an enquiry."
         aside={
           <aside
             className="space-y-2 border-l-2 border-[var(--app-action)] pl-6"

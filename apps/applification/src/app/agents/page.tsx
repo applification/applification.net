@@ -5,15 +5,15 @@ import { AgentsPage } from "@/components/agent-info/agents-page";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 
 const description =
-  "Give your agent context about Dave Hudson and Applification. Read public profile and product information through WebMCP tools or the catalog API.";
+  "Applification API docs and developer resources for agents: OpenAPI 3.1 reference, WebMCP tools and a free, keyless sandbox for reading Dave Hudson's public profile and product information.";
 
 export const metadata: Metadata = {
-  title: "Agents",
+  title: "Agents & API docs",
   description,
   alternates: { canonical: "/agents" },
   openGraph: {
     ...defaultOpenGraph,
-    title: "Agents | Applification",
+    title: "Agents & API docs | Applification",
     description,
     url: "/agents",
   },
