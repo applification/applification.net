@@ -13,6 +13,7 @@
     "test": "vitest run --project unit",
     "test:workflow": "vitest --config vitest.workflow.config.mjs --run",
     "content:import": "bun scripts/import-writing.ts",
+    "skills:sync": "bun scripts/sync-skills.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "vitest --project=storybook"

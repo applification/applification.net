@@ -1,8 +1,15 @@
 import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 import { GET as getIndex } from "@/app/.well-known/agent-skills/index.json/route";
 import { GET as getSkill } from "@/app/.well-known/agent-skills/applification-site/SKILL.md/route";
-import { agentSkillsSchemaUrl, siteSkillName } from "./agent-skills";
+import {
+  agentSkillsSchemaUrl,
+  publishedSkills,
+  siteRepository,
+  siteSkillMarkdown,
+  siteSkillName,
+} from "./agent-skills";
 
 describe("agent skills discovery", () => {
   it("publishes a v0.2.0 index whose digest matches the served SKILL.md bytes", async () => {
@@ -49,5 +56,36 @@ describe("agent skills discovery", () => {
     expect(text).toContain("## When not to use this skill");
     expect(text).toContain("/api/v1/catalog");
     expect(text).not.toMatch(/mailto:|[\w.+-]+@applification\.net/i);
+  });
+
+  it("keeps the repository copy that skills.sh indexes identical to the served SKILL.md", async () => {
+    // Regenerate with `bun run skills:sync` when the served skill changes.
+    const repositoryCopy = await readFile(
+      new URL(`../../../../skills/${siteSkillName}/SKILL.md`, import.meta.url),
+      "utf8",
+    );
+    expect(repositoryCopy).toBe(siteSkillMarkdown);
+  });
+
+  it("describes each skills.sh listing with a GitHub source and an install command", () => {
+    const siteSkill = publishedSkills.find(
+      (skill) => skill.name === siteSkillName,
+    );
+    expect(siteSkill?.repository).toBe(siteRepository);
+    expect(siteSkill?.path).toBe(`skills/${siteSkillName}/SKILL.md`);
+    for (const skill of publishedSkills) {
+      expect(skill.name).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+      expect(skill.repository).toMatch(/^applification\/[A-Za-z0-9._-]+$/);
+      expect(skill.skillsShUrl).toBe(
+        `https://skills.sh/${skill.repository}/${skill.name}`,
+      );
+      expect(skill.rawUrl).toBe(
+        `https://raw.githubusercontent.com/${skill.repository}/main/${skill.path}`,
+      );
+      expect(skill.installCommand).toBe(
+        `npx skills add ${skill.repository} --skill ${skill.name}`,
+      );
+      expect(skill.description.length).toBeLessThanOrEqual(1024);
+    }
   });
 });

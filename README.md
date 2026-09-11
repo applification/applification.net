@@ -1,5 +1,7 @@
 # applification.net
 
+[![skills.sh](https://skills.sh/b/applification/applification.net)](https://skills.sh/applification/applification.net)
+
 Bun workspace for the Applification website and future services.
 
 ## Structure
@@ -8,6 +10,7 @@ Bun workspace for the Applification website and future services.
 apps/
   applification/   Next.js website
 packages/          Shared packages when the project needs them
+skills/            Agent skills published on skills.sh (generated; see below)
 ```
 
 ## Commands
@@ -36,6 +39,16 @@ The site shell is intentionally small. Product sections and page content will be
 `/agents` introduces the site's agent tools, with public content search and an expandable API reference. WebMCP tools can search and read published client work, writing and products, and fill an editable enquiry on the contact page for the visitor to review. The read-only `/api/v1/catalog` endpoint includes profile, product and commercial information. Pricing stays in JSON and tool responses rather than visible site pages. See [agent readiness](docs/agent-readiness.md) for WebMCP setup, verification commands and the remaining Wikipedia/Wikidata work.
 
 Public API reads use an independent, instance-local 120-request/minute allowance per client IP and return quota headers on success, query errors and throttling. See [rate-limit conventions](docs/agent-readiness.md#rate-limit-response-conventions) for header examples, scope, caching and deployment requirements.
+
+## Agent skills on skills.sh
+
+`skills/applification-site/SKILL.md` is the copy of the site skill that [skills.sh](https://skills.sh/applification/applification.net) indexes from this repository. It is generated from `apps/applification/src/lib/agent-skills.ts`, the same source as `/.well-known/agent-skills/applification-site/SKILL.md`, and a unit test fails when the two differ. After changing the skill run:
+
+```bash
+bun run skills:sync
+```
+
+Install it with `npx skills add applification/applification.net --skill applification-site`. The StoryLoop skill lives in [applification/storyloop-skill](https://github.com/applification/storyloop-skill). `/llms.txt`, `/.well-known/ard.json` and `/agents` link both listings.
 
 ## Contact service protection
 

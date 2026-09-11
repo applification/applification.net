@@ -1,6 +1,7 @@
 import { PageHero } from "@/components/page-hero";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/external-link";
+import { publishedSkills, siteRepositorySkillsShUrl } from "@/lib/agent-skills";
 import { sandboxUrl, siteUrl } from "@/lib/public-catalog";
 import { ContentTypeSelect } from "./content-type-select";
 import { RevealHashTarget } from "./reveal-hash-target";
@@ -145,6 +146,50 @@ export function AgentsPage() {
           details you provide. You review it and decide whether to send. The
           public information tools also work through the HTTP API.
         </p>
+      </InfoSection>
+
+      <InfoSection id="skills" title="Install a skill">
+        <p className="max-w-[65ch]">
+          Skills give a coding agent ready-made instructions for a task.
+          Applification publishes its skills on skills.sh from public GitHub
+          repositories, so one command installs them into Claude Code, Cursor,
+          Codex and other agents.
+        </p>
+        <ul className="space-y-6">
+          {publishedSkills.map((skill) => (
+            <li key={skill.name} className="space-y-3">
+              <p className="max-w-[65ch]">
+                <code className="font-data text-sm text-[var(--app-text-primary)]">
+                  {skill.name}
+                </code>
+                {": "}
+                {skill.description}
+              </p>
+              <CodeSample label={`Install ${skill.name}`}>
+                {skill.installCommand}
+              </CodeSample>
+              <div className="flex flex-wrap gap-x-6">
+                <ExternalLink className={infoLinkClass} href={skill.skillsShUrl}>
+                  <span className="link-sweep-label">View on skills.sh</span>
+                </ExternalLink>
+                <ExternalLink
+                  className={infoLinkClass}
+                  href={skill.repositoryUrl}
+                >
+                  <span className="link-sweep-label">Source on GitHub</span>
+                </ExternalLink>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className="flex flex-wrap gap-x-6">
+          <ExternalLink className={infoLinkClass} href={siteRepositorySkillsShUrl}>
+            <span className="link-sweep-label">All Applification skills</span>
+          </ExternalLink>
+          <InfoLink href="/.well-known/agent-skills/index.json">
+            Agent Skills discovery index
+          </InfoLink>
+        </div>
       </InfoSection>
 
       <InfoSection id="reference" title="Connecting an agent">

@@ -1,5 +1,6 @@
 import {
   agentSkillsIndexPath,
+  publishedSkills,
   siteSkillDescription,
   siteSkillName,
   siteSkillPath,
@@ -19,6 +20,15 @@ export const ardIdentifierPattern = /^urn:air:[a-zA-Z0-9.-]+(:[a-zA-Z0-9._-]+)+$
 
 const publisher = "applification.net";
 const llmsTxtUrl = `${siteUrl}/llms.txt`;
+const siteSkillListing = publishedSkills.find(
+  (skill) => skill.name === siteSkillName,
+);
+const storyloopSkill = publishedSkills.find(
+  (skill) => skill.name === "storyloop",
+);
+if (!siteSkillListing || !storyloopSkill) {
+  throw new Error("publishedSkills must list the site and StoryLoop skills");
+}
 
 export type ArdEntry = {
   identifier: string;
@@ -71,6 +81,29 @@ export const ardEntries: ArdEntry[] = [
     metadata: {
       indexUrl: `${siteUrl}${agentSkillsIndexPath}`,
       format: "agent-skills/0.2.0",
+      skillsShUrl: siteSkillListing.skillsShUrl,
+      repositoryUrl: siteSkillListing.repositoryUrl,
+      installCommand: siteSkillListing.installCommand,
+    },
+  },
+  {
+    identifier: `urn:air:${publisher}:skill:${storyloopSkill.name}`,
+    displayName: "StoryLoop agent skill",
+    type: "text/markdown",
+    url: storyloopSkill.rawUrl,
+    description: `${storyloopSkill.description} Published on skills.sh from the ${storyloopSkill.repository} GitHub repository.`,
+    representativeQueries: [
+      "Install the StoryLoop skill so my coding agent can use the StoryLoop MCP",
+      "How should an agent select, deliver and report on a StoryLoop story?",
+      "Draft story map improvements for owner review in StoryLoop",
+    ],
+    capabilities: ["skill-md"],
+    tags: ["agent-skills", "skill-md", "skills-sh", "storyloop", "mcp"],
+    metadata: {
+      skillsShUrl: storyloopSkill.skillsShUrl,
+      repositoryUrl: storyloopSkill.repositoryUrl,
+      installCommand: storyloopSkill.installCommand,
+      productUrl: `${siteUrl}/products/storyloops`,
     },
   },
   {
