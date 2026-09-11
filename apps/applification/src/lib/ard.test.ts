@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { GET } from "@/app/.well-known/ard.json/route";
 import { ardContext, ardEntries, ardIdentifierPattern } from "./ard";
-import { agentSkillsIndex } from "./agent-skills";
+import { agentSkillsIndex, publishedSkills } from "./agent-skills";
 
 describe("agentic resource discovery manifest", () => {
   it("serves a JSON manifest with an entries array", async () => {
@@ -25,7 +25,10 @@ describe("agentic resource discovery manifest", () => {
       identifiers.add(entry.identifier);
       expect(entry.displayName.length).toBeGreaterThan(0);
       expect(entry.type).toMatch(/^[a-z]+\/[a-z0-9.+-]+$/);
-      expect(entry.url).toMatch(/^https:\/\/www\.applification\.net\//);
+      // Artifacts live on this domain or in Applification's GitHub org.
+      expect(entry.url).toMatch(
+        /^https:\/\/(www\.applification\.net|raw\.githubusercontent\.com\/applification)\//,
+      );
       expect("data" in entry).toBe(false);
       expect(entry.representativeQueries.length).toBeGreaterThanOrEqual(2);
       expect(entry.representativeQueries.length).toBeLessThanOrEqual(5);
@@ -38,5 +41,20 @@ describe("agentic resource discovery manifest", () => {
     );
     expect(skill?.url).toBe(agentSkillsIndex.skills[0].url);
     expect(skill?.description).toBe(agentSkillsIndex.skills[0].description);
+  });
+
+  it("links every published skill entry to its skills.sh listing and repository", () => {
+    for (const published of publishedSkills) {
+      const entry = ardEntries.find(
+        (candidate) =>
+          candidate.identifier ===
+          `urn:air:applification.net:skill:${published.name}`,
+      );
+      expect(entry?.metadata).toMatchObject({
+        skillsShUrl: published.skillsShUrl,
+        repositoryUrl: published.repositoryUrl,
+        installCommand: published.installCommand,
+      });
+    }
   });
 });
