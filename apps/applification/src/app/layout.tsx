@@ -9,6 +9,7 @@ import {
 } from "@/lib/contract-positioning";
 import { isContactWorkflowAvailable } from "@/lib/contact";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 import { WebMcpTools } from "@/components/webmcp-tools";
 import { appFontVariables } from "./fonts";
 import "./globals.css";
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <SiteFooter />
           </div>
         </TooltipProvider>
+        <Toaster />
         <Analytics />
         <WebMcpTools />
       </body>

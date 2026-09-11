@@ -1,6 +1,7 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { toast } from "sonner";
 import { ArrowUpRight, Copy, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,9 +12,11 @@ export function AssistantPromptComposer() {
   const id = useId();
   const promptRef = useRef<HTMLTextAreaElement>(null);
   const [prompt, setPrompt] = useState<string>(agentsCopy.prompt);
-  const [copyStatus, setCopyStatus] = useState("");
   const hasPrompt = prompt.trim().length > 0;
   const geminiFormId = `${id}-gemini`;
+  const copyToastId = `${id}-copy`;
+
+  useEffect(() => () => { toast.dismiss(copyToastId); }, [copyToastId]);
 
   async function copyPrompt(destination: "clipboard" | "gemini") {
     // Read the field itself so browser autofill and edits are copied exactly.
@@ -22,14 +25,21 @@ export function AssistantPromptComposer() {
     try {
       await navigator.clipboard.writeText(text);
       if (promptRef.current?.value !== text) return;
-      setCopyStatus(destination === "gemini"
-        ? "Prompt copied. Paste it into Gemini to start your conversation."
-        : "Prompt copied. Paste it into your chat.");
+      toast.success("Prompt copied", {
+        id: copyToastId,
+        description: destination === "gemini"
+          ? "Paste it into Gemini to start your conversation."
+          : "Paste it into your chat.",
+      });
     } catch {
       if (promptRef.current?.value !== text) return;
-      setCopyStatus(destination === "gemini"
-        ? "Select and copy your prompt, then paste it into Gemini."
-        : "Select and copy your prompt, then paste it into your chat.");
+      toast.error("Couldn’t copy prompt", {
+        id: copyToastId,
+        duration: 6000,
+        description: destination === "gemini"
+          ? "Select and copy your prompt, then paste it into Gemini."
+          : "Select and copy your prompt, then paste it into your chat.",
+      });
       promptRef.current?.focus();
       promptRef.current?.select();
     }
@@ -45,7 +55,7 @@ export function AssistantPromptComposer() {
         method="get"
         target="_blank"
         rel="noopener noreferrer"
-        onReset={() => { setPrompt(agentsCopy.prompt); setCopyStatus(""); }}
+        onReset={() => { setPrompt(agentsCopy.prompt); toast.dismiss(copyToastId); }}
         className="space-y-5"
       >
         <div>
@@ -67,12 +77,11 @@ export function AssistantPromptComposer() {
             required
             rows={6}
             value={prompt}
-            onChange={(event) => { setPrompt(event.target.value); setCopyStatus(""); }}
+            onChange={(event) => { setPrompt(event.target.value); toast.dismiss(copyToastId); }}
             aria-describedby={`${id}-hint`}
             className="min-h-48 resize-y bg-[var(--app-card)] p-4 text-base leading-relaxed text-[var(--app-text-primary)] md:text-base dark:bg-[var(--app-card)] motion-reduce:transition-none"
           />
           <p id={`${id}-hint`} className="mt-2 text-sm text-[var(--app-text-muted)]">Add your project, a question, or what you’d like to explore.</p>
-          <p role="status" className="mt-2 text-sm text-[var(--app-text-secondary)] empty:hidden">{copyStatus}</p>
         </div>
         <div role="group" aria-label="Open this prompt with an assistant" className="flex flex-wrap gap-x-2">
           {assistantPromptLinks.map(({ id: assistant, name, label, href }) => (

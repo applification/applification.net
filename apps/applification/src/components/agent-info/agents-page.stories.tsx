@@ -3,6 +3,7 @@ import { usePathname } from "@storybook/nextjs-vite/navigation.mock";
 import { expect, within, userEvent, waitFor } from "storybook/test";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Toaster } from "@/components/ui/sonner";
 import { AgentsPage } from "./agents-page";
 import { agentsCopy } from "@/lib/content/site-pages";
 
@@ -13,6 +14,7 @@ function Fixture() {
       <SiteHeader />
       <AgentsPage />
       <SiteFooter />
+      <Toaster />
     </>
   );
 }
@@ -163,7 +165,7 @@ function checkGeminiCopy(fail: boolean): NonNullable<Story["play"]> {
     button.form!.addEventListener("submit", keepStoryOpen);
     try {
       await userEvent.click(button);
-      await expect(canvas.getByText(fail ? "Select and copy your prompt, then paste it into Gemini." : "Prompt copied. Paste it into Gemini to start your conversation.")).toBeVisible();
+      await waitFor(() => expect(canvas.getByText(fail ? "Select and copy your prompt, then paste it into Gemini." : "Paste it into Gemini to start your conversation.")).toBeVisible());
       await expect(copied).toBe(fail ? "" : agentsCopy.prompt);
       await expect(button.formAction).toBe("https://gemini.google.com/app");
       await expect(button.form!.target).toBe("_blank");
@@ -177,6 +179,38 @@ function checkGeminiCopy(fail: boolean): NonNullable<Story["play"]> {
 
 export const GeminiCopyPrompt: Story = { play: checkGeminiCopy(false) };
 export const GeminiClipboardUnavailable: Story = { play: checkGeminiCopy(true) };
+
+const checkCopyToast: NonNullable<Story["play"]> = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const descriptor = Object.getOwnPropertyDescriptor(navigator, "clipboard");
+  let copied = "";
+  Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async (text: string) => { copied = text; } } });
+  const button = canvas.getByRole("button", { name: "Copy prompt" });
+  const choices = canvas.getByRole("group", { name: "Open this prompt with an assistant" });
+  try {
+    button.focus();
+    const before = choices.getBoundingClientRect();
+    await userEvent.keyboard("{Enter}");
+    await waitFor(() => expect(canvas.getByText("Prompt copied")).toBeVisible());
+    await expect(copied).toBe(agentsCopy.prompt);
+    await expect(button).toHaveFocus();
+    await expect(choices.getBoundingClientRect().top).toBe(before.top);
+    await expect(choices.getBoundingClientRect().height).toBe(before.height);
+    await userEvent.keyboard("{Enter}");
+    await expect(canvas.getAllByText("Prompt copied")).toHaveLength(1);
+    await waitFor(() => expect(canvas.queryByText("Prompt copied")).not.toBeInTheDocument(), { timeout: 6000 });
+    await expect(choices.getBoundingClientRect().top).toBe(before.top);
+  } finally {
+    if (descriptor) Object.defineProperty(navigator, "clipboard", descriptor);
+    else Reflect.deleteProperty(navigator, "clipboard");
+  }
+};
+
+export const CopyToast: Story = { play: checkCopyToast };
+export const CopyToastMobileDark: Story = {
+  globals: { theme: "dark", viewport: { value: "mobile", isRotated: false } },
+  play: checkCopyToast,
+};
 
 export const EditAndResetPrompt: Story = {
   play: async ({ canvasElement }) => {
@@ -204,9 +238,9 @@ export const EditAndResetPrompt: Story = {
       await expect(copied).toBe(edited);
       await userEvent.click(canvas.getByRole("button", { name: "Copy prompt" }));
       await expect(copied).toBe(edited);
-      await expect(canvas.getByText("Prompt copied. Paste it into your chat.")).toBeVisible();
+      await waitFor(() => expect(canvas.getByText("Paste it into your chat.")).toBeVisible());
       await userEvent.type(field, " More detail.");
-      await expect(canvas.queryByText("Prompt copied. Paste it into your chat.")).not.toBeInTheDocument();
+      await waitFor(() => expect(canvas.queryByText("Paste it into your chat.")).not.toBeInTheDocument());
       await userEvent.click(canvas.getByRole("button", { name: "Reset prompt" }));
       await expect(field).toHaveValue(agentsCopy.prompt);
       await expect(new FormData(field.form!).get("q")).toBe(agentsCopy.prompt);
