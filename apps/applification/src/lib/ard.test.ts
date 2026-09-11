@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { GET } from "@/app/.well-known/ard.json/route";
-import { ardContext, ardEntries, ardIdentifierPattern } from "./ard";
+import {
+  ardContext,
+  ardEntries,
+  ardIdentifierPattern,
+  ardSpecVersion,
+} from "./ard";
 import { agentSkillsIndex, publishedSkills } from "./agent-skills";
 
 describe("agentic resource discovery manifest", () => {
@@ -10,6 +15,7 @@ describe("agentic resource discovery manifest", () => {
     expect(response.headers.get("access-control-allow-origin")).toBe("*");
     const manifest = await response.json();
     expect(manifest["@context"]).toBe(ardContext);
+    expect(manifest.specVersion).toBe(ardSpecVersion);
     expect(Array.isArray(manifest.entries)).toBe(true);
     expect(manifest.entries).toHaveLength(ardEntries.length);
   });

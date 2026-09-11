@@ -16,6 +16,7 @@ import { publicProfile, sandboxUrl, siteUrl } from "./public-catalog";
 // 2-5 representativeQueries per entry. See https://agenticresourcediscovery.org/spec/
 export const ardPath = "/.well-known/ard.json";
 export const ardContext = "https://agenticresourcediscovery.org/context/v1";
+export const ardSpecVersion = "0.91";
 export const ardIdentifierPattern = /^urn:air:[a-zA-Z0-9.-]+(:[a-zA-Z0-9._-]+)+$/;
 
 const publisher = "applification.net";
@@ -123,5 +124,6 @@ export const ardEntries: ArdEntry[] = [
 
 export const ardManifest = {
   "@context": ardContext,
+  specVersion: ardSpecVersion,
   entries: ardEntries,
 };
