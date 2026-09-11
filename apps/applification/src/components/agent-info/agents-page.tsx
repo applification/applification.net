@@ -1,12 +1,12 @@
 import { PageHero } from "@/components/page-hero";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { ExternalLink } from "@/components/external-link";
 import { publishedSkills, siteRepositorySkillsShUrl } from "@/lib/agent-skills-public";
 import { sandboxUrl, siteUrl } from "@/lib/public-catalog";
 import { ContentTypeSelect } from "./content-type-select";
 import { RevealHashTarget } from "./reveal-hash-target";
 import { CopyTextButton } from "@/components/copy-text-button";
-import { agentsCopy } from "@/lib/content/site-pages";
+import { agentsCopy, assistantPromptLinks } from "@/lib/content/site-pages";
 import {
   CodeSample,
   InfoLink,
@@ -46,11 +46,24 @@ export function AgentsPage() {
       />
 
       <InfoSection id="conversation" title="A starting point for your conversation">
-        <p className="max-w-[65ch]">{agentsCopy.guidance}</p>
+        <p className="max-w-[65ch]">{agentsCopy.handoff}</p>
         <blockquote className="max-w-[65ch] border-l-2 border-[var(--app-action)] pl-5 text-[var(--app-text-primary)]">
           {agentsCopy.prompt}
         </blockquote>
-        <CopyTextButton text={agentsCopy.prompt} label="Copy a starter prompt" fallback="Select and copy the prompt above, then paste it into your chat." />
+        <div className="flex flex-wrap items-start gap-3">
+          {assistantPromptLinks.map(({ label, href }) => (
+            <ExternalLink
+              key={label}
+              href={href}
+              aria-label={label}
+              className={buttonVariants({ className: "min-h-11 px-4 motion-reduce:transform-none motion-reduce:transition-none" })}
+            >
+              {label}
+            </ExternalLink>
+          ))}
+          <CopyTextButton text={agentsCopy.prompt} label="Copy a starter prompt" variant="outline" fallback="Select and copy the prompt above, then paste it into your chat." />
+        </div>
+        <p className="max-w-[65ch]">{agentsCopy.guidance}</p>
         <p className="max-w-[65ch] text-base">
           You can also ask which products are available, find examples of production AI,
           or explore how I work with a team. Your assistant reads the public pages;

@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ComponentProps } from "react";
 import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function CopyTextButton({ text, label, fallback }: {
+export function CopyTextButton({ text, label, fallback, variant }: {
   text: string;
   label: string;
   fallback: string;
+  variant?: ComponentProps<typeof Button>["variant"];
 }) {
   const [status, setStatus] = useState<"idle" | "copied" | "failed">("idle");
 
@@ -22,7 +23,7 @@ export function CopyTextButton({ text, label, fallback }: {
 
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-      <Button type="button" onClick={copy} className="min-h-11 px-4 motion-reduce:transform-none motion-reduce:transition-none">
+      <Button type="button" variant={variant} onClick={copy} className="min-h-11 px-4 motion-reduce:transform-none motion-reduce:transition-none">
         {status === "copied" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
         {label}
       </Button>

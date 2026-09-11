@@ -2,7 +2,7 @@ import { getPublishedContent } from "./public-content.server";
 import type { PublicContent } from "./content-schema";
 import { publicProfile, siteUrl, sandboxUrl } from "./public-catalog";
 import { hasAgentView, humanPath, markdownPath } from "./page-view";
-import { agentsCopy, sitePageCopy } from "./content/site-pages";
+import { agentsCopy, assistantPromptLinks, sitePageCopy } from "./content/site-pages";
 import { careerTimeline, positions, profileFacts, bestFit, selectedWriting } from "./content/about";
 import { publicApiUsageDescription } from "./public-api-policy";
 import { publishedSkills } from "./agent-skills-public";
@@ -95,8 +95,9 @@ export function getPageMarkdown(path: string): MarkdownPage | null {
     title = agentsCopy.title;
     body = [
       agentsCopy.description,
+      `## A starting point for your conversation\n\n${agentsCopy.handoff}\n\n${agentsCopy.prompt}`,
+      assistantPromptLinks.map(({ label, href }) => `- ${link(label, href)}`).join("\n"),
       agentsCopy.guidance,
-      `## A starting point for your conversation\n\n${agentsCopy.prompt}`,
       `## API docs for agents\n\nPublic site information. Read-only access. No account or key.\n\nSandbox first call: ${sandboxUrl}`,
       `- ${link("Site guide for agents", `${siteUrl}/llms.txt`)}\n- ${link("OpenAPI reference", `${siteUrl}/api/openapi.json`)}\n- ${link("Search published content", `${siteUrl}/api/v1/search`)}\n- ${link("API and WebMCP reference", `${siteUrl}/agents#reference`)}`,
       `## API usage\n\n${publicApiUsageDescription}`,

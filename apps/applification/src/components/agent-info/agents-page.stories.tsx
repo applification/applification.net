@@ -4,6 +4,7 @@ import { expect, within, userEvent, waitFor } from "storybook/test";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { AgentsPage } from "./agents-page";
+import { agentsCopy } from "@/lib/content/site-pages";
 
 function Fixture() {
   usePathname.mockReturnValue("/agents");
@@ -31,6 +32,23 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   await expect(canvas.getAllByRole("heading", { level: 1 })).toHaveLength(1);
   await expect(canvas.getByRole("heading", { level: 1 })).toHaveTextContent("Explore my work with your AI.");
   await expect(canvas.getByRole("button", { name: "Copy a starter prompt" })).toBeVisible();
+  const chatgpt = canvas.getByRole("link", { name: "Open in ChatGPT, opens in a new tab" });
+  const claude = canvas.getByRole("link", { name: "Open in Claude, opens in a new tab" });
+  for (const [link, destination] of [[chatgpt, "https://chatgpt.com/"], [claude, "https://claude.ai/new"]] as const) {
+    await expect(link).toBeVisible();
+    const url = new URL(link.getAttribute("href")!);
+    await expect(`${url.origin}${url.pathname}`).toBe(destination);
+    await expect(url.searchParams.get("q")).toBe(agentsCopy.prompt);
+    await expect(link).toHaveAttribute("target", "_blank");
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    await expect(link.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
+  }
+  chatgpt.focus();
+  await expect(chatgpt).toHaveFocus();
+  await userEvent.tab();
+  await expect(claude).toHaveFocus();
+  await userEvent.tab();
+  await expect(canvas.getByRole("button", { name: "Copy a starter prompt" })).toHaveFocus();
   await expect(canvas.getByText(/Enable web access/)).toBeVisible();
   await expect(
     canvas.getByRole("link", { name: "OpenAPI reference" }),

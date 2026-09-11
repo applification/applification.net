@@ -27,7 +27,15 @@ export const sitePageCopy = {
 
 export const agentsCopy = {
   title: "Explore my work with your AI.",
-  description: "Prefer a conversation? Share a link from this site with ChatGPT or Claude and ask about my experience, explore a product, or find work relevant to your project.",
+  description: "Prefer a conversation? Open this site in ChatGPT or Claude and ask about my experience, explore a product, or find work relevant to your project.",
+  handoff: "Open your preferred assistant with the prompt below. You may need to sign in. If the prompt does not carry over, copy and paste it into your chat.",
   guidance: "Enable web access so your assistant can read the linked pages. If it cannot open a page, use Agent view to copy its Markdown into your conversation.",
   prompt: "Read https://www.applification.net and help me understand Dave Hudson’s experience. Ask me about my project, then find relevant examples from his client work and writing. Include links to your sources. If you cannot access a page, tell me and ask me to paste its content.",
 } as const;
+
+// Keep the visible, copied and linked prompts identical. Use ordinary web links
+// so visitors can continue in a browser without installing a desktop app.
+export const assistantPromptLinks = [
+  { label: "Open in ChatGPT", href: `https://chatgpt.com/?q=${encodeURIComponent(agentsCopy.prompt)}` },
+  { label: "Open in Claude", href: `https://claude.ai/new?q=${encodeURIComponent(agentsCopy.prompt)}` },
+] as const;
