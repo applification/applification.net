@@ -1,3 +1,4 @@
+import { sitePageCopy } from "@/lib/content/site-pages";
 import { supportingCases } from "@/lib/content/client-work";
 import { ExternalLink } from "@/components/external-link";
 import { CaseStudyVisual } from "./case-study-visual";
@@ -73,16 +74,14 @@ export function ClientWorkHero() {
       aside={<CurrentBrief />}
       description={
         <p>
-          More than 20 years building greenfield products and rebuilding
-          brittle frontends for startups, scale-ups and public services, close
-          to both product decisions and code.
+          {sitePageCopy.clientWork.description}
         </p>
       }
       eyebrow="CLIENT WORK"
       eyebrowDetail="EVIDENCE OVER CLAIMS"
       headingId="client-work-heading"
       sectionProps={{ "data-client-work-section": "opening-brief" }}
-      title="Production work, with the decisions and outcomes attached."
+      title={sitePageCopy.clientWork.title}
     />
   );
 }

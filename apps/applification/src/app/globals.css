@@ -617,6 +617,11 @@ html {
     transition: width 220ms ease-out, height 220ms ease-out;
   }
 
+  .page-view-switch a {
+    min-height: var(--header-control-size);
+    transition: min-height 220ms ease-out;
+  }
+
   .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-brand { gap: 0; }
   .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-mark { width: 32px; height: 24px; }
   .site-header[data-compact="true"]:not(:has(:focus-visible)) .site-header-wordmark { max-width: 0; opacity: 0; }

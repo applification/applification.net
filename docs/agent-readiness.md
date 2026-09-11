@@ -2,6 +2,16 @@
 
 The ora scan supplied for applification.net scored 35/100 (D). This branch adds useful public information and browser tools for a personal portfolio and contract engineering business.
 
+## Human and Agent views
+
+Public content pages expose a Human / Agent header switch. `/agent` shows the homepage as Markdown inside the site shell; `/agent/<page-path>` shows the selected page. `/markdown` and `/markdown/<page-path>` return the same complete document as `text/markdown`, with CORS, a canonical Link header and a one-hour cache. The header advertises a Markdown alternate and `llms.txt` documents the URL pattern. The Agent HTML view has a canonical URL pointing back to the human page and is marked noindex to avoid duplicate search entries.
+
+Supported pages are home, about, client work (index and case studies), products (index and detail), published writing (index and articles), agents and privacy. Contact forms and review capabilities, previews, unpublished writing, arbitrary paths and API routes have no Markdown view. The reader uses explicit route matching and published-content loaders, never a request-controlled file read or self-fetch. API continuation chunks are rejoined without breaking long paragraphs or code fences. Commercial terms remain in the existing public API.
+
+Authored introductions, about-page evidence and privacy copy live in `src/lib/content/` and are shared with the visual pages. Case studies, products and writing use the existing published-content reader. The Agent view renders plain text, so embedded HTML is never executed. Header navigation preserves Agent mode for supported destinations; returning to Human restores the corresponding page path. Query filters and fragments are not copied into the public reader. The selected writing index is the complete published archive.
+
+The Agents guide introduces using ChatGPT or Claude with web access, then offers a copyable starter prompt. If web fetching fails, visitors can paste the Markdown themselves. Copy controls report both success and a manual-copy fallback. These are browsing and clipboard workflows; no native ChatGPT/Claude connector is claimed or installed. Browser-safe skill descriptions are separated from the server-side discovery digest so Storybook can render the guide.
+
 ## Implemented surfaces
 
 - `/`: server-rendered JSON-LD linking Dave Hudson (`Person`), Applification (`Organization`) and the site (`WebSite`), with existing public profile links. JSON is escaped before embedding in HTML.

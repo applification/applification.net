@@ -1,3 +1,4 @@
+import { sitePageCopy } from "@/lib/content/site-pages";
 import { heroTopSpacing } from "@/components/page-hero";
 import { ExternalLink } from "@/components/external-link";
 import { contractPositioning, personalLinkedInUrl } from "@/lib/contract-positioning";
@@ -426,17 +427,15 @@ export function Hero() {
             className="font-heading max-w-[1080px] text-[clamp(2.75rem,12vw,3.25rem)] leading-[0.98] font-medium tracking-[-0.025em] text-[var(--hero-text)] min-[720px]:text-[64px] min-[720px]:leading-[1] min-[1060px]:text-[78px] min-[1060px]:tracking-[-0.03em] min-[1280px]:text-[84px]"
             id="hero-heading"
           >
-            React and Next.js products.
-            <br className="hidden min-[720px]:block" /> Production AI that earns its place.
+            {sitePageCopy.home.title[0]}
+            <br className="hidden min-[720px]:block" /> {sitePageCopy.home.title[1]}
           </h1>
         </HeroEntrance>
 
         <div className="grid gap-6 min-[1060px]:grid-cols-[minmax(0,660px)_minmax(0,1fr)] min-[1060px]:items-end min-[1060px]:gap-x-16">
           <HeroEntrance className="flex flex-col gap-6" order={2}>
             <p className="max-w-[640px] text-base leading-[1.5] text-[var(--hero-text-secondary)] min-[720px]:text-[19px] min-[720px]:leading-[1.45] min-[1060px]:text-xl">
-              I join product teams to build web applications, modernise existing
-              frontends and put AI into production. Senior engineering, from the
-              first technical decision through to release.
+              {sitePageCopy.home.description}
             </p>
             <div className="flex flex-col items-stretch gap-2 min-[560px]:flex-row min-[560px]:flex-wrap min-[560px]:items-center min-[560px]:gap-3">
               {contactAvailable ? (
@@ -472,8 +471,7 @@ export function Hero() {
               How I work with AI
             </p>
             <p className="mt-2.5 text-[15px] leading-[1.5] text-[var(--hero-text-secondary)] min-[1060px]:text-base">
-              I use agents to shape scope, gather context, implement, test and
-              review. The work still ships on evidence and human approval.
+              {sitePageCopy.home.method}
             </p>
             <Link
               className={`link-sweep mt-1 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-[var(--hero-text)] ${heroFocusClasses}`}

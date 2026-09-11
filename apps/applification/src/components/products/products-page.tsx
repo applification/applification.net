@@ -1,3 +1,4 @@
+import { sitePageCopy } from "@/lib/content/site-pages";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ProductStatus } from "@/components/home/product-status";
@@ -75,14 +76,13 @@ export function ProductsHero() {
       density="compact"
       description={
         <p>
-          A small portfolio of tools for clearer agent collaboration, shared
-          domain context and useful everyday software.
+          {sitePageCopy.products.description}
         </p>
       }
       eyebrow="PRODUCTS"
       eyebrowDetail="LIVE, IN DEVELOPMENT AND R&D"
       headingId="products-page-heading"
-      title="Products built around real work."
+      title={sitePageCopy.products.title}
     />
   );
 }

@@ -207,6 +207,46 @@ export const DesktopContact: Story = {
   },
 };
 
+export const AgentDetail: Story = {
+  render: () => {
+    usePathname.mockReturnValue("/agent/products/contexture");
+    return <SiteHeader />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole("link", { name: "Human" })).toHaveAttribute("href", "/products/contexture");
+    await expect(canvas.getByRole("link", { name: "Agent" })).toHaveAttribute("aria-current", "page");
+    await expect(canvas.getByRole("link", { name: "Products" })).toHaveAttribute("href", "/agent/products");
+    await expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute("href", "/agent");
+    await expect(canvas.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+    await expect(canvasElement.querySelector("header")).not.toHaveAttribute("data-product-theme");
+  },
+};
+
+export const PrivateReview: Story = {
+  render: () => {
+    usePathname.mockReturnValue("/contact/review/private-capability");
+    return <SiteHeader />;
+  },
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).queryByRole("group", { name: "Page view" })).not.toBeInTheDocument();
+  },
+};
+
+export const SmallMobile: Story = {
+  globals: { viewport: { value: "iphoneSeSmall", isRotated: false } },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const view = canvas.getByRole("group", { name: "Page view" });
+    const brand = canvas.getByRole("link", { name: "Applification home" });
+    const menu = canvas.getByRole("button", { name: "Open navigation menu" });
+    await expect(brand.getBoundingClientRect().right + 8).toBeLessThanOrEqual(view.getBoundingClientRect().left);
+    await expect(view.getBoundingClientRect().right + 8).toBeLessThanOrEqual(menu.getBoundingClientRect().left);
+    await expect(canvas.getByRole("link", { name: "Agent" })).toHaveAttribute("href", "/agent");
+    await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
+  },
+};
+
 export const DesktopPlantry = productHeaderStory(
   "/products/plantry",
   "plantry",

@@ -29,6 +29,9 @@ type Story = StoryObj<typeof meta>;
 const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await expect(canvas.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+  await expect(canvas.getByRole("heading", { level: 1 })).toHaveTextContent("Explore my work with your AI.");
+  await expect(canvas.getByRole("button", { name: "Copy a starter prompt" })).toBeVisible();
+  await expect(canvas.getByText(/Enable web access/)).toBeVisible();
   await expect(
     canvas.getByRole("link", { name: "OpenAPI reference" }),
   ).toHaveAttribute("href", "/api/openapi.json");
