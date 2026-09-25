@@ -1,11 +1,17 @@
 import { checkBotId } from "botid/server";
 import { checkRateLimit } from "@vercel/firewall";
+import { isContactWorkflowAvailable } from "./contact";
 import { getContactPublicBaseUrl } from "./contact-public-url";
 import { rateLimitHeaders } from "./rate-limit-headers";
 
 export type ContactOperation = "prepare" | "attachment" | "deliver";
 
 export async function guardContactRequest(request: Request, operation: ContactOperation) {
+  // CONTACT_WORKFLOW_ENABLED=false is the kill switch: it must stop AI spend,
+  // uploads and email, not just hide the page.
+  if (!isContactWorkflowAvailable()) {
+    return Response.json({ code: "contact_unavailable", message: "The contact form is switched off at the moment. Contact Dave through LinkedIn instead." }, { status: 503, headers: { "Cache-Control": "no-store" } });
+  }
   const origin = request.headers.get("origin");
   const allowedOrigins = [new URL(request.url).origin];
   const publicBaseUrl = getContactPublicBaseUrl();

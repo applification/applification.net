@@ -16,7 +16,10 @@ export const contactAttachmentSchema = z
 
 export const deleteContactAttachmentSchema = z
   .object({
-    pathname: z.string().startsWith("contact/unsubmitted/").max(1_024),
+    pathname: z
+      .string()
+      .max(1_024)
+      .regex(/^contact\/unsubmitted\/[0-9a-f]{32}\/[\p{L}\p{N} ._()-]+\.(?:pdf|docx)$/iu),
   })
   .strict();
 

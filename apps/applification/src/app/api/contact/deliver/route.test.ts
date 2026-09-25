@@ -123,12 +123,22 @@ describe("contact delivery async job", () => {
   it("reports job status as JSON from the polling endpoint", async () => {
     mocks.getRun.mockImplementation(() => ({
       status: Promise.resolve("completed"),
-      returnValue: Promise.resolve({ receipt: "ok" }),
+      returnValue: Promise.resolve({
+        route: "contract",
+        sentFields: ["Role", "Reply email"],
+        deliveryId: "email-1",
+        cvFollowUpRequiresApproval: true,
+        cvReviewRunId: "wrun_private_review",
+      }),
     }));
     const response = await GET(
       new Request("https://example.com/api/contact/deliver?runId=wrun_1"),
     );
-    expect(await response.json()).toEqual({ status: "completed", result: { receipt: "ok" } });
+    // Internal run and provider IDs must not leak to whoever holds the run ID.
+    expect(await response.json()).toEqual({
+      status: "completed",
+      result: { route: "contract", sentFields: ["Role", "Reply email"], cvFollowUpRequiresApproval: true },
+    });
 
     const bad = await GET(new Request("https://example.com/api/contact/deliver?runId=nope"));
     expect(bad.status).toBe(400);

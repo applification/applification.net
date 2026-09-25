@@ -171,7 +171,15 @@ export const contactDeliveryStatusSchema = z.discriminatedUnion("status", [
   z.object({ status: z.literal("running") }),
   z.object({
     status: z.literal("completed"),
-    result: z.unknown().describe("Delivery receipt for the reviewed brief."),
+    result: z
+      .object({
+        route: contactRoute,
+        sentFields: z.array(z.string()).describe("Labels of the brief fields that were delivered."),
+        cvFollowUpRequiresApproval: z
+          .boolean()
+          .describe("True for contract enquiries: Dave reviews the request before any CV is sent."),
+      })
+      .describe("Delivery receipt for the reviewed brief."),
   }),
   z.object({ status: z.literal("failed"), message: z.string() }),
 ]);
@@ -192,6 +200,23 @@ export const contactErrorSchema = z.object({
       "bot_blocked",
       "protection_unavailable",
       "workflow_unavailable",
+      "contact_unavailable",
+      "provider_error",
+      "budget_exhausted",
+      "timeout",
+      "free_tier_limited",
+      "malformed_response",
+      "not_configured",
+      "empty",
+      "filename",
+      "signature",
+      "type",
+      "size",
+      "storage_unavailable",
+      "storage_error",
+      "cleanup_unavailable",
+      "not_found",
+      "link_expired",
     ])
     .describe("Stable machine-readable error code."),
   message: z.string().describe("What went wrong and what to do next."),
