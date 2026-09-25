@@ -1,67 +1,143 @@
 # applification.net
 
+[![CI](https://github.com/applification/applification.net/actions/workflows/ci.yml/badge.svg)](https://github.com/applification/applification.net/actions/workflows/ci.yml)
 [![skills.sh](https://skills.sh/b/applification/applification.net)](https://skills.sh/applification/applification.net)
 
-Bun workspace for the Applification website and future services.
+The source of [www.applification.net](https://www.applification.net): Dave Hudson's portfolio and contract engineering site. It covers:
+- product pages for Contexture, Plantry, StoryLoops and Voiced
+- client case studies
+- articles and weeknotes
+- a public read-only API with agent tooling
+- an AI-assisted contact workflow with private CV review
+
+It is a Bun workspace with a single Next.js 16 app, deployed on **Vercel**.
 
 ## Structure
 
 ```text
-apps/
-  applification/   Next.js website
-packages/          Shared packages when the project needs them
-skills/            Agent skills published on skills.sh (generated; see below)
+apps/applification/   Next.js website (App Router, React 19, Tailwind 4, shadcn/Radix)
+  content/writing/    Articles and weeknotes as Markdown
+  src/app/            Routes, route handlers and metadata
+  src/components/     UI components, with Storybook stories alongside
+  src/lib/            Domain logic, content loaders and zod schemas
+  src/workflows/      Durable Vercel Workflows for the contact service
+docs/                 Architecture, runbooks, agent readiness and audits
+skills/               Agent skill published on skills.sh (generated; see below)
+applification.pen     Design file used for visual intent and design-token checks
 ```
 
-## Commands
+For how the parts fit together, see **[docs/architecture.md](docs/architecture.md)**.
+
+## Getting started
+
+Requirements:
+- **Bun:** the version pinned in `package.json` under `packageManager`.
+- **Node.js 22:** Next and Vitest run on Node.
 
 ```bash
 bun install
 bun run dev
-bun run dev:tailscale
-bun run build
-bun run lint
-bun run typecheck
 ```
 
-`bun run dev` uses Portless and serves the site at `https://applification.localhost` with a trusted local certificate. The first run creates and trusts Portless's local certificate authority. The `.localhost` name only works on the Mac running the server because every device resolves it to its own loopback address.
+`bun run dev` uses Portless to serve the site at `https://applification.localhost` with a trusted local certificate. The first run creates and trusts Portless's local certificate authority. The `.localhost` name resolves only on the machine running the server.
 
-`bun run dev:tailscale` also exposes the site through Tailscale HTTPS and prints the assigned `https://rufus.tail12a0a0.ts.net[:port]` URL. Use that URL from another Mac, another tailnet device or T3 Code's shared preview. Portless chooses a free Tailscale HTTPS port, so existing Serve routes are preserved. Use `bun run dev:direct` only when the proxy is unsuitable; it retains the old `http://localhost:3333` server.
+Two other ways to run it:
+- **`bun run dev:tailscale`** also exposes the site over Tailscale HTTPS and prints the assigned `https://<machine>.<tailnet>.ts.net[:port]` URL. Use that URL from another device on your tailnet.
+- **`bun run dev:direct`** skips the proxy and serves `http://localhost:3333`.
 
-## Railway
+Most of the site needs no configuration. The contact workflow needs the variables in `apps/applification/.env.example`. It is enabled automatically in development, and it only calls the AI Gateway when a key is set.
 
-Connect Railway to the repository root. The root `build` and `start` scripts run the website workspace. Railway supplies `PORT` to `next start`.
+## Commands
 
-The site shell is intentionally small. Product sections and page content will be planned and delivered through StoryLoops.
+Run these from the repository root.
+
+| Command | What it does |
+| --- | --- |
+| `bun run dev` | Start the dev server (Portless HTTPS) |
+| `bun run build` / `bun run start` | Production build and server |
+| `bun run lint` | ESLint |
+| `bun run typecheck` | Generate Next route types, then `tsc --noEmit` |
+| `bun run test` | Unit tests: domain logic, route handlers, content, media and drift checks |
+| `bun run test:workflow` | Durable workflow tests (`@workflow/vitest`) |
+| `bun run test:storybook` | Storybook interaction and axe accessibility tests in headless Chromium (run `bunx playwright install chromium` once) |
+| `bun run check` | Lint, typecheck, unit and workflow tests together |
+| `bun run skills:sync` | Regenerate `skills/applification-site/SKILL.md` |
+
+Inside `apps/applification` you can also run:
+- `bun run storybook`: Storybook on port 6006.
+- `bun run content:import`: the one-off importer for legacy writing.
+
+**Always use `bun run test`, not `bun test`.** The latter starts Bun's own test runner instead of Vitest.
+
+## Quality gates
+
+CI (`.github/workflows/ci.yml`) runs on every pull request and every push to `main`, in three jobs:
+- **Check:** lint, typecheck, unit tests and workflow tests.
+- **Storybook:** interaction and accessibility tests.
+- **Build:** a production build.
+
+Dependabot proposes grouped dependency updates weekly.
+
+Several unit tests guard generated or derived files:
+- The skills.sh copy of the site skill must match the served skill.
+- Design tokens must match `applification.pen`.
+- Every article image must have alt text, and every local media file and poster must exist.
+
+For UI changes, read `apps/applification/design.md` and update the nearest Storybook story, as described in `apps/applification/AGENTS.md`.
+
+## Deployment
+
+The site deploys to the `applification` project on Vercel. Pages are prerendered where possible.
+
+The contact service depends on these Vercel products:
+- **BotID** and a **Firewall** rule named `contact-write`, for abuse protection.
+- **Blob**, a private store, for uploaded briefs and the CV.
+- **Workflow**, for durable delivery and the 14-day CV review.
+- **AI Gateway**, with a budgeted key, for brief preparation.
+
+Email is sent through Resend.
+
+The [contact workflow runbook](docs/runbooks/contact-workflow.md) covers:
+- configuration
+- pre-release verification on a preview
+- the kill switch (`CONTACT_WORKFLOW_ENABLED=false`)
+- troubleshooting
+- secret rotation
+- promoting the report-only Content Security Policy
 
 ## Public API and agent access
 
-`/agents` introduces the site's agent tools, with public content search and an expandable API reference. WebMCP tools can search and read published client work, writing and products, and fill an editable enquiry on the contact page for the visitor to review. The read-only `/api/v1/catalog` endpoint includes profile, product and commercial information. Pricing stays in JSON and tool responses rather than visible site pages. See [agent readiness](docs/agent-readiness.md) for WebMCP setup, verification commands and the remaining Wikipedia/Wikidata work.
+`/agents` introduces the site's agent tools. They offer published-content search and an expandable API reference.
 
-Public API reads use an independent, instance-local 120-request/minute allowance per client IP and return quota headers on success, query errors and throttling. See [rate-limit conventions](docs/agent-readiness.md#rate-limit-response-conventions) for header examples, scope, caching and deployment requirements.
+| Endpoint | What it returns |
+| --- | --- |
+| `/api/v1/catalog` | Profile, product and commercial information |
+| `/api/v1/search` | Search across published client work, writing and products |
+| `/api/v1/content` | Published content, read section by section |
+| `/api/v1/sandbox` | An anonymous first call, showing that no key is needed |
+| `/api/openapi.json` | The OpenAPI 3.1 document |
+
+Reads are anonymous and CORS-enabled. Each client IP gets an independent allowance of 120 requests per minute, counted separately on each server instance, and quota headers are returned. Every public page also has an Agent view (`/agent/<path>`) and a Markdown export (`/markdown/<path>`).
+
+On browsers that support WebMCP, tools can search and read published content, and fill an editable enquiry on the contact page for the visitor to review.
+
+For WebMCP setup, rate-limit conventions and verification, see [agent readiness](docs/agent-readiness.md).
 
 ## Agent skills on skills.sh
 
-`skills/applification-site/SKILL.md` is the copy of the site skill that [skills.sh](https://skills.sh/applification/applification.net) indexes from this repository. It is generated from `apps/applification/src/lib/agent-skills.ts`, the same source as `/.well-known/agent-skills/applification-site/SKILL.md`, and a unit test fails when the two differ. After changing the skill run:
+skills.sh indexes the copy of the site skill at `skills/applification-site/SKILL.md`. It is generated from `apps/applification/src/lib/agent-skills.ts`, the same source as `/.well-known/agent-skills/applification-site/SKILL.md`, and a unit test fails when the two differ. After changing the skill, run:
 
 ```bash
 bun run skills:sync
 ```
 
-Install it with `npx skills add applification/applification.net --skill applification-site`. The StoryLoop skill lives in [applification/storyloop-skill](https://github.com/applification/storyloop-skill). `/llms.txt`, `/.well-known/ard.json` and `/agents` link both listings.
+Install it with `npx skills add applification/applification.net --skill applification-site`. The StoryLoop skill lives in [applification/storyloop-skill](https://github.com/applification/storyloop-skill). `/llms.txt`, `/.well-known/ard.json` and `/agents` link to both listings.
 
-## Contact service protection
+## Documentation
 
-The contact workflow uses Vercel BotID Basic and the Vercel Firewall SDK before AI preparation, attachment writes/deletes and delivery. A shared SDK rule named `contact-write` allows 30 requests per 15-minute fixed window, checked separately by IP address and a browser-session UUID. The session key is an extra fairness limit, not authentication. Vercel counters are regional; an AI Gateway key budget provides the separate spend limit. Redis is not required.
-
-The rule is configured on the `applification` Vercel project. Deploy the client instrumentation and API guards together. If the firewall rule or bot verification is unavailable, writes fail closed with a recoverable error. Local development bypasses these Vercel checks, but still validates origin, session headers and request bodies. Do not run production using `NODE_ENV=development`.
-
-Set `CONTACT_AI_GATEWAY_API_KEY` to a budgeted Gateway key, or use the existing `AI_GATEWAY_API_KEY`. Preparation never falls back to OIDC, which could bypass that key's budget. The project's existing key has a $5 budget without automatic refill; review its balance and refill deliberately in Vercel. In-flight requests may cause small budget overages. `CONTACT_AI_MODEL` selects the model. No response caching is used.
-
-Messages and detailed brief fields accept up to 12,000 characters; summaries accept 4,000. Short identity and logistics fields have their own limits in `contact-draft.ts`. The composer preserves oversized pasted text, shows an inline error and blocks submission until it fits. JSON requests are capped at 384 KiB and uploads at 4 MiB plus bounded multipart overhead. Attachment contents and metadata are excluded from AI requests.
-
-Preparation uses JSON mode and strict application validation. Live checks found Gemini 2.5 Flash Lite repeating text to the token cap with the schema-constrained response mode. Each request allows at most two model attempts, with a 25-second timeout per attempt and 8,192 output tokens. Only malformed or conflicting proposals are retried; timeouts, provider throttles and exhausted budgets are not retried automatically. Validation logs contain issue codes and known field paths, never messages, email addresses, documents or raw model replies.
-
-Visitors can complete a brief manually, preserving accepted details and their pending message. Both paths lead to the same review and consent step. Manual editing needs no AI call; sending and attachments still require abuse protection. LinkedIn remains available if the contact service cannot verify the browser.
-
-Before production rollout, verify BotID from a real browser on a Vercel preview, check that `contact-write` exists, and confirm the budgeted key is configured. Local tests cannot exercise Vercel's production bot classification. Railway can still host the site shell, but these contact write endpoints now require Vercel's protection services.
+- [Architecture](docs/architecture.md): the layers, content pipeline, Human/Agent views, API and contact workflow.
+- [Contact workflow runbook](docs/runbooks/contact-workflow.md): operating the contact service.
+- [Agent readiness](docs/agent-readiness.md): the agent-facing surfaces and how to verify them.
+- [Codebase audit, September 2026](docs/audit-2026-09.md): findings and the improvement backlog.
+- `apps/applification/design.md`: the design system and UI rules.
+- `apps/applification/docs/`: asset sources for case studies and integrations.
