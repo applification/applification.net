@@ -22,6 +22,9 @@ const preview: Preview = {
   },
   parameters: {
     layout: "fullscreen",
+    // Every route uses the App Router, and the page view switch in the footer
+    // needs its router mock. Stories can still override navigation.
+    nextjs: { appDirectory: true },
     controls: {
       matchers: {
         color: /(background|color)$/i,
