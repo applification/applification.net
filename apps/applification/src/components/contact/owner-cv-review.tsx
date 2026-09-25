@@ -12,7 +12,7 @@ export function OwnerCvReview({
   review: ContactCvReviewMetadata;
 }) {
   return (
-    <main className="flex-1 bg-[var(--app-bg)] px-5 py-14 min-[760px]:px-8 min-[760px]:py-20">
+    <main id="main-content" className="flex-1 bg-[var(--app-bg)] px-5 py-14 min-[760px]:px-8 min-[760px]:py-20">
       <div className="mx-auto grid w-full max-w-[1180px] gap-8 min-[980px]:grid-cols-[minmax(0,1fr)_360px]">
         <section aria-labelledby="owner-review-heading" className="min-w-0">
           <div className="font-caption flex items-center gap-2 text-xs font-bold tracking-[1.1px] text-[var(--app-label-text)] uppercase">
@@ -155,7 +155,7 @@ export function OwnerCvReview({
 
 export function OwnerReviewUnavailable() {
   return (
-    <main className="flex flex-1 items-center px-5 py-20 min-[760px]:px-8">
+    <main id="main-content" className="flex flex-1 items-center px-5 py-20 min-[760px]:px-8">
       <section className="mx-auto w-full max-w-[720px] rounded-[28px] border border-[var(--app-border)] bg-[var(--app-card)] p-8 min-[760px]:p-12">
         <p className="font-caption text-xs font-bold tracking-[1px] text-[var(--app-label-text)] uppercase">
           Private owner review

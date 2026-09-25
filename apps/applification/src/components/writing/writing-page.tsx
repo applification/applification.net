@@ -220,7 +220,7 @@ export function WritingPage({ entries, topics }: WritingPageProps) {
   }));
 
   return (
-    <main className="flex-1">
+    <main id="main-content" className="flex-1">
       <WritingHero />
       {featured ? <FeaturedWriting entry={featured} /> : null}
       <RecentWriting entries={recent} />

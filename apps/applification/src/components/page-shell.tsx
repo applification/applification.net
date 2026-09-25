@@ -6,7 +6,7 @@ type PageShellProps = {
 
 export function PageShell({ eyebrow, title, description }: PageShellProps) {
   return (
-    <main className="page-shell">
+    <main id="main-content" className="page-shell">
       <section className="page-intro">
         <p className="eyebrow">{eyebrow}</p>
         <h1 className="page-title">{title}</h1>

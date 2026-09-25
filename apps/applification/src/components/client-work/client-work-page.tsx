@@ -450,7 +450,7 @@ export function ClientWorkContractCta() {
 
 export function ClientWorkPage() {
   return (
-    <main>
+    <main id="main-content">
       <ClientWorkHero />
       <LogicallyCaseStudy />
       <SelectedContracts />

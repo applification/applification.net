@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -8,8 +7,7 @@ import {
   contractPositioningDescriptions,
 } from "@/lib/contract-positioning";
 import { isContactWorkflowAvailable } from "@/lib/contact";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner";
+import { SiteAnalytics } from "@/components/site-analytics";
 import { WebMcpTools } from "@/components/webmcp-tools";
 import { appFontVariables } from "./fonts";
 import "./globals.css";
@@ -72,15 +70,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Script>
       </head>
       <body className="font-body min-h-full bg-[var(--app-bg)] text-[var(--app-text-primary)] antialiased">
-        <TooltipProvider>
-          <div className="flex min-h-screen flex-col">
-            <SiteHeader contactAvailable={isContactWorkflowAvailable()} />
-            {children}
-            <SiteFooter />
-          </div>
-        </TooltipProvider>
-        <Toaster />
-        <Analytics />
+        <a
+          className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3 focus-visible:left-3 focus-visible:z-50 focus-visible:inline-flex focus-visible:min-h-11 focus-visible:items-center focus-visible:rounded-full focus-visible:bg-[var(--app-action)] focus-visible:px-5 focus-visible:font-semibold focus-visible:text-[var(--app-text-on-action)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
+          href="#main-content"
+        >
+          Skip to content
+        </a>
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader contactAvailable={isContactWorkflowAvailable()} />
+          {children}
+          <SiteFooter />
+        </div>
+        <SiteAnalytics />
         <WebMcpTools />
       </body>
     </html>

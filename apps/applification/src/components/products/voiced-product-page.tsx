@@ -351,7 +351,7 @@ function VoicedAvailability() {
 
 export function VoicedProductPage() {
   return (
-    <main className="overflow-x-clip" data-product-theme="voiced">
+    <main id="main-content" className="overflow-x-clip" data-product-theme="voiced">
       <VoicedHero />
       <VoicedRationale />
       <VoicedCaptureRoutes />
