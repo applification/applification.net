@@ -1,17 +1,23 @@
 import { get, head } from "@vercel/blob";
-import { FatalError, RetryableError, sleep } from "workflow";
+import { defineHook, FatalError, RetryableError, sleep } from "workflow";
 import { start } from "workflow/api";
 import type { ContactDraft } from "@/lib/contact-draft";
 import { createAttachmentAccessToken } from "@/lib/contact-attachment-access";
 import {
   assessContractSignals,
+  contactCvDecisionSchema,
   contactCvReviewMetadataSchema,
   type ContactCvReviewMetadata,
 } from "@/lib/contact-cv-review";
 import { createOwnerReviewCapability } from "@/lib/contact-owner-review-capability";
 import { getContactPublicBaseUrl } from "@/lib/contact-public-url";
 import { getPortfolioProduct } from "@/lib/portfolio";
-import { contactCvDecisionHook, contactCvHookToken } from "./contact-cv-decision-gate";
+
+export const contactCvDecisionHook = defineHook({ schema: contactCvDecisionSchema });
+
+export function contactCvHookToken(enquiryId: string) {
+  return `contact-cv-review:${enquiryId}`;
+}
 
 export type ContactDeliveryInput = {
   enquiryId: string;

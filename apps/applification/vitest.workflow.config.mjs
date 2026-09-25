@@ -13,6 +13,7 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["src/**/*.workflow.test.ts"],
+    setupFiles: [path.join(dirname, "vitest.workflow.setup.mjs")],
     testTimeout: 60_000,
   },
 });
