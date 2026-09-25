@@ -73,4 +73,4 @@ Is the AI-powered CV useful? I believe so, but beyond its utility, I thoroughly 
 
 Try it out for yourself at [https://ai-cv.applification.net/](https://ai-cv.applification.net/)
 
-![](/images/writing/the-ai-cv-01-b28bff60dd.png)
+![The AI CV: a chat panel with suggested questions beside a CV listing roles and skill breakdowns](/images/writing/the-ai-cv-01-b28bff60dd.png)

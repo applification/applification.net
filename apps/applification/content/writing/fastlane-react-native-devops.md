@@ -64,7 +64,7 @@ While you are it it you might want to tweak the version numbering system. I pref
 
 Next up XCode tries to be helpful by automatically managing signing. In our case this is unhelpful as we are going to let Testflight look after this, so we need to turn that off as follows:
 
-![](/images/writing/fastlane-react-native-devops-01-a6059a5e77.png)
+![Xcode General tab with the bundle identifier and version 1.0.0 set, and “Automatically manage signing” unticked](/images/writing/fastlane-react-native-devops-01-a6059a5e77.png)
 
 ---
 
@@ -72,7 +72,7 @@ Finally for XCode part 1 we need to set the **Code Signing Identity**. Under *Bu
 
 For **Debug** set it to *iOS Developer* and **Release** set it to *iOS Distribution*:
 
-![](/images/writing/fastlane-react-native-devops-02-e359d60df0.png)
+![Xcode Build Settings filtered to code signing: Debug uses iOS Developer and Release uses iOS Distribution](/images/writing/fastlane-react-native-devops-02-e359d60df0.png)
 
 ---
 
@@ -105,7 +105,7 @@ match appstore
 
 You can also run *match development* and *match adhoc* if you need those too. Once successful you should end up with a folder structure in Gitlab similar to the following:
 
-![](/images/writing/fastlane-react-native-devops-03-a65682971a.png)
+![GitLab repository for match containing certs and profiles folders, a README and match_version.txt](/images/writing/fastlane-react-native-devops-03-a65682971a.png)
 
 Gitlab folder structure
 
@@ -121,7 +121,7 @@ We’re getting close but first a re-visit to XCode because now we’ve got thos
 
 Select your project target and under the general section select your *match appstore provisioning profile.*
 
-![](/images/writing/fastlane-react-native-devops-04-9aa89d8067.png)
+![Xcode Signing (Release) section with the match AppStore provisioning profile selected](/images/writing/fastlane-react-native-devops-04-9aa89d8067.png)
 
 > For bonus points there is a code way but I’ve not tried it yet, for more information see [https://blog.bam.tech/developper-news/deploy-your-react-native-app-to-the-app-store-with-the-push-of-a-button](https://blog.bam.tech/developper-news/deploy-your-react-native-app-to-the-app-store-with-the-push-of-a-button).
 
@@ -133,7 +133,7 @@ Finally! We get to see if this works :-) In a terminal within the ios folder ru
 
 It will take quite some time but with luck you’ll get a Testflight app uploaded to iTunes Connect. Ok so fastlane uploaded the ipa file… what now? Well head on over to [iTunes Connect](https://itunesconnect.apple.com/) and complete the Testflight configuration to add some testers, this will send out email invites and you can start testing your app!
 
-![](/images/writing/fastlane-react-native-devops-05-bf5234dfcf.png)
+![iTunes Connect TestFlight internal testing page with version 1.0.1, build 11, available to two internal testers](/images/writing/fastlane-react-native-devops-05-bf5234dfcf.png)
 
 ---
 

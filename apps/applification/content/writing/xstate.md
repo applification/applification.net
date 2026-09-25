@@ -23,11 +23,11 @@ One of my favourite things about [XState](http://xstate.js.org) is that it visua
 
 A state machine is live code but it can also be visualised and interacted with as it is developed.
 
-![](/images/writing/xstate-01-47810d9dee.png)
+![VS Code with an XState queue machine’s code beside its visualised statechart of states and transitions](/images/writing/xstate-01-47810d9dee.png)
 
 There is now even a Stately Visualiser which gets better all the time and can be used directly within VSCode.
 
-![](https://stately.ai/mockup.svg)
+![Mock-up of the Stately visual editor running inside VS Code](https://stately.ai/mockup.svg)
 
 ## Learning Curve
 

@@ -29,8 +29,18 @@ const entry: WritingEntry = {
   readingTime: 1,
 };
 
-function RichArticleFixture() {
-  return <WritingArticle entry={entry} />;
+const videoAlt =
+  "Git Graph in VS Code showing the branch history after the rebase, then commit details and a file diff";
+
+const videoEntry: WritingEntry = {
+  ...entry,
+  title: "An article with a screen recording",
+  slug: "article-with-video",
+  body: `A short screen recording follows. It stays still until the reader presses play.\n\n![${videoAlt}](/images/writing/how-to-git-rebase-01-f56a24b559.mp4)\n\nProse after the recording still renders in order.`,
+};
+
+function RichArticleFixture({ article = entry }: { article?: WritingEntry }) {
+  return <WritingArticle entry={article} />;
 }
 
 const meta = {
@@ -103,4 +113,49 @@ export const MobileDark: Story = {
     viewport: { value: "mobile", isRotated: false },
   },
   play: checkRichArticle,
+};
+
+const checkVideoArticle: NonNullable<Story["play"]> = async ({
+  canvasElement,
+}) => {
+  const canvas = within(canvasElement);
+  const video = canvasElement.querySelector("article video");
+
+  await expect(video).toBeInstanceOf(HTMLVideoElement);
+  if (!(video instanceof HTMLVideoElement)) return;
+
+  await expect(video).toHaveAccessibleName(videoAlt);
+  await expect(video).toHaveAttribute("controls");
+  await expect(video).not.toHaveAttribute("autoplay");
+  await expect(video.autoplay).toBe(false);
+  await expect(video.paused).toBe(true);
+  await expect(video.muted).toBe(true);
+  await expect(video.loop).toBe(true);
+  await expect(video).toHaveAttribute("preload", "metadata");
+  await expect(video).toHaveAttribute(
+    "poster",
+    "/images/writing/how-to-git-rebase-01-f56a24b559-poster.webp",
+  );
+  await expect(video).toBeVisible();
+  await expect(canvasElement.querySelector("article img")).not.toBeInTheDocument();
+  await expect(
+    canvas.getByText("Prose after the recording still renders in order."),
+  ).toBeVisible();
+  await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(
+    canvasElement.clientWidth,
+  );
+};
+
+export const WithVideo: Story = {
+  args: { article: videoEntry },
+  play: checkVideoArticle,
+};
+
+export const WithVideoMobileDark: Story = {
+  args: { article: videoEntry },
+  globals: {
+    theme: "dark",
+    viewport: { value: "mobile", isRotated: false },
+  },
+  play: checkVideoArticle,
 };

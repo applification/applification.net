@@ -27,7 +27,7 @@ This vastly improves the situation, but still leaves a few remaining issues:
 - Data for the *entire page* must be fetched from the server before any components can be shown. The only way around this is to fetch data client-side in a `useEffect()` hook, which has a longer roundtrip than server-side fetches and happens only *after* the component is rendered and hydrated.
 - The majority of JavaScript compute weight still ends up on the client, which could be running on any variety of devices.
 
-![](/images/writing/react-server-comonents-01-d60f5c8c75.webp)
+![Without Server Components: the blog loads via getStaticProps, comments via useEffect and posts via a POST request](/images/writing/react-server-comonents-01-d60f5c8c75.webp)
 
 In order to solve the above issues, React has created Server Components. RSCs individually fetch data and render entirely on the server, and the resulting HTML is streamed into the client-side React component tree, interleaving with other Server and Client Components as necessary.
 
@@ -39,7 +39,7 @@ RSCs are fully interleaved with client-side code, meaning that Client Components
 
 With RSCs, both data fetching and rendering occur on the server, so Suspense manages the waiting period server-side, too, shortening the total roundtrip to speed up rendering the fallback and completed page.
 
-![](/images/writing/react-server-comonents-02-8d4219fb96.webp)
+![With Server Components: Blog and Comments render on the server in parallel, and posting uses a Server Action](/images/writing/react-server-comonents-02-8d4219fb96.webp)
 
 Server Actions are gateway functions that you define in an RSC on the server side that you can then pass across the server/client boundary. When a user interacts with your app on the client side, they can directly call Server Actions which will be executed securely on the server side.
 

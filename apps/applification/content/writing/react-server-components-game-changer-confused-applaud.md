@@ -32,11 +32,11 @@ As frameworks have re-discovered the original web patterns and moved towards ren
 
 What you’ve more likely got is components that are littered with code that needs JavaScript to call out to a global state library like Redux in order to render UI. If you upgrade to Next.js 14 and start rendering with RSC you’ll most likely hit this error:
 
-![](/images/writing/react-server-components-game-changer-confused-applaud-01-388551cbc7.png)
+![Next.js runtime error: useRef only works in Client Components, so add the “use client” directive](/images/writing/react-server-components-game-changer-confused-applaud-01-388551cbc7.png)
 
 No problem, just do as it says but then you’ve probably got a lot of components you need to add `use client` to at which point you’re thinking what is the point of server rendering? Eventually after adding all the `use client` directives you most likely hit this error:
 
-![](/images/writing/react-server-components-game-changer-confused-applaud-02-12b81e1f82.png)
+![Build error: a component needs next/headers, which only works in a Server Component, but a parent is marked “use client”](/images/writing/react-server-components-game-changer-confused-applaud-02-12b81e1f82.png)
 
 Now I’ll admit this is confusing, and at this point you’d probably think RSC are a dumb idea. So if SPA with Redux is all you know then you’re probably going to have a hard time with RSC. The brutal truth is RSC benefits from a different architecture for your front-end.
 

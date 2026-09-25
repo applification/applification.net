@@ -33,7 +33,7 @@ npm install — save-dev @testing-library/cypress
 “npm run cypress”
 ```
 
-![](/images/writing/bdd-with-cypress-01-38734d0ad4.png)
+![Cypress welcome dialog listing the example folders and test files it has added to the project](/images/writing/bdd-with-cypress-01-38734d0ad4.png)
 
 ```
 cypress/plugins/index.js

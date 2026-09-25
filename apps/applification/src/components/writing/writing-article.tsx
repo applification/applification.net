@@ -41,6 +41,27 @@ function formatDate(date: string) {
   }).format(new Date(`${date}T00:00:00Z`));
 }
 
+const articleMediaClassName =
+  "my-9 h-auto w-full rounded-[16px] border border-[var(--app-border)] bg-[var(--app-muted-section)]";
+
+const articleVideoPattern = /\.(?:mp4|webm)(?=$|[?#])/i;
+
+/** Markdown image syntax pointing at a video file renders a native player. */
+export function isArticleVideoSource(src: string) {
+  return articleVideoPattern.test(src);
+}
+
+/**
+ * Local article videos ship with a sibling poster by convention:
+ * `/images/writing/name.mp4` → `/images/writing/name-poster.webp`.
+ * Remote videos have no known poster, so none is invented.
+ */
+export function articleVideoPosterSource(src: string) {
+  if (!src.startsWith("/") || src.startsWith("//")) return undefined;
+  const path = src.replace(/[?#].*$/, "");
+  return path.replace(articleVideoPattern, "-poster.webp");
+}
+
 type CodeElementProps = {
   children?: ReactNode;
   className?: string;
@@ -147,18 +168,43 @@ export function createMarkdownComponents(
           {children}
         </code>
       ),
-    img: ({ alt, src, title }) => (
-      // The migration keeps original image dimensions unknown, so a responsive
-      // native image avoids inventing an aspect ratio.
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        alt={alt ?? ""}
-        className="my-9 h-auto w-full rounded-[16px] border border-[var(--app-border)] bg-[var(--app-muted-section)]"
-        loading="lazy"
-        src={src}
-        title={title}
-      />
-    ),
+    img: ({ alt, src, title }) => {
+      if (typeof src === "string" && isArticleVideoSource(src)) {
+        const label = alt?.trim() || "Article video";
+
+        // Former looping GIFs: native controls, no autoplay, so nothing moves
+        // until the reader presses play (WCAG 2.2.2 and reduced motion).
+        return (
+          <video
+            aria-label={label}
+            className={articleMediaClassName}
+            controls
+            loop
+            muted
+            playsInline
+            poster={articleVideoPosterSource(src)}
+            preload="metadata"
+            src={src}
+            title={title}
+          >
+            <a href={src}>Open the video: {label}</a>
+          </video>
+        );
+      }
+
+      return (
+        // The migration keeps original image dimensions unknown, so a responsive
+        // native image avoids inventing an aspect ratio.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          alt={alt ?? ""}
+          className={articleMediaClassName}
+          loading="lazy"
+          src={src}
+          title={title}
+        />
+      );
+    },
     table: ({ children }) => (
       <div className="my-8 overflow-x-auto rounded-[12px] border border-[var(--app-border)]">
         <table className="w-full border-collapse text-left text-sm">
@@ -194,7 +240,7 @@ export function WritingArticle({
   }));
 
   return (
-    <main className="flex-1 bg-[var(--app-section)]">
+    <main id="main-content" className="flex-1 bg-[var(--app-section)]">
       {preview ? (
         <aside
           className="bg-[var(--writing-accent-fill)] px-6 py-3 text-center font-caption text-[10px] font-bold tracking-[0.8px] text-[var(--writing-on-accent)] uppercase"

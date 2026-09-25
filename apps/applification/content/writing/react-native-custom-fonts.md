@@ -19,7 +19,7 @@ To avoid conditional logic in your React Native styles it’s a good plan to ren
 
 For example, I’m using a font file named “vinchand.ttf”. Yet when I open it up in [FontBook.app](http://FontBook.app) I can see that the fonts full name is “vincHand” with a capital H.
 
-![](/images/writing/react-native-custom-fonts-01-9a94e3333a.png)
+![Font Book details for vincHand Regular, with the full name “vincHand” highlighted](/images/writing/react-native-custom-fonts-01-9a94e3333a.png)
 
 To ensure things run smoothly I’m going to rename the font to be “vincHand.ttf” as Android will read from the filename whilst iOS will read from the full name property.
 
@@ -27,7 +27,7 @@ To ensure things run smoothly I’m going to rename the font to be “vincHand.t
 
 Next add all the font files you want to an “assets/fonts” folder in the root of your react native project:
 
-![](/images/writing/react-native-custom-fonts-02-8c1e4e4bbc.png)
+![Project tree with vincHand.ttf inside the assets/fonts folder](/images/writing/react-native-custom-fonts-02-8c1e4e4bbc.png)
 
 #### Package.json
 
@@ -41,7 +41,7 @@ This should add the font references in your Info.plist file for iOS and on Andro
 
 On Android if you look in the file path “android/app/src/main/assets/fonts/” you should see your fonts have been copied over:
 
-![](/images/writing/react-native-custom-fonts-03-3260a7e936.png)
+![Android project tree with vincHand.ttf copied to android/app/src/main/assets/fonts](/images/writing/react-native-custom-fonts-03-3260a7e936.png)
 
 #### React Native Styles
 
@@ -49,11 +49,11 @@ With your fonts embedded and referenced it’s a simple case of adding them to y
 
 #### iOS Screenshot
 
-![](/images/writing/react-native-custom-fonts-04-70c2ab0ea8.png)
+![iOS simulator showing the React Native welcome screen in the handwritten vincHand font](/images/writing/react-native-custom-fonts-04-70c2ab0ea8.png)
 
 #### Android Screenshot
 
-![](/images/writing/react-native-custom-fonts-05-19a7f2278b.png)
+![Android device showing the React Native welcome screen in the handwritten vincHand font](/images/writing/react-native-custom-fonts-05-19a7f2278b.png)
 
 #### Source Code
 

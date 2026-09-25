@@ -21,7 +21,7 @@ Yet, current chat-based interactions suffer from requiring users to write out th
 
 Indeed there appears a lot of[ innovation in UI design due to ai](https://bootcamp.uxdesign.cc/5-6-ui-patterns-to-power-your-ai-products-ae1591981a78) much of it around helping define the users intent & end goal. Visual information is often easier to understand and faster to interact with than text. I believe future AI systems will likely have a **hybrid user interface** that combines elements of both **intent-based and command-based interfaces** while still retaining many GUI elements.
 
-![](/images/writing/weeknotes-ep-2-01-848147d45a.webp)
+![AI prompt box with suggested actions: Find action items, Translate, Explain this and Summarize](/images/writing/weeknotes-ep-2-01-848147d45a.webp)
 
 On a practical level I started researching how to build AI generative user interfaces with Vercel’s AI SDK 3.0. The SDK opens up the possibility to build such UI interactions through streaming of React Server Components.
 

@@ -14,7 +14,7 @@ legacyId: '27'
 ---
 Testing the front-end was always a pain point for me. [Enzyme](https://enzymejs.github.io/enzyme/) was ok, [Jest](https://jestjs.io) was better. Yet both had me digging into the internals of components, writing and changing code to make tests happy that made no material improvement to code quality. I could have 100% code coverage yet little trust in the actual tests.
 
-![](/images/writing/testing-library-01-6e4b2c254a.png)
+![The Testing Library octopus logo](/images/writing/testing-library-01-6e4b2c254a.png)
 
 [Testing Library](https://testing-library.com) was the first approach to testing that enabled me to write tests in a productive way. The philosophy is:
 

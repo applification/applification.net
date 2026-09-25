@@ -26,13 +26,13 @@ In certain client side interactions this server-centric routing can cause React 
 
 A timely stumble across Sam Selikoff's post on [Instant Search Params with React Server Components](https://buildui.com/posts/instant-search-params-with-react-server-components) provided invaluable insight into leveraging the new React hooks [useOptimistic](https://react.dev/reference/react/useOptimistic) and [useTransition](https://react.dev/reference/react/useTransition) to instantly optimistically update the UI and apply the server state once the transition settled. The end result is a responsive UI even when components are server rendered on a 3G internet connection.
 
-![](/images/writing/weeknotes-episode-1-01-64b02ebe42.gif)
+![Recipe search: typing “smok” shows loading skeletons, then filters the list to Smoked Aubergine & Walnut Ragu](/images/writing/weeknotes-episode-1-01-64b02ebe42.mp4)
 
 ## AI SDK Awesomeness:
 
 Vercel's continue to push the AI boundaries. This week they teased some upcoming AI features posting a React Server Component streaming AI response that seemingly uses AI to generate the UI on the fly.
 
-![](/images/writing/weeknotes-episode-1-02-43448350e7.gif)
+![Vercel’s Task Planning demo: a chat request for drinks with Dan streams back contact, calendar and nearby-bar UI](/images/writing/ai-generative-ui-rsc-01-43448350e7.mp4)
 
 When paired with Jared Palmer’s tweet about AI SDK being “all in” on React Server Components the direction of travel for creating the very best AI UX will be server rendered React components.
 

@@ -21,7 +21,7 @@ There is a quote by David Bowie that drives my approach to consulting (and life 
 
 When it comes to development, I am always listening for what the trends are and what is coming next. I can tell you the team behind [Remix](https://remix.run) really can hear tomorrow and they see what’s coming.
 
-![](/images/writing/remix-01-a4becbc5ee.jpg)
+![The Remix logo](/images/writing/remix-01-a4becbc5ee.svg)
 
 ## It’s just a case of history repeating
 

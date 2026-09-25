@@ -57,4 +57,4 @@ That will push the rebase but abort if there are any issues.
 
 To review and check how the rebase went I use the excellent [Git Graph VSCode extension](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph).
 
-![](/images/writing/how-to-git-rebase-01-f56a24b559.gif)
+![Git Graph in VS Code showing the branch history after the rebase, then commit details and a file diff](/images/writing/how-to-git-rebase-01-f56a24b559.mp4)

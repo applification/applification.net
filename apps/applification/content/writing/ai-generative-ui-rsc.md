@@ -49,6 +49,6 @@ AI SDK introduces two new concepts: `AIState` and `UIState`. These states introd
 
 Intent-based outcome UI combines text based AI discussions with interactive client UI to make interacting with AI a more seamless experience.
 
-![](/images/writing/ai-generative-ui-rsc-01-43448350e7.gif)
+![Vercel’s Task Planning demo: a chat request for drinks with Dan streams back contact, calendar and nearby-bar UI](/images/writing/ai-generative-ui-rsc-01-43448350e7.mp4)
 
 These UI are quick to build by pairing a few API calls to LLM models (such as OpenAI) and some streaming React Server Components.
