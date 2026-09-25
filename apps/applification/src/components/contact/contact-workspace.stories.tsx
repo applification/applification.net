@@ -52,8 +52,20 @@ async function checkWorkspace(canvasElement: HTMLElement) {
   await expect(Math.abs(openingBounds.right - composerBounds.right)).toBeLessThan(1);
   for (const name of ["Product enquiry", "General enquiry"]) {
     await userEvent.click(canvas.getByRole("radio", { name }));
+    // Phones hide the chooser after a choice, so focus moves to the composer.
+    await waitFor(() =>
+      expect(
+        window.innerWidth >= 640
+          ? canvas.getByRole("radio", { name })
+          : canvas.getByRole("textbox", { name: "Describe your enquiry" }),
+      ).toHaveFocus(),
+    );
     await checkSendAlignment(canvasElement);
     await userEvent.click(canvas.getByRole("button", { name: "Restart" }));
+    // Restart returns focus to the start of the flow: the route chooser.
+    await waitFor(() =>
+      expect(canvas.getByRole("radio", { name: "Contract enquiry" })).toHaveFocus(),
+    );
   }
 
   const contractRoute = canvas.getByRole("radio", {
@@ -131,6 +143,22 @@ async function checkSmallPhoneWorkspace(canvasElement: HTMLElement) {
   await expect(
     canvas.getByText(/Paste an existing role or project brief/),
   ).toBeVisible();
+
+  // The focused route option is now hidden, so focus moves to the composer.
+  const composerInput = canvas.getByRole("textbox", { name: "Describe your enquiry" });
+  await waitFor(() => expect(composerInput).toHaveFocus());
+
+  // Reopening the chooser moves focus to the chosen option, not the page body.
+  await userEvent.click(canvas.getByRole("button", { name: "Change enquiry route" }));
+  await waitFor(() =>
+    expect(canvas.getByRole("radio", { name: "Contract enquiry" })).toHaveFocus(),
+  );
+  await userEvent.click(canvas.getByRole("radio", { name: "Product enquiry" }));
+  await waitFor(() => expect(composerInput).toHaveFocus());
+  await expect(
+    within(canvasElement.querySelector<HTMLElement>("[data-contact-selected-route]")!)
+      .getByText("Product", { selector: "span" }),
+  ).toBeVisible();
 }
 
 export const DesktopLight: Story = { play: ({ canvasElement }) => checkWorkspace(canvasElement) };
@@ -187,8 +215,15 @@ export const ManualCompletion: Story = {
     await expect(restoredForm.getByRole("textbox", { name: "Reply email" })).toHaveValue("alex@example.com");
     await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
     await userEvent.click(restoredForm.getByRole("button", { name: "Review enquiry" }));
+    // The submitted form unmounts; focus moves to the review heading.
+    await waitFor(() => expect(canvas.getByText("Enquiry overview")).toHaveFocus());
     await expect(canvas.getByText("alex@example.com")).toBeVisible();
     await expect(canvas.getAllByText("Detailed enquiry", { exact: true })[0]).toBeVisible();
+    // Restart returns focus to the route chooser at the start of the flow.
+    await userEvent.click(canvas.getByRole("button", { name: "Restart" }));
+    await waitFor(() =>
+      expect(canvas.getByRole("radio", { name: "Contract enquiry" })).toHaveFocus(),
+    );
   },
 };
 
@@ -265,19 +300,49 @@ export const PastedBrief: Story = {
     await waitFor(() => expect(canvas.getByText(/That is everything I need/)).toBeVisible());
     await userEvent.click(canvas.getByRole("button", { name: /^(Review|Review and send)$/ }));
     await expect(canvas.getByRole("button", { name: "Approve and send" })).toBeEnabled();
+    // Repeated Change buttons keep the visible text but have unique names.
+    const changeButtons = canvas.getAllByRole("button", { name: /^Change / });
+    const changeNames = changeButtons.map((button) => button.getAttribute("aria-label"));
+    await expect(new Set(changeNames).size).toBe(changeNames.length);
+    for (const button of changeButtons) await expect(button).toHaveTextContent(/^Change$/);
+    for (const name of ["Change enquiry overview", "Change company or agency", "Change timing", "Change your name", "Change reply address"]) {
+      await expect(canvas.getByRole("button", { name })).toBeVisible();
+    }
+
     const timing = canvas.getByText("Timing", { exact: true }).closest("li")!;
-    await userEvent.click(within(timing).getByRole("button", { name: "Change" }));
+    await userEvent.click(within(timing).getByRole("button", { name: "Change timing" }));
     await expect(canvas.getByRole("button", { name: "Approve and send" })).toBeDisabled();
     const editor = canvas.getByRole("textbox", { name: "Timing" });
+    // The Change button unmounts; focus moves into the editor that replaced it.
+    await waitFor(() => expect(editor).toHaveFocus());
     await userEvent.clear(editor);
     await userEvent.type(editor, "1 November 2026, three months");
     await userEvent.click(canvas.getByRole("button", { name: "Save change" }));
     await expect(canvas.getByText("1 November 2026, three months")).toBeVisible();
     await expect(canvas.getByRole("button", { name: "Approve and send" })).toBeDisabled();
     const overview = canvas.getByRole("textbox", { name: "Summary" });
+    // Saving a detail opens the overview check, so focus follows it there.
+    await waitFor(() => expect(overview).toHaveFocus());
     await userEvent.clear(overview);
     await userEvent.type(overview, "North Star Studio needs a React and Next.js engineer for three months from November, remote UK, £600/day outside IR35.");
     await userEvent.click(canvas.getByRole("button", { name: "Save change" }));
+    await expect(canvas.getByRole("button", { name: "Approve and send" })).toBeEnabled();
+    // Saving returns focus to the re-mounted Change button for that field.
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Change enquiry overview" })).toHaveFocus(),
+    );
+
+    // Keyboard: open an editor, cancel it and land back on its Change button.
+    canvas.getByRole("button", { name: "Change company or agency" }).focus();
+    await userEvent.keyboard("{Enter}");
+    const company = canvas.getByRole("textbox", { name: "Company or agency" });
+    await waitFor(() => expect(company).toHaveFocus());
+    await userEvent.type(company, " (draft)");
+    await userEvent.click(canvas.getByRole("button", { name: "Cancel" }));
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Change company or agency" })).toHaveFocus(),
+    );
+    await expect(canvas.getByText("North Star Studio", { exact: true })).toBeVisible();
     await expect(canvas.getByRole("button", { name: "Approve and send" })).toBeEnabled();
   },
 };

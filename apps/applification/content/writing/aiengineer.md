@@ -22,7 +22,7 @@ The founder of AI Engineer, SWYX, observes that we are in a [“once in a genera
 
 The ability to quickly use “out-of-the-box” Foundation Models, coupled with a limited pool of Machine Learning Research & Data Scientists, leads SWYX to suggest there are going to be “significantly more AI Engineers than there are ML engineers / LLM engineers”. He believes that this space will predominantly be filled by Fullstack Software Engineers.
 
-![](/images/writing/aiengineer-01-a0cea8f513.png)
+![Spectrum of roles from ML researcher to fullstack engineer, with the AI engineer just on the product side of the API line](/images/writing/aiengineer-01-a0cea8f513.png)
 
 The term “AI Engineer” has certainly caught my eye, and the conference talks were all really really interesting - even if it was often pushing midnight here in the UK! As a single track conference angled towards the AI Engineer, it was very well-balanced, featuring talks on UI/UX, Chains, RAG, Orchestration, LLM Evaluation and even delved into the complex mathematics of LLMs.
 

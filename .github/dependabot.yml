@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    groups:
+      next:
+        patterns: ["next", "eslint-config-next", "@next/*"]
+      react:
+        patterns: ["react", "react-dom", "@types/react", "@types/react-dom"]
+      storybook:
+        patterns: ["storybook", "@storybook/*", "eslint-plugin-storybook"]
+      vitest:
+        patterns: ["vitest", "@vitest/*", "playwright", "vite"]
+      workflow:
+        patterns: ["workflow", "@workflow/*"]
+      vercel:
+        patterns: ["@vercel/*", "botid"]
+      ai:
+        patterns: ["ai", "@ai-sdk/*"]
+    # Security updates are raised separately and immediately, whatever the schedule.
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ["*"]

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 import { notFound } from "next/navigation";
 import { ContactWorkspace } from "@/components/contact/contact-workspace";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import {
   isContactWorkflowAvailable,
   parseContactProduct,
@@ -36,8 +37,10 @@ export default async function ContactPage({
   const product = parseContactProduct(query.product);
 
   return (
-    <main className="flex flex-1 flex-col overflow-x-clip">
-      <ContactWorkspace initialProduct={product ?? undefined} initialRoute={route} />
+    <main id="main-content" className="flex flex-1 flex-col overflow-x-clip">
+      <TooltipProvider>
+        <ContactWorkspace initialProduct={product ?? undefined} initialRoute={route} />
+      </TooltipProvider>
     </main>
   );
 }

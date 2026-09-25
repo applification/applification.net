@@ -14,7 +14,7 @@ const focusClasses =
 
 export function LogicallyCaseStudyPage() {
   return (
-    <main className="flex-1 overflow-x-clip">
+    <main id="main-content" className="flex-1 overflow-x-clip">
       <article>
         <header
           className={`${heroTopSpacing} bg-linear-to-b from-[var(--app-bg)] to-[var(--app-bg-end)] px-6 pb-12 min-[720px]:px-12 min-[1024px]:pb-[82px] min-[1440px]:px-[120px]`}

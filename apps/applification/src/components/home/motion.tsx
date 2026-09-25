@@ -1,15 +1,27 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { Pause, Play } from "lucide-react";
 import {
   animate,
   motion,
+  MotionConfigContext,
   stagger,
   useAnimationControls,
   useInView,
   useReducedMotion,
 } from "motion/react";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
+import { cn } from "@/lib/utils";
 
 export const motionTokens = {
   duration: {
@@ -232,6 +244,9 @@ function getBeamPosition(
 function setStaticDiagram(selector: string) {
   document.querySelectorAll<HTMLElement>(selector).forEach((diagram) => {
     delete diagram.dataset.motionRunning;
+    diagram.querySelectorAll<HTMLElement>("[data-motion-live]").forEach((live) => {
+      live.style.removeProperty("opacity");
+    });
     diagram.querySelectorAll<HTMLElement>("[data-motion-node]").forEach((node) => {
       delete node.dataset.motionActive;
       node.style.removeProperty("opacity");
@@ -352,21 +367,112 @@ function animateDiagramStep(
   });
 }
 
+/**
+ * Reduced motion from the device, or forced by a surrounding
+ * `<MotionConfig reducedMotion="always">` (used by Storybook).
+ */
+function useDiagramReducedMotion() {
+  const preference = useReducedMotion();
+  const { reducedMotion } = useContext(MotionConfigContext);
+
+  return reducedMotion === "always" || Boolean(preference);
+}
+
+const subscribeToNothing = () => () => {};
+
+function useHydrated() {
+  return useSyncExternalStore(
+    subscribeToNothing,
+    () => true,
+    () => false,
+  );
+}
+
+type DiagramMotionState = {
+  paused: boolean;
+  reduceMotion: boolean;
+  togglePaused: () => void;
+};
+
+const DiagramMotionContext = createContext<DiagramMotionState | null>(null);
+
+function useDiagramMotionState(reduceMotion: boolean): DiagramMotionState {
+  const [paused, setPaused] = useState(false);
+
+  return useMemo(
+    () => ({
+      paused,
+      reduceMotion,
+      togglePaused: () => setPaused((current) => !current),
+    }),
+    [paused, reduceMotion],
+  );
+}
+
+/**
+ * Pause or play the looping diagram sequence (WCAG 2.2.2). One toggle serves
+ * every responsive variant of a diagram because a single controller drives
+ * them all. Reduced motion already shows a static diagram, so the toggle is
+ * not rendered: CSS hides it before hydration and it unmounts afterwards.
+ */
+export function DiagramMotionToggle({
+  className,
+  iconOnly = false,
+}: {
+  className?: string;
+  iconOnly?: boolean;
+}) {
+  const state = useContext(DiagramMotionContext);
+  const hydrated = useHydrated();
+
+  if (!state || (hydrated && state.reduceMotion)) {
+    return null;
+  }
+
+  const label = state.paused ? "Play animation" : "Pause animation";
+  const Icon = state.paused ? Play : Pause;
+
+  return (
+    <button
+      aria-label={iconOnly ? label : undefined}
+      className={cn(
+        "inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:hidden motion-reduce:transition-none",
+        className,
+      )}
+      data-diagram-motion-toggle
+      onClick={state.togglePaused}
+      title={iconOnly ? label : undefined}
+      type="button"
+    >
+      <Icon aria-hidden="true" className="size-3.5" strokeWidth={2.25} />
+      {iconOnly ? null : label}
+    </button>
+  );
+}
+
 function useDiagramSequence({
+  paused,
+  reduceMotion,
   replayDelay,
   selector,
   steps,
 }: {
+  paused: boolean;
+  reduceMotion: boolean;
   replayDelay: number;
   selector: string;
   steps: SequenceStep[];
 }) {
-  const reduceMotion = useReducedMotion();
-
   useEffect(() => {
     const diagrams = Array.from(document.querySelectorAll<HTMLElement>(selector));
 
-    if (diagrams.length === 0 || reduceMotion) {
+    diagrams.forEach((diagram) => {
+      if (paused && !reduceMotion) diagram.dataset.motionPaused = "true";
+      else delete diagram.dataset.motionPaused;
+    });
+
+    // Paused and reduced-motion diagrams stay fully drawn with no replay.
+    if (diagrams.length === 0 || reduceMotion || paused) {
       setStaticDiagram(selector);
       return;
     }
@@ -402,6 +508,13 @@ function useDiagramSequence({
         await wait(step.duration);
       }
 
+      if (disposed) {
+        // Cleanup has already restored the static diagram. Leave any newer
+        // sequence (for example after Play) untouched.
+        running = false;
+        return;
+      }
+
       stopAnimations(animations);
       setStaticDiagram(selector);
       lastCompletedAt = Date.now();
@@ -430,11 +543,12 @@ function useDiagramSequence({
       stopAnimations(animations);
       setStaticDiagram(selector);
     };
-  }, [reduceMotion, replayDelay, selector, steps]);
+  }, [paused, reduceMotion, replayDelay, selector, steps]);
 }
 
-export function HeroSequenceController() {
-  const reduceMotion = useReducedMotion();
+export function HeroSequenceController({ children }: { children?: ReactNode }) {
+  const reduceMotion = useDiagramReducedMotion();
+  const motionState = useDiagramMotionState(reduceMotion);
 
   useLayoutEffect(() => {
     if (reduceMotion) {
@@ -460,18 +574,39 @@ export function HeroSequenceController() {
   }, [reduceMotion]);
 
   useDiagramSequence({
+    paused: motionState.paused,
+    reduceMotion,
     replayDelay: 10_000,
     selector: '[data-motion-sequence="hero-approval"]',
     steps: heroSequence,
   });
-  return null;
+
+  return (
+    <DiagramMotionContext.Provider value={motionState}>
+      {children}
+    </DiagramMotionContext.Provider>
+  );
 }
 
-export function WorkflowSequenceController() {
+export function WorkflowSequenceController({
+  children,
+}: {
+  children?: ReactNode;
+}) {
+  const reduceMotion = useDiagramReducedMotion();
+  const motionState = useDiagramMotionState(reduceMotion);
+
   useDiagramSequence({
+    paused: motionState.paused,
+    reduceMotion,
     replayDelay: 12_000,
     selector: '[data-motion-sequence="delivery-workflow"]',
     steps: workflowSequence,
   });
-  return null;
+
+  return (
+    <DiagramMotionContext.Provider value={motionState}>
+      {children}
+    </DiagramMotionContext.Provider>
+  );
 }

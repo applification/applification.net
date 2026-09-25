@@ -298,7 +298,7 @@ function PlantryAvailability() {
 
 export function PlantryProductPage() {
   return (
-    <main className="overflow-x-clip" data-product-theme="plantry">
+    <main id="main-content" className="overflow-x-clip" data-product-theme="plantry">
       <PlantryHero />
 
       <PlantryRationale />

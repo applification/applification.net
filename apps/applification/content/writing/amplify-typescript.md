@@ -456,7 +456,7 @@ mutation MyMutation2 {
 
 Sorted, you should see something like:
 
-![](/images/writing/amplify-typescript-01-0baf3547b1.png)
+![Next.js starter page listing three chores from the API, such as “Put out the bins”, each with a status](/images/writing/amplify-typescript-01-0baf3547b1.png)
 
 ## **Summary**
 

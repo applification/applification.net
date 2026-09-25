@@ -9,7 +9,7 @@ export { privacyUpdated } from "@/lib/content/privacy";
 
 export function PrivacyPage() {
   return (
-    <main className="flex-1">
+    <main id="main-content" className="flex-1">
       <PageHero
         density="compact"
         eyebrow="Privacy"

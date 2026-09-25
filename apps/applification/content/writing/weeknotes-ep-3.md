@@ -29,7 +29,7 @@ Last week, I came across a Tweet showcasing a sleek Vercel UI feature that utili
 
 For a simple example, I tasked AI with finding certain elements in the vector database context that I love. Using `ai/rsc`, I demonstrated streaming updates on the status of that query, employing Framer Motion to animate the state changes.
 
-![](/images/writing/weeknotes-ep-3-01-9437d30799.gif)
+![AI CV chat answering “Tell me some things you love” with animated status updates, then Family, Food and Football tags](/images/writing/weeknotes-ep-3-01-9437d30799.mp4)
 
 Very neat! I envision numerous possibilities for crafting delightful user experiences by merging AI React Server Components with Framer Motion.
 

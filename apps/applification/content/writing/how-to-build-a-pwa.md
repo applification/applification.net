@@ -29,7 +29,7 @@ This is all excellent but vague. Google does also offers a handy [Progressive We
 
 At the most basic level a PWA is defined by the technical properties that allow the browser to *detect* that the site meets certain criteria and is worthy of being added to the home screen. If the criteria are met then an “Add to Home Screen” banner prompt can be shown.
 
-![](/images/writing/how-to-build-a-pwa-01-93ea1653ce.png)
+![Android “Add to Home Screen” banner for the Voice Memos web app](/images/writing/how-to-build-a-pwa-01-93ea1653ce.png)
 
 Example Add To Home Screen Banner
 
@@ -58,7 +58,7 @@ The key difference is that this bundle needs to be downloaded by a Service Worke
 
 An App Shell should contain a skeleton UI and core components required for the app to function. It is generally responsible for routing but it should ***not*** contain any data.
 
-![](/images/writing/how-to-build-a-pwa-02-a4a34a134b.png)
+![The cached application shell of toolbar and navigation loads instantly, then dynamic content fills the view](/images/writing/how-to-build-a-pwa-02-a4a34a134b.png)
 
 App Shell Pattern
 
@@ -70,7 +70,7 @@ Once you have an App Shell where the data is separate from the presentation and 
 
 When a URL is requested the client can initially render a loading state which loads instantly as it is part of the App Shell. At the same time the client makes a fetch request for the data, once received the client creates the completed screen and replaces the loading state.
 
-![](/images/writing/how-to-build-a-pwa-03-e94b69096c.png)
+![Three mobile apps showing grey placeholder loading states while their content is fetched](/images/writing/how-to-build-a-pwa-03-e94b69096c.png)
 
 Loading States
 

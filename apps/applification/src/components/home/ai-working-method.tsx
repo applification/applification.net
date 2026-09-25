@@ -13,7 +13,7 @@ import {
   UserCheck,
   Waypoints,
 } from "lucide-react";
-import { WorkflowSequenceController } from "./motion";
+import { DiagramMotionToggle, WorkflowSequenceController } from "./motion";
 import { WorkflowBorderBeam } from "./workflow-border-beam";
 
 type WorkflowStep = {
@@ -178,9 +178,15 @@ function DesktopWorkflowDiagram() {
             Checks and approval can send the slice back.
           </p>
         </div>
-        <span className="font-caption rounded-full bg-[var(--workflow-badge)] px-[9px] py-1.5 text-[9px] leading-3 font-semibold text-[var(--workflow-badge-text)]">
-          2 FEEDBACK LOOPS
-        </span>
+        <div className="flex items-center gap-1">
+          <span className="font-caption rounded-full bg-[var(--workflow-badge)] px-[9px] py-1.5 text-[9px] leading-3 font-semibold text-[var(--workflow-badge-text)]">
+            2 FEEDBACK LOOPS
+          </span>
+          <DiagramMotionToggle
+            className="-my-1.5 -mr-3 text-[var(--workflow-heading)] hover:bg-[var(--app-muted-section)] focus-visible:outline-[var(--app-focus)]"
+            iconOnly
+          />
+        </div>
       </div>
 
       <div className="relative h-[258px] w-full">
@@ -242,9 +248,15 @@ function MobileWorkflowDiagram() {
             DELIVERY WORKFLOW
           </p>
         </div>
-        <span className="font-caption rounded-full bg-[var(--workflow-mobile-badge)] px-[7px] py-[5px] text-[8px] leading-[10px] font-[650] text-[var(--workflow-mobile-heading)]">
-          2 LOOPS
-        </span>
+        <div className="flex items-center gap-1">
+          <span className="font-caption rounded-full bg-[var(--workflow-mobile-badge)] px-[7px] py-[5px] text-[8px] leading-[10px] font-[650] text-[var(--workflow-mobile-heading)]">
+            2 LOOPS
+          </span>
+          <DiagramMotionToggle
+            className="-my-3 -mr-3 text-[var(--workflow-mobile-heading)] hover:bg-[var(--app-muted-section)] focus-visible:outline-[var(--app-focus)]"
+            iconOnly
+          />
+        </div>
       </div>
 
       <div className="relative h-[382px] w-full shrink-0">
@@ -324,30 +336,31 @@ export function AiWorkingMethod() {
       data-about-section="method"
       id="method"
     >
-      <WorkflowSequenceController />
-      <div className="mx-auto grid w-full max-w-[1200px] gap-6 min-[768px]:justify-items-center min-[1024px]:grid-cols-[minmax(0,1fr)_540px] min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:justify-items-stretch min-[1024px]:gap-6 min-[1280px]:grid-cols-[500px_540px] min-[1280px]:gap-[60px]">
-        <div className="flex w-full max-w-[500px] flex-col gap-6 min-[768px]:h-[386px] min-[768px]:gap-[22px] min-[1024px]:max-w-[470px] min-[1280px]:max-w-[500px]">
-          <p className="font-caption text-[11px] leading-[14px] font-bold tracking-[1px] text-[var(--workflow-section-label)] min-[768px]:text-xs min-[768px]:leading-4 min-[768px]:font-semibold">
-            HOW I WORK WITH AI
-          </p>
-          <h2
-            className="font-heading max-w-[500px] text-[36px] leading-[1.12] font-medium tracking-[-0.01em] text-[var(--app-text-primary)] min-[768px]:text-[48px] min-[768px]:leading-[1.06] min-[768px]:tracking-normal min-[1280px]:text-[52px]"
-            id="ai-working-method-heading"
-          >
-            AI is core to how I engineer.
-          </h2>
-          <p className="max-w-[500px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[768px]:text-lg">
-            I use Claude Code and Codex throughout the work. Product context and
-            agreed scope guide each task. Tests, visible checks and human
-            approval decide whether it ships.
-          </p>
-          <DesktopWorkingSetup />
-        </div>
+      <WorkflowSequenceController>
+        <div className="mx-auto grid w-full max-w-[1200px] gap-6 min-[768px]:justify-items-center min-[1024px]:grid-cols-[minmax(0,1fr)_540px] min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:justify-items-stretch min-[1024px]:gap-6 min-[1280px]:grid-cols-[500px_540px] min-[1280px]:gap-[60px]">
+          <div className="flex w-full max-w-[500px] flex-col gap-6 min-[768px]:h-[386px] min-[768px]:gap-[22px] min-[1024px]:max-w-[470px] min-[1280px]:max-w-[500px]">
+            <p className="font-caption text-[11px] leading-[14px] font-bold tracking-[1px] text-[var(--workflow-section-label)] min-[768px]:text-xs min-[768px]:leading-4 min-[768px]:font-semibold">
+              HOW I WORK WITH AI
+            </p>
+            <h2
+              className="font-heading max-w-[500px] text-[36px] leading-[1.12] font-medium tracking-[-0.01em] text-[var(--app-text-primary)] min-[768px]:text-[48px] min-[768px]:leading-[1.06] min-[768px]:tracking-normal min-[1280px]:text-[52px]"
+              id="ai-working-method-heading"
+            >
+              AI is core to how I engineer.
+            </h2>
+            <p className="max-w-[500px] text-base leading-[1.55] text-[var(--app-text-secondary)] min-[768px]:text-lg">
+              I use Claude Code and Codex throughout the work. Product context and
+              agreed scope guide each task. Tests, visible checks and human
+              approval decide whether it ships.
+            </p>
+            <DesktopWorkingSetup />
+          </div>
 
-        <MobileWorkflowDiagram />
-        <MobileWorkingSetup />
-        <DesktopWorkflowDiagram />
-      </div>
+          <MobileWorkflowDiagram />
+          <MobileWorkingSetup />
+          <DesktopWorkflowDiagram />
+        </div>
+      </WorkflowSequenceController>
     </section>
   );
 }

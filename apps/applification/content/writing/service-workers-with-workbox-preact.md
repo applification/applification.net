@@ -48,13 +48,13 @@ cd preact-sw-magic && npm run serve
 
 You should now be able to access your PWA on [https://localhost:8080](https://localhost:8080). You can verify the Service Worker is installed by cracking open [Chrome Developer Tools](https://developer.chrome.com/devtools) and selecting the Application tab, then the Service Worker tab.
 
-![](/images/writing/service-workers-with-workbox-preact-01-137e6f8b6d.jpg)
+![Chrome DevTools Application tab showing the sw.js service worker activated and running on localhost](/images/writing/service-workers-with-workbox-preact-01-137e6f8b6d.jpg)
 
 Installed Service Worker
 
 If you then shift to the Cache tab, you’ll see your entire app has been cached for offline use, nice!
 
-![](/images/writing/service-workers-with-workbox-preact-02-e0c67cbdef.jpg)
+![Chrome DevTools Cache Storage listing the app’s precached files, with an app icon preview](/images/writing/service-workers-with-workbox-preact-02-e0c67cbdef.jpg)
 
 Service Worker Precaching
 
@@ -127,7 +127,7 @@ npm run serve
 
 If you go back into Chrome developer tools and access the service worker section you should be able to verify that your service worker is now `service-worker.js` instead of `sw.js.`
 
-![](/images/writing/service-workers-with-workbox-preact-03-9450335575.png)
+![Chrome DevTools showing service-worker.js as the activated, running service worker on localhost](/images/writing/service-workers-with-workbox-preact-03-9450335575.png)
 
 If you open the `service-worker.js` file you should see something similar to:
 

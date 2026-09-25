@@ -17,7 +17,7 @@ legacyId: '18'
 
 First up lets see some Lottie Animations :-)
 
-![](/images/writing/lottie-react-native-01-e86e635006.gif)
+![Lottie icon animations: a map pin sliding along a line, an arrow, a menu icon and a heart](/images/writing/lottie-react-native-01-e86e635006.mp4)
 
 Lottie Animations
 
@@ -72,11 +72,11 @@ Select your app and the *General* settings section to see the *Linked Frameworks
 - libLottie.a
 - libLottieReactNative.a
 
-![](/images/writing/lottie-react-native-02-19da7391d3.png)
+![Xcode Linked Frameworks and Libraries list with libLottie.a and libLottieReactNative.a highlighted](/images/writing/lottie-react-native-02-19da7391d3.png)
 
 However as mentioned this isn’t quite enough. In the *Embedded Binaries* section above click the + icon and add the Lottie.framework.iOS from **Lottie.xcodeproj**
 
-![](/images/writing/lottie-react-native-03-e700d4a1b0.png)
+![Xcode “Choose items to add” dialog with Lottie.framework for iOS selected from Lottie.xcodeproj](/images/writing/lottie-react-native-03-e700d4a1b0.png)
 
 You should now also see the Lottie.framework in your Linked Frameworks and Libraries and everything should be set up for iOS now.
 
@@ -105,7 +105,7 @@ There is nothing special in this gist, we are just importing **Animation** from 
 
 Now if you run *react-native run-ios* you should see a nice screen with an animation like this:
 
-![](/images/writing/lottie-react-native-04-db1db5c18a.gif)
+![iPhone simulator showing “Welcome to Lottie Animations :-)” above the animated soda loader](/images/writing/lottie-react-native-04-db1db5c18a.mp4)
 
 **Android Bug**
 

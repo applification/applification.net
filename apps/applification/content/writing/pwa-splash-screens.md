@@ -14,7 +14,7 @@ legacyId: '11'
 ---
 [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/) (PWA) are starting to pick up a lot of momentum and for good reason. When developing my first PWA supporting cross platform splash screens proved to be a bigger than expected challenge! This is a quick post to help others quickly create PWA splash screens that work across both Android and iOS. The end result should be something like this:
 
-![](/images/writing/pwa-splash-screens-01-748b3e953a.png)
+![Android and iPhone showing PWA splash screens with the Google Lighthouse logo on a white background](/images/writing/pwa-splash-screens-01-748b3e953a.png)
 
 Android and iPhone PWA Splash Screens using Google Lighthouse Logo
 
@@ -43,7 +43,7 @@ apple-touch-startup-image using media queries
 
 So we now have media queries to identify each size of iOS device but you still need to create all the images right… Sketch to the rescue! I created a simple Sketch file with each of the image dimensions all ready to be exported and dropped into your project.
 
-![](/images/writing/pwa-splash-screens-02-f6221add9f.png)
+![Sketch file with an artboard for each iOS splash screen size, each showing the Lighthouse logo](/images/writing/pwa-splash-screens-02-f6221add9f.png)
 
 Sketch iOS PWA splash screen generation
 

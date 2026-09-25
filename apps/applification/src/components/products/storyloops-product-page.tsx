@@ -284,7 +284,7 @@ function StoryLoopsAvailability() {
 
 export function StoryLoopsProductPage() {
   return (
-    <main>
+    <main id="main-content">
       <StoryLoopsHero />
       <StoryLoopsRationale />
       <StoryLoopsOwnership />

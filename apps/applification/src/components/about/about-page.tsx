@@ -317,7 +317,7 @@ export function ContractFit() {
 
 export function AboutPage() {
   return (
-    <main className="flex-1 overflow-x-clip">
+    <main id="main-content" className="flex-1 overflow-x-clip">
       <AboutHero />
       <Positioning />
       <AiWorkingMethod />

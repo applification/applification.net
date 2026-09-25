@@ -26,11 +26,11 @@ The absolute easiest to work with is the iOS Simulator, especially so if you use
 
 SimSim provides a nice menu bar icon that shows the iOS app currently running in the simulator and providing quick a shortcut to that folder location in finder.
 
-![](/images/writing/react-native-local-data-01-7dec6f8509.png)
+![SimSim menu bar menu for the running simulator app, with options to open its folder in Finder or Terminal](/images/writing/react-native-local-data-01-7dec6f8509.png)
 
 Once in there open up the /documents folder and you’ll see all your local assets. In my case you’ll spot a RCTAsyncLocalStorage\_V1 folder with a manifest.json file in it. This is from Redux-Persist and if I open them up I can see the data cached for offline use.
 
-![](/images/writing/react-native-local-data-02-aa100f9f37.png)
+![Finder showing the app’s Documents folder, with manifest.json inside RCTAsyncLocalStorage_V1 highlighted](/images/writing/react-native-local-data-02-aa100f9f37.png)
 
 #### iOS Clear Data
 
@@ -59,7 +59,7 @@ This will copy the .sql file to whatever filepath you were at in your bash prom
 
 With the sqlite file on your macbook, simply open up the SQLite database using an app such as Base to view the data.
 
-![](/images/writing/react-native-local-data-03-85a6fb1408.png)
+![Base showing the catalystLocalStorage table, with a reduxPersist key holding cached JSON data](/images/writing/react-native-local-data-03-85a6fb1408.png)
 
 Now this is quite a few separate commands but we can do better and run them all as once so with a single command you can copy the database off the device and automatically open up your SQLDb app to view the data. The complete command would be:
 

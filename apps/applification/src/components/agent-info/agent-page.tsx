@@ -5,7 +5,7 @@ import { InfoLink } from "./info-layout";
 
 export function AgentPage({ title, path, markdown }: { title: string; path: string; markdown: string }) {
   return (
-    <main className="agent-page flex-1 px-6 pt-12 pb-16 min-[720px]:px-12 min-[1024px]:pt-16">
+    <main id="main-content" className="agent-page flex-1 px-6 pt-12 pb-16 min-[720px]:px-12 min-[1024px]:pt-16">
       <div className="mx-auto max-w-[1200px]">
         <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-2 text-sm">
           <p className="font-caption flex items-center gap-2.5 text-xs text-[var(--app-label-text)]">

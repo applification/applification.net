@@ -10,6 +10,7 @@ import {
 } from "@/lib/contact-delivery";
 import { deliverContactEnquiryWorkflow } from "@/workflows/contact-delivery";
 import type { ContactDraft } from "@/lib/contact-draft";
+import { getContactAttachmentOwnerSecret, isOwnedContactAttachment } from "@/lib/contact-attachment-owner";
 
 type StartedDelivery = { digest: string; runId: string };
 const startedDeliveries = new Map<string, StartedDelivery>();
@@ -101,7 +102,10 @@ export async function POST(request: Request) {
   }
 
   if (deliveryDraft.draft.attachment) {
-    const verified = await verifyPrivateAttachment(deliveryDraft.draft.attachment);
+    const verified = await verifyPrivateAttachment(
+      deliveryDraft.draft.attachment,
+      request.headers.get("x-contact-session") ?? "",
+    );
     if (!verified) {
       return Response.json(
         {
@@ -148,7 +152,7 @@ export async function GET(request: Request) {
     const run = getRun(runId);
     const status = await run.status;
     if (status === "completed") {
-      return Response.json({ status, result: await run.returnValue });
+      return Response.json({ status, result: publicDeliveryResult(await run.returnValue) });
     }
     if (status === "failed") {
       return Response.json(
@@ -168,11 +172,25 @@ export async function GET(request: Request) {
   }
 }
 
+/**
+ * Anyone holding a run ID can poll it, so expose only what the visitor already
+ * knows. Internal identifiers such as the owner's CV review run stay private.
+ */
+function publicDeliveryResult(value: unknown) {
+  if (!value || typeof value !== "object") return null;
+  const { route, sentFields, cvFollowUpRequiresApproval } = value as Record<string, unknown>;
+  return { route, sentFields, cvFollowUpRequiresApproval };
+}
+
 async function verifyPrivateAttachment(
   attachment: NonNullable<ContactDraft["attachment"]>,
+  session: string,
 ) {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token || !attachment.pathname.startsWith("contact/unsubmitted/")) return false;
+  const ownerSecret = getContactAttachmentOwnerSecret();
+  if (!token || !ownerSecret || !isOwnedContactAttachment(attachment.pathname, session, ownerSecret)) {
+    return false;
+  }
 
   try {
     const blob = await head(attachment.pathname, { token });

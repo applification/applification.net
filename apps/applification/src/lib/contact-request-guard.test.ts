@@ -11,6 +11,7 @@ function request(extra: Record<string, string> = {}) {
 describe("contact protection", () => {
   beforeEach(() => {
     vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("CONTACT_WORKFLOW_ENABLED", "true");
     mocks.bot.mockResolvedValue({ isBot: false, isHuman: true });
     mocks.limit.mockResolvedValue({ rateLimited: false });
   });
@@ -21,6 +22,16 @@ describe("contact protection", () => {
     expect(mocks.limit.mock.calls[0][1].rateLimitKey).toBeUndefined();
     expect(mocks.limit.mock.calls[1][1].rateLimitKey).toMatch(/^session:/);
     expect(mocks.bot).toHaveBeenCalledOnce();
+  });
+  it("refuses every write while the contact kill switch is off", async () => {
+    vi.stubEnv("CONTACT_WORKFLOW_ENABLED", "false");
+    for (const operation of ["prepare", "attachment", "deliver"] as const) {
+      const response = await guardContactRequest(request(), operation);
+      expect(response!.status).toBe(503);
+      expect((await response!.json()).code).toBe("contact_unavailable");
+    }
+    expect(mocks.limit).not.toHaveBeenCalled();
+    expect(mocks.bot).not.toHaveBeenCalled();
   });
   it("rejects cross-origin requests before checking services", async () => {
     expect((await guardContactRequest(request({ origin: "https://attacker.test" }), "prepare"))!.status).toBe(403);

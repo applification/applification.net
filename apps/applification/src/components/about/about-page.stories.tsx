@@ -77,6 +77,13 @@ const checkCompletePage: NonNullable<Story["play"]> = async ({
     ),
   );
   await expect(profileFactColours.size).toBe(1);
+  // WCAG 2.2.2: one pause control for the looping delivery workflow diagram.
+  await expect(
+    within(canvasElement.querySelector<HTMLElement>("#method")!).getAllByRole(
+      "button",
+      { name: "Pause animation" },
+    ),
+  ).toHaveLength(1);
 };
 
 export const DesktopLight: Story = { play: checkCompletePage };

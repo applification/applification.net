@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbStructuredData } from "@/lib/public-catalog";
 import { AgentsPage } from "@/components/agent-info/agents-page";
+import { Toaster } from "@/components/ui/sonner";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 
 const description =
@@ -24,6 +25,7 @@ export default function AgentsRoute() {
     <>
       <StructuredData data={breadcrumbStructuredData([{ name: "Agents", path: "/agents" }])} />
       <AgentsPage />
+      <Toaster />
     </>
   );
 }

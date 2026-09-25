@@ -14,6 +14,10 @@
     "start": "bun --cwd apps/applification start",
     "lint": "bun --cwd apps/applification lint",
     "typecheck": "bun --cwd apps/applification typecheck",
+    "test": "bun run --cwd apps/applification test",
+    "test:workflow": "bun run --cwd apps/applification test:workflow",
+    "test:storybook": "bun run --cwd apps/applification test-storybook",
+    "check": "bun run lint && bun run typecheck && bun run test && bun run test:workflow",
     "skills:sync": "bun --cwd apps/applification skills:sync"
   }
 }

@@ -7,20 +7,27 @@ import {
   deleteContactAttachmentSchema,
   validateContactAttachment,
 } from "@/lib/contact-attachment";
+import {
+  contactAttachmentOwnerFolder,
+  getContactAttachmentOwnerSecret,
+  isOwnedContactAttachment,
+} from "@/lib/contact-attachment-owner";
 import { expireContactAttachmentWorkflow } from "@/workflows/contact-attachment-cleanup";
+
+const maxUploadBytes = 4.25 * 1_024 * 1_024;
 
 export async function POST(request: Request) {
   const blocked = await guardContactRequest(request, "attachment");
   if (blocked) return blocked;
   const contentLength = Number(request.headers.get("content-length") ?? 0);
-  if (contentLength > 4.25 * 1_024 * 1_024) {
+  if (contentLength > maxUploadBytes) {
     return Response.json(
       { code: "size", message: "The contract brief must be 4 MB or smaller." },
       { status: 413 },
     );
   }
 
-  const bytes = await readContactBody(request, 4.25 * 1_024 * 1_024);
+  const bytes = await readContactBody(request, maxUploadBytes);
   if (!bytes) {
     return Response.json({ code: "size", message: "The contract brief could not be read. Choose a file of 4 MB or smaller." }, { status: 413 });
   }
@@ -37,8 +44,9 @@ export async function POST(request: Request) {
   try {
     const document = await validateContactAttachment(file);
     const token = process.env.BLOB_READ_WRITE_TOKEN;
+    const ownerSecret = getContactAttachmentOwnerSecret();
 
-    if (!token) {
+    if (!token || !ownerSecret) {
       return Response.json(
         {
           code: "storage_unavailable",
@@ -48,7 +56,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const blob = await put(`contact/unsubmitted/${document.filename}`, file, {
+    // The guard has already validated the session header.
+    const session = request.headers.get("x-contact-session") ?? "";
+    const folder = contactAttachmentOwnerFolder(session, ownerSecret);
+    const blob = await put(`${folder}/${document.filename}`, file, {
       access: "private",
       addRandomSuffix: true,
       contentType: document.contentType,
@@ -102,8 +113,15 @@ export async function DELETE(request: Request) {
   }
 
   const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) {
+  const ownerSecret = getContactAttachmentOwnerSecret();
+  if (!token || !ownerSecret) {
     return Response.json({ code: "storage_unavailable" }, { status: 503 });
+  }
+
+  const session = request.headers.get("x-contact-session") ?? "";
+  if (!isOwnedContactAttachment(checked.data.pathname, session, ownerSecret)) {
+    // Same response as a missing file, so pathnames can't be probed.
+    return Response.json({ code: "not_found" }, { status: 404 });
   }
 
   try {

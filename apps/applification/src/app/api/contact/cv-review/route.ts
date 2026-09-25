@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { contactCvDecisionHook } from "@/workflows/contact-cv-decision-gate";
+import { contactCvDecisionHook } from "@/workflows/contact-delivery";
 import { loadOwnerCvReview } from "@/lib/contact-owner-review";
 
 const ownerDecisionSchema = z
