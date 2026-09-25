@@ -6,6 +6,11 @@ import { securityHeaders } from "./src/lib/security-headers";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["applification.localhost", "rufus.tail12a0a0.ts.net"],
   poweredByHeader: false,
+  // The production build type-checks application code only. Test and
+  // Storybook tooling is checked by `bun run typecheck` (tsconfig.json) in CI;
+  // including it here let a stale install cache with duplicate vitest copies
+  // fail Vercel builds on unrelated config types.
+  typescript: { tsconfigPath: "tsconfig.build.json" },
   async headers() {
     return [
       {
