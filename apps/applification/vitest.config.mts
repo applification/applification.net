@@ -28,6 +28,9 @@ export default defineConfig({
         ],
         test: {
           name: "storybook",
+          // Contact stories type whole briefs with userEvent and take 10-15s
+          // alone; leave headroom for the full parallel suite and CI runners.
+          testTimeout: 45_000,
           browser: {
             enabled: true,
             headless: true,

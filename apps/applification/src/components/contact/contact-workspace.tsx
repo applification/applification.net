@@ -151,6 +151,14 @@ const reviewFieldLabels: Record<EditableContactField, string> = {
   message: "Message",
 };
 
+// Where keyboard focus should land after a control that had focus unmounts.
+type FocusTarget =
+  | { kind: "change"; field: EditableContactField }
+  | { kind: "editor"; field: EditableContactField }
+  | { kind: "review" }
+  | { kind: "route-chosen" }
+  | { kind: "route-options" };
+
 type DeliveryResult = {
   route: ContactRoute;
   sentFields: string[];
@@ -210,11 +218,54 @@ export function ContactWorkspace({
   const idempotencyKeyRef = useRef(createContactUuid());
   const fileInputRef = useRef<HTMLInputElement>(null);
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
+  const routeOptionsRef = useRef<HTMLDivElement>(null);
   const fieldPrefix = useId();
+  // Set only by user actions, so the initial render never moves focus.
+  const [focusRequest, setFocusRequest] = useState<FocusTarget | null>(null);
 
   useEffect(() => {
     startedAtRef.current = currentTimestamp();
   }, []);
+
+  useEffect(() => {
+    if (!focusRequest) return;
+    // Wait for the committed DOM (and any Radix presence) before focusing.
+    const frame = requestAnimationFrame(() => {
+      const byId = (id: string) => document.getElementById(id);
+      const isRendered = (element: HTMLElement | null): element is HTMLElement =>
+        Boolean(element && element.getClientRects().length > 0);
+      const routeOptions = routeOptionsRef.current;
+      let target: HTMLElement | null = null;
+
+      switch (focusRequest.kind) {
+        case "editor":
+          target = byId(`${fieldPrefix}-${focusRequest.field}-editor`);
+          break;
+        case "change":
+          target = byId(`${fieldPrefix}-${focusRequest.field}-change`);
+          // A cleared optional field leaves the list; fall back to its heading.
+          if (!isRendered(target)) target = byId(`${fieldPrefix}-brief-details`);
+          break;
+        case "review":
+          target = byId(`${fieldPrefix}-prepared-message`);
+          break;
+        case "route-chosen":
+          // Phones hide the route chooser once a route is chosen. Wider
+          // screens keep it visible, so focus stays on the chosen option.
+          if (!isRendered(routeOptions)) target = messageInputRef.current;
+          break;
+        case "route-options":
+          target = isRendered(routeOptions)
+            ? routeOptions.querySelector<HTMLElement>("[data-state='on']")
+              ?? routeOptions.querySelector<HTMLElement>("button")
+            : messageInputRef.current;
+          break;
+      }
+
+      if (isRendered(target)) target.focus();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [fieldPrefix, focusRequest]);
 
   useEffect(() => {
     // A drafting tool is meaningful only while this page can accept edits.
@@ -401,6 +452,7 @@ export function ContactWorkspace({
     setEditingValue("");
     resetDeliveryForDraftChange();
     startedAtRef.current = currentTimestamp();
+    setFocusRequest({ kind: "route-options" });
   }
 
   async function uploadContactAttachment(file: File) {
@@ -524,6 +576,7 @@ export function ContactWorkspace({
   function startEditingField(field: EditableContactField) {
     setEditingField(field);
     setEditingValue(draftRef.current[field] ?? "");
+    setFocusRequest({ kind: "editor", field });
   }
 
   function saveEditingField() {
@@ -536,6 +589,11 @@ export function ContactWorkspace({
     editDraftField(editingField, editingValue.trim());
     setEditingField(checkOverview ? "summary" : null);
     setEditingValue(checkOverview ? draftRef.current.summary ?? "" : "");
+    setFocusRequest(
+      checkOverview
+        ? { kind: "editor", field: "summary" }
+        : { kind: "change", field: editingField },
+    );
   }
 
   function cancelEditingField() {
@@ -607,7 +665,15 @@ export function ContactWorkspace({
           >
             Save change
           </Button>
-          <Button onClick={cancelEditingField} size="sm" type="button" variant="ghost">
+          <Button
+            onClick={() => {
+              cancelEditingField();
+              setFocusRequest({ kind: "change", field });
+            }}
+            size="sm"
+            type="button"
+            variant="ghost"
+          >
             Cancel
           </Button>
         </div>
@@ -749,8 +815,9 @@ export function ContactWorkspace({
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0 flex-1">
                 <p
-                  className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase"
+                  className="font-caption rounded-sm text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
                   id={`${fieldPrefix}-prepared-message`}
+                  tabIndex={-1}
                 >
                   Enquiry overview
                 </p>
@@ -771,8 +838,10 @@ export function ContactWorkspace({
               </div>
               {editingField !== "summary" ? (
                 <Button
+                  aria-label="Change enquiry overview"
                   className="shrink-0"
                   disabled={delivery !== "idle" || Boolean(editingField)}
+                  id={`${fieldPrefix}-summary-change`}
                   onClick={() => startEditingField("summary")}
                   size="sm"
                   type="button"
@@ -788,8 +857,9 @@ export function ContactWorkspace({
           <section aria-labelledby={`${fieldPrefix}-brief-details`}>
             <div className="flex items-center justify-between gap-3">
               <p
-                className="font-caption text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase"
+                className="font-caption rounded-sm text-[11px] font-bold tracking-[0.7px] text-[var(--app-label-text)] uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--app-focus)]"
                 id={`${fieldPrefix}-brief-details`}
+                tabIndex={-1}
               >
                 Brief details
               </p>
@@ -821,8 +891,11 @@ export function ContactWorkspace({
                     </div>
                     {editingField !== field ? (
                       <Button
+                        // Starts with the visible text (WCAG 2.5.3) and names the field.
+                        aria-label={`Change ${reviewFieldLabels[field].toLowerCase()}`}
                         className="justify-self-start sm:justify-self-end"
                         disabled={delivery !== "idle" || Boolean(editingField)}
+                        id={`${fieldPrefix}-${field}-change`}
                         onClick={() => startEditingField(field)}
                         size="sm"
                         type="button"
@@ -1038,9 +1111,12 @@ export function ContactWorkspace({
               originalMessage={message.trim() || lastFailedMessage || ""}
               onRoute={chooseRoute}
               onField={editDraftField}
-              onReview={() => { setSummaryNeedsReview(false); setManualMode(false); setReviewMode(true); setBriefExpanded(true); setPrepareError(null); }}
+              onReview={() => { setSummaryNeedsReview(false); setManualMode(false); setReviewMode(true); setBriefExpanded(true); setPrepareError(null); setFocusRequest({ kind: "review" }); }}
             /> : <Conversation className="bg-[var(--app-section)]">
-              <ConversationContent className="mx-auto w-full max-w-[920px] gap-4 px-3 py-4 sm:gap-5 sm:px-5 sm:py-8" data-contact-conversation>
+              {/* use-stick-to-bottom reserves a scrollbar gutter on both edges, which
+                  insets the thread 15px from the composer wherever scrollbars take
+                  space (Windows, Linux). Reserve space only once the thread scrolls. */}
+              <ConversationContent className="mx-auto w-full max-w-[920px] gap-4 px-3 py-4 sm:gap-5 sm:px-5 sm:py-8" data-contact-conversation scrollClassName="![scrollbar-gutter:auto]">
                 <Message className="max-w-full" from="assistant">
                   <MessageContent className="w-full max-w-full gap-3 rounded-2xl bg-[var(--contact-card)] p-3 text-base leading-[1.55] sm:gap-4 sm:p-5">
                     <AssistantMessageLabel />
@@ -1062,8 +1138,12 @@ export function ContactWorkspace({
                       >
                         <span className="truncate font-semibold">{selectedRoute?.shortLabel}</span>
                         <Button
+                          aria-label="Change enquiry route"
                           className="min-h-11 shrink-0 px-2"
-                          onClick={() => setRouteChooserExpanded(true)}
+                          onClick={() => {
+                            setRouteChooserExpanded(true);
+                            setFocusRequest({ kind: "route-options" });
+                          }}
                           size="sm"
                           type="button"
                           variant="ghost"
@@ -1082,8 +1162,10 @@ export function ContactWorkspace({
                       onValueChange={(value) => {
                         if (value) {
                           chooseRoute(value as ContactRoute);
+                          setFocusRequest({ kind: "route-chosen" });
                         }
                       }}
+                      ref={routeOptionsRef}
                       type="single"
                       value={route ?? ""}
                       variant="outline"
