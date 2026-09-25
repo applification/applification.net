@@ -1,9 +1,22 @@
 import { withBotId } from "botid/next/config";
 import type { NextConfig } from "next";
 import { withWorkflow } from "workflow/next";
+import { securityHeaders } from "./src/lib/security-headers";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["applification.localhost", "rufus.tail12a0a0.ts.net"],
+  poweredByHeader: false,
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders({
+          development: process.env.NODE_ENV === "development",
+          preview: process.env.VERCEL_ENV === "preview",
+        }),
+      },
+    ];
+  },
   outputFileTracingIncludes: {
     "/design.md": ["./design.md"],
   },
