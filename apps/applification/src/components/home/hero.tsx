@@ -5,7 +5,7 @@ import { contractPositioning, personalLinkedInUrl } from "@/lib/contract-positio
 import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { HeroEntrance, HeroSequenceController } from "./motion";
+import { DiagramMotionToggle, HeroEntrance, HeroSequenceController } from "./motion";
 import { WorkflowBorderBeam } from "./workflow-border-beam";
 
 const contactHref = buildContactHref({ route: "contract" });
@@ -387,7 +387,6 @@ export function Hero() {
       className={`${heroTopSpacing} bg-linear-to-b from-[var(--hero-bg)] to-[var(--hero-bg-end)] px-6 pb-8 text-[var(--hero-text)] min-[720px]:px-12 min-[720px]:pb-10 min-[1060px]:pb-12 min-[1280px]:px-20 min-[1440px]:px-[120px]`}
       data-hero-surface
     >
-      <HeroSequenceController />
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 min-[720px]:gap-7 min-[1060px]:gap-9">
         <HeroEntrance order={0}>
           <div className="font-caption relative">
@@ -483,16 +482,21 @@ export function Hero() {
           </HeroEntrance>
         </div>
 
-        <div aria-label="How I use AI in delivery" role="group">
-          <p className="sr-only">
-            The delivery loop starts with human intent and context. An agent works
-            within that scope and runs tests. A person reviews the evidence before
-            the outcome ships, or sends the work back for another pass.
-          </p>
-          <DesktopAgentLoop />
-          <TabletAgentLoop />
-          <MobileAgentLoop />
-        </div>
+        <HeroSequenceController>
+          <div aria-label="How I use AI in delivery" role="group">
+            <p className="sr-only">
+              The delivery loop starts with human intent and context. An agent works
+              within that scope and runs tests. A person reviews the evidence before
+              the outcome ships, or sends the work back for another pass.
+            </p>
+            <DesktopAgentLoop />
+            <TabletAgentLoop />
+            <MobileAgentLoop />
+            <DiagramMotionToggle
+              className="mt-1 -mr-2 -mb-2 ml-auto flex w-fit px-2 text-xs font-semibold text-[var(--hero-label)] hover:bg-[var(--hero-action-secondary-hover)] focus-visible:outline-[var(--hero-focus)]"
+            />
+          </div>
+        </HeroSequenceController>
       </div>
     </section>
   );

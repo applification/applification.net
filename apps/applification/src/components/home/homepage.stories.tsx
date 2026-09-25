@@ -60,6 +60,10 @@ const checkCommercialEvidenceOrder: NonNullable<Story["play"]> = async ({
     (element) => getComputedStyle(element).display !== "none",
   )!;
   await expect(hero!.contains(diagram)).toBe(true);
+  // WCAG 2.2.2: one pause control for the looping hero diagram.
+  await expect(
+    within(hero as HTMLElement).getAllByRole("button", { name: "Pause animation" }),
+  ).toHaveLength(1);
   if (window.innerWidth >= 1060) {
     const content = clientOutcomes!.firstElementChild!.getBoundingClientRect();
     const diagramBounds = diagram.getBoundingClientRect();
