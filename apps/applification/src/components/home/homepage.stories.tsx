@@ -50,7 +50,7 @@ const checkCommercialEvidenceOrder: NonNullable<Story["play"]> = async ({
     await expect(link.querySelector("svg")).toBeInTheDocument();
   }
   const canvas = within(canvasElement);
-  for (const name of ["Contexture", "Voiced", "StoryLoops"]) {
+  for (const name of ["Contexture", "Voiced", "astack", "Loami"]) {
     await expect(canvas.getByRole("link", { name: `Explore ${name}` })).toHaveAttribute("href", `/products/${name.toLowerCase()}`);
   }
   // The homepage no longer carries the Plantry showcase or a second AI section.
@@ -174,5 +174,11 @@ export const ProductLinkKeyboardFocus: Story = {
     const voiced = canvas.getByRole("link", { name: "Explore Voiced" });
     await expect(voiced).toHaveFocus();
     await expect(getComputedStyle(voiced).outlineStyle).not.toBe("none");
+    for (const name of ["astack", "Loami"]) {
+      await userEvent.tab();
+      const product = canvas.getByRole("link", { name: `Explore ${name}` });
+      await expect(product).toHaveFocus();
+      await expect(getComputedStyle(product).outlineStyle).not.toBe("none");
+    }
   },
 };
