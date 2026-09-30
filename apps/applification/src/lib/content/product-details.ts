@@ -1,3 +1,13 @@
+export const astackRoutes = [
+  { title: "Feature", description: "Add or change user behaviour." },
+  { title: "Bug fix", description: "Reproduce a defect and verify the fix." },
+  { title: "Refactor", description: "Change structure while preserving behaviour." },
+  { title: "Performance", description: "Measure slowness, then compare the result." },
+  { title: "Investigation", description: "Answer a question from evidence." },
+  { title: "Pull request", description: "Review or finish an existing change." },
+  { title: "App control", description: "Make a running app controllable for verification." },
+];
+
 // Authored product copy shared by the pages and public agent reads.
 
 export const contextureContractSteps = [
@@ -242,43 +252,77 @@ export const productPageCopy = {
       ],
     },
   },
-  storyloops: {
+  astack: {
+    hero: {
+      title: "Outcome first. Proof built in.",
+      paragraphs: ["astack gives Codex one entry point for engineering work. Describe the outcome. It chooses a route, follows the relevant guidance, checks what happened, and brings kept code to a pull request."],
+    },
+    method: {
+      title: "Give the model room to do the work.",
+      paragraphs: ["A clear outcome, project guardrails and a verification loop let the model take on larger tasks. astack selects checks that can catch the relevant failure and records what was actually observed.", "A substantial behaviour change keeps a short contract with observable acceptance cases. Existing projects keep their working stack and tools."],
+    },
+    project: {
+      title: "Your project owns its decisions.",
+      paragraphs: ["The Applification plugin supplies the workflow. Your project supplies its commands, environments and product decisions. A project profile records the local proof routes; a project-owned control CLI and feature map help the agent drive a running product."],
+    },
     availability: {
-      title: "One purchase. The product and source are yours.",
-      paragraphs: [
-        "V1 is in preparation. Buyers receive the working app, source code, deployment configuration and agent playbooks. There is no hosted SaaS subscription.",
-      ],
+      title: "Open source. In development.",
+      paragraphs: ["astack is available as the Applification plugin for Codex under the MIT licence. The workflow is still in development. The website explains the routes and installation; the repository holds the current skill and guidance."],
     },
-    buildPrinciples: {
-      paragraphs: [
-        "The application favours obvious architecture, explicit domain concepts and typed boundaries. Agent documentation is part of the product, not an appendix added before release.",
-      ],
-    },
-    ownership: {
-      title: "Purchase. Give it to your agent. Receive a production URL.",
-      paragraphs: [
-        "The installation playbook tells the agent what to provision, how to deploy and what to verify before handover.",
-      ],
+  },
+  storyloops: {
+    hero: {
+      title: "StoryLoops is archived. The direction is now astack.",
+      paragraphs: ["StoryLoops explored collaborative story mapping for people and coding agents. I archived it because it was slowing me down, bringing too much traditional agile process into how I developed."],
     },
     rationale: {
-      title: "Start with a production product, not an empty directory.",
+      title: "More trust in the model. A clearer verification loop.",
+      paragraphs: ["I had to learn to trust the model more. Give it an outcome, the right guardrails and a verification loop, then let it take on bigger tasks. That delivered better results than forcing the work through a story map.", "That change in approach led to astack. StoryLoops remains here as a record of the experiment and what I learned."],
+    },
+    availability: {
+      title: "Archived product",
+      paragraphs: ["StoryLoops is no longer in active development. Explore astack for the current approach to agent-led engineering."],
+    },
+  },
+  loami: {
+    hero: {
+      title:
+        "A household assistant that knows what you like.",
       paragraphs: [
-        "An agent can generate code, but starting from zero still means hundreds of architecture, security, data and product decisions. StoryLoops gives the agent a coherent application that already works.",
-        "You are buying the decisions, implementation and debugging already done, plus the source to take it further.",
+        "Loami brings your household’s recipes, tastes and film choices together. Talk to Loami in its own chat, or work with your preferred agent using the same household context. Use the app to review recipes and make choices together, with everyone’s preferences close at hand.",
       ],
     },
-    hero: {
-      title: "Stop renting story-mapping software. Own it.",
+    recipes: {
+      title: "Start with the food you actually cook.",
       paragraphs: [
-        "Buy a complete collaborative story-mapping application, deploy it with your coding agent, and own the source for the version you purchase.",
+        "Capture a recipe from a public website or Markdown note, review what Loami retained, and explicitly save your household version. Find it through the app or your agent. Adjust supported quantities for a different yield, with unresolved quantities left visible for review.",
+      ],
+    },
+    movies: {
+      title: "Choose the next family film.",
+      paragraphs: [
+        "Keep a shared watchlist, record who is interested, and remember what everyone thought after watching. Movie Night combines discovery, ratings, comments and a household Hall of Fame.",
+      ],
+    },
+    engineering: {
+      title: "One household, shared across interfaces.",
+      paragraphs: [
+        "Web, SwiftUI iPhone and MCP clients use the same Convex domain and household permission rules. Shared web components are developed in Storybook; the native client has its own renderer. Loami also has its own chat. The embedded MCP interface covers a smaller set of interactions than the full component library.",
+      ],
+    },
+    availability: {
+      title: "Building towards household planning.",
+      paragraphs: [
+        "Loami is in development. Meal planning and shopping are planned workflows, with component examples rather than persistent planning or shopping services. Public access has not been announced.",
+        "Loami continues the household work that began with Plantry.",
       ],
     },
   },
   plantry: {
     availability: {
-      title: "Plantry is still in product development.",
+      title: "Plantry is archived. The work continues in Loami.",
       paragraphs: [
-        "The current iPhone prototype is testing the household planning loop before a wider release. Follow the build for availability and test invitations.",
+        "Plantry was an iPhone prototype exploring household meal planning. It is retained here as the starting point for Loami, which now includes household recipes and Movie Night.",
       ],
     },
     buildPrinciples: {
@@ -297,7 +341,7 @@ export const productPageCopy = {
     hero: {
       title: "Plan meals around the household you actually have.",
       paragraphs: [
-        "A meal planner for the next two to seven days. It accounts for preferences, effort, what needs using and what is in season, then hands the shopping list to Reminders.",
+        "An archived iPhone meal-planning prototype exploring short plans, household preferences, available effort and food that needed using. This page records the original product direction.",
       ],
     },
   },
@@ -324,6 +368,22 @@ export const productLinks = {
       url: "https://github.com/applification/voiced",
     },
   ],
-  storyloops: [],
-  plantry: [],
+  astack: [
+    { label: "Product website", url: "https://astack.applification.net/" },
+    { label: "Source code", url: "https://github.com/applification/astack" },
+  ],
+  storyloops: [{ label: "astack", url: "https://www.applification.net/products/astack" }],
+  loami: [
+    {
+      label: "Brand and component Storybook",
+      url: "https://loami-storybook.vercel.app/?path=/docs/foundations-brand--docs",
+    },
+    {
+      label: "Plantry archive",
+      url: "https://www.applification.net/products/plantry",
+    },
+  ],
+  plantry: [
+    { label: "Loami", url: "https://www.applification.net/products/loami" },
+  ],
 };

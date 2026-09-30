@@ -7,12 +7,12 @@ import { StoryLoopsProductPage } from "@/components/products/storyloops-product-
 export const metadata: Metadata = {
   title: "StoryLoops",
   description:
-    "Buy StoryLoops as a complete collaborative story-mapping application, deploy it with your coding agent, and own the source.",
+    "StoryLoops is an archived story-mapping experiment. Its lessons led to astack, an outcome-led workflow for Codex.",
   openGraph: {
     ...defaultOpenGraph,
     title: "StoryLoops | Applification",
     description:
-      "A complete collaborative story-mapping product, source code and agent installation playbook.",
+      "An archived story-mapping experiment. Its lessons shaped astack.",
     url: "/products/storyloops",
   },
 };

@@ -16,7 +16,7 @@ const checkProductCards: NonNullable<Story["play"]> = async ({
 }) => {
   const canvas = within(canvasElement);
 
-  for (const name of ["Contexture", "Voiced", "StoryLoops"]) {
+  for (const name of ["Contexture", "Voiced", "astack", "Loami"]) {
     await expect(
       canvas.getByRole("link", { name: `Explore ${name}` }),
     ).toHaveAttribute("href", `/products/${name.toLowerCase()}`);
@@ -24,10 +24,10 @@ const checkProductCards: NonNullable<Story["play"]> = async ({
   await expect(canvas.getByRole("link", { name: "See all products" })).toHaveAttribute("href", "/products");
 
   const cards = [...canvasElement.querySelectorAll("[data-product-card]")];
-  await expect(cards).toHaveLength(3);
+  await expect(cards).toHaveLength(4);
 
-  if (window.innerWidth >= 1024) {
-    // Peer cards share one baseline in the three-up row.
+  if (window.innerWidth >= 1280) {
+    // Peer cards share one baseline in the four-card row.
     const bottoms = cards.map((card) => Math.round(card.getBoundingClientRect().bottom));
     await expect(new Set(bottoms).size).toBe(1);
   }

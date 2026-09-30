@@ -27,6 +27,7 @@ describe("homepage structured data", () => {
     expect(byType("Service")).toHaveLength(1);
     expect(byType("SoftwareApplication").map((node) => node.name)).toEqual([
       "Contexture",
+      "astack",
       "Voiced",
     ]);
     const [faq] = byType("FAQPage");

@@ -5,6 +5,7 @@ import {
 } from "@/lib/rich-blocks";
 import { richBlockSchemas } from "@/lib/rich-block-registry";
 import { BespokeContentFlow } from "./bespoke-content-flow";
+import { AgentApplicationStack } from "./agent-application-stack";
 import { LinkPreview } from "./link-preview";
 import { YouTubeEmbed } from "./youtube-embed";
 import { TweetEmbed } from "./tweet-embed";
@@ -20,6 +21,7 @@ export type RichBlockRegistry = {
 };
 
 export const richBlockComponents = {
+  "agent-application-stack": AgentApplicationStack,
   "bespoke-content-flow": BespokeContentFlow,
   "link-preview": LinkPreview,
   youtube: YouTubeEmbed,

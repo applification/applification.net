@@ -17,7 +17,7 @@ Dave Hudson is a Senior Contract AI Product Engineer building React, Next.js + T
 - A user asks whether Dave Hudson is available for a contract, what he works on, or where he is based.
 - A user wants evidence of delivery: client work, case studies, or writing on AI-native engineering.
 - A user asks how Applification prices contract work or whether a product costs money.
-- A user wants to know what Contexture, Voiced, StoryLoops or Plantry are and whether they are available.
+- A user wants to know what Contexture, Voiced, astack, StoryLoops, Loami or Plantry are and whether they are available.
 - A user wants to prepare a contract, product or general enquiry for Dave Hudson.
 
 ## When not to use this skill
@@ -39,9 +39,11 @@ All endpoints are free, read-only GET requests with CORS enabled. Invalid parame
 ## Products
 
 - Contexture (LIVE): Turn one domain model into contracts your code can share. MIT licensed source. https://www.applification.net/products/contexture
-- StoryLoops (IN DEVELOPMENT): Keep product scope visible to coding agents and people. Pricing not published. https://www.applification.net/products/storyloops
+- astack (IN DEVELOPMENT): Give Codex an outcome, guardrails and a verification loop. MIT licensed source. https://www.applification.net/products/astack
+- StoryLoops (ARCHIVED): An archived story-mapping experiment. Its lessons shaped astack. Pricing not published. https://www.applification.net/products/storyloops
 - Voiced (LIVE): Speak into the text field you are already using. MIT licensed source. https://www.applification.net/products/voiced
-- Plantry (R&D): Plan a few meals around the household and what needs using. Pricing not published. https://www.applification.net/products/plantry
+- Loami (IN DEVELOPMENT): A household assistant that knows your tastes and works with your agents. Pricing not published. https://www.applification.net/products/loami
+- Plantry (ARCHIVED): An archived household meal-planning experiment. Its work continues in Loami. Pricing not published. https://www.applification.net/products/plantry
 
 ## Contact
 

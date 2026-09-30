@@ -46,6 +46,7 @@ function ArrowUpRightIcon() {
 }
 
 type ProductDetailHeroProps = {
+  attribution?: ReactNode;
   breadcrumb: string;
   description: string;
   primaryAction: ProductDetailAction;
@@ -57,6 +58,7 @@ type ProductDetailHeroProps = {
 };
 
 export function ProductDetailHero({
+  attribution,
   breadcrumb,
   description,
   primaryAction,
@@ -94,6 +96,7 @@ export function ProductDetailHero({
             >
               {description}
             </p>
+            {attribution}
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 className={`${contexture ? "bg-[#cba6f7] text-[#1e1e2e] hover:bg-[#d8b4fe]" : "bg-[var(--app-action)] text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)]"} inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-[18px] text-base font-semibold transition-[background-color,transform] active:translate-y-px ${focusClasses}`}
@@ -494,7 +497,7 @@ export function ProductDetailAvailability({
           </a>
           {secondaryAction ? (
             <a
-              className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--contexture-detail-border)] bg-[var(--app-section)] px-[22px] text-[15px] font-semibold text-[var(--contexture-detail-accent)] transition-[background-color,transform] hover:bg-[var(--contexture-detail-soft)] active:translate-y-px min-[1024px]:w-auto ${focusClasses}`}
+              className={`${contexture ? "border-[var(--contexture-detail-border)] text-[var(--contexture-detail-accent)] hover:bg-[var(--contexture-detail-soft)]" : "border-[var(--app-border)] text-[var(--app-label-text)] hover:bg-[var(--app-muted-section)]"} inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border bg-[var(--app-section)] px-[22px] text-[15px] font-semibold transition-[background-color,transform] active:translate-y-px min-[1024px]:w-auto ${focusClasses}`}
               href={secondaryAction.href}
               rel={secondaryAction.external ? "noopener noreferrer" : undefined}
               target={secondaryAction.external ? "_blank" : undefined}

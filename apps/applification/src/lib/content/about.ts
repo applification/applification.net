@@ -47,7 +47,7 @@ export const careerTimeline = [
     year: "2026",
     title: "Released products and AI research",
     description:
-      "Contexture and Voiced are live, open-source products. StoryLoops remains in development, alongside AI product research at Applification.",
+      "Contexture and Voiced are live, open-source products. astack remains in development, alongside AI product research at Applification.",
     current: true,
   },
 ] as const;

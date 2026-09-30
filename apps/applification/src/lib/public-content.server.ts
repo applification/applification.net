@@ -4,12 +4,11 @@ import { validateRichBlocks, stripRichBlocks } from "./rich-blocks";
 import { richBlockSchemas } from "./rich-block-registry";
 import { publicProducts, siteUrl } from "./public-catalog";
 import {
+  astackRoutes,
   contextureBuildRows,
   contextureContractSteps,
   voicedBuildRows,
   voicedCaptureRoutes,
-  storyloopsOwnershipSteps,
-  storyloopsBuildPrinciples,
   plantryPlanningSteps,
   plantryBuildPrinciples,
   productPageCopy,
@@ -71,7 +70,12 @@ function productContent(): PublicContent[] {
     voiced: voicedCaptureRoutes
       .map((s) => `${s.title} (${s.shortcutLabel}): ${s.description}`)
       .join("\n\n"),
-    storyloops: bullets(storyloopsOwnershipSteps),
+    astack: bullets(astackRoutes),
+    storyloops: "Archived story-mapping experiment. Its lessons shaped astack.",
+    loami:
+      productPageCopy.loami.recipes.paragraphs.join("\n\n") +
+      "\n\n" +
+      productPageCopy.loami.movies.paragraphs.join("\n\n"),
     plantry: bullets(plantryPlanningSteps),
   };
   const specifications = {
@@ -79,7 +83,9 @@ function productContent(): PublicContent[] {
       .map((s) => `${s.label}: ${s.value}`)
       .join("\n"),
     voiced: voicedBuildRows.map((s) => `${s.label}: ${s.value}`).join("\n"),
-    storyloops: bullets(storyloopsBuildPrinciples),
+    astack: "Codex plugin. MIT licence. Project-owned commands, environments and product decisions.",
+    storyloops: "Archived. No longer in active development.",
+    loami: productPageCopy.loami.engineering.paragraphs.join("\n\n"),
     plantry: bullets(plantryBuildPrinciples),
   };
   return publicProducts.map((product) => {
@@ -90,8 +96,8 @@ function productContent(): PublicContent[] {
     const status =
       product.status === "LIVE"
         ? "live"
-        : product.status === "R&D"
-          ? "research"
+        : product.status === "ARCHIVED"
+          ? "archived"
           : "in-development";
     return {
       type: "products",

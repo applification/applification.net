@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   plantryPlanningSteps,
   plantryBuildPrinciples,
@@ -23,12 +24,6 @@ import {
   ProductDetailEyebrow,
   ProductDetailSteps,
 } from "@/components/products/product-detail";
-import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
-
-const followBuildHref = buildContactHref({
-  route: "product",
-  product: "plantry",
-});
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
@@ -128,21 +123,15 @@ function PlantryHero() {
               {productPageCopy.plantry.hero.paragraphs[0]}
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              {isContactWorkflowAvailable() ? (
-                <a
-                  className={`inline-flex min-h-11 items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
-                  href={followBuildHref}
-                >
-                  Follow the build
-                  <ArrowUpRight
-                    aria-hidden="true"
-                    size={16}
-                    strokeWidth={1.8}
-                  />
-                </a>
-              ) : null}
+              <a
+                className={`inline-flex min-h-11 items-center justify-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-action)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-on-action)] transition-[background-color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
+                href="/products/loami"
+              >
+                Explore Loami
+                <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
+              </a>
               <span className="inline-flex min-h-11 items-center gap-[9px] rounded-full border border-[var(--app-border)] bg-[var(--app-muted-section)] px-5 text-base font-semibold whitespace-nowrap text-[var(--app-text-secondary)]">
-                Apple platforms R&amp;D
+                Archived Apple prototype
                 <Smartphone aria-hidden="true" size={16} strokeWidth={1.8} />
               </span>
             </div>
@@ -277,20 +266,18 @@ function PlantryAvailability() {
             {productPageCopy.plantry.availability.paragraphs[0]}
           </p>
         </div>
-        {isContactWorkflowAvailable() ? (
-          <a
-            className={`inline-flex h-[49px] w-full items-center justify-center gap-2.5 rounded-full bg-[var(--app-text-primary)] px-[21px] text-[15px] font-semibold text-[var(--app-section)] transition-[background-color,transform] hover:bg-[var(--app-text-secondary)] active:translate-y-px min-[1200px]:w-[185px] ${focusClasses}`}
-            href={followBuildHref}
-          >
-            Follow the build
-            <ArrowUpRight
-              aria-hidden="true"
-              className="shrink-0 text-[#78d696]"
-              size={18}
-              strokeWidth={1.8}
-            />
-          </a>
-        ) : null}
+        <a
+          className={`inline-flex h-[49px] w-full items-center justify-center gap-2.5 rounded-full bg-[var(--app-text-primary)] px-[21px] text-[15px] font-semibold text-[var(--app-section)] transition-[background-color,transform] hover:bg-[var(--app-text-secondary)] active:translate-y-px min-[1200px]:w-[185px] ${focusClasses}`}
+          href="/products/loami"
+        >
+          Explore Loami
+          <ArrowUpRight
+            aria-hidden="true"
+            className="shrink-0 text-[#78d696]"
+            size={18}
+            strokeWidth={1.8}
+          />
+        </a>
       </div>
     </section>
   );
@@ -298,7 +285,22 @@ function PlantryAvailability() {
 
 export function PlantryProductPage() {
   return (
-    <main id="main-content" className="overflow-x-clip" data-product-theme="plantry">
+    <main
+      id="main-content"
+      className="overflow-x-clip"
+      data-product-theme="plantry"
+    >
+      <aside className="bg-[var(--app-muted-section)] px-6 py-6 text-[var(--app-text-primary)]">
+        <div className="mx-auto max-w-[1200px]">
+          <strong>Archived product.</strong> Plantry is where Loami began.{" "}
+          <Link
+            className={`inline-flex min-h-11 items-center underline ${focusClasses}`}
+            href="/products/loami"
+          >
+            Explore Loami
+          </Link>
+        </div>
+      </aside>
       <PlantryHero />
 
       <PlantryRationale />

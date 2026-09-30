@@ -25,8 +25,9 @@ type ActiveIndicatorPosition = {
   x: number;
 };
 
-type ProductHeaderTheme = "plantry" | "storyloops" | "contexture" | "voiced";
+type ProductHeaderTheme = "loami" | "plantry" | "storyloops" | "contexture" | "voiced";
 const productHeaderThemeNames = new Set<ProductHeaderTheme>([
+  "loami",
   "plantry",
   "storyloops",
   "contexture",

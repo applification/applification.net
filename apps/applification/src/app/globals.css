@@ -345,6 +345,30 @@
   --sidebar-ring: var(--app-focus);
 }
 
+/* Loami's limestone, gold and terracotta palette, from packages/ui tokens.css. */
+[data-product-theme="loami"] {
+  --app-bg: light-dark(oklch(0.9391745714 0.0080738182 98.88342172), oklch(0.3418396 0.0220143 200.6988022));
+  --app-bg-end: var(--app-bg);
+  --app-section: var(--app-bg);
+  --app-muted-section: light-dark(oklch(0.9118540726 0.0122675869 96.4336405891), oklch(0.379403 0.0284973 199.426712));
+  --app-card: light-dark(oklch(0.9933907 0.010731 95.1592646), oklch(0.2947446 0.0224316 200.6223873));
+  --app-selected: var(--app-muted-section);
+  --app-control: var(--app-muted-section);
+  --app-label: var(--app-muted-section);
+  --app-text-primary: light-dark(oklch(0.3110819 0.0501252 238.2301658), oklch(0.963225 0.0121048 96.422953));
+  --app-text-secondary: light-dark(oklch(0.4806449806 0.015813572 97.6726250639), oklch(0.8337744 0.0163474 196.8439113));
+  --app-text-muted: var(--app-text-secondary);
+  --app-border: light-dark(oklch(0.8357576805 0.0170084378 91.5762024942), oklch(0.4693745 0.0298876 199.2581145));
+  --app-accent: light-dark(oklch(0.5521326 0.1075989 48.632232), oklch(0.792512314 0.064917137 67.4353381));
+  --app-label-text: light-dark(oklch(0.4841592359 0.0964025094 44.23859008), oklch(0.792512314 0.064917137 67.4353381));
+  --app-action: oklch(0.8252349 0.1647276 94.6308692);
+  --app-action-hover: oklch(0.8815510442 0.0152228687 94.2168462353);
+  --app-text-on-action: oklch(0.3110819 0.0501252 238.2301658);
+  --app-focus: light-dark(oklch(0.3110819 0.0501252 238.2301658), oklch(0.8252349 0.1647276 94.6308692));
+  --header-nav-active: var(--app-text-primary);
+  --header-nav-selected: var(--app-muted-section);
+}
+
 [data-product-theme="plantry"] {
   --app-bg: light-dark(#fffbef, #102a3a);
   --app-bg-end: light-dark(#fffbef, #153447);
