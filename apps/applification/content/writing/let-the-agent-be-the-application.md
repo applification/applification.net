@@ -24,13 +24,11 @@ That left me wondering how much application I needed to build around the recipes
 
 For years, a new product has usually meant a new web app or mobile app. We build navigation, screens, account flows and notifications. More recently, we have started adding our own AI chat, with its own conversation history, streaming responses, attachments and model orchestration.
 
-With Loami, I could see some of that work happening in the application I was already using. ChatGPT handled the conversation; Loami supplied the recipes. Better components could provide the visual interaction I was missing.
+The meal-planning experiment showed a different arrangement. The agent application handled the conversation; Loami supplied the recipes. By "agent application", I mean something like ChatGPT or Codex, including its models, tools and surrounding services.
 
-When I say "let the agent be the application", I mean agent applications such as ChatGPT or Codex, including their models, tools and surrounding services. The Loami experience happened in ChatGPT, so that is the example I'm exploring here.
+I want to build for that arrangement deliberately. Loami should own the household data and business rules, expose useful capabilities through MCP, and provide the interfaces that make recipes and plans easy to use. The agent can handle the conversation and coordination around them.
 
-I want to build for that arrangement deliberately. Own the household data and business rules, expose useful capabilities through MCP, and design the interfaces that make recipes and plans easy to use. Let ChatGPT provide the conversation and coordination around them.
-
-For Loami, that points towards an OpenAI MCP App inside ChatGPT. The recipe tools already exist. Bringing richer recipe and planning interfaces into the conversation is the next part to explore.
+For Loami, the next step is an MCP App inside ChatGPT. The recipe tools already exist. Bringing richer recipe and planning interfaces into the conversation is the part I want to explore next.
 
 ## Dots could be the way in
 
@@ -38,11 +36,11 @@ The meal-planning conversation showed me what this could do for one request. [Op
 
 Dots are persistent agents with their own cloud computer. They can work through connected apps, learn from feedback and keep working between conversations. The user chooses which apps they can access.
 
-I think this will become a consumer doorway into many of the domains I am talking about. Someone wants to sort out dinner, choose a film or organise a family trip. They ask the dot they already use, which can bring together the relevant services and household context. A product like Loami supplies the recipes and controlled actions that make its part of the request useful.
+[Meta's Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/), [xAI's Grok Bot](https://x.ai/bot/guides/grok-bot-101) and [Anthropic's Claude Cowork](https://claude.com/product/cowork) also take on work for the user. Their integrations and UI capabilities differ, but the broader shift is towards agents that can carry work beyond a single exchange.
+
+I think persistent agents will become a consumer doorway into many of the domains I am talking about. Someone wants to sort out dinner, choose a film or organise a family trip. They ask the dot they already use, which can bring together the relevant services and household context. A product like Loami supplies the recipes and controlled actions that make its part of the request useful.
 
 That changes where I expect people to begin. They may reach Loami through an ongoing relationship with their dot, rather than opening a separate application each time. I want Loami to work well in that arrangement. This is the direction I expect to develop.
-
-[Meta's Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/), [xAI's Grok Bot](https://x.ai/bot/guides/grok-bot-101) and [Anthropic's Claude Cowork](https://claude.com/product/cowork) also take on work for the user. Their integrations and UI capabilities differ, but the broader shift is towards agents that can carry work beyond a single exchange.
 
 ## The agent can come back later
 
@@ -51,8 +49,6 @@ An ongoing relationship needs ways for the agent to return to work. [ChatGPT sup
 The newer [MCP Events support](https://developers.openai.com/plugins/build/mcp-events) points towards an ongoing interaction loop. The user tells the agent what to watch and how to respond. A service reports a relevant change, and the agent returns to the conversation with that context.
 
 For Loami, that could eventually mean a change to household food preferences prompting the agent to revisit a proposed plan. Loami would report what changed and supply the current data; the agent would follow the household's instructions about what to do next.
-
-Loami does not implement that loop yet. It is another part of the experience I want to explore through the host, with Loami reporting domain changes and the agent coordinating the response.
 
 ## What I would build instead
 
@@ -78,9 +74,7 @@ I want to test how much of the real meal-planning workflow works through the age
 
 ## A dedicated app becomes a choice
 
-A standalone website may still be the right place for a persistent view of the week. A native app may earn its place through offline use or device-specific behaviour. Those needs remain valid.
-
-ChatGPT Sites is also interesting here as a possible home for a larger, persistent arrangement of the same domain components. I would need to check its integration and runtime constraints against the actual workflow. It should use the same authoritative data and operations as the conversational interface.
+A standalone website, perhaps built with ChatGPT Sites, may still be the right place for a persistent view of the week. A native app may earn its place through offline use or device-specific behaviour. Either should use the same authoritative data and operations as the conversational interface.
 
 I want to choose the client after understanding the job. A bespoke Next.js application is a useful option when the workflow needs it. It does not have to be the starting point for every idea.
 
