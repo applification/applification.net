@@ -29,6 +29,8 @@ export function contentSecurityPolicy({ development = false, preview = false }: 
     "script-src": [
       "'self'",
       "'unsafe-inline'",
+      // The locally hosted Rive runtime compiles WebAssembly, not JavaScript.
+      "'wasm-unsafe-eval'",
       ...(development ? ["'unsafe-eval'"] : []),
       "https://platform.twitter.com",
       ...vercelLive,

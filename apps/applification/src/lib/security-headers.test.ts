@@ -21,7 +21,7 @@ describe("security headers", () => {
     expect(directive(policy, "base-uri")).toBe("base-uri 'self'");
     expect(directive(policy, "form-action")).toBe("form-action 'self'");
     expect(policy).toContain("upgrade-insecure-requests");
-    expect(policy).not.toContain("unsafe-eval");
+    expect(policy).not.toContain("'unsafe-eval'");
     expect(policy).not.toContain("vercel.live");
   });
 
@@ -31,6 +31,13 @@ describe("security headers", () => {
     expect(directive(policy, "frame-src")).toBe(
       "frame-src 'self' https://www.youtube-nocookie.com https://platform.twitter.com https://syndication.twitter.com",
     );
+  });
+
+  it("permits local WebAssembly without allowing JavaScript eval or runtime CDNs", () => {
+    const policy = contentSecurityPolicy();
+    expect(directive(policy, "script-src")).toContain("'wasm-unsafe-eval'");
+    expect(directive(policy, "script-src")).not.toContain("'unsafe-eval'");
+    expect(directive(policy, "connect-src")).toBe("connect-src 'self'");
   });
 
   it("relaxes only what next dev and Vercel previews need", () => {

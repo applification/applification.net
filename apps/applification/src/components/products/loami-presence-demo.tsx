@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { Pause, Play } from "lucide-react";
 import type { Rive } from "@rive-app/canvas-lite";
+import { version as riveVersion } from "@rive-app/canvas-lite/package.json";
 
 const states = ["idle", "listening", "thinking", "speaking"] as const;
 const focus =
@@ -30,8 +31,12 @@ export function LoamiPresenceDemo() {
     const observer = new ResizeObserver(resize);
 
     void import("@rive-app/canvas-lite")
-      .then(({ Rive, Layout, Fit, Alignment }) => {
+      .then(({ Rive, Layout, Fit, Alignment, RuntimeLoader }) => {
         if (disposed) return;
+        const runtimePath = `/vendor/rive/${riveVersion}`;
+        RuntimeLoader.setWasmUrl(`${runtimePath}/rive.wasm`);
+        // Keep the static artwork if the runtime cannot load. Never retry a CDN.
+        RuntimeLoader.setWasmFallbackUrl(null);
         instance = new Rive({
           src: "/images/loami/loami-presence.riv",
           canvas,
@@ -96,7 +101,7 @@ export function LoamiPresenceDemo() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/loami/loami-3d-hello.png"
+            src="/images/loami/loami-3d-hello.webp"
             alt=""
             width={320}
             height={320}

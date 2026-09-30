@@ -7,7 +7,7 @@ export function LoamiArtwork({ compact = false }: { compact?: boolean }) {
     >
       <img
         alt=""
-        src={`/images/loami/${compact ? "loami-mark.svg" : "loami-3d-hello.png"}`}
+        src={`/images/loami/${compact ? "loami-mark.svg" : "loami-3d-hello.webp"}`}
         width={compact ? 96 : 320}
         height={compact ? 96 : 320}
         className={
