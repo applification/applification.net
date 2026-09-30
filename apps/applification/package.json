@@ -19,6 +19,7 @@
     "test-storybook": "vitest run --project=storybook"
   },
   "dependencies": {
+    "@rive-app/canvas-lite": "2.42.2",
     "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.3.0",
     "@vercel/firewall": "^1.2.5",

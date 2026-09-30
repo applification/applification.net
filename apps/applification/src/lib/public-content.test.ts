@@ -80,9 +80,29 @@ describe("published content reads", () => {
         .sort(),
     ).toEqual(["contexture", "voiced"]);
     expect(
-      searchSite({ type: "products", status: "research" }, content).results[0]
-        .slug,
-    ).toBe("plantry");
+      searchSite({ type: "products", status: "archived" }, content).results.map(item => item.slug).sort(),
+    ).toEqual(["plantry", "storyloops"]);
+  });
+
+  it("keeps Loami in development and Plantry archived across public content", () => {
+    const loami = content.find(item => item.slug === "loami" && item.type === "products")!;
+    const plantry = content.find(item => item.slug === "plantry" && item.type === "products")!;
+    expect(loami.status).toBe("in-development");
+    expect(loami.sections.map(section => section.content).join("\n")).toContain("planned workflows");
+    expect(loami.links.some(link => link.url.endsWith("/products/plantry"))).toBe(true);
+    expect(plantry.status).toBe("archived");
+    expect(plantry.links.some(link => link.url.endsWith("/products/loami"))).toBe(true);
+  });
+
+  it("publishes astack as open source in development and explains the StoryLoops archive", () => {
+    const astack = content.find(item => item.type === "products" && item.slug === "astack")!;
+    const archive = content.find(item => item.type === "products" && item.slug === "storyloops")!;
+    expect(astack.status).toBe("in-development");
+    expect(astack.links.map(link => link.url)).toContain("https://github.com/applification/astack");
+    expect(astack.sections.map(section => section.content).join("\n")).toContain("MIT licence");
+    expect(archive.status).toBe("archived");
+    expect(archive.sections.map(section => section.content).join("\n")).toContain("slowing me down");
+    expect(archive.links[0].url).toBe("https://www.applification.net/products/astack");
   });
 
   it("always asks for published writing, including development", () => {

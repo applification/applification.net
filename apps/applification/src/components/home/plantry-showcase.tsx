@@ -36,7 +36,7 @@ export function PlantryShowcase() {
               <p className="font-caption text-xs font-bold tracking-[0.7px] text-[var(--app-label-text)]">
                 02&nbsp; / &nbsp;PLANTRY&nbsp; · &nbsp;APPLE PLATFORMS
               </p>
-              <ProductStatus status={"R&D"} />
+              <ProductStatus status="Archived" />
             </div>
             <h2
               className="font-heading text-4xl leading-none font-medium text-[var(--app-text-primary)]"

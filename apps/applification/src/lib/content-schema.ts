@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const contentTypes = ["client-work", "writing", "products"] as const;
 export const contentTypeSchema = z.enum(contentTypes);
-export const contentStatuses = ["live", "in-development", "research"] as const;
+export const contentStatuses = ["live", "in-development", "research", "archived"] as const;
 export const searchSiteInputSchema = z
   .strictObject({
     query: z

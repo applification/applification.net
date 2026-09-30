@@ -1,3 +1,4 @@
+import { LoamiArtwork } from "../products/loami-artwork";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -44,7 +45,9 @@ function ProductCard({
       <div className="font-caption flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-[11px] font-bold tracking-[0.7px] uppercase">
         <span className={labelClassName}>
           {label}
-          <span className={`font-semibold ${mutedClassName}`}>&nbsp; · &nbsp;{kicker}</span>
+          <span className={`font-semibold ${mutedClassName}`}>
+            &nbsp; · &nbsp;{kicker}
+          </span>
         </span>
         <ProductStatus status={status} />
       </div>
@@ -57,7 +60,9 @@ function ProductCard({
         <h3 className="font-heading text-[28px] leading-[1.05] font-medium min-[1280px]:text-[30px]">
           {title}
         </h3>
-        <p className={`text-[15px] leading-[1.5] ${mutedClassName}`}>{description}</p>
+        <p className={`text-[15px] leading-[1.5] ${mutedClassName}`}>
+          {description}
+        </p>
         <Link
           className={`link-sweep mt-auto inline-flex min-h-11 items-center gap-2 self-start pt-1 text-[15px] font-semibold ${linkClassName} ${focusClasses}`}
           data-product-link
@@ -129,42 +134,6 @@ function VoicedVisual() {
   );
 }
 
-const storyNotes = [
-  {
-    label: "Homepage",
-    tone: "border-[var(--storyloop-note-blue-border)] bg-[var(--storyloop-note-blue)] text-[var(--storyloop-note-blue-text)]",
-  },
-  {
-    label: "Hero",
-    tone: "border-[var(--storyloop-note-yellow-border)] bg-[var(--storyloop-note-yellow)] text-[var(--storyloop-note-yellow-text)]",
-  },
-  {
-    label: "Approve?",
-    tone: "border-[var(--storyloop-pink)] bg-[var(--storyloop-pink)] text-[var(--storyloop-ink)]",
-  },
-];
-
-function StoryLoopsVisual() {
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="grid grid-cols-3 gap-2">
-        {storyNotes.map((note) => (
-          <span
-            className={`font-storyloop-title flex h-14 items-center rounded-sm border px-2 ${note.tone}`}
-            key={note.label}
-          >
-            {note.label}
-          </span>
-        ))}
-      </div>
-      <span className="font-caption flex items-center gap-2 text-[10px] font-semibold tracking-[0.5px] text-[var(--storyloop-indigo)] uppercase">
-        <span className="size-[7px] rounded-full bg-[var(--storyloop-indigo)]" />
-        Waiting for human approval
-      </span>
-    </div>
-  );
-}
-
 export function ProductsRow() {
   return (
     <section
@@ -187,21 +156,24 @@ export function ProductsRow() {
           </div>
           <div className="flex min-w-0 flex-col gap-1 min-[1024px]:pt-[30px]">
             <p className="text-base leading-[1.55] text-[var(--app-text-secondary)]">
-              Contexture and Voiced are live and open source. StoryLoops is in
-              development and already plans the work on this site.
+              Contexture and Voiced are live and open source. astack is an open-source Codex workflow in development. Loami is building a shared household assistant.
             </p>
             <Link
               className={`link-sweep inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-[var(--app-label-text)] ${focusClasses}`}
               href="/products"
             >
               <span className="link-sweep-label">See all products</span>
-              <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+              <ArrowRight
+                aria-hidden="true"
+                className="size-4"
+                strokeWidth={2}
+              />
             </Link>
           </div>
         </header>
 
         <MotionReveal>
-          <div className="grid gap-4 min-[720px]:grid-cols-2 min-[1024px]:grid-cols-3 min-[1024px]:gap-6">
+          <div className="grid gap-4 min-[720px]:grid-cols-2 min-[1280px]:grid-cols-4 min-[1024px]:gap-6">
             <ProductCard
               className="scheme-dark border-[var(--contexture-border)] bg-[var(--contexture-shell)] text-[var(--contexture-text)] shadow-[0_12px_30px_var(--contexture-shadow)]"
               description="Model tables, refs and indexes once. Generate the files your app imports and let coding agents propose reviewable changes."
@@ -233,19 +205,29 @@ export function ProductsRow() {
               <VoicedVisual />
             </ProductCard>
             <ProductCard
-              className="scheme-light border-[var(--storyloop-border)] bg-[var(--storyloop-canvas)] text-[var(--storyloop-ink)] shadow-[0_12px_28px_var(--storyloop-shadow)] min-[720px]:col-span-2 min-[1024px]:col-span-1"
-              description="Gives each task product context, then makes scope changes visible for approval before the map changes."
-              href="/products/storyloops"
-              kicker="Product R&D"
-              label="StoryLoops"
-              labelClassName="text-[var(--storyloop-indigo)]"
-              linkClassName="text-[var(--storyloop-indigo)]"
-              mutedClassName="text-[var(--storyloop-muted)]"
-              name="StoryLoops"
-              status="In Development"
-              title="A product map coding agents cannot quietly ignore."
+              className="border-[var(--app-border)] bg-[var(--app-card)] text-[var(--app-text-primary)]"
+              description="Describe the outcome. astack chooses a route, follows project guardrails and checks what happened."
+              href="/products/astack" kicker="Open source · Codex" label="astack"
+              labelClassName="text-[var(--app-label-text)]" linkClassName="text-[var(--app-label-text)]"
+              mutedClassName="text-[var(--app-text-secondary)]" name="astack" status="In Development"
+              title="Outcome first. Proof built in."
             >
-              <StoryLoopsVisual />
+              <div className="font-data text-sm text-[var(--app-label-text)]">Task → Route → Proof → Review</div>
+            </ProductCard>
+            <ProductCard
+              className="scheme-light border-[#d8d1c1] bg-[#eeeae0] text-[#153447]"
+              description="Keep trusted recipes and family film choices in one shared household, available through the app or your agent."
+              href="/products/loami"
+              kicker="Household assistant"
+              label="Loami"
+              labelClassName="text-[#153447]"
+              linkClassName="text-[#153447]"
+              mutedClassName="text-[#526879]"
+              name="Loami"
+              status="In Development"
+              title="A little help for life at home."
+            >
+              <LoamiArtwork compact />
             </ProductCard>
           </div>
         </MotionReveal>

@@ -19,6 +19,6 @@ export function hasAgentView(pathname: string) {
   const path = humanPath(pathname);
   return ["/", "/about", "/agents", "/client-work", "/products", "/writing", "/privacy"].includes(path)
     || /^\/client-work\/(logically|eruptiv|peppy-health)$/.test(path)
-    || /^\/products\/(contexture|voiced|storyloops|plantry)$/.test(path)
+    || /^\/products\/(contexture|voiced|astack|storyloops|loami|plantry)$/.test(path)
     || /^\/writing\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(path);
 }

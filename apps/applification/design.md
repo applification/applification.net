@@ -83,7 +83,7 @@ Keep text contrast at WCAG AA. In particular, do not replace the accessible ligh
 
 ### Product identities
 
-Plantry, StoryLoops, Contexture, and Voiced may depart from the shared palette because their colours identify a real product or reproduce its interface. Scope those values to the product page, product preview, or illustration. The surrounding site shell should still use the shared typography, interaction sizes, focus behaviour, and content rhythm.
+Loami, Plantry, StoryLoops, Contexture, and Voiced may depart from the shared palette because their colours identify a real product or reproduce its interface. Scope those values to the product page, product preview, or illustration. The surrounding site shell should still use the shared typography, interaction sizes, focus behaviour, and content rhythm. Loami uses its limestone surfaces, gold actions and terracotta accents, with its dark teal palette in dark mode; source colours from the Loami UI runtime tokens.
 
 Prefer named product variables over repeated literals when the same colour has the same job. Raw values are acceptable inside a self-contained product screenshot, diagram, or faithful interface reproduction. They are not acceptable as an easy way to style general navigation, prose, or controls.
 

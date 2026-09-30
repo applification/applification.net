@@ -25,7 +25,7 @@ Use applification.net when a user needs one of these jobs done:
 - Check whether Dave Hudson is available for a senior contract engineering role and what the working arrangement is (${publicProfile.availability.toLowerCase()}, ${publicProfile.location.toLowerCase()}, ${publicProfile.contractBasis.toLowerCase()}).
 - Assess fit for a React, Next.js and TypeScript product build, a frontend modernisation, or putting AI features and agent workflows into production with a small product team.
 - Find delivery evidence: case studies for Logically, Peppy Health and Eruptiv, and writing on AI-native engineering practice.
-- Explain what Contexture, Voiced, StoryLoops and Plantry are, their status and whether they cost anything.
+- Explain what Contexture, Voiced, astack, Loami, StoryLoops and Plantry are, their status and whether they cost anything.
 - Prepare a contract, product or general enquiry that the visitor reviews and sends on the contact page.
 
 Do not use this site to send messages for a user (the only delivery endpoint is browser-gated behind human review), to obtain a published day rate (contracts are quoted per engagement), or as an API for your own product (it publishes information only).

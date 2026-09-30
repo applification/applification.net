@@ -1,0 +1,147 @@
+.map {
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  border-radius: 16px;
+  background: var(--app-card);
+  color: var(--app-text-primary);
+}
+.scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 24px 20px 0;
+}
+.scroll:focus-visible {
+  outline: 2px solid var(--app-focus);
+  outline-offset: -4px;
+}
+.diagram {
+  min-width: 1040px;
+}
+.entry {
+  text-align: center;
+}
+.branches {
+  display: block;
+  width: 100%;
+  height: 64px;
+  margin-top: 12px;
+}
+.routes {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+.route {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 0 10px;
+}
+.label {
+  align-self: flex-start;
+  border: 1px solid var(--route-colour);
+  border-radius: 4px;
+  background: var(--app-card);
+  padding: 6px 8px;
+  color: var(--route-colour);
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.steps {
+  margin-left: 10px;
+  border-left: 2px var(--route-line-style) var(--route-colour);
+  padding-top: 14px;
+}
+.steps li {
+  position: relative;
+  min-height: 55px;
+  padding: 0 4px 14px 15px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+.steps li::before {
+  position: absolute;
+  top: 2px;
+  left: -6px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--route-colour);
+  border-radius: 50%;
+  background: var(--app-card);
+  content: "";
+}
+.continuation {
+  flex: 1;
+  min-height: 25px;
+  margin-left: 10px;
+  border-left: 2px var(--route-line-style) var(--route-colour);
+}
+.answer {
+  margin-top: 1px;
+  border-top: 1px solid var(--route-colour);
+  padding: 7px 0;
+  font-size: 11px;
+  color: var(--route-colour);
+}
+.finish {
+  margin: 0 -20px;
+  padding: 18px 30px 22px;
+  background: var(--app-muted-section);
+}
+.feature {
+  --route-colour: light-dark(#287258, #78c9a6);
+}
+.bug {
+  --route-colour: light-dark(#a74737, #efaa95);
+}
+.refactor {
+  --route-colour: light-dark(#466b98, #a3c1e7);
+}
+.performance {
+  --route-colour: light-dark(#86621f, #e1c581);
+}
+.investigation {
+  --route-colour: light-dark(#735c9b, #c8b3e5);
+}
+.pr {
+  --route-colour: light-dark(#2b7379, #8dccd2);
+}
+.control {
+  --route-colour: light-dark(#98546f, #e3a7c1);
+}
+.setup {
+  --route-colour: var(--app-text-secondary);
+}
+@media (min-width: 720px) {
+  .scroll {
+    padding-right: 28px;
+    padding-left: 28px;
+  }
+  .finish {
+    margin-right: -28px;
+    margin-left: -28px;
+    padding-right: 38px;
+    padding-left: 38px;
+  }
+}
+
+.branch[data-selected] {
+  stroke-width: 4px;
+}
+.branch[data-muted] {
+  stroke: var(--app-border);
+}
+.route[data-muted] {
+  --route-colour: var(--app-text-secondary);
+}
+.route[data-selected] {
+  background: color-mix(in srgb, var(--route-colour) 10%, var(--app-card));
+}
+.route[data-selected] .label {
+  font-weight: 750;
+  border-width: 2px;
+  padding: 5px 7px;
+}
+.finish[data-selected] {
+  box-shadow: inset 0 2px var(--app-action);
+}

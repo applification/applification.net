@@ -1,11 +1,12 @@
 type ProductStatusProps = {
-  status: "In Development" | "Live" | "R&D";
+  status: "In Development" | "Live" | "R&D" | "Archived";
 };
 
 const statusClasses = {
   "In Development":
     "border-[var(--status-development-border)] bg-[var(--status-development-bg)] text-[var(--status-development-text)]",
   Live: "border-[var(--status-live-border)] bg-[var(--status-live-bg)] text-[var(--status-live-text)]",
+  Archived: "border-[var(--app-border)] bg-[var(--app-card)] text-[var(--app-text-secondary)]",
   "R&D":
     "border-[var(--status-rnd-border)] bg-[var(--status-rnd-bg)] text-[var(--status-rnd-text)]",
 } as const;

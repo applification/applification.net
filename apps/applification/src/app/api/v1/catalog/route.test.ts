@@ -32,7 +32,7 @@ describe("public catalog API", () => {
     expect(body.section).toBe("all");
     expect(body.data.pricing.contract.publishedRate).toBeNull();
     expect(body.data.pricing.api.price).toBe(0);
-    expect(body.data.products).toHaveLength(4);
+    expect(body.data.products).toHaveLength(6);
     expect(JSON.stringify(body)).not.toMatch(
       /mailto:|[\w.+-]+@applification\.net/i,
     );

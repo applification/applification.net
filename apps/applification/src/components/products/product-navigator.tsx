@@ -1,3 +1,4 @@
+import { LoamiArtwork } from "./loami-artwork";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { ContextureSchemaPreview } from "@/components/products/contexture-schema-preview";
@@ -17,9 +18,16 @@ type Product = {
   status: string;
 };
 
-const products: Product[] = [...portfolioProducts];
+const products: Product[] = [...portfolioProducts].sort(
+  (a, b) => Number(a.status === "ARCHIVED") - Number(b.status === "ARCHIVED"),
+);
 
 function ProductSignal({ product }: { product: Product }) {
+  if (product.slug === "astack") return <div className="flex h-full items-center justify-center p-5 font-data text-sm text-[#7dd3fc]">Outcome → Route → Proof</div>;
+  if (product.slug === "loami") {
+    return <div className="flex h-full items-center justify-center bg-[#eeeae0]"><LoamiArtwork compact /></div>;
+  }
+
   if (product.slug === "contexture") {
     return (
       <div className="h-full">
@@ -143,7 +151,7 @@ export function ProductNavigator({ current }: { current?: ProductSlug }) {
             {visibleProducts.map((product) => (
               <li key={product.slug}>
                 <Link
-                  className="group flex min-h-[285px] flex-col overflow-hidden rounded-[14px] border border-[#29364a] bg-[#111c2f] transition-[border-color,background-color,transform] hover:-translate-y-1 hover:border-[#64748b] hover:bg-[#162238] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
+                  className="group flex h-full min-h-[285px] flex-col overflow-hidden rounded-[14px] border border-[#29364a] bg-[#111c2f] transition-[border-color,background-color,transform] hover:-translate-y-1 hover:border-[#64748b] hover:bg-[#162238] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]"
                   href={product.href}
                 >
                   <div className="h-[148px] border-b border-[#29364a] bg-[#0e1728]">
@@ -165,7 +173,7 @@ export function ProductNavigator({ current }: { current?: ProductSlug }) {
                     <h3 className="font-heading mt-3 text-[28px] leading-none font-medium">
                       {product.name}
                     </h3>
-                    <p className="mt-3 text-base leading-[1.55] text-[#b8c4d4]">
+                    <p className="mt-3 min-h-[3.1em] text-base leading-[1.55] text-[#b8c4d4]">
                       {product.description}
                     </p>
                   </div>

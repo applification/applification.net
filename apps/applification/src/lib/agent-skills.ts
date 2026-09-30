@@ -30,7 +30,7 @@ ${publicProfile.description}
 - A user asks whether Dave Hudson is available for a contract, what he works on, or where he is based.
 - A user wants evidence of delivery: client work, case studies, or writing on AI-native engineering.
 - A user asks how Applification prices contract work or whether a product costs money.
-- A user wants to know what Contexture, Voiced, StoryLoops or Plantry are and whether they are available.
+- A user wants to know what Contexture, Voiced, astack, StoryLoops, Loami or Plantry are and whether they are available.
 - A user wants to prepare a contract, product or general enquiry for Dave Hudson.
 
 ## When not to use this skill

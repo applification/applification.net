@@ -1,8 +1,11 @@
+import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
+import { ExternalLink } from "@/components/external-link";
+import { LoamiCard } from "./loami-product-page";
 import { sitePageCopy } from "@/lib/content/site-pages";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ProductStatus } from "@/components/home/product-status";
-import { StoryLoopsProductMap } from "@/components/home/storyloops-showcase";
+import { AstackRouteMap } from "./astack-product-page";
 import { PageHero } from "@/components/page-hero";
 import { ContextureSchemaPreview } from "@/components/products/contexture-schema-preview";
 
@@ -11,8 +14,8 @@ const focusClasses =
 
 const portfolioStatuses = [
   { count: "02", status: "Live" },
-  { count: "01", status: "In Development" },
-  { count: "01", status: "R&D" },
+  { count: "02", status: "In Development" },
+  { count: "02", status: "Archived" },
 ] as const;
 
 const principles = [
@@ -58,7 +61,7 @@ export function ProductsHero() {
       aside={
         <div className="border-t border-[var(--app-border)] pt-[22px] min-[1024px]:self-end min-[1024px]:border-t-0 min-[1024px]:border-l min-[1024px]:py-1.5 min-[1024px]:pl-7">
           <div className="font-heading text-[76px] leading-[0.82] font-medium text-[var(--app-text-primary)] min-[821px]:text-[96px]">
-            04
+            06
           </div>
           <div className="font-caption mt-5 text-[11px] font-semibold tracking-[0.9px] text-[var(--app-text-muted)] min-[821px]:text-xs">
             PRODUCTS IN THE PORTFOLIO
@@ -80,17 +83,17 @@ export function ProductsHero() {
         </p>
       }
       eyebrow="PRODUCTS"
-      eyebrowDetail="LIVE, IN DEVELOPMENT AND R&D"
+      eyebrowDetail="LIVE, IN DEVELOPMENT AND ARCHIVED"
       headingId="products-page-heading"
       title={sitePageCopy.products.title}
     />
   );
 }
 
-function FeaturedStoryLoops() {
+function FeaturedAstack() {
   return (
     <section
-      aria-labelledby="featured-storyloops-heading"
+      aria-labelledby="featured-astack-heading"
       className="bg-[var(--app-section)] px-6 py-14 min-[1024px]:px-20 min-[1024px]:py-[68px]"
     >
       <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 min-[1024px]:gap-[30px]">
@@ -106,19 +109,27 @@ function FeaturedStoryLoops() {
           <div className="flex flex-col items-start gap-[17px] min-[1024px]:gap-5">
             <h2
               className="font-heading text-[42px] leading-none font-medium text-[var(--app-text-primary)] min-[1024px]:text-[46px]"
-              id="featured-storyloops-heading"
+              id="featured-astack-heading"
             >
-              StoryLoops
+              astack
             </h2>
             <p className="font-heading text-[25px] leading-[1.05] font-medium text-[var(--app-text-primary)] min-[1024px]:text-[27px]">
-              A product map that coding agents cannot quietly ignore.
+              Outcome first. Proof built in.
             </p>
             <p className="text-base leading-[1.58] text-[var(--app-text-secondary)] min-[1024px]:text-[17px]">
-              StoryLoops routes agent context and proposed changes through the
-              product map, with human approval before scope moves.
+              Give Codex an outcome. astack chooses the route, works within project guardrails and verifies the result.
             </p>
-            <ul className="flex flex-wrap gap-2" aria-label="StoryLoops capabilities">
-              {["PRODUCT MAP", "AGENT CONTEXT", "HUMAN APPROVAL"].map((item) => (
+            <p className="text-sm text-[var(--app-text-secondary)]">
+              Inspired by{" "}
+              <ExternalLink
+                className={`link-sweep inline-flex min-h-11 items-center font-semibold text-[var(--app-label-text)] ${focusClasses}`}
+                href="https://github.com/cursor/plugins/tree/main/pstack"
+              >
+                <span className="link-sweep-label">Poteto’s pstack</span>
+              </ExternalLink>
+            </p>
+            <ul className="flex flex-wrap gap-2" aria-label="astack capabilities">
+              {["OPEN SOURCE", "CODEX", "VERIFICATION"].map((item) => (
                 <li
                   className="font-caption rounded-full border border-[var(--app-border)] px-2.5 py-1.5 text-[9px] font-bold tracking-[0.6px] text-[var(--app-text-muted)] min-[1024px]:text-[10px]"
                   key={item}
@@ -129,14 +140,14 @@ function FeaturedStoryLoops() {
             </ul>
             <Link
               className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[var(--app-action)] px-4 text-base font-semibold text-[var(--app-text-on-action)] transition-[background-color,color,transform] hover:bg-[var(--app-action-hover)] active:translate-y-px ${focusClasses}`}
-              href="/products/storyloops"
+              href="/products/astack"
             >
-              Explore StoryLoops
+              Explore astack
               <ArrowUpRightIcon />
             </Link>
           </div>
 
-          <StoryLoopsProductMap compact />
+          <AstackRouteMap />
         </div>
       </div>
     </section>
@@ -239,45 +250,38 @@ function VoicedCard() {
   );
 }
 
+function ArchiveCard({ name, href, summary, children }: { name: string; href: string; summary: string; children: ReactNode }) {
+  return (
+    <article className="overflow-hidden rounded-md border border-[var(--app-border)] bg-[var(--app-card)] text-[var(--app-text-primary)]" data-archive-card>
+      <div className="relative h-[112px] overflow-hidden border-b border-[var(--app-border)]">{children}</div>
+      <div className="p-5">
+        <ProductStatus status="Archived" />
+        <h3 className="font-heading mt-3 text-[26px] leading-none">{name}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-[var(--app-text-secondary)]">{summary}</p>
+        <Link href={href} className={`link-sweep mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--app-label-text)] ${focusClasses}`}><span className="link-sweep-label">Explore the archive</span><ArrowUpRightIcon /><span className="sr-only"> for {name}</span></Link>
+      </div>
+    </article>
+  );
+}
+
+function StoryLoopsArchiveCard() {
+  return (
+    <ArchiveCard name="StoryLoops" href="/products/storyloops" summary="A story-mapping experiment whose lessons shaped astack.">
+      <div className="absolute top-2 left-1/2 w-[1040px] -translate-x-1/2">
+        <div className="origin-top scale-[0.32]"><StoryLoopsProductMap compact /></div>
+      </div>
+    </ArchiveCard>
+  );
+}
+
 function PlantryCard() {
   return (
-    <article className="flex min-h-[475px] flex-col overflow-hidden rounded-md border border-[#DED5C4] bg-[#FFFDF7] text-[#153447] min-[1024px]:min-h-[540px]">
-      <div className="relative h-[215px] shrink-0 overflow-hidden bg-[#F3EEE0] min-[1024px]:h-[238px]">
-        {/* A native image keeps this static preview portable in Storybook. */}
+    <ArchiveCard name="Plantry" href="/products/plantry" summary="A household meal-planning experiment. Its work continues in Loami.">
+      <div className="flex h-full items-start justify-center bg-[#F3EEE0] pt-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          alt="Plantry on iPhone showing a household meal plan."
-          className="absolute top-3 left-1/2 h-auto w-[142px] -translate-x-1/2 drop-shadow-[0_12px_18px_#15344726] min-[1024px]:w-[158px]"
-          decoding="async"
-          height={940}
-          loading="lazy"
-          src="/images/plantry-phone.png"
-          width={536}
-        />
+        <img alt="Plantry on iPhone showing a household meal plan." className="h-auto w-[140px] shrink-0" decoding="async" height={940} loading="lazy" src="/images/plantry-phone.png" width={536} />
       </div>
-      <ProductCardCopy>
-        <div className="font-caption flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold tracking-[0.55px] text-[#526879]">
-          <span>APPLE PLATFORMS</span>
-          <ProductStatus status={"R&D"} />
-        </div>
-        <h3 className="font-heading mt-3 text-[30px] leading-none font-medium">Plantry</h3>
-        <p className="mt-3 text-lg leading-[1.2] font-semibold">
-          Meal planning that understands the household.
-        </p>
-        <p className="mt-3 text-base leading-[1.55] text-[#526879]">
-          Plans the next 2 to 7 days around preferences, food that needs using and what is in season.
-        </p>
-        <div className="mt-auto pt-5">
-          <Link
-            className={`inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-full bg-[#153447] px-4 text-base font-semibold text-[#FFFBef] transition-[background-color,transform] hover:bg-[#204F67] active:translate-y-px ${focusClasses}`}
-            href="/products/plantry"
-          >
-            View Plantry
-            <ArrowUpRightIcon />
-          </Link>
-        </div>
-      </ProductCardCopy>
-    </article>
+    </ArchiveCard>
   );
 }
 
@@ -305,10 +309,17 @@ function ProductDirectory() {
           </p>
         </header>
 
-        <div className="grid gap-[18px] min-[821px]:grid-cols-2 min-[1024px]:gap-5 min-[1280px]:grid-cols-3">
+        <div data-active-products className="grid gap-[18px] min-[821px]:grid-cols-2 min-[1024px]:gap-5 min-[1280px]:grid-cols-3">
+          <LoamiCard />
           <ContextureCard />
           <VoicedCard />
-          <PlantryCard />
+        </div>
+        <div className="mt-8 border-t border-[var(--app-border)] pt-8">
+          <h2 className="font-heading mb-5 text-3xl text-[var(--app-text-primary)]">From the archive</h2>
+          <div className="grid gap-5 min-[720px]:grid-cols-2 max-w-[840px]">
+            <StoryLoopsArchiveCard />
+            <PlantryCard />
+          </div>
         </div>
       </div>
     </section>
@@ -358,7 +369,7 @@ export function ProductsPageContent() {
   return (
     <main id="main-content" className="flex-1">
       <ProductsHero />
-      <FeaturedStoryLoops />
+      <FeaturedAstack />
       <ProductDirectory />
       <SharedProductPrinciples />
     </main>

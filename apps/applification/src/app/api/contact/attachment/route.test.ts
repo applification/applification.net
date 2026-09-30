@@ -46,10 +46,15 @@ function upload(
   );
 }
 
-function uploadFile(file: File, headers: Record<string, string> = {}) {
+async function uploadFile(file: File, headers: Record<string, string> = {}) {
   const form = new FormData();
   form.set("file", file);
-  return upload(form, headers);
+  // Buffer the fixture so early size rejection doesn't race Undici's multipart producer.
+  const encoded = new Response(form);
+  return upload(await encoded.arrayBuffer(), {
+    "content-type": encoded.headers.get("content-type")!,
+    ...headers,
+  });
 }
 
 function pdf(name = "brief.pdf", type = "application/pdf", bytes: Uint8Array<ArrayBuffer> = pdfBytes) {

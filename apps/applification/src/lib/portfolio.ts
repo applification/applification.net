@@ -1,7 +1,9 @@
 export const portfolioProductSlugs = [
   "contexture",
+  "astack",
   "storyloops",
   "voiced",
+  "loami",
   "plantry",
 ] as const;
 
@@ -18,11 +20,19 @@ export const portfolioProducts = [
   },
   {
     accent: "#7dd3fc",
-    description: "Keep product scope visible to coding agents and people.",
+    description: "Give Codex an outcome, guardrails and a verification loop.",
+    href: "/products/astack",
+    name: "astack",
+    slug: "astack",
+    status: "IN DEVELOPMENT",
+  },
+  {
+    accent: "#7dd3fc",
+    description: "An archived story-mapping experiment. Its lessons shaped astack.",
     href: "/products/storyloops",
     name: "StoryLoops",
     slug: "storyloops",
-    status: "IN DEVELOPMENT",
+    status: "ARCHIVED",
   },
   {
     accent: "#8fe3a8",
@@ -33,12 +43,20 @@ export const portfolioProducts = [
     status: "LIVE",
   },
   {
+    accent: "#e3bb35",
+    description: "A household assistant that knows your tastes and works with your agents.",
+    href: "/products/loami",
+    name: "Loami",
+    slug: "loami",
+    status: "IN DEVELOPMENT",
+  },
+  {
     accent: "#e8c66a",
-    description: "Plan a few meals around the household and what needs using.",
+    description: "An archived household meal-planning experiment. Its work continues in Loami.",
     href: "/products/plantry",
     name: "Plantry",
     slug: "plantry",
-    status: "R&D",
+    status: "ARCHIVED",
   },
 ] as const;
 

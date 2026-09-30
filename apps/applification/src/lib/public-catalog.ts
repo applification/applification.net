@@ -34,18 +34,30 @@ const productTerms = {
       "The source is available under the MIT licence, with a direct macOS download. Third-party services may have their own costs.",
     sourceUrl: "https://github.com/applification/voiced",
   },
+  astack: {
+    model: "open_source",
+    label: "MIT licensed source",
+    description: "In development. The source is available under the MIT licence. Codex and third-party services may have their own costs.",
+    sourceUrl: "https://github.com/applification/astack",
+  },
   storyloops: {
     model: "not_published",
     label: "Pricing not published",
     description:
-      "In development. No public price or purchasing plan is published on this site.",
+      "Archived. Its lessons shaped astack. No purchasing plan is published.",
     sourceUrl: `${siteUrl}/products/storyloops`,
+  },
+  loami: {
+    model: "not_published",
+    label: "Pricing not published",
+    description: "In development. Public access and pricing have not been announced.",
+    sourceUrl: `${siteUrl}/products/loami`,
   },
   plantry: {
     model: "not_published",
     label: "Pricing not published",
     description:
-      "Research and development. No public price or purchasing plan is published on this site.",
+      "Archived. Household product development continues in Loami. No purchasing plan is published.",
     sourceUrl: `${siteUrl}/products/plantry`,
   },
 } as const;
