@@ -63,6 +63,7 @@ export type BespokeContentFlowProps = z.infer<
 // Product stories add approved blocks here. Keeping the registry explicit means
 // article content cannot select an arbitrary React component.
 export const richBlockSchemas = {
+  "agent-application-stack": z.object({}).strict(),
   "bespoke-content-flow": bespokeContentFlowSchema,
   "link-preview": linkPreviewSchema,
   youtube: youtubeSchema,

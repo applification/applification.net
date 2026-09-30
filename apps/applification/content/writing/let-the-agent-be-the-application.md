@@ -78,6 +78,10 @@ A standalone website, perhaps built with ChatGPT Sites, may still be the right p
 
 I want to choose the client after understanding the job. A bespoke Next.js application is a useful option when the workflow needs it. It does not have to be the starting point for every idea.
 
+```rich-block
+{"name":"agent-application-stack","props":{}}
+```
+
 ## What this means for astack
 
 This informs [astack](https://astack.applification.net), the approach I'm developing for building software with agents. It covers how a task moves from intent through implementation, verification and review. For an agent-native product, I want that process to focus on the domain, its capabilities and the interfaces people need to use them.
