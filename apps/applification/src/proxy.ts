@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { contactSite, parseContactRoute } from "./lib/contact";
 import {
   destinationSite,
   isLocalHostname,
@@ -30,7 +31,9 @@ export function proxy(request: NextRequest) {
     preview,
     selection: selection ?? request.cookies.get(previewSiteCookie)?.value,
   });
-  const destination = destinationSite({ site, pathname: url.pathname });
+  const contactRoute = url.pathname === "/contact" ? parseContactRoute(url.searchParams.get("route")) : null;
+  const enquirySite = contactRoute ? contactSite(contactRoute) : site;
+  const destination = enquirySite !== site ? enquirySite : destinationSite({ site, pathname: url.pathname });
   if (destination) {
     const target = new URL(
       `${url.pathname}${url.search}`,

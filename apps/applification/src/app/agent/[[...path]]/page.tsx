@@ -15,14 +15,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!page) notFound();
   return {
     title: `${page.title} — Agent view`,
-    alternates: { canonical: `${["/", "/agents"].includes(page.path) ? siteOrigin(site) : contentOrigin(page.path)}${page.path}`, types: { "text/markdown": markdownPath(page.path) } },
+    alternates: { canonical: `${page.path === "/" ? siteOrigin(site) : contentOrigin(page.path)}${page.path}`, types: { "text/markdown": markdownPath(page.path) } },
     robots: { index: false, follow: true },
   };
 }
 
 export default async function Page({ params }: Props) {
   const { path = [] } = await params;
-  const page = getPageMarkdown(`/${path.join("/")}`, await getSiteIdentity());
+  const site = await getSiteIdentity();
+  const page = getPageMarkdown(`/${path.join("/")}`, site);
   if (!page) notFound();
-  return <AgentPage {...page} />;
+  return <AgentPage {...page} site={site} />;
 }

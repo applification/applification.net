@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbStructuredData } from "@/lib/public-catalog";
 import { LogicallyCaseStudyPage } from "@/components/client-work/logically-case-study-page";
-import { getSiteIdentity } from "@/lib/site-identity.server";
 
 const description =
   "How I rebuilt Logically Intelligence in Next.js, moved reporting behind typed APIs and co-built its production Agentic Chat.";
@@ -10,27 +9,27 @@ const description =
 export const metadata: Metadata = {
   title: "Logically case study",
   description,
-  alternates: { canonical: "https://applification.net/client-work/logically" },
+  alternates: { canonical: "https://dave.applification.net/client-work/logically" },
   openGraph: {
     type: "article",
-    siteName: "Applification",
+    siteName: "Dave Hudson",
     locale: "en_GB",
-    title: "Logically case study | Applification",
+    title: "Logically case study | Dave Hudson",
     description,
-    url: "https://applification.net/client-work/logically",
+    url: "https://dave.applification.net/client-work/logically",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Logically case study | Applification",
+    title: "Logically case study | Dave Hudson",
     description,
   },
 };
 
-export default async function LogicallyCaseStudyRoute() {
+export default function LogicallyCaseStudyRoute() {
   return (
     <>
       <StructuredData data={breadcrumbStructuredData([{ name: "Client work", path: "/client-work" }, { name: "Logically", path: "/client-work/logically" }])} />
-      <LogicallyCaseStudyPage site={await getSiteIdentity()} />
+      <LogicallyCaseStudyPage />
     </>
   );
 }

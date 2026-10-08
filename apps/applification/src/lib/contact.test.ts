@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildContactHref, parseContactProduct, parseContactRoute } from "./contact";
+import { buildContactHref, contactRoutesForSite, parseContactProduct, parseContactRoute } from "./contact";
 
 describe("contact links", () => {
   it("routes contract enquiries to the single contact workspace", () => {
@@ -16,6 +16,11 @@ describe("contact links", () => {
     expect(parseContactRoute("general")).toBe("general");
     expect(parseContactRoute("recruiter-approved")).toBeNull();
     expect(parseContactRoute(["contract"])).toBeNull();
+  });
+
+  it("offers contract enquiries on Dave and business or product enquiries on Applification", () => {
+    expect(contactRoutesForSite("profile")).toEqual(["contract"]);
+    expect(contactRoutesForSite("business")).toEqual(["product", "general"]);
   });
 
   it("accepts only maintained products", () => {

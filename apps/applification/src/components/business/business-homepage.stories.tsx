@@ -37,8 +37,8 @@ const checkBusiness: NonNullable<Story["play"]> = async ({ canvasElement }) => {
     canvas.getByText("StoryLoops · Archived experiment"),
   ).toBeVisible();
   await expect(
-    canvas.getByRole("link", { name: "Read the Logically case" }),
-  ).toHaveAttribute("href", "/client-work/logically");
+    canvas.getByRole("link", { name: /Read the Logically case.*opens in a new tab/ }),
+  ).toHaveAttribute("href", "https://dave.applification.net/client-work/logically");
   await expect(
     canvas.getByRole("link", {
       name: /Dave’s engineering profile & CV.*opens in a new tab/,

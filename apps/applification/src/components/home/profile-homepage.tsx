@@ -171,21 +171,14 @@ export function ProfileHomepage({
           </div>
         </div>
       </section>
-      <section className="bg-[var(--app-muted-section)] py-12">
-        <div className="mx-auto grid w-full max-w-[1200px] gap-5 px-6 min-[720px]:px-12 min-[900px]:grid-cols-2 min-[900px]:gap-16 min-[1280px]:px-0">
-          <h2 className="font-heading text-[32px] leading-tight font-medium">
-            Founder of Applification.
-          </h2>
-          <div>
-            <p className="text-[17px] leading-[1.65] text-[var(--app-text-secondary)]">
-              Alongside contract work, I build Applification’s specialist MCP
-              integrations and Apps offer. For an integration you want to
-              commission as a scoped project, start with the business site.
-            </p>
-            <ExternalLink href={businessUrl} className={`mt-4 ${link}`}>
-              <span className="link-sweep-label">Explore Applification</span>
-            </ExternalLink>
-          </div>
+      <section className="bg-[var(--app-section)] pb-12" aria-label="Applification business site">
+        <div className="mx-auto w-full max-w-[1200px] px-6 min-[720px]:px-12 min-[1280px]:px-0">
+          <p className="border-t border-[var(--app-border)] pt-6 text-base leading-relaxed text-[var(--app-text-secondary)]">
+            I’m also the founder of Applification. For its MCP integration business, visit{" "}
+            <ExternalLink href={businessUrl} className={link}>
+              <span className="link-sweep-label">applification.net</span>
+            </ExternalLink>.
+          </p>
         </div>
       </section>
       <ContractCta />

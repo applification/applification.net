@@ -36,6 +36,27 @@ describe("public Markdown pages", () => {
     expect(getPageMarkdown("/agents")!.markdown).toContain(agentsCopy.prompt);
   });
 
+  it("keeps profile and business navigation separate across root and detail pages", () => {
+    for (const path of ["/", "/about", "/client-work/logically", "/writing"]) {
+      const markdown = getPageMarkdown(path, "profile")!.markdown;
+      const navigation = markdown.split("## Explore Dave's profile")[1];
+      expect(navigation, path).toBeDefined();
+      expect(navigation).toContain("https://dave.applification.net/markdown/client-work");
+      expect(navigation).toContain("Business site: [Applification.net](https://applification.net)");
+      expect(navigation).not.toContain("/markdown/products");
+      expect(navigation).not.toContain("/markdown/agents");
+    }
+    for (const path of ["/", "/products/contexture", "/agents"]) {
+      const markdown = getPageMarkdown(path, "business")!.markdown;
+      const navigation = markdown.split("## Explore Applification")[1];
+      expect(navigation).toContain("https://applification.net/markdown/products");
+      expect(navigation).not.toContain("/markdown/about");
+      expect(navigation).not.toContain("/markdown/client-work");
+      expect(navigation).toContain("Founder profile: [Dave Hudson](https://dave.applification.net)");
+    }
+    expect(getPageMarkdown("/client-work/logically")!.markdown).toContain("Source: https://dave.applification.net/client-work/logically");
+  });
+
   it("covers published detail URLs without truncating API continuation chunks", () => {
     const published = getPublishedContent();
     for (const item of published.filter(item => new URL(item.url).pathname !== "/client-work")) {

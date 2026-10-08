@@ -35,6 +35,9 @@ const checkProfile: NonNullable<Story["play"]> = async ({ canvasElement }) => {
     name: "Discuss a contract",
   }))
     await expect(action).toHaveAttribute("href", "/contact?route=contract");
+  await expect(canvas.queryByRole("link", { name: "Products" })).toBeNull();
+  await expect(canvas.getByRole("link", { name: /^Agents & API docs/ })).toHaveAttribute("href", "https://applification.net/agents");
+  await expect(canvas.getByRole("link", { name: "Agent" })).toHaveAttribute("href", "/agent");
   await expect(canvas.getByText("North East hybrid considered")).toBeVisible();
   await expect(
     canvas.getByRole("heading", { name: "React & Next.js" }),
@@ -50,7 +53,7 @@ const checkProfile: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   );
   await expect(
     canvas.getByRole("link", {
-      name: /Explore Applification.*opens in a new tab/,
+      name: /^applification.net.*opens in a new tab/,
     }),
   ).toHaveAttribute("href", "https://applification.net");
 };

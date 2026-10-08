@@ -8,16 +8,16 @@ One Next.js app and Vercel project serve two identities:
 | `dave.applification.net` | Dave Hudson’s frontend/product contract profile and public CV | Discuss a contract |
 | `www.applification.net` | Business alias; canonical content points to the apex | Discuss a project |
 
-`src/proxy.ts` derives identity from the public Host header, overwrites the internal identity header and preserves query parameters on section redirects. The shared layout renders at request time, accepting the cost of dynamic page rendering rather than maintaining duplicate applications. The contact APIs, private review links, data access and delivery workflow retain their existing ownership and same-origin behaviour.
+`src/proxy.ts` derives identity from the public Host header, overwrites the internal identity header and preserves query parameters on section redirects. The shared layout renders at request time, accepting the cost of dynamic page rendering rather than maintaining duplicate applications. The contact APIs, private review links, data access and delivery workflow retain their existing ownership and same-origin behaviour. Public `/contact?route=contract` links belong to Dave; product and general enquiry links belong to the business, with query-preserving redirects from the other host. Each contact page offers only its own enquiry types.
 
 ## Existing links
 
-- Business `/about`, `/client-work`, `/client-work/eruptiv`, `/client-work/peppy-health`, `/writing/*` and `/posts/*` redirect permanently to the same path on Dave’s site.
-- Dave’s `/products/*` redirect permanently to Applification.
+- Business `/about`, `/client-work` and all `/client-work/*` cases, `/writing/*` and `/posts/*` redirect permanently to the same path on Dave’s site.
+- Dave’s `/products/*`, `/agents`, `/privacy` and `/llms.txt` redirect permanently to Applification.
 - Agent and Markdown variants follow the same section ownership.
-- Logically stays readable on both sites, with `https://applification.net/client-work/logically` as its canonical source. Dave’s sitemap omits this duplicate.
-- Each host has its own root metadata, social image, robots sitemap reference and sitemap. Product/API/skill discovery remains on Applification. Public catalog facts link to Dave’s profile, public CV and contract contact routes.
-- Contact and private review routes remain on the current hostname. Existing emailed review capabilities are still valid on `www`; no private workflow route is migrated.
+- Logically lives only on Dave’s site, with `https://dave.applification.net/client-work/logically` as its canonical source. Applification’s production evidence links to it externally.
+- Each host has its own root metadata, social image, robots sitemap reference and sitemap. Dave’s shell has profile-only navigation, a direct CV download and an external Applification.net callout. Product/API/skill discovery remains on Applification. Both sites retain Human / Agent views with their own content; Dave’s bot shortcut links explicitly to Applification’s agent guide. Public catalog facts link to Dave’s profile, public CV and contract contact routes.
+- Contact APIs and private review routes remain on the current hostname. Existing emailed review capabilities are still valid on `www`; no private workflow route is migrated.
 
 ## Hosting audit and launch steps
 

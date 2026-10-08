@@ -68,6 +68,13 @@ contains(profile, 'href="/contact?route=contract"');
 contains(profile, "/cv/Dave-Hudson-CV.pdf");
 assert.ok(!profile.includes("Illustrative workflows"));
 checks += 1;
+const profileHeader = profile.match(/<header[\s\S]*?<\/header>/)?.[0] ?? "";
+contains(profileHeader, "DAVE HUDSON");
+for (const href of ["/client-work", "/writing", "/about", "/cv/Dave-Hudson-CV.pdf", "/contact?route=contract", "https://applification.net"]) contains(profileHeader, `href="${href}"`);
+assert.ok(!profileHeader.includes('href="/products"') && !profileHeader.includes('href="/agents"'));
+assert.ok(profile.includes('aria-label="Page view"'));
+checks += 2;
+contains(business, 'href="https://dave.applification.net/client-work/logically"');
 const alias = await request("www.applification.net", "/");
 assert.equal(alias.status, 200);
 checks += 1;
@@ -76,6 +83,7 @@ for (const path of [
   "/client-work",
   "/client-work/eruptiv",
   "/client-work/peppy-health",
+  "/client-work/logically",
   "/writing",
 ]) {
   const page = await html("dave.applification.net", path);
@@ -85,10 +93,6 @@ for (const path of [
   );
   contains(page, 'property="og:site_name" content="Dave Hudson"');
 }
-contains(
-  await html("dave.applification.net", "/privacy"),
-  'rel="canonical" href="https://applification.net/privacy"',
-);
 for (const [host, path, destination] of [
   [
     "applification.net",
@@ -120,6 +124,15 @@ for (const [host, path, destination] of [
     "/markdown/products/contexture",
     "https://applification.net/markdown/products/contexture",
   ],
+  ["applification.net", "/client-work/logically", "https://dave.applification.net/client-work/logically"],
+  ["applification.net", "/markdown/client-work/logically", "https://dave.applification.net/markdown/client-work/logically"],
+  ["dave.applification.net", "/privacy", "https://applification.net/privacy"],
+  ["dave.applification.net", "/agents", "https://applification.net/agents"],
+  ["dave.applification.net", "/markdown/agents", "https://applification.net/markdown/agents"],
+  ["dave.applification.net", "/llms.txt", "https://applification.net/llms.txt"],
+  ["applification.net", "/contact?route=contract&ref=cv", "https://dave.applification.net/contact?route=contract&ref=cv"],
+  ["dave.applification.net", "/contact?route=product&product=loami", "https://applification.net/contact?route=product&product=loami"],
+  ["dave.applification.net", "/contact?route=general", "https://applification.net/contact?route=general"],
 ]) {
   const response = await request(host, path);
   assert.equal(response.status, 308, path);
@@ -127,24 +140,20 @@ for (const [host, path, destination] of [
   checks += 2;
 }
 for (const host of ["applification.net", "dave.applification.net"]) {
-  const logically = await html(host, "/client-work/logically");
-  contains(
-    logically,
-    'rel="canonical" href="https://applification.net/client-work/logically"',
-  );
   const robots = await html(host, "/robots.txt");
   contains(robots, `Sitemap: https://${host}/sitemap.xml`);
   const sitemap = await html(host, "/sitemap.xml");
   contains(sitemap, `<loc>https://${host}</loc>`);
   if (host === "applification.net") {
     contains(sitemap, "/products/contexture");
-    assert.ok(!sitemap.includes("/writing/") && !sitemap.includes("/about"));
+    assert.ok(!sitemap.includes("/writing/") && !sitemap.includes("/about") && !sitemap.includes("/client-work"));
     checks += 1;
   } else {
     contains(sitemap, "/client-work/eruptiv");
+    contains(sitemap, "/client-work/logically");
     assert.ok(
       !sitemap.includes("/products/") &&
-        !sitemap.includes("/client-work/logically"),
+        !sitemap.includes("/agents"),
     );
     checks += 1;
   }
@@ -182,6 +191,13 @@ for (const [host, title, name] of [
 ]) {
   const contact = await html(host, "/contact");
   contains(contact, title);
+  if (host === "dave.applification.net") {
+    assert.ok(!contact.includes('aria-label="Product enquiry"') && !contact.includes('aria-label="General enquiry"'));
+    checks += 1;
+  } else {
+    assert.ok(!contact.includes('aria-label="Contract enquiry"'));
+    checks += 1;
+  }
   contains(contact, `property="og:site_name" content="${name}"`);
 }
 const socialImages = [];

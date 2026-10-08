@@ -13,7 +13,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ pat
       Vary: "Host, Cookie",
       "Access-Control-Allow-Origin": "*",
       "X-Content-Type-Options": "nosniff",
-      ...(page ? { Link: `<${["/", "/agents"].includes(page.path) ? siteOrigin(site) : contentOrigin(page.path)}${page.path}>; rel="canonical"` } : {}),
+      ...(page ? { Link: `<${page.path === "/" ? siteOrigin(site) : contentOrigin(page.path)}${page.path}>; rel="canonical"` } : {}),
     },
   });
 }

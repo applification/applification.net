@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
   businessDescription,
+  businessUrl,
   profileDescription,
   siteOrigin,
 } from "@/lib/site-identity";
@@ -76,7 +77,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           type="application/vnd.oai.openapi+json"
           href="/api/openapi.json"
         />
-        <link rel="service-doc" href="/agents" />
+        <link rel="service-doc" href={site === "profile" ? `${businessUrl}/agents` : "/agents"} />
         <Script id="theme-bootstrap" strategy="beforeInteractive">
           {themeBootstrapScript}
         </Script>

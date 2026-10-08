@@ -27,10 +27,10 @@ export const sitePageCopy = {
 
 export const agentsCopy = {
   title: "Explore the work with your AI.",
-  description: "Explore Applification’s MCP integrations and products, or Dave Hudson’s engineering experience, with your favourite AI assistant. Find evidence relevant to your project.",
+  description: "Explore Applification’s MCP integrations and products with your favourite AI assistant. Find evidence relevant to your project.",
   handoff: "Make the prompt your own, then choose an assistant to open a new chat. For Gemini, paste the copied prompt into the new chat. You may need to sign in; if the prompt does not carry over, copy and paste it.",
   guidance: "Enable web access so your assistant can read the linked pages. If it cannot open a page, use Agent view to copy its Markdown into your conversation.",
-  prompt: "Read https://applification.net and https://dave.applification.net. Help me understand Applification’s MCP integration offer and Dave Hudson’s engineering experience. Ask about my project, then find relevant evidence from the products, client work and writing. Include source links and distinguish production work from experiments.",
+  prompt: "Read https://applification.net. Help me understand Applification’s MCP integration and MCP Apps offer. Ask about my project, then find relevant capabilities and product evidence. For the founder’s career experience, follow the external link to https://dave.applification.net. Include source links and distinguish production work from experiments.",
 } as const;
 
 // Default deep links are also published in Markdown. The prompt editor uses

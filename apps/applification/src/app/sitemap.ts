@@ -14,8 +14,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         "/client-work",
         "/client-work/peppy-health",
         "/client-work/eruptiv",
+        "/client-work/logically",
         "/writing",
-        "/agents",
       ].map((path) => ({ url: `${profileUrl}${path}` })),
       ...getWriting({ includeDrafts: false }).map((entry) => ({
         url: `${profileUrl}/writing/${entry.slug}`,
@@ -24,7 +24,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
   const pages = [
     "",
-    "/client-work/logically",
     "/products",
     "/agents",
     "/privacy",

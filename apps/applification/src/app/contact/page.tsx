@@ -14,8 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteIdentity();
   return {
     title: site === "business" ? "Discuss a project" : "Discuss a contract",
-    description:
-      "Prepare a contract, product or general enquiry with an AI-assisted brief that you review before sending.",
+    description: site === "profile"
+      ? "Prepare a contract enquiry for Dave Hudson and review the brief before sending."
+      : "Discuss an MCP integration or product enquiry with Applification and review the brief before sending.",
     alternates: { canonical: "/contact" },
     openGraph: {
       ...(site === "profile" ? profileOpenGraph : defaultOpenGraph),

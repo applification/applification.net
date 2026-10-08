@@ -8,12 +8,11 @@ import { CaseStudyVisual } from "./case-study-visual";
 import { CaseStudyContact, CaseStudyFacts } from "./case-study-contact";
 import { ArrowUpRight } from "lucide-react";
 import { DetailContextRail } from "@/components/detail-context-rail";
-import type { SiteIdentity } from "@/lib/site-identity";
 
 const focusClasses =
   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
 
-export function LogicallyCaseStudyPage({ site = "profile" }: { site?: SiteIdentity }) {
+export function LogicallyCaseStudyPage() {
   return (
     <main id="main-content" className="flex-1 overflow-x-clip">
       <article>
@@ -22,8 +21,8 @@ export function LogicallyCaseStudyPage({ site = "profile" }: { site?: SiteIdenti
         >
           <div className="mx-auto w-full max-w-[1200px]">
             <DetailContextRail
-              backHref={site === "business" ? "/#evidence" : "/client-work#logically"}
-              backLabel={site === "business" ? "Back to integration evidence" : "Back to Client work"}
+              backHref="/client-work#logically"
+              backLabel="Back to Client work"
               family="Logically"
               detail={logicallyCopy.period}
             />
@@ -155,7 +154,6 @@ export function LogicallyCaseStudyPage({ site = "profile" }: { site?: SiteIdenti
         </section>
 
         <CaseStudyContact
-          site={site}
           nextHref="/client-work/eruptiv"
           nextLabel="Read the Eruptiv case"
         />

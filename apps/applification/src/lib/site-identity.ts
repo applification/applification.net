@@ -50,16 +50,16 @@ export function siteOrigin(site: SiteIdentity) {
 export function contentOrigin(pathname: string) {
   const path = pathname.replace(/^\/(agent|markdown)(?=\/|$)/, "") || "/";
   return path === "/about" ||
-    path === "/client-work" ||
-    /^\/client-work\/(eruptiv|peppy-health)$/.test(path) ||
+    /^\/client-work(\/|$)/.test(path) ||
     /^\/(writing|posts)(\/|$)/.test(path)
     ? profileUrl
     : businessUrl;
 }
 
 // Keep path and query intact when moving a section, including its Agent and
-// Markdown views. Logically remains readable in both portfolios; its canonical
-// source is the business site. Contact/private review/API routes stay same-origin.
+// Markdown views. Career evidence belongs to Dave; products and the agent
+// guide belong to the business. Public contact routing is handled in the proxy;
+// private review and API routes stay same-origin.
 export function destinationSite({
   site,
   pathname,
@@ -68,12 +68,14 @@ export function destinationSite({
   pathname: string;
 }): SiteIdentity | null {
   const path = pathname.replace(/^\/(agent|markdown)(?=\/|$)/, "") || "/";
-  if (site === "profile" && /^\/products(\/|$)/.test(path)) return "business";
+  if (
+    site === "profile" &&
+    (/^\/products(\/|$)/.test(path) || ["/agents", "/privacy", "/llms.txt"].includes(path))
+  ) return "business";
   if (
     site === "business" &&
     (path === "/about" ||
-      path === "/client-work" ||
-      /^\/client-work\/(eruptiv|peppy-health)$/.test(path) ||
+      /^\/client-work(\/|$)/.test(path) ||
       /^\/(writing|posts)(\/|$)/.test(path))
   )
     return "profile";

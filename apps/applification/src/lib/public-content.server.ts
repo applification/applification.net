@@ -2,7 +2,7 @@
 import { getWriting } from "./writing";
 import { validateRichBlocks, stripRichBlocks } from "./rich-blocks";
 import { richBlockSchemas } from "./rich-block-registry";
-import { publicProducts, siteUrl } from "./public-catalog";
+import { publicProducts } from "./public-catalog";
 import { profileUrl } from "./site-identity";
 import {
   astackRoutes,
@@ -143,7 +143,7 @@ function clientContent(): PublicContent[] {
       slug: "logically",
       title: `Logically: ${logicallyCopy.titles[0]}`,
       summary: logicallyCopy.paragraphs[0],
-      url: `${siteUrl}/client-work/logically`,
+      url: `${profileUrl}/client-work/logically`,
       topics: ["AI", "MCP", "Next.js", "TypeScript"],
       links: [{ label: "Logically", url: "https://logically.ai" }],
       sections: [

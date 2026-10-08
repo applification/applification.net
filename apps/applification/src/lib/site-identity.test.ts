@@ -70,17 +70,27 @@ describe("hostname split", () => {
       "/markdown/products/contexture",
       businessUrl + "/markdown/products/contexture",
     ],
+    ["applification.net", "/client-work/logically?ref=case", profileUrl + "/client-work/logically?ref=case"],
+    ["applification.net", "/agent/client-work/logically", profileUrl + "/agent/client-work/logically"],
+    ["applification.net", "/markdown/client-work/logically", profileUrl + "/markdown/client-work/logically"],
+    ["dave.applification.net", "/agents", businessUrl + "/agents"],
+    ["dave.applification.net", "/privacy", businessUrl + "/privacy"],
+    ["dave.applification.net", "/markdown/agents", businessUrl + "/markdown/agents"],
+    ["dave.applification.net", "/llms.txt", businessUrl + "/llms.txt"],
+    ["applification.net", "/contact?route=contract&ref=cv", profileUrl + "/contact?route=contract&ref=cv"],
+    ["dave.applification.net", "/contact?route=general", businessUrl + "/contact?route=general"],
+    ["dave.applification.net", "/contact?route=product&product=loami", businessUrl + "/contact?route=product&product=loami"],
   ])("preserves migrated links from %s%s", (host, path, destination) => {
     const response = proxy(new NextRequest(`https://${host}${path}`));
     expect(response.status).toBe(308);
     expect(response.headers.get("location")).toBe(destination);
   });
 
-  it("overwrites spoofed identity and leaves contact and Logically on the current host", () => {
+  it("overwrites spoofed identity and keeps private contact and career evidence on Dave’s host", () => {
     for (const path of [
       "/",
       "/contact?route=contract",
-      "/contact/review/token",
+      "/contact/review/token?route=general",
       "/client-work/logically",
     ]) {
       const response = proxy(

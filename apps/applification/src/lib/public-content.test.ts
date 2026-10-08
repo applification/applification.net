@@ -35,7 +35,7 @@ describe("published content reads", () => {
     expect(detail.content).toContain("production Agentic Chat");
     expect(detail.content).toContain("Vercel AI SDK");
     expect(detail.url).toBe(
-      "https://applification.net/client-work/logically",
+      "https://dave.applification.net/client-work/logically",
     );
     expect(readContentResponseSchema.safeParse(detail).success).toBe(true);
   });

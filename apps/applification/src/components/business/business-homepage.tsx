@@ -192,15 +192,14 @@ export function BusinessHomepage({
                 The case study covers the frontend rebuild, API boundaries and
                 production AI interface.
               </p>
-              <Link
-                href="/client-work/logically"
+              <ExternalLink
+                href={`${profileUrl}/client-work/logically`}
                 className={`mt-5 ${textLink}`}
               >
                 <span className="link-sweep-label">
                   Read the Logically case
                 </span>
-                <ArrowRight aria-hidden="true" className="size-4" />
-              </Link>
+              </ExternalLink>
             </article>
             <div>
               {integrationEvidence.map((item) => (

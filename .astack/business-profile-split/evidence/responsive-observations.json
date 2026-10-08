@@ -1,58 +1,131 @@
-[
-  {
-    "tab": "1",
-    "heading": "Your systems and data,usable through AI assistants.",
-    "reducedMotion": true,
-    "scroll": 320,
-    "width": 320
+{
+  "date": "2026-10-08",
+  "observations": [
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": false,
+      "scrollWidth": 320,
+      "site": "profile",
+      "width": 320
+    },
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": false,
+      "scrollWidth": 390,
+      "site": "profile",
+      "width": 390
+    },
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": false,
+      "scrollWidth": 900,
+      "site": "profile",
+      "width": 900
+    },
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": true,
+      "scrollWidth": 1024,
+      "site": "profile",
+      "width": 1024
+    },
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": true,
+      "scrollWidth": 1440,
+      "site": "profile",
+      "width": 1440
+    },
+    {
+      "scrollWidth": 320,
+      "site": "business",
+      "width": 320
+    },
+    {
+      "scrollWidth": 390,
+      "site": "business",
+      "width": 390
+    },
+    {
+      "scrollWidth": 900,
+      "site": "business",
+      "width": 900
+    },
+    {
+      "scrollWidth": 1024,
+      "site": "business",
+      "width": 1024
+    },
+    {
+      "scrollWidth": 1440,
+      "site": "business",
+      "width": 1440
+    }
+  ],
+  "profileMenu": {
+    "focusOnOpen": "Client work",
+    "escapeFocusReturn": "Open navigation menu",
+    "externalBusiness": "https://applification.net",
+    "reducedMotion": true
   },
-  {
-    "tab": "3",
-    "heading": "Dave Hudson",
-    "reducedMotion": true,
-    "scroll": 320,
-    "width": 320
+  "contact": {
+    "profile": "contract only, including manual form",
+    "business": "product and general only"
   },
-  {
-    "tab": "1",
-    "heading": "Your systems and data,usable through AI assistants.",
-    "reducedMotion": true,
-    "scroll": 900,
-    "width": 900
-  },
-  {
-    "tab": "3",
-    "heading": "Dave Hudson",
-    "reducedMotion": true,
-    "scroll": 900,
-    "width": 900
-  },
-  {
-    "tab": "1",
-    "heading": "Your systems and data,usable through AI assistants.",
-    "reducedMotion": true,
-    "scroll": 390,
-    "width": 390
-  },
-  {
-    "tab": "3",
-    "heading": "Dave Hudson",
-    "reducedMotion": true,
-    "scroll": 390,
-    "width": 390
-  },
-  {
-    "tab": "1",
-    "heading": "Your systems and data,usable through AI assistants.",
-    "reducedMotion": true,
-    "scroll": 1440,
-    "width": 1440
-  },
-  {
-    "tab": "3",
-    "heading": "Dave Hudson",
-    "reducedMotion": true,
-    "scroll": 1440,
-    "width": 1440
+  "cv": "Two-page public PDF downloaded through header CV link",
+  "restoredControls": [
+    {
+      "botVisible": true,
+      "brandLogo": true,
+      "brandText": "DAVE HUDSON",
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "botVisible": true,
+      "brandLogo": true,
+      "brandText": "DAVE HUDSON",
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "botVisible": true,
+      "brandLogo": true,
+      "brandText": "DAVE HUDSON",
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 900,
+      "width": 900
+    },
+    {
+      "botVisible": true,
+      "brandLogo": true,
+      "brandText": "DAVE HUDSON",
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "botVisible": true,
+      "brandLogo": true,
+      "brandText": "DAVE HUDSON",
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 1440,
+      "width": 1440
+    }
+  ],
+  "agentView": {
+    "entry": "Human / Agent switch",
+    "url": "http://dave.applification.localhost:3333/agent",
+    "content": "Dave’s profile Markdown",
+    "navigation": "Personal routes, CV and contract contact",
+    "botDestination": "https://applification.net/agents",
+    "humanReturn": "http://dave.applification.localhost:3333/"
   }
-]
+}

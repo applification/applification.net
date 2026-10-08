@@ -64,7 +64,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ManualContactBrief } from "./manual-contact-brief";
 import { contactMessageLimit, contactTextLimits } from "@/lib/contact-draft";
 import { contactAttachmentSchema, validateContactAttachment } from "@/lib/contact-attachment";
-import type { ContactRoute } from "@/lib/contact";
+import { contactRoutesForSite, type ContactRoute } from "@/lib/contact";
 import {
   applyContactProposal,
   changeContactRoute,
@@ -184,6 +184,8 @@ export function ContactWorkspace({
   initialRoute: ContactRoute | null;
   site?: SiteIdentity;
 }) {
+  const availableRoutes = contactRoutesForSite(site);
+  const visibleRoutes = routes.filter(item => availableRoutes.includes(item.route));
   const [draft, setDraft] = useState<ContactDraft>(() =>
     createContactDraft({ product: initialProduct, route: initialRoute }),
   );
@@ -284,6 +286,9 @@ export function ContactWorkspace({
         if (message.trim() || lastFailedMessage) return {error: {code: "PENDING_MESSAGE", message: "The visitor has an unsaved message. Ask them to use the form or finish that message first."}};
         const filled = fillContactDraft(draftRef.current, input);
         if (!filled.ok) return {error: filled.error};
+        if (filled.draft.route && !contactRoutesForSite(site).includes(filled.draft.route)) {
+          return { error: { code: "WRONG_SITE", message: "This enquiry belongs on the other site. Follow the external site link to prepare it there." } };
+        }
         flushSync(() => {
           draftRef.current = filled.draft;
           setDraft(filled.draft);
@@ -303,7 +308,7 @@ export function ContactWorkspace({
       },
     });
     return () => { active = false; unregister(); };
-  }, [delivery, isPreparing, isUploading, editingField, message, lastFailedMessage]);
+  }, [delivery, isPreparing, isUploading, editingField, message, lastFailedMessage, site]);
 
   function resetDeliveryForDraftChange() {
     setVisitorApproved(false);
@@ -314,6 +319,7 @@ export function ContactWorkspace({
   }
 
   function chooseRoute(nextRoute: ContactRoute) {
+    if (!availableRoutes.includes(nextRoute)) return;
     if (nextRoute === draftRef.current.route) {
       return;
     }
@@ -392,6 +398,10 @@ export function ContactWorkspace({
             ? "The brief changed while the assistant was working. Retry this message against the latest version."
             : "The assistant could not apply these details. Your brief is unchanged; retry or complete it manually.",
         );
+      }
+
+      if (applied.draft.route && !availableRoutes.includes(applied.draft.route)) {
+        throw new Error("This enquiry belongs on the other site. Follow the external site link to prepare it there.");
       }
 
       const firstSummary = !draftRef.current.summary ? applied.draft.summary : undefined;
@@ -1108,6 +1118,7 @@ export function ContactWorkspace({
             data-contact-workspace-body
           >
             {manualMode ? <ManualContactBrief
+              availableRoutes={availableRoutes}
               draft={draft}
               originalMessage={message.trim() || lastFailedMessage || ""}
               onRoute={chooseRoute}
@@ -1121,7 +1132,10 @@ export function ContactWorkspace({
                 <Message className="max-w-full" from="assistant">
                   <MessageContent className="w-full max-w-full gap-3 rounded-2xl bg-[var(--contact-card)] p-3 text-base leading-[1.55] sm:gap-4 sm:p-5">
                     <AssistantMessageLabel />
-                    <p>
+                    {site === "profile" ? (
+                      <p>Tell me about the role or project. You will review the brief before it is sent.</p>
+                    ) : (
+                      <p>
                       <span className="sm:hidden">
                         Tell me what brings you here, or choose a route. You will
                         review the brief before it is sent.
@@ -1131,7 +1145,12 @@ export function ContactWorkspace({
                         prepare a checked brief for you to review before anything
                         is sent.
                       </span>
-                    </p>
+                      </p>
+                    )}
+                    {site === "profile" ? (
+                      <p className="font-semibold">Contract enquiry</p>
+                    ) : (
+                      <>
                     {route && !routeChooserExpanded ? (
                       <div
                         className="flex min-h-11 items-center justify-between gap-3 rounded-xl border border-[var(--app-action)] bg-[var(--contact-selected)] px-3 sm:hidden"
@@ -1156,7 +1175,8 @@ export function ContactWorkspace({
                     <ToggleGroup
                       aria-label="Choose an enquiry route"
                       className={cn(
-                        "w-full grid-cols-1 gap-2 sm:grid sm:grid-cols-3",
+                        "w-full grid-cols-1 gap-2 sm:grid",
+                        site === "business" ? "sm:grid-cols-2" : "sm:grid-cols-3",
                         route && !routeChooserExpanded ? "hidden" : "grid",
                       )}
                       data-contact-route-options
@@ -1171,7 +1191,7 @@ export function ContactWorkspace({
                       value={route ?? ""}
                       variant="outline"
                     >
-                      {routes.map((item) => (
+                      {visibleRoutes.map((item) => (
                         <ToggleGroupItem
                           aria-label={item.label}
                           className="h-11 min-h-11 w-full items-center justify-start whitespace-normal px-3 py-2 text-left data-[state=on]:border-[var(--app-action)] data-[state=on]:bg-[var(--contact-selected)] data-[state=on]:text-[var(--app-label-text)] sm:h-auto sm:min-h-[74px] sm:flex-col sm:items-start sm:py-3"
@@ -1185,6 +1205,8 @@ export function ContactWorkspace({
                         </ToggleGroupItem>
                       ))}
                     </ToggleGroup>
+                      </>
+                    )}
                   </MessageContent>
                 </Message>
 
