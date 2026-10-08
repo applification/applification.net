@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Bot } from "lucide-react";
-import { ExternalLink } from "./external-link";
 
 const LABEL = "Agents & API docs";
 
@@ -8,7 +7,6 @@ type AgentsLinkProps = {
   className?: string;
   labelled?: boolean;
   onClick?: () => void;
-  href?: string;
 };
 
 // Mirrors ThemeSwitcher's icon-button sizing so the two sit as a pair in the
@@ -19,23 +17,21 @@ export function AgentsLink({
   className = "",
   labelled = false,
   onClick,
-  href = "/agents",
 }: AgentsLinkProps) {
-  const LinkComponent = href.startsWith("https://") ? ExternalLink : Link;
   const buttonClasses = labelled
     ? "flex min-h-11 w-full items-center justify-between rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)]"
     : "inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)]";
 
   return (
-    <LinkComponent
+    <Link
       aria-label={LABEL}
       className={`${buttonClasses} transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)] ${className}`}
-      href={href}
+      href="/agents"
       onClick={onClick}
       title={LABEL}
     >
       {labelled ? <span>{LABEL}</span> : null}
       <Bot aria-hidden="true" className="size-[18px]" strokeWidth={1.8} />
-    </LinkComponent>
+    </Link>
   );
 }

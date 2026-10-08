@@ -237,12 +237,12 @@ export function SiteHeader({ contactAvailable = true, site = "profile" }: { cont
                 Applification.net
               </ExternalLink>
             ) : null}
-            <AgentsLink className="site-header-agents" href={site === "profile" ? `${businessUrl}/agents` : "/agents"} />
+            {site === "business" ? <AgentsLink className="site-header-agents" /> : null}
             {!agent ? <ThemeSwitcher className="site-header-theme" /> : null}
           </nav>
 
           <div className={`flex items-center gap-2 ${desktopHidden}`}>
-            <AgentsLink href={site === "profile" ? `${businessUrl}/agents` : "/agents"} />
+            {site === "business" ? <AgentsLink /> : null}
             <motion.button
               ref={menuButtonRef}
               aria-controls="mobile-navigation"

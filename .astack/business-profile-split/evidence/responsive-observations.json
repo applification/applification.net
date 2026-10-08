@@ -75,45 +75,40 @@
   "cv": "Two-page public PDF downloaded through header CV link",
   "restoredControls": [
     {
-      "botVisible": true,
+      "botAbsent": true,
       "brandLogo": true,
-      "brandText": "DAVE HUDSON",
       "overflow": false,
       "pageViewVisible": true,
       "scrollWidth": 320,
       "width": 320
     },
     {
-      "botVisible": true,
+      "botAbsent": true,
       "brandLogo": true,
-      "brandText": "DAVE HUDSON",
       "overflow": false,
       "pageViewVisible": true,
       "scrollWidth": 390,
       "width": 390
     },
     {
-      "botVisible": true,
+      "botAbsent": true,
       "brandLogo": true,
-      "brandText": "DAVE HUDSON",
       "overflow": false,
       "pageViewVisible": true,
       "scrollWidth": 900,
       "width": 900
     },
     {
-      "botVisible": true,
+      "botAbsent": true,
       "brandLogo": true,
-      "brandText": "DAVE HUDSON",
       "overflow": false,
       "pageViewVisible": true,
       "scrollWidth": 1024,
       "width": 1024
     },
     {
-      "botVisible": true,
+      "botAbsent": true,
       "brandLogo": true,
-      "brandText": "DAVE HUDSON",
       "overflow": false,
       "pageViewVisible": true,
       "scrollWidth": 1440,
@@ -125,7 +120,8 @@
     "url": "http://dave.applification.localhost:3333/agent",
     "content": "Dave’s profile Markdown",
     "navigation": "Personal routes, CV and contract contact",
-    "botDestination": "https://applification.net/agents",
-    "humanReturn": "http://dave.applification.localhost:3333/"
+    "humanReturn": "http://dave.applification.localhost:3333/",
+    "botShortcut": "Removed from Dave’s header",
+    "guideLink": "https://applification.net/agents (inside Agent reader)"
   }
 }

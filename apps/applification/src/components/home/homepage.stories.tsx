@@ -36,7 +36,7 @@ const checkProfile: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   }))
     await expect(action).toHaveAttribute("href", "/contact?route=contract");
   await expect(canvas.queryByRole("link", { name: "Products" })).toBeNull();
-  await expect(canvas.getByRole("link", { name: /^Agents & API docs/ })).toHaveAttribute("href", "https://applification.net/agents");
+  await expect(canvas.queryByRole("link", { name: /^Agents & API docs/ })).not.toBeInTheDocument();
   await expect(canvas.getByRole("link", { name: "Agent" })).toHaveAttribute("href", "/agent");
   await expect(canvas.getByText("North East hybrid considered")).toBeVisible();
   await expect(

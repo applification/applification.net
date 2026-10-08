@@ -16,7 +16,7 @@ One Next.js app and Vercel project serve two identities:
 - Dave’s `/products/*`, `/agents`, `/privacy` and `/llms.txt` redirect permanently to Applification.
 - Agent and Markdown variants follow the same section ownership.
 - Logically lives only on Dave’s site, with `https://dave.applification.net/client-work/logically` as its canonical source. Applification’s production evidence links to it externally.
-- Each host has its own root metadata, social image, robots sitemap reference and sitemap. Dave’s shell has profile-only navigation, a direct CV download and an external Applification.net callout. Product/API/skill discovery remains on Applification. Both sites retain Human / Agent views with their own content; Dave’s bot shortcut links explicitly to Applification’s agent guide. Public catalog facts link to Dave’s profile, public CV and contract contact routes.
+- Each host has its own root metadata, social image, robots sitemap reference and sitemap. Dave’s shell has profile-only navigation, a direct CV download and an external Applification.net callout. Product/API/skill discovery remains on Applification. Both sites retain Human / Agent views with their own content; Dave’s header omits the bot shortcut, while the business header retains its agent-guide link. Public catalog facts link to Dave’s profile, public CV and contract contact routes.
 - Contact APIs and private review routes remain on the current hostname. Existing emailed review capabilities are still valid on `www`; no private workflow route is migrated.
 
 ## Hosting audit and launch steps

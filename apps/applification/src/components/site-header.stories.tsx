@@ -12,11 +12,7 @@ async function checkHeaderUtilities(canvasElement: HTMLElement, site: "profile" 
     await expect(agents).toHaveAttribute("href", "/agents");
     await expect(getComputedStyle(agents).opacity).toBe("1");
   } else {
-    const agents = canvas.getByRole("link", { name: /^Agents & API docs/ });
-    await expect(agents).toBeVisible();
-    await expect(agents).toHaveAttribute("href", "https://applification.net/agents");
-    await expect(agents).toHaveAttribute("target", "_blank");
-    await expect(getComputedStyle(agents).opacity).toBe("1");
+    await expect(canvas.queryByRole("link", { name: /^Agents & API docs/ })).not.toBeInTheDocument();
     await expect(canvas.queryByRole("link", { name: "Products" })).not.toBeInTheDocument();
     await expect(canvas.getByRole("link", { name: "Dave Hudson home" })).toBeVisible();
   }

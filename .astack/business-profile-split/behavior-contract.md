@@ -11,7 +11,7 @@ Applification's buyers need an outcome they can commission; recruiters need to s
 - A5: Both homepages reflow at 320, 390, 900 and 1440px, in light/dark themes. Navigation and examples work by keyboard, retain focus, and support reduced motion.
 - A6: Proof distinguishes Logically (commercial work during employment), Contexture (released open source), Loami (in development), StoryLoops (archived). Illustrative workflow examples are labelled; no unverified client or deployment claims.
 
-- A7: Dave’s navigation is Client work, Writing, About, CV and contract Contact, with a separate external Applification.net callout. His name remains visible at every width, his footer is personal, and the homepage business connection is a short external link. Products belong to the business. Both sites keep the shared logo mark, bot shortcut and Human / Agent control; Dave’s reader keeps his content and his bot shortcut links explicitly to the external business agent guide.
+- A7: Dave’s navigation is Client work, Writing, About, CV and contract Contact, with a separate external Applification.net callout. His name remains visible at every width, his footer is personal, and the homepage business connection is a short external link. Products belong to the business. Both sites keep the shared logo mark and Human / Agent control; Dave’s reader keeps his content. Dave’s header omits the bot shortcut, while the business header retains its agent-guide link.
 
 ## Design and verification decisions
 
@@ -46,7 +46,7 @@ Retained images: desktop and mobile full pages for each identity; desktop/mobile
 Limits: Pen is disconnected (no design-history comparison), and `agentlog` is unavailable (no Observatory capture/evaluation claimed). Local checks prove contact entry, validation and workflow behavior; a real provider-delivery smoke test on both live hostnames remains part of launch. No actual enquiry was sent, and no production domain/deployment was changed. The Vercel attachment, DNS/TLS and apex/www change are documented in `docs/runbooks/site-hostnames.md`.
 
 
-## Navigation and content separation follow-up
+## Navigation and content separation follow-up at `1d70775`
 
 The profile shell no longer contains business Products or company GitHub. Both shells retain the logo mark, bot shortcut and floating Human / Agent control. Dave’s reader keeps his content and navigation; his bot shortcut links explicitly to the external business agent guide. Dave’s name stays visible at every width; his menu is Client work, Writing, About, CV and contract Contact, with a separate external Applification.net callout. The homepage’s founder section is now a short external link. All case studies, including Logically, have one home on Dave’s site; the business links externally to his evidence. Agent/Markdown navigation follows the same ownership. Public contract contact links redirect to Dave, and product/general links redirect to the business. The visible AI and manual contact forms offer only their site’s enquiry types. Private review links and API delivery controls remain same-origin.
 
@@ -59,3 +59,12 @@ Follow-up verification on 8 October 2026, with the same environment as initial d
 - Screenshots in `evidence/` were refreshed for both homepages, their themes and viewports. `profile-mobile-menu.jpg` shows the shared mark, bot shortcut and separate business callout. `profile-agent-preview.jpg` records Dave’s own reader, reached through the restored Agent switch; Human returned to his homepage. The restored controls were measured again at 320/390/900/1024/1440px without overflow. Browser zoom was retained; viewport emulation was compensated for measurements and reset afterwards.
 
 Self-review: A1–A7 are satisfied. Visual tokens and deployment remain shared, with separate navigation, owned pages and contact purposes. No enquiry was sent or production hostname configuration changed.
+
+
+## Profile header review correction
+
+The browser review selected Dave’s header bot shortcut for removal. Remove it from desktop, compact, mobile and Agent headers, keeping his shared logo, personal navigation, external business callout and bottom Human / Agent switch. The business header keeps its existing guide shortcut. The reader still links to the business guide.
+
+Design-tool decision: no Pen comparison is needed for the explicitly selected control removal. Existing header and homepage Storybook checks cover absence across supported viewports and the business shortcut’s preservation; running-product review checks the bottom switch and responsive layout.
+
+Observed proof on 8 October 2026: lint/typecheck and the production build passed; all 40 affected header, footer, profile-homepage and Agent-reader Storybook checks passed. The existing 95 running-server assertions passed. Browser review confirmed no bot shortcut at 320/390/900/1024/1440px, no overflow, the shared logo and bottom view control, and keyboard navigation through Agent and back to Human. Profile screenshots and responsive observations now show this reviewed state. Self-review found the change confined to profile header discovery; the business guide shortcut and both readers remain available.
