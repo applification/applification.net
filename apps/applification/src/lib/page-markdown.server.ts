@@ -7,6 +7,8 @@ import { careerTimeline, positions, profileFacts, bestFit, selectedWriting } fro
 import { publicApiUsageDescription } from "./public-api-policy";
 import { publishedSkills } from "./agent-skills-public";
 import { privacyCopy, privacyUpdated } from "./content/privacy";
+import { businessCopy, capabilities, engagements, integrationEvidence, integrationExamples } from "./content/business";
+import { businessUrl, contentOrigin, profileUrl, siteOrigin, type SiteIdentity } from "./site-identity";
 
 export type MarkdownPage = { title: string; path: string; markdown: string };
 
@@ -20,7 +22,7 @@ function contentIndex(items: PublicContent[]) {
     item.date ? `Published: ${item.date}` : "",
     item.status ? `Status: ${item.status}` : "",
     item.summary,
-    `Markdown: ${siteUrl}${markdownPath(new URL(item.url).pathname)}`,
+    `Markdown: ${new URL(item.url).origin}${markdownPath(new URL(item.url).pathname)}`,
   ].filter(Boolean).join("\n\n")).join("\n\n");
 }
 
@@ -47,7 +49,7 @@ function contentBody(item: PublicContent) {
   ].filter(Boolean).join("\n\n");
 }
 
-export function getPageMarkdown(path: string): MarkdownPage | null {
+export function getPageMarkdown(path: string, site: SiteIdentity = "business"): MarkdownPage | null {
   if (path !== humanPath(path) || !hasAgentView(path)) return null;
 
   let title: string;
@@ -55,15 +57,30 @@ export function getPageMarkdown(path: string): MarkdownPage | null {
   const content = getPublishedContent();
   const cases = content.filter(item => item.type === "client-work");
   const products = content.filter(item => item.type === "products");
+  const origin = path === "/" ? siteOrigin(site) : contentOrigin(path);
+  const profile = origin === profileUrl;
 
-  if (path === "/") {
+  if (path === "/" && site === "business") {
+    title = businessCopy.title;
+    body = [businessCopy.description, businessCopy.commissioning,
+      ...capabilities.map(item => `## ${item.title}\n\n${item.description}`),
+      `## Illustrative workflows\n\n${integrationExamples.map(item => `### ${item.label}\n\n${item.question}\n\n${item.system} → ${item.tool}\n\nAccess: ${item.access}\n\n${item.interface}\n\n${item.approval}`).join("\n\n")}`,
+      `## Scoped delivery\n\n${engagements.map(item => `### ${item.title}\n\n${item.description}\n\n${item.output}`).join("\n\n")}`,
+      `## Production evidence\n\nLogically: Dave co-built the production Agentic Chat during full-time employment, October 2024–May 2026. MCP tools connected threat analysts to Databricks threat-analysis and person-lookup capabilities.\n\n${link("Logically case study on Dave's site", `${profileUrl}/client-work/logically`)}`,
+      ...integrationEvidence.map(item => `### ${item.name} — ${item.status}\n\n${item.description}\n\n${link(item.action, `${siteUrl}${item.href}`)}`),
+      `## For agencies\n\n${businessCopy.agencyDescription}\n\n${businessCopy.proposal}`,
+      `## Founded by Dave Hudson\n\n${link("Engineering profile and CV", publicProfile.url)}\n\n${link("Discuss a project", publicProfile.projectContactUrl)}`,
+    ].join("\n\n");
+  } else if (path === "/") {
     title = sitePageCopy.home.title.join(" ");
     body = [
       sitePageCopy.home.description,
       profileFacts.map(([label, value]) => `- ${label}: ${value}`).join("\n"),
+      "North East hybrid considered. Straightforward frontend delivery, product builds and architectural resets are welcome.",
+      link("Download CV (PDF)", publicProfile.cvUrl),
       `## How I work with AI\n\n${sitePageCopy.home.method}`,
       `## Client outcomes\n\n${contentIndex(cases.filter(item => new URL(item.url).pathname !== "/client-work"))}`,
-      `## Products\n\n${contentIndex(products)}`,
+      `## Founder of Applification\n\n${link("MCP integrations and MCP Apps", siteUrl)}`,
     ].join("\n\n");
   } else if (path === "/about") {
     title = sitePageCopy.about.title;
@@ -73,7 +90,7 @@ export function getPageMarkdown(path: string): MarkdownPage | null {
       ...positions.map(position => `## ${position.title}\n\n${position.description}`),
       `## Career\n\n${careerTimeline.map(entry => `### ${entry.year}: ${entry.title}\n\n${entry.description}${"earlyClients" in entry ? `\n\nEarly clients included ${entry.earlyClients}` : ""}`).join("\n\n")}`,
       `## Best fit\n\n${bestFit.map(item => `- ${item}`).join("\n")}`,
-      `## Selected writing\n\n${selectedWriting.map(item => `- ${link(item.title, `${siteUrl}${item.href}`)}: ${item.description}`).join("\n")}`,
+      `## Selected writing\n\n${selectedWriting.map(item => `- ${link(item.title, `${profileUrl}${item.href}`)}: ${item.description}`).join("\n")}`,
     ].join("\n\n");
   } else if (path === "/client-work") {
     title = sitePageCopy.clientWork.title;
@@ -116,12 +133,15 @@ export function getPageMarkdown(path: string): MarkdownPage | null {
     path,
     markdown: [
       `# ${title}`,
-      `Source: ${siteUrl}${path}\nMarkdown: ${siteUrl}${markdownPath(path)}`,
+      `Source: ${origin}${path}\nMarkdown: ${origin}${markdownPath(path)}`,
       body,
-      `## Explore Applification\n\n${[
-        ["Home", "/"], ["About Dave", "/about"], ["Client work", "/client-work"],
-        ["Products", "/products"], ["Writing", "/writing"], ["Agents & API docs", "/agents"],
-      ].map(([label, destination]) => `- ${link(label, `${siteUrl}${markdownPath(destination)}`)}`).join("\n")}\n- ${link("Contact routes", publicProfile.contactUrl)}\n- ${link("LinkedIn", publicProfile.linkedInUrl)}`,
+      profile
+        ? `## Explore Dave's profile\n\n${[
+          ["Home", "/"], ["Client work", "/client-work"], ["Writing", "/writing"], ["About Dave", "/about"],
+        ].map(([label, destination]) => `- ${link(label, `${profileUrl}${markdownPath(destination)}`)}`).join("\n")}\n- ${link("Download CV (PDF)", publicProfile.cvUrl)}\n- ${link("Contact Dave", publicProfile.contactUrl)}\n- ${link("LinkedIn", publicProfile.linkedInUrl)}\n\nBusiness site: ${link("Applification.net", businessUrl)}`
+        : `## Explore Applification\n\n${[
+          ["Home", "/"], ["Products", "/products"], ["Agents & API docs", "/agents"],
+        ].map(([label, destination]) => `- ${link(label, `${businessUrl}${markdownPath(destination)}`)}`).join("\n")}\n- ${link("Discuss a project", publicProfile.projectContactUrl)}\n\nFounder profile: ${link("Dave Hudson", profileUrl)}`,
     ].join("\n\n") + "\n",
   };
 }

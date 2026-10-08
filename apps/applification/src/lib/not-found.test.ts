@@ -6,9 +6,9 @@ describe("notFoundMarkdown", () => {
     const body = notFoundMarkdown("/missing/page");
     expect(body.startsWith("# 404: Not found")).toBe(true);
     expect(body).toContain("/missing/page");
-    expect(body).toContain("https://www.applification.net/sitemap.xml");
-    expect(body).toContain("https://www.applification.net/llms.txt");
-    expect(body).toContain("https://www.applification.net/api/v1/search");
+    expect(body).toContain("https://applification.net/sitemap.xml");
+    expect(body).toContain("https://applification.net/llms.txt");
+    expect(body).toContain("https://applification.net/api/v1/search");
     expect(body.split("\n").length).toBeLessThan(20);
   });
 

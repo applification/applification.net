@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { defaultOpenGraph } from "@/lib/social-metadata";
+import { profileOpenGraph } from "@/lib/social-metadata";
 import { WritingPage } from "@/components/writing/writing-page";
 import { getWriting, getWritingTopics } from "@/lib/writing";
 
@@ -9,9 +9,10 @@ const description =
 export const metadata: Metadata = {
   title: "Writing",
   description,
+  alternates: { canonical: "/writing" },
   openGraph: {
-    ...defaultOpenGraph,
-    title: "Writing | Applification",
+    ...profileOpenGraph,
+    title: "Writing | Dave Hudson",
     description,
     url: "/writing",
   },

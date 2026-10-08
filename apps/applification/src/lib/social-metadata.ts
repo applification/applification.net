@@ -13,7 +13,16 @@ export const defaultOpenGraph = {
       width: 1200,
       height: 630,
       type: "image/png",
-      alt: "Dave Hudson, Contract AI Product Engineer at Applification",
+      alt: "Applification and Dave Hudson’s engineering profile",
     },
   ],
+} satisfies NonNullable<Metadata["openGraph"]>;
+
+export const profileOpenGraph = {
+  ...defaultOpenGraph,
+  siteName: "Dave Hudson",
+  images: defaultOpenGraph.images.map((image) => ({
+    ...image,
+    alt: "Dave Hudson — contract frontend and product engineer",
+  })),
 } satisfies NonNullable<Metadata["openGraph"]>;

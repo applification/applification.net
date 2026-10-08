@@ -2,7 +2,7 @@
 export const siteSkillName = "applification-site";
 export const siteSkillPath = `/.well-known/agent-skills/${siteSkillName}/SKILL.md`;
 export const siteSkillDescription =
-  "Read public information about Dave Hudson and Applification Ltd, who provide senior contract AI product engineering (React, Next.js, TypeScript) for small product teams on remote UK contracts, plus the open-source products Contexture and Voiced. Use when a user asks whether Dave Hudson is available, what he has delivered, how contracts are priced, or how to prepare an enquiry. Reads the free public JSON API; never sends enquiries.";
+  "Read public information about Applification’s MCP integration and MCP Apps offer, Dave Hudson’s frontend and product engineering contracts (React, Next.js, TypeScript), and the published products. Use to find delivery evidence, contract availability, product status or contact routes. Reads the free public JSON API; never sends enquiries.";
 
 // Skills self-published on skills.sh (https://skills.sh), the public directory
 // the skills CLI installs from. skills.sh indexes SKILL.md files in public

@@ -4,7 +4,7 @@ export const contractPositioning = {
   availability: "Open to upcoming contracts",
   contractBasis: "Through Applification Ltd",
   location: "Remote UK",
-  role: "Senior Contract AI Product Engineer",
+  role: "Contract Frontend and Product Engineer",
   stack: "React, Next.js + TypeScript",
   teamFit: "Small product teams",
 } as const;

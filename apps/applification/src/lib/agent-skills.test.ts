@@ -23,7 +23,7 @@ describe("agent skills discovery", () => {
     expect(skill).toMatchObject({
       name: siteSkillName,
       type: "skill-md",
-      url: `https://www.applification.net/.well-known/agent-skills/${siteSkillName}/SKILL.md`,
+      url: `https://applification.net/.well-known/agent-skills/${siteSkillName}/SKILL.md`,
     });
     expect(skill.description.length).toBeGreaterThan(0);
     expect(skill.description.length).toBeLessThanOrEqual(1024);

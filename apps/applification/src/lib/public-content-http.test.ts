@@ -28,7 +28,7 @@ describe("public API HTTP helpers", () => {
     expect(publicContentErrorSchema.safeParse(body).success).toBe(true);
     expect(body.error.code).toBe("INVALID_QUERY");
     expect(body.error.hint).toMatch(/OpenAPI/);
-    expect(body.error.docs).toBe("https://www.applification.net/agents");
+    expect(body.error.docs).toBe("https://applification.net/agents");
     expect(response.headers.get("cache-control")).toBe("no-store");
   });
 

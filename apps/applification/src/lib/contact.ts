@@ -1,10 +1,19 @@
 import { portfolioProductSlugs, type PortfolioProductSlug } from "./portfolio";
+import type { SiteIdentity } from "./site-identity";
 
 export const contactRoutes = ["contract", "product", "general"] as const;
 export const contactProducts = portfolioProductSlugs;
 
 export type ContactRoute = (typeof contactRoutes)[number];
 export type ContactProduct = PortfolioProductSlug;
+
+export function contactSite(route: ContactRoute): SiteIdentity {
+  return route === "contract" ? "profile" : "business";
+}
+
+export function contactRoutesForSite(site?: SiteIdentity): readonly ContactRoute[] {
+  return site ? contactRoutes.filter(route => contactSite(route) === site) : contactRoutes;
+}
 
 export function parseContactRoute(value: unknown): ContactRoute | null {
   return typeof value === "string" && contactRoutes.includes(value as ContactRoute)

@@ -3,7 +3,7 @@ import { contractPositioning } from "../contract-positioning";
 // Authored introductions shared by the visual pages and their Markdown views.
 export const sitePageCopy = {
   home: {
-    title: ["React and Next.js products.", "Production AI that earns its place."],
+    title: ["Dave Hudson", "Contract frontend and product engineer — React, TypeScript, Next.js and AI integrations."],
     description: "I join product teams to build web applications, modernise existing frontends and put AI into production. Senior engineering, from the first technical decision through to release.",
     method: "I use agents to shape scope, gather context, implement, test and review. The work still ships on evidence and human approval.",
   },
@@ -26,11 +26,11 @@ export const sitePageCopy = {
 } as const;
 
 export const agentsCopy = {
-  title: "Explore my work with your AI.",
-  description: "Prefer a conversation? Explore this site with your favourite AI assistant. Ask about my experience, explore a product, or find work relevant to your project.",
+  title: "Explore the work with your AI.",
+  description: "Explore Applification’s MCP integrations and products with your favourite AI assistant. Find evidence relevant to your project.",
   handoff: "Make the prompt your own, then choose an assistant to open a new chat. For Gemini, paste the copied prompt into the new chat. You may need to sign in; if the prompt does not carry over, copy and paste it.",
   guidance: "Enable web access so your assistant can read the linked pages. If it cannot open a page, use Agent view to copy its Markdown into your conversation.",
-  prompt: "Read https://www.applification.net and help me understand Dave Hudson’s experience. Ask me about my project, then find relevant examples from his client work and writing. Include links to your sources.",
+  prompt: "Read https://applification.net. Help me understand Applification’s MCP integration and MCP Apps offer. Ask about my project, then find relevant capabilities and product evidence. For the founder’s career experience, follow the external link to https://dave.applification.net. Include source links and distinguish production work from experiments.",
 } as const;
 
 // Default deep links are also published in Markdown. The prompt editor uses

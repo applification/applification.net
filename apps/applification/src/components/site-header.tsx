@@ -7,14 +7,23 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { AgentsLink } from "./agents-link";
 import { agentPath, hasAgentView, humanPath } from "@/lib/page-view";
+import { businessUrl, type SiteIdentity } from "@/lib/site-identity";
+import { ExternalLink } from "./external-link";
 
-const navigation = [
-  { href: "/", label: "Home" },
+type NavigationItem = { href: string; label: string; download?: true };
+const navigation: readonly NavigationItem[] = [
   { href: "/client-work", label: "Client work" },
-  { href: "/products", label: "Products" },
   { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/cv/Dave-Hudson-CV.pdf", label: "CV", download: true },
+  { href: "/contact?route=contract", label: "Contact" },
+];
+const businessNavigation: readonly NavigationItem[] = [
+  { href: "/#services", label: "Services" },
+  { href: "/#evidence", label: "Evidence" },
+  { href: "/#agencies", label: "For agencies" },
+  { href: "/products", label: "Products" },
+  { href: "/contact?route=general", label: "Discuss a project" },
 ];
 
 const focusClasses =
@@ -45,7 +54,9 @@ function getProductHeaderTheme(pathname: string | null) {
 }
 
 function isCurrentPath(pathname: string | null, href: string) {
-  return pathname === href || (href !== "/" && pathname?.startsWith(`${href}/`) === true);
+  if (href.includes("#")) return false;
+  const path = href.split("?")[0];
+  return pathname === path || (path !== "/" && pathname?.startsWith(`${path}/`) === true);
 }
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -73,11 +84,11 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
-export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boolean }) {
+export function SiteHeader({ contactAvailable = true, site = "profile" }: { contactAvailable?: boolean; site?: SiteIdentity }) {
   const pathname = usePathname();
   const contentPath = humanPath(pathname ?? "/");
   const agent = pathname === agentPath(contentPath);
-  const navigationHref = (href: string) => agent && hasAgentView(href) ? agentPath(href) : href;
+  const navigationHref = (href: string) => agent && !href.includes("#") && hasAgentView(href) ? agentPath(href) : href;
   const productHeaderTheme = agent ? null : getProductHeaderTheme(pathname);
   const reduceMotion = useReducedMotion();
   const [menuState, setMenuState] = useState({ open: false, pathname });
@@ -90,9 +101,12 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const menuOpen = menuState.pathname === pathname && menuState.open;
+  const desktopVisible = site === "profile" ? "min-[1024px]:flex" : "min-[820px]:flex";
+  const desktopHidden = site === "profile" ? "min-[1024px]:hidden" : "min-[820px]:hidden";
+  const siteNavigation = site === "business" ? businessNavigation : navigation;
   const visibleNavigation = contactAvailable
-    ? navigation
-    : navigation.filter((item) => item.href !== "/contact");
+    ? siteNavigation
+    : siteNavigation.filter((item) => !item.href.startsWith("/contact"));
   const activeHref = visibleNavigation.find((item) => isCurrentPath(contentPath, item.href))?.href;
 
   useLayoutEffect(() => {
@@ -166,21 +180,23 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           <Link
             className={`site-header-brand inline-flex min-h-11 items-center gap-2.5 text-[var(--app-text-primary)] ${focusClasses}`}
             href={navigationHref("/")}
-            aria-label="Applification home"
+            aria-label={site === "profile" ? "Dave Hudson home" : "Applification home"}
           >
             <span
               aria-hidden="true"
               className="site-header-mark block h-[34px] w-12 bg-current [-webkit-mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat] [mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat]"
             />
-            <span className="site-header-wordmark font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[520px]:block min-[820px]:hidden min-[1200px]:block">
-              APPLIFICATION
-            </span>
+            {site === "profile" ? (
+              <span className="font-caption whitespace-nowrap text-sm leading-[18px] font-bold tracking-[1.3px]">DAVE HUDSON</span>
+            ) : (
+              <span className="site-header-wordmark font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[520px]:block min-[820px]:hidden min-[1200px]:block">APPLIFICATION</span>
+            )}
           </Link>
 
           <nav
             ref={navigationRef}
             aria-label="Primary navigation"
-            className="site-header-navigation relative isolate hidden items-center gap-3 min-[820px]:flex min-[1100px]:gap-5"
+            className={`site-header-navigation relative isolate hidden items-center gap-3 min-[1100px]:gap-5 ${desktopVisible}`}
           >
             {activeIndicatorPosition ? (
               <motion.span
@@ -198,9 +214,11 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
             ) : null}
             {visibleNavigation.map((item) => {
               const current = isCurrentPath(contentPath, item.href);
+              const NavigationLink = item.download ? "a" : Link;
 
               return (
-                <Link
+                <NavigationLink
+                  download={item.download}
                   ref={(element) => {
                     if (element) navigationLinkRefs.current.set(item.href, element);
                     else navigationLinkRefs.current.delete(item.href);
@@ -211,15 +229,20 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                   key={item.href}
                 >
                   {item.label}
-                </Link>
+                </NavigationLink>
               );
             })}
-            <AgentsLink className="site-header-agents" />
+            {site === "profile" ? (
+              <ExternalLink href={businessUrl} className={`ml-2 inline-flex min-h-11 items-center border-l border-[var(--app-border)] pl-5 text-sm text-[var(--app-text-secondary)] ${focusClasses}`}>
+                Applification.net
+              </ExternalLink>
+            ) : null}
+            {site === "business" ? <AgentsLink className="site-header-agents" /> : null}
             {!agent ? <ThemeSwitcher className="site-header-theme" /> : null}
           </nav>
 
-          <div className="flex items-center gap-2 min-[820px]:hidden">
-            <AgentsLink />
+          <div className={`flex items-center gap-2 ${desktopHidden}`}>
+            {site === "business" ? <AgentsLink /> : null}
             <motion.button
               ref={menuButtonRef}
               aria-controls="mobile-navigation"
@@ -244,7 +267,7 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           <motion.nav
             animate={{ y: 0 }}
             aria-label="Mobile navigation"
-            className="absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg min-[820px]:hidden"
+            className={`absolute inset-x-0 top-full border-y border-[var(--app-border)] bg-[var(--app-section)] px-5 py-5 shadow-lg ${desktopHidden}`}
             exit={reduceMotion ? undefined : { y: -6 }}
             id="mobile-navigation"
             initial={reduceMotion ? false : { y: -8 }}
@@ -256,9 +279,11 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
             <div className="mx-auto flex max-w-md flex-col gap-1">
               {visibleNavigation.map((item, index) => {
                 const current = isCurrentPath(contentPath, item.href);
+                const NavigationLink = item.download ? "a" : Link;
 
                 return (
-                  <Link
+                  <NavigationLink
+                    download={item.download}
                     ref={index === 0 ? firstMenuLinkRef : undefined}
                     aria-current={current ? "page" : undefined}
                     className={`flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-[var(--app-text-secondary)] hover:bg-[var(--app-muted-section)] hover:text-[var(--app-text-primary)] aria-[current=page]:bg-[var(--header-nav-selected,var(--app-selected))] aria-[current=page]:text-[var(--header-nav-active,var(--app-label-text))] ${focusClasses}`}
@@ -267,9 +292,16 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
                     onClick={() => setMenuState({ open: false, pathname })}
                   >
                     {item.label}
-                  </Link>
+                  </NavigationLink>
                 );
               })}
+              {site === "profile" ? (
+                <div className="mt-3 border-t border-[var(--app-border)] pt-3">
+                  <ExternalLink href={businessUrl} className={`inline-flex min-h-11 items-center px-3 text-sm text-[var(--app-text-secondary)] ${focusClasses}`}>
+                    Applification.net
+                  </ExternalLink>
+                </div>
+              ) : null}
               {!agent ? (
                 <div className="my-2 border-t border-[var(--app-border)] pt-2">
                   <ThemeSwitcher labelled />

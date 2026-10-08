@@ -1,6 +1,10 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import robots from "./robots";
 import { siteUrl } from "@/lib/public-catalog";
+
+vi.mock("@/lib/site-identity.server", () => ({ getSiteIdentity: vi.fn(async () => "business") }));
+
+const result = await robots();
 
 const TRAINING_ONLY_CRAWLERS = ["CCBot", "Bytespider"];
 const ANSWER_AND_SEARCH_CRAWLERS = [
@@ -11,7 +15,6 @@ const ANSWER_AND_SEARCH_CRAWLERS = [
 ];
 
 describe("robots", () => {
-  const result = robots();
   const rules = Array.isArray(result.rules) ? result.rules : [result.rules];
 
   it("points to the sitemap", () => {

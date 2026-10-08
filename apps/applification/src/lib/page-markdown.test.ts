@@ -2,6 +2,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { getPageMarkdown } from "./page-markdown.server";
 import { getPublishedContent } from "./public-content.server";
 import { agentPath, hasAgentView, humanPath, markdownPath } from "./page-view";
+import { contentOrigin } from "./site-identity";
+import { businessCopy } from "./content/business";
 import { sitePageCopy, agentsCopy } from "./content/site-pages";
 import { careerTimeline } from "./content/about";
 import * as writing from "./writing";
@@ -19,17 +21,40 @@ describe("public Markdown pages", () => {
       expect(response.status).toBe(200);
       expect(response.headers.get("Content-Type")).toBe("text/markdown; charset=utf-8");
       expect(response.headers.get("Access-Control-Allow-Origin")).toBe("*");
-      expect(response.headers.get("Link")).toContain(`https://www.applification.net${path}`);
+      expect(response.headers.get("Link")).toContain(`${contentOrigin(path)}${path}`);
       expect(await response.text()).toBe(page.markdown);
     }
   });
 
   it("uses the authored introductions, career evidence and conversation prompt", () => {
-    expect(getPageMarkdown("/")!.markdown).toContain(sitePageCopy.home.description);
+    expect(getPageMarkdown("/")!.markdown).toContain(businessCopy.description);
+    expect(getPageMarkdown("/", "profile")!.markdown).toContain(sitePageCopy.home.description);
+    expect(getPageMarkdown("/", "profile")!.markdown).toContain("https://dave.applification.net/cv/Dave-Hudson-CV.pdf");
     const about = getPageMarkdown("/about")!.markdown;
     expect(about).toContain(sitePageCopy.about.description);
     for (const entry of careerTimeline) expect(about).toContain(entry.description);
     expect(getPageMarkdown("/agents")!.markdown).toContain(agentsCopy.prompt);
+  });
+
+  it("keeps profile and business navigation separate across root and detail pages", () => {
+    for (const path of ["/", "/about", "/client-work/logically", "/writing"]) {
+      const markdown = getPageMarkdown(path, "profile")!.markdown;
+      const navigation = markdown.split("## Explore Dave's profile")[1];
+      expect(navigation, path).toBeDefined();
+      expect(navigation).toContain("https://dave.applification.net/markdown/client-work");
+      expect(navigation).toContain("Business site: [Applification.net](https://applification.net)");
+      expect(navigation).not.toContain("/markdown/products");
+      expect(navigation).not.toContain("/markdown/agents");
+    }
+    for (const path of ["/", "/products/contexture", "/agents"]) {
+      const markdown = getPageMarkdown(path, "business")!.markdown;
+      const navigation = markdown.split("## Explore Applification")[1];
+      expect(navigation).toContain("https://applification.net/markdown/products");
+      expect(navigation).not.toContain("/markdown/about");
+      expect(navigation).not.toContain("/markdown/client-work");
+      expect(navigation).toContain("Founder profile: [Dave Hudson](https://dave.applification.net)");
+    }
+    expect(getPageMarkdown("/client-work/logically")!.markdown).toContain("Source: https://dave.applification.net/client-work/logically");
   });
 
   it("covers published detail URLs without truncating API continuation chunks", () => {

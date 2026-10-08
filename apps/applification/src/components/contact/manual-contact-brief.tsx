@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { contactTextLimits, type ContactDraft } from "@/lib/contact-draft";
 import { validateContactDraft } from "@/lib/contact-state";
-import type { ContactRoute } from "@/lib/contact";
+import { contactRoutes, type ContactRoute } from "@/lib/contact";
 import { portfolioProducts } from "@/lib/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -21,12 +21,13 @@ const optional = new Set(["context", "summary"]);
 type TextField = keyof typeof contactTextLimits;
 const selectClassName = "min-h-11 w-full border-[var(--app-border)] bg-[var(--contact-input)] px-3 text-base text-[var(--app-text-primary)]";
 
-export function ManualContactBrief({ draft, originalMessage, onRoute, onField, onReview }: {
+export function ManualContactBrief({ draft, originalMessage, onRoute, onField, onReview, availableRoutes = contactRoutes }: {
   draft: ContactDraft;
   originalMessage: string;
   onRoute: (route: ContactRoute) => void;
   onField: (field: TextField | "product", value: string) => void;
   onReview: () => void;
+  availableRoutes?: readonly ContactRoute[];
 }) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const prefix = useId();
@@ -43,17 +44,17 @@ export function ManualContactBrief({ draft, originalMessage, onRoute, onField, o
         </div>
         {originalMessage ? <details className="rounded-xl bg-[var(--contact-card)] p-3"><summary className="cursor-pointer text-sm font-semibold">Your original message</summary><p className="mt-3 whitespace-pre-wrap break-words text-sm">{originalMessage}</p></details> : null}
         <div className="grid grid-cols-1 items-start gap-x-5 gap-y-3 sm:grid-cols-2" data-manual-fields>
-          <Field className="min-w-0 gap-0.5">
+          {availableRoutes.length > 1 ? <Field className="min-w-0 gap-0.5">
             <FieldLabel htmlFor={`${prefix}-route`} className="text-[13px] font-semibold">Enquiry type</FieldLabel>
             <Select name="route" value={route} onValueChange={(value) => onRoute(value as ContactRoute)}>
               <SelectTrigger id={`${prefix}-route`} className={selectClassName}><SelectValue /></SelectTrigger>
               <SelectContent position="popper">
-                <SelectItem value="contract">Contract enquiry</SelectItem>
-                <SelectItem value="product">Product enquiry</SelectItem>
-                <SelectItem value="general">General enquiry</SelectItem>
+                {availableRoutes.includes("contract") ? <SelectItem value="contract">Contract enquiry</SelectItem> : null}
+                {availableRoutes.includes("product") ? <SelectItem value="product">Product enquiry</SelectItem> : null}
+                {availableRoutes.includes("general") ? <SelectItem value="general">General enquiry</SelectItem> : null}
               </SelectContent>
             </Select>
-          </Field>
+          </Field> : null}
           {route === "product" ? <Field className="min-w-0 gap-0.5">
             <FieldLabel htmlFor={`${prefix}-product`} className="text-[13px] font-semibold">Product</FieldLabel>
             <Select required name="product" value={draft.product ?? ""} onValueChange={(value) => onField("product", value)}>
