@@ -33,7 +33,9 @@ const checkProductCards: NonNullable<Story["play"]> = async ({
   }
 
   for (const link of canvasElement.querySelectorAll<HTMLElement>("[data-product-link]")) {
-    await expect(link.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
+    // The reveal only translates the cards. Measure the layout box so its
+    // fractional transform does not report a 44px target as 43.99994px.
+    await expect(link.offsetHeight).toBeGreaterThanOrEqual(44);
   }
   await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(
     canvasElement.clientWidth,
