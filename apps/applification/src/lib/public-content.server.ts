@@ -3,6 +3,7 @@ import { getWriting } from "./writing";
 import { validateRichBlocks, stripRichBlocks } from "./rich-blocks";
 import { richBlockSchemas } from "./rich-block-registry";
 import { publicProducts, siteUrl } from "./public-catalog";
+import { profileUrl } from "./site-identity";
 import {
   astackRoutes,
   contextureBuildRows,
@@ -171,7 +172,7 @@ function clientContent(): PublicContent[] {
       slug,
       title: `${item.company}: ${item.title}`,
       summary: item.summary,
-      url: `${siteUrl}/client-work/${slug}`,
+      url: `${profileUrl}/client-work/${slug}`,
       topics: item.stack.split(", "),
       links: [{ label: item.websiteLabel, url: item.websiteHref }],
       sections: [
@@ -192,7 +193,7 @@ function clientContent(): PublicContent[] {
       slug: item.company.split("  /")[0].toLowerCase(),
       title: `${item.company.split("  /")[0]}: ${item.title}`,
       summary: item.copy,
-      url: `${siteUrl}/client-work`,
+      url: `${profileUrl}/client-work`,
       topics: [],
       links: [],
       sections: [section(item.title, `${item.company}\n\n${item.copy}`)],
@@ -242,7 +243,7 @@ export function getPublishedContent(): PublicContent[] {
         topics: entry.topics,
         date: entry.date,
         ...(entry.updated ? { updated: entry.updated } : {}),
-        url: `${siteUrl}/writing/${entry.slug}`,
+        url: `${profileUrl}/writing/${entry.slug}`,
         sections,
         links,
       };

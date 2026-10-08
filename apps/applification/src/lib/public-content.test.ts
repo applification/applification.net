@@ -35,7 +35,7 @@ describe("published content reads", () => {
     expect(detail.content).toContain("production Agentic Chat");
     expect(detail.content).toContain("Vercel AI SDK");
     expect(detail.url).toBe(
-      "https://www.applification.net/client-work/logically",
+      "https://applification.net/client-work/logically",
     );
     expect(readContentResponseSchema.safeParse(detail).success).toBe(true);
   });
@@ -102,7 +102,7 @@ describe("published content reads", () => {
     expect(astack.sections.map(section => section.content).join("\n")).toContain("MIT licence");
     expect(archive.status).toBe("archived");
     expect(archive.sections.map(section => section.content).join("\n")).toContain("slowing me down");
-    expect(archive.links[0].url).toBe("https://www.applification.net/products/astack");
+    expect(archive.links[0].url).toBe("https://applification.net/products/astack");
   });
 
   it("always asks for published writing, including development", () => {

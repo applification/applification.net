@@ -25,6 +25,8 @@ metadata:
 
 ${publicProfile.description}
 
+Applification’s MCP integration and MCP Apps business is at ${siteUrl}. Dave’s contractor profile and downloadable CV are at ${publicProfile.url}. Project enquiries: ${publicProfile.projectContactUrl}. Contract contact routes: ${publicProfile.contactUrl}.
+
 ## When to use this skill
 
 - A user asks whether Dave Hudson is available for a contract, what he works on, or where he is based.

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { buildContactHref, isContactWorkflowAvailable } from "@/lib/contact";
 import { contractPositioning, personalLinkedInUrl } from "@/lib/contract-positioning";
+import type { SiteIdentity } from "@/lib/site-identity";
 
 const focusClasses = "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--app-focus)]";
 
@@ -19,16 +20,16 @@ export function CaseStudyFacts({ role, engagement, stack }: { role: string; enga
   );
 }
 
-export function CaseStudyContact({ nextHref, nextLabel }: { nextHref: string; nextLabel: string }) {
+export function CaseStudyContact({ nextHref, nextLabel, site = "profile" }: { nextHref: string; nextLabel: string; site?: SiteIdentity }) {
   return (
     <section aria-labelledby="case-contact-heading" className="border-t border-[var(--app-border)] bg-[var(--app-muted-section)] px-6 py-12 min-[720px]:px-12">
       <div className="mx-auto max-w-[1200px]">
-        <p className="font-caption text-[11px] font-semibold uppercase tracking-wide text-[var(--app-label-text)]">{contractPositioning.availability} · {contractPositioning.location}</p>
+        <p className="font-caption text-[11px] font-semibold uppercase tracking-wide text-[var(--app-label-text)]">{site === "business" ? "MCP integrations · MCP Apps" : `${contractPositioning.availability} · ${contractPositioning.location}`}</p>
         <h2 id="case-contact-heading" className="font-heading mt-4 max-w-[760px] text-[38px] leading-[1.08] font-medium min-[720px]:text-5xl">Have a similar challenge?</h2>
-        <p className="mt-4 max-w-[680px] text-lg leading-relaxed text-[var(--app-text-secondary)]">I’m Dave Hudson. I join teams to build and improve web products, with production AI where it helps. Contracts through Applification Ltd.</p>
+        <p className="mt-4 max-w-[680px] text-lg leading-relaxed text-[var(--app-text-secondary)]">{site === "business" ? "Applification connects AI assistants to existing systems and workflows. Dave owns the agreed delivery, from scope through deployment and handover." : "I’m Dave Hudson. I join teams to build and improve web products, with production AI where it helps. Contracts through Applification Ltd."}</p>
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-          {isContactWorkflowAvailable() ? <Link href={buildContactHref()} className={`inline-flex min-h-[50px] items-center gap-2 rounded-full bg-[var(--app-action)] px-6 font-semibold text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)] ${focusClasses}`}>
-            Discuss a similar project <ArrowUpRight aria-hidden="true" className="size-4" />
+          {isContactWorkflowAvailable() ? <Link href={buildContactHref({ route: site === "business" ? "general" : "contract" })} className={`inline-flex min-h-[50px] items-center gap-2 rounded-full bg-[var(--app-action)] px-6 font-semibold text-[var(--app-text-on-action)] hover:bg-[var(--app-action-hover)] ${focusClasses}`}>
+            {site === "business" ? "Discuss a project" : "Discuss a similar project"} <ArrowUpRight aria-hidden="true" className="size-4" />
           </Link> : null}
           <ExternalLink href={personalLinkedInUrl} className={`link-sweep inline-flex min-h-11 items-center text-[var(--app-label-text)] ${focusClasses}`}><span className="link-sweep-label">Contact me on LinkedIn</span></ExternalLink>
         </div>

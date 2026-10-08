@@ -2,6 +2,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { getPageMarkdown } from "./page-markdown.server";
 import { getPublishedContent } from "./public-content.server";
 import { agentPath, hasAgentView, humanPath, markdownPath } from "./page-view";
+import { contentOrigin } from "./site-identity";
+import { businessCopy } from "./content/business";
 import { sitePageCopy, agentsCopy } from "./content/site-pages";
 import { careerTimeline } from "./content/about";
 import * as writing from "./writing";
@@ -19,13 +21,15 @@ describe("public Markdown pages", () => {
       expect(response.status).toBe(200);
       expect(response.headers.get("Content-Type")).toBe("text/markdown; charset=utf-8");
       expect(response.headers.get("Access-Control-Allow-Origin")).toBe("*");
-      expect(response.headers.get("Link")).toContain(`https://www.applification.net${path}`);
+      expect(response.headers.get("Link")).toContain(`${contentOrigin(path)}${path}`);
       expect(await response.text()).toBe(page.markdown);
     }
   });
 
   it("uses the authored introductions, career evidence and conversation prompt", () => {
-    expect(getPageMarkdown("/")!.markdown).toContain(sitePageCopy.home.description);
+    expect(getPageMarkdown("/")!.markdown).toContain(businessCopy.description);
+    expect(getPageMarkdown("/", "profile")!.markdown).toContain(sitePageCopy.home.description);
+    expect(getPageMarkdown("/", "profile")!.markdown).toContain("https://dave.applification.net/cv/Dave-Hudson-CV.pdf");
     const about = getPageMarkdown("/about")!.markdown;
     expect(about).toContain(sitePageCopy.about.description);
     for (const entry of careerTimeline) expect(about).toContain(entry.description);

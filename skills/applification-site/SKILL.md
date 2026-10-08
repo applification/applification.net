@@ -1,16 +1,18 @@
 ---
 name: applification-site
-description: Read public information about Dave Hudson and Applification Ltd, who provide senior contract AI product engineering (React, Next.js, TypeScript) for small product teams on remote UK contracts, plus the open-source products Contexture and Voiced. Use when a user asks whether Dave Hudson is available, what he has delivered, how contracts are priced, or how to prepare an enquiry. Reads the free public JSON API; never sends enquiries.
-license: Content may be quoted with attribution to https://www.applification.net.
-compatibility: Requires HTTPS access to https://www.applification.net. No account, API key or cookies.
+description: Read public information about Applification’s MCP integration and MCP Apps offer, Dave Hudson’s frontend and product engineering contracts (React, Next.js, TypeScript), and the published products. Use to find delivery evidence, contract availability, product status or contact routes. Reads the free public JSON API; never sends enquiries.
+license: Content may be quoted with attribution to https://applification.net.
+compatibility: Requires HTTPS access to https://applification.net. No account, API key or cookies.
 metadata:
-  applification-site-url: https://www.applification.net
+  applification-site-url: https://applification.net
   applification-api-version: "1.0.0"
 ---
 
 # Applification site skill
 
-Dave Hudson is a Senior Contract AI Product Engineer building React, Next.js + TypeScript products with small product teams on remote UK contracts through Applification Ltd.
+Dave Hudson is a Contract Frontend and Product Engineer building React, Next.js + TypeScript products with small product teams on remote UK contracts through Applification Ltd.
+
+Applification’s MCP integration and MCP Apps business is at https://applification.net. Dave’s contractor profile and downloadable CV are at https://dave.applification.net. Project enquiries: https://applification.net/contact?route=general. Contract contact routes: https://dave.applification.net/about.
 
 ## When to use this skill
 
@@ -30,21 +32,21 @@ Dave Hudson is a Senior Contract AI Product Engineer building React, Next.js + T
 
 All endpoints are free, read-only GET requests with CORS enabled. Invalid parameters return 400 with error.code INVALID_QUERY.
 
-1. Profile, products and pricing terms: `GET https://www.applification.net/api/v1/catalog?section=all|profile|products|pricing`
-2. Search published content: `GET https://www.applification.net/api/v1/search?query=production+AI&type=client-work` (type: client-work, writing, products; follow nextOffset).
-3. Read a result: `GET https://www.applification.net/api/v1/content?type=client-work&slug=logically` then follow nextSection until it is null.
-4. OpenAPI 3.1 reference: https://www.applification.net/api/openapi.json
-5. Human-readable guide: https://www.applification.net/llms.txt
+1. Profile, products and pricing terms: `GET https://applification.net/api/v1/catalog?section=all|profile|products|pricing`
+2. Search published content: `GET https://applification.net/api/v1/search?query=production+AI&type=client-work` (type: client-work, writing, products; follow nextOffset).
+3. Read a result: `GET https://applification.net/api/v1/content?type=client-work&slug=logically` then follow nextSection until it is null.
+4. OpenAPI 3.1 reference: https://applification.net/api/openapi.json
+5. Human-readable guide: https://applification.net/llms.txt
 
 ## Products
 
-- Contexture (LIVE): Turn one domain model into contracts your code can share. MIT licensed source. https://www.applification.net/products/contexture
-- astack (IN DEVELOPMENT): Give Codex an outcome, guardrails and a verification loop. MIT licensed source. https://www.applification.net/products/astack
-- StoryLoops (ARCHIVED): An archived story-mapping experiment. Its lessons shaped astack. Pricing not published. https://www.applification.net/products/storyloops
-- Voiced (LIVE): Speak into the text field you are already using. MIT licensed source. https://www.applification.net/products/voiced
-- Loami (IN DEVELOPMENT): A household assistant that knows your tastes and works with your agents. Pricing not published. https://www.applification.net/products/loami
-- Plantry (ARCHIVED): An archived household meal-planning experiment. Its work continues in Loami. Pricing not published. https://www.applification.net/products/plantry
+- Contexture (LIVE): Turn one domain model into contracts your code can share. MIT licensed source. https://applification.net/products/contexture
+- astack (IN DEVELOPMENT): Give Codex an outcome, guardrails and a verification loop. MIT licensed source. https://applification.net/products/astack
+- StoryLoops (ARCHIVED): An archived story-mapping experiment. Its lessons shaped astack. Pricing not published. https://applification.net/products/storyloops
+- Voiced (LIVE): Speak into the text field you are already using. MIT licensed source. https://applification.net/products/voiced
+- Loami (IN DEVELOPMENT): A household assistant that knows your tastes and works with your agents. Pricing not published. https://applification.net/products/loami
+- Plantry (ARCHIVED): An archived household meal-planning experiment. Its work continues in Loami. Pricing not published. https://applification.net/products/plantry
 
 ## Contact
 
-Point the user to https://www.applification.net/about for the available contact routes, or https://www.linkedin.com/in/hudsond/. No email address is published. Quote source URLs and do not invent rates, availability dates or product features that are not in the responses.
+Point the user to https://dave.applification.net/about for the available contact routes, or https://www.linkedin.com/in/hudsond/. No email address is published. Quote source URLs and do not invent rates, availability dates or product features that are not in the responses.

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { GET, HEAD, originalPath } from "./route";
 
-const origin = "https://www.applification.net";
+const origin = "https://applification.net";
 
 describe("originalPath", () => {
   it("recovers the requested path from the rewritten URL", () => {

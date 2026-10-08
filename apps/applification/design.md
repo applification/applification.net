@@ -5,7 +5,7 @@ description: "Design and review user-visible work for applification.net. Use for
 
 # Design applification.net
 
-Applification is Dave Hudson's working site. It explains how he builds and leads software work, shows commercial evidence, and gives people a direct route to discuss a contract. The site should read as the work of one experienced engineer with editorial judgment, not as a generic agency or SaaS template.
+Applification’s business site at applification.net explains its MCP integration and MCP Apps offer, with Dave Hudson visibly responsible for delivery. Dave’s contractor profile at dave.applification.net foregrounds React, TypeScript and Next.js delivery, experience and availability. Both should feel authored by one experienced engineer with editorial judgment.
 
 The visual identity comes from a deliberate contrast. Newsreader gives conclusions and page turns an editorial voice. Geist and the mono faces make delivery details, evidence, and product interfaces feel exact. Slate-blue surfaces connect the light and dark themes. Sky blue marks action and orientation.
 
@@ -27,7 +27,8 @@ When these sources disagree, preserve accessible production behaviour, identify 
 
 Name the reader and the decision before choosing a layout. Most pages serve one of these jobs:
 
-- A prospective client needs to decide whether Dave fits a senior contract.
+- A business or agency buyer needs to understand the integration they can commission and who owns delivery.
+- A recruiter or product team needs to decide whether Dave fits a frontend or product engineering contract.
 - A technical reader needs to understand how a product or delivery method works.
 - A reader needs evidence that the claims are backed by shipped work.
 - A contact needs to prepare a useful first conversation.
@@ -108,14 +109,15 @@ The shared desktop content width is 1200 pixels. Standard outer spacing is 24 pi
 
 Use composition to expose the page's argument:
 
-- The homepage runs hero, client row, client outcomes, products row, contract call to action. The hero holds the claim, the working-method caption and the agent-loop diagram together; do not add a second AI section below it. The client row sets real client and public-sector names in Newsreader with a single mono label, because typographic names are honest evidence until supplied logos exist. Product showcases belong on the products pages; the homepage row gives each product one card with its own identity colours.
+- The business homepage runs outcome and illustrative integration example, capabilities, scoped delivery, relevant evidence, agency involvement, then founder and project enquiry. Label illustrative examples and preserve the release status of product evidence. Logically is commercial work during Dave’s employment; avoid presenting it as an Applification client commission.
+- The contractor homepage runs Dave’s name and frontend fit, availability and CV, client names and outcomes, delivery strengths, the Applification connection, then contract enquiry. AI experience supports the frontend profile. The client row uses typographic names in Newsreader until supplied logos exist. Product showcases stay on product pages.
 - A contract page should lead with fit, availability, or evidence rather than a generic welcome.
 - A product page should lead with the product's job and a concrete view of the product.
 - A case study should make the constraint, decision, and result easy to connect.
 - A writing page should favour reading rhythm over card density.
 - An interactive contact page should put the next useful action ahead of explanation about the mechanism.
 
-Main-page and detail-page hero labels share top spacing of 48px below 1024px and 64px from 1024px. On the homepage, align the blue contract summary and place the introductory line above it. Anchor their content to the top; hero density and aside height must not move the opening label.
+Main-page and detail-page hero labels share top spacing of 48px below 1024px and 64px from 1024px. On each homepage, keep the opening label and main claim anchored to the top. On the contractor homepage, place availability beside the profile on desktop and below it on mobile. On the business homepage, keep the integration example alongside the proposition on desktop and in normal flow on mobile.
 
 Choose section geometry before choosing components. Use a shared edge and consistent baselines. Evidence tables, diagrams, and product previews may use the full content width. Reading prose should not stretch across it.
 
@@ -140,6 +142,8 @@ Shared controls must have:
 External website links open in a new tab with `rel="noopener noreferrer"`, a trailing north-east arrow icon, and an accessible "opens in a new tab" announcement. Use `ExternalLink` for ordinary external links; custom cards must preserve the same cues. Internal navigation, page anchors and email links keep their normal behaviour. Product subdomains are external destinations.
 
 Text hyperlinks use `link-sweep` on the anchor and `link-sweep-label` around the label. Keep a quiet underline at rest, then sweep a stronger line from left to right on desktop hover or keyboard focus over 240 milliseconds. Trailing arrows move slightly in their direction. Reduced motion shows the stronger underline immediately with stationary arrows. Keep this treatment on text links; navigation tabs, cards and filled action buttons retain their own interaction styles.
+
+The public CV at `/cv/Dave-Hudson-CV.pdf` contains only published professional facts and profile/contact links. Keep its editable source in `content/cv.json`; never substitute the private contact-workflow CV.
 
 Do not publish Dave's email address in public pages, metadata, client-side code or `mailto:` links. Direct enquiries through the contact workflow, its manual brief form, or LinkedIn. Email delivery details belong in server-side configuration.
 

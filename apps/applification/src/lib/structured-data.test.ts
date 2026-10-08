@@ -12,7 +12,7 @@ describe("homepage structured data", () => {
       expect.objectContaining({
         "@type": "ContactPoint",
         contactType: expect.any(String),
-        url: "https://www.applification.net/about",
+        url: "https://dave.applification.net/about",
       }),
     ]);
     expect(organization.address).toEqual(
@@ -46,9 +46,9 @@ describe("homepage structured data", () => {
       { name: "Voiced", path: "/products/voiced" },
     ]);
     expect(crumbs.itemListElement.map((item) => [item.position, item.item])).toEqual([
-      [1, "https://www.applification.net"],
-      [2, "https://www.applification.net/products"],
-      [3, "https://www.applification.net/products/voiced"],
+      [1, "https://applification.net"],
+      [2, "https://applification.net/products"],
+      [3, "https://applification.net/products/voiced"],
     ]);
   });
 });

@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { AgentPage } from "./agent-page";
 import { sitePageCopy } from "@/lib/content/site-pages";
 
-const markdown = `# ${sitePageCopy.home.title.join(" ")}\n\nSource: https://www.applification.net/\n\n${sitePageCopy.home.description}\n\n## How I work with AI\n\n${sitePageCopy.home.method}\n\n## Explore Applification\n\n- [Client work](https://www.applification.net/markdown/client-work)\n- [About Dave](https://www.applification.net/markdown/about)\n`;
+const markdown = `# ${sitePageCopy.home.title.join(" ")}\n\nSource: https://applification.net/\n\n${sitePageCopy.home.description}\n\n## How I work with AI\n\n${sitePageCopy.home.method}\n\n## Explore Applification\n\n- [Client work](https://applification.net/markdown/client-work)\n- [About Dave](https://applification.net/markdown/about)\n`;
 
 function Fixture() {
   usePathname.mockReturnValue("/agent");

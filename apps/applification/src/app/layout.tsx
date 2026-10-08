@@ -3,9 +3,11 @@ import Script from "next/script";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
-  contractPositioning,
-  contractPositioningDescriptions,
-} from "@/lib/contract-positioning";
+  businessDescription,
+  profileDescription,
+  siteOrigin,
+} from "@/lib/site-identity";
+import { getSiteIdentity } from "@/lib/site-identity.server";
 import { isContactWorkflowAvailable } from "@/lib/contact";
 import { SiteAnalytics } from "@/components/site-analytics";
 import { WebMcpTools } from "@/components/webmcp-tools";
@@ -14,44 +16,54 @@ import "./globals.css";
 
 const themeBootstrapScript = `(function(){try{var theme=localStorage.getItem("applification-theme");if(theme==="light"||theme==="dark"){document.documentElement.dataset.theme=theme}}catch(error){}})()`;
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://www.applification.net"),
-  ...(process.env.WEBMCP_ORIGIN_TRIAL_TOKEN
-    ? { other: { "origin-trial": process.env.WEBMCP_ORIGIN_TRIAL_TOKEN } }
-    : {}),
-  title: {
-    default: `Dave Hudson | ${contractPositioning.role}`,
-    template: "%s | Applification",
-  },
-  description: contractPositioningDescriptions.site,
-  icons: {
-    icon: [
-      {
-        url: "/brand/applification-mark-light.svg",
-        type: "image/svg+xml",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/brand/applification-mark-dark.svg",
-        type: "image/svg+xml",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_GB",
-    url: "/",
-    siteName: "Applification",
-    title: `Dave Hudson | ${contractPositioning.role}`,
-    description: contractPositioningDescriptions.site,
-  },
-  twitter: {
-    card: "summary_large_image",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteIdentity();
+  const title =
+    site === "profile"
+      ? "Dave Hudson | Contract frontend & product engineer"
+      : "Applification | MCP integrations & MCP Apps";
+  const description =
+    site === "profile" ? profileDescription : businessDescription;
+  return {
+    metadataBase: new URL(siteOrigin(site)),
+    ...(process.env.WEBMCP_ORIGIN_TRIAL_TOKEN
+      ? { other: { "origin-trial": process.env.WEBMCP_ORIGIN_TRIAL_TOKEN } }
+      : {}),
+    title: {
+      default: title,
+      template: site === "profile" ? "%s | Dave Hudson" : "%s | Applification",
+    },
+    description,
+    icons: {
+      icon: [
+        {
+          url: "/brand/applification-mark-light.svg",
+          type: "image/svg+xml",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          url: "/brand/applification-mark-dark.svg",
+          type: "image/svg+xml",
+          media: "(prefers-color-scheme: dark)",
+        },
+      ],
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_GB",
+      url: "/",
+      siteName: site === "profile" ? "Dave Hudson" : "Applification",
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const site = await getSiteIdentity();
   return (
     <html
       lang="en"
@@ -77,9 +89,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <div className="flex min-h-screen flex-col">
-          <SiteHeader contactAvailable={isContactWorkflowAvailable()} />
+          <SiteHeader
+            site={site}
+            contactAvailable={isContactWorkflowAvailable()}
+          />
           {children}
-          <SiteFooter />
+          <SiteFooter site={site} />
         </div>
         <SiteAnalytics />
         <WebMcpTools />

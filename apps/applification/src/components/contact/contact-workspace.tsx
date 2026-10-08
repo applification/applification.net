@@ -1,6 +1,7 @@
 "use client";
 
 import { flushSync } from "react-dom";
+import type { SiteIdentity } from "@/lib/site-identity";
 import { fillContactDraft, fillContactInputSchema } from "@/lib/contact-webmcp";
 import { registerPageTool, toolInputSchema } from "@/lib/webmcp";
 
@@ -177,9 +178,11 @@ function AssistantMessageLabel() {
 export function ContactWorkspace({
   initialProduct,
   initialRoute,
+  site,
 }: {
   initialProduct?: string;
   initialRoute: ContactRoute | null;
+  site?: SiteIdentity;
 }) {
   const [draft, setDraft] = useState<ContactDraft>(() =>
     createContactDraft({ product: initialProduct, route: initialRoute }),
@@ -1048,18 +1051,16 @@ export function ContactWorkspace({
       <div className="mx-auto w-full max-w-[1040px] px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
         <div className="mx-auto max-w-[780px] text-center">
           <p className="font-caption text-xs font-bold tracking-[1.2px] text-[var(--app-label-text)] uppercase">
-            Contact / AI workflow
+            {site === "business" ? "Applification / project enquiry" : "Contact / AI workflow"}
           </p>
           <h1
             className="font-heading mt-4 text-[clamp(2.75rem,6vw,4.5rem)] leading-[0.98] font-medium tracking-[-0.035em]"
             id="contact-heading"
           >
-            Tell me about the work. Try an AI workflow.
+            {site === "business" ? "Discuss your integration." : site === "profile" ? "Tell me about the contract." : "Tell me about the work. Try an AI workflow."}
           </h1>
           <p className="mx-auto mt-5 max-w-[690px] text-[clamp(1.0625rem,2vw,1.1875rem)] leading-[1.58] text-[var(--app-text-secondary)]">
-            This is a working AI demo and a way to contact me. Paste a role or
-            project brief, and the assistant extracts the details and asks for
-            what is missing. Review and approve the brief before it reaches me.
+            {site === "business" ? "Tell Dave about the system, the users and the workflow you want to connect. Paste a project brief or complete the form. Review your enquiry before sending it." : site === "profile" ? "Share the role, scope and working arrangement. Paste a brief or complete the form, then review your enquiry before it reaches me." : "This is a working AI demo and a way to contact me. Paste a role or project brief, and the assistant extracts the details and asks for what is missing. Review and approve the brief before it reaches me."}
           </p>
         </div>
 

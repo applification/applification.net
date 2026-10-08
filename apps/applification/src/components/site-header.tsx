@@ -7,6 +7,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { AgentsLink } from "./agents-link";
 import { agentPath, hasAgentView, humanPath } from "@/lib/page-view";
+import type { SiteIdentity } from "@/lib/site-identity";
 
 const navigation = [
   { href: "/", label: "Home" },
@@ -15,6 +16,13 @@ const navigation = [
   { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
+];
+const businessNavigation = [
+  { href: "/#services", label: "Services" },
+  { href: "/#evidence", label: "Evidence" },
+  { href: "/#agencies", label: "For agencies" },
+  { href: "/products", label: "Products" },
+  { href: "/contact?route=general", label: "Discuss a project" },
 ];
 
 const focusClasses =
@@ -45,7 +53,9 @@ function getProductHeaderTheme(pathname: string | null) {
 }
 
 function isCurrentPath(pathname: string | null, href: string) {
-  return pathname === href || (href !== "/" && pathname?.startsWith(`${href}/`) === true);
+  if (href.includes("#")) return false;
+  const path = href.split("?")[0];
+  return pathname === path || (path !== "/" && pathname?.startsWith(`${path}/`) === true);
 }
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -73,11 +83,11 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
-export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boolean }) {
+export function SiteHeader({ contactAvailable = true, site = "profile" }: { contactAvailable?: boolean; site?: SiteIdentity }) {
   const pathname = usePathname();
   const contentPath = humanPath(pathname ?? "/");
   const agent = pathname === agentPath(contentPath);
-  const navigationHref = (href: string) => agent && hasAgentView(href) ? agentPath(href) : href;
+  const navigationHref = (href: string) => agent && !href.includes("#") && hasAgentView(href) ? agentPath(href) : href;
   const productHeaderTheme = agent ? null : getProductHeaderTheme(pathname);
   const reduceMotion = useReducedMotion();
   const [menuState, setMenuState] = useState({ open: false, pathname });
@@ -90,9 +100,10 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const menuOpen = menuState.pathname === pathname && menuState.open;
+  const siteNavigation = site === "business" ? businessNavigation : navigation;
   const visibleNavigation = contactAvailable
-    ? navigation
-    : navigation.filter((item) => item.href !== "/contact");
+    ? siteNavigation
+    : siteNavigation.filter((item) => !item.href.startsWith("/contact"));
   const activeHref = visibleNavigation.find((item) => isCurrentPath(contentPath, item.href))?.href;
 
   useLayoutEffect(() => {
@@ -166,14 +177,14 @@ export function SiteHeader({ contactAvailable = true }: { contactAvailable?: boo
           <Link
             className={`site-header-brand inline-flex min-h-11 items-center gap-2.5 text-[var(--app-text-primary)] ${focusClasses}`}
             href={navigationHref("/")}
-            aria-label="Applification home"
+            aria-label={site === "profile" ? "Dave Hudson home" : "Applification home"}
           >
             <span
               aria-hidden="true"
               className="site-header-mark block h-[34px] w-12 bg-current [-webkit-mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat] [mask:url('/brand/applification-mark-light.svg')_center/contain_no-repeat]"
             />
             <span className="site-header-wordmark font-caption hidden text-sm leading-[18px] font-bold tracking-[1.3px] min-[520px]:block min-[820px]:hidden min-[1200px]:block">
-              APPLIFICATION
+              {site === "profile" ? "DAVE HUDSON" : "APPLIFICATION"}
             </span>
           </Link>
 

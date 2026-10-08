@@ -50,6 +50,7 @@ export function AboutHero() {
             {sitePageCopy.about.description}
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <a href="/cv/Dave-Hudson-CV.pdf" download className={`link-sweep inline-flex min-h-11 items-center font-semibold text-[var(--app-label-text)] ${focusClasses}`}><span className="link-sweep-label">Download CV (PDF)</span></a>
             {isContactWorkflowAvailable() ? <Link className={`link-sweep inline-flex min-h-11 items-center font-semibold text-[var(--app-label-text)] ${focusClasses}`} href="/contact?route=contract"><span className="link-sweep-label">Discuss a contract</span></Link> : null}
             <ExternalLink className={`link-sweep inline-flex min-h-11 items-center text-[var(--app-label-text)] ${focusClasses}`} href={personalLinkedInUrl}><span className="link-sweep-label">View my LinkedIn profile</span></ExternalLink>
           </div>
@@ -288,13 +289,12 @@ export function ContractFit() {
               Deliberate focus
             </p>
             <h3 className="font-heading mt-3 text-3xl leading-[1.1] font-medium">
-              AI product engineering, not data science consultancy.
+              Frontend contracts and AI product work.
             </h3>
             <p className="mt-5 text-[17px] leading-[1.62] text-[var(--app-text-secondary)]">
-              I build LLM-enabled products, coding-agent loops, MCP integrations
-              and the interfaces that make them usable. I focus on hands-on web
-              product engineering, not specialist Python, RAG or big-data
-              consultancy. I take on contract work rather than permanent roles.
+              Straightforward React, TypeScript and Next.js delivery is welcome.
+              I also build LLM-enabled products, MCP integrations and the interfaces
+              that make them usable. I take on hands-on product engineering contracts.
             </p>
           </article>
         </div>

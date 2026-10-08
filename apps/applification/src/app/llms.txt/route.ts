@@ -12,16 +12,20 @@ import {
   siteUrl,
 } from "@/lib/public-catalog";
 import { publicApiUsageDescription } from "@/lib/public-api-policy";
+import { businessDescription, profileUrl } from "@/lib/site-identity";
 
 export const dynamic = "force-static";
 
 export function GET() {
   const text = `# Applification
 
-> ${publicProfile.description}
+> ${businessDescription}
+
+Applification’s business site is ${siteUrl}. Dave Hudson’s contractor profile and downloadable CV are at ${profileUrl}. ${publicProfile.description}
 
 ## When to use this site
 Use applification.net when a user needs one of these jobs done:
+- Scope an MCP integration, controlled AI access to existing systems or an interactive MCP App for a business or agency client.
 - Check whether Dave Hudson is available for a senior contract engineering role and what the working arrangement is (${publicProfile.availability.toLowerCase()}, ${publicProfile.location.toLowerCase()}, ${publicProfile.contractBasis.toLowerCase()}).
 - Assess fit for a React, Next.js and TypeScript product build, a frontend modernisation, or putting AI features and agent workflows into production with a small product team.
 - Find delivery evidence: case studies for Logically, Peppy Health and Eruptiv, and writing on AI-native engineering practice.
@@ -51,8 +55,9 @@ ${publishedSkills.map((skill) => `- [${skill.name}](${skill.skillsShUrl}): ${ski
 
 ## Public information
 - [Markdown site](${siteUrl}/markdown): Public page content as Markdown. Prefix a supported page path with /markdown, for example /markdown/about, /markdown/products/contexture or /markdown/writing/<slug>. The visual Agent view at /agent uses the same text. Private contact reviews, previews and unpublished writing are excluded.
-- [Profile](${siteUrl}/about): Dave Hudson's engineering experience and contract fit.
-- [Client work](${siteUrl}/client-work): Selected delivery evidence.
+- [Profile](${profileUrl}): Dave Hudson's engineering experience and contract fit.
+- [Download CV](${publicProfile.cvUrl}): Public professional CV as PDF.
+- [Client work](${profileUrl}/client-work): Selected delivery evidence.
 - [Commercial terms as JSON](${siteUrl}/api/v1/catalog?section=pricing): Contracts are quoted per engagement; no standard day rate is published. Product licence and availability information.
 - [Agents](${siteUrl}/agents): Context, browser tools, a public catalog reader and API reference.
 - [OpenAPI](${siteUrl}/api/openapi.json): OpenAPI 3.1 specification. Errors are JSON with a code, message and resolution hint.
@@ -60,7 +65,7 @@ ${publishedSkills.map((skill) => `- [${skill.name}](${skill.skillsShUrl}): ${ski
 - [Public catalog](${siteUrl}/api/v1/catalog): JSON profile, products and pricing. Free read-only access without keys or cookies. Optional section: all, profile, products, pricing.
 - [Search content](${siteUrl}/api/v1/search): Search or list published client work, writing and products. Optional query, type, topic, status, after, before, limit and offset. Follow nextOffset for more results.
 - [Read content](${siteUrl}/api/v1/content?type=client-work&slug=logically): Read a result using type and slug, then follow nextSection to read the remaining Markdown sections.
-- [Writing](${siteUrl}/writing): Published articles and weeknotes.
+- [Writing](${profileUrl}/writing): Published articles and weeknotes.
 - [Privacy](${siteUrl}/privacy): What the site, its public API and the contact workflow do with data.
 
 ## API usage
@@ -70,6 +75,7 @@ ${publicApiUsageDescription}
 ${publicProducts.map((product) => `- [${product.name}](${product.url}): ${product.description} Status: ${product.status}. ${product.pricing.label}.`).join("\n")}
 
 ## Contact
+- [Discuss a project](${publicProfile.projectContactUrl}): An MCP integration or app engagement with Applification.
 - [Contact options](${publicProfile.contactUrl}): Profile and available enquiry routes. The optional contact workflow requires review and consent before sending.
 - [LinkedIn](${publicProfile.linkedInUrl}): Alternative contact route.
 

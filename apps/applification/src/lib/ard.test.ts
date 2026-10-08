@@ -33,7 +33,7 @@ describe("agentic resource discovery manifest", () => {
       expect(entry.type).toMatch(/^[a-z]+\/[a-z0-9.+-]+$/);
       // Artifacts live on this domain or in Applification's GitHub org.
       expect(entry.url).toMatch(
-        /^https:\/\/(www\.applification\.net|raw\.githubusercontent\.com\/applification)\//,
+        /^https:\/\/(applification\.net|raw\.githubusercontent\.com\/applification)\//,
       );
       expect("data" in entry).toBe(false);
       expect(entry.representativeQueries.length).toBeGreaterThanOrEqual(2);

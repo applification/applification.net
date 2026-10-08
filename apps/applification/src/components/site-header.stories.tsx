@@ -146,7 +146,7 @@ export const DesktopLight: Story = {
     await checkHeaderUtilities(canvasElement);
     const canvas = within(canvasElement);
 
-    await expect(canvas.getByText("APPLIFICATION")).toBeVisible();
+    await expect(canvas.getByText("DAVE HUDSON")).toBeVisible();
     const navigation = canvas.getByRole("navigation", { name: "Primary navigation" });
     const home = within(navigation).getAllByRole("link")[0];
     await expect(home).toHaveAccessibleName("Home");
@@ -170,7 +170,7 @@ export const NarrowDesktop: Story = {
   play: async ({ canvasElement }) => {
     await checkHeaderUtilities(canvasElement);
     const canvas = within(canvasElement);
-    const brand = canvas.getByRole("link", { name: "Applification home" });
+    const brand = canvas.getByRole("link", { name: "Dave Hudson home" });
     const navigation = canvas.getByRole("navigation", { name: "Primary navigation" });
     await expect(navigation).toBeVisible();
     await expect(brand.getBoundingClientRect().right + 16).toBeLessThanOrEqual(
@@ -252,7 +252,7 @@ export const SmallMobile: Story = {
     const canvas = within(canvasElement);
     await checkHeaderUtilities(canvasElement);
     const agents = canvas.getByRole("link", { name: "Agents & API docs" });
-    const brand = canvas.getByRole("link", { name: "Applification home" });
+    const brand = canvas.getByRole("link", { name: "Dave Hudson home" });
     const menu = canvas.getByRole("button", { name: "Open navigation menu" });
     await expect(brand.getBoundingClientRect().right + 8).toBeLessThanOrEqual(agents.getBoundingClientRect().left);
     await expect(agents.getBoundingClientRect().right + 8).toBeLessThanOrEqual(menu.getBoundingClientRect().left);

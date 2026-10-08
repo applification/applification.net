@@ -28,7 +28,7 @@ describe("public OpenAPI document", () => {
 
   it("publishes a versioning and deprecation policy with Sunset and Deprecation headers", () => {
     const policy = publicOpenApi["x-versioning-policy"];
-    expect(policy.url).toBe("https://www.applification.net/agents#versioning");
+    expect(policy.url).toBe("https://applification.net/agents#versioning");
     expect(policy.minimumDeprecationWindowDays).toBe(180);
     expect(publicOpenApi.info.description).toMatch(/Deprecation and Sunset/);
     for (const path of ["/api/v1/search", "/api/v1/content", "/api/v1/catalog"] as const) {
