@@ -32,7 +32,7 @@ type Story = StoryObj<typeof meta>;
 const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await expect(canvas.getAllByRole("heading", { level: 1 })).toHaveLength(1);
-  await expect(canvas.getByRole("heading", { level: 1 })).toHaveTextContent("Explore my work with your AI.");
+  await expect(canvas.getByRole("heading", { level: 1 })).toHaveTextContent("Explore the work with your AI.");
   await expect(canvas.getByRole("button", { name: "Copy prompt" })).toBeVisible();
   const destinations = [
     ["Open in ChatGPT", "https://chatgpt.com/"],
@@ -216,7 +216,7 @@ export const EditAndResetPrompt: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const field = canvas.getByRole("textbox", { name: "Your prompt" }) as HTMLTextAreaElement;
-    const edited = "Read https://www.applification.net and compare R&D + C# projects.\nWhat’s relevant to my team?";
+    const edited = "Read https://applification.net and compare R&D + C# projects.\nWhat’s relevant to my team?";
     const buttons = within(canvas.getByRole("group", { name: "Open this prompt with an assistant" })).getAllByRole("button") as HTMLButtonElement[];
     const descriptor = Object.getOwnPropertyDescriptor(navigator, "clipboard");
     let copied = "";

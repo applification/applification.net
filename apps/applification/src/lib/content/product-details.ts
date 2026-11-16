@@ -372,7 +372,7 @@ export const productLinks = {
     { label: "Product website", url: "https://astack.applification.net/" },
     { label: "Source code", url: "https://github.com/applification/astack" },
   ],
-  storyloops: [{ label: "astack", url: "https://www.applification.net/products/astack" }],
+  storyloops: [{ label: "astack", url: "https://applification.net/products/astack" }],
   loami: [
     {
       label: "Brand and component Storybook",
@@ -380,10 +380,10 @@ export const productLinks = {
     },
     {
       label: "Plantry archive",
-      url: "https://www.applification.net/products/plantry",
+      url: "https://applification.net/products/plantry",
     },
   ],
   plantry: [
-    { label: "Loami", url: "https://www.applification.net/products/loami" },
+    { label: "Loami", url: "https://applification.net/products/loami" },
   ],
 };

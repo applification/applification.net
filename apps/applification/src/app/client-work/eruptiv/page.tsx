@@ -12,15 +12,15 @@ export const metadata: Metadata = {
   alternates: { canonical: "/client-work/eruptiv" },
   openGraph: {
     type: "article",
-    siteName: "Applification",
+    siteName: "Dave Hudson",
     locale: "en_GB",
-    title: "Eruptiv case study | Applification",
+    title: "Eruptiv case study | Dave Hudson",
     description,
     url: "/client-work/eruptiv",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Eruptiv case study | Applification",
+    title: "Eruptiv case study | Dave Hudson",
     description,
   },
 };
@@ -28,7 +28,12 @@ export const metadata: Metadata = {
 export default function EruptivCaseStudyRoute() {
   return (
     <>
-      <StructuredData data={breadcrumbStructuredData([{ name: "Client work", path: "/client-work" }, { name: "Eruptiv", path: "/client-work/eruptiv" }])} />
+      <StructuredData
+        data={breadcrumbStructuredData([
+          { name: "Client work", path: "/client-work" },
+          { name: "Eruptiv", path: "/client-work/eruptiv" },
+        ])}
+      />
       <EruptivCaseStudyPage />
     </>
   );

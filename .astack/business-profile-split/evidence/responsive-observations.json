@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-08",
+  "observations": [
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": false,
+      "scrollWidth": 320,
+      "site": "profile",
+      "width": 320
+    },
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": false,
+      "scrollWidth": 390,
+      "site": "profile",
+      "width": 390
+    },
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": false,
+      "scrollWidth": 900,
+      "site": "profile",
+      "width": 900
+    },
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": true,
+      "scrollWidth": 1024,
+      "site": "profile",
+      "width": 1024
+    },
+    {
+      "brandVisible": true,
+      "desktopNavigationVisible": true,
+      "scrollWidth": 1440,
+      "site": "profile",
+      "width": 1440
+    },
+    {
+      "scrollWidth": 320,
+      "site": "business",
+      "width": 320
+    },
+    {
+      "scrollWidth": 390,
+      "site": "business",
+      "width": 390
+    },
+    {
+      "scrollWidth": 900,
+      "site": "business",
+      "width": 900
+    },
+    {
+      "scrollWidth": 1024,
+      "site": "business",
+      "width": 1024
+    },
+    {
+      "scrollWidth": 1440,
+      "site": "business",
+      "width": 1440
+    }
+  ],
+  "profileMenu": {
+    "focusOnOpen": "Client work",
+    "escapeFocusReturn": "Open navigation menu",
+    "externalBusiness": "https://applification.net",
+    "reducedMotion": true
+  },
+  "contact": {
+    "profile": "contract only, including manual form",
+    "business": "product and general only"
+  },
+  "cv": "Two-page public PDF downloaded through header CV link",
+  "restoredControls": [
+    {
+      "botAbsent": true,
+      "brandLogo": true,
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "botAbsent": true,
+      "brandLogo": true,
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "botAbsent": true,
+      "brandLogo": true,
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 900,
+      "width": 900
+    },
+    {
+      "botAbsent": true,
+      "brandLogo": true,
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "botAbsent": true,
+      "brandLogo": true,
+      "overflow": false,
+      "pageViewVisible": true,
+      "scrollWidth": 1440,
+      "width": 1440
+    }
+  ],
+  "agentView": {
+    "entry": "Human / Agent switch",
+    "url": "http://dave.applification.localhost:3333/agent",
+    "content": "Dave’s profile Markdown",
+    "navigation": "Personal routes, CV and contract contact",
+    "humanReturn": "http://dave.applification.localhost:3333/",
+    "botShortcut": "Removed from Dave’s header",
+    "guideLink": "https://applification.net/agents (inside Agent reader)"
+  }
+}

@@ -6,11 +6,11 @@ import { SiteFooter } from "@/components/site-footer";
 import { AgentPage } from "./agent-page";
 import { sitePageCopy } from "@/lib/content/site-pages";
 
-const markdown = `# ${sitePageCopy.home.title.join(" ")}\n\nSource: https://www.applification.net/\n\n${sitePageCopy.home.description}\n\n## How I work with AI\n\n${sitePageCopy.home.method}\n\n## Explore Applification\n\n- [Client work](https://www.applification.net/markdown/client-work)\n- [About Dave](https://www.applification.net/markdown/about)\n`;
+const markdown = `# ${sitePageCopy.home.title.join(" ")}\n\nSource: https://dave.applification.net/\n\n${sitePageCopy.home.description}\n\n## How I work with AI\n\n${sitePageCopy.home.method}\n\n## Explore Dave's profile\n\n- [Client work](https://dave.applification.net/markdown/client-work)\n- [About Dave](https://dave.applification.net/markdown/about)\n`;
 
 function Fixture() {
   usePathname.mockReturnValue("/agent");
-  return <><SiteHeader /><AgentPage title={sitePageCopy.home.title.join(" ")} path="/" markdown={markdown} /><SiteFooter /></>;
+  return <><SiteHeader /><AgentPage title={sitePageCopy.home.title.join(" ")} path="/" markdown={markdown} site="profile" /><SiteFooter /></>;
 }
 
 const meta = {
@@ -25,6 +25,7 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await expect(canvas.getByRole("link", { name: "Agent" })).toHaveAttribute("aria-current", "page");
   await expect(canvas.getByRole("link", { name: "Human" })).toHaveAttribute("href", "/");
+  await expect(canvas.getByRole("link", { name: "Return to Human view" })).toHaveAttribute("href", "/");
   await expect(canvas.getByRole("link", { name: "Open Markdown" })).toHaveAttribute("href", "/markdown");
   await expect(canvas.getByLabelText("Page Markdown")).toHaveTextContent(sitePageCopy.home.description);
   // Agent view stays dark even when the visitor has chosen the Human light theme.
@@ -32,7 +33,7 @@ const checkPage: NonNullable<Story["play"]> = async ({ canvasElement }) => {
   await expect(getComputedStyle(document.body).backgroundColor).toBe("rgb(16, 18, 20)");
   await expect(getComputedStyle(canvas.getByLabelText("Page Markdown")).color).toBe("rgb(230, 237, 241)");
   await expect(canvas.queryByRole("button", { name: /Switch.*theme/ })).not.toBeInTheDocument();
-  await expect(canvas.getByRole("link", { name: "Agents & API docs" })).toBeVisible();
+  await expect(canvas.getByRole("link", { name: /Applification.s agent guide/ })).toHaveAttribute("href", "https://applification.net/agents");
   await expect(canvasElement.scrollWidth).toBeLessThanOrEqual(canvasElement.clientWidth);
   const copy = canvas.getByRole("button", { name: "Copy Markdown" });
   copy.focus();
@@ -57,7 +58,7 @@ export const MobileMenuOpen: Story = {
     const canvas = within(context.canvasElement);
     await userEvent.click(canvas.getByRole("button", { name: "Open navigation menu" }));
     const menu = within(canvas.getByRole("navigation", { name: "Mobile navigation" }));
-    await expect(menu.getByRole("link", { name: "Products" })).toHaveAttribute("href", "/agent/products");
+    await expect(menu.getByRole("link", { name: "Client work" })).toHaveAttribute("href", "/agent/client-work");
     await expect(menu.queryByRole("button", { name: /Switch.*theme/ })).not.toBeInTheDocument();
     await userEvent.keyboard("{Escape}");
     await expect(canvas.getByRole("button", { name: "Open navigation menu" })).toHaveFocus();

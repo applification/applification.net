@@ -1,22 +1,29 @@
-import { ClientLogos } from "@/components/home/client-logos";
-import { ClientOutcomes } from "@/components/home/client-outcomes";
-import { ContractCta } from "@/components/home/contract-cta";
-import { Hero } from "@/components/home/hero";
-import { ProductsRow } from "@/components/home/products-row";
+import { BusinessHomepage } from "@/components/business/business-homepage";
+import { ProfileHomepage } from "@/components/home/profile-homepage";
 import { StructuredData } from "@/components/structured-data";
-import { homepageStructuredData } from "@/lib/public-catalog";
+import {
+  businessStructuredData,
+  profileStructuredData,
+} from "@/lib/site-structured-data";
+import { getSiteIdentity } from "@/lib/site-identity.server";
+import { isContactWorkflowAvailable } from "@/lib/contact";
 
 export const metadata = { alternates: { canonical: "/" } };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const site = await getSiteIdentity();
   return (
-    <main id="main-content" className="flex-1">
-      <StructuredData data={homepageStructuredData} />
-      <Hero />
-      <ClientLogos />
-      <ClientOutcomes />
-      <ProductsRow />
-      <ContractCta />
-    </main>
+    <>
+      <StructuredData
+        data={
+          site === "profile" ? profileStructuredData : businessStructuredData
+        }
+      />
+      {site === "profile" ? (
+        <ProfileHomepage contactAvailable={isContactWorkflowAvailable()} />
+      ) : (
+        <BusinessHomepage contactAvailable={isContactWorkflowAvailable()} />
+      )}
+    </>
   );
 }

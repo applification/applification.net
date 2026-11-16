@@ -468,3 +468,56 @@ export const ReviewActionVisibleSmall: Story = {...ReviewActionVisible,globals:{
 export const ReviewActionVisibleTablet: Story = {...ReviewActionVisible,globals:{viewport:{value:"tablet",isRotated:false}}};
 export const ManualContractWithoutScrolling: Story = {args:{initialRoute:"contract"},play:({canvasElement}) => checkReviewAction(canvasElement,"Role or project")};
 export const ManualProductWithoutScrolling: Story = {args:{initialRoute:"product"},play:({canvasElement}) => checkReviewAction(canvasElement,"Your question")};
+
+
+const checkPersonalContact: NonNullable<Story["play"]> = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await expect(canvas.getByRole("heading", { name: "Tell me about the contract." })).toBeVisible();
+  await expect(canvas.queryByRole("radiogroup", { name: "Choose an enquiry route" })).toBeNull();
+  await expect(canvas.queryByRole("button", { name: "Change enquiry route" })).toBeNull();
+  await userEvent.click(canvas.getByRole("button", { name: "Use form" }));
+  await expect(canvas.getByRole("textbox", { name: "Role or project" })).toBeVisible();
+  await expect(canvas.queryByRole("combobox", { name: "Enquiry type" })).toBeNull();
+  await expect(canvas.queryByRole("combobox", { name: "Product" })).toBeNull();
+};
+export const PersonalContract: Story = {
+  args: { site: "profile", initialRoute: "contract" },
+  play: checkPersonalContact,
+};
+export const PersonalContractMobile: Story = {
+  ...PersonalContract,
+  globals: { viewport: { value: "mobile", isRotated: false } },
+};
+export const PersonalContractDark: Story = {
+  ...PersonalContract,
+  globals: { theme: "dark" },
+};
+export const PersonalContractMobileDark: Story = {
+  ...PersonalContract,
+  globals: { theme: "dark", viewport: { value: "mobile", isRotated: false } },
+};
+const checkBusinessContact: NonNullable<Story["play"]> = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await expect(canvas.getByRole("heading", { name: "Discuss your integration." })).toBeVisible();
+  if (window.innerWidth < 640) await userEvent.click(canvas.getByRole("button", { name: "Change enquiry route" }));
+  const choices = within(canvas.getByRole("radiogroup", { name: "Choose an enquiry route" }));
+  await expect(choices.queryByRole("radio", { name: "Contract enquiry" })).toBeNull();
+  await expect(choices.getByRole("radio", { name: "Product enquiry" })).toBeVisible();
+  await expect(choices.getByRole("radio", { name: "General enquiry" })).toBeVisible();
+  await userEvent.click(canvas.getByRole("button", { name: "Use form" }));
+  await userEvent.click(canvas.getByRole("combobox", { name: "Enquiry type" }));
+  const options = within(document.body);
+  await expect(options.queryByRole("option", { name: "Contract enquiry" })).toBeNull();
+  await waitFor(() => expect(options.getByRole("option", { name: "Product enquiry" })).toBeVisible());
+  await expect(options.getByRole("option", { name: "General enquiry" })).toBeVisible();
+  await userEvent.keyboard("{Escape}");
+  await waitFor(() => expect(options.queryByRole("listbox")).toBeNull());
+};
+export const BusinessEnquiry: Story = {
+  args: { site: "business", initialRoute: "general" },
+  play: checkBusinessContact,
+};
+export const BusinessEnquiryMobile: Story = {
+  ...BusinessEnquiry,
+  globals: { viewport: { value: "mobile", isRotated: false } },
+};

@@ -4,7 +4,7 @@ import { withWorkflow } from "workflow/next";
 import { securityHeaders } from "./src/lib/security-headers";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["applification.localhost", "rufus.tail12a0a0.ts.net"],
+  allowedDevOrigins: ["applification.localhost", "dave.applification.localhost", "rufus.tail12a0a0.ts.net"],
   poweredByHeader: false,
   // The production build type-checks application code only. Test and
   // Storybook tooling is checked by `bun run typecheck` (tsconfig.json) in CI;

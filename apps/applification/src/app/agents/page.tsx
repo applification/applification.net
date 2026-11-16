@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { defaultOpenGraph } from "@/lib/social-metadata";
 
 const description =
-  "Explore Dave Hudson’s work with ChatGPT or Claude. Copy a starter prompt, read page Markdown, or use the API docs, WebMCP tools and free developer sandbox.";
+  "Explore Applification’s MCP integrations and products with ChatGPT or Claude. Copy a starter prompt, read page Markdown, or use the API docs, WebMCP tools and free developer sandbox.";
 
 export const metadata: Metadata = {
   title: "Agents & API docs",

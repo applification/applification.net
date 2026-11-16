@@ -2,8 +2,10 @@ import Link from "next/link";
 import { CopyTextButton } from "@/components/copy-text-button";
 import { markdownPath } from "@/lib/page-view";
 import { InfoLink } from "./info-layout";
+import { ExternalLink } from "@/components/external-link";
+import { businessUrl, type SiteIdentity } from "@/lib/site-identity";
 
-export function AgentPage({ title, path, markdown }: { title: string; path: string; markdown: string }) {
+export function AgentPage({ title, path, markdown, site = "business" }: { title: string; path: string; markdown: string; site?: SiteIdentity }) {
   return (
     <main id="main-content" className="agent-page flex-1 px-6 pt-12 pb-16 min-[720px]:px-12 min-[1024px]:pt-16">
       <div className="mx-auto max-w-[1200px]">
@@ -12,7 +14,7 @@ export function AgentPage({ title, path, markdown }: { title: string; path: stri
             <span aria-hidden="true" className="size-1.5 bg-current" />
             Agent view
           </p>
-          <InfoLink href="/agents">Use this site with your AI</InfoLink>
+          {site === "profile" ? <ExternalLink href={`${businessUrl}/agents`} className="link-sweep inline-flex min-h-11 items-center text-[var(--app-label-text)]"><span className="link-sweep-label">Applification’s agent guide</span></ExternalLink> : <InfoLink href="/agents">Use this site with your AI</InfoLink>}
         </div>
         <h1 className="font-caption mt-5 max-w-[900px] text-2xl leading-snug font-medium [overflow-wrap:anywhere] min-[720px]:text-[32px]">{title}</h1>
         <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-[var(--app-text-secondary)]">

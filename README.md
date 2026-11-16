@@ -3,7 +3,7 @@
 [![CI](https://github.com/applification/applification.net/actions/workflows/ci.yml/badge.svg)](https://github.com/applification/applification.net/actions/workflows/ci.yml)
 [![skills.sh](https://skills.sh/b/applification/applification.net)](https://skills.sh/applification/applification.net)
 
-The source of [www.applification.net](https://www.applification.net): Dave Hudson's portfolio and contract engineering site. It covers:
+One Next.js deployment serves [Applification](https://applification.net), the MCP integration and MCP Apps business, and [Dave Hudson](https://dave.applification.net), the contractor profile and public CV. It covers:
 - product pages for Contexture, Plantry, StoryLoops and Voiced
 - client case studies
 - articles and weeknotes
@@ -44,6 +44,8 @@ bun run dev
 Two other ways to run it:
 - **`bun run dev:tailscale`** also exposes the site over Tailscale HTTPS and prints the assigned `https://<machine>.<tailnet>.ts.net[:port]` URL. Use that URL from another device on your tailnet.
 - **`bun run dev:direct`** skips the proxy and serves `http://localhost:3333`.
+
+For separate local previews, `bun run dev:direct` serves [the business](http://applification.localhost:3333) and [Dave’s profile](http://dave.applification.localhost:3333). Both `.localhost` names resolve to the local machine in supported browsers. A localhost or Vercel preview also supports `?site=business` / `?site=profile`, persisting that selection in a preview-only cookie. Production hostnames always decide their own identity.
 
 Most of the site needs no configuration. The contact workflow needs the variables in `apps/applification/.env.example`. It is enabled automatically in development, and it only calls the AI Gateway when a key is set.
 
@@ -87,7 +89,7 @@ For UI changes, read `apps/applification/design.md` and update the nearest Story
 
 ## Deployment
 
-The site deploys to the `applification` project on Vercel. Pages are prerendered where possible.
+Both sites deploy to the `applification` project on Vercel. The shared layout uses request-time hostname identity; public data endpoints and content loaders retain their existing caching. See [hostname migration](docs/runbooks/site-hostnames.md) for the domain settings, redirects, previews and release checks.
 
 The contact service depends on these Vercel products:
 - **BotID** and a **Firewall** rule named `contact-write`, for abuse protection.
@@ -136,6 +138,7 @@ Install it with `npx skills add applification/applification.net --skill applific
 ## Documentation
 
 - [Architecture](docs/architecture.md): the layers, content pipeline, Human/Agent views, API and contact workflow.
+- [Hostname migration](docs/runbooks/site-hostnames.md): deploying the business/profile split and verifying both sites.
 - [Contact workflow runbook](docs/runbooks/contact-workflow.md): operating the contact service.
 - [Agent readiness](docs/agent-readiness.md): the agent-facing surfaces and how to verify them.
 - [Codebase audit, September 2026](docs/audit-2026-09.md): findings and the improvement backlog.

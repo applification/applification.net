@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/public-catalog";
+import { siteOrigin } from "@/lib/site-identity";
+import { getSiteIdentity } from "@/lib/site-identity.server";
 
 // This site's premise is agent discoverability, so answer and search
 // crawlers that cite this content back to a reader are welcome. Crawlers
@@ -23,7 +24,8 @@ const answerAndSearchCrawlers = [
 // Training-only crawlers: scrape for model training with no attribution.
 const trainingOnlyCrawlers = ["CCBot", "Bytespider"];
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const site = await getSiteIdentity();
   return {
     rules: [
       ...answerAndSearchCrawlers.map((userAgent) => ({
@@ -42,6 +44,6 @@ export default function robots(): MetadataRoute.Robots {
         other: { "Content-Signal": "search=yes, ai-train=no" },
       },
     ],
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: `${siteOrigin(site)}/sitemap.xml`,
   };
 }

@@ -9,18 +9,18 @@ const description =
 export const metadata: Metadata = {
   title: "Logically case study",
   description,
-  alternates: { canonical: "/client-work/logically" },
+  alternates: { canonical: "https://dave.applification.net/client-work/logically" },
   openGraph: {
     type: "article",
-    siteName: "Applification",
+    siteName: "Dave Hudson",
     locale: "en_GB",
-    title: "Logically case study | Applification",
+    title: "Logically case study | Dave Hudson",
     description,
-    url: "/client-work/logically",
+    url: "https://dave.applification.net/client-work/logically",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Logically case study | Applification",
+    title: "Logically case study | Dave Hudson",
     description,
   },
 };

@@ -12,15 +12,15 @@ export const metadata: Metadata = {
   alternates: { canonical: "/client-work/peppy-health" },
   openGraph: {
     type: "article",
-    siteName: "Applification",
+    siteName: "Dave Hudson",
     locale: "en_GB",
-    title: "Peppy Health case study | Applification",
+    title: "Peppy Health case study | Dave Hudson",
     description,
     url: "/client-work/peppy-health",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Peppy Health case study | Applification",
+    title: "Peppy Health case study | Dave Hudson",
     description,
   },
 };
@@ -28,7 +28,12 @@ export const metadata: Metadata = {
 export default function PeppyHealthCaseStudyRoute() {
   return (
     <>
-      <StructuredData data={breadcrumbStructuredData([{ name: "Client work", path: "/client-work" }, { name: "Peppy Health", path: "/client-work/peppy-health" }])} />
+      <StructuredData
+        data={breadcrumbStructuredData([
+          { name: "Client work", path: "/client-work" },
+          { name: "Peppy Health", path: "/client-work/peppy-health" },
+        ])}
+      />
       <PeppyHealthCaseStudyPage />
     </>
   );

@@ -83,7 +83,7 @@ export const profileFacts = [
 ] as const;
 
 export const bestFit = [
-  "Greenfield or architectural reset",
+  "Frontend delivery, greenfield builds or architectural resets",
   "React, TypeScript and Tailwind",
   "AI product interfaces and agent workflows",
   "Direct access to product decisions",

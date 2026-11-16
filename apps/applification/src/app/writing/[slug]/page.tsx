@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { defaultOpenGraph } from "@/lib/social-metadata";
+import { profileOpenGraph } from "@/lib/social-metadata";
 import { notFound } from "next/navigation";
 import { WritingArticle } from "@/components/writing/writing-article";
 import { getWriting, getWritingBySlug } from "@/lib/writing";
@@ -31,7 +31,7 @@ export async function generateMetadata({
     description: entry.summary,
     alternates: { canonical: `/writing/${entry.slug}` },
     openGraph: {
-      ...defaultOpenGraph,
+      ...profileOpenGraph,
       type: "article",
       title: entry.title,
       description: entry.summary,
@@ -43,7 +43,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function WritingArticlePage({ params }: WritingArticlePageProps) {
+export default async function WritingArticlePage({
+  params,
+}: WritingArticlePageProps) {
   const { slug } = await params;
   const entries = getWriting({ includeDrafts: false });
   const index = entries.findIndex((entry) => entry.slug === slug);
@@ -69,11 +71,7 @@ export default async function WritingArticlePage({ params }: WritingArticlePageP
         right.candidate.date.localeCompare(left.candidate.date),
     )
     .map(({ candidate }) => candidate);
-  const related = [
-    ...topicalRelated,
-    entries[index - 1],
-    entries[index + 1],
-  ]
+  const related = [...topicalRelated, entries[index - 1], entries[index + 1]]
     .filter(
       (candidate, candidateIndex, candidates) =>
         candidate &&
