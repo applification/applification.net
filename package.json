@@ -19,5 +19,8 @@
     "test:storybook": "bun run --cwd apps/applification test-storybook",
     "check": "bun run lint && bun run typecheck && bun run test && bun run test:workflow",
     "skills:sync": "bun --cwd apps/applification skills:sync"
+  },
+  "patchedDependencies": {
+    "@storybook/nextjs-vite@10.6.0": "patches/@storybook%2Fnextjs-vite@10.6.0.patch"
   }
 }
